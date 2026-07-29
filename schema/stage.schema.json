@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/stage@1",
+  "title": "Gatebraid Stage metadata (gatebraid/stage@1)",
+  "description": "Machine-readable block in a Stage issue body ('## gatebraid-metadata' + one fenced yaml block). Stage issues live in MianliWang/gatebraid; Phase issues are their sub-issues.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "stage_id", "title"],
+  "properties": {
+    "schema": { "const": "gatebraid/stage@1" },
+    "stage_id": { "type": "string", "pattern": "^S[0-9]+$" },
+    "title": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string" },
+    "projects": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+      "description": "Repositories this Stage's Slices are expected to touch (owner/repo). Informational; authorization is per-milestone.",
+      "default": []
+    },
+    "notes": { "type": "string" }
+  }
+}
