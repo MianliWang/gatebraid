@@ -45,16 +45,27 @@ Full filter/layout definitions are normative in
 ## Setup method (M1)
 
 Fields and options are created through the GitHub connector / structured API.
-**All twelve views are M1 acceptance requirements.** Narrow finding to confirm
-at execution: the currently connected GitHub connector/authentication path may
-not support creation of user-owned Project views. If it cannot: fields and
-options are still created through the connector; the exact manual-view
-creation checklist (`projects/mianli-engineering-views-checklist.md`) is
-handed to the operator / ChatGPT Work; work **pauses** until the views exist;
-a read-only verification pass then checks all twelve against the checklist.
-Views are never downgraded to documentation-only. Any further element this
-path cannot express is stopped on and recorded in the M1 verification
-manifest — never improvised.
+**All twelve views are M1 acceptance requirements.**
+
+**Finding of record (M1 execution, 2026-07-30 — replaces the anticipated
+conditional this section previously carried).** On the authenticated `gh`/GraphQL
+path actually used, view management is *partially* available:
+
+- `gh` 2.96.0 exposes **no** view-management subcommand (`gh project view`
+  displays a project; it does not manage views).
+- GraphQL **does** expose `createProjectV2View` / `updateProjectV2View` /
+  `deleteProjectV2View`. Create takes `projectId`, `name`, `layout`; update
+  additionally takes `filter`.
+- **No API input exists for grouping, sorting, visible fields, or
+  `Show hierarchy`.** Those four are UI-only.
+
+So views are created programmatically as name + layout + filter, and the rest is
+configured by hand from
+`projects/mianli-engineering-views-checklist.md`; work **pauses** until all
+twelve exist and are configured, and a read-only verification pass then checks
+every attribute the API can read. Views are never downgraded to
+documentation-only. Any further element this path cannot express is stopped on
+and recorded in the M1 verification manifest — never improvised.
 
 ## Membership rule (M1)
 

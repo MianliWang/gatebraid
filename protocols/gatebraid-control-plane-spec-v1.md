@@ -41,7 +41,7 @@ Design note (deliberate change): there is **no stored `Ready` state**. Readiness
 
 **Label coupling (ADR-0008):** the `needs-human` repository label is set **exactly** when Workflow ∈ {4, 9, 11} or Workflow = 10 with a `needs_input`-typed block reason — and removed on exit. It is the only mirrored label unless the M0 phone probe demanded a second (probe results recorded in ADR-0008 — no second label was demanded).
 
-**Legal transitions (enforced by skills in M2, guard in M3):** 1→2→3→4→5; 5→6; 6→{11, 7}; 7→{6 after repair-1, 8 after repair-1 fails}; 8→{6 after applied fix, 9}; 6→7→…→9 caps repairs at `repair_limit` (default 2); any state →10 and back to its origin on unblock (recurrence ≥2 for the same cause → 9, not 10 — the Hermes-derived loop breaker); 11→12→13. Approvals 4→5 and 11→12 are human-only and recorded as an approval comment plus the `Next Approval` field clearing.
+**Legal transitions (enforced by skills in M2, guard in M3):** 1→2→3→4→5; 5→6; 6→{11, 7}; 7→{6 after repair-1, 8 after repair-1 fails}; 8→{6 after applied fix, 9}; 6→7→…→9 caps repairs at `repair_limit` (default 2); any state →10 and back to its origin on unblock (recurrence ≥2 for the same cause → 9, not 10 — the Hermes-derived loop breaker); 11→12→13. Approvals 4→5 and 11→12 are human-only and recorded as an approval comment plus the `Next Approval` field returning to `—`.
 
 ## 2. Other single-select option lists
 
@@ -52,7 +52,7 @@ Invariant: the Slice issue is closed iff `G3 passed` (this is what makes native 
 **`Executor` — 5 options.** Who currently holds the active work item.
 `Human` · `Claude Lead` · `Claude Read-Only Team` · `Codex Consultant` · `Cowork Coordinator`
 
-**`Next Approval` — 9 options.** What human decision, if any, is pending (drives Needs Me).
+**`Next Approval` — 9 options.** What human decision, if any, is pending (drives Needs Me). **`—` is the resting value, and "clearing" this field always means setting it to `—`, never removing the value.** The Needs Me view is filtered on `!= —`, and GitHub's negation also matches items with no value at all (measured, M1 verification manifest §6.1), so an unset field puts the item into the human attention queue permanently.
 `—` · `Plan Approval (G1→G2)` · `Release Approval (G2→G3)` · `Dirty Baseline Acceptance` · `Scope / Allowlist Change` · `Environment Change` · `Session Persistence` · `Worktree Exception` · `Human Diagnosis`
 
 **`Environment` — 4 options.** `wsl` · `windows` · `macos-authority` · `mixed-see-prose`
@@ -92,7 +92,7 @@ Invariant: the Slice issue is closed iff `G3 passed` (this is what makes native 
 *Entry:* recorded human Plan Approval; `Writer Lease` taken; `Active Branch` created from `Base SHA`. *Actions:* implement strictly inside the frozen allowlist; small frequent commits on `Active Branch` (commits yes, **push no** — publication is Gate 3); run the declared tests; `/goal` permitted only here and only with a turn/time bound inside the condition. *Repair sequence (D6, fixed):* red check → **repair 1 with a new hypothesis** → still red → **Codex consult** (consult file with embedded evidence; response schema; recorded `ACCEPT/PARTIAL/REJECT`) → apply verified fix → still red → **repair 2** → still red → `Human Diagnosis Required`. `repair_limit = 2`; `consult_first: true` moves the consult before repair 1. Mid-slice scope discovery → `gatebraid-correct-course`: stop, document the delta, `Next Approval = Scope / Allowlist Change`, human re-approval re-freezes — never silently widen. *Prohibited:* touching files outside the allowlist; push/PR/merge; `git reset/clean/checkout` against baseline state; installing dependencies not in the approved plan; disabling hooks or checks. *Exit:* tests green per the plan; `gate2.md` evidence with verification outputs; Workflow → `Needs Review`; reviewers (read-only) pass → `Gate = G2 passed`, Workflow → `Needs Release Approval`, `needs-human` on.
 
 **Gate 3 — Publication (human-approved).**
-*Entry:* recorded human Release Approval. *Actions:* verify the working tree and staged set match the Gate 2 handoff exactly (any drift → back to `Needs Review`); run the exact publication commands from the approved plan: push `Active Branch`, open the PR (linked to the Slice issue), watch CI, merge per the approval's terms; record PR/merge SHAs. *Prohibited:* force-push; publishing anything beyond the approved set; merging with red CI. *Exit:* `gate3.md` evidence; `Gate = G3 passed`; Workflow → `Done`; close the Slice issue (which is what releases native `blocked-by` dependents); release the `Writer Lease`; clear `Next Approval`.
+*Entry:* recorded human Release Approval. *Actions:* verify the working tree and staged set match the Gate 2 handoff exactly (any drift → back to `Needs Review`); run the exact publication commands from the approved plan: push `Active Branch`, open the PR (linked to the Slice issue), watch CI, merge per the approval's terms; record PR/merge SHAs. *Prohibited:* force-push; publishing anything beyond the approved set; merging with red CI. *Exit:* `gate3.md` evidence; `Gate = G3 passed`; Workflow → `Done`; close the Slice issue (which is what releases native `blocked-by` dependents); release the `Writer Lease`; set `Next Approval` back to `—`.
 
 ---
 

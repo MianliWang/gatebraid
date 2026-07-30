@@ -4,7 +4,7 @@
 
 ## Entry
 
-- Recorded human `Plan Approval (G1→G2)` comment exists; `Next Approval` cleared.
+- Recorded human `Plan Approval (G1→G2)` comment exists; `Next Approval` set back to `—`.
 - `Writer Lease` taken (`<host>:<session-label>:<ISO8601>`); `Active Branch` created from `Base SHA`. Workflow → `Gate 2 — Implementing`.
 
 ## Actions

@@ -20,4 +20,4 @@ Force-push; publishing anything beyond the approved set; merging with red CI; im
 
 - `docs/evidence/gatebraid/<slice_id>/gate3.md` written from `templates/gate3-evidence.md` (`gate: 3`).
 - `Gate = G3 passed`; Workflow → `Done`; **close the Slice issue** — closure is what releases native `blocked-by` dependents (ADR-0007), so it happens exactly here and never earlier.
-- Release the `Writer Lease`; clear `Next Approval`; handoff comment posted; `Last Checkpoint` updated.
+- Release the `Writer Lease`; set `Next Approval` back to `—`; handoff comment posted; `Last Checkpoint` updated.
