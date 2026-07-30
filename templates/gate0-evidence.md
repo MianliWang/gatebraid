@@ -9,7 +9,7 @@
 ## Authority & baseline
 
 - Repository identity / remote: `<git remote -v output>`
-- Base SHA: `<sha>` (recorded into the Project's `Base SHA` field)
+- Plan baseline: `<sha>` — the head of the base branch now, i.e. the tree this slice's plan will be made against. Recorded **here only**. The `Base SHA` Project field is set at Gate 2, from the head re-read after the `Writer Lease` is taken (ADR-0011 §9).
 - Working tree: clean | **DIRTY — gate stopped**, `Next Approval = Dirty Baseline Acceptance`; no remediation of any kind, ever
 - Environment check: Project `Environment` = `<value>` matches host `<evidence>`
 - Tool versions: `<claude/gh/git/codex versions as run>`

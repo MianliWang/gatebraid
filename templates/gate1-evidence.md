@@ -13,6 +13,7 @@
 - Test plan (commands): <…>
 - Risk notes: <…>
 - Rollback note: <…>
+- **Negative criterion (checkable):** <e.g. "the diff contains no write operation" — this is what review item R4 checks at Gate 2>
 
 ## Team findings (if a read-only team ran)
 
@@ -47,8 +48,11 @@ checks:
   - name: gate1-exit-checklist
     result: pass
     output_ref: "#exit-checklist"
-plan_hash: "<sha256 of the frozen plan section>"
-allowlist_hash: "<sha256 of the frozen allowlist>"
+plan_hash: "<sha256, lowercase hex — see hash_commands>"
+allowlist_hash: "<sha256, lowercase hex — see hash_commands>"
+hash_commands:           # ADR-0011 §3 — a hash nobody can recompute is decoration
+  allowlist: "<the exact command run, Python 3 stdlib only>"
+  plan: "<the exact command run, Python 3 stdlib only>"
 evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate1.md
 ```

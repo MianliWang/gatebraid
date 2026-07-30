@@ -9,11 +9,12 @@
 ## Publication record
 
 - Human Release Approval: <approval comment URL> (terms: <…>)
-- Drift check: working tree and staged set match the Gate 2 handoff exactly: pass | **fail → back to Needs Review**
+- Automation precondition (ADR-0011 §6): no enabled Project rule closes an issue on merge or on a `Status` write — verified: yes | **no → stop, do not merge**
+- Drift check against the Gate 2 fingerprint (ADR-0011 §2): head `<sha>` == recorded · tree `<sha>` == recorded · `git status --porcelain` empty — pass | **fail → back to Needs Review**
 - Exact publication commands run (from the approved plan):
   - `<git push …>` → <output ref>
   - `<gh pr create … --draft/…>` → PR: <url>
-- CI: <run url> — green
+- CI: `green` | `red` | `none-configured` — <run url, or why none exists>. `none-configured` is a recorded finding, not a pass (ADR-0011 §7)
 - Merge: <merge SHA> per the approval's terms
 
 ## gatebraid-metadata
@@ -33,8 +34,11 @@ checks:
   - name: staged-set-matches-gate2-handoff
     result: pass
     output_ref: "#publication-record"
-  - name: ci-green
+  - name: automation-precondition
     result: pass
+    output_ref: "#publication-record"
+  - name: ci-status
+    result: pass          # pass only for `green`; `none-configured` is a finding
     output_ref: "#publication-record"
   - name: merged-per-approval-terms
     result: pass

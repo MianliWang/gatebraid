@@ -4,8 +4,13 @@
 
 ## Entry
 
-- Recorded human `Plan Approval (G1→G2)` comment exists; `Next Approval` set back to `—`.
-- `Writer Lease` taken (`<host>:<session-label>:<ISO8601>`); `Active Branch` created from `Base SHA`. Workflow → `Gate 2 — Implementing`.
+- Recorded human `Plan Approval (G1→G2)` comment exists; `Next Approval` set back to `—`; **the `needs-human` label is removed** (this gate consumes the approval — spec §1, ADR-0011 §8).
+- `Writer Lease` taken (`<host>:<session-label>:<ISO8601>`). Workflow → `Gate 2 — Implementing`.
+- **Baseline re-read (ADR-0011 §9).** After taking the lease and before creating the branch, read the head of the base branch as `Y` and compare it with the plan baseline `X` recorded in `gate0.md`. The lease was not held during Gate 1 or the Plan-Approval wait, so the baseline may legitimately have moved. Record the outcome in `gate2.md` **in every case, including no change**, and route:
+  - `X == Y` → proceed; record `baseline: unchanged`.
+  - `X != Y`, and the paths changed by `X..Y` do not intersect the frozen `write_domains` or any file the plan explicitly cites → proceed; record the delta summary. The plan's assumptions are intact.
+  - `X != Y` **and** the intersection is non-empty → the plan is invalidated. `Next Approval = Scope / Allowlist Change`; follow `templates/gatebraid-correct-course.md` and re-freeze with new hashes. Do not proceed on a stale plan.
+- `Active Branch` created from `Y`; the `Base SHA` Project field is set to `Y`. The branch starts from current reality so it merges cleanly; `X` keeps its one job, which is judging whether the plan still holds.
 
 ## Actions
 
@@ -26,7 +31,19 @@ Follow `templates/gatebraid-correct-course.md`: stop → document the delta → 
 
 Touching files outside the allowlist; push/PR/merge; `git reset` / `git clean` / `git checkout` against baseline state; installing dependencies not in the approved plan; disabling hooks or checks; a second writer of any kind.
 
+## Review (read-only, at exit)
+
+Five items, each recorded pass/fail with its evidence in `gate2.md`. Any fail → `Repair Required`. The reviewer runs as `Executor = Claude Read-Only Team` and holds no write tools (ADR-0004). A review with no defined failure mode carries no information (ADR-0011 §4).
+
+- **R1 — allowlist confinement.** `git diff --name-only <base_sha>..<head>` is a subset of the frozen `write_domains`. Mechanical.
+- **R2 — test-plan coverage.** Every acceptance item on the Slice issue is covered by a declared test-plan command; the reviewer states the mapping item by item.
+- **R3 — evidence is evidence.** The outputs embedded in `gate2.md` are real outputs of the declared commands, not assertions about them.
+- **R4 — the slice's negative criterion.** The property declared in the frozen Gate 1 plan does not hold false anywhere in the diff.
+- **R5 — no prohibited action.** No push, no PR, no merge, no dependency installation outside the approved plan, no disabled hook or check, no second writer.
+
 ## Exit
 
 - Tests green per the plan; `docs/evidence/gatebraid/<slice_id>/gate2.md` written from `templates/gate2-evidence.md` with verification outputs.
-- Workflow → `Needs Review`; read-only reviewers pass → `Gate = G2 passed`, Workflow → `Needs Release Approval`, `needs-human` on.
+- **Handoff fingerprint recorded** in `gate2.md`, so Gate 3's drift check has something to compare against (ADR-0011 §2): `active_branch_head` (commit SHA) · `tree_sha` (`git rev-parse <head>^{tree}`) · the sorted output of `git diff --name-only <base_sha>..<head>`. Git's own content addressing is used rather than a hash of diff text, because a tree SHA is exact and reproducible.
+- Workflow → `Needs Review`; reviewers pass → `Gate = G2 passed`, Workflow → `Needs Release Approval`, **`Next Approval = Release Approval (G2→G3)`**, `needs-human` on.
+  Setting `Next Approval` is what puts the release door into the `Needs Me` queue. Without it the slice carries `—` and is filtered out, leaving only the `needs-human` label — the half of the view definition the filter bar cannot express (ADR-0011 §1).

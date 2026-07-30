@@ -10,9 +10,16 @@
 
 1. Read-only exploration of the repository and its context.
 2. **Optional Agent Team** (verified constraints per report 11 D5, written here verbatim as contract terms): ≤3 read-only teammates, spawned from the plugin's subagent definitions; teammates inherit the **lead's** permission mode at spawn, so the lead must never run in any bypass mode; a subagent definition's `skills`/`mcpServers` frontmatter is ignored for teammates — role knowledge lives in the definition body; in-process teammates do not survive `/resume`; one team per session, no nesting, lead fixed; task status can lag and may need a nudge. **All findings are flushed to the Slice issue before the team dissolves.**
-3. Produce the plan: approach · exact `write_domains` allowlist · test plan with runnable commands · risk notes · rollback note.
+3. Produce the plan: approach · exact `write_domains` allowlist · test plan with runnable commands · risk notes · rollback note · **at least one negative criterion** — a checkable property the diff must *not* have ("contains no write operation", "adds no runtime dependency", "touches no file outside `bin/`"). It is what review item R4 checks at Gate 2, and it is what keeps a first review from being unfalsifiable (ADR-0011 §5).
 4. Complete `templates/gatebraid-gate1-exit-checklist.md` — every item evidence-backed.
-5. **Freeze** the plan and allowlist; record `plan_hash` and `allowlist_hash` in the evidence file.
+5. **Freeze** the plan and allowlist; record `plan_hash` and `allowlist_hash` in the evidence file, **with the command that reproduces each one beside its value**.
+
+   Both are SHA-256, lowercase hex, over UTF-8 bytes (ADR-0011 §3):
+
+   - `allowlist_hash` — each `write_domains` entry stripped of surrounding whitespace, sorted by byte value, joined with `\n`, one trailing `\n`.
+   - `plan_hash` — the lines of `gate1.md` strictly between the `## Plan (frozen at exit)` heading and the next line beginning with `## `, each stripped of trailing whitespace, leading and trailing blank lines removed, joined with `\n`, one trailing `\n`.
+
+   A hash that cannot be recomputed is decoration: Gate 2 relies on the allowlist being pinned here, and `gatebraid-correct-course.md` relies on new hashes being comparable to old ones. Python 3 standard library only (ADR-0009).
 
 ## Prohibited
 

@@ -10,13 +10,26 @@
 
 - Human Plan Approval: <approval comment URL>
 - Writer Lease taken: `<host>:<session-label>:<ISO8601>`
-- Active Branch: `<branch>` (created from Base SHA `<sha>`)
+- Baseline re-read (ADR-0011 §9): plan baseline `X` = `<sha from gate0.md>` · current head `Y` = `<sha>` · **`baseline: unchanged | changed-outside-allowlist | changed-inside-allowlist`** — record this in every case, including no change
+- Active Branch: `<branch>` (created from `Y`; the `Base SHA` field carries `Y`)
 - Scope: strictly inside the frozen allowlist (hash `<allowlist_hash>`)
 
 ## Verification outputs
 
 <Declared test-plan commands with their outputs embedded or committed-log
 referenced. Evidence, not assertion.>
+
+## Review verdict (read-only reviewer, ADR-0011 §4)
+
+| Item | Verdict | Evidence |
+|---|---|---|
+| R1 allowlist confinement | pass \| fail | `git diff --name-only <base>..<head>` output |
+| R2 test-plan coverage | pass \| fail | acceptance item → command mapping |
+| R3 evidence is evidence | pass \| fail | which outputs were re-run or traced |
+| R4 negative criterion | pass \| fail | the criterion, and how it was checked |
+| R5 no prohibited action | pass \| fail | what was checked |
+
+Reviewer ran as `Executor = Claude Read-Only Team`, no write tools. Any fail → `Repair Required`.
 
 ## Repair record (if any)
 
@@ -45,6 +58,17 @@ checks:
     command: "git diff --name-only <base_sha>..HEAD"
     result: pass
     output_ref: "#implementation-summary"
+  - name: baseline-reread
+    command: "git rev-parse <base-branch>"
+    result: pass
+    output_ref: "#implementation-summary"
+  - name: review-five-items
+    result: pass
+    output_ref: "#review-verdict-read-only-reviewer-adr-0011-4"
+handoff_fingerprint:      # ADR-0011 §2 — what Gate 3's drift check compares against
+  active_branch_head: "<commit sha>"
+  tree_sha: "<git rev-parse <head>^{tree}>"
+  changed_paths: []       # sorted `git diff --name-only <base_sha>..<head>`
 repair_attempts: []
 # repair_attempts:
 #   - number: 1
