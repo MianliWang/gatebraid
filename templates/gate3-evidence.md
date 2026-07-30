@@ -9,13 +9,16 @@
 ## Publication record
 
 - Human Release Approval: <approval comment URL> (terms: <…>)
-- Automation precondition (ADR-0011 §6): no enabled Project rule closes an issue on merge or on a `Status` write — verified: yes | **no → stop, do not merge**
+- Closure preconditions (ADR-0012 §2) — **both required**:
+  - (a) platform automation: no enabled Project rule closes an issue on merge or on a `Status` write — verified: yes | **no → stop, do not merge**
+  - (b) this pull request: `closing_keywords: none` · `closing_issues_references: 0` — verified: yes | **no → stop, do not merge**
 - Drift check against the Gate 2 fingerprint (ADR-0011 §2): head `<sha>` == recorded · tree `<sha>` == recorded · `git status --porcelain` empty — pass | **fail → back to Needs Review**
 - Exact publication commands run (from the approved plan):
   - `<git push …>` → <output ref>
   - `<gh pr create … --draft/…>` → PR: <url>
 - CI: `green` | `red` | `none-configured` — <run url, or why none exists>. `none-configured` is a recorded finding, not a pass (ADR-0011 §7)
 - Merge: <merge SHA> per the approval's terms
+- Slice issue closed explicitly after `Gate = G3 passed` was set: <command, timestamp>
 
 ## gatebraid-metadata
 
@@ -34,7 +37,13 @@ checks:
   - name: staged-set-matches-gate2-handoff
     result: pass
     output_ref: "#publication-record"
-  - name: automation-precondition
+  - name: closure-precondition-automation
+    result: pass
+    output_ref: "#publication-record"
+  - name: closure-precondition-pull-request
+    result: pass          # closing_keywords: none; closing_issues_references: 0
+    output_ref: "#publication-record"
+  - name: slice-closed-explicitly-at-exit
     result: pass
     output_ref: "#publication-record"
   - name: ci-status
