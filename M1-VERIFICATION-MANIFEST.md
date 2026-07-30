@@ -1,6 +1,15 @@
 # M1 verification manifest — Gatebraid control plane and specification
 
-**Milestone:** M1 (Gatebraid Classic, profile id `classic`) · **Status:** IN PROGRESS — placeholders marked `TBD(batch N)` are filled as approved mutation batches execute; this manifest is complete only when none remain.
+**Milestone:** M1 (Gatebraid Classic, profile id `classic`) · **Status:**
+**COMPLETE** — every `TBD(batch N)` placeholder has been filled by an approved
+mutation batch and none remain. Outside this paragraph the string `TBD` appears
+exactly twice, and neither is a placeholder: the §2 clause defining when view
+items may leave that state, and the §8 catch-all that keeps the deviations record
+open to whatever a later batch hits. Nothing in this document is awaiting a
+value.
+
+The milestone ends with the draft PR **unmerged**; merging it is a separate
+decision recorded in §10, and does not change any statement made here.
 **Authority:** M1 tasking (Gatebraid edition, 2026-07-28) + operator M1 execution approval (2026-07-29). ADR-0010 governs names; report 12 overrides earlier documents where they conflict; report 11 D1–D8 in force.
 
 ## 1. What was created
