@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/phase@1",
+  "title": "Gatebraid Phase metadata (gatebraid/phase@1)",
+  "description": "Machine-readable block in a Phase issue body ('## gatebraid-metadata' + one fenced yaml block). Phase issues live in MianliWang/gatebraid as sub-issues of their Stage; Slice issues are the Phase's sub-issues and live in the working repository.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "phase_id", "stage", "title"],
+  "properties": {
+    "schema": { "const": "gatebraid/phase@1" },
+    "phase_id": { "type": "string", "pattern": "^P[0-9]+$" },
+    "stage": { "type": "string", "pattern": "^S[0-9]+$" },
+    "title": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

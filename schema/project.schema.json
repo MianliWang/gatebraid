@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/project@1",
+  "title": "Gatebraid project registration (gatebraid/project@1)",
+  "description": "Registration record for a repository governed by Gatebraid, committed under projects/ in MianliWang/gatebraid. Registration is metadata only and confers no access: business repositories remain untouchable until a milestone explicitly authorizes work in them.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "project_id", "repo", "environment", "strict_gate"],
+  "properties": {
+    "schema": { "const": "gatebraid/project@1" },
+    "project_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Portfolio slug, e.g. gatebraid-scratch."
+    },
+    "repo": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "environment": {
+      "enum": ["wsl", "windows", "macos-authority", "mixed-see-prose"],
+      "description": "Default execution environment for this project's Slices."
+    },
+    "strict_gate": {
+      "type": "boolean",
+      "description": "true = Strict Gate project (mandatory pre-release Codex adversarial review; per-project prohibited-operations overlay applies)."
+    },
+    "risk_default": { "enum": ["low", "medium", "high"] },
+    "default_branch": { "type": "string" },
+    "prohibited_operations_ref": {
+      "type": "string",
+      "description": "Path (in this repo) to the project's prohibited-operations overlay document."
+    },
+    "notes": { "type": "string" }
+  }
+}

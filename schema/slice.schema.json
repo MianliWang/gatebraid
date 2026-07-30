@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/slice@1",
+  "title": "Gatebraid Slice metadata (gatebraid/slice@1)",
+  "description": "Machine-readable block in a Slice issue body: a '## gatebraid-metadata' heading followed by exactly one fenced yaml block; parsers take the first such fence under that heading. Structure per report 12 §9, schema id renamed per ADR-0010. The workflow profile id 'classic' is a stable identifier, not a former name.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "slice_id",
+    "stage",
+    "phase",
+    "workflow_profile",
+    "environment",
+    "risk",
+    "write_domains",
+    "repair_limit",
+    "consult_first",
+    "parallel_mode"
+  ],
+  "properties": {
+    "schema": { "const": "gatebraid/slice@1" },
+    "slice_id": {
+      "type": "string",
+      "pattern": "^P[0-9]+-S[0-9]+$",
+      "description": "e.g. P1-S1. Unique across the portfolio."
+    },
+    "stage": {
+      "type": "string",
+      "pattern": "^S[0-9]+$",
+      "description": "Stage id; the Stage issue lives in MianliWang/gatebraid."
+    },
+    "phase": {
+      "type": "string",
+      "pattern": "^P[0-9]+$",
+      "description": "Phase id; the Phase issue lives in MianliWang/gatebraid."
+    },
+    "workflow_profile": {
+      "const": "classic",
+      "description": "Gatebraid Classic profile id (stable identifier)."
+    },
+    "environment": {
+      "enum": ["wsl", "windows", "macos-authority", "mixed-see-prose"]
+    },
+    "risk": { "enum": ["low", "medium", "high"] },
+    "depends_on": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["issue", "requires_gate", "reason"],
+        "properties": {
+          "issue": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+#[0-9]+$",
+            "description": "owner/repo#number of the predecessor Slice issue, e.g. MianliWang/gatebraid-scratch#3."
+          },
+          "requires_gate": {
+            "enum": [1, 2, 3],
+            "description": "Gate the predecessor must have completed. 3 → metadata AND native blocked-by (ADR-0007). 1|2 → metadata only, frontier-computed; never a native dependency."
+          },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "write_domains": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Repo-relative path prefixes the frozen Gate-1 allowlist will cover. Empty array = a read-only slice.",
+      "default": []
+    },
+    "resource_locks": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z]+:[A-Za-z0-9_.-]+:[A-Za-z0-9_.-]+$" },
+      "description": "Exclusive locks, e.g. project:<repo>:writer, test:<repo>:full-suite.",
+      "default": []
+    },
+    "repair_limit": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2,
+      "default": 2,
+      "description": "Maximum repair attempts before Human Diagnosis Required (ADR-0002 §4)."
+    },
+    "consult_first": {
+      "type": "boolean",
+      "default": false,
+      "description": "true moves the Codex consult before repair 1."
+    },
+    "parallel_mode": {
+      "enum": ["safe-single-writer", "isolated-write"],
+      "default": "safe-single-writer",
+      "description": "isolated-write is RESERVED (v1.1+; per-slice, separately approved; ADR-0003 §6). v1 slices use safe-single-writer."
+    }
+  }
+}

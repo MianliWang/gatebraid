@@ -1,0 +1,25 @@
+# Gate 1 contract — Planning (read-only; temporary team permitted)
+
+**Normative.** Inherits the common rules of `gatebraid-control-plane-spec-v1.md` §4. Changes only by ADR.
+
+## Entry
+
+- `Gate = G0 passed`. Workflow → `Gate 1 — Planning`.
+
+## Actions (all read-only)
+
+1. Read-only exploration of the repository and its context.
+2. **Optional Agent Team** (verified constraints per report 11 D5, written here verbatim as contract terms): ≤3 read-only teammates, spawned from the plugin's subagent definitions; teammates inherit the **lead's** permission mode at spawn, so the lead must never run in any bypass mode; a subagent definition's `skills`/`mcpServers` frontmatter is ignored for teammates — role knowledge lives in the definition body; in-process teammates do not survive `/resume`; one team per session, no nesting, lead fixed; task status can lag and may need a nudge. **All findings are flushed to the Slice issue before the team dissolves.**
+3. Produce the plan: approach · exact `write_domains` allowlist · test plan with runnable commands · risk notes · rollback note.
+4. Complete `templates/gatebraid-gate1-exit-checklist.md` — every item evidence-backed.
+5. **Freeze** the plan and allowlist; record `plan_hash` and `allowlist_hash` in the evidence file.
+
+## Prohibited
+
+Any write to the repository; any dependency installation; any teammate with write tools; proceeding to any Gate 2 action before the recorded human approval.
+
+## Exit
+
+- `docs/evidence/gatebraid/<slice_id>/gate1.md` written from `templates/gate1-evidence.md` (`gate: 1`, `result: needs_approval`).
+- `Gate = G1 passed`; Workflow → `Needs Plan Approval`; `Next Approval = Plan Approval (G1→G2)`; `needs-human` on.
+- **A recorded human approval comment is the only door to Gate 2.**

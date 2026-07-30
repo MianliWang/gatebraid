@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/consult@1",
+  "title": "Gatebraid Codex consult record (gatebraid/consult@1)",
+  "description": "Metadata for one read-only Codex consultation (ADR-0004): the request the Lead wrote, the Consultant's fixed-schema response, and the Lead's recorded decision. The consult and response files are committed and linked from the Slice issue; evidence travels embedded in the request because the Consultant cannot execute.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "consult_id", "slice_id", "trigger", "request"],
+  "properties": {
+    "schema": { "const": "gatebraid/consult@1" },
+    "consult_id": {
+      "type": "string",
+      "pattern": "^CONSULT-[0-9]+-[0-9]+$",
+      "description": "CONSULT-<issue#>-<seq>."
+    },
+    "slice_id": { "type": "string", "pattern": "^P[0-9]+-S[0-9]+$" },
+    "trigger": {
+      "enum": [
+        "repair-sequence",
+        "consult_first",
+        "architecture-decision",
+        "parser-type-system-semantic-design",
+        "security-sensitive-diff",
+        "conflicting-evidence",
+        "low-confidence",
+        "strict-gate-release-review",
+        "human-request"
+      ]
+    },
+    "fingerprint_before": { "type": "string", "description": "Semantic Git fingerprint before the consult." },
+    "fingerprint_after": { "type": "string", "description": "Semantic Git fingerprint after applying (or declining) the outcome." },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem", "constraints", "files_in_scope", "hypotheses_tried", "questions"],
+      "properties": {
+        "problem": { "type": "string", "minLength": 1 },
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Constraints and forbidden operations, from the project's prohibited-operations overlay."
+        },
+        "files_in_scope": { "type": "array", "items": { "type": "string" } },
+        "hypotheses_tried": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["hypothesis", "outcome"],
+            "properties": {
+              "hypothesis": { "type": "string" },
+              "outcome": { "type": "string" }
+            }
+          }
+        },
+        "embedded_evidence": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Section anchors in the consult file where command outputs (test logs, stack traces, diffs) are embedded."
+        },
+        "questions": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["findings", "root_cause_hypotheses", "recommended_change", "risks", "verification_steps", "confidence"],
+      "properties": {
+        "findings": { "type": "array", "items": { "type": "string" } },
+        "root_cause_hypotheses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rank", "hypothesis", "evidence"],
+            "properties": {
+              "rank": { "type": "integer", "minimum": 1 },
+              "hypothesis": { "type": "string" },
+              "evidence": { "type": "string", "description": "File-path-cited evidence." }
+            }
+          }
+        },
+        "recommended_change": { "type": "string", "description": "Patch sketch as suggestion text — the Consultant cannot and must not apply anything." },
+        "risks": { "type": "array", "items": { "type": "string" } },
+        "verification_steps": { "type": "array", "items": { "type": "string" } },
+        "confidence": { "enum": ["low", "medium", "high"] }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verdict", "reasons"],
+      "properties": {
+        "verdict": { "enum": ["ACCEPT", "PARTIAL", "REJECT"] },
+        "reasons": { "type": "string", "minLength": 1 },
+        "independently_verified": {
+          "type": "boolean",
+          "description": "The Lead reproduced the reasoning / ran the verification steps before applying anything. Blind-apply is prohibited (ADR-0004 §3)."
+        },
+        "rebuttal_rounds": { "enum": [0, 1], "default": 0, "description": "Maximum one structured rebuttal round each." }
+      }
+    }
+  }
+}
