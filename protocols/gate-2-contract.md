@@ -9,6 +9,7 @@
 - **Baseline re-read (ADR-0011 §9).** After taking the lease and before creating the branch, read the head of the base branch as `Y` and compare it with the plan baseline `X` recorded in `gate0.md`. The lease was not held during Gate 1 or the Plan-Approval wait, so the baseline may legitimately have moved. Record the outcome in `gate2.md` **in every case, including no change**, and route:
   - `X == Y` → proceed; record `baseline: unchanged`.
   - `X != Y`, and the paths changed by `X..Y` do not intersect the frozen `write_domains` or any file the plan explicitly cites → proceed; record the delta summary. The plan's assumptions are intact.
+  - **Exclude `docs/evidence/gatebraid/<slice_id>/` from the changed-path set before comparing (ADR-0014 §1).** This slice's own Gate 0 and Gate 1 committed their evidence there, and that path is in the allowlist by design — without this exclusion every slice would route to `Scope / Allowlist Change` at its own entry, invalidating a plan by the act of documenting it.
   - `X != Y` **and** the intersection is non-empty → the plan is invalidated. `Next Approval = Scope / Allowlist Change`; follow `templates/gatebraid-correct-course.md` and re-freeze with new hashes. Do not proceed on a stale plan.
 - `Active Branch` created from `Y`; the `Base SHA` Project field is set to `Y`. The branch starts from current reality so it merges cleanly; `X` keeps its one job, which is judging whether the plan still holds.
 

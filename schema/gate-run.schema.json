@@ -5,21 +5,72 @@
   "description": "Machine-readable record of one gate execution on one Slice, embedded as the fenced yaml block of the gate evidence file (templates/gate0..3-evidence.md). Every gate ends by writing its evidence file, a structured handoff comment (gatebraid/handoff@1), and updating Gate, Workflow, Last Checkpoint.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "slice_id", "gate", "environment", "executor", "base_sha", "result", "checks"],
+  "required": [
+    "schema",
+    "slice_id",
+    "gate",
+    "environment",
+    "executor",
+    "base_sha",
+    "result",
+    "checks"
+  ],
   "properties": {
-    "schema": { "const": "gatebraid/gate-run@1" },
-    "slice_id": { "type": "string", "pattern": "^P[0-9]+-S[0-9]+$" },
-    "gate": { "enum": [0, 1, 2, 3] },
-    "environment": { "enum": ["wsl", "windows", "macos-authority", "mixed-see-prose"] },
-    "executor": {
-      "enum": ["Human", "Claude Lead", "Claude Read-Only Team", "Codex Consultant", "Cowork Coordinator"]
+    "schema": {
+      "const": "gatebraid/gate-run@1"
     },
-    "base_sha": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
-    "active_branch": { "type": "string" },
-    "started_at": { "type": "string", "format": "date-time" },
-    "ended_at": { "type": "string", "format": "date-time" },
+    "slice_id": {
+      "type": "string",
+      "pattern": "^P[0-9]+-S[0-9]+$"
+    },
+    "gate": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "environment": {
+      "enum": [
+        "wsl",
+        "windows",
+        "macos-authority",
+        "mixed-see-prose"
+      ]
+    },
+    "executor": {
+      "enum": [
+        "Human",
+        "Claude Lead",
+        "Claude Read-Only Team",
+        "Codex Consultant",
+        "Cowork Coordinator"
+      ]
+    },
+    "base_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$"
+    },
+    "active_branch": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "result": {
-      "enum": ["passed", "stopped", "needs_approval", "blocked", "human_diagnosis_required"],
+      "enum": [
+        "passed",
+        "stopped",
+        "needs_approval",
+        "blocked",
+        "human_diagnosis_required"
+      ],
       "description": "passed → Gate field advances. stopped → e.g. dirty baseline at Gate 0 (Next Approval = Dirty Baseline Acceptance)."
     },
     "checks": {
@@ -28,12 +79,30 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["name", "result"],
+        "required": [
+          "name",
+          "result"
+        ],
         "properties": {
-          "name": { "type": "string", "minLength": 1 },
-          "command": { "type": "string" },
-          "result": { "enum": ["pass", "fail", "skipped", "not_run"] },
-          "output_ref": { "type": "string", "description": "Where the raw output lives (evidence file section, committed log path)." }
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "command": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "skipped",
+              "not_run"
+            ]
+          },
+          "output_ref": {
+            "type": "string",
+            "description": "Where the raw output lives (evidence file section, committed log path)."
+          }
         }
       }
     },
@@ -43,12 +112,33 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["number", "hypothesis", "result"],
+        "required": [
+          "number",
+          "hypothesis",
+          "result"
+        ],
         "properties": {
-          "number": { "enum": [1, 2] },
-          "hypothesis": { "type": "string", "minLength": 1, "description": "Must be a NEW hypothesis (ADR-0002 §4)." },
-          "result": { "enum": ["green", "still_red"] },
-          "consult_ref": { "type": "string", "description": "consult_id if a Codex consult occurred in sequence." }
+          "number": {
+            "enum": [
+              1,
+              2
+            ]
+          },
+          "hypothesis": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Must be a NEW hypothesis (ADR-0002 §4)."
+          },
+          "result": {
+            "enum": [
+              "green",
+              "still_red"
+            ]
+          },
+          "consult_ref": {
+            "type": "string",
+            "description": "consult_id if a Codex consult occurred in sequence."
+          }
         }
       }
     },
@@ -58,7 +148,10 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["type", "comment_url"],
+        "required": [
+          "type",
+          "comment_url"
+        ],
         "properties": {
           "type": {
             "enum": [
@@ -72,14 +165,130 @@
               "Human Diagnosis"
             ]
           },
-          "comment_url": { "type": "string", "description": "URL of the recorded human approval comment." },
-          "at": { "type": "string", "format": "date-time" }
+          "comment_url": {
+            "type": "string",
+            "description": "URL of the recorded human approval comment."
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       }
     },
-    "plan_hash": { "type": "string", "description": "Gate 1+: hash of the frozen plan." },
-    "allowlist_hash": { "type": "string", "description": "Gate 1+: hash of the frozen write allowlist." },
-    "evidence_files": { "type": "array", "items": { "type": "string" }, "default": [] },
-    "notes": { "type": "string" }
+    "plan_hash": {
+      "type": "string",
+      "description": "Gate 1+: hash of the frozen plan."
+    },
+    "allowlist_hash": {
+      "type": "string",
+      "description": "Gate 1+: hash of the frozen write allowlist."
+    },
+    "evidence_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "hash_commands": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Gate 1+: the exact commands that reproduce plan_hash and allowlist_hash (ADR-0011 §3). A hash nobody can recompute is decoration.",
+      "properties": {
+        "allowlist": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "handoff_fingerprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Gate 2 exit: what Gate 3's drift check compares against (ADR-0011 §2). Git's own content addressing, not a hash of diff text.",
+      "required": [
+        "active_branch_head",
+        "tree_sha",
+        "changed_paths"
+      ],
+      "properties": {
+        "active_branch_head": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        "tree_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        "changed_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Sorted `git diff --name-only <base_sha>..<head>`."
+        }
+      }
+    },
+    "stop_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Required whenever result is `stopped` or `blocked`: what failed and where it went (ADR-0013). A gate that stopped must be recordable as stopped; otherwise writing nothing becomes the only honest option.",
+      "required": [
+        "stopped_at",
+        "disposition",
+        "observed",
+        "expected",
+        "remediation_attempted"
+      ],
+      "properties": {
+        "stopped_at": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The action that failed, by number and name."
+        },
+        "disposition": {
+          "enum": [
+            "decidable",
+            "error"
+          ]
+        },
+        "next_approval": {
+          "enum": [
+            "Plan Approval (G1→G2)",
+            "Release Approval (G2→G3)",
+            "Dirty Baseline Acceptance",
+            "Scope / Allowlist Change",
+            "Environment Change",
+            "Session Persistence",
+            "Worktree Exception",
+            "Human Diagnosis"
+          ],
+          "description": "Decidable dispositions only."
+        },
+        "workflow": {
+          "const": "Blocked",
+          "description": "Error dispositions only; pair with a typed needs_input comment."
+        },
+        "observed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected": {
+          "type": "string",
+          "minLength": 1
+        },
+        "remediation_attempted": {
+          "const": "none",
+          "description": "Always none. Gates never remediate — the schema enforces it."
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
   }
 }

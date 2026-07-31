@@ -54,14 +54,15 @@ evidence_files:
 notes: "<free text; do NOT record a transition the contract does not define>"
 
 # --- If the gate STOPPED, use this shape instead of result: passed (ADR-0013) ---
-# result: stopped
-# stopped_at: "<action number and name>"
-# disposition: decidable        # decidable | error
-# next_approval: "<Dirty Baseline Acceptance | Environment Change>"   # decidable only
-# workflow: Blocked             # error only, with a typed needs_input comment
-# observed: "<what was measured>"
-# expected: "<what the record says>"
-# remediation_attempted: none   # ALWAYS none. Gate 0 never remediates.
+# result: stopped               # or: blocked, for an error disposition
+# stop_record:
+#   stopped_at: "<action number and name>"
+#   disposition: decidable      # decidable | error
+#   next_approval: "<Dirty Baseline Acceptance | Environment Change>"   # decidable only
+#   workflow: Blocked           # error only; pair with a typed needs_input comment
+#   observed: "<what was measured>"
+#   expected: "<what the record says>"
+#   remediation_attempted: none # ALWAYS none — the schema enforces it
 ```
 
 <!-- Exit: Gate = G0 passed; Workflow → Gate 1 — Planning; handoff comment
