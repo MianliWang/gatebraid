@@ -41,7 +41,9 @@ slice_id: P<nn>-S<nn>
 stage: S<n>                # Stage issue: MianliWang/gatebraid#<n>
 phase: P<nn>               # Phase issue: MianliWang/gatebraid#<n>
 workflow_profile: classic
-environment: wsl           # wsl | windows | macos-authority | mixed-see-prose
+environment: windows       # wsl | windows | macos-authority | mixed-see-prose
+                           # MUST equal the host Gate 0 runs on — not a target,
+                           # not a preference. Gate 0 action 4 compares them.
 risk: low                  # low | medium | high
 depends_on: []
 # depends_on:

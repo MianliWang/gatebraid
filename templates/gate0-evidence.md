@@ -51,7 +51,17 @@ checks:
     output_ref: "#authority--baseline"
 evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate0.md
-notes: "<straight to Needs Plan Approval only for trivial pre-planned slices — record why>"
+notes: "<free text; do NOT record a transition the contract does not define>"
+
+# --- If the gate STOPPED, use this shape instead of result: passed (ADR-0013) ---
+# result: stopped
+# stopped_at: "<action number and name>"
+# disposition: decidable        # decidable | error
+# next_approval: "<Dirty Baseline Acceptance | Environment Change>"   # decidable only
+# workflow: Blocked             # error only, with a typed needs_input comment
+# observed: "<what was measured>"
+# expected: "<what the record says>"
+# remediation_attempted: none   # ALWAYS none. Gate 0 never remediates.
 ```
 
 <!-- Exit: Gate = G0 passed; Workflow → Gate 1 — Planning; handoff comment
