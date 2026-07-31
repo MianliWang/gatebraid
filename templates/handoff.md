@@ -14,7 +14,9 @@ schema: gatebraid/handoff@1
 slice_id: P<nn>-S<nn>
 gate: <0|1|2|3>
 workflow_to: "<the Workflow option this transitions into>"
-changed_files: []            # empty for read-only gates
+changed_files: []            # paths changed by the SLICE'S IMPLEMENTATION.
+                             # A gate's own evidence file is not slice content
+                             # and does not belong here (ADR-0019 §4 class).
 verification:
   - command: "<check command>"
     owner: Claude Lead       # Human | Claude Lead | Claude Read-Only Team | Codex Consultant | CI

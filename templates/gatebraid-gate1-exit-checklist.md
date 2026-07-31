@@ -23,7 +23,7 @@ Every item must be **checked with evidence** (anchor/link), not asserted.
 
 ## Test plan
 
-- [ ] Every task has its verification command(s), runnable as written
+- [ ] Every task has its verification command(s), and **each was dry-run on the slice's declared `environment`** — "runnable as written" means runnable *there*, not well-formed on inspection. Record that they ran; an item satisfiable by reading is not evidence-backed
 - [ ] Expected-green criteria are stated (what output counts as pass)
 - [ ] Test commands respect the project's prohibited-operations overlay
 

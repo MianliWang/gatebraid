@@ -31,7 +31,7 @@ A check with no defined failure mode carries no information (ADR-0011 §4).
 
 ## Prohibited
 
-Any write; any fetch/pull; branch creation; dependency installation; any state-changing Git command.
+Any write; any fetch/pull; branch creation; dependency installation; **any state-changing Git command against the slice's working tree or branches**. Writing and committing this gate's own evidence file is the Exit step and is **not** a violation: the prohibition protects the baseline under inspection, and ADR-0001 requires the evidence to reach GitHub to exist at all.
 
 ## Exit
 

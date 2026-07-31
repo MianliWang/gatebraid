@@ -5,49 +5,115 @@
   "description": "The mandatory structured trailer of every gate-completion / checkpoint comment on a Slice issue — the report-10 structured metadata shape (changed_files, verification with owners, residual_risk) plus decisions. Verification must show evidence, not assertion (verification-before-completion, ADR-0009/Superpowers port). A fresh session resumes from this comment plus fields, evidence, and Git state alone (ADR-0001).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "slice_id", "gate", "changed_files", "verification", "residual_risk", "decisions"],
+  "required": [
+    "schema",
+    "slice_id",
+    "gate",
+    "changed_files",
+    "verification",
+    "residual_risk",
+    "decisions"
+  ],
   "properties": {
-    "schema": { "const": "gatebraid/handoff@1" },
-    "slice_id": { "type": "string", "pattern": "^P[0-9]+-S[0-9]+$" },
-    "gate": { "enum": [0, 1, 2, 3] },
+    "schema": {
+      "const": "gatebraid/handoff@1"
+    },
+    "slice_id": {
+      "type": "string",
+      "pattern": "^P[0-9]+-S[0-9]+$"
+    },
+    "gate": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
     "workflow_to": {
       "type": "string",
       "description": "The Workflow option this handoff transitions the Slice into (must be a legal transition per the spec §1)."
     },
     "changed_files": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Repo-relative paths changed since the last handoff. Empty for read-only gates (0/1)."
+      "items": {
+        "type": "string"
+      },
+      "description": "Repo-relative paths changed by the slice IMPLEMENTATION since the last handoff. A gate writes its own evidence file as part of exiting; that file is the record of the work, not the work, and does not belong here."
     },
     "verification": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["command", "owner", "result"],
+        "required": [
+          "command",
+          "owner",
+          "result"
+        ],
         "properties": {
-          "command": { "type": "string", "minLength": 1 },
+          "command": {
+            "type": "string",
+            "minLength": 1
+          },
           "owner": {
-            "enum": ["Human", "Claude Lead", "Claude Read-Only Team", "Codex Consultant", "CI"],
+            "enum": [
+              "Human",
+              "Claude Lead",
+              "Claude Read-Only Team",
+              "Codex Consultant",
+              "CI"
+            ],
             "description": "Who ran / is accountable for this check."
           },
-          "result": { "enum": ["pass", "fail", "skipped", "not_run"] },
-          "evidence_ref": { "type": "string", "description": "Where the output is recorded (evidence file anchor, CI URL). Results must be evidence-backed, never asserted." }
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "skipped",
+              "not_run"
+            ]
+          },
+          "evidence_ref": {
+            "type": "string",
+            "description": "Where the output is recorded (evidence file anchor, CI URL). Results must be evidence-backed, never asserted."
+          }
         }
       }
     },
     "residual_risk": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Known remaining risks, each stated concretely. Empty array = explicitly claiming none."
     },
     "decisions": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Decisions taken since the last handoff (including consult ACCEPT/PARTIAL/REJECT outcomes), each with its rationale or a link to it."
     },
-    "done": { "type": "array", "items": { "type": "string" }, "description": "Completed items (resume bootstrap)." },
-    "next": { "type": "array", "items": { "type": "string" }, "description": "Next actions (resume bootstrap)." },
-    "open_questions": { "type": "array", "items": { "type": "string" } }
+    "done": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Completed items (resume bootstrap)."
+    },
+    "next": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Next actions (resume bootstrap)."
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
   }
 }

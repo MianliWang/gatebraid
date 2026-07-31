@@ -16,9 +16,15 @@
 - Exact publication commands run (from the approved plan):
   - `<git push …>` → <output ref>
   - `<gh pr create … --draft/…>` → PR: <url>
-- CI: `green` | `red` | `none-configured` — <run url, or why none exists>. `none-configured` is a recorded finding, not a pass (ADR-0011 §7)
-- Merge: <merge SHA> per the approval's terms
-- Slice issue closed explicitly after `Gate = G3 passed` was set: <command, timestamp>
+- CI: `green` | `red` | `none-configured` — <run url, or why none exists>. `none-configured` is a recorded finding, not a pass (ADR-0011 §7); record it as `result: none_configured` in the check list (ADR-0019 §1)
+- Pull request: <url> — **referenced, not duplicated.** This file records no merge SHA and no closure timestamp: GitHub holds the merge event and the closure event natively, and a second copy is a second source of truth that will drift (ADR-0017 §2). This file is written and committed **before** the merge and reaches the base branch through the pull request.
+
+<!-- Consumer note (ADR-0017 §4): the authoritative Gate 3 record is the
+     COMPOSITE of this file, the PR's merge event, the issue's closure event and
+     the Project's Workflow. Reconstruct state by reading the native EVENT
+     SEQUENCE, not the last state — an issue can be reopened and a comment can
+     be edited, so "currently closed" and "was closed by Gate 3" are different
+     claims. -->
 
 ## gatebraid-metadata
 
@@ -47,7 +53,9 @@ checks:
     result: pass
     output_ref: "#publication-record"
   - name: ci-status
-    result: pass          # pass only for `green`; `none-configured` is a finding
+    result: pass          # green -> pass; red -> fail; no workflow at all ->
+                          # none_configured (ADR-0019 §1), which is a finding,
+                          # not a pass, and not `skipped`
     output_ref: "#publication-record"
   - name: merged-per-approval-terms
     result: pass
@@ -57,7 +65,7 @@ approvals:
     comment_url: "<url>"
 evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate3.md
-notes: "PR <url>; merge <sha>"
+notes: "PR <url>. No merge SHA and no closure timestamp are recorded here — GitHub holds both natively and this file references rather than duplicates them (ADR-0017 §2)."
 ```
 
 <!-- Exit: Gate = G3 passed; Workflow → Done; CLOSE the Slice issue (this is

@@ -47,11 +47,22 @@ later decisions rest on them:
 
 ## Decision
 
-**1. A Slice pull request must not use a closing keyword.** `close`, `closes`,
-`closed`, `fix`, `fixes`, `fixed`, `resolve`, `resolves`, `resolved` — in any
-case, in the body or in any commit message the pull request carries — are
-forbidden when referencing the Slice issue or any other Gatebraid issue. Link by
-plain reference instead: `Refs #n`, `Part of #n`, or a bare URL.
+**1. A Slice pull request must not use a closing keyword *preceding an issue
+reference*.** *(Amended by ADR-0018 §1: what follows states the pattern; the
+original wording gave a token list and the qualifier that scoped it, and was
+read by one restatement as a bare list.)*
+
+What is forbidden is a closing keyword **immediately preceding an issue
+reference** — `keyword #n`, `keyword owner/repo#n`, `keyword <issue-url>` — in
+any case, in the pull-request body or in any commit message the pull request
+carries, where keyword is one of `close`, `closes`, `closed`, `fix`, `fixes`,
+`fixed`, `resolve`, `resolves`, `resolved`. That is GitHub's own closing syntax
+and it is the whole of the mechanism.
+
+**A bare occurrence of any of those words, referencing nothing, is not
+prohibited and never was** — a conventional-commit `fix(scope):` prefix, or a
+comment saying what the code does not do, closes nothing. Link the Slice issue
+by plain reference instead: `Refs #n`, `Part of #n`, or a bare URL.
 
 **2. Gate 3's precondition covers both closure mechanisms, not one.** Before
 merging, Gate 3 verifies:

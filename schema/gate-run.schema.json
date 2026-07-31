@@ -96,8 +96,10 @@
               "pass",
               "fail",
               "skipped",
-              "not_run"
-            ]
+              "not_run",
+              "none_configured"
+            ],
+            "description": "none_configured (ADR-0019 §1): the thing this check inspects does not exist to be checked — e.g. CI where no workflow is configured. It is a finding, not a pass, and is distinct from skipped (deliberately not run) and not_run (exists, was not executed)."
           },
           "output_ref": {
             "type": "string",
