@@ -65,9 +65,13 @@ checks:
   - name: review-five-items
     result: pass
     output_ref: "#review-verdict-read-only-reviewer-adr-0011-4"
-handoff_fingerprint:      # ADR-0011 §2 — what Gate 3's drift check compares against
-  active_branch_head: "<commit sha>"
-  tree_sha: "<git rev-parse <head>^{tree}>"
+handoff_fingerprint:      # ADR-0011 §2, amended by ADR-0016 — Gate 3's drift comparand.
+                          # These are the values at the moment the implementation was
+                          # complete and reviewed, i.e. BEFORE this file's own commit.
+                          # Gate 3 does not expect head equality; it requires that
+                          # nothing outside docs/evidence/gatebraid/<slice_id>/ differs.
+  active_branch_head: "<commit sha as reviewed>"
+  tree_sha: "<git rev-parse <head>^{tree}, as reviewed>"
   changed_paths: []       # sorted `git diff --name-only <base_sha>..<head>`
 repair_attempts: []
 # repair_attempts:

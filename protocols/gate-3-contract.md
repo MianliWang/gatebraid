@@ -12,7 +12,11 @@
 
 ## Actions
 
-1. **Drift check first**, against the fingerprint Gate 2 recorded (ADR-0011 §2): current head equals `active_branch_head`; `git rev-parse HEAD^{tree}` equals `tree_sha`; `git status --porcelain` is empty. Any drift → back to `Needs Review`; no publication. Never accept "looks the same" — compare the recorded values.
+1. **Drift check first**, against the fingerprint Gate 2 recorded (ADR-0011 §2 as amended by ADR-0016 §1). The question it answers is *has the reviewed work changed since it was reviewed* — and a gate's own evidence file is the record of the review, not the work. So verify:
+   - `git diff --name-only <tree_sha> HEAD` yields **only** paths inside `docs/evidence/gatebraid/<slice_id>/`;
+   - every commit between `active_branch_head` and `HEAD` touches only that directory;
+   - `git status --porcelain` is empty.
+   Any path outside the evidence directory is drift → back to `Needs Review`; no publication. Never accept "looks the same" — run the comparison. Requiring exact head equality was not strict but unsatisfiable: committing `gate2.md` necessarily moves the head past the value `gate2.md` records.
 2. Run the **exact publication commands from the approved plan**: push `Active Branch`; open the PR referencing the Slice issue **by plain reference, never by closing keyword** (ADR-0012 §1); watch CI; merge per the approval's terms.
 3. Record PR URL and merge SHA in the evidence file, and record CI status honestly as one of `ci: green` · `ci: red` · `ci: none-configured` (ADR-0011 §7). **`none-configured` is a recorded finding, not a pass:** where no check exists, the prohibition on merging with red CI is inert, and the evidence must say so rather than implying a check occurred. Neither Gatebraid repository has a workflow at the time of writing.
 
