@@ -2,18 +2,46 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "gatebraid/consult@1",
   "title": "Gatebraid Codex consult record (gatebraid/consult@1)",
-  "description": "Metadata for one read-only Codex consultation (ADR-0004): the request the Lead wrote, the Consultant's fixed-schema response, and the Lead's recorded decision. The consult and response files are committed and linked from the Slice issue; evidence travels embedded in the request because the Consultant cannot execute.",
+  "description": "Metadata for one read-only Codex consultation (ADR-0004): the request the Lead wrote, the Consultant's fixed-schema response, and the Lead's recorded decision. The consult and response files are committed; linking follows scope (ADR-0021 §4) — a slice-scoped consult is linked from its Slice issue, a non-slice consult by citation from the documents that adopted its outcome. Evidence travels embedded in the request because the Consultant cannot execute.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "consult_id", "slice_id", "trigger", "request"],
+  "required": ["schema", "consult_id", "trigger", "request"],
+  "if": {
+    "required": ["trigger"],
+    "properties": {
+      "trigger": {
+        "enum": [
+          "repair-sequence",
+          "consult_first",
+          "parser-type-system-semantic-design",
+          "security-sensitive-diff",
+          "conflicting-evidence",
+          "low-confidence",
+          "strict-gate-release-review"
+        ]
+      }
+    }
+  },
+  "then": {
+    "required": ["slice_id"],
+    "properties": { "consult_id": { "pattern": "^CONSULT-[0-9]+-[0-9]+$" } }
+  },
+  "else": {
+    "not": { "required": ["slice_id"] },
+    "properties": { "consult_id": { "pattern": "^CONSULT-M[0-9]+-[0-9]+$" } }
+  },
   "properties": {
     "schema": { "const": "gatebraid/consult@1" },
     "consult_id": {
       "type": "string",
-      "pattern": "^CONSULT-[0-9]+-[0-9]+$",
-      "description": "CONSULT-<issue#>-<seq>."
+      "pattern": "^CONSULT-(M[0-9]+|[0-9]+)-[0-9]+$",
+      "description": "CONSULT-<issue#>-<seq> for a slice-scoped consult; CONSULT-M<n>-<seq> for a milestone-level one (ADR-0021 §3). The form is not free: the root conditional binds it to the trigger's scope."
     },
-    "slice_id": { "type": "string", "pattern": "^P[0-9]+-S[0-9]+$" },
+    "slice_id": {
+      "type": "string",
+      "pattern": "^P[0-9]+-S[0-9]+$",
+      "description": "Required exactly when the trigger is slice-scoped, and absent otherwise (ADR-0021 §2). architecture-decision and human-request are not slice-scoped."
+    },
     "trigger": {
       "enum": [
         "repair-sequence",

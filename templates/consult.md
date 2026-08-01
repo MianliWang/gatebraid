@@ -1,12 +1,16 @@
 <!-- Template: Codex consult file (ADR-0004). The Lead writes this file at
-     docs/consults/CONSULT-<issue#>-<seq>.md (cross-project: in
-     MianliWang/gatebraid/evidence/). The Consultant is READ-ONLY
-     (--ephemeral --sandbox read-only, no bypass, snapshot disabled):
+     docs/consults/<consult_id>.md (cross-project: in
+     MianliWang/gatebraid/evidence/). Ids: CONSULT-<issue#>-<seq> for a
+     slice-scoped consult, CONSULT-M<n>-<seq> for a milestone-level one — the
+     form must match the trigger's scope (ADR-0021 §3). The Consultant is
+     READ-ONLY (--ephemeral --sandbox read-only, no bypass, snapshot disabled):
      ALL evidence must be embedded here — it cannot execute anything.
-     The response is saved verbatim as CONSULT-<...>-response.md (sanitization
-     disclosed if applied), committed, linked from the Slice issue. -->
+     The response is saved verbatim as <consult_id>-response.md (sanitization
+     disclosed if applied) and committed; linking follows scope (ADR-0021 §4) —
+     from the Slice issue when slice-scoped, otherwise by citation from the
+     documents that adopt its outcome. -->
 
-# CONSULT-<issue#>-<seq> — <one-line problem title>
+# <consult_id> — <one-line problem title>
 
 ## Problem statement
 
@@ -47,9 +51,9 @@ Respond in exactly this structure (gatebraid/consult@1 `response`):
 
 ```yaml
 schema: gatebraid/consult@1
-consult_id: CONSULT-<issue#>-<seq>
-slice_id: P<nn>-S<nn>
-trigger: repair-sequence   # see consult.schema.json for the trigger list
+consult_id: CONSULT-<issue#>-<seq>   # milestone-level: CONSULT-M<n>-<seq>
+slice_id: P<nn>-S<nn>   # slice-scoped triggers only — omit the key entirely otherwise
+trigger: repair-sequence   # see consult.schema.json for the trigger list and which are slice-scoped
 fingerprint_before: "<semantic git fingerprint>"
 request:
   problem: "<one sentence>"
