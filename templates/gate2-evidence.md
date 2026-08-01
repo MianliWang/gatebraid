@@ -89,6 +89,7 @@ repair_attempts: []
 approvals:
   - type: "Plan Approval (G1→G2)"
     comment_url: "<url>"
+    author: "<login observed at verification — must be MianliWang (ADR-0020 §4)>"
 plan_hash: "<unchanged unless re-frozen via gatebraid-correct-course>"
 allowlist_hash: "<unchanged unless re-frozen via gatebraid-correct-course>"
 evidence_files:

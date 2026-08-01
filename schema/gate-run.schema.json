@@ -155,6 +155,10 @@
           "comment_url"
         ],
         "properties": {
+          "author": {
+            "type": "string",
+            "description": "Login observed as the comment's author at verification time (ADR-0020 §4). Optional here so evidence predating the identity split keeps validating; the gate contracts make it mandatory for runs after that commit, and the schema cannot catch its absence."
+          },
           "type": {
             "enum": [
               "Plan Approval (G1→G2)",

@@ -63,6 +63,7 @@ checks:
 approvals:
   - type: "Release Approval (G2→G3)"
     comment_url: "<url>"
+    author: "<login observed at verification — must be MianliWang (ADR-0020 §4)>"
 evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate3.md
 notes: "PR <url>. No merge SHA and no closure timestamp are recorded here — GitHub holds both natively and this file references rather than duplicates them (ADR-0017 §2)."

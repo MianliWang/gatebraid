@@ -12,6 +12,10 @@ invalid. The gate stops as if none existed** (ADR-0018 §3a). It is corrected by
 posting a *new* approval that supersedes this one, cited by comment URL — never
 by the executor deciding which text is in force.
 
+**Valid only when authored by the operator's personal account (`MianliWang`).**
+An approval from any other account — the executor's machine account included —
+is invalid as if absent, and the gate records the observed author (ADR-0020 §4).
+
 **Where a term and the rule it cites disagree, the executor stops and asks**
 (ADR-0018 §4). It does not choose, and it does not resolve the conflict in
 favour of the better reasoning — that is an authority question, and keeping it
