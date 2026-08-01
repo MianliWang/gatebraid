@@ -4,7 +4,11 @@
 **Amends:** ADR-0012 §1 (the closing-keyword ban) and the Gate 2 review item R4.
 Both otherwise stand.
 **Provenance:** Slice A's Gate 3 entry (2026-07-31), friction #21; Slice A's Gate
-2 review item R4 (2026-07-31), the earlier instance of the same over-match.
+2 review item R4 (2026-07-31), the earlier instance of the same over-match;
+CONSULT-M2-01 §Q3, whose structured-approval addition §3 adopts
+(`consults/CONSULT-M2-01/CONSULT-M2-01-decision.md`).
+**Amended:** 2026-07-31 (M2 Batch F) — §4 names the same-turn mechanism, per
+friction #26; Provenance cites CONSULT-M2-01 §Q3. Decisions unchanged.
 
 ## Context
 
@@ -93,7 +97,9 @@ choose, and it does not resolve the conflict in favour of the better reasoning �
 because the disagreement is between two authorities, and adjudicating between
 authorities is exactly what the approval doors exist to keep out of the
 executor's hands. Raising it before acting, as happened here, is necessary but
-not sufficient: the raising must be to a human, and the gate waits.
+not sufficient: the raising must be to a human, and the gate waits. The
+executor's turn ends at the raising; acting in the same turn as the raising is
+not raising it.
 
 ## Consequences
 

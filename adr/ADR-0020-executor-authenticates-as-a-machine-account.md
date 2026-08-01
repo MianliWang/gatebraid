@@ -5,8 +5,11 @@
 names.
 **Provenance:** ADR-0015; CONSULT-M2-01 §Q2 with verifications V1 (GitHub ToS
 §B.3) and V2 (ruleset availability on private repositories);
-`_handoff/batch-e/CONSULT-M2-01-decision.md` §Q2, operator ruling of 2026-07-31;
-RB-M2-E §E0.1; friction #27.
+`consults/CONSULT-M2-01/CONSULT-M2-01-decision.md` §Q2, operator ruling of
+2026-07-31; RB-M2-E §E0.1; friction #27.
+**Amended:** 2026-07-31 (M2 Batch F) — Provenance cites the consult's committed
+location instead of an untracked `_handoff` path, per friction #34. Decisions
+unchanged.
 
 ## Context
 

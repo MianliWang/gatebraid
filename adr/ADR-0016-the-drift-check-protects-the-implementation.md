@@ -5,6 +5,9 @@
 condition. Both otherwise stand.
 **Provenance:** M2 Batch C-2, Slice A's Gate 2 exit (2026-07-31), friction #16;
 ADR-0014 §1, which established the same principle one gate earlier.
+**Amended:** 2026-07-31 (M2 Batch F) — §2's supporting arguments only: the
+split-artefact reason dropped and the tamper-equivalence claim replaced by the
+asymmetry favouring the file, per friction #19 and #20. Decision 2 unchanged.
 
 ## Context
 
@@ -52,11 +55,11 @@ unsatisfiable.
 **2. The fingerprint stays in `gate2.md`.** The alternative considered was moving
 it to the handoff comment posted after the commit, where the true final head can
 be written. That works, and it was the executor's recommendation. It is not
-taken, for two reasons: it splits one gate's record across two artefacts, so a
-reader reconstructing state must consult both; and it buys an exact head value
-that decision 1 shows is not the quantity of interest. The comment is no more
-tamper-resistant than the file — both are written by the same executor — so the
-move purchases tidiness in one place at the cost of coherence in another.
+taken, because it buys an exact head value that decision 1 shows is not the
+quantity of interest. Nor are the two artefacts equally tamper-resistant, and
+the asymmetry favours the file: a committed file sits in a history Gate 3
+forbids force-pushing, so altering it after the fact leaves a commit, while a
+comment can be edited in place and nothing in any gate reads `lastEditedAt`.
 
 **3. Gate 2 records what it can honestly record.** `active_branch_head` and
 `tree_sha` are the values at the moment the implementation is complete and
