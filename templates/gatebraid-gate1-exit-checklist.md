@@ -12,7 +12,7 @@ Every item must be **checked with evidence** (anchor/link), not asserted.
 
 - [ ] The approach is written and self-contained — an executor with only repo + plan could implement it
 - [ ] The plan decomposes into 2–3 independently verifiable tasks (split the Slice if more)
-- [ ] Every acceptance criterion in the Slice body maps to a plan task
+- [ ] Every acceptance criterion in the Slice body maps to a declared test-plan command, named item by item
 - [ ] Rollback note exists (how to abandon safely at any point)
 
 ## Allowlist exactness
@@ -25,7 +25,7 @@ Every item must be **checked with evidence** (anchor/link), not asserted.
 
 - [ ] Every task has its verification command(s), and **each was dry-run on the slice's declared `environment`** — "runnable as written" means runnable *there*, not well-formed on inspection. Record that they ran; an item satisfiable by reading is not evidence-backed
 - [ ] Expected-green criteria are stated (what output counts as pass)
-- [ ] Test commands respect the project's prohibited-operations overlay
+- [ ] Test commands respect the project's prohibited-operations overlay, or the project declares none and the item is recorded `n/a`
 
 ## Dependencies and risk
 
