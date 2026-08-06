@@ -28,7 +28,7 @@ Force-push; publishing anything beyond the approved set; merging with red CI; im
 
 The order is normative, and `gate3.md` is written *before* the merge because it carries no post-merge value (ADR-0017 §3):
 
-1. `docs/evidence/gatebraid/<slice_id>/gate3.md` written from `templates/gate3-evidence.md` (`gate: 3`), committed to `Active Branch` and pushed — **action 2 above**, before the merge. It therefore reaches the base branch through the pull request like every other change, and **no gate ever writes to the base branch outside one**.
+1. `docs/evidence/gatebraid/<slice_id>/gate3.md` written from `templates/gate3-evidence.md` (`gate: 3`), committed to `Active Branch` and pushed — **action 2 above**, before the merge. It therefore reaches the base branch through the pull request like every other change.
 2. The merge — action 2 above.
 3. `Gate = G3 passed`.
 4. Workflow → `Done`.
