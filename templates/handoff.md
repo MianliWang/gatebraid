@@ -20,7 +20,7 @@ changed_files: []            # paths changed by the SLICE'S IMPLEMENTATION.
 verification:
   - command: "<check command>"
     owner: Claude Lead       # Human | Claude Lead | Claude Read-Only Team | Codex Consultant | CI
-    result: pass             # pass | fail | skipped | not_run
+    result: pass             # pass | fail | skipped | not_run | none_configured
     evidence_ref: "<evidence file anchor / CI url>"
 residual_risk:
   - "<concrete remaining risk>"   # empty array = explicitly claiming none
