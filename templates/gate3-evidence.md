@@ -49,17 +49,12 @@ checks:
   - name: closure-precondition-pull-request
     result: pass          # closing_keywords: none; closing_issues_references: 0
     output_ref: "#publication-record"
-  - name: slice-closed-explicitly-at-exit
-    result: pass
-    output_ref: "#publication-record"
   - name: ci-status
     result: pass          # green -> pass; red -> fail; no workflow at all ->
                           # none_configured (ADR-0019 §1), which is a finding,
                           # not a pass, and not `skipped`
     output_ref: "#publication-record"
-  - name: merged-per-approval-terms
-    result: pass
-    output_ref: "#publication-record"
+  # The merge and the closure are post-merge facts; they live in the composite record (ADR-0017 §1) — the PR's merge event, the issue's closure event, Workflow — and are not pre-attestable in a file written before the merge (friction #56).
 approvals:
   - type: "Release Approval (G2→G3)"
     comment_url: "<url>"
