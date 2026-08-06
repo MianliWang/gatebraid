@@ -182,6 +182,10 @@
         }
       }
     },
+    "refrozen": {
+      "type": "boolean",
+      "description": "Present and true when plan_hash carries a re-frozen plan (correct-course step 5). The delta record comment remains the authority for what changed and why; absence means first freeze (friction #50)."
+    },
     "plan_hash": {
       "type": "string",
       "description": "Gate 1+: hash of the frozen plan."

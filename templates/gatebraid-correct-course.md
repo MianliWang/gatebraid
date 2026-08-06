@@ -21,6 +21,8 @@
 5. **On approval:** update plan + `write_domains`; recompute and record new
    `plan_hash` / `allowlist_hash` in the evidence file; clear `Next Approval`;
    resume. The re-freeze is as binding as the original freeze.
+   Set `refrozen: true` in the gate-run metadata block of the re-frozen gate's
+   evidence file.
 
 ## Delta record
 

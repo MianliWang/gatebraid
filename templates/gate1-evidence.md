@@ -48,6 +48,7 @@ checks:
   - name: gate1-exit-checklist
     result: pass
     output_ref: "#exit-checklist"
+# refrozen: true   # only after a correct-course re-freeze (friction #50)
 plan_hash: "<sha256, lowercase hex — see hash_commands>"
 allowlist_hash: "<sha256, lowercase hex — see hash_commands>"
 hash_commands:           # ADR-0011 §3 — a hash nobody can recompute is decoration
