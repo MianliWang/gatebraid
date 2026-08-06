@@ -36,8 +36,8 @@ environment: <…>
 executor: Claude Lead
 base_sha: <sha>
 active_branch: <branch>
-started_at: <ISO8601>
-ended_at: <ISO8601>
+started_at: "<ISO8601>"
+ended_at: "<ISO8601>"
 result: passed
 checks:
   - name: staged-set-matches-gate2-handoff
@@ -68,6 +68,8 @@ evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate3.md
 notes: "PR <url>. No merge SHA and no closure timestamp are recorded here — GitHub holds both natively and this file references rather than duplicates them (ADR-0017 §2)."
 ```
+
+<!-- A claimed schema validation names its loader: interpreter path, PyYAML and jsonschema versions (friction #55). -->
 
 <!-- Exit: Gate = G3 passed; Workflow → Done; CLOSE the Slice issue (this is
      what releases native blocked-by dependents — ADR-0007); release the

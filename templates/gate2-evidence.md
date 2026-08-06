@@ -53,8 +53,8 @@ environment: <…>
 executor: Claude Lead
 base_sha: <sha>
 active_branch: <branch>
-started_at: <ISO8601>
-ended_at: <ISO8601>
+started_at: "<ISO8601>"
+ended_at: "<ISO8601>"
 result: passed           # exits into Needs Review, then (reviewers pass) Needs Release Approval
 checks:
   - name: tests-green-per-plan
@@ -95,6 +95,8 @@ allowlist_hash: "<unchanged unless re-frozen via gatebraid-correct-course>"
 evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate2.md
 ```
+
+<!-- A claimed schema validation names its loader: interpreter path, PyYAML and jsonschema versions (friction #55). -->
 
 <!-- Exit: Workflow → Needs Review; reviewers (read-only) pass →
      Gate = G2 passed, Workflow → Needs Release Approval, needs-human ON. -->

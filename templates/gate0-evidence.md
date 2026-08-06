@@ -24,8 +24,8 @@ gate: 0
 environment: <wsl|windows|macos-authority|mixed-see-prose>
 executor: Claude Lead
 base_sha: <sha>
-started_at: <ISO8601>
-ended_at: <ISO8601>
+started_at: "<ISO8601>"
+ended_at: "<ISO8601>"
 result: passed          # passed | stopped | needs_approval | blocked | human_diagnosis_required
 checks:
   - name: repo-identity-and-remote
@@ -64,6 +64,8 @@ notes: "<free text; do NOT record a transition the contract does not define>"
 #   expected: "<what the record says>"
 #   remediation_attempted: none # ALWAYS none — the schema enforces it
 ```
+
+<!-- A claimed schema validation names its loader: interpreter path, PyYAML and jsonschema versions (friction #55). -->
 
 <!-- Exit: Gate = G0 passed; Workflow → Gate 1 — Planning; handoff comment
      (gatebraid/handoff@1) on the Slice issue; Last Checkpoint updated. -->

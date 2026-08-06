@@ -32,8 +32,8 @@ gate: 1
 environment: <…>
 executor: Claude Lead
 base_sha: <sha>
-started_at: <ISO8601>
-ended_at: <ISO8601>
+started_at: "<ISO8601>"
+ended_at: "<ISO8601>"
 result: needs_approval   # Gate 1 always exits into Needs Plan Approval
 checks:
   - name: plan-complete
@@ -56,6 +56,8 @@ hash_commands:           # ADR-0011 §3 — a hash nobody can recompute is decor
 evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate1.md
 ```
+
+<!-- A claimed schema validation names its loader: interpreter path, PyYAML and jsonschema versions (friction #55). -->
 
 <!-- Exit: Gate = G1 passed; Workflow → Needs Plan Approval;
      Next Approval = Plan Approval (G1→G2); needs-human ON.
