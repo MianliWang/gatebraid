@@ -30,7 +30,7 @@ Follow `templates/gatebraid-correct-course.md`: stop → document the delta → 
 
 ## Prohibited
 
-Touching files outside the allowlist; push/PR/merge; `git reset` / `git clean` / `git checkout` against baseline state; installing dependencies not in the approved plan; disabling hooks or checks; a second writer of any kind.
+Touching files outside the allowlist; push/PR/merge; `git reset` / `git clean` / `git checkout` against baseline state; installing dependencies not in the approved plan; disabling hooks or checks; a second writer of any kind. "Outside the allowlist" means outside the frozen `write_domains` within the working repository; scratch paths outside any repository are unconstrained by this clause and are named in the evidence file when relied on.
 
 ## Review (read-only, at exit)
 
