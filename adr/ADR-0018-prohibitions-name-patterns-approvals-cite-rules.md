@@ -9,6 +9,8 @@ CONSULT-M2-01 §Q3, whose structured-approval addition §3 adopts
 (`consults/CONSULT-M2-01/CONSULT-M2-01-decision.md`).
 **Amended:** 2026-07-31 (M2 Batch F) — §4 names the same-turn mechanism, per
 friction #26; Provenance cites CONSULT-M2-01 §Q3. Decisions unchanged.
+2026-08-08 (M2 Batch J) — §2 gains the scope requirement and the under-match
+rule (friction #67); §2a adds the universal-claims rule (friction #70).
 
 ## Context
 
@@ -61,6 +63,40 @@ where the proxy over-matches, the pattern governs.** R4 is rescoped accordingly:
 it looks for GraphQL mutation *operations*, not for the string `mutation`.
 A check that cannot be satisfied by correct work is not strict; it is broken, and
 it trains the executor to route around checks.
+
+**A proxy states its scope as well as its pattern** — the set of artefacts it
+searched. A criterion whose subject can be reached through a **subprocess,
+import, or network call** is not satisfiable by a token search over one file
+alone; where it is mechanised that way, the check names what it searched and the
+transitive case is established separately, on evidence rather than on a zero.
+The one-line form: **an over-matching proxy is governed by the pattern; an
+under-matching proxy is not a check at all, and a zero must state what it
+searched.**
+
+The two directions are not symmetric, and the asymmetry is the reason for this
+clause. An over-match raises a false alarm, which somebody investigates. An
+under-match returns a clean zero, which nobody investigates. Slice C produced one
+of each inside a single check: an `-X` token count of zero read as "therefore
+GET", when every GraphQL request is a POST — an over-match, which the pattern
+governed correctly; and a whole-word `gh` count of zero on a file whose program
+invokes `gh` on every default run through its child process — an under-match,
+which nothing in this ADR reached until now (friction #67, #68).
+
+**2a. A universal or quantified claim in an evidence file names the command that
+establishes it.** "Every", "only", "all", "none", "no …" — each is a check, and
+**an unrun check is not evidence**. The obligation is the same one a claimed
+schema validation carries when it names its loader (friction #55) and a proxy
+carries when it states its pattern (§2): the reader must be able to re-run what
+the writer relied on.
+
+Provenance is four consecutive failed reviews of a single evidence file. Every
+declared command in it reproduced byte-for-byte and every number in it was
+correct; what failed, four times, was prose the file wrote about itself — and two
+of those failures were universally quantified claims that one command refuted,
+a command the author could have run and did not. A universal claim about one's
+own just-written document feels like recall rather than measurement, which is
+why the rule is needed and why it names the remedy rather than the fault
+(friction #70).
 
 **3. An approval term cites the rule it enforces; it does not restate it.** Terms
 exist to authorise scope — what may be pushed, merged, and where — and to name
