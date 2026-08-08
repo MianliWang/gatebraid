@@ -36,7 +36,11 @@ Slice A's reviewer caught exactly that.
 | R4 negative criterion | | the criterion, and how it was checked |
 | R5 no prohibited action | | what was checked |
 
-Reviewer ran as `Executor = Claude Read-Only Team`, no write tools. Any fail → `Repair Required`. Record what the reviewer found in this file that was wrong, if anything: a review that changes nothing is not evidence that it happened.
+Reviewer ran as `Executor = Claude Read-Only Team` under a read-only mandate it attests to (`gate-2-contract.md` Review; friction #73).
+
+**Reviewer write disclosure:** `none` — or the list of paths written, each with the scope of what it affects.
+
+Any fail → `Repair Required`. Record what the reviewer found in this file that was wrong, if anything: a review that changes nothing is not evidence that it happened.
 
 ## Repair record (if any)
 

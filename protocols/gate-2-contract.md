@@ -34,7 +34,7 @@ Touching files outside the allowlist; push/PR/merge; `git reset` / `git clean` /
 
 ## Review (read-only, at exit)
 
-Five items, each recorded pass/fail with its evidence in `gate2.md`. Any fail → `Repair Required`. The reviewer runs as `Executor = Claude Read-Only Team` and holds no write tools (ADR-0004). A review with no defined failure mode carries no information (ADR-0011 §4).
+Five items, each recorded pass/fail with its evidence in `gate2.md`. Any fail → `Repair Required`. The reviewer runs as `Executor = Claude Read-Only Team` under a **read-only mandate it attests to** — on this host the restriction is a mandate the reviewer keeps, not a capability the environment withholds, and a clause claiming otherwise asserts a guarantee nothing enforces (ADR-0004, friction #73). **Any write the reviewer makes is disclosed in its report**, naming the path and the scope of what it affects; the gate records that disclosure in `gate2.md` as `none` or as the list. Disclosure is the behaviour this clause requires — a silent write is what would invalidate the independence R3 rests on. A review with no defined failure mode carries no information (ADR-0011 §4).
 
 - **R1 — allowlist confinement.** `git diff --name-only <base_sha>..<head>` is a subset of the frozen `write_domains`. Mechanical.
 - **R2 — test-plan coverage.** Every acceptance item on the Slice issue is covered by a declared test-plan command; the reviewer states the mapping item by item.
