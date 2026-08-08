@@ -21,7 +21,7 @@ Design note (deliberate change): there is **no stored `Ready` state**. Readiness
 
 ---
 
-## 1. `Workflow` field — single-select, exactly 13 options (in order)
+## 1. `Workflow` field — single-select, exactly 14 options (in order)
 
 | # | Option | Meaning | Terminal action lives with |
 |---|---|---|---|
@@ -38,10 +38,11 @@ Design note (deliberate change): there is **no stored `Ready` state**. Readiness
 | 11 | `Needs Release Approval` | Review clean; awaiting human G2→G3 approval to publish. | **Human** |
 | 12 | `Gate 3 — Releasing` | Approved publication in progress (push / PR / CI / merge, exact commands). | Lead |
 | 13 | `Done` | Gate 3 evidence recorded; `Gate = G3 passed`; the Slice issue is closed. | — |
+| 14 | `Aborted` | **Terminal.** The slice's work ended without publication, by an operator-authored disposition from `Human Diagnosis Required` (ADR-0025 §2–§4). Records retained, operational values cleared, and the Slice issue is **not** closed — closure remains `iff G3 passed` (§2). | — |
 
 **Label coupling (ADR-0008):** the `needs-human` repository label is set **exactly** when Workflow ∈ {4, 9, 11} or Workflow = 10 with a `needs_input`-typed block reason — and removed on exit. It is the only mirrored label unless the M0 phone probe demanded a second (probe results recorded in ADR-0008 — no second label was demanded).
 
-**Legal transitions (enforced by skills in M2, guard in M3):** 1→2→3→4→5; 5→6; 6→{11, 7}; 7→{6 after repair-1, 8 after repair-1 fails}; 8→{6 after applied fix, 9}; 6→7→…→9 caps repairs at `repair_limit` (default 2); any state →10 and back to its origin on unblock (recurrence ≥2 for the same cause → 9, not 10 — the Hermes-derived loop breaker); 11→12→13. Approvals 4→5 and 11→12 are human-only and recorded as an approval comment plus the `Next Approval` field returning to `—`.
+**Legal transitions (enforced by skills in M2, guard in M3):** 1→2→3→4→5; 5→6; 6→{11, 7}; 7→{6 after repair-1, 8 after repair-1 fails}; 8→{6 after applied fix, 9}; 6→7→…→9 caps repairs at `repair_limit` (default 2); any state →10 and back to its origin on unblock (recurrence ≥2 for the same cause → 9, not 10 — the Hermes-derived loop breaker); 11→12→13; **9→14** is terminal and operator-only (ADR-0025 §2, §4). Approvals 4→5 and 11→12 are human-only and recorded as an approval comment plus the `Next Approval` field returning to `—`.
 
 ## 2. Other single-select option lists
 

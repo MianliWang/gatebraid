@@ -42,6 +42,12 @@ Five items, each recorded pass/fail with its evidence in `gate2.md`. Any fail �
 - **R4 — the slice's negative criterion.** The property declared in the frozen Gate 1 plan does not hold false anywhere in the diff. Where the criterion is mechanised as a token search, **the check must state the pattern it proxies for, and where the proxy over-matches the pattern governs** (ADR-0018 §2). For the standard "no GitHub mutation" criterion that means GraphQL **mutation operations** — a document whose operation type is `mutation` — not the string `mutation`, which occurs in ordinary prose and in comments asserting that the code performs none. A check that correct work cannot satisfy is not strict; it is broken, and it trains the executor to route around checks.
 - **R5 — no prohibited action.** No push, no PR, no merge, no dependency installation outside the approved plan, no disabled hook or check, no second writer.
 
+## Failure dispositions for R1–R5 (ADR-0025 §6)
+
+Any of R1–R5 failing routes to `Repair Required` **while repair budget remains**, and from there the unified repair sequence above governs — including its Codex consult, which is a step of the sequence and not an option within it. When `repair_limit` is spent and a review item still fails, the gate routes to **`Human Diagnosis Required`**. The operator then directs one of exactly two things: remediation under stated rules followed by **one full re-review**, or the **terminal** disposition.
+
+**No gate, review outcome, or executor judgement reaches terminal on its own** (ADR-0025 §2). Terminal is an operator act, authored on the Slice issue and verified as any door is (ADR-0020 §4). *"No remediation, ever"* carries over from `decidable`: a terminated record is disposed of as it stands, and the defects the last review found are recorded in place rather than corrected.
+
 ## Exit
 
 - Tests green per the plan; `docs/evidence/gatebraid/<slice_id>/gate2.md` written from `templates/gate2-evidence.md` with verification outputs.

@@ -28,6 +28,24 @@
 
 The one sanctioned rewrite of the Slice issue body is the Gate 1 exit metadata update below. It re-emits the `## gatebraid-metadata` block **byte-identical apart from the fields this exit changes** — `write_domains`, to match the frozen allowlist. Nothing else in the block or the body is touched.
 
+## Failure dispositions (ADR-0025 §6, executing ADR-0013's last reopening condition)
+
+Every verification below states what happens when it fails. Entries are of three kinds: **in-machine routing** (the contract already defines where it goes), **decidable** (the state is defensible and the operator may accept it — `result: stopped`, set the matching `Next Approval`, no remediation ever), and **error** (nothing to accept, something is simply wrong — `Workflow = Blocked` with a typed `needs_input` comment).
+
+**`Terminal` never appears directly in this table.** It is reachable only from `Human Diagnosis Required` and only by an operator-authored disposition (ADR-0025 §2). The route from this gate exists and is already wired: an **error** goes to `Blocked`, and spec §1's loop breaker — *recurrence ≥2 for the same cause → 9, not 10* — carries a cause that will not clear to `Human Diagnosis Required`, where the operator may rule terminal.
+
+| # | Verification | Failure | Disposition |
+|---|---|---|---|
+| 1 | Entry: `Gate = G0 passed` | the predecessor gate did not pass | **error** — the ordering invariant is broken; there is nothing to accept |
+| 2 | Action 2 team constraints: ≤3 read-only teammates, lead never in a bypass mode, no nesting, findings flushed before the team dissolves | any constraint violated | **error** — these are safety properties, and a violated one cannot be accepted after the fact |
+| 3 | Action 3 plan completeness: approach · exact `write_domains` · test plan · risk notes · rollback note · **at least one negative criterion** | any element cannot be produced | **error** — without a negative criterion R4 has nothing to check and the first review is unfalsifiable (ADR-0011 §5) |
+| 4 | Action 4 dry-run on the declared `environment` | the **environment** is what does not match | **in-machine routing / decidable, already stated** — ADR-0013 action 4: `result: stopped`, `Next Approval = Environment Change`. Recognised here, not restated |
+| 5 | Action 5 exit checklist, every item evidence-backed | an item cannot be evidence-backed | **error** — an item satisfiable by reading is the defect friction #48 removed; one that cannot be backed at all means the gate has not completed |
+| 6 | Action 6 hashes recomputable from the commands recorded beside them | a recorded hash does not reproduce | **error** — a hash that cannot be recomputed is decoration, and Gate 2's R1 and the Plan Approval both rest on it |
+| 7 | Exit: the one sanctioned `write_domains` write-back to the Slice issue body | the write is attempted and fails | **error** — the durable record cannot be brought into agreement with the frozen plan |
+
+**Not dispositions, stated so the table is not read as covering them.** A declared test command that simply does not run on the declared environment is rewritten and re-dry-run *inside* this gate; that is action 4's normal loop, not a stop. A step that is **skipped** rather than failed is executor error and is recorded as friction — friction #65 is the case in point, where the action 7 write-back was never attempted.
+
 ## Exit
 
 - `docs/evidence/gatebraid/<slice_id>/gate1.md` written from `templates/gate1-evidence.md` (`gate: 1`, `result: needs_approval`).
