@@ -4,6 +4,7 @@
 
 ## Entry
 
+- **Position the working tree:** verify `HEAD` is at the base branch, or run `git checkout <base-branch>` to put it there — performed **before** the gate's read-only actions begin (friction #84; the one-time operator authorization of 2026-08-08, made standing). A retained branch (ADR-0025 §3) is a record, never the next slice's silent baseline. Inside the gate, the prohibition on state-changing Git commands is unchanged.
 - Frontier verdict says the Slice is startable (M2: `next` skill reasoning; M3: `gatebraid-frontier`; M1: manual derivation only).
 - `Executor = Claude Lead`; Workflow → `Gate 0 — Verifying`.
 
@@ -24,7 +25,7 @@ A check with no defined failure mode carries no information (ADR-0011 §4).
 
 1. Verify repository identity and remote. **Failure → error.**
 2. Record the **plan baseline** — the head of the base branch now — into this evidence file. This is the tree the plan will be made against (ADR-0011 §9). It is *not* the commit `Active Branch` is cut from: that is chosen at Gate 2, after the `Writer Lease` is held, and only then written to the `Base SHA` Project field. **Cannot read the base branch head → error.**
-3. Record working-tree cleanliness. **A dirty tree stops the gate**: `result: stopped`, `Next Approval = Dirty Baseline Acceptance` (the row enters Needs Me via `Next Approval`; the `needs-human` label is not set here — its coupling is exactly the spec §1 rule). **No remediation of any kind, ever** — no stash, no clean, no checkout, no "helpful" commit.
+3. Record working-tree state as one predicate: `git status --porcelain` empty **and** `HEAD == <base-branch head>` (friction #84 — a clean tree at the wrong commit passes a cleanliness-only check, and Gate 1's dry-runs would then measure an artifact absent from the base branch). **A dirty tree stops the gate**: `result: stopped`, `Next Approval = Dirty Baseline Acceptance` (the row enters Needs Me via `Next Approval`; the `needs-human` label is not set here — its coupling is exactly the spec §1 rule). **No remediation of any kind, ever** — no stash, no clean, no checkout, no "helpful" commit. **HEAD not at the base branch → error** — entry positioning was sanctioned and did not land; something is wrong.
 4. Verify the Project `Environment` field matches the **actual host this gate is running on** — not a target, not a preference. **Mismatch → decidable: `result: stopped`, `Next Approval = Environment Change`** (an option that already exists, spec §2). Do not write the field, do not edit the slice metadata, and do not reinterpret the check as being about a target environment (ADR-0013 §2).
 5. Verify tool versions (Claude Code, `gh`, `git`, Codex CLI as relevant). **A required tool missing or non-functional → error.** A version differing from the record is **recorded only** and blocks nothing, unless the plan declares a dependency on that version, which is Gate 1's job to state.
 6. Verify the slice's `## gatebraid-metadata` block parses against `gatebraid/slice@1`. **Failure → error.**
