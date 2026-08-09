@@ -1,51 +1,149 @@
-<!-- Template: Gate 2 evidence file.
+<!-- Template: Gate 2 evidence file — ADR-0026 shape.
      Location (M2+): docs/evidence/gatebraid/<slice_id>/gate2.md.
      Gate 2: single writer under the frozen allowlist; commits yes, PUSH NO
-     (publication is Gate 3). Repair sequence per ADR-0002 §4.
-     Mid-slice scope discovery → templates/gatebraid-correct-course.md. -->
+     (publication is Gate 3). Repair sequence per gate-2-contract.
+     Mid-slice scope discovery → templates/gatebraid-correct-course.md.
+
+     An instantiated file contains ONLY (ADR-0026 §1): (a) the
+     gatebraid-metadata block; (b) record rows — fixed label, `$ command` line
+     carrying its environment visibly (friction #89: GH_CONFIG_DIR and any
+     other load-bearing variable ON the command line, in heredocs and
+     sub-shells too), GENERATED output, never transcribed (friction #96);
+     (c) the required disclosures below; (d) fixed headings and row labels.
+     No narrative. No statements about this file's own revision history or
+     prior reviews — the per-review rows ARE the record. No compliance claims
+     about this file itself (friction #88). Attribution only with a
+     machine-checkable citation (comment id, response line) or not at all
+     (ADR-0026 §3). Elisions carry shown/total + the committed path of the
+     full output. A proxy check prints its matching lines beside its count —
+     a bare zero states what it searched (ADR-0018 §2; friction #87).
+     ALL template comments are DELETED at instantiation.
+
+     Identity-sensitive rows use identity instruments: `gh api user` for who,
+     `gh api -i user | grep -i x-oauth-scopes` for what — never a data read
+     (friction #89). Schema validations name their loader in the row
+     (friction #55) and run as standalone guarded steps (spec §4; #86).
+
+     Review discipline (contract, restated as instruction only): verdicts are
+     written by the reviewer, last; the implementer never pre-fills them.
+     Result: in the metadata block is the LAST thing written in this file. -->
 
 # Gate 2 evidence — <P_nn-S_nn>
 
-## Implementation summary
+## Entry records
 
-- Human Plan Approval: <approval comment URL>
-- Writer Lease taken: `<host>:<session-label>:<ISO8601>`
-- Baseline re-read (ADR-0011 §9, as amended by ADR-0014 §1 and ADR-0019 §2): plan baseline `X` = `<sha from gate0.md>` · current head `Y` = `<sha>` · **`baseline: unchanged | changed-only-in-own-evidence | changed-outside-allowlist | changed-inside-allowlist`** — record this in every case, including no change.
-  `changed-only-in-own-evidence` is the expected value once a slice has committed its own gate evidence: `X != Y`, and every changed path is inside `docs/evidence/gatebraid/<slice_id>/`, which ADR-0014 §1 excludes before the intersection test. It is not `unchanged`, and calling it `changed-outside-allowlist` is false — that directory *is* in the allowlist.
-- Active Branch: `<branch>` (created from `Y`; the `Base SHA` field carries `Y`)
-- Scope: strictly inside the frozen allowlist (hash `<allowlist_hash>`)
+**E1 — Plan Approval verified** (author must be `MianliWang`, not this
+session — ADR-0020 §4; hashes must match the frozen values)
+```
+$ GH_CONFIG_DIR=<store> gh api repos/<owner>/<repo>/issues/comments/<id> --jq '{author: .user.login, url: .html_url}'
+<output>
+$ GH_CONFIG_DIR=<store> gh api user --jq .login
+<output — the executor identity the author is compared against>
+```
+
+**E2 — Writer Lease taken, read back**
+```
+$ GH_CONFIG_DIR=<store> gh <the field write + the read-back, in full>
+<output — `<host>:<session-label>:<ISO8601>`>
+```
+
+**E3 — baseline re-read** (ADR-0011 §9; ADR-0014 §1 excludes
+`docs/evidence/gatebraid/<slice_id>/` before the intersection)
+```
+$ git rev-parse <base-branch>
+<output — Y; X is gate0.md's recorded baseline>
+$ git diff --name-only <X>..<Y>
+<output — the changed-path set before exclusion>
+```
+- baseline: `unchanged | changed-only-in-own-evidence | changed-outside-allowlist | changed-inside-allowlist`
+  <!-- record in every case, including no change. changed-only-in-own-evidence
+       is the expected value once a slice has committed its own gate evidence
+       — it is not `unchanged`, and it is not `changed-outside-allowlist`:
+       that directory IS in the allowlist. changed-inside-allowlist →
+       Scope / Allowlist Change per the contract. -->
+
+**E4 — Active Branch created from Y; `Base SHA` field set to Y**
+```
+$ git rev-parse --abbrev-ref HEAD; git rev-parse HEAD
+<output>
+```
 
 ## Verification outputs
 
-<Declared test-plan commands with their outputs embedded or committed-log
-referenced. Evidence, not assertion.>
+<!-- One row per declared test-plan command, exactly as frozen. Evidence,
+     not assertion. -->
 
-## Review verdict (read-only reviewer, ADR-0011 §4)
+**V<n> — <the acceptance item this command covers>**
+```
+$ <declared command, environment visible>
+<output>
+```
 
-**Leave every verdict blank until the reviewer has reported.** The implementer
-does not pre-fill this table, and `result:` in the metadata block below is the
-**last** thing written in this file. A self-recorded pass on the one item whose
-purpose is external verification is worthless even when it turns out correct —
-Slice A's reviewer caught exactly that.
+## Review record
+
+<!-- One block per review, appended in order; blocks are never rewritten.
+     The reviewer runs as Executor = Claude Read-Only Team under a read-only
+     mandate it attests to, dispatched WITH the spec §4 conduct rules
+     (friction #97); its report states which rules it was given. -->
+
+### Review <n>
 
 | Item | Verdict | Evidence |
 |---|---|---|
-| R1 allowlist confinement | | `git diff --name-only <base>..<head>` output |
-| R2 test-plan coverage | | acceptance item → command mapping |
-| R3 evidence is evidence | | which outputs were re-run or traced |
-| R4 negative criterion | | the criterion, and how it was checked |
-| R5 no prohibited action | | what was checked |
+| R1 allowlist confinement | | <anchor to the R1 row below> |
+| R2 test-plan coverage | | <anchor — item → command mapping rows> |
+| R3 evidence is rows that reproduce | | <anchor — which rows were re-run> |
+| R4 negative criterion | | <anchor — pattern, scope, matches printed> |
+| R5 no prohibited action | | <anchor — what was checked> |
 
-Reviewer ran as `Executor = Claude Read-Only Team` under a read-only mandate it attests to (`gate-2-contract.md` Review; friction #73).
+**Reviewer rows** (the commands the reviewer ran, with outputs — including,
+for R3's deterministic subset, the byte-identity re-runs)
+```
+$ <command>
+<output>
+```
 
-**Reviewer write disclosure:** `none` — or the list of paths written, each with the scope of what it affects.
+**Findings** (only if any verdict is fail — one row per finding: what was
+measured, not a story about it)
+```
+$ <the command that exhibits the defect>
+<output>
+```
 
-Any fail → `Repair Required`. Record what the reviewer found in this file that was wrong, if anything: a review that changes nothing is not evidence that it happened.
+- Reviewer write disclosure: `none` | <path — scope of what it affects>
+- Rules given to the reviewer: <the mandate's rule set, one line>
 
-## Repair record (if any)
+## Repair record
 
-<Per attempt: the NEW hypothesis, what changed, result. Consult reference if
-the sequence reached the Codex consult.>
+<!-- One block per attempt. The hypothesis is ONE line. Novelty is measured
+     before the result is graded (ADR-0027 §1; gate-2-contract): an unchanged
+     tree is not a repair — record consumed, still_red, no re-review. -->
+
+### Repair <n>
+
+- Hypothesis (new): <one line>
+
+**Novelty measured**
+```
+$ git rev-parse HEAD^{tree}
+<output — compare: tree at the previous failed state was <sha>>
+```
+
+**Changed by this repair**
+```
+$ git diff --name-only <previous-failed-head>..HEAD
+<output>
+```
+
+- Result: `green | still_red`
+- Consult: `none | <consult_id> (in sequence — also on repair_attempts[].consult_ref) | <consult_id> (HDR-directed — recorded in consults, never as consult_ref: friction #94)`
+
+## Required disclosures
+
+- Deviations: none | <one line each, citing the friction entry or ruling>
+- Reviewer write disclosure: `none` | <mirrored from the review record>
+- Environment: <one line — host, shell, and every variable a recorded
+  command's meaning depends on>
 
 ## gatebraid-metadata
 
@@ -68,28 +166,27 @@ checks:
   - name: allowlist-respected
     command: "git diff --name-only <base_sha>..HEAD"
     result: pass
-    output_ref: "#implementation-summary"
+    output_ref: "#entry-records"
   - name: baseline-reread
     command: "git rev-parse <base-branch>"
     result: pass
-    output_ref: "#implementation-summary"
+    output_ref: "#entry-records"
   - name: review-five-items
     result: pass
-    output_ref: "#review-verdict-read-only-reviewer-adr-0011-4"
+    output_ref: "#review-record"
 handoff_fingerprint:      # ADR-0011 §2, amended by ADR-0016 — Gate 3's drift comparand.
-                          # These are the values at the moment the implementation was
-                          # complete and reviewed, i.e. BEFORE this file's own commit.
-                          # Gate 3 does not expect head equality; it requires that
-                          # nothing outside docs/evidence/gatebraid/<slice_id>/ differs.
+                          # Values at the moment the implementation was complete
+                          # and reviewed, i.e. BEFORE this file's own commit.
   active_branch_head: "<commit sha as reviewed>"
   tree_sha: "<git rev-parse <head>^{tree}, as reviewed>"
   changed_paths: []       # sorted `git diff --name-only <base_sha>..<head>`
+consults: []              # every consult this gate ran, whenever it ran (friction #94)
 repair_attempts: []
 # repair_attempts:
 #   - number: 1
-#     hypothesis: "<new hypothesis>"
+#     hypothesis: "<new hypothesis — '(unchanged-tree)' annotated if consumed>"
 #     result: still_red
-#     consult_ref: CONSULT-<issue#>-<seq>
+#     consult_ref: CONSULT-<issue#>-<seq>   # in-sequence consults ONLY (friction #94)
 approvals:
   - type: "Plan Approval (G1→G2)"
     comment_url: "<url>"
@@ -100,7 +197,6 @@ evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate2.md
 ```
 
-<!-- A claimed schema validation names its loader: interpreter path, PyYAML and jsonschema versions (friction #55). -->
-
 <!-- Exit: Workflow → Needs Review; reviewers (read-only) pass →
-     Gate = G2 passed, Workflow → Needs Release Approval, needs-human ON. -->
+     Gate = G2 passed, Workflow → Needs Release Approval,
+     Next Approval = Release Approval (G2→G3), needs-human ON. -->

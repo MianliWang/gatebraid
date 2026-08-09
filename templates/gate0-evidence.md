@@ -1,19 +1,76 @@
-<!-- Template: Gate 0 evidence file.
+<!-- Template: Gate 0 evidence file — ADR-0026 shape.
      Location (M2+): docs/evidence/gatebraid/<slice_id>/gate0.md in the working
      repo; cross-project artifacts in MianliWang/gatebraid/evidence/.
      Gate 0 is READ-ONLY: any write, fetch/pull, or branch creation is a
-     contract violation (protocols/gate-0-contract.md). -->
+     contract violation (protocols/gate-0-contract.md). Entry positioning —
+     checkout to the base branch — happens BEFORE entry, per the contract; it
+     is not one of this file's rows.
+
+     An instantiated file contains ONLY (ADR-0026 §1): (a) the
+     gatebraid-metadata block; (b) record rows — a fixed one-line label, a
+     `$ command` line carrying its environment visibly (friction #89), and
+     that command's GENERATED output, never transcribed (friction #96);
+     (c) the required disclosures enumerated below; (d) this template's fixed
+     headings and row labels. No narrative sections, no statements about this
+     file's own history, no explanatory prose. Every elision carries
+     shown/total plus the committed path of the full output.
+     ALL template comments, this one included, are DELETED at instantiation —
+     a surviving comment is content outside the classes.
+     A claimed schema validation names its loader in the row itself
+     (interpreter path; PyYAML and jsonschema versions printed by the command
+     — friction #55) and runs as a standalone guarded step whose failure
+     prevents the commit (spec §4; friction #86). -->
 
 # Gate 0 evidence — <P_nn-S_nn>
 
-## Authority & baseline
+## Records
 
-- Repository identity / remote: `<git remote -v output>`
-- Plan baseline: `<sha>` — the head of the base branch now, i.e. the tree this slice's plan will be made against. Recorded **here only**. The `Base SHA` Project field is set at Gate 2, from the head re-read after the `Writer Lease` is taken (ADR-0011 §9).
-- Working tree: clean | **DIRTY — gate stopped**, `Next Approval = Dirty Baseline Acceptance`; no remediation of any kind, ever
-- Environment check: Project `Environment` = `<value>` matches host `<evidence>`
-- Tool versions: `<claude/gh/git/codex versions as run>`
-- Slice metadata: `## gatebraid-metadata` parses against `gatebraid/slice@1`: pass | fail
+**A1 — repository identity and remote**
+```
+$ git remote -v
+<output>
+```
+
+**A2 — plan baseline: head of the base branch now** (recorded here only; the
+`Base SHA` field is set at Gate 2 from the head re-read under lease —
+ADR-0011 §9)
+```
+$ git rev-parse <base-branch>
+<output>
+```
+
+**A3 — working tree clean AND at the base branch** (one predicate, friction
+#84)
+```
+$ git status --porcelain; git rev-parse HEAD; git rev-parse <base-branch>
+<outputs — porcelain empty; the two SHAs equal>
+```
+
+**A4 — Project `Environment` field vs actual host**
+```
+$ GH_CONFIG_DIR=<store> gh <the field read used, in full>
+<output>
+$ <host probe command>
+<output>
+```
+
+**A5 — tool versions**
+```
+$ claude --version; git --version; gh --version; codex --version
+<output>
+```
+
+**A6 — slice metadata parses against `gatebraid/slice@1`**
+```
+$ <interpreter path> <validator invocation — prints PyYAML + jsonschema versions and the verdict>
+<output>
+```
+
+## Required disclosures
+
+- Deviations: none | <one line each, citing the friction entry or ruling>
+- Environment: <one line — host, shell, and every variable a recorded
+  command's meaning depends on>
 
 ## gatebraid-metadata
 
@@ -31,24 +88,25 @@ checks:
   - name: repo-identity-and-remote
     command: "git remote -v"
     result: pass
-    output_ref: "#authority--baseline"
+    output_ref: "#records"
   - name: base-sha-recorded
-    command: "git rev-parse HEAD"
+    command: "git rev-parse <base-branch>"
     result: pass
-    output_ref: "#authority--baseline"
-  - name: working-tree-clean
-    command: "git status --porcelain"
-    result: pass        # fail → result: stopped + Next Approval = Dirty Baseline Acceptance
-    output_ref: "#authority--baseline"
+    output_ref: "#records"
+  - name: working-tree-clean-at-base
+    command: "git status --porcelain; git rev-parse HEAD; git rev-parse <base-branch>"
+    result: pass        # dirty → result: stopped + Next Approval = Dirty Baseline Acceptance
+                        # HEAD not at base after entry positioning → error (friction #84)
+    output_ref: "#records"
   - name: environment-matches-host
     result: pass
-    output_ref: "#authority--baseline"
+    output_ref: "#records"
   - name: tool-versions
     result: pass
-    output_ref: "#authority--baseline"
+    output_ref: "#records"
   - name: slice-metadata-parses
     result: pass
-    output_ref: "#authority--baseline"
+    output_ref: "#records"
 evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate0.md
 notes: "<free text; do NOT record a transition the contract does not define>"
@@ -64,8 +122,6 @@ notes: "<free text; do NOT record a transition the contract does not define>"
 #   expected: "<what the record says>"
 #   remediation_attempted: none # ALWAYS none — the schema enforces it
 ```
-
-<!-- A claimed schema validation names its loader: interpreter path, PyYAML and jsonschema versions (friction #55). -->
 
 <!-- Exit: Gate = G0 passed; Workflow → Gate 1 — Planning; handoff comment
      (gatebraid/handoff@1) on the Slice issue; Last Checkpoint updated. -->

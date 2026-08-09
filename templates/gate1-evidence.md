@@ -1,8 +1,21 @@
-<!-- Template: Gate 1 evidence file.
+<!-- Template: Gate 1 evidence file — ADR-0026 shape.
      Location (M2+): docs/evidence/gatebraid/<slice_id>/gate1.md.
      Gate 1 is READ-ONLY (temporary read-only team of ≤3 permitted; lead never
      in bypass mode; findings flushed to the issue before dissolution).
-     Exit freezes the plan + write allowlist (protocols/gate-1-contract.md). -->
+     Exit freezes the plan + write allowlist (protocols/gate-1-contract.md).
+
+     An instantiated file contains ONLY (ADR-0026 §1): (a) the
+     gatebraid-metadata block; (b) record rows — fixed label, `$ command` line
+     carrying its environment visibly (friction #89), GENERATED output
+     (friction #96); (c) the required disclosures below; (d) fixed headings
+     and row labels; (e) the frozen-plan section — the ONE prose class, the
+     design artifact plan_hash covers. After the freeze the plan is cited,
+     never re-described. Team findings live on the Slice issue (the contract
+     flushes them there); the row below references them, it does not restate
+     them (ADR-0017). ALL template comments are DELETED at instantiation.
+     The heading "## Plan (frozen at exit)" is load-bearing byte-for-byte:
+     plan_hash covers the lines strictly between it and the next "## " line
+     (gate-1-contract action 6). -->
 
 # Gate 1 evidence — <P_nn-S_nn>
 
@@ -10,18 +23,57 @@
 
 - Approach: <…>
 - Exact `write_domains` allowlist: <list — becomes the frozen allowlist>
-- Test plan (commands): <…>
+- Test plan (commands, runnable as written on the declared environment): <…>
 - Risk notes: <…>
 - Rollback note: <…>
-- **Negative criterion (checkable):** <e.g. "the diff contains no write operation" — this is what review item R4 checks at Gate 2>
+- **Negative criterion (checkable):** <the property the diff must NOT have —
+  state the pattern it proxies for AND the scope it will search (ADR-0018 §2);
+  this is what review item R4 checks at Gate 2>
 
-## Team findings (if a read-only team ran)
+## Records
 
-<Flushed findings, per teammate role.>
+**P1 — team findings flushed** (only if a read-only team ran)
+```
+$ GH_CONFIG_DIR=<store> gh <the comment-listing read used, in full>
+<output — the flushed-finding comment ids/urls; nothing restated here>
+```
 
-## Exit checklist
+**P2 — dry-run of every declared test command, on the declared environment**
+(gate-1-contract action 4 — one row per declared command)
+```
+$ <declared command 1, exactly as frozen>
+<output>
+```
 
-- `gatebraid-gate1-exit-checklist` completed: <link/anchor> — all items pass
+**P3 — exit checklist completed, every item evidence-backed**
+```
+<the completed gatebraid-gate1-exit-checklist location/anchor, one line>
+```
+
+**P4 — allowlist_hash reproduced**
+```
+$ <the exact Python 3 stdlib command — also recorded in hash_commands>
+<output — the hash>
+```
+
+**P5 — plan_hash reproduced**
+```
+$ <the exact Python 3 stdlib command — also recorded in hash_commands>
+<output — the hash>
+```
+
+**P6 — the sanctioned `write_domains` write-back to the Slice issue**
+(gate-1-contract Exit; byte-identical re-emission apart from that field)
+```
+$ GH_CONFIG_DIR=<store> gh <the edit + the read-back verifying it, in full>
+<output>
+```
+
+## Required disclosures
+
+- Deviations: none | <one line each, citing the friction entry or ruling>
+- Environment: <one line — host, shell, and every variable a recorded
+  command's meaning depends on>
 
 ## gatebraid-metadata
 
@@ -42,23 +94,21 @@ checks:
   - name: allowlist-exact
     result: pass
     output_ref: "#plan-frozen-at-exit"
-  - name: test-plan-has-commands
+  - name: test-plan-dry-run
     result: pass
-    output_ref: "#plan-frozen-at-exit"
+    output_ref: "#records"
   - name: gate1-exit-checklist
     result: pass
-    output_ref: "#exit-checklist"
+    output_ref: "#records"
 # refrozen: true   # only after a correct-course re-freeze (friction #50)
-plan_hash: "<sha256, lowercase hex — see hash_commands>"
-allowlist_hash: "<sha256, lowercase hex — see hash_commands>"
+plan_hash: "<sha256, lowercase hex>"
+allowlist_hash: "<sha256, lowercase hex>"
 hash_commands:           # ADR-0011 §3 — a hash nobody can recompute is decoration
   allowlist: "<the exact command run, Python 3 stdlib only>"
   plan: "<the exact command run, Python 3 stdlib only>"
 evidence_files:
   - docs/evidence/gatebraid/P<nn>-S<nn>/gate1.md
 ```
-
-<!-- A claimed schema validation names its loader: interpreter path, PyYAML and jsonschema versions (friction #55). -->
 
 <!-- Exit: Gate = G1 passed; Workflow → Needs Plan Approval;
      Next Approval = Plan Approval (G1→G2); needs-human ON.
