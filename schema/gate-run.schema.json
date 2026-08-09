@@ -108,6 +108,12 @@
         }
       }
     },
+    "consults": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string", "pattern": "^CONSULT-(M[0-9]+|[0-9]+)-[0-9]+$" },
+      "description": "Every consult this gate ran, whenever it ran — in sequence or at the Human Diagnosis stop. repair_attempts[].consult_ref remains scoped to in-sequence consults; an HDR-directed consult appears here and never as a consult_ref (friction #94)."
+    },
     "repair_attempts": {
       "type": "array",
       "default": [],
@@ -139,7 +145,7 @@
           },
           "consult_ref": {
             "type": "string",
-            "description": "consult_id if a Codex consult occurred in sequence."
+            "description": "consult_id if a Codex consult occurred in sequence — at this attempt's position in the unified repair sequence. A consult performed at the Human Diagnosis stop is recorded in top-level consults, never here (friction #94)."
           }
         }
       }
@@ -300,5 +306,22 @@
     "notes": {
       "type": "string"
     }
-  }
+  },
+  "allOf": [
+    {
+      "$comment": "friction #94: two repair attempts with no in-sequence consult validate only as human_diagnosis_required — the consult either happened in sequence (consult_ref) or the gate ended at HDR. Nothing can force a false consult_ref.",
+      "if": {
+        "required": ["repair_attempts"],
+        "properties": {
+          "repair_attempts": {
+            "minItems": 2,
+            "not": { "contains": { "required": ["consult_ref"] } }
+          }
+        }
+      },
+      "then": {
+        "properties": { "result": { "const": "human_diagnosis_required" } }
+      }
+    }
+  ]
 }

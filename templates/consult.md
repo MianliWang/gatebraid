@@ -1,14 +1,40 @@
-<!-- Template: Codex consult file (ADR-0004). The Lead writes this file at
-     docs/consults/<consult_id>.md (cross-project: in
-     MianliWang/gatebraid/evidence/). Ids: CONSULT-<issue#>-<seq> for a
-     slice-scoped consult, CONSULT-M<n>-<seq> for a milestone-level one — the
-     form must match the trigger's scope (ADR-0021 §3). The Consultant is
-     READ-ONLY (--ephemeral --sandbox read-only, no bypass, snapshot disabled):
-     ALL evidence must be embedded here — it cannot execute anything.
-     The response is saved verbatim as <consult_id>-response.md (sanitization
-     disclosed if applied) and committed; linking follows scope (ADR-0021 §4) —
-     from the Slice issue when slice-scoped, otherwise by citation from the
-     documents that adopt its outcome. -->
+<!-- Template: Codex consult file (ADR-0004, ADR-0021).
+
+     PATH FOLLOWS SCOPE (friction #99 — a fixed path collided with every
+     frozen allowlist a slice can have):
+       - slice-scoped consult → docs/evidence/<product>/<slice_id>/<consult_id>.md
+         in the working repo — inside the slice's own write_domains by
+         construction, for any failure-triggered artifact.
+       - milestone-level consult → consults/<consult_id>/ in the control repo.
+
+     ID FOLLOWS SCOPE, AND IS VALIDATED BEFORE IT IS USED (friction #93):
+     CONSULT-<issue#>-<seq> for slice-scoped, CONSULT-M<n>-<seq> for
+     milestone-level (ADR-0021 §3). Before the id first appears in any
+     filename, comment or reference, validate this file's completed metadata
+     block against gatebraid/consult@1 with the real validator, loader named
+     (friction #55) — the schema's root conditional binds the id form to the
+     trigger's scope; run it, do not reason about it.
+
+     THE CONSULTANT'S ACTUAL CONSTRAINTS (friction #95 — the old text said it
+     "cannot execute anything"; false): `--sandbox read-only` permits
+     execution and forbids WRITES; the Consultant also has NO NETWORK. Embed
+     all evidence because the request must be a durable record and nothing
+     may depend on a live service — those are the reasons. GIVE the
+     Consultant `-C <working root>` so it can check this packet's excerpting
+     against the tree; that check is precisely the failure class it has
+     caught (friction #96). Invocation is hermetic: `codex exec --ephemeral
+     --sandbox read-only --ignore-user-config` (a host config carries state,
+     including a repository-directory trust table — friction #91), no
+     bypass, snapshot disabled, response captured to a file by
+     `--output-schema`/`-o`, never transcribed.
+
+     The response is saved verbatim as <consult_id>-response.<ext>
+     (sanitization disclosed if applied) and committed beside this file;
+     linking follows scope (ADR-0021 §4) — from the Slice issue when
+     slice-scoped, otherwise by citation from the documents that adopt its
+     outcome. Recording in gate-run@1: an in-sequence consult →
+     repair_attempts[].consult_ref; an HDR-directed consult → top-level
+     consults[] only (friction #94). -->
 
 # <consult_id> — <one-line problem title>
 
@@ -34,7 +60,8 @@ Consultant must respect these in its recommendation.>
 ## Embedded evidence
 
 <Command outputs, test logs, stack traces, diffs — pasted in full or
-committed-log referenced. This section is the Consultant's only ground truth.>
+committed-log referenced; every elision marked shown/total. This section,
+plus the tree reached via -C, is the Consultant's ground truth.>
 
 ## Questions
 
