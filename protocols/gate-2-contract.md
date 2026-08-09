@@ -22,7 +22,7 @@
 
 ## Repair sequence (unified, report 11 D6 — fixed)
 
-red check → **repair 1 with a new hypothesis** → still red → **Codex consult** (`templates/consult.md`; embedded evidence; fixed response schema; recorded `ACCEPT/PARTIAL/REJECT`) → apply the independently-verified fix → still red → **repair 2** → still red → `Human Diagnosis Required`. `repair_limit = 2`; no third repair. `consult_first: true` moves the consult before repair 1. Blocker recurrence ≥2 for the same cause → `Human Diagnosis Required`, not another `Blocked` round.
+red check → **repair 1 with a new hypothesis** → still red → **Codex consult** (`templates/consult.md`; embedded evidence; fixed response schema; recorded `ACCEPT/PARTIAL/REJECT`) → apply the independently-verified fix → still red → **repair 2** → still red → `Human Diagnosis Required`. `repair_limit = 2`; no third repair. `consult_first: true` moves the consult before repair 1. Blocker recurrence ≥2 for the same cause → `Human Diagnosis Required`, not another `Blocked` round. **A repair is measured before it is graded** (ADR-0027 §1): before an attempt's `result` is recorded, compare `git rev-parse HEAD^{tree}` against the tree at the previous failed state — the failing review for repair 1, the prior attempt otherwise. **An unchanged tree is not a repair:** record the attempt as consumed — `result: still_red`, hypothesis annotated `(unchanged-tree)` — and advance the sequence without a re-review. The new-hypothesis rule (ADR-0002 §4) keeps its semantic force above this mechanical floor.
 
 ## Mid-slice scope discovery
 

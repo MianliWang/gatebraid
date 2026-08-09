@@ -116,6 +116,12 @@
       "items": {
         "type": "string"
       }
+    },
+    "preserve_verbatim": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Items that must survive any summarization, compaction or relay byte-exact: hashes, SHAs, ids, exact commands, door-comment URLs (ADR-0027 §2; friction #37 at handoff scale). A consumer carries a listed item mechanically or cites this comment; a paraphrase of a listed item is a defect."
     }
   }
 }

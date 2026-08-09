@@ -31,4 +31,5 @@ done:
 next:
   - "<next action>"
 open_questions: []
+preserve_verbatim: []   # byte-exact survivors: hashes, SHAs, ids, exact commands, door URLs (ADR-0027 §2)
 ```
