@@ -69,7 +69,11 @@ adaptations and the not-adopted-verbatim list are in
   schema-with-fixtures (`M3-PLAN.md` §2). The first M3 gate records are
   written by N2's and N3's own gate landings (ADR-0028 decision 4,
   unsuperseded on this point); N1 precedes both, so every M3 gate
-  record from the first is `@2` and none falls back to `@1`.
+  record from the first is `@2` and none falls back to `@1`. Those two
+  landings run under the one-time, expiring bootstrap boundary defined
+  in `M3-PLAN.md` §2 — records marked `bootstrap_exception: true`, no
+  startability authority from the unhardened state tools before O0, the
+  exception dead after N2 + N3 Gate 3.
   (P1-2, the rebaseline, is enacted by decision 4; P1-3, the metric
   revision, by decision 5.)
 - The previously offered **Express path is withdrawn**. State-reading
