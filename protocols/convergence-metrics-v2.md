@@ -83,7 +83,7 @@ stop, batch close, terminal disposition), never retrospectively;
 classifications are assigned when the entry is written (v1 §6, kept).
 **Classification authority:** the coordinator's adjudication recorded at
 the next stop; disputes recorded with both readings (v1 §6, kept); the
-operator rules where readings persist. **Terminal states:** per the
+operator rules where readings persist. **Result states:** per the
 three-state rule below — `no_eligible_unit_ran`,
 `undefined_zero_denominator`, and numeric zero are distinct and named.
 **Correction:** by a superseding entry citing the original — never
@@ -93,8 +93,9 @@ plus the named statistic; a median is taken only over delivered units.
 with the other shared interfaces (M3-PLAN §2) — no generator defines
 its own output contract. Until that freeze, values collect in working
 records only, and no criterion consumes them before then — none is
-defined to (§3's readings and §7's gate all post-date N2).
-**Three terminal states, never conflated:** `no_eligible_unit_ran` —
+defined to (§3's readings and §7's gate all post-date the freeze and
+N2's delivery).
+**Three result states, never conflated:** `no_eligible_unit_ran` —
 the metric's unit never executed in the period, the metric does not
 move; `undefined_zero_denominator` — units ran but the denominator is
 empty, reported as undefined and never as a number; numeric zero —
@@ -118,7 +119,10 @@ the authoritative committed home is the slice's evidence-directory
 metrics file, **finalized at Gate 3 exit or at an operator-authored
 terminal disposition — GitHub Issue closure is never the finalization
 event**, so an aborted slice's metrics finalize with its terminal
-record; the milestone closure record
+record — carried on the control plane in the terminal disposition
+itself, never only on a retained local branch, so closure-time
+criteria read no value absent from the control plane; the milestone
+closure record
 aggregates by citation and never re-states independently — §4's
 one-source clause; criteria consume the committed values):
 - `contract recurrence` — integer per slice, v1 §3.2 verbatim; also an
