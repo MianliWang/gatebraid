@@ -51,10 +51,21 @@ before any N2/N3 authoring, all three shared interfaces:
 `gatebraid/gate-run@2`; `gatebraid/evidence-capture@1`, carrying the
 base64 byte contract N2's paragraph specifies — the contract is fixed
 here, never by the generator that implements it; and
-`gatebraid/metrics@1`, the metrics file's schema. N2 and N3 receive
+`gatebraid/metrics@1`, the metrics file's schema. **N1's contract
+reconciliation** (its first actions, under its own approval, before any
+gate runs): the Gate 0 contract's startability-authority clause is
+re-pointed — the bootstrap state packet before O0, the hardened tools
+after; the four evidence templates move from `gate-run@1` to `@2`;
+`@2`'s specification carries the `bootstrap_exception` property and
+extends `approvals[].type` with the state-packet and host-instruction
+approval types, so a gate record can show the checks that gated it;
+the terminal-disposition procedure gains its metrics-finalization
+reference (ADR-0025 alignment). N2 and N3 receive
 only the frozen schemas and the corpus; neither may redefine an
 interface during implementation — any interface change returns to an
-approved N1 correct-course. **N1 is a contract batch under the
+approved N1 correct-course; every record either produces validates
+against the frozen interfaces, loader named, as part of its own
+Accept-when. **N1 is a contract batch under the
 standing batch protocol, not a gated Slice:** it delivers schemas,
 fixtures and mutations — test inputs with expected-failure assertions,
 none of which executes in a production path — and its admission is the
@@ -63,7 +74,9 @@ paragraph already requires before freeze. **Hard precondition to N1's
 start:** the executor enumerates the exact host instruction files the
 session loads, records each file's full SHA-256, and the operator
 approves or disables each; any later drift from the approved hashes
-stops the batch. An ignored instruction file has no normative
+stops the batch. The check runs as a scripted step with an exit
+status, falsified against a seeded drift case before its first trusted
+use (spec §4). An ignored instruction file has no normative
 authority, but a non-normative file can still affect runtime — that is
 why this check precedes N1 and why R-min later mechanizes it. The
 first M3 gate records are N2's and N3's own gate landings (ADR-0028
@@ -123,7 +136,9 @@ N2's and N3's Gate 0 reads state through an **operator-approved
 closed-set state packet**: the exact repositories and issues
 enumerated; direct read-only queries only; every non-zero query exit
 failing closed; no broad enumeration; exact outputs and query
-identities recorded in the gate record. Their gate evidence runs under
+identities recorded in the gate record's evidence — by
+`checks[].output_ref` pointer to committed capture files, with the
+record marked through `@2`'s `bootstrap_exception` property. Their gate evidence runs under
 a **bounded evidence bootstrap**: records are `gate-run@2`, marked
 `bootstrap_exception: true`; they claim no N3 independent validation
 before N3 exists — N2's records are re-validated by N3 after N3's own
