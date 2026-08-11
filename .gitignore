@@ -1,7 +1,8 @@
-# Tracked exclusions (mirrors the per-clone .git/info/exclude, which is
-# unreviewable and does not survive a fresh clone). _handoff/ holds
-# session material including raw external-audit texts that must never be
-# committed (protected-name rule; ADR-0029 decision 6); CLAUDE.md is the
-# host-local instruction file.
-_handoff/
-CLAUDE.md
+# Tracked exclusions, root-anchored — the reviewable, clone-surviving
+# rule (the per-clone .git/info/exclude carries legacy unanchored
+# duplicates). /_handoff/ holds session material including raw
+# external-audit texts that must never be committed (protected-name
+# rule; ADR-0029 decision 6). Host-local instruction files (CLAUDE.md
+# and any sibling) carry no normative authority (M3-PLAN §2 N1, R-min).
+/_handoff/
+/CLAUDE.md
