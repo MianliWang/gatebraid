@@ -15,18 +15,26 @@
      (friction #55) — the schema's root conditional binds the id form to the
      trigger's scope; run it, do not reason about it.
 
-     THE CONSULTANT'S ACTUAL CONSTRAINTS (friction #95 — the old text said it
-     "cannot execute anything"; false): `--sandbox read-only` permits
-     execution and forbids WRITES; the Consultant also has NO NETWORK. Embed
-     all evidence because the request must be a durable record and nothing
-     may depend on a live service — those are the reasons. GIVE the
-     Consultant `-C <working root>` so it can check this packet's excerpting
-     against the tree; that check is precisely the failure class it has
-     caught (friction #96). Invocation is hermetic: `codex exec --ephemeral
-     --sandbox read-only --ignore-user-config` (a host config carries state,
-     including a repository-directory trust table — friction #91), no
-     bypass, snapshot disabled, response captured to a file by
-     `--output-schema`/`-o`, never transcribed.
+     THE CONSULTANT'S ACTUAL CONSTRAINTS, restated from measurement (friction
+     #95, #103 and its CORRECTION; ADR-0028 §6). `--sandbox read-only`
+     constrains the MODEL'S COMMANDS: it permits execution and forbids writes,
+     and the Consultant has NO NETWORK. It does not constrain the CLI itself,
+     which maintains session state: a `refs/codex/*` checkpoint ref has been
+     observed in a governed repository, written from an interactive session
+     into the repository named by `-C`. One measured run under the contract
+     invocation form below produced ZERO such refs. Embed all evidence because
+     the request must be a durable record and nothing may depend on a live
+     service. GIVE the Consultant `-C` so it can check this packet's excerpting
+     against the tree — that check is precisely the failure class it has caught
+     (friction #96) — but STANDING RULE, precaution under uncertainty: `-C`
+     points at a DISPOSABLE FULL COPY of the working repository, created
+     outside every governed repository and deleted after the response is
+     captured, so any ref the CLI writes lands in the copy. Invocation is
+     hermetic: `codex exec --ephemeral --sandbox read-only
+     --ignore-user-config` (a host config carries state, including a
+     repository-directory trust table — friction #91), no bypass, snapshot
+     disabled, response captured to a file by `--output-schema`/`-o`, never
+     transcribed.
 
      The response is saved verbatim as <consult_id>-response.<ext>
      (sanitization disclosed if applied) and committed beside this file;
