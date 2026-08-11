@@ -83,8 +83,9 @@ root in this PR) are ratified as the normative M3 authority; this ADR
 cites and does not restate them — restatement creates a second copy
 that drifts (ADR-0018 §3's rationale, applied here beyond that
 decision's approval-term scope). Informative summary of
-the order: N0 ratification (this batch; planning plus one
-repository-hygiene control) → N1 precommitted
+the order: N0 ratification (this batch; planning documents, their
+evidence-directory records, and one repository-hygiene control — the
+exact path set is fixed in `M3-PLAN.md` §2 N0) → N1 precommitted
 fixture and mutation corpus → N2 evidence generator and N3 independent
 evidence validator, in parallel and mutually implementation- and
 authorship-independent → O0 snapshot/frontier state-pipeline hardening →
@@ -94,7 +95,8 @@ Core Closure.
 
 Blocked until their prerequisites, by this decision — the single home
 of the unlock sequence: N1 (fixtures and `@2` admission; no tool
-implementation) until N0 is merged and its Status reflection verified;
+implementation) until N0 is merged, its Status reflection verified, and
+N1's own approval posted;
 tool implementation (N2 onward) until N1 is delivered and approved; the
 fourth ready attempt until N2 + N3 + O0 accepted; any
 business-repository contact until the admission checklist in
@@ -164,10 +166,10 @@ residual for the protected-name rule.
 - The coordinator's pre-audit M3-PROPOSAL (session material) is
   superseded in full; the further superseded planning statements are
   enumerated in `M3-PLAN.md` §9.
-- The next batch — N1, fixtures and `@2` admission; tool implementation
-  begins only at N2 — requires its own operator approval. Decision 3's
-  blocked-list is the single home of the unlock sequence and is not
-  restated here. The first business contact remains blocked behind
+- The next batch is N1 — fixtures and `@2` admission; tool
+  implementation begins only at N2. Decision 3's blocked-list is the
+  single home of the unlock sequence and is not restated here. The
+  first business contact remains blocked behind
   `M3-PLAN.md` §7 (owner: operator).
 
 ## Reopening conditions
