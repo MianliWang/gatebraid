@@ -7,7 +7,8 @@ contract (`3a96b71`) are not edited.
 read-only audit (GPT-5.6, 2026-08-10/11, operator-commissioned), adopted
 with adaptations after independent line-level source verification by the
 coordinator against `bin/gatebraid-snapshot.py` and
-`bin/gatebraid-frontier.py` as committed; friction #60, #85, #92, #100,
+`bin/gatebraid-frontier.py` as committed in
+`MianliWang/gatebraid-scratch`; friction #60, #85, #92, #100,
 #106, #108–#117; the sanitized adjudication at
 `evidence/sanitized/external-audit-adjudication-2026-08-11.md`.
 
@@ -65,8 +66,10 @@ adaptations and the not-adopted-verbatim list are in
 - **P1-1** new records require `gate-run@2`: full 40-hex SHAs,
   structurally required verified approval authors. `@1` history is not
   broken retroactively. Delivery home: `@2` is admitted at N1 as
-  schema-with-fixtures (`M3-PLAN.md` §2); no M3 gate exit precedes O1,
-  whose record is the first M3 gate record and is written as `@2`.
+  schema-with-fixtures (`M3-PLAN.md` §2). The first M3 gate records are
+  written by N2's and N3's own gate landings (ADR-0028 decision 4,
+  unsuperseded on this point); N1 precedes both, so every M3 gate
+  record from the first is `@2` and none falls back to `@1`.
   (P1-2, the rebaseline, is enacted by decision 4; P1-3, the metric
   revision, by decision 5.)
 - The previously offered **Express path is withdrawn**. State-reading
@@ -80,7 +83,8 @@ root in this PR) are ratified as the normative M3 authority; this ADR
 cites and does not restate them — restatement creates a second copy
 that drifts (ADR-0018 §3's rationale, applied here beyond that
 decision's approval-term scope). Informative summary of
-the order: N0 ratification (this batch; planning only) → N1 precommitted
+the order: N0 ratification (this batch; planning plus one
+repository-hygiene control) → N1 precommitted
 fixture and mutation corpus → N2 evidence generator and N3 independent
 evidence validator, in parallel and mutually implementation- and
 authorship-independent → O0 snapshot/frontier state-pipeline hardening →
@@ -88,12 +92,15 @@ O1 fourth `gatebraid-ready` attempt → P guard and doctor → R-min minimum
 host enforcement → Q-min minimum skills → V admission rehearsal → M3
 Core Closure.
 
-Blocked until their prerequisites, by this decision: tool implementation
-(until N0 is merged and N1 approved); the fourth ready attempt (until
-N2 + N3 + O0 accepted); any business-repository contact (until the
-admission checklist in `M3-PLAN.md` §7 is objectively met — first
-contact is read-only Gate 0/Gate 1 under its own approval; any business
-Gate 2 is a further separate approval).
+Blocked until their prerequisites, by this decision — the single home
+of the unlock sequence: N1 (fixtures and `@2` admission; no tool
+implementation) until N0 is merged and its Status reflection verified;
+tool implementation (N2 onward) until N1 is delivered and approved; the
+fourth ready attempt until N2 + N3 + O0 accepted; any
+business-repository contact until the admission checklist in
+`M3-PLAN.md` §7 is objectively met — first contact is read-only Gate
+0/Gate 1 under its own approval; any business Gate 2 is a further
+separate approval.
 
 **4. Rebaseline, stated plainly.** The original M2 plan (advisory
 plugin, skill set, read-only subagents, consult wrappers, one real
@@ -157,10 +164,11 @@ residual for the protected-name rule.
 - The coordinator's pre-audit M3-PROPOSAL (session material) is
   superseded in full; the further superseded planning statements are
   enumerated in `M3-PLAN.md` §9.
-- Tool implementation (N1) requires its own operator approval, given
-  only after the merge **and** the verified Status reflection above; the
-  first business contact remains blocked behind `M3-PLAN.md` §7
-  (owner: operator).
+- The next batch — N1, fixtures and `@2` admission; tool implementation
+  begins only at N2 — requires its own operator approval. Decision 3's
+  blocked-list is the single home of the unlock sequence and is not
+  restated here. The first business contact remains blocked behind
+  `M3-PLAN.md` §7 (owner: operator).
 
 ## Reopening conditions
 
