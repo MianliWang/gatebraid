@@ -98,8 +98,9 @@ host enforcement → Q-min minimum skills → V admission rehearsal → M3
 Core Closure.
 
 Blocked until their prerequisites, by this decision — the single home
-of the unlock sequence: N1 (fixtures and `@2` admission; no tool
-implementation) until N0 is merged, its Status reflection verified, and
+of the unlock sequence: N1 (fixtures, `@2` admission and contract
+reconciliation; no tool implementation) until N0 is merged, its Status
+reflection verified, the pre-N1 host-instruction preflight passed, and
 N1's own approval posted;
 tool implementation (N2 onward) until N1 is delivered and approved; the
 fourth ready attempt until N2 + N3 + O0 accepted; any
