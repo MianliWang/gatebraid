@@ -18,9 +18,10 @@ provenance (ADR-0029 §2; sanitized adjudication in `evidence/sanitized/`).
 ## 2. Phases, acceptance criteria, DAG
 
 Dependencies: `N0 → N1 → {N2, N3} → O0 → O1 → P → R-min → Q-min → Closure`
-— with **N1 preceding both N2 and N3**; **N2 ⟂ N3** (implementation-
-independent: no shared internal code; shared artifacts limited to frozen
-schemas and the N1 corpus); **O0 consumes N1's state-pipeline fixtures**;
+— with **N1 preceding both N2 and N3**; **N2 ⟂ N3** (implementation- and
+authorship-independent — the discipline is defined in N3's paragraph;
+shared artifacts limited to frozen schemas and the N1 corpus); **O0
+consumes N1's state-pipeline fixtures**;
 **O1 requires N2 + N3 + O0 accepted**; **P follows O1's measurements**;
 **R-min follows P**; **Q-min wraps only stable tools**.
 
@@ -33,7 +34,9 @@ committed as runnable fixtures BEFORE any tool implementation; each
 historical failure class carries at least one reproducing mutation; an
 external read-only model review contributes negative cases not authored
 by the implementer. *Accept when:* every §6 item exists as a fixture with
-an expected-failure assertion; corpus is frozen by commit SHA.
+an expected-failure assertion; the external review's contributed negative
+cases are in the corpus, recorded as externally contributed; corpus is
+frozen by commit SHA.
 
 **N2 — Evidence generator.** Canonical output is structured JSON (raw
 stdout/stderr bytes, exit code, argv, cwd identity, environment, input
@@ -45,13 +48,18 @@ mutations are killed on Windows AND WSL; self-test exercises the
 production path; version frozen at delivery.
 
 **N3 — Independent evidence validator.** Re-derives verdicts from the
-JSON + schemas alone; does not import N2 internals; full-file coverage
-with an explicit completeness report (no excluded section — the review-4
-lesson); verifies immutable SHAs, absence of placeholders/self-reference/
-undeclared sections, byte/line-ending discipline; runs the mutation
-suite. *Accept when:* all applicable N1 mutations are killed
-independently of N2; a deliberately corrupted N2 output is rejected;
-dual-platform; frozen at delivery.
+JSON + schemas alone; does not import N2 internals, and is not authored
+from N2's source — the authoring sessions receive the frozen schemas and
+the N1 corpus, never N2's implementation (ADR-0028's chain terminated in
+an unexamined link by shared *authorship*, not shared imports); an
+independent read-only review confirms both disciplines before freeze.
+Full-file coverage with an explicit completeness report (no excluded
+section — the review-4 lesson); verifies immutable SHAs, absence of
+placeholders/self-reference/undeclared sections, byte/line-ending
+discipline; runs the mutation suite. *Accept when:* all applicable N1
+mutations are killed independently of N2; a deliberately corrupted N2
+output is rejected; dual-platform; the independence review (imports and
+authorship) is on record; frozen at delivery.
 
 **O0 — Snapshot/frontier hardening.** P0-1: fail closed on auth,
 permission, rate-limit, network, server, parse and unexpected-endpoint
@@ -79,8 +87,13 @@ discipline; allowlist including untracked; writer lease; plan/allowlist
 hash; approval author; label coupling; snapshot completeness flags;
 repair-novelty floor; hooks-enabled state. Doctor: platform/configuration
 audit (frontier composition, closure preconditions, field invariants);
-reports, never repairs. *Accept when:* each check demonstrably fails on
-its N1 negative case before first trusted use (spec §4).
+reports, never repairs. §6's v1 catalog does not cover these twelve
+checks: P therefore begins by extending the corpus (v2 — designed before
+guard implementation, one negative case per check, frictions #92 and
+#106 entering as cases, frozen by SHA) — fixtures still precede the tool
+they test. *Accept when:* the corpus-v2 freeze precedes the guard
+implementation in commit history; each check demonstrably fails on its
+corpus negative case before first trusted use (spec §4).
 
 **R-min — Minimum host enforcement.** Native permission denies; hooks
 invoking guard; reviewer read-only enforcement to the extent the host
@@ -105,8 +118,8 @@ business-admission checklist (§7) evaluated line by line with evidence.
 | Original plan item | Original home | Actual M2 outcome | Revised destination |
 |---|---|---|---|
 | Advisory plugin shell | M2 | Not built | Post-M3 (experience layer) |
-| Skill set — count deliberately deferred by the M1 tasking ("named under the product convention when those milestones are tasked", operator note 2) | M2 | Not built (5 specs prepared) | Q-min (5 minimum) + post-M3 (remainder) |
-| Read-only subagents — count likewise deferred by the M1 tasking | M2 | Reviewer/consult roles proven ad hoc | P/Q-min formalize the two load-bearing ones; rest post-M3 |
+| Skill set — count deliberately deferred ("skills/subagents named under the product convention when those milestones are tasked" — ADR-0010 Part II, Official names item 7) | M2 | Not built (5 skill specs prepared as session material, uncommitted) | Q-min (5 minimum) + post-M3 (remainder) |
+| Read-only subagents — count likewise deferred (same ADR-0010 clause) | M2 | Reviewer/consult roles proven ad hoc | P/Q-min formalize the two load-bearing ones; rest post-M3 |
 | Codex consult wrappers | M2 | Manual hermetic invocation proven | Q-min consult skill |
 | Skill-TDD adoption | M2 | Unused (no skills built) | Q-min, mandatory |
 | One real business-repo read-only Gate 0/1 | M2 | **Not attempted** (correctly, per closed-set rule) | Post-M3-Closure, first business contact, own approval |
@@ -156,6 +169,9 @@ token); moved HEAD / mutable ref recorded as replayable; partial
 validator coverage claiming completeness.
 Each item: one fixture + one mutation that a correct tool MUST reject,
 with the expected failure recorded beside it.
+This is N1's v1 freeze, covering the state-pipeline, byte/platform and
+instrument classes. Later phases extend it only by versioned, approved
+freezes (corpus v2 at P's start, per §2) — never by unfrozen additions.
 
 ## 7. Business-admission checklist (evaluated at M3 Core Closure; no repository named here — the authorizing document names its target, operator-authored, at authorization time)
 
@@ -181,8 +197,8 @@ merged only on explicit operator approval after independent read-only
 review. Subsequent phases follow the established batch protocol
 (pre-adjudicated approvals binding to announcements; blob-hash bindings
 for coordinator-delivered files; the two doors always live). Raw external
-audit texts stay outside the repository; the committed record is the
-sanitized adjudication with the raw artifact's identity and SHA-256.
+audit texts are never committed; the committed record is the sanitized
+adjudication with the raw artifact's identity and SHA-256.
 
 ## 9. Superseded planning statements
 
