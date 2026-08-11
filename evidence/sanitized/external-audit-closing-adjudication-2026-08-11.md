@@ -25,7 +25,7 @@ name; findings are paraphrased for compression, not redaction.
 | # | Finding (paraphrased) | Verdict | Verification | Enacted by |
 |---|---|---|---|---|
 | B1 | PR body still describes the N0-2 state (four files, one commit each); the review package's own header said "nine commits" against its own 4+5+4 process table and the live PR's 13 | **ACCEPT** | The commit series in the batch records sums 4+5+4=13; no batch instruction ever updated the PR body; the "nine" was the coordinator's hand count, refuted by the coordinator's own table | N0-E replaced the stale body with machine-derived tables; that body went stale again at N0-F (embedded state rots with every commit), so N0-G made the body state-invariant — no embedded counts, hashes or head; the PR's own Commits/Files tabs and the per-batch PR comments are the authoritative lists. Superseding correction of this cell, disclosed, N0-G |
-| B2 | P1-1 adopted with no phase delivering `gate-run@2`; new M3 gate records would have no valid schema | **ACCEPT (placement adapted)** | M3-PLAN §2 as committed names no `@2` delivery home — confirmed. The audit's "N1/N2/N3 will generate gate records" is right for N2 and N3: ADR-0028 decision 4 lands each through its own gate. The coordinator's first version of this cell said the first M3 gate exit is O1's — wrong against that unsuperseded decision, withdrawn here (N0-F) | `@2` admitted at N1 as schema-with-fixtures; N2's and N3's gate landings write the first M3 gate records, as `@2`; no bootstrap exception needed (M3-PLAN §2 N1; ADR-0029 P1-1 bullet) |
+| B2 | P1-1 adopted with no phase delivering `gate-run@2`; new M3 gate records would have no valid schema | **ACCEPT (placement adapted)** | M3-PLAN §2 as committed names no `@2` delivery home — confirmed. The audit's "N1/N2/N3 will generate gate records" is right for N2 and N3: ADR-0028 decision 4 lands each through its own gate. The coordinator's first version of this cell said the first M3 gate exit is O1's — wrong against that unsuperseded decision, withdrawn here (N0-F) | `@2` admitted at N1 as schema-with-fixtures; N2's and N3's gate landings write the first M3 gate records, as `@2` (M3-PLAN §2 N1; ADR-0029 P1-1 bullet). Superseding correction, disclosed (N0-I): this cell's original "no bootstrap exception needed" was overtaken by the final pass's C1 — the one-time expiring `bootstrap_exception` now governs those two landings |
 | B3 | Metrics v2 not a repeatable instrument: §1's per-slice collection contradicts the per-batch metric (a slice-free batch records nothing), and the new metrics lack operational definitions | **ACCEPT** | Contradiction confirmed in the committed §1 vs §2 — introduced by the N0-D denominator repair (the #121 class, conceded); the missing-definitions list checked item by item, all absent | Metrics v2 §1 rewritten (collection loci by scope); new §5 fixes numerator, denominator, home, time, authority, zero-denominator, correction and aggregation per metric |
 | B4 | Admission checklist items 1 and 10 have no producing phase; identity-drift window undefined | **ACCEPT** | Confirmed: no phase produced the three-slice series or install/uninstall/rollback; §7 item 8 named no window | New phase **V — Admission rehearsal** (three named-path scratch slices + install/uninstall/rollback), DAG extended; §7 items 1/8/10 bound to V and to the ADR-0024 instrumentation record; reconciliation rows added |
 | B5 | "Raw stdout/stderr bytes" in JSON has no representation contract; the byte-boundary class would recur inside the evidence format | **ACCEPT** | Confirmed: N2's paragraph named no encoding | N2 byte representation contract: `{encoding: "base64", byte_length, sha256, data}`; decoded text derived-only with codec/result/error (M3-PLAN §2 N2) |
@@ -76,3 +76,27 @@ N0-H:
 | C4 | Slice metrics finalize at Gate 3 exit or operator-authored terminal disposition — never at Issue closure — giving aborted slices a committed final home; the three terminal states (`no_eligible_unit_ran`, `undefined_zero_denominator`, numeric zero) defined distinctly | **ACCEPT** | metrics v2 §5 (slice-scoped home finalization; the three-state rule in the common rules) |
 | — | N2 ⟂ N3 is design/authorship independence; their Gate 2 executions serialize on the single-writer lease | **ACCEPT** | M3-PLAN §2 — the bootstrap-boundary block's closing sentence |
 | — | This final-pass adjudication appended here, no eighth path | **ACCEPT** | This section |
+
+**H6 seam-read disposition (appended at N0-I).** The seam read after
+enactment returned four high findings, all verified at source. Three
+sit in committed contract files outside this PR's seven-path set — the
+Gate 0 contract's startability clause still naming the unhardened
+frontier; the four evidence templates hard-coding `gate-run@1`; the
+`approvals[].type` closed enum unable to carry the bootstrap's two
+operator approvals — and are **scheduled, in writing, as N1's contract
+reconciliation** (M3-PLAN §2 N1), performed under N1's own approval
+before any gate runs; this PR's path set does not widen. The fourth was
+a **recurrence of B1** — the PR body's round history went stale again —
+and is the first live invocation of metrics v2 §3's alarm semantics:
+adjudicated at the stop, ruling recorded, the body reduced to
+pointer-only content so no round-mutable statement remains in it. Of
+the ten remaining findings: seven enacted at N0-I (the unlock-home
+precondition; `output_ref`/`bootstrap_exception` recordability;
+interface validation in the implementers' own acceptance; the stale
+post-date anchor; the preflight's exit-status form; the aborted-metrics
+control-plane carriage; the terminal/result naming collision), one
+scheduled into N1's reconciliation (ADR-0025 terminal-procedure
+alignment), one recorded as intended behavior (the anchored ignore
+rule's narrower scope — visible-untracked is the designed alarm state
+for unexpected instruction files), and this cell's own supersession
+closes the last.
