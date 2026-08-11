@@ -19,7 +19,11 @@ definition unchanged); contract recurrence (§3.2, definition unchanged);
 normative surface delta per batch — a declared change from v1 §3.4's
 per-slice denominator: M3's approved unit of work is the batch, and
 normative growth accrues whether or not a slice runs; v1 §3.4 remains
-the M2 reading.
+the M2 reading. Reconciled with v1 §2's recorded rejection of per-batch
+counting: that rejection governs the thresholded defect-density unit
+and stands unchanged; surface delta is an unthresholded trend series,
+and an M3 batch can contain no slice at all, leaving a per-slice
+denominator undefined.
 
 **Evidence quality** — R3 first-pass rate; instrument defects per
 evidence run; evidence-only repair count; evidence-only abort rate;
