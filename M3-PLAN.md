@@ -26,12 +26,17 @@ corpus); **O0 consumes N1's state-pipeline fixtures**;
 **R-min follows P**; **Q-min wraps only stable tools**; **V consumes the
 whole delivered stack and precedes Closure**.
 
-**N0 — Ratification and rebaseline** (this package). Planning plus one
-repository-hygiene control, and nothing else. *Accept when:* ADR-0029,
-this plan, metrics v2, the sanitized audit adjudications, and the
-tracked `.gitignore` (a reviewed hygiene control mirroring the standing
-exclusions — it changes tracking behaviour and is named here for that
-reason) are merged from a reviewed draft PR; no other path touched.
+**N0 — Ratification and rebaseline** (this package). Planning
+documents, their evidence-directory records, and one repository-hygiene
+control — nothing else. *Accept when:* the PR's path set equals exactly
+these seven, verified by `git diff --name-only` against base at merge
+time: `adr/ADR-0029-m3-revised-lean-full-ratification-and-rebaseline.md`;
+`M3-PLAN.md`; `protocols/convergence-metrics-v2.md`; the two
+`evidence/sanitized/external-audit-*adjudication-2026-08-11.md` records;
+`evidence/sanitized/README.md` (brought current);
+`.gitignore` (the reviewed hygiene control — it changes tracking
+behaviour and is named for that reason); and the set is merged from a
+reviewed draft PR.
 
 **N1 — Precommitted fixture and mutation corpus.** The catalog in §6,
 committed as runnable fixtures BEFORE any tool implementation; each
@@ -65,7 +70,8 @@ field carrying `decode_codec`, `decode_result` and `decode_error`, never
 authoritative; the JSON document itself is UTF-8 and no raw byte is ever
 embedded directly in a JSON string. *Accept when:* all applicable N1
 mutations are killed on Windows AND WSL; self-test exercises the
-production path; version frozen at delivery.
+production path; landed once through its own gate (ADR-0028 decision 4);
+version frozen at delivery.
 
 **N3 — Independent evidence validator.** Re-derives verdicts from the
 JSON + schemas alone; does not import N2 internals, and is not authored
@@ -89,7 +95,8 @@ mutations are killed independently of N2; a deliberately corrupted N2
 output is rejected; dual-platform; the independence review (imports and
 authorship) is on record; the coverage report classifies every verified
 property into the four classes — a class may legitimately be empty —
-with no unlabelled `replayable` credit; frozen at delivery.
+with no unlabelled `replayable` credit; landed once through its own
+gate (ADR-0028 decision 4); frozen at delivery.
 
 **O0 — Snapshot/frontier hardening.** P0-1: fail closed on auth,
 permission, rate-limit, network, server, parse and unexpected-endpoint
@@ -169,7 +176,7 @@ business-admission checklist (§7) evaluated line by line with evidence.
 | Original plan item | Original home | Actual M2 outcome | Revised destination |
 |---|---|---|---|
 | Advisory plugin shell | M2 | Not built | Post-M3 (experience layer) |
-| Skill set — no committed record fixes a count (the naming-deferral clause quoted here is the only committed text on the subject, and it defers naming, not number): "skills/subagents named under the product convention when those milestones are tasked" — ADR-0010 Part II, Official names item 7 | M2 | Not built (5 skill specs prepared as session material, uncommitted) | Q-min (5 minimum) + post-M3 (remainder) |
+| Skill set — no committed record fixes the original plan's count; the committed clause on forward naming defers naming, not number: "skills/subagents named under the product convention when those milestones are tasked" — ADR-0010 Part II, Official names item 7 | M2 | Not built (5 skill specs prepared as session material, uncommitted) | Q-min (5 minimum) + post-M3 (remainder) |
 | Read-only subagents — likewise no committed count (same clause, same deferral) | M2 | Reviewer/consult roles proven ad hoc | P/Q-min formalize the two load-bearing ones; rest post-M3 |
 | Codex consult wrappers | M2 | Manual hermetic invocation proven | Q-min consult skill |
 | Skill-TDD adoption | M2 | Unused (no skills built) | Q-min, mandatory |
@@ -275,3 +282,6 @@ adjudication with the raw artifact's identity and SHA-256.
 - ADR-0028 §4's toolchain sketch — superseded by §2's N1–N3 definitions
   where they differ (fixtures-first as a distinct prior phase;
   generator/validator implementation independence made explicit).
+  Explicitly NOT superseded and standing: decision 4's gate-landing of
+  the generator and the validator, each once through its own gate —
+  carried in N2's and N3's acceptance criteria above.
