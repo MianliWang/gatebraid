@@ -52,3 +52,27 @@ than a new phase or exception; B4 as one V phase rather than V plus
 I-min); the audit's proposed task-prompt mechanics again replaced by the
 project's established batch protocol. **Not adopted verbatim:** none
 withheld on substance.
+
+---
+
+## Final-pass adjudication (appended at N0-H)
+
+**Source:** the same external auditor's final pass over review package
+v2 and PR #5 at head `27f09c76…`. Raw relay retained:
+`_handoff/audits/external-audit-gpt-final-pass-2026-08-11.md` · SHA-256
+`94cbfeb09228d11a21a88c81845df1a549883ec40a4bc954a7b8576aa43fe270`
+(byte count in the batch readback, per decision 6(a)). **Sanitization
+applied** (README rule 1): none — the relay contained no protected
+name. **B1–B8: CLOSED**, accepted by the auditor as closed and not
+reopened. **Final-pass verdict: CHANGES_REQUIRED**, four substantive
+findings and two mechanics items, all adjudicated ACCEPT and enacted at
+N0-H:
+
+| # | Finding (paraphrased) | Verdict | Enacted at |
+|---|---|---|---|
+| C1 | N2/N3 need a startability authority before O0 — the fail-open snapshot/frontier pair cannot be it — and a bounded, expiring evidence bootstrap (no N3 validation exists before N3; records marked, excluded from V's series, exception dead after N2+N3 Gate 3); N1's non-Slice nature must be stated with grounds | **ACCEPT** | M3-PLAN §2 — the N2/N3 bootstrap-boundary block (closed-set state packet; `bootstrap_exception: true`; expiry) and N1's contract-batch statement; ADR-0029 P1-1 bullet cites the boundary |
+| C2 | The three shared interfaces (`gate-run@2`, `evidence-capture@1` carrying the base64 contract, `metrics@1`) freeze at N1 before N2/N3 authoring; no implementer defines its own interface — supersedes the G-round assignment of the metrics format to N2, which had the generator authoring its own output contract (disclosed supersession) | **ACCEPT** | M3-PLAN §2 N1 (the three freezes; interface changes only via approved N1 correct-course); metrics v2 §5 (format fixed by `gatebraid/metrics@1`) |
+| C3 | Host-instruction verification becomes a hard pre-N1 condition (enumerate loaded files, full hashes, operator approves or disables, drift stops the batch; R-min mechanizes later); ignore patterns root-anchored | **ACCEPT** | M3-PLAN §2 N1 (the hard precondition, with the non-normative-yet-runtime-affecting rationale); `.gitignore` (patterns anchored to `/_handoff/` and `/CLAUDE.md`; comment covers sibling instruction files — folding the queued F9 item, disclosed) |
+| C4 | Slice metrics finalize at Gate 3 exit or operator-authored terminal disposition — never at Issue closure — giving aborted slices a committed final home; the three terminal states (`no_eligible_unit_ran`, `undefined_zero_denominator`, numeric zero) defined distinctly | **ACCEPT** | metrics v2 §5 (slice-scoped home finalization; the three-state rule in the common rules) |
+| — | N2 ⟂ N3 is design/authorship independence; their Gate 2 executions serialize on the single-writer lease | **ACCEPT** | M3-PLAN §2 — the bootstrap-boundary block's closing sentence |
+| — | This final-pass adjudication appended here, no eighth path | **ACCEPT** | This section |
