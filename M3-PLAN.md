@@ -17,25 +17,37 @@ provenance (ADR-0029 §2; sanitized adjudication in `evidence/sanitized/`).
 
 ## 2. Phases, acceptance criteria, DAG
 
-Dependencies: `N0 → N1 → {N2, N3} → O0 → O1 → P → R-min → Q-min → Closure`
-— with **N1 preceding both N2 and N3**; **N2 ⟂ N3** (implementation- and
-authorship-independent — the discipline is defined in N3's paragraph;
-shared artifacts limited to frozen schemas and the N1 corpus); **O0
-consumes N1's state-pipeline fixtures**;
+Dependencies: `N0 → N1 → {N2, N3} → O0 → O1 → P → R-min → Q-min → V →
+Closure` — with **N1 preceding both N2 and N3**; **N2 ⟂ N3**
+(implementation- and authorship-independent — the discipline is defined
+in N3's paragraph; shared artifacts limited to frozen schemas and the N1
+corpus); **O0 consumes N1's state-pipeline fixtures**;
 **O1 requires N2 + N3 + O0 accepted**; **P follows O1's measurements**;
-**R-min follows P**; **Q-min wraps only stable tools**.
+**R-min follows P**; **Q-min wraps only stable tools**; **V consumes the
+whole delivered stack and precedes Closure**.
 
-**N0 — Ratification and rebaseline** (this package). Planning only.
-*Accept when:* ADR-0029, this plan, metrics v2, and the sanitized
-adjudication are merged from a reviewed draft PR; no other path touched.
+**N0 — Ratification and rebaseline** (this package). Planning plus one
+repository-hygiene control, and nothing else. *Accept when:* ADR-0029,
+this plan, metrics v2, the sanitized audit adjudications, and the
+tracked `.gitignore` (a reviewed hygiene control mirroring the standing
+exclusions — it changes tracking behaviour and is named here for that
+reason) are merged from a reviewed draft PR; no other path touched.
 
 **N1 — Precommitted fixture and mutation corpus.** The catalog in §6,
 committed as runnable fixtures BEFORE any tool implementation; each
 historical failure class carries at least one reproducing mutation; an
 external read-only model review contributes negative cases not authored
-by the implementer. *Accept when:* every §6 item exists as a fixture with
+by the implementer. N1 also admits **`gate-run@2`** — the P1-1 remedy's
+delivery home: the schema lands with its own fixture set (a valid `@2`
+record; an `@1`-shaped record rejected under `@2`; a missing approval
+author rejected; a short SHA rejected; `@1` history still validating as
+`@1`), fixtures-first like everything else in the corpus. No M3 gate
+exit precedes O1; O1 writes the first M3 gate record, as `@2`; no new M3
+gate record uses `@1`, and no bootstrap exception exists or is needed.
+*Accept when:* every §6 item exists as a fixture with
 an expected-failure assertion; the external review's contributed negative
-cases are in the corpus, recorded as externally contributed; corpus is
+cases are in the corpus, recorded as externally contributed; the
+`gate-run@2` schema and its fixtures are in the frozen corpus; corpus is
 frozen by commit SHA.
 
 **N2 — Evidence generator.** Canonical output is structured JSON (raw
@@ -43,7 +55,13 @@ stdout/stderr bytes, exit code, argv, cwd identity, environment, input
 SHAs, output hashes, timestamps); markdown is a derived view, never a
 second hand-written authority. Executes argv-form by default; any shell
 use declares platform and exit-code semantics. Binary writes; zero-lone-CR
-self-assertion as a guarded step (#108). *Accept when:* all applicable N1
+self-assertion as a guarded step (#108). Byte representation contract
+(the P0-2 class, fixed at specification, not left to the implementer):
+each captured stream is carried as an object `{encoding: "base64",
+byte_length, sha256, data}`; any human-readable rendering is a derived
+field carrying `decode_codec`, `decode_result` and `decode_error`, never
+authoritative; the JSON document itself is UTF-8 and no raw byte is ever
+embedded directly in a JSON string. *Accept when:* all applicable N1
 mutations are killed on Windows AND WSL; self-test exercises the
 production path; version frozen at delivery.
 
@@ -56,10 +74,19 @@ independent read-only review confirms both disciplines before freeze.
 Full-file coverage with an explicit completeness report (no excluded
 section — the review-4 lesson); verifies immutable SHAs, absence of
 placeholders/self-reference/undeclared sections, byte/line-ending
-discipline; runs the mutation suite. *Accept when:* all applicable N1
+discipline; runs the mutation suite. Trust boundary, stated: N3
+independently re-derives record semantics from the captured evidence —
+it does **not** independently attest that the capture event occurred as
+described (that a command ran, in that cwd, with that unmodified
+output). Its coverage report classifies every verified property as
+`structural`, `semantic`, `replayed` (independently re-executed), or
+`capture-trusted` (accepted on the generator's capture, labelled so);
+a `replayable` claim is either replayed or reported `capture-trusted`,
+never silently credited. *Accept when:* all applicable N1
 mutations are killed independently of N2; a deliberately corrupted N2
 output is rejected; dual-platform; the independence review (imports and
-authorship) is on record; frozen at delivery.
+authorship) is on record; the coverage report's four classes are
+populated with no unlabelled `replayable` credit; frozen at delivery.
 
 **O0 — Snapshot/frontier hardening.** P0-1: fail closed on auth,
 permission, rate-limit, network, server, parse and unexpected-endpoint
@@ -99,15 +126,34 @@ corpus negative case before first trusted use (spec §4).
 invoking guard; reviewer read-only enforcement to the extent the host
 permits, the remainder recorded as typed residual risk; identity
 enforcement beyond the active-pointer (separate OS profile evaluated;
-outcome recorded either way). Operator present for all configuration.
+outcome recorded either way). Host-local instruction state: `CLAUDE.md`
+carries **no normative authority** — committed contracts and the batch
+briefs bind, never the untracked host file; doctor gains a check
+verifying it against a tracked baseline template, every divergence
+reported, before it may influence trusted execution. Operator present
+for all configuration.
 *Accept when:* each enforced rule is shown blocking a violating action in
-a controlled test; residual-risk register committed.
+a controlled test; the host-instruction conformance check demonstrably
+reports a seeded divergence; residual-risk register committed.
 
 **Q-min — Minimum skills.** Exactly: status, Gate 0, Gate 1, handoff,
 consult. Skill-TDD mandatory; skills compute over state and never paste
 state; each wraps only frozen tools. The fuller experience layer is
 post-closure. *Accept when:* each skill's failing acceptance existed
 before the skill and passes after, on both platforms.
+
+**V — Admission rehearsal.** Three consecutive scratch end-to-end
+slices, each on the full delivered stack (N2/N3 evidence, O0 state
+reads, guard/doctor pre-flight, R-min enforcement, Q-min skills), one
+per §7-item-1 path: a clean pass; a repair; a blocked/decision path.
+These three are §7's admission series (items 1–3 read from them); O1
+does not count toward the series — it repays the ready debt under the
+same stack but precedes P/R-min/Q-min. V also verifies §7 item 10:
+install, uninstall and rollback of the complete M3 deliverable set
+(scripts, hooks, skills, schemas) on a clean host profile, before/after
+host state recorded. *Accept when:* the three slices close with §7's
+item-2 and item-3 values; the install/uninstall/rollback run is recorded
+with before/after state and restores the pre-install state exactly.
 
 **M3 Core Closure.** *Accept when:* all prior acceptance criteria hold;
 metric-v2 report published; closure record committed beside M2's; the
@@ -128,6 +174,8 @@ business-admission checklist (§7) evaluated line by line with evidence.
 | ready tool | M2 slice C | 3 attempts, 3 terminals, implementation green | O1 |
 | Guard/doctor/enforcement | M3 | Untouched (correctly) | P, R-min |
 | Evidence toolchain | (not in any original plan) | Mandated by measurement (ADR-0028 §4) | N1–N3 |
+| Install/uninstall/rollback verification | (not in any original plan — audit admission item 10) | Not attempted | V rehearsal |
+| Admission slice series (clean/repair/blocked) | (not in any original plan — audit admission item 1) | Not attempted | V rehearsal |
 
 ## 4. Metric v2
 
@@ -143,8 +191,13 @@ divergence verdict; success/admission read from the four-dimension set.
    interface, or milestone authority.
 2. Exactly two standing human doors. Every additional human round trip
    carries a typed exception naming its cause.
-3. Evidence is generated by committed tools — never hand-narrated, never
-   transported by hand between windows (the #100/#116 mechanism).
+3. Machine-verifiable evidence — gate execution records, tool outputs,
+   hashes — is generated by committed tools, never hand-narrated, never
+   transported by hand between windows (the #100/#116 mechanism). Human
+   approvals, operator decisions, and operator-relayed external audits
+   are distinct admitted classes under their own provenance rules
+   (ADR-0029 decision 6) — not exceptions to this line, and not covered
+   by it.
 4. Friction entries are a candidate queue with no normative force until
    promoted by an approved committed change (ADR-0027 §3).
 5. A successful small slice trends toward 2–3 operator-attended work
@@ -176,16 +229,20 @@ freezes (corpus v2 at P's start, per §2) — never by unfrozen additions.
 ## 7. Business-admission checklist (evaluated at M3 Core Closure; no repository named here — the authorizing document names its target, operator-authored, at authorization time)
 
 1. Three consecutive scratch end-to-end slices covering distinct paths
-   (clean pass; repair; blocked/decision).
+   (clean pass; repair; blocked/decision) — produced by V, which names
+   them.
 2. Evidence-only aborts = 0 across them.
 3. R3 first-pass rate = 100% across them.
 4. Every historical failure mutation killed by the toolchain.
 5. Broader mutation-suite kill rate ≥ 90%.
 6. Dependency/read errors 100% fail-closed (induced-failure test).
 7. Toolchain green on Windows and WSL.
-8. Three consecutive write batches with zero identity drift.
+8. Three consecutive write batches with zero identity drift — evaluated
+   over the three most recent write batches at Closure evaluation; the
+   identity check has been recorded per write batch since ADR-0024, so
+   instrumentation precedes any candidate window.
 9. No open P0/P1 security finding.
-10. Install/uninstall/rollback of the M3 deliverables verified.
+10. Install/uninstall/rollback of the M3 deliverables verified — by V.
 First contact: read-only Gate 0/Gate 1 only, under its own approval; any
 business Gate 2 requires a further separate approval with this checklist
 re-evaluated.
