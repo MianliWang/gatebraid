@@ -40,8 +40,10 @@ application, per templates/consult.md).
 | — | Blind-spot list (fail-open code; model-family correlation of implementer/reviewer/coordinator; optimizing certification over delivery; manual cross-window transport; identity isolation below OS level; no formal cross-platform matrix; roadmap drift; locally-retained branches unauditable externally) | **ACCEPT as standing risks** | Each is either addressed by a named M3 phase (O0, R-min, N1 dual-platform, §3 rebaseline) or recorded as residual (model-family correlation — mitigated by external audits at milestone closures and consult steps; retained-branch external auditability — inherent to ADR-0025 §3's unpublished-records design, recorded) |
 
 **Overall disposition: PARTIAL** (the consult enum ACCEPT|PARTIAL|REJECT):
-every table row is adopted as verified, with the three in-row recorded
-adaptations. **Not adopted verbatim:** the audit's proposed task-prompt
+the code-level findings are adopted on independent source verification,
+the process and planning findings by enactment in the ratified documents
+— each row's Verification cell names which, with adaptations recorded
+in-row. **Not adopted verbatim:** the audit's proposed task-prompt
 mechanics (generic branch/PR instructions) — replaced by the project's
 established batch protocol, which is stricter; its use of a protected
 project name in the post-closure pilot recommendation — the
