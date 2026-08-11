@@ -83,15 +83,23 @@ stop, batch close, terminal disposition), never retrospectively;
 classifications are assigned when the entry is written (v1 §6, kept).
 **Classification authority:** the coordinator's adjudication recorded at
 the next stop; disputes recorded with both readings (v1 §6, kept); the
-operator rules where readings persist. **Zero denominator:** the metric
-does not move and the report says `no unit ran`, never `0` or `100%`.
+operator rules where readings persist. **Terminal states:** per the
+three-state rule below — `no_eligible_unit_ran`,
+`undefined_zero_denominator`, and numeric zero are distinct and named.
 **Correction:** by a superseding entry citing the original — never
 silent edit. **Aggregation:** milestone reports publish the raw series
 plus the named statistic; a median is taken only over delivered units.
-**Metrics-file format:** lands with N2, the evidence generator; until
-N2 delivers, values collect in working records only, and no criterion
-consumes them before then — none is defined to (§3's readings and §7's
-gate all post-date N2).
+**Metrics-file format:** fixed by `gatebraid/metrics@1`, frozen at N1
+with the other shared interfaces (M3-PLAN §2) — no generator defines
+its own output contract. Until that freeze, values collect in working
+records only, and no criterion consumes them before then — none is
+defined to (§3's readings and §7's gate all post-date N2).
+**Three terminal states, never conflated:** `no_eligible_unit_ran` —
+the metric's unit never executed in the period, the metric does not
+move; `undefined_zero_denominator` — units ran but the denominator is
+empty, reported as undefined and never as a number; numeric zero —
+units ran and the numerator is genuinely zero, a real measurement.
+Every report names which state it is in.
 
 **Gate-exit-scoped** (recorded, per gate exit, in a metrics file
 committed beside the gate record in the slice's evidence directory;
@@ -107,7 +115,10 @@ never inside the gate record):
 
 **Slice-scoped** (working record at write time in the batch readback;
 the authoritative committed home is the slice's evidence-directory
-metrics file, written at slice close; the milestone closure record
+metrics file, **finalized at Gate 3 exit or at an operator-authored
+terminal disposition — GitHub Issue closure is never the finalization
+event**, so an aborted slice's metrics finalize with its terminal
+record; the milestone closure record
 aggregates by citation and never re-states independently — §4's
 one-source clause; criteria consume the committed values):
 - `contract recurrence` — integer per slice, v1 §3.2 verbatim; also an
