@@ -62,10 +62,13 @@ adaptations and the not-adopted-verbatim list are in
   Issue state ≠ OPEN ⇒ treated unblocked; no snapshot version check; no
   Slice-identity filter; native `blocked_by` only). Verified at source;
   consistent with measured #85.
-- **P1-1** new records require a future `gate-run@2`: full 40-hex SHAs,
+- **P1-1** new records require `gate-run@2`: full 40-hex SHAs,
   structurally required verified approval authors. `@1` history is not
-  broken retroactively. (P1-2, the rebaseline, is enacted by decision 4;
-  P1-3, the metric revision, by decision 5.)
+  broken retroactively. Delivery home: `@2` is admitted at N1 as
+  schema-with-fixtures (`M3-PLAN.md` §2); no M3 gate exit precedes O1,
+  whose record is the first M3 gate record and is written as `@2`.
+  (P1-2, the rebaseline, is enacted by decision 4; P1-3, the metric
+  revision, by decision 5.)
 - The previously offered **Express path is withdrawn**. State-reading
   tools that fail open disqualify any business contact regardless of
   schedule.
@@ -82,7 +85,8 @@ fixture and mutation corpus → N2 evidence generator and N3 independent
 evidence validator, in parallel and mutually implementation- and
 authorship-independent → O0 snapshot/frontier state-pipeline hardening →
 O1 fourth `gatebraid-ready` attempt → P guard and doctor → R-min minimum
-host enforcement → Q-min minimum skills → M3 Core Closure.
+host enforcement → Q-min minimum skills → V admission rehearsal → M3
+Core Closure.
 
 Blocked until their prerequisites, by this decision: tool implementation
 (until N0 is merged and N1 approved); the fourth ready attempt (until
@@ -103,16 +107,14 @@ reconciliation table; planning statements superseded by this ADR are
 listed in `M3-PLAN.md` §9.
 
 **5. Metric v2 and governance budget.**
-`protocols/convergence-metrics-v2.md` governs M3: four dimensions
-(contract quality, evidence quality, delivery efficiency, product
-quality); recurrence becomes an immediate alarm condition rather than a
-permanent divergence verdict. The governance budget in `M3-PLAN.md` §5
-is normative: zero new ADRs for ordinary friction items by default; the
-two human doors remain exactly two; extra human round trips carry typed
-exceptions; evidence is generated, never hand-narrated or transported; a
-successful small slice trends toward 2–3 operator-attended work units;
-friction entries have no normative force until promoted by an approved
-committed change (ADR-0027 §3 restated as a budget line).
+`protocols/convergence-metrics-v2.md` governs M3 — four dimensions,
+recurrence as an immediate alarm, operational definitions and collection
+loci fixed in its §5 — and the governance budget of `M3-PLAN.md` §5 is
+normative. Neither is restated here (decision 3's rationale): the two
+documents are the single homes of their own lines, including the
+budget's scoping of never-hand-transported to machine-verifiable
+evidence, which decision 6's operator-relayed class sits beside, not
+under. ADR-0027 §3's friction-promotion rule stands within the budget.
 
 **6. External audits are an admitted evidence class, under these rules.**
 An operator-commissioned external read-only audit by a non-Codex model
@@ -137,11 +139,14 @@ residual for the protected-name rule.
 
 ## Consequences
 
-- On merge, `M3-PLAN.md` and `protocols/convergence-metrics-v2.md`
-  become normative, as their headers state; until merge, nothing in this
-  PR is.
-- This ADR's Status moves Proposed → Accepted in one announced
-  post-merge commit — the refresh's only commit. `_handoff/M1-STATUS.md`
+- **The operator's merge of PR #5 is this ADR's acceptance event.** On
+  merge, `M3-PLAN.md` and `protocols/convergence-metrics-v2.md` become
+  normative, as their headers state; until merge, nothing in this PR is.
+  There is no interval in which the plan is normative and the ADR
+  unaccepted: acceptance is the merge itself.
+- The Status line's edit Proposed → Accepted **records** that event and
+  is not the event; it lands in one announced post-merge commit — the
+  refresh's only commit. `_handoff/M1-STATUS.md`
   and `CLAUDE.md` are refreshed on disk per their headers and stay
   uncommitted by rule (they are ignored paths; nothing in the refresh
   forces an ignored path into a commit), the refresh correcting their
@@ -152,9 +157,10 @@ residual for the protected-name rule.
 - The coordinator's pre-audit M3-PROPOSAL (session material) is
   superseded in full; the further superseded planning statements are
   enumerated in `M3-PLAN.md` §9.
-- Tool implementation (N1) requires its own operator approval after the
-  merge; the first business contact remains blocked behind `M3-PLAN.md`
-  §7 (owner: operator).
+- Tool implementation (N1) requires its own operator approval, given
+  only after the merge **and** the verified Status reflection above; the
+  first business contact remains blocked behind `M3-PLAN.md` §7
+  (owner: operator).
 
 ## Reopening conditions
 
