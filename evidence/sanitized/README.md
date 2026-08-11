@@ -15,5 +15,8 @@ Rules (ADR-0001, ADR-0010):
 3. Per-slice gate evidence lives in the working repository at
    `docs/evidence/gatebraid/<slice_id>/` — not here.
 
-M1 note: this directory is intentionally empty except for this README; the
-first sanitized artifacts arrive with M2's real Gate 0/1 cycle.
+History note: from M1 this directory held only this README, by design. Its
+first artifacts — the two external-audit adjudications — arrived with M3
+N0's ratification PR. The M1-era expectation that the first artifacts would
+come from an M2 business Gate 0/1 cycle was overtaken by the rebaseline
+(M3-PLAN §3); that cycle is now post-Closure.
