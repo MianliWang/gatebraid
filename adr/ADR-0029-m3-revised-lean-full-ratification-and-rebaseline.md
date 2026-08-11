@@ -1,6 +1,6 @@
 # ADR-0029 — M3 Revised Lean Full: ratification and rebaseline
 
-**Status:** Proposed · M3 (2026-08-11) · Product: Gatebraid (ADR-0010)
+**Status:** Accepted · M3 (2026-08-11) · Product: Gatebraid (ADR-0010)
 **Amends:** nothing retroactively — ADR-0028 and the frozen M2 metric
 contract (`3a96b71`) are not edited.
 **Provenance:** M2-CLOSURE.md at `731f62aa…`; ADR-0028; an external
