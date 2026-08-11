@@ -41,9 +41,11 @@ by the implementer. N1 also admits **`gate-run@2`** — the P1-1 remedy's
 delivery home: the schema lands with its own fixture set (a valid `@2`
 record; an `@1`-shaped record rejected under `@2`; a missing approval
 author rejected; a short SHA rejected; `@1` history still validating as
-`@1`), fixtures-first like everything else in the corpus. No M3 gate
-exit precedes O1; O1 writes the first M3 gate record, as `@2`; no new M3
-gate record uses `@1`, and no bootstrap exception exists or is needed.
+`@1`), fixtures-first like everything else in the corpus. The first M3
+gate records are N2's and N3's own gate landings (ADR-0028 decision 4,
+which §9 does not supersede); N1 precedes both, so every M3 gate record
+from the first is written as `@2` — no new M3 gate record uses `@1`,
+and no bootstrap exception exists or is needed.
 *Accept when:* every §6 item exists as a fixture with
 an expected-failure assertion; the external review's contributed negative
 cases are in the corpus, recorded as externally contributed; the
@@ -85,8 +87,9 @@ a `replayable` claim is either replayed or reported `capture-trusted`,
 never silently credited. *Accept when:* all applicable N1
 mutations are killed independently of N2; a deliberately corrupted N2
 output is rejected; dual-platform; the independence review (imports and
-authorship) is on record; the coverage report's four classes are
-populated with no unlabelled `replayable` credit; frozen at delivery.
+authorship) is on record; the coverage report classifies every verified
+property into the four classes — a class may legitimately be empty —
+with no unlabelled `replayable` credit; frozen at delivery.
 
 **O0 — Snapshot/frontier hardening.** P0-1: fail closed on auth,
 permission, rate-limit, network, server, parse and unexpected-endpoint
@@ -127,10 +130,11 @@ invoking guard; reviewer read-only enforcement to the extent the host
 permits, the remainder recorded as typed residual risk; identity
 enforcement beyond the active-pointer (separate OS profile evaluated;
 outcome recorded either way). Host-local instruction state: `CLAUDE.md`
-carries **no normative authority** — committed contracts and the batch
-briefs bind, never the untracked host file; doctor gains a check
-verifying it against a tracked baseline template, every divergence
-reported, before it may influence trusted execution. Operator present
+**and any sibling agent-instruction file** carry **no normative
+authority** — committed contracts and the batch briefs bind, never an
+untracked host file; doctor gains a check verifying them against a
+tracked baseline template, every divergence reported, before any may
+influence trusted execution. Operator present
 for all configuration.
 *Accept when:* each enforced rule is shown blocking a violating action in
 a controlled test; the host-instruction conformance check demonstrably
@@ -144,7 +148,8 @@ before the skill and passes after, on both platforms.
 
 **V — Admission rehearsal.** Three consecutive scratch end-to-end
 slices, each on the full delivered stack (N2/N3 evidence, O0 state
-reads, guard/doctor pre-flight, R-min enforcement, Q-min skills), one
+reads, the O1-delivered `gatebraid-ready`, guard/doctor pre-flight,
+R-min enforcement, Q-min skills), one
 per §7-item-1 path: a clean pass; a repair; a blocked/decision path.
 These three are §7's admission series (items 1–3 read from them); O1
 does not count toward the series — it repays the ready debt under the
@@ -164,7 +169,7 @@ business-admission checklist (§7) evaluated line by line with evidence.
 | Original plan item | Original home | Actual M2 outcome | Revised destination |
 |---|---|---|---|
 | Advisory plugin shell | M2 | Not built | Post-M3 (experience layer) |
-| Skill set — no committed record fixes a count; naming deferred to tasking time ("skills/subagents named under the product convention when those milestones are tasked" — ADR-0010 Part II, Official names item 7) | M2 | Not built (5 skill specs prepared as session material, uncommitted) | Q-min (5 minimum) + post-M3 (remainder) |
+| Skill set — no committed record fixes a count (the naming-deferral clause quoted here is the only committed text on the subject, and it defers naming, not number): "skills/subagents named under the product convention when those milestones are tasked" — ADR-0010 Part II, Official names item 7 | M2 | Not built (5 skill specs prepared as session material, uncommitted) | Q-min (5 minimum) + post-M3 (remainder) |
 | Read-only subagents — likewise no committed count (same clause, same deferral) | M2 | Reviewer/consult roles proven ad hoc | P/Q-min formalize the two load-bearing ones; rest post-M3 |
 | Codex consult wrappers | M2 | Manual hermetic invocation proven | Q-min consult skill |
 | Skill-TDD adoption | M2 | Unused (no skills built) | Q-min, mandatory |
