@@ -10,11 +10,13 @@ which terminated three slices was never in the contracts.**
 
 The base unit remains the gate exit attempted; §5 fixes every metric's
 own unit, scope and collection locus. Gate-exit- and slice-scoped
-metrics are recorded in the slice's gate records and readback at write
-time. Batch-scoped metrics are recorded by the batch readback at batch
-close — a batch containing no slice still records them. Milestone-scoped
-metrics are computed at closure from the recorded series, never from
-memory or narrative.
+metrics are recorded at write time — working locus the batch readback,
+authoritative home the slice's committed evidence records (§5).
+Batch-scoped metrics are recorded by the batch readback at batch
+close — a batch containing no slice still records them — and flushed to
+the committed milestone record. Milestone-scoped
+metrics are computed at closure from the committed series, never from
+memory or narrative; no criterion consumes an uncommitted value.
 
 ## 2. Four dimensions
 
@@ -87,7 +89,10 @@ does not move and the report says `no unit ran`, never `0` or `100%`.
 silent edit. **Aggregation:** milestone reports publish the raw series
 plus the named statistic; a median is taken only over delivered units.
 
-**Gate-exit-scoped** (recorded in the gate record, `gate-run@2`):
+**Gate-exit-scoped** (recorded, per gate exit, in a metrics record
+committed beside the gate record in the slice's evidence directory —
+`gate-run@2` is `additionalProperties: false` and carries no metric
+fields, so nothing is recorded inside it):
 - `new_contract_defects / gate_exits_attempted` — numerator and
   exclusions per v1 §3.1 verbatim; denominator per v1 §2 verbatim.
 - `R3 first-pass rate` — numerator: gate exits whose R3 evidence review
@@ -97,8 +102,10 @@ plus the named statistic; a median is taken only over delivered units.
   implementation tests found in a gate review; denominator: gate reviews
   held.
 
-**Slice-scoped** (recorded in the slice readback and terminal/closure
-records):
+**Slice-scoped** (working record at write time in the batch readback;
+the authoritative home is committed — the slice's evidence-directory
+metrics record at slice close, and the milestone closure record;
+criteria consume only the committed values):
 - `contract recurrence` — integer per slice, v1 §3.2 verbatim; also an
   immediate alarm (§3).
 - `evidence-only repair count` — repair attempts whose whole diff
@@ -127,9 +134,15 @@ records):
   hand-authoring; bytes/encoding; measurement domain; temporal/
   classification); denominator: evidence runs (one invocation of the
   committed generator producing a record).
+- `evidence bytes / implementation bytes` — observational only, never a
+  criterion (§2's declaration): numerator: byte total of the slice's
+  committed evidence artifacts; denominator: byte total of the slice's
+  implementation diff; both counted by `git` commands named in the
+  record.
 
-**Batch-scoped** (recorded by the batch readback at close, slice or no
-slice):
+**Batch-scoped** (working record in the batch readback at close, slice
+or no slice; flushed to the committed milestone record, which is what
+criteria consume):
 - `normative_surface_delta` — clauses added/removed/modified per batch;
   clause unit per v1 §3.4 verbatim; counted from the batch's diff by the
   executor, command named.
