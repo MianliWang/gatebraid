@@ -46,11 +46,30 @@ by the implementer. N1 also admits **`gate-run@2`** — the P1-1 remedy's
 delivery home: the schema lands with its own fixture set (a valid `@2`
 record; an `@1`-shaped record rejected under `@2`; a missing approval
 author rejected; a short SHA rejected; `@1` history still validating as
-`@1`), fixtures-first like everything else in the corpus. The first M3
-gate records are N2's and N3's own gate landings (ADR-0028 decision 4,
-which §9 does not supersede); N1 precedes both, so every M3 gate record
-from the first is written as `@2` — no new M3 gate record uses `@1`,
-and no bootstrap exception exists or is needed.
+`@1`), fixtures-first like everything else in the corpus. N1 freezes,
+before any N2/N3 authoring, all three shared interfaces:
+`gatebraid/gate-run@2`; `gatebraid/evidence-capture@1`, carrying the
+base64 byte contract N2's paragraph specifies — the contract is fixed
+here, never by the generator that implements it; and
+`gatebraid/metrics@1`, the metrics file's schema. N2 and N3 receive
+only the frozen schemas and the corpus; neither may redefine an
+interface during implementation — any interface change returns to an
+approved N1 correct-course. **N1 is a contract batch under the
+standing batch protocol, not a gated Slice:** it delivers schemas,
+fixtures and mutations — test inputs with expected-failure assertions,
+none of which executes in a production path — and its admission is the
+batch's operator approval plus the independent read-only review this
+paragraph already requires before freeze. **Hard precondition to N1's
+start:** the executor enumerates the exact host instruction files the
+session loads, records each file's full SHA-256, and the operator
+approves or disables each; any later drift from the approved hashes
+stops the batch. An ignored instruction file has no normative
+authority, but a non-normative file can still affect runtime — that is
+why this check precedes N1 and why R-min later mechanizes it. The
+first M3 gate records are N2's and N3's own gate landings (ADR-0028
+decision 4, which §9 does not supersede); N1 precedes both, so every
+M3 gate record from the first is written as `@2` — no new M3 gate
+record uses `@1`.
 *Accept when:* every §6 item exists as a fixture with
 an expected-failure assertion; the external review's contributed negative
 cases are in the corpus, recorded as externally contributed; the
@@ -97,6 +116,23 @@ authorship) is on record; the coverage report classifies every verified
 property into the four classes — a class may legitimately be empty —
 with no unlabelled `replayable` credit; landed once through its own
 gate (ADR-0028 decision 4); frozen at delivery.
+
+**N2/N3 bootstrap boundary (one-time, expiring).** The known-fail-open
+snapshot/frontier pair is **not** startability authority before O0.
+N2's and N3's Gate 0 reads state through an **operator-approved
+closed-set state packet**: the exact repositories and issues
+enumerated; direct read-only queries only; every non-zero query exit
+failing closed; no broad enumeration; exact outputs and query
+identities recorded in the gate record. Their gate evidence runs under
+a **bounded evidence bootstrap**: records are `gate-run@2`, marked
+`bootstrap_exception: true`; they claim no N3 independent validation
+before N3 exists — N2's records are re-validated by N3 after N3's own
+Gate 3; bootstrap-marked records are excluded from V's admission
+series; the exception expires at N2 + N3 Gate 3 completion, and no
+later Slice may use it. N2 and N3 are DAG- and authorship-independent,
+but their Gate 2 executions are **serialized by the single-writer
+lease** — independence is of design and authorship, never of write
+access.
 
 **O0 — Snapshot/frontier hardening.** P0-1: fail closed on auth,
 permission, rate-limit, network, server, parse and unexpected-endpoint
