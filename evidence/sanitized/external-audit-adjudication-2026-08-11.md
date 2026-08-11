@@ -21,7 +21,10 @@ name.
 verified by the coordinator against the committed sources on the
 operator's disk before adoption (the project's standing
 external-consultant discipline: independent verification before any
-application, per templates/consult.md).
+application, per templates/consult.md). **Sanitization applied**
+(README rule 1): removal of the audit's one use of a protected project
+name (recorded under "Not adopted verbatim") and paraphrase for
+compression; nothing else redacted.
 
 | # | Finding (paraphrased, sanitized) | Verdict | Verification |
 |---|---|---|---|
