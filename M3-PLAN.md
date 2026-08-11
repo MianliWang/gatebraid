@@ -87,8 +87,8 @@ discipline; allowlist including untracked; writer lease; plan/allowlist
 hash; approval author; label coupling; snapshot completeness flags;
 repair-novelty floor; hooks-enabled state. Doctor: platform/configuration
 audit (frontier composition, closure preconditions, field invariants);
-reports, never repairs. §6's v1 catalog does not cover these twelve
-checks: P therefore begins by extending the corpus (v2 — designed before
+reports, never repairs. §6's v1 catalog covers at most one of these
+twelve checks: P therefore begins by extending the corpus (v2 — designed before
 guard implementation, one negative case per check, frictions #92 and
 #106 entering as cases, frozen by SHA) — fixtures still precede the tool
 they test. *Accept when:* the corpus-v2 freeze precedes the guard
@@ -118,8 +118,8 @@ business-admission checklist (§7) evaluated line by line with evidence.
 | Original plan item | Original home | Actual M2 outcome | Revised destination |
 |---|---|---|---|
 | Advisory plugin shell | M2 | Not built | Post-M3 (experience layer) |
-| Skill set — count deliberately deferred ("skills/subagents named under the product convention when those milestones are tasked" — ADR-0010 Part II, Official names item 7) | M2 | Not built (5 skill specs prepared as session material, uncommitted) | Q-min (5 minimum) + post-M3 (remainder) |
-| Read-only subagents — count likewise deferred (same ADR-0010 clause) | M2 | Reviewer/consult roles proven ad hoc | P/Q-min formalize the two load-bearing ones; rest post-M3 |
+| Skill set — no committed record fixes a count; naming deferred to tasking time ("skills/subagents named under the product convention when those milestones are tasked" — ADR-0010 Part II, Official names item 7) | M2 | Not built (5 skill specs prepared as session material, uncommitted) | Q-min (5 minimum) + post-M3 (remainder) |
+| Read-only subagents — likewise no committed count (same clause, same deferral) | M2 | Reviewer/consult roles proven ad hoc | P/Q-min formalize the two load-bearing ones; rest post-M3 |
 | Codex consult wrappers | M2 | Manual hermetic invocation proven | Q-min consult skill |
 | Skill-TDD adoption | M2 | Unused (no skills built) | Q-min, mandatory |
 | One real business-repo read-only Gate 0/1 | M2 | **Not attempted** (correctly, per closed-set rule) | Post-M3-Closure, first business contact, own approval |
