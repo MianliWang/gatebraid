@@ -1,0 +1,7 @@
+# Tracked exclusions (mirrors the per-clone .git/info/exclude, which is
+# unreviewable and does not survive a fresh clone). _handoff/ holds
+# session material including raw external-audit texts that must never be
+# committed (protected-name rule; ADR-0029 decision 6); CLAUDE.md is the
+# host-local instruction file.
+_handoff/
+CLAUDE.md
