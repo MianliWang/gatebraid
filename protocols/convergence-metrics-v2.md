@@ -88,11 +88,14 @@ does not move and the report says `no unit ran`, never `0` or `100%`.
 **Correction:** by a superseding entry citing the original — never
 silent edit. **Aggregation:** milestone reports publish the raw series
 plus the named statistic; a median is taken only over delivered units.
+**Metrics-file format:** lands with N2, the evidence generator; until
+N2 delivers, values collect in working records only, and no criterion
+consumes them before then — none is defined to (§3's readings and §7's
+gate all post-date N2).
 
-**Gate-exit-scoped** (recorded, per gate exit, in a metrics record
-committed beside the gate record in the slice's evidence directory —
-`gate-run@2` is `additionalProperties: false` and carries no metric
-fields, so nothing is recorded inside it):
+**Gate-exit-scoped** (recorded, per gate exit, in a metrics file
+committed beside the gate record in the slice's evidence directory;
+never inside the gate record):
 - `new_contract_defects / gate_exits_attempted` — numerator and
   exclusions per v1 §3.1 verbatim; denominator per v1 §2 verbatim.
 - `R3 first-pass rate` — numerator: gate exits whose R3 evidence review
@@ -103,9 +106,10 @@ fields, so nothing is recorded inside it):
   held.
 
 **Slice-scoped** (working record at write time in the batch readback;
-the authoritative home is committed — the slice's evidence-directory
-metrics record at slice close, and the milestone closure record;
-criteria consume only the committed values):
+the authoritative committed home is the slice's evidence-directory
+metrics file, written at slice close; the milestone closure record
+aggregates by citation and never re-states independently — §4's
+one-source clause; criteria consume the committed values):
 - `contract recurrence` — integer per slice, v1 §3.2 verbatim; also an
   immediate alarm (§3).
 - `evidence-only repair count` — repair attempts whose whole diff
@@ -141,7 +145,8 @@ criteria consume only the committed values):
   record.
 
 **Batch-scoped** (working record in the batch readback at close, slice
-or no slice; flushed to the committed milestone record, which is what
+or no slice; the executor flushes the series to the committed milestone
+closure record at the closure batch — that record is the committed home
 criteria consume):
 - `normative_surface_delta` — clauses added/removed/modified per batch;
   clause unit per v1 §3.4 verbatim; counted from the batch's diff by the
