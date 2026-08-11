@@ -1,6 +1,8 @@
 # ADR-0018 — A prohibition names the pattern it forbids; an approval cites the rule it enforces
 
 **Status:** Accepted · M2 (2026-07-31) · Product: Gatebraid (ADR-0010)
+**Amended:** 2026-08-10 (M2 Batch M) — §2 gains the proxy-direction and
+explicit-scope sentences (friction #109, #110; ADR-0028 §1–§3's batch).
 **Amends:** ADR-0012 §1 (the closing-keyword ban) and the Gate 2 review item R4.
 Both otherwise stand.
 **Provenance:** Slice A's Gate 3 entry (2026-07-31), friction #21; Slice A's Gate
@@ -80,7 +82,7 @@ of each inside a single check: an `-X` token count of zero read as "therefore
 GET", when every GraphQL request is a POST — an over-match, which the pattern
 governed correctly; and a whole-word `gh` count of zero on a file whose program
 invokes `gh` on every default run through its child process — an under-match,
-which nothing in this ADR reached until now (friction #67, #68).
+which nothing in this ADR reached until now (friction #67, #68). **A proxy over-matches its pattern or is replaced** (friction #109), and the plan states the direction in which each proxy errs. **A criterion's scope is an explicit path set or glob** (friction #110) — never 'the added file' or any description resolved at run time.
 
 **2a. A universal or quantified claim in an evidence file names the command that
 establishes it.** "Every", "only", "all", "none", "no …" — each is a check, and
