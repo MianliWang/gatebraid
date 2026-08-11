@@ -74,7 +74,9 @@ adaptations and the not-adopted-verbatim list are in
 phase definitions, acceptance criteria, dependency DAG, fixture catalog
 and reconciliation table of `M3-PLAN.md` (committed at the repository
 root in this PR) are ratified as the normative M3 authority; this ADR
-cites and does not restate them (ADR-0018 §3). Informative summary of
+cites and does not restate them — restatement creates a second copy
+that drifts (ADR-0018 §3's rationale, applied here beyond that
+decision's approval-term scope). Informative summary of
 the order: N0 ratification (this batch; planning only) → N1 precommitted
 fixture and mutation corpus → N2 evidence generator and N3 independent
 evidence validator, in parallel and mutually implementation- and
@@ -118,7 +120,8 @@ is admissible milestone-level evidence when and only when: (a) the raw
 exchange is retained outside tracking (`_handoff/`), identified in the
 committed record by filename and SHA-256 — the hash recomputed by the
 executor from the file as supplied, the byte count measured and recorded
-in the batch readback; (b) the committed
+in the batch readback — and the audit's substrate document, where one
+exists, is retained and identified the same way; (b) the committed
 record is a sanitized adjudication under `evidence/sanitized/`
 containing no protected name; (c) every adopted technical finding
 carries independent verification provenance before adoption — the
@@ -137,9 +140,13 @@ residual for the protected-name rule.
 - On merge, `M3-PLAN.md` and `protocols/convergence-metrics-v2.md`
   become normative, as their headers state; until merge, nothing in this
   PR is.
-- This ADR's Status moves Proposed → Accepted in the announced
-  post-merge refresh commit (alongside `_handoff/M1-STATUS.md` and
-  `CLAUDE.md` per their headers).
+- This ADR's Status moves Proposed → Accepted in one announced
+  post-merge commit — the refresh's only commit. `_handoff/M1-STATUS.md`
+  and `CLAUDE.md` are refreshed on disk per their headers and stay
+  uncommitted by rule (they are ignored paths; nothing in the refresh
+  forces an ignored path into a commit), the refresh correcting their
+  now-stale naming of the per-clone exclude file as the operative
+  ignore mechanism.
 - ADR-0028 is byte-unchanged; `protocols/convergence-metrics.md` (v1,
   frozen at `3a96b71`) remains the M2 historical instrument.
 - The coordinator's pre-audit M3-PROPOSAL (session material) is
