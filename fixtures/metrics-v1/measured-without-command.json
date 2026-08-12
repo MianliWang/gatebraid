@@ -1,0 +1,17 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "batch",
+  "subject": {
+    "batch_id": "M3-N1"
+  },
+  "recorded_at": "2026-08-12T12:00:00Z",
+  "metrics": [
+    {
+      "entry_id": "x2",
+      "name": "normative_surface_delta",
+      "state": "measured",
+      "value": 7
+    }
+  ],
+  "notes": "Corpus fixture, MUST FAIL. §4: a claimed value names the command that establishes it. A value nobody can recompute is decoration (ADR-0018 §2a)."
+}

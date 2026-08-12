@@ -1,0 +1,32 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "slice",
+  "subject": {
+    "slice_id": "P1-S6"
+  },
+  "recorded_at": "2026-08-10T18:00:00Z",
+  "finalized": {
+    "event": "terminal-disposition",
+    "reference": "5246821761"
+  },
+  "metrics": [
+    {
+      "entry_id": "sl-1",
+      "name": "contract_recurrence",
+      "state": "measured",
+      "value": 1,
+      "alarm": true,
+      "command": "count of §3.2 recurrences recorded in the slice's evidence",
+      "note": "Recurrence is an immediate alarm under metrics v2 §3, not a standing divergence verdict."
+    },
+    {
+      "entry_id": "sl-2",
+      "name": "evidence_bytes_over_implementation_bytes",
+      "state": "measured",
+      "value": 4.2,
+      "observational": true,
+      "command": "git diff --numstat <base>..<head> summed by path class"
+    }
+  ],
+  "notes": "Corpus fixture, MUST VALIDATE. An aborted slice finalizing at its terminal disposition — the event metrics v2 §5 names beside Gate 3 exit, and the reason issue closure is never the finalization event."
+}

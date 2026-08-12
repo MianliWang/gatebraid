@@ -1,0 +1,19 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "gate-exit",
+  "subject": {
+    "slice_id": "P1-S7",
+    "gate": 2,
+    "gate_exit_ordinal": 1
+  },
+  "recorded_at": "2026-08-12T11:30:00Z",
+  "metrics": [
+    {
+      "entry_id": "x3",
+      "name": "r3_first_pass_rate",
+      "state": "undefined_zero_denominator",
+      "denominator": 3
+    }
+  ],
+  "notes": "Corpus fixture, MUST FAIL. The state asserts an empty denominator while recording three units in it."
+}

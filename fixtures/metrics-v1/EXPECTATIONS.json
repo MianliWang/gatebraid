@@ -1,0 +1,137 @@
+{
+  "corpus": "metrics-v1",
+  "corpus_version": "v1",
+  "frozen_by": "commit SHA recorded in APPROVALS-M3-N1 at the freeze; see M3-PLAN.md §2 N1 Accept-when",
+  "description": "Expected outcomes for gatebraid/metrics@1. This corpus exists because the internal N1 review found the schema had been written with no fixtures at all: its central three-result-state separation — described in the schema as 'the whole point of this schema' — was trusted having never been shown able to fail, which ADR-0028 §1 forbids in one sentence ('a pass from a never-falsified check is not evidence'). Every expectation below was MEASURED with CPython 3.12.2 / jsonschema 4.23.0. Loci are exact and complete; the runner rejects both a missing locus and an unrecorded one.",
+  "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
+  "cases": [
+    {
+      "id": "MT1-01",
+      "fixture": "valid-gate-exit.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "valid",
+      "class": "all three result states in one file",
+      "source": "convergence-metrics-v2.md §5, Gate-exit-scoped",
+      "note": "The three states must be simultaneously expressible and mutually distinguishable. A schema that could not carry all three at once would force the conflation it exists to prevent.",
+      "expect_errors": []
+    },
+    {
+      "id": "MT1-02",
+      "fixture": "valid-slice-finalized.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "valid",
+      "class": "slice finalized at terminal disposition",
+      "source": "convergence-metrics-v2.md §5, Slice-scoped; ADR-0025 §3 as aligned at N1",
+      "expect_errors": []
+    },
+    {
+      "id": "MT1-03",
+      "fixture": "valid-batch.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "valid",
+      "class": "batch with no slice still records",
+      "source": "convergence-metrics-v2.md §1 and §5, Batch-scoped",
+      "expect_errors": []
+    },
+    {
+      "id": "MT1-04",
+      "fixture": "valid-milestone.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "valid",
+      "class": "milestone scope",
+      "source": "convergence-metrics-v2.md §5, Milestone-scoped",
+      "expect_errors": []
+    },
+    {
+      "id": "MT1-05",
+      "fixture": "no-eligible-unit-carrying-value.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "no_eligible_unit_ran must not carry a value",
+      "source": "convergence-metrics-v2.md §5 — the three result states, never conflated",
+      "note": "The headline conflation: a metric whose unit never ran, reported as the number zero.",
+      "expect_errors": [
+        { "keyword": "not", "path": "metrics/0" }
+      ]
+    },
+    {
+      "id": "MT1-06",
+      "fixture": "measured-without-command.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "a measured value names its command",
+      "source": "convergence-metrics-v2.md §4; ADR-0018 §2a",
+      "expect_errors": [
+        { "keyword": "required", "path": "metrics/0" }
+      ]
+    },
+    {
+      "id": "MT1-07",
+      "fixture": "undefined-denominator-nonzero.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "undefined_zero_denominator requires an actually empty denominator",
+      "source": "convergence-metrics-v2.md §5",
+      "expect_errors": [
+        { "keyword": "const", "path": "metrics/0/denominator" }
+      ]
+    },
+    {
+      "id": "MT1-08",
+      "fixture": "no-eligible-unit-with-counts.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "no_eligible_unit_ran must not carry counts",
+      "source": "convergence-metrics-v2.md §5",
+      "note": "A state defined as 'the unit never executed' carrying counts from units that evidently did.",
+      "expect_errors": [
+        { "keyword": "not", "path": "metrics/0" }
+      ]
+    },
+    {
+      "id": "MT1-09",
+      "fixture": "slice-without-finalized.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "slice scope requires a finalization event",
+      "source": "convergence-metrics-v2.md §5, Slice-scoped",
+      "expect_errors": [
+        { "keyword": "required", "path": "(root)" }
+      ]
+    },
+    {
+      "id": "MT1-10",
+      "fixture": "finalized-on-batch-scope.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "finalization is slice-scoped only",
+      "source": "convergence-metrics-v2.md §5 defines the finalization event for slice metrics and for nothing else",
+      "expect_errors": [
+        { "keyword": "not", "path": "(root)" }
+      ]
+    },
+    {
+      "id": "MT1-11",
+      "fixture": "metric-name-wrong-scope.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "metric vocabulary is per-scope, not free text",
+      "source": "convergence-metrics-v2.md §5 — 'no generator defines its own output contract'",
+      "note": "mutation_kill_rate is milestone-scoped. Before the internal review the name field was an unconstrained string, so this document validated.",
+      "expect_errors": [
+        { "keyword": "enum", "path": "metrics/0/name" }
+      ]
+    },
+    {
+      "id": "MT1-12",
+      "fixture": "slice-without-slice-id.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "a metrics file must name its subject",
+      "source": "convergence-metrics-v2.md §4's one-source clause; §5's closure-criteria consumption",
+      "expect_errors": [
+        { "keyword": "required", "path": "subject" }
+      ]
+    }
+  ]
+}

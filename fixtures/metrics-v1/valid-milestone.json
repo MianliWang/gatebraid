@@ -1,0 +1,17 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "milestone",
+  "subject": {
+    "milestone": "M3"
+  },
+  "recorded_at": "2026-08-12T12:00:00Z",
+  "metrics": [
+    {
+      "entry_id": "ms-1",
+      "name": "mutation_kill_rate",
+      "state": "no_eligible_unit_ran",
+      "note": "No corpus freeze has occurred yet, so the denominator does not exist to be empty — the unit has not run at all."
+    }
+  ],
+  "notes": "Corpus fixture, MUST VALIDATE."
+}

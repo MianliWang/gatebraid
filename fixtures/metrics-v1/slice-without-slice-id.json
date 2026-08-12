@@ -1,0 +1,20 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "slice",
+  "subject": {},
+  "recorded_at": "2026-08-10T18:00:00Z",
+  "finalized": {
+    "event": "gate-3-exit",
+    "reference": "gate3 record"
+  },
+  "metrics": [
+    {
+      "entry_id": "x8",
+      "name": "contract_recurrence",
+      "state": "measured",
+      "value": 0,
+      "command": "count over the slice's committed evidence"
+    }
+  ],
+  "notes": "Corpus fixture, MUST FAIL. A metrics file that cannot name its subject cannot be aggregated by citation (§4's one-source clause)."
+}

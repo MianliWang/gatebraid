@@ -1,0 +1,18 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "slice",
+  "subject": {
+    "slice_id": "P1-S6"
+  },
+  "recorded_at": "2026-08-10T18:00:00Z",
+  "metrics": [
+    {
+      "entry_id": "x5",
+      "name": "contract_recurrence",
+      "state": "measured",
+      "value": 1,
+      "command": "count over the slice's committed evidence"
+    }
+  ],
+  "notes": "Corpus fixture, MUST FAIL. A slice-scoped file with no finalization event is a value a closure criterion cannot safely read, because nothing says it is final."
+}

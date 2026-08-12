@@ -1,0 +1,22 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "batch",
+  "subject": {
+    "batch_id": "M3-N1"
+  },
+  "recorded_at": "2026-08-12T12:00:00Z",
+  "finalized": {
+    "event": "gate-3-exit",
+    "reference": "irrelevant"
+  },
+  "metrics": [
+    {
+      "entry_id": "x6",
+      "name": "normative_surface_delta",
+      "state": "measured",
+      "value": 0,
+      "command": "git diff --stat"
+    }
+  ],
+  "notes": "Corpus fixture, MUST FAIL. finalized is slice-scoped only; metrics v2 §5 defines the finalization event for slice metrics and for nothing else."
+}

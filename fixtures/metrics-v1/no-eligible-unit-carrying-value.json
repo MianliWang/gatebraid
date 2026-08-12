@@ -1,0 +1,17 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "batch",
+  "subject": {
+    "batch_id": "M3-N1"
+  },
+  "recorded_at": "2026-08-12T12:00:00Z",
+  "metrics": [
+    {
+      "entry_id": "x1",
+      "name": "normative_surface_delta",
+      "state": "no_eligible_unit_ran",
+      "value": 0
+    }
+  ],
+  "notes": "Corpus fixture, MUST FAIL. The exact conflation metrics v2 §5 exists to forbid: a metric whose unit never ran, reported as the number zero. If this validated, 'nothing happened' and 'we measured zero' would be the same document."
+}
