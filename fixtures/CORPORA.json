@@ -1,0 +1,13 @@
+{
+  "description": "The declared corpus set. The runner asserts the directories it discovers against this list, so a corpus landed without a manifest — or a manifest landed without being declared — is a failure rather than an absence the runner reports as clean. Discovery alone cannot detect what was never added.",
+  "built": [
+    "gate-run-v2",
+    "metrics-v1"
+  ],
+  "planned": [
+    "state-pipeline",
+    "bytes-platform",
+    "instruments"
+  ],
+  "planned_note": "Specified in CORPUS-v1-PLAN.md §2 and §3, authored in N1 under this batch's approval. A planned corpus that does not yet exist is expected and passes; a planned corpus that EXISTS must carry an EXPECTATIONS.json and move to `built`."
+}
