@@ -8,6 +8,11 @@ directional (#79 raised the kind question, #80 the direction contradiction);
 §6 is brought into agreement with the tables as landed at `78c4a1a`; §8 and
 §9 are added (#85 — the third reopening condition, fired on its first run —
 and #81). Decisions 1, 2, 5, 7 unchanged.
+**Amended:** 2026-08-12 (M3 Batch N1) — §3 gains the metrics-finalization
+reference, by `M3-PLAN.md` §2 N1's contract-reconciliation item
+("the terminal-disposition procedure gains its metrics-finalization
+reference"); the rule itself lives in `protocols/convergence-metrics-v2.md` §5
+and is cited, not restated. No other decision touched.
 **Amends:** ADR-0013 §1 (two disposition kinds become three) and its
 `needs-human` sentence (reconciled with spec §1). Executes ADR-0013's last
 reopening condition — *"if Gate 1, 2 or 3 turn out to have verifications with
@@ -74,6 +79,14 @@ first execution (#98):
   nothing else, so it cannot be improvised either. The general rule, worth
   more than the instance: **a state transition states what happens to every
   field whose value is a sentence about the state.**
+- **The metrics record, finalized here** (added at N1): the slice's metrics file
+  reaches its authoritative committed value at this disposition, carried on the
+  control plane in the disposition itself.
+  **`protocols/convergence-metrics-v2.md` §5 (Slice-scoped) is the single home
+  of that rule and of its reasons**; this bullet points at it and does not
+  repeat it, so the two cannot drift (ADR-0029 decision 3's rationale, and
+  metrics v2 §4's one-source clause). The *Slice issue is not closed* bullet
+  below is why issue closure could not be this event even in principle.
 - **Operational values, cleared:** `Writer Lease` (ADR-0003 makes it a
   blocking condition; a terminated slice must not obstruct a successor);
   `Next Approval` → `—`; the `needs-human` label comes off with the Workflow
