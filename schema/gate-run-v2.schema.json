@@ -1,0 +1,376 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/gate-run@2",
+  "title": "Gatebraid gate-run record (gatebraid/gate-run@2)",
+  "description": "Machine-readable record of one gate execution on one Slice, embedded as the fenced yaml block of the gate evidence file (templates/gate0..3-evidence.md). Frozen at M3 batch N1 as one of the three shared interfaces, BEFORE any N2/N3 authoring; neither the generator nor the validator may redefine it during implementation (M3-PLAN.md §2 N1). Successor to gatebraid/gate-run@1, which is NOT edited and NOT retro-broken: @1 records stay valid as @1 forever, and every M3 gate record from the first is written as @2 (ADR-0029 decision 2, P1-1). Deltas from @1, all four traceable to a committed source: (1) base_sha and both handoff_fingerprint SHAs require the full 40 hex digits, closing the abbreviated-SHA ambiguity; (2) approvals[].author is structurally required; (3) bootstrap_exception admits the one-time N2/N3 pre-O0 boundary; (4) approvals[].type gains the two bootstrap approval types so a gate record can show the checks that gated it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "slice_id",
+    "gate",
+    "environment",
+    "executor",
+    "base_sha",
+    "result",
+    "checks"
+  ],
+  "properties": {
+    "schema": {
+      "const": "gatebraid/gate-run@2"
+    },
+    "slice_id": {
+      "type": "string",
+      "pattern": "^P[0-9]+-S[0-9]+$"
+    },
+    "gate": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "environment": {
+      "enum": [
+        "wsl",
+        "windows",
+        "macos-authority",
+        "mixed-see-prose"
+      ],
+      "description": "Carried from @1 unchanged. NOTE the deliberate vocabulary difference from gatebraid/evidence-capture@1's platform.os, which is the OS a single capture actually ran on (windows|wsl|linux|macos): this field is the Project's Environment value for the gate, which additionally admits macos-authority (a role, not an OS) and mixed-see-prose (no single value is true). The join for a dual-platform claim is windows↔windows and wsl↔wsl; macos-authority maps to capture os macos; mixed-see-prose maps to no single capture by construction and is read from the prose. Recorded here rather than left for a reader to infer, because N3 re-derives verdicts from the JSON and schemas alone."
+    },
+    "executor": {
+      "enum": [
+        "Human",
+        "Claude Lead",
+        "Claude Read-Only Team",
+        "Codex Consultant",
+        "Cowork Coordinator"
+      ]
+    },
+    "base_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$",
+      "description": "@2 delta (ADR-0029 P1-1): the FULL 40-hex object name. @1 admitted 7-40 hex, so a record could name an abbreviation that is unique today and ambiguous after the next thousand objects — a replayability claim the record could not keep."
+    },
+    "active_branch": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quote this scalar in YAML. A YAML 1.1 loader resolves an unquoted ISO8601 scalar to a datetime object, which is not type string, and validation fails (friction #55). The loader that validated is recorded beside the record."
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quote this scalar in YAML — see started_at (friction #55)."
+    },
+    "result": {
+      "enum": [
+        "passed",
+        "stopped",
+        "needs_approval",
+        "blocked",
+        "human_diagnosis_required"
+      ],
+      "description": "passed → Gate field advances. stopped → e.g. dirty baseline at Gate 0 (Next Approval = Dirty Baseline Acceptance)."
+    },
+    "bootstrap_exception": {
+      "type": "boolean",
+      "description": "@2 delta (M3-PLAN.md §2, N2/N3 bootstrap boundary). Present and true ONLY on N2's and N3's own gate landings, and only before O0. It records that this gate read startability from an operator-approved closed-set state packet rather than from the snapshot/frontier pair, which fails open on the control plane's input and is therefore not startability authority before O0. A record so marked claims NO N3 independent validation (N2's records are re-validated after N3's own Gate 3) and is EXCLUDED from V's admission series. The exception is one-time and expiring: dead at N2 + N3 Gate 3 completion, and no later Slice may use it. Absence means the ordinary authority applied.",
+      "default": false
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "result"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "command": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "skipped",
+              "not_run",
+              "none_configured"
+            ],
+            "description": "none_configured (ADR-0019 §1): the thing this check inspects does not exist to be checked — e.g. CI where no workflow is configured. It is a finding, not a pass, and is distinct from skipped (deliberately not run) and not_run (exists, was not executed)."
+          },
+          "output_ref": {
+            "type": "string",
+            "description": "Where the raw output lives (evidence file section, committed log path). On a bootstrap_exception record this is the pointer to the committed capture file holding the state packet's exact query identities and outputs (M3-PLAN.md §2)."
+          }
+        }
+      }
+    },
+    "consults": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string", "pattern": "^CONSULT-(M[0-9]+|[0-9]+)-[0-9]+$" },
+      "description": "Every consult this gate ran, whenever it ran — in sequence or at the Human Diagnosis stop. repair_attempts[].consult_ref remains scoped to in-sequence consults; an HDR-directed consult appears here and never as a consult_ref (friction #94)."
+    },
+    "repair_attempts": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "number",
+          "hypothesis",
+          "result"
+        ],
+        "properties": {
+          "number": {
+            "enum": [
+              1,
+              2
+            ]
+          },
+          "hypothesis": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Must be a NEW hypothesis (ADR-0002 §4)."
+          },
+          "result": {
+            "enum": [
+              "green",
+              "still_red"
+            ]
+          },
+          "consult_ref": {
+            "type": "string",
+            "description": "consult_id if a Codex consult occurred in sequence — at this attempt's position in the unified repair sequence. A consult performed at the Human Diagnosis stop is recorded in top-level consults, never here (friction #94)."
+          }
+        }
+      }
+    },
+    "approvals": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "comment_url",
+          "author"
+        ],
+        "properties": {
+          "author": {
+            "type": "string",
+            "minLength": 1,
+            "description": "@2 delta (ADR-0029 P1-1): structurally REQUIRED. @1 made it optional so evidence predating the identity split kept validating, which meant the schema could not catch its absence — and absence is precisely what friction #71 produced, an approval-shaped comment authored by the executor's own machine account. The value is the login OBSERVED as the comment's author at verification time, not the login expected. It is deliberately NOT constrained to a constant: the gate contracts decide validity (gate-2-contract Entry; ADR-0020 §4 — an approval authored by any account other than the operator's personal one is invalid as if absent), and a schema that admitted only the valid login would make a wrongly-authored observation unrecordable, which is the ADR-0019 failure class this project already fixed once at the check level."
+          },
+          "type": {
+            "enum": [
+              "Plan Approval (G1→G2)",
+              "Release Approval (G2→G3)",
+              "Dirty Baseline Acceptance",
+              "Scope / Allowlist Change",
+              "Environment Change",
+              "Session Persistence",
+              "Worktree Exception",
+              "Human Diagnosis",
+              "State Packet Approval",
+              "Host Instruction Baseline Approval"
+            ],
+            "description": "@2 delta (M3-PLAN.md §2): the last two are new. 'State Packet Approval' is the operator's approval of the closed-set state packet a bootstrap gate reads startability from. 'Host Instruction Baseline Approval' is the operator's approval of the enumerated host instruction files and their SHA-256 baseline (M3-PLAN.md §2, N1's hard precondition). Both exist so that a gate record can show the checks that gated it rather than referring to them from outside."
+          },
+          "comment_url": {
+            "type": "string",
+            "description": "URL of the recorded human approval comment."
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Quote this scalar in YAML (friction #55)."
+          }
+        }
+      }
+    },
+    "refrozen": {
+      "type": "boolean",
+      "description": "Present and true when plan_hash carries a re-frozen plan (correct-course step 5). The delta record comment remains the authority for what changed and why; absence means first freeze (friction #50)."
+    },
+    "plan_hash": {
+      "type": "string",
+      "description": "Gate 1+: hash of the frozen plan."
+    },
+    "allowlist_hash": {
+      "type": "string",
+      "description": "Gate 1+: hash of the frozen write allowlist."
+    },
+    "evidence_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "hash_commands": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Gate 1+: the exact commands that reproduce plan_hash and allowlist_hash (ADR-0011 §3). A hash nobody can recompute is decoration.",
+      "properties": {
+        "allowlist": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "handoff_fingerprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Gate 2 exit: what Gate 3's drift check compares against (ADR-0011 §2). Git's own content addressing, not a hash of diff text.",
+      "required": [
+        "active_branch_head",
+        "tree_sha",
+        "changed_paths"
+      ],
+      "properties": {
+        "active_branch_head": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "@2 delta: full 40-hex, as base_sha."
+        },
+        "tree_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "@2 delta: full 40-hex, as base_sha."
+        },
+        "changed_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Sorted `git diff --name-only <base_sha>..<head>`."
+        }
+      }
+    },
+    "stop_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Required whenever result is `stopped` or `blocked`: what failed and where it went (ADR-0013). A gate that stopped must be recordable as stopped; otherwise writing nothing becomes the only honest option.",
+      "required": [
+        "stopped_at",
+        "disposition",
+        "observed",
+        "expected",
+        "remediation_attempted"
+      ],
+      "properties": {
+        "stopped_at": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The action that failed, by number and name."
+        },
+        "disposition": {
+          "enum": [
+            "decidable",
+            "error"
+          ]
+        },
+        "next_approval": {
+          "enum": [
+            "Plan Approval (G1→G2)",
+            "Release Approval (G2→G3)",
+            "Dirty Baseline Acceptance",
+            "Scope / Allowlist Change",
+            "Environment Change",
+            "Session Persistence",
+            "Worktree Exception",
+            "Human Diagnosis"
+          ],
+          "description": "Decidable dispositions only. Deliberately NOT extended with the two bootstrap approval types: those gate a record's admissibility and are obtained before the gate runs, so neither is ever the approval a stopped gate is waiting on. M3-PLAN.md §2 extends approvals[].type only."
+        },
+        "workflow": {
+          "const": "Blocked",
+          "description": "Error dispositions only; pair with a typed needs_input comment."
+        },
+        "observed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected": {
+          "type": "string",
+          "minLength": 1
+        },
+        "remediation_attempted": {
+          "const": "none",
+          "description": "Always none. Gates never remediate — the schema enforces it."
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "friction #94, carried from @1 byte-for-byte in intent: two repair attempts with no in-sequence consult validate only as human_diagnosis_required — the consult either happened in sequence (consult_ref) or the gate ended at HDR. Nothing can force a false consult_ref.",
+      "if": {
+        "required": ["repair_attempts"],
+        "properties": {
+          "repair_attempts": {
+            "minItems": 2,
+            "not": { "contains": { "required": ["consult_ref"] } }
+          }
+        }
+      },
+      "then": {
+        "properties": { "result": { "const": "human_diagnosis_required" } }
+      }
+    },
+    {
+      "$comment": "@2 addition. A record claiming the bootstrap exception must carry the approval that authorized it AND the pointers to the captures it read. Without the first, bootstrap_exception is a self-granted permission — the exact self-certification shape ADR-0028 was written against. Without the second, the record can claim the packet was read and point at nothing: M3-PLAN §2's bootstrap-boundary paragraph makes the checks[].output_ref pointer to committed capture files constitutive of the boundary, not decorative.",
+      "if": {
+        "properties": { "bootstrap_exception": { "const": true } },
+        "required": ["bootstrap_exception"]
+      },
+      "then": {
+        "properties": {
+          "approvals": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "properties": { "type": { "const": "State Packet Approval" } },
+              "required": ["type"]
+            }
+          },
+          "checks": {
+            "type": "array",
+            "items": { "required": ["output_ref"] }
+          }
+        },
+        "required": ["approvals"]
+      }
+    },
+    {
+      "$comment": "@2 addition, BEYOND the four deltas ADR-0029 P1-1 and M3-PLAN §2 N1 enumerate — flagged for operator ratification at approval. @1 declared stop_record 'Required whenever result is stopped or blocked' in a description and enforced it with nothing, so a stopped gate could validate while saying nothing about what stopped it. That is the ADR-0013/ADR-0019 failure class: a gate that stopped must be RECORDABLE as stopped. @2 is the last moment to fix it without buying an N1 correct-course later, because M3-PLAN §2 forbids N2 and N3 from redefining a frozen interface during implementation.",
+      "if": {
+        "properties": { "result": { "enum": ["stopped", "blocked"] } },
+        "required": ["result"]
+      },
+      "then": { "required": ["stop_record"] }
+    }
+  ]
+}
