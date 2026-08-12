@@ -17,7 +17,16 @@
      timestamp: GitHub holds both natively; the authoritative Gate 3 record
      is the COMPOSITE of this file, the PR's merge event, the issue's closure
      event and the Project's Workflow (ADR-0017 §1/§2/§4 — consumers read the
-     native EVENT SEQUENCE, not the last state). -->
+     native EVENT SEQUENCE, not the last state).
+     `bootstrap_exception: true` appears in the metadata block ONLY on N2's and
+     N3's own gate landings, and only before O0. On THIS gate it records the
+     BOUNDED EVIDENCE BOOTSTRAP, which is a different claim from Gate 0's: the
+     record claims NO N3 independent validation, because N3 does not exist yet
+     — N2's records are re-validated after N3's own Gate 3 — and the record is
+     excluded from V's admission series. It requires a `State Packet Approval`
+     in `approvals[]` and an `output_ref` on every check (gatebraid/gate-run@2
+     enforces both). One-time and expiring: dead after N2 + N3 Gate 3, and no
+     later Slice may use it (M3-PLAN §2). -->
 
 # Gate 3 evidence — <P_nn-S_nn>
 
@@ -86,12 +95,12 @@ $ GH_CONFIG_DIR=<store> gh <the check/run read used, in full>
 ## gatebraid-metadata
 
 ```yaml
-schema: gatebraid/gate-run@1
+schema: gatebraid/gate-run@2
 slice_id: P<nn>-S<nn>
 gate: 3
 environment: <…>
 executor: Claude Lead
-base_sha: <sha>
+base_sha: <full 40-hex sha>
 active_branch: <branch>
 started_at: "<ISO8601>"
 ended_at: "<ISO8601>"

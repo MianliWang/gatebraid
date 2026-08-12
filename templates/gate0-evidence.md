@@ -19,7 +19,17 @@
      A claimed schema validation names its loader in the row itself
      (interpreter path; PyYAML and jsonschema versions printed by the command
      — friction #55) and runs as a standalone guarded step whose failure
-     prevents the commit (spec §4; friction #86). -->
+     prevents the commit (spec §4; friction #86).
+     `bootstrap_exception: true` appears in the metadata block ONLY on N2's and
+     N3's own gate landings, and only before O0. On THIS gate it records that
+     startability was read from the operator-approved closed-set state packet
+     rather than from the snapshot/frontier pair, which fails open on the
+     control plane's input and is not startability authority before O0. It
+     requires a `State Packet Approval` in `approvals[]` and an `output_ref` on
+     every check — gatebraid/gate-run@2 enforces both, so the record cannot
+     claim the packet and point at nothing. One-time and expiring: dead after
+     N2 + N3 Gate 3, excluded from V's admission series, and no later Slice may
+     use it (M3-PLAN §2). -->
 
 # Gate 0 evidence — <P_nn-S_nn>
 
@@ -75,12 +85,12 @@ $ <interpreter path> <validator invocation — prints PyYAML + jsonschema versio
 ## gatebraid-metadata
 
 ```yaml
-schema: gatebraid/gate-run@1
+schema: gatebraid/gate-run@2
 slice_id: P<nn>-S<nn>
 gate: 0
 environment: <wsl|windows|macos-authority|mixed-see-prose>
 executor: Claude Lead
-base_sha: <sha>
+base_sha: <full 40-hex sha>
 started_at: "<ISO8601>"
 ended_at: "<ISO8601>"
 result: passed          # passed | stopped | needs_approval | blocked | human_diagnosis_required

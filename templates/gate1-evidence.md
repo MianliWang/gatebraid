@@ -15,7 +15,16 @@
      them (ADR-0017). ALL template comments are DELETED at instantiation.
      The heading "## Plan (frozen at exit)" is load-bearing byte-for-byte:
      plan_hash covers the lines strictly between it and the next "## " line
-     (gate-1-contract action 6). -->
+     (gate-1-contract action 6).
+     `bootstrap_exception: true` appears in the metadata block ONLY on N2's and
+     N3's own gate landings, and only before O0. On THIS gate it records the
+     BOUNDED EVIDENCE BOOTSTRAP, which is a different claim from Gate 0's: the
+     record claims NO N3 independent validation, because N3 does not exist yet
+     — N2's records are re-validated after N3's own Gate 3 — and the record is
+     excluded from V's admission series. It requires a `State Packet Approval`
+     in `approvals[]` and an `output_ref` on every check (gatebraid/gate-run@2
+     enforces both). One-time and expiring: dead after N2 + N3 Gate 3, and no
+     later Slice may use it (M3-PLAN §2). -->
 
 # Gate 1 evidence — <P_nn-S_nn>
 
@@ -78,12 +87,12 @@ $ GH_CONFIG_DIR=<store> gh <the edit + the read-back verifying it, in full>
 ## gatebraid-metadata
 
 ```yaml
-schema: gatebraid/gate-run@1
+schema: gatebraid/gate-run@2
 slice_id: P<nn>-S<nn>
 gate: 1
 environment: <…>
 executor: Claude Lead
-base_sha: <sha>
+base_sha: <full 40-hex sha>
 started_at: "<ISO8601>"
 ended_at: "<ISO8601>"
 result: needs_approval   # Gate 1 always exits into Needs Plan Approval
