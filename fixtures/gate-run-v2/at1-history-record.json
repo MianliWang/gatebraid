@@ -1,0 +1,29 @@
+{
+  "schema": "gatebraid/gate-run@1",
+  "slice_id": "P1-S2",
+  "gate": 2,
+  "environment": "windows",
+  "executor": "Claude Lead",
+  "base_sha": "1202ec3",
+  "active_branch": "slice/P1-S2",
+  "started_at": "2026-08-04T20:10:00Z",
+  "ended_at": "2026-08-04T21:20:00Z",
+  "result": "passed",
+  "checks": [
+    {
+      "name": "tests-green-per-plan",
+      "result": "pass",
+      "output_ref": "#verification-outputs"
+    }
+  ],
+  "approvals": [
+    {
+      "type": "Plan Approval (G1→G2)",
+      "comment_url": "https://github.com/MianliWang/gatebraid-scratch/issues/3#issuecomment-5100000001"
+    }
+  ],
+  "evidence_files": [
+    "docs/evidence/gatebraid/P1-S2/gate2.md"
+  ],
+  "notes": "Corpus fixture, dual-purpose and deliberately ONE file. Shaped as historical @1 evidence: an abbreviated base_sha (7 hex) and an approval with NO author, both of which @1 permitted. Validated under @1 it MUST pass — ADR-0029 P1-1 states @1 history is not broken retroactively, and a corpus that could not demonstrate that would leave the promise untested. Validated under @2 it MUST fail. Two schemas, one document, two required outcomes: that is the non-retro-breakage claim made falsifiable rather than asserted."
+}

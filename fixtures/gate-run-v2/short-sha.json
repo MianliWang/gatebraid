@@ -1,0 +1,31 @@
+{
+  "schema": "gatebraid/gate-run@2",
+  "slice_id": "P1-S7",
+  "gate": 2,
+  "environment": "windows",
+  "executor": "Claude Lead",
+  "base_sha": "9f2c1a7",
+  "active_branch": "slice/P1-S7",
+  "started_at": "2026-08-12T09:00:00Z",
+  "ended_at": "2026-08-12T11:30:00Z",
+  "result": "passed",
+  "checks": [
+    {
+      "name": "tests-green-per-plan",
+      "result": "pass",
+      "output_ref": "#verification-outputs"
+    }
+  ],
+  "approvals": [
+    {
+      "type": "Plan Approval (G1→G2)",
+      "comment_url": "https://github.com/MianliWang/gatebraid-scratch/issues/16#issuecomment-5300000001",
+      "author": "MianliWang",
+      "at": "2026-08-12T08:55:00Z"
+    }
+  ],
+  "evidence_files": [
+    "docs/evidence/gatebraid/P1-S7/gate2.md"
+  ],
+  "notes": "Corpus fixture, MUST FAIL under @2. base_sha is the 7-hex abbreviation @1's pattern admitted. An abbreviation that is unique in today's object store may be ambiguous in tomorrow's, so a record naming one cannot keep the replayability claim it makes. @2's pattern requires all 40. Relative to missing-approval-author.json this file differs in exactly two fields — base_sha shortened and author restored — so the single recorded locus is the whole failure and the two fixtures isolate their two deltas cleanly."
+}

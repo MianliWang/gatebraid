@@ -1,0 +1,31 @@
+{
+  "schema": "gatebraid/gate-run@2",
+  "slice_id": "P2-S1",
+  "gate": 0,
+  "environment": "windows",
+  "executor": "Claude Lead",
+  "base_sha": "0a1b2c3d4e5f60718293a4b5c6d7e8f901234567",
+  "started_at": "2026-08-20T09:00:00Z",
+  "ended_at": "2026-08-20T09:20:00Z",
+  "result": "passed",
+  "bootstrap_exception": true,
+  "checks": [
+    {
+      "name": "startability-from-closed-set-state-packet",
+      "result": "pass",
+      "output_ref": "evidence/capture/P2-S1-gate0-state-packet.json"
+    }
+  ],
+  "approvals": [
+    {
+      "type": "Host Instruction Baseline Approval",
+      "comment_url": "https://github.com/MianliWang/gatebraid/issues/4#issuecomment-5400000001",
+      "author": "MianliWang",
+      "at": "2026-08-20T08:40:00Z"
+    }
+  ],
+  "evidence_files": [
+    "docs/evidence/gatebraid/P2-S1/gate0.md"
+  ],
+  "notes": "Corpus fixture, MUST FAIL under @2. The record claims bootstrap_exception: true — that it read startability from the operator-approved closed-set state packet rather than from the unhardened tools — but carries no State Packet Approval. Without the conditional this validates, and bootstrap_exception becomes a permission the record grants itself, which is the self-certification shape ADR-0028 exists to forbid. Note the fixture DOES carry a different, valid approval type, so a validator cannot pass it by merely checking that approvals is non-empty. All SHAs here are synthetic: a fictional slice record must not pin a real commit of this repository, or a later reader can mistake the fixture for a record. This case extends the five named in M3-PLAN §2 N1; it is here because @2 introduces the conditional and an unfalsified conditional is not evidence (spec §4)."
+}

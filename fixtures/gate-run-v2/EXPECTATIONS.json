@@ -1,0 +1,116 @@
+{
+  "corpus": "gate-run-v2",
+  "corpus_version": "v1",
+  "frozen_by": "commit SHA recorded in APPROVALS-M3-N1 at the freeze; see M3-PLAN.md §2 N1 Accept-when",
+  "description": "Expected outcomes for the gatebraid/gate-run@2 fixture set. Every expectation below was MEASURED against the frozen schemas with CPython 3.12.2 / jsonschema 4.23.0 and recorded from that run, not asserted from reading. An invalid case names the EXACT AND COMPLETE set of (keyword, path) loci: the runner requires every recorded locus to fire and rejects any locus that fires but was not recorded. A fixture rejected for the wrong reason is not a kill, and an over-mutated fixture that fails for four reasons while the corpus records one is a defect the corpus must surface rather than absorb.",
+  "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
+  "cases": [
+    {
+      "id": "GR2-01",
+      "fixture": "valid-at2-record.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "valid",
+      "class": "@2 canonical",
+      "source": "M3-PLAN.md §2 N1 — 'a valid @2 record'",
+      "expect_errors": []
+    },
+    {
+      "id": "GR2-02",
+      "fixture": "at1-history-record.json",
+      "schema": "schema/gate-run.schema.json",
+      "expect": "valid",
+      "class": "non-retro-breakage",
+      "source": "M3-PLAN.md §2 N1 — '@1 history still validating as @1'; ADR-0029 decision 2, P1-1",
+      "expect_errors": []
+    },
+    {
+      "id": "GR2-03",
+      "fixture": "at1-history-record.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "invalid",
+      "class": "@1-shaped rejected under @2",
+      "source": "M3-PLAN.md §2 N1 — 'an @1-shaped record rejected under @2'",
+      "note": "Same document as GR2-02 under the other schema. Three independent grounds fire, and all three are required: a validator that caught only the schema const would pass an @1-shaped body that had been relabelled @2.",
+      "expect_errors": [
+        { "keyword": "const", "path": "schema" },
+        { "keyword": "pattern", "path": "base_sha" },
+        { "keyword": "required", "path": "approvals/0" }
+      ]
+    },
+    {
+      "id": "GR2-04",
+      "fixture": "missing-approval-author.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "invalid",
+      "class": "approval author structurally required",
+      "source": "M3-PLAN.md §2 N1 — 'a missing approval author rejected'; ADR-0029 P1-1; friction #71",
+      "expect_errors": [
+        { "keyword": "required", "path": "approvals/0" }
+      ]
+    },
+    {
+      "id": "GR2-05",
+      "fixture": "short-sha.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "invalid",
+      "class": "full 40-hex SHA required",
+      "source": "M3-PLAN.md §2 N1 — 'a short SHA rejected'; ADR-0029 P1-1",
+      "expect_errors": [
+        { "keyword": "pattern", "path": "base_sha" }
+      ]
+    },
+    {
+      "id": "GR2-06",
+      "fixture": "bootstrap-exception-without-state-packet-approval.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "invalid",
+      "class": "bootstrap exception must carry its authorizing approval",
+      "source": "M3-PLAN.md §2, N2/N3 bootstrap boundary. EXTENDS the five cases named in N1.",
+      "expect_errors": [
+        { "keyword": "contains", "path": "approvals" }
+      ]
+    },
+    {
+      "id": "GR2-07",
+      "fixture": "bootstrap-exception-with-state-packet-approval.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "valid",
+      "class": "bootstrap exception, positive case",
+      "source": "Added at the N1 internal review. A conditional exercised only by negative cases would pass them all by rejecting everything; this is the record that MUST be accepted. It is also the only fixture showing the two new approvals[].type values accepted rather than merely demanded.",
+      "expect_errors": []
+    },
+    {
+      "id": "GR2-08",
+      "fixture": "bootstrap-exception-missing-output-ref.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "invalid",
+      "class": "bootstrap exception must point at its captures",
+      "source": "M3-PLAN.md §2 — 'exact outputs and query identities recorded ... by checks[].output_ref pointer to committed capture files'. Constitutive of the boundary, not decorative.",
+      "expect_errors": [
+        { "keyword": "required", "path": "checks/0" }
+      ]
+    },
+    {
+      "id": "GR2-09",
+      "fixture": "stopped-without-stop-record.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "invalid",
+      "class": "a stopped gate must be recordable as stopped",
+      "source": "ADR-0013; ADR-0019. @1 declared this in a description and enforced it with nothing. BEYOND the four deltas ADR-0029 P1-1 enumerates — flagged for operator ratification at approval.",
+      "expect_errors": [
+        { "keyword": "required", "path": "(root)" }
+      ]
+    },
+    {
+      "id": "GR2-10",
+      "fixture": "two-repairs-no-consult.json",
+      "schema": "schema/gate-run-v2.schema.json",
+      "expect": "invalid",
+      "class": "#94 conditional, carried from @1",
+      "source": "friction #94, via @1's allOf. Added at the N1 internal review: the conditional was carried into @2 having never had a fixture in either schema, so it was trusted on reading alone.",
+      "expect_errors": [
+        { "keyword": "const", "path": "result" }
+      ]
+    }
+  ]
+}
