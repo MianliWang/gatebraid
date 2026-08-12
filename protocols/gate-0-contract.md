@@ -5,7 +5,12 @@
 ## Entry
 
 - **Position the working tree:** verify `HEAD` is at the base branch, or run `git checkout <base-branch>` to put it there — performed **before** the gate's read-only actions begin (friction #84; the one-time operator authorization of 2026-08-08, made standing). A retained branch (ADR-0025 §3) is a record, never the next slice's silent baseline. Inside the gate, the prohibition on state-changing Git commands is unchanged.
-- Frontier verdict says the Slice is startable (M2: `next` skill reasoning; M3: `gatebraid-frontier`; M1: manual derivation only).
+- **Startability authority (re-pointed for M3 by `M3-PLAN.md` §2).** The verdict that the Slice is startable comes from a different source before and after O0, and the boundary is not a preference:
+  - **Before O0** — an **operator-approved closed-set state packet**: the exact repositories and issues enumerated; direct read-only queries only; every non-zero query exit failing closed; no broad enumeration. The exact outputs and query identities are recorded in this gate's record by `checks[].output_ref` pointers to committed capture files, and the record is marked `bootstrap_exception: true`. This is a one-time, expiring boundary: it serves N2's and N3's own gate landings, expires at their Gate 3 completion, and **no later Slice may use it**.
+  - **After O0** — the hardened `gatebraid-snapshot` / `gatebraid-frontier` pair.
+  - **O0's own Gate 0** — the explicit third case (operator ruling 2026-08-12, recorded with the N1 approval entries): the expiry above ends the *bounded evidence bootstrap*, not packet-based state reading. O0's startability is read from a **fresh operator-approved closed-set state packet** under its own `State Packet Approval`, with `checks[].output_ref` pointers to committed capture files exactly as above, and **without** `bootstrap_exception` — N2 and N3 exist, so O0's records carry full validation and nothing about the bounded bootstrap applies. This is the packet mechanism's final enumerated use; from O0's Gate 3 exit the hardened pair is the sole startability authority.
+  - The **unhardened** snapshot/frontier pair is **not** startability authority before O0. It fails open on the control plane's input — a non-zero `gh` exit folded into `None` drops a dependency edge silently, and an unknown Issue state is treated as unblocked (ADR-0029 decision 2, P0-1 and P0-4, both verified at source). A verdict from a tool that fails open is not a verdict.
+  - Historical, for readers of older records: M2 used `next` skill reasoning; M1, manual derivation only.
 - `Executor = Claude Lead`; Workflow → `Gate 0 — Verifying`.
 
 ## Failure dispositions (ADR-0013)
@@ -36,6 +41,6 @@ Any write; any fetch/pull; branch creation; dependency installation; **any state
 
 ## Exit
 
-- `docs/evidence/gatebraid/<slice_id>/gate0.md` written from `templates/gate0-evidence.md` (embedded `gatebraid/gate-run@1` block, `gate: 0`).
+- `docs/evidence/gatebraid/<slice_id>/gate0.md` written from `templates/gate0-evidence.md` (embedded `gatebraid/gate-run@2` block, `gate: 0`). Every M3 gate record is `@2` from the first; `@1` is the frozen historical schema and no new M3 record falls back to it (ADR-0029 decision 2, P1-1).
 - `Gate = G0 passed`; Workflow → `Gate 1 — Planning`. **Every slice passes through Gate 1** — there is no shortcut to `Needs Plan Approval`. The former exception described a 2→4 transition absent from the spec's legal-transition table and would have produced a slice with no `plan_hash`, no `allowlist_hash` and no exit checklist, while Gate 2 requires an allowlist pinned at Gate 1 (ADR-0011 §8).
 - Handoff comment posted; `Last Checkpoint` updated.
