@@ -1,0 +1,459 @@
+{
+  "corpus": "evidence-capture-v1",
+  "corpus_version": "v1",
+  "frozen_by": "not frozen; the freeze follows the external read-only review (M3-PLAN.md §2 N1)",
+  "description": "Expected outcomes for gatebraid/evidence-capture@1, the third frozen interface — which shipped at N1 with no fixtures at all, the same gap the N1 internal review found in metrics@1. Every invalid case is a SINGLE mutation of its NEAREST VALID SIBLING, named per case: valid-argv-capture.json for most, valid-shell-capture-declared.json for EC1-07/25, valid-cp936-lossy-decode.json for EC1-08/09/12, valid-with-outputs.json for EC1-18. Every expectation was MEASURED with CPython 3.12.2 / jsonschema 4.23.0. Byte streams carry REAL bytes: base64, byte_length and sha256 are computed from the content, and the cp936 rendering in EC1-03 was produced by letting the decode raise and recording CPython's own exception text and offset. The schema cannot check those relations and says so; N3 will. An internally incoherent fixture would be a bad fixture regardless of what the schema can see.",
+  "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
+  "known_limitation": "TWO limitations, both recorded rather than worked around. (1) LOCUS GRANULARITY. A locus is (keyword, path), which cannot say WHICH required property is missing, so EC1-15/32/33 all record required@(root); EC1-08/09/10 all record required@streams/stdout/rendered; and required@invocation (EC1-07) would equally cover a missing cwd or argv. A validator rejecting one of these for another's reason still passes. The machine-checkable part cannot be narrowed without changing the runner's locus granularity, and the runner is committed at blob f64e3801 — outside this batch's authority. A human-readable narrowing IS available without touching the runner, since run-corpus.py reads only the keyword and path keys and ignores extras; adding a 'property' key per expectation is queued rather than done, because it would read as coverage the runner does not actually enforce. (2) FOUR CONSTRAINTS THE SCHEMA DOES NOT ENFORCE, so no fixture can falsify them and their absence must be stated instead: format: date-time is not asserted at all, because run-corpus.py constructs Draft202012Validator with no format_checker, so started_at: 'never' validates; binary_mode_write: false validates although the schema's own description says text mode would silently invalidate every byte_length and sha256; zero_lone_cr.asserted: false validates although the description calls it a finding rather than a pass; and ended_at before started_at validates. Under ADR-0028 §1 an unfalsifiable constraint that reads as enforced is worse than an absent one, so these are named here and escalated in the batch's Part A.",
+  "cases": [
+    {
+      "id": "EC1-01",
+      "fixture": "valid-argv-capture.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "valid",
+      "class": "canonical argv capture",
+      "source": "M3-PLAN.md §2 N2 — canonical output: raw stdout/stderr bytes, exit code, argv, cwd identity, environment, input SHAs, output hashes, timestamps",
+      "expect_errors": []
+    },
+    {
+      "id": "EC1-02",
+      "fixture": "valid-shell-capture-declared.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "valid",
+      "class": "IN-01 positive — a shell that declares its semantics",
+      "source": "M3-PLAN.md §6 'wrong pipeline exit code (pipefail)'; §2 N2 'any shell use declares platform and exit-code semantics'",
+      "note": "pipefail is false and the record SAYS so; exit_code_source names pipeline_last. The danger is an undeclared shell, not a shell.",
+      "expect_errors": []
+    },
+    {
+      "id": "EC1-03",
+      "fixture": "valid-cp936-lossy-decode.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "valid",
+      "class": "BP-01 positive — a lossy rendering, honestly recorded",
+      "source": "M3-PLAN.md §6 'cp936/UTF-8/em-dash round trip'; ADR-0029 decision 2 P0-2; friction #60",
+      "note": "decode_error is CPython's own exception text with its own reported offset (9), obtained by letting the decode raise — not a composed sentence. An earlier draft wrote offset 12 from intent; the L1 review measured it and refuted it.",
+      "expect_errors": []
+    },
+    {
+      "id": "EC1-04",
+      "fixture": "valid-utf8-clean-decode.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "valid",
+      "class": "BP-01 positive — the same bytes, faithful rendering",
+      "source": "M3-PLAN.md §6; paired with EC1-03",
+      "note": "Identical bytes to EC1-03 under the correct codec, so the pair shows lossy and faithful distinguished on the same content.",
+      "expect_errors": []
+    },
+    {
+      "id": "EC1-05",
+      "fixture": "valid-empty-streams.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "valid",
+      "class": "an empty capture is a real measurement",
+      "source": "ADR-0019 — every observable outcome must be expressible",
+      "expect_errors": []
+    },
+    {
+      "id": "EC1-06",
+      "fixture": "valid-with-outputs.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "valid",
+      "class": "a capture that wrote files",
+      "source": "M3-PLAN.md §2 N2 — output hashes are canonical output",
+      "note": "Added at the L1 review: every other fixture carried outputs: [], leaving the whole sub-schema unfalsified.",
+      "expect_errors": []
+    },
+    {
+      "id": "EC1-07",
+      "fixture": "shell-without-declared-semantics.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "IN-01 — an undeclared shell exit code is uninterpretable",
+      "source": "M3-PLAN.md §6 'wrong pipeline exit code (pipefail)'",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "invocation"
+        }
+      ]
+    },
+    {
+      "id": "EC1-08",
+      "fixture": "decode-replaced-without-error.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "BP-01 — a silent lossy rendering",
+      "source": "M3-PLAN.md §2 N2's derived-field contract",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "streams/stdout/rendered"
+        }
+      ]
+    },
+    {
+      "id": "EC1-09",
+      "fixture": "decode-replaced-without-text.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "BP-01 — lossy with nothing to inspect",
+      "source": "M3-PLAN.md §2 N2's derived-field contract",
+      "note": "decode_error is kept byte-for-byte from the valid sibling so removing text is the only change. Shares EC1-08/EC1-10's locus; see known_limitation.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "streams/stdout/rendered"
+        }
+      ]
+    },
+    {
+      "id": "EC1-10",
+      "fixture": "decode-ok-without-text.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "BP-01 — a clean decode with nothing rendered",
+      "source": "M3-PLAN.md §2 N2's derived-field contract",
+      "note": "The other half of the same 'ok' branch EC1-11 exercises; that branch had only one of its two halves covered.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "streams/stdout/rendered"
+        }
+      ]
+    },
+    {
+      "id": "EC1-11",
+      "fixture": "decode-ok-with-error.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "BP-01 — a self-contradicting rendering",
+      "source": "M3-PLAN.md §2 N2's derived-field contract",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "streams/stdout/rendered"
+        }
+      ]
+    },
+    {
+      "id": "EC1-12",
+      "fixture": "decode-failed-with-text.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "BP-01 — a failed decode carrying text it could not have produced",
+      "source": "M3-PLAN.md §2 N2's derived-field contract",
+      "note": "The tell is deliberate: the text uses an ASCII hyphen U+002D where the bytes hold an em dash U+2014, so it is visibly not derivable from them. This is a captured stream's rendered text, not a Workflow/Gate/Next Approval value, so the U+2014 rule does not reach it.",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "streams/stdout/rendered"
+        }
+      ]
+    },
+    {
+      "id": "EC1-13",
+      "fixture": "decode-result-not-in-enum.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "the honesty field must carry a defined value",
+      "source": "M3-PLAN.md §2 N2's derived-field contract",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "streams/stdout/rendered/decode_result"
+        }
+      ]
+    },
+    {
+      "id": "EC1-14",
+      "fixture": "lone-cr-guard-asserted-but-nonzero.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "BP-02 — a guard reported as run, and as overridden",
+      "source": "M3-PLAN.md §6 'CRLF and lone CR'; friction #108; ADR-0028 §4",
+      "note": "The record exists, so the write happened; the guard is defined to prevent exactly that write when count > 0.",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "self_assertions/zero_lone_cr/count"
+        }
+      ]
+    },
+    {
+      "id": "EC1-15",
+      "fixture": "missing-self-assertions.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "BP-02 — silence about the guard is not having run it",
+      "source": "ADR-0019's absent-versus-none_configured distinction; friction #108",
+      "note": "Shares the (root) required locus with EC1-26/27; see known_limitation.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "(root)"
+        }
+      ]
+    },
+    {
+      "id": "EC1-16",
+      "fixture": "placeholder-generator-sha256.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "IN-02 — a placeholder where a digest belongs",
+      "source": "CORPUS-v1-PLAN.md §3 IN-02: fixture 'a record containing <sha> where a hash belongs', expected failure 'placeholder detected; record rejected'",
+      "note": "The batch's first determinacy pass called IN-02 BLOCKED. The L1 review refuted that: the expected failure is a rejection verdict, which is exactly what this runner asserts, and three committed patterns express it. A false refusal is as much a defect as an invention.",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "generator/source_sha256"
+        }
+      ]
+    },
+    {
+      "id": "EC1-17",
+      "fixture": "placeholder-input-sha256.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "IN-02 at a second site — a pinned input that pins nothing",
+      "source": "CORPUS-v1-PLAN.md §3 IN-02; friction #108's pinned-SHA inputs",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "inputs/0/sha256"
+        }
+      ]
+    },
+    {
+      "id": "EC1-18",
+      "fixture": "output-sha256-placeholder.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "IN-02 at a third site, inside outputs[]",
+      "source": "CORPUS-v1-PLAN.md §3 IN-02",
+      "note": "Single mutation of valid-with-outputs.json, the only fixture that reaches this sub-schema.",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "outputs/0/sha256"
+        }
+      ]
+    },
+    {
+      "id": "EC1-19",
+      "fixture": "wrong-schema-id.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "the record must announce the interface it is shaped to",
+      "source": "ADR-0029 decision 2 P1-1's versioning discipline",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "schema"
+        }
+      ]
+    },
+    {
+      "id": "EC1-20",
+      "fixture": "unknown-top-level-field.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "no undeclared fields",
+      "source": "the schema's own additionalProperties: false, at eight sites",
+      "note": "Added at the L1 review: additionalProperties is the schema's whole defence against a generator inventing fields, and no fixture exercised any of the eight sites.",
+      "expect_errors": [
+        {
+          "keyword": "additionalProperties",
+          "path": "(root)"
+        }
+      ]
+    },
+    {
+      "id": "EC1-21",
+      "fixture": "unknown-rendered-field.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "no undeclared fields in the derived rendering",
+      "source": "the schema's own additionalProperties: false",
+      "note": "The rendering is the human-facing half and so the most tempting place to add a field.",
+      "expect_errors": [
+        {
+          "keyword": "additionalProperties",
+          "path": "streams/stdout/rendered"
+        }
+      ]
+    },
+    {
+      "id": "EC1-22",
+      "fixture": "cwd-resolution-not-in-enum.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "cwd identity must be a defined resolution state",
+      "source": "friction #127 — two path-resolution domains disagreeing is a measured live defect on this host",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "invocation/cwd/resolution"
+        }
+      ]
+    },
+    {
+      "id": "EC1-23",
+      "fixture": "encoding-not-base64.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "the byte contract's anchor is fixed",
+      "source": "ADR-0029 decision 2, P0-2",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "streams/stdout/encoding"
+        }
+      ]
+    },
+    {
+      "id": "EC1-24",
+      "fixture": "platform-os-not-in-enum.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "platform must be a defined value",
+      "source": "M3-PLAN.md §2 N2/N3 — green on Windows AND WSL",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "platform/os"
+        }
+      ]
+    },
+    {
+      "id": "EC1-25",
+      "fixture": "exit-code-source-not-in-enum.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "IN-01's interior — what the exit code measured must be defined",
+      "source": "M3-PLAN.md §6 'wrong pipeline exit code (pipefail)'",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "invocation/shell_semantics/exit_code_source"
+        }
+      ]
+    },
+    {
+      "id": "EC1-26",
+      "fixture": "form-not-in-enum.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "invocation form must be a defined value",
+      "source": "M3-PLAN.md §2 N2 — argv-form by default",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "invocation/form"
+        }
+      ]
+    },
+    {
+      "id": "EC1-27",
+      "fixture": "byte-length-negative.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "a stream cannot have fewer than zero bytes",
+      "source": "the schema's own minimum",
+      "expect_errors": [
+        {
+          "keyword": "minimum",
+          "path": "streams/stdout/byte_length"
+        }
+      ]
+    },
+    {
+      "id": "EC1-28",
+      "fixture": "data-not-valid-base64.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "the byte contract's data must be decodable",
+      "source": "ADR-0029 decision 2, P0-2",
+      "note": "One character is the wrong length for any base64 group. A character-class filter admits it; the length-correct grammar does not.",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "streams/stdout/data"
+        }
+      ]
+    },
+    {
+      "id": "EC1-29",
+      "fixture": "data-bare-padding.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "the byte contract's data must be decodable",
+      "source": "ADR-0029 decision 2, P0-2",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "streams/stdout/data"
+        }
+      ]
+    },
+    {
+      "id": "EC1-30",
+      "fixture": "stream-sha256-truncated.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "a stream digest that cannot be re-derived",
+      "source": "M3-PLAN.md §2 N2's byte contract",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "streams/stdout/sha256"
+        }
+      ]
+    },
+    {
+      "id": "EC1-31",
+      "fixture": "environment-dump-over-cap.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "environment is a declared subset, not a dump",
+      "source": "M3-PLAN.md §2 N2 lists environment among canonical output; the cap is the schema's own",
+      "note": "EXTENDS the base's two declared variables rather than replacing them, so the cap is the only thing that changed. Not spec §4's identifier rule, which concerns repository and project identifiers; the reasons are unbounded record growth and copying secrets into a committed artifact.",
+      "expect_errors": [
+        {
+          "keyword": "maxProperties",
+          "path": "invocation/environment"
+        }
+      ]
+    },
+    {
+      "id": "EC1-32",
+      "fixture": "missing-inputs.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "pinned-SHA inputs are canonical output, not optional",
+      "source": "M3-PLAN.md §2 N2; friction #108",
+      "note": "Shares the (root) required locus; see known_limitation.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "(root)"
+        }
+      ]
+    },
+    {
+      "id": "EC1-33",
+      "fixture": "missing-platform.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "BP-03's schema-expressible half — a capture must name where it ran",
+      "source": "M3-PLAN.md §2 N2/N3 — green on Windows AND WSL",
+      "note": "A dual-platform claim is read from two captures each naming its platform. The cross-document half of BP-03 is NOT expressible here; see DETERMINACY-REPORT.md.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "(root)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "P2-S1-gate0-diffstat",
+  "generator": {
+    "name": "gatebraid-evidence",
+    "version": "0.1.0",
+    "source_sha256": "56cb1bc70130e5094cab2a178130a48d65968d6eb13c20d886be770204773909"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "diff",
+      "--shortstat",
+      "0a1b2c3d4e5f60718293a4b5c6d7e8f901234567"
+    ],
+    "cwd": {
+      "path": "D:/repo/worktree",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GIT_CONFIG_NOSYSTEM": "0",
+      "LC_ALL": "C"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 18,
+      "sha256": "e0e37e1ad8a946f8f21ff87f2b58a1b93cf77d67610a46196ec46d1e8c4e4b68",
+      "data": "R2F0ZSAwIOKAlCBwYXNzZWQK",
+      "rendered": {
+        "decode_codec": "cp936",
+        "decode_result": "replaced",
+        "text": "Gate 0 鈥� passed\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": ""
+    }
+  },
+  "started_at": "2026-08-12T22:10:00Z",
+  "ended_at": "2026-08-12T22:10:01Z",
+  "inputs": [
+    {
+      "path": "src/ready.py",
+      "sha256": "50cfcba2a66b7bd6fffe4aabfed70918c4be193e3388ae979f7267fc0b1b673e"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "10.0.26200",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "MUST FAIL. BP-01: the decode did not round trip and the record does not say what went wrong. A silent lossy rendering is what the derived field exists to prevent. Single mutation of valid-cp936-lossy-decode.json; every other field is that fixture's, so the recorded loci are exactly this defect's."
+}
