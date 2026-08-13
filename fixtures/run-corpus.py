@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the Gatebraid N1 fixture corpora and assert every recorded expectation.
+"""Run the Gatebraid fixture corpora and assert every recorded expectation.
 
 This is the corpus RUNNER, not an evidence instrument: it neither generates nor
 validates gate evidence, and it is neither N2 nor N3. Its only job is to make the
@@ -12,7 +12,7 @@ Reads fixtures/CORPORA.json, then each corpus's EXPECTATIONS.json, validates eac
 fixture against its declared schema, and requires the recorded outcome exactly:
 
   expect: valid    -> zero validation errors
-  expect: invalid  -> the observed (keyword, path) loci EQUAL the recorded set
+  expect: invalid  -> the observed loci EQUAL the recorded set
 
 Equality, not containment, in both directions:
   * a recorded locus that does not fire  -> rejected for the wrong reason
@@ -24,23 +24,39 @@ every discovered corpus is declared, and every fixture file in a corpus
 directory is referenced by a case. Discovery alone cannot detect what was never
 added.
 
-Findings are reported by keyword and path, never by echoing the offending value
-into the output (spec §4: a checker never quotes what it forbids into a record).
+A LOCUS IS (keyword, path, property)
+------------------------------------
+Amended at M3 batch N1C (A3). Previously a locus was (keyword, path), which
+could not say WHICH required property was missing: three fixtures removing three
+different top-level keys all recorded `required@(root)`, so a validator that
+rejected one of them for another's reason still passed. `jsonschema` emits one
+error per missing property and names it in the message, so `required` loci now
+carry that property and are checked in both directions like any other.
+
+The manifest must therefore record `property` on every `required` expectation
+and must NOT record it on any other keyword — both are structure errors. A key
+the runner ignores would read as coverage it does not enforce, which is the
+failure this amendment exists to remove, not to relocate.
+
+Findings are reported by keyword, path and property, never by echoing the
+offending value into the output (spec §4: a checker never quotes what it forbids
+into a record).
 
 Exit status decides, not the printed text (spec §4).
   0 = every expectation held
-  1 = an EXPECTATION failed (a mutation not killed, a valid case broken, wrong
-      or extra loci)
+  1 = an EXPECTATION failed (a mutation not killed, a valid case broken, wrong,
+      missing or extra loci)
   2 = a CORPUS-STRUCTURE or usage error (missing/malformed manifest, fixture or
-      schema; undeclared or unreferenced file). Distinct from 1 on purpose: "the
-      corpus is broken" and "the corpus caught something" are different findings
-      and a single non-zero code would conflate them.
+      schema; undeclared or unreferenced file; a malformed expectation). Distinct
+      from 1 on purpose: "the corpus is broken" and "the corpus caught something"
+      are different findings and one non-zero code would conflate them.
 """
 
 from __future__ import annotations
 
 import json
 import pathlib
+import re
 import sys
 
 try:
@@ -55,6 +71,16 @@ FIXTURES = ROOT / "fixtures"
 
 EXPECT_FAIL = 1
 STRUCTURE = 2
+
+# jsonschema's required-error message names the one property this error is about.
+# The instance-vs-required set difference cannot be used: it yields every missing
+# property on every one of the per-property errors.
+# Either quote style: repr() switches to double quotes when the property name
+# itself contains a single quote, and a missed match must be a STRUCTURE error
+# (the loader's wording changed) rather than an expectation failure.
+_REQUIRED_MSG = re.compile(
+    r"^(?P<q>['\"])(?P<prop>.+?)(?P=q) is a required property$"
+)
 
 
 class StructureError(Exception):
@@ -72,15 +98,52 @@ def load_json(path: pathlib.Path, what: str):
         raise StructureError(f"{what} is not valid JSON: {path.relative_to(ROOT)} ({e})")
 
 
-def loci(errors) -> set[tuple[str, str]]:
-    return {
-        (e.validator, "/".join(str(p) for p in e.absolute_path) or "(root)")
-        for e in errors
-    }
+def locus(err) -> tuple[str, str, str | None]:
+    path = "/".join(str(p) for p in err.absolute_path) or "(root)"
+    prop = None
+    if err.validator == "required":
+        m = _REQUIRED_MSG.match(err.message)
+        if m is None:
+            # The loader's message wording changed. That is the corpus being
+            # unreadable, not an expectation failing, so it must exit 2 — an
+            # earlier form returned a marker and reached exit 1, conflating the
+            # two classes at the one point this code exists to keep apart.
+            raise StructureError(
+                "cannot determine which property a 'required' error names; the "
+                "validator's message wording is not the one this runner parses"
+            )
+        prop = m.group("prop")
+    return (err.validator, path, prop)
 
 
-def fmt(pairs) -> str:
-    return ", ".join(f"{k}@{p}" for k, p in sorted(pairs))
+def loci(errors) -> set[tuple[str, str, str | None]]:
+    return {locus(e) for e in errors}
+
+
+def fmt(triples) -> str:
+    out = []
+    for k, p, prop in sorted(triples, key=lambda t: (t[0], t[1], t[2] or "")):
+        out.append(f"{k}@{p}:{prop}" if prop is not None else f"{k}@{p}")
+    return ", ".join(out)
+
+
+def expected_locus(case_id: str, e: dict) -> tuple[str, str, str | None]:
+    for key in ("keyword", "path"):
+        if key not in e:
+            raise StructureError(f"{case_id}: expectation missing {key!r}")
+    kw = e["keyword"]
+    has_prop = "property" in e
+    if kw == "required" and not has_prop:
+        raise StructureError(
+            f"{case_id}: a 'required' expectation must record which property is "
+            f"missing (path {e['path']!r})"
+        )
+    if kw != "required" and has_prop:
+        raise StructureError(
+            f"{case_id}: 'property' is only meaningful on a 'required' "
+            f"expectation, not on {kw!r}"
+        )
+    return (kw, e["path"], e.get("property"))
 
 
 def run_corpus(corpus_dir: pathlib.Path) -> tuple[int, int]:
@@ -95,7 +158,6 @@ def run_corpus(corpus_dir: pathlib.Path) -> tuple[int, int]:
     if not isinstance(cases, list) or not cases:
         raise StructureError(f"manifest has no cases: {exp_path.relative_to(ROOT)}")
 
-    # Every fixture file present must be referenced by a case (finding 9).
     referenced = {c.get("fixture") for c in cases}
     on_disk = {p.name for p in corpus_dir.glob("*.json")} - {"EXPECTATIONS.json"}
     orphans = on_disk - referenced
@@ -129,7 +191,7 @@ def run_corpus(corpus_dir: pathlib.Path) -> tuple[int, int]:
         if case["expect"] != "invalid":
             raise StructureError(f"{cid}: expect must be 'valid' or 'invalid'")
 
-        required = {(e["keyword"], e["path"]) for e in case["expect_errors"]}
+        required = {expected_locus(cid, e) for e in case["expect_errors"]}
         if not required:
             raise StructureError(f"{cid}: an invalid case records no expected error")
         if not observed:
@@ -171,7 +233,6 @@ def main(argv: list[str]) -> int:
             )
         for miss in sorted(built - discovered):
             raise StructureError(f"declared corpus {miss!r} does not exist")
-        # A planned corpus that has appeared must carry a manifest and be promoted.
         for p in sorted(planned & discovered):
             raise StructureError(
                 f"planned corpus {p!r} now exists: give it an EXPECTATIONS.json "
