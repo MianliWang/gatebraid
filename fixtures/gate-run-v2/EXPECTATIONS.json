@@ -2,7 +2,7 @@
   "corpus": "gate-run-v2",
   "corpus_version": "v1",
   "frozen_by": "commit SHA recorded in APPROVALS-M3-N1 at the freeze; see M3-PLAN.md §2 N1 Accept-when",
-  "description": "Expected outcomes for the gatebraid/gate-run@2 fixture set. Every expectation below was MEASURED against the frozen schemas with CPython 3.12.2 / jsonschema 4.23.0 and recorded from that run, not asserted from reading. An invalid case names the EXACT AND COMPLETE set of (keyword, path) loci: the runner requires every recorded locus to fire and rejects any locus that fires but was not recorded. A fixture rejected for the wrong reason is not a kill, and an over-mutated fixture that fails for four reasons while the corpus records one is a defect the corpus must surface rather than absorb.",
+  "description": "Expected outcomes for the gatebraid/gate-run@2 fixture set. Every expectation below was MEASURED against the frozen schemas with CPython 3.12.2 / jsonschema 4.23.0 and recorded from that run, not asserted from reading. An invalid case names the EXACT AND COMPLETE set of (keyword, path, property) loci: the runner requires every recorded locus to fire and rejects any locus that fires but was not recorded. A fixture rejected for the wrong reason is not a kill, and an over-mutated fixture that fails for four reasons while the corpus records one is a defect the corpus must surface rather than absorb. Amended at M3 batch N1C (A3): a locus is now (keyword, path, property) and every `required` expectation records WHICH property is missing, derived from the validator's own per-property error rather than written by hand. This manifest was rewritten by that amendment even though its own cases were not the ones the ruling named: the runner raises a structure error on any `required` expectation lacking `property`, so leaving it untouched would have made the whole corpus exit 2. A forced consequence, recorded rather than presented as a discretionary extension.",
   "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
   "cases": [
     {
@@ -32,9 +32,19 @@
       "source": "M3-PLAN.md §2 N1 — 'an @1-shaped record rejected under @2'",
       "note": "Same document as GR2-02 under the other schema. Three independent grounds fire, and all three are required: a validator that caught only the schema const would pass an @1-shaped body that had been relabelled @2.",
       "expect_errors": [
-        { "keyword": "const", "path": "schema" },
-        { "keyword": "pattern", "path": "base_sha" },
-        { "keyword": "required", "path": "approvals/0" }
+        {
+          "keyword": "const",
+          "path": "schema"
+        },
+        {
+          "keyword": "pattern",
+          "path": "base_sha"
+        },
+        {
+          "keyword": "required",
+          "path": "approvals/0",
+          "property": "author"
+        }
       ]
     },
     {
@@ -45,7 +55,11 @@
       "class": "approval author structurally required",
       "source": "M3-PLAN.md §2 N1 — 'a missing approval author rejected'; ADR-0029 P1-1; friction #71",
       "expect_errors": [
-        { "keyword": "required", "path": "approvals/0" }
+        {
+          "keyword": "required",
+          "path": "approvals/0",
+          "property": "author"
+        }
       ]
     },
     {
@@ -56,7 +70,10 @@
       "class": "full 40-hex SHA required",
       "source": "M3-PLAN.md §2 N1 — 'a short SHA rejected'; ADR-0029 P1-1",
       "expect_errors": [
-        { "keyword": "pattern", "path": "base_sha" }
+        {
+          "keyword": "pattern",
+          "path": "base_sha"
+        }
       ]
     },
     {
@@ -67,7 +84,10 @@
       "class": "bootstrap exception must carry its authorizing approval",
       "source": "M3-PLAN.md §2, N2/N3 bootstrap boundary. EXTENDS the five cases named in N1.",
       "expect_errors": [
-        { "keyword": "contains", "path": "approvals" }
+        {
+          "keyword": "contains",
+          "path": "approvals"
+        }
       ]
     },
     {
@@ -87,7 +107,11 @@
       "class": "bootstrap exception must point at its captures",
       "source": "M3-PLAN.md §2 — 'exact outputs and query identities recorded ... by checks[].output_ref pointer to committed capture files'. Constitutive of the boundary, not decorative.",
       "expect_errors": [
-        { "keyword": "required", "path": "checks/0" }
+        {
+          "keyword": "required",
+          "path": "checks/0",
+          "property": "output_ref"
+        }
       ]
     },
     {
@@ -98,7 +122,11 @@
       "class": "a stopped gate must be recordable as stopped",
       "source": "ADR-0013; ADR-0019. @1 declared this in a description and enforced it with nothing. BEYOND the four deltas ADR-0029 P1-1 enumerates — flagged for operator ratification at approval.",
       "expect_errors": [
-        { "keyword": "required", "path": "(root)" }
+        {
+          "keyword": "required",
+          "path": "(root)",
+          "property": "stop_record"
+        }
       ]
     },
     {
@@ -109,7 +137,10 @@
       "class": "#94 conditional, carried from @1",
       "source": "friction #94, via @1's allOf. Added at the N1 internal review: the conditional was carried into @2 having never had a fixture in either schema, so it was trusted on reading alone.",
       "expect_errors": [
-        { "keyword": "const", "path": "result" }
+        {
+          "keyword": "const",
+          "path": "result"
+        }
       ]
     }
   ]

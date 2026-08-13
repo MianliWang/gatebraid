@@ -2,7 +2,7 @@
   "corpus": "metrics-v1",
   "corpus_version": "v1",
   "frozen_by": "commit SHA recorded in APPROVALS-M3-N1 at the freeze; see M3-PLAN.md §2 N1 Accept-when",
-  "description": "Expected outcomes for gatebraid/metrics@1. This corpus exists because the internal N1 review found the schema had been written with no fixtures at all: its central three-result-state separation — described in the schema as 'the whole point of this schema' — was trusted having never been shown able to fail, which ADR-0028 §1 forbids in one sentence ('a pass from a never-falsified check is not evidence'). Every expectation below was MEASURED with CPython 3.12.2 / jsonschema 4.23.0. Loci are exact and complete; the runner rejects both a missing locus and an unrecorded one.",
+  "description": "Expected outcomes for gatebraid/metrics@1. This corpus exists because the internal N1 review found the schema had been written with no fixtures at all: its central three-result-state separation — described in the schema as 'the whole point of this schema' — was trusted having never been shown able to fail, which ADR-0028 §1 forbids in one sentence ('a pass from a never-falsified check is not evidence'). Every expectation below was MEASURED with CPython 3.12.2 / jsonschema 4.23.0. Loci are exact and complete; the runner rejects both a missing locus and an unrecorded one. Amended at M3 batch N1C (A3): a locus is now (keyword, path, property) and every `required` expectation records WHICH property is missing, derived from the validator's own per-property error rather than written by hand. This manifest was rewritten by that amendment even though its own cases were not the ones the ruling named: the runner raises a structure error on any `required` expectation lacking `property`, so leaving it untouched would have made the whole corpus exit 2. A forced consequence, recorded rather than presented as a discretionary extension.",
   "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
   "cases": [
     {
@@ -51,7 +51,10 @@
       "source": "convergence-metrics-v2.md §5 — the three result states, never conflated",
       "note": "The headline conflation: a metric whose unit never ran, reported as the number zero.",
       "expect_errors": [
-        { "keyword": "not", "path": "metrics/0" }
+        {
+          "keyword": "not",
+          "path": "metrics/0"
+        }
       ]
     },
     {
@@ -62,7 +65,11 @@
       "class": "a measured value names its command",
       "source": "convergence-metrics-v2.md §4; ADR-0018 §2a",
       "expect_errors": [
-        { "keyword": "required", "path": "metrics/0" }
+        {
+          "keyword": "required",
+          "path": "metrics/0",
+          "property": "command"
+        }
       ]
     },
     {
@@ -73,7 +80,10 @@
       "class": "undefined_zero_denominator requires an actually empty denominator",
       "source": "convergence-metrics-v2.md §5",
       "expect_errors": [
-        { "keyword": "const", "path": "metrics/0/denominator" }
+        {
+          "keyword": "const",
+          "path": "metrics/0/denominator"
+        }
       ]
     },
     {
@@ -85,7 +95,10 @@
       "source": "convergence-metrics-v2.md §5",
       "note": "A state defined as 'the unit never executed' carrying counts from units that evidently did.",
       "expect_errors": [
-        { "keyword": "not", "path": "metrics/0" }
+        {
+          "keyword": "not",
+          "path": "metrics/0"
+        }
       ]
     },
     {
@@ -96,7 +109,11 @@
       "class": "slice scope requires a finalization event",
       "source": "convergence-metrics-v2.md §5, Slice-scoped",
       "expect_errors": [
-        { "keyword": "required", "path": "(root)" }
+        {
+          "keyword": "required",
+          "path": "(root)",
+          "property": "finalized"
+        }
       ]
     },
     {
@@ -107,7 +124,10 @@
       "class": "finalization is slice-scoped only",
       "source": "convergence-metrics-v2.md §5 defines the finalization event for slice metrics and for nothing else",
       "expect_errors": [
-        { "keyword": "not", "path": "(root)" }
+        {
+          "keyword": "not",
+          "path": "(root)"
+        }
       ]
     },
     {
@@ -119,7 +139,10 @@
       "source": "convergence-metrics-v2.md §5 — 'no generator defines its own output contract'",
       "note": "mutation_kill_rate is milestone-scoped. Before the internal review the name field was an unconstrained string, so this document validated.",
       "expect_errors": [
-        { "keyword": "enum", "path": "metrics/0/name" }
+        {
+          "keyword": "enum",
+          "path": "metrics/0/name"
+        }
       ]
     },
     {
@@ -130,7 +153,11 @@
       "class": "a metrics file must name its subject",
       "source": "convergence-metrics-v2.md §4's one-source clause; §5's closure-criteria consumption",
       "expect_errors": [
-        { "keyword": "required", "path": "subject" }
+        {
+          "keyword": "required",
+          "path": "subject",
+          "property": "slice_id"
+        }
       ]
     }
   ]

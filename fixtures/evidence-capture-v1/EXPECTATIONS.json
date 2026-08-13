@@ -2,9 +2,9 @@
   "corpus": "evidence-capture-v1",
   "corpus_version": "v1",
   "frozen_by": "not frozen; the freeze follows the external read-only review (M3-PLAN.md §2 N1)",
-  "description": "Expected outcomes for gatebraid/evidence-capture@1, the third frozen interface — which shipped at N1 with no fixtures at all, the same gap the N1 internal review found in metrics@1. Every invalid case is a SINGLE mutation of its NEAREST VALID SIBLING, named per case: valid-argv-capture.json for most, valid-shell-capture-declared.json for EC1-07/25, valid-cp936-lossy-decode.json for EC1-08/09/12, valid-with-outputs.json for EC1-18. Every expectation was MEASURED with CPython 3.12.2 / jsonschema 4.23.0. Byte streams carry REAL bytes: base64, byte_length and sha256 are computed from the content, and the cp936 rendering in EC1-03 was produced by letting the decode raise and recording CPython's own exception text and offset. The schema cannot check those relations and says so; N3 will. An internally incoherent fixture would be a bad fixture regardless of what the schema can see.",
+  "description": "Expected outcomes for gatebraid/evidence-capture@1, the third frozen interface — which shipped at N1 with no fixtures at all, the same gap the N1 internal review found in metrics@1. Every invalid case is a SINGLE mutation of its NEAREST VALID SIBLING, named per case: valid-argv-capture.json for most, valid-shell-capture-declared.json for EC1-07/25, valid-cp936-lossy-decode.json for EC1-08/09/12, valid-with-outputs.json for EC1-18. Every expectation was MEASURED with CPython 3.12.2 / jsonschema 4.23.0; `required` expectations additionally record WHICH property is missing, derived from the validator's own per-property error rather than written by hand (M3 batch N1C, A3). Byte streams carry REAL bytes: base64, byte_length and sha256 are computed from the content, and the cp936 rendering in EC1-03 was produced by letting the decode raise and recording CPython's own exception text and offset. The schema cannot check those relations and says so; N3 will. An internally incoherent fixture would be a bad fixture regardless of what the schema can see.",
   "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
-  "known_limitation": "TWO limitations, both recorded rather than worked around. (1) LOCUS GRANULARITY. A locus is (keyword, path), which cannot say WHICH required property is missing, so EC1-15/32/33 all record required@(root); EC1-08/09/10 all record required@streams/stdout/rendered; and required@invocation (EC1-07) would equally cover a missing cwd or argv. A validator rejecting one of these for another's reason still passes. The machine-checkable part cannot be narrowed without changing the runner's locus granularity, and the runner is committed at blob f64e3801 — outside this batch's authority. A human-readable narrowing IS available without touching the runner, since run-corpus.py reads only the keyword and path keys and ignores extras; adding a 'property' key per expectation is queued rather than done, because it would read as coverage the runner does not actually enforce. (2) FOUR CONSTRAINTS THE SCHEMA DOES NOT ENFORCE, so no fixture can falsify them and their absence must be stated instead: format: date-time is not asserted at all, because run-corpus.py constructs Draft202012Validator with no format_checker, so started_at: 'never' validates; binary_mode_write: false validates although the schema's own description says text mode would silently invalidate every byte_length and sha256; zero_lone_cr.asserted: false validates although the description calls it a finding rather than a pass; and ended_at before started_at validates. Under ADR-0028 §1 an unfalsifiable constraint that reads as enforced is worse than an absent one, so these are named here and escalated in the batch's Part A.",
+  "known_limitation": "THREE limitations, all MEASURED at M3 batch N1C by sweeping every corpus for identical expected-locus sets. (1) COLLIDING LOCUS SETS REMAIN, and an earlier draft of this note both understated their number and mis-called the one it did name irreducible. Measured, across all three corpora: EC1-09/EC1-10 share required@streams/stdout/rendered:text — separable by schema path (EC1-09 -> properties/streams/properties/stdout/properties/rendered/allOf/2/then/required; EC1-10 -> properties/streams/properties/stdout/properties/rendered/allOf/3/then/required); EC1-11/EC1-12 share not@streams/stdout/rendered — separable by schema path (EC1-11 -> properties/streams/properties/stdout/properties/rendered/allOf/3/then/not; EC1-12 -> properties/streams/properties/stdout/properties/rendered/allOf/1/then/not); EC1-28/EC1-29 share pattern@streams/stdout/data — NOT separable by schema path (EC1-28 -> properties/streams/properties/stdout/properties/data/pattern; EC1-29 -> properties/streams/properties/stdout/properties/data/pattern); MT1-05/MT1-08 share not@metrics/0 — separable by schema path (MT1-05 -> properties/metrics/items/allOf/0/else/not; MT1-08 -> properties/metrics/items/allOf/2/then/not). Three of these are separable by the error's `absolute_schema_path`, which the runner already holds on every error object; only the pair failing the SAME constraint on two different values is irreducible by any locus refinement. Extending the locus tuple to carry the schema path is a change to a committed runner beyond this batch's A3 scope and is escalated, not taken. (2) `ended_at >= started_at` REMAINS unenforceable: it compares two sibling properties and no JSON Schema keyword relates one instance value to another, so a capture whose end precedes its start validates here and must be rejected by N3's re-derivation — recorded in the schema's own `ended_at` description as that duty. (3) The timestamp patterns enforce RFC3339 LEXICAL FORM only: field ranges are unchecked, so a month of 13, an hour of 99 or an offset of +99:99 matches, as does a calendar-invalid date. Measured, not assumed. SCOPE NOTE ON THE RULING: the approval names 'the four timestamp fields'; `gatebraid/evidence-capture@1` carries TWO date-time fields. Read as the four CONSTRAINTS the correct-course names — both timestamps plus binary_mode_write and zero_lone_cr.asserted — which is the only reading under which the count is four, and which produces EC1-34 through EC1-37. Recorded rather than applied silently. Those four are now falsified; `format: date-time` was removed from both timestamp fields rather than retained as an annotation, because a validator built with a FormatChecker on a host carrying rfc3339_validator emits an additional `format` locus and the corpus's own equality check would then fail.",
   "cases": [
     {
       "id": "EC1-01",
@@ -74,7 +74,8 @@
       "expect_errors": [
         {
           "keyword": "required",
-          "path": "invocation"
+          "path": "invocation",
+          "property": "shell_semantics"
         }
       ]
     },
@@ -88,7 +89,8 @@
       "expect_errors": [
         {
           "keyword": "required",
-          "path": "streams/stdout/rendered"
+          "path": "streams/stdout/rendered",
+          "property": "decode_error"
         }
       ]
     },
@@ -99,11 +101,12 @@
       "expect": "invalid",
       "class": "BP-01 — lossy with nothing to inspect",
       "source": "M3-PLAN.md §2 N2's derived-field contract",
-      "note": "decode_error is kept byte-for-byte from the valid sibling so removing text is the only change. Shares EC1-08/EC1-10's locus; see known_limitation.",
+      "note": "decode_error is kept byte-for-byte from the valid sibling so removing text is the only change. Shares EC1-10's locus after narrowing (EC1-08 no longer collides); see known_limitation's collision table.",
       "expect_errors": [
         {
           "keyword": "required",
-          "path": "streams/stdout/rendered"
+          "path": "streams/stdout/rendered",
+          "property": "text"
         }
       ]
     },
@@ -118,7 +121,8 @@
       "expect_errors": [
         {
           "keyword": "required",
-          "path": "streams/stdout/rendered"
+          "path": "streams/stdout/rendered",
+          "property": "text"
         }
       ]
     },
@@ -187,11 +191,11 @@
       "expect": "invalid",
       "class": "BP-02 — silence about the guard is not having run it",
       "source": "ADR-0019's absent-versus-none_configured distinction; friction #108",
-      "note": "Shares the (root) required locus with EC1-26/27; see known_limitation.",
       "expect_errors": [
         {
           "keyword": "required",
-          "path": "(root)"
+          "path": "(root)",
+          "property": "self_assertions"
         }
       ]
     },
@@ -432,11 +436,11 @@
       "expect": "invalid",
       "class": "pinned-SHA inputs are canonical output, not optional",
       "source": "M3-PLAN.md §2 N2; friction #108",
-      "note": "Shares the (root) required locus; see known_limitation.",
       "expect_errors": [
         {
           "keyword": "required",
-          "path": "(root)"
+          "path": "(root)",
+          "property": "inputs"
         }
       ]
     },
@@ -451,7 +455,64 @@
       "expect_errors": [
         {
           "keyword": "required",
-          "path": "(root)"
+          "path": "(root)",
+          "property": "platform"
+        }
+      ]
+    },
+    {
+      "id": "EC1-34",
+      "fixture": "timestamp-not-rfc3339.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "A2 — started_at must be RFC3339",
+      "source": "M3-PLAN.md §2 N2 timestamps; operator ruling A2 (M3 batch N1C)",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "started_at"
+        }
+      ]
+    },
+    {
+      "id": "EC1-35",
+      "fixture": "ended-at-not-rfc3339.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "A2 — ended_at must be RFC3339",
+      "source": "M3-PLAN.md §2 N2 timestamps; operator ruling A2 (M3 batch N1C)",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "ended_at"
+        }
+      ]
+    },
+    {
+      "id": "EC1-36",
+      "fixture": "binary-mode-write-false.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "A2 — binary-mode write is not optional",
+      "source": "M3-PLAN.md §2 N2 binary writes; friction #108; operator ruling A2",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "self_assertions/binary_mode_write"
+        }
+      ]
+    },
+    {
+      "id": "EC1-37",
+      "fixture": "lone-cr-guard-not-asserted.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "A2 — the guard must have run",
+      "source": "M3-PLAN.md §2 N2; friction #108; ADR-0028 §4; operator ruling A2",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "self_assertions/zero_lone_cr/asserted"
         }
       ]
     }
