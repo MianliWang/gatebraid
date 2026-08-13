@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "gatebraid/evidence-capture@1",
   "title": "Gatebraid evidence capture record (gatebraid/evidence-capture@1)",
-  "description": "The canonical, machine-readable record of ONE command execution captured as evidence. Frozen at M3 batch N1 as one of the three shared interfaces, BEFORE any N2/N3 authoring (M3-PLAN.md §2 N1). The byte contract below is the P0-2 class fixed AT SPECIFICATION and deliberately not left to the implementer: N2 implements this contract, it does not define it, and N3 re-derives verdicts from documents of this shape plus the frozen schemas alone. Markdown renderings of a capture are a DERIVED VIEW and never a second hand-written authority (M3-PLAN.md §2 N2).",
+  "description": "The canonical, machine-readable record of ONE command execution captured as evidence. Frozen at M3 batch N1 as one of the three shared interfaces, BEFORE any N2/N3 authoring (M3-PLAN.md §2 N1). The byte contract below is the P0-2 class fixed AT SPECIFICATION and deliberately not left to the implementer: N2 implements this contract, it does not define it, and N3 re-derives verdicts from documents of this shape plus the frozen schemas alone. Markdown renderings of a capture are a DERIVED VIEW and never a second hand-written authority (M3-PLAN.md §2 N2). AMENDED at M3 batch N1C by approved correct-course (M3-PLAN.md §2 N1 routes any interface change through one): four constraints previously read as enforced and were not — the two timestamps now carry enforcing patterns and no longer carry `format`, whose enforcement was measured to depend on the caller and on an installed package, and binary_mode_write and self_assertions.zero_lone_cr.asserted are now `const: true`. The one remaining unenforceable relation, ended_at >= started_at, is named in ended_at's own description as an N3 duty rather than left implicit. The $id is unchanged: this is a correct-course on @1, not a version bump.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -31,11 +31,21 @@
     "generator": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "version", "source_sha256"],
+      "required": [
+        "name",
+        "version",
+        "source_sha256"
+      ],
       "description": "Which committed instrument produced this record. A capture whose producer cannot be named cannot be re-run (ADR-0028: committed, falsified, reused).",
       "properties": {
-        "name": { "type": "string", "minLength": 1 },
-        "version": { "type": "string", "minLength": 1 },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
         "source_sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$",
@@ -46,31 +56,51 @@
     "invocation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["form", "argv", "cwd"],
+      "required": [
+        "form",
+        "argv",
+        "cwd"
+      ],
       "description": "argv-form is the default; a shell invocation must declare its platform and exit-code semantics, because `pipefail` and friends decide whether a non-zero exit is even observable (M3-PLAN.md §6, 'wrong pipeline exit code').",
       "properties": {
         "form": {
-          "enum": ["argv", "shell"],
+          "enum": [
+            "argv",
+            "shell"
+          ],
           "description": "argv: executed directly, no shell involved. shell: a shell interpreted the string, and shell_semantics is then required."
         },
         "argv": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "The exact argument vector. For form: shell this is the shell and its arguments, the command string included."
         },
         "shell_semantics": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["shell", "pipefail", "exit_code_source"],
+          "required": [
+            "shell",
+            "pipefail",
+            "exit_code_source"
+          ],
           "properties": {
-            "shell": { "type": "string", "minLength": 1 },
+            "shell": {
+              "type": "string",
+              "minLength": 1
+            },
             "pipefail": {
               "type": "boolean",
               "description": "Whether pipefail was in force. False means a pipeline's exit code is its LAST element's, so a failing upstream stage is invisible — a captured exit code of 0 then proves nothing about the upstream command."
             },
             "exit_code_source": {
-              "enum": ["process", "pipeline_last", "pipeline_any_failure"],
+              "enum": [
+                "process",
+                "pipeline_last",
+                "pipeline_any_failure"
+              ],
               "description": "What the recorded exit_code actually measures."
             }
           }
@@ -78,12 +108,21 @@
         "cwd": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["path", "resolution"],
+          "required": [
+            "path",
+            "resolution"
+          ],
           "description": "cwd identity, not merely a string: two path-resolution domains disagreeing is a live defect class on this host (friction #127).",
           "properties": {
-            "path": { "type": "string", "minLength": 1 },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
             "resolution": {
-              "enum": ["absolute-verified", "as-supplied"],
+              "enum": [
+                "absolute-verified",
+                "as-supplied"
+              ],
               "description": "absolute-verified: resolved to an absolute path and confirmed to exist at capture time."
             }
           }
@@ -92,17 +131,29 @@
           "type": "object",
           "maxProperties": 32,
           "description": "Environment variables the capture declares as relevant, by name and value — a DECLARED SUBSET, never a whole-environment dump. Two independent reasons, neither of them spec §4's unbounded-identifier-listing rule, which is about repository and project identifiers and does not reach here: a full dump grows the record without bound, and it copies whatever secrets the environment happens to hold into a committed artifact. The cap makes 'subset' a property of the document rather than a hope about the implementer.",
-          "additionalProperties": { "type": "string" }
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
       "allOf": [
         {
           "$comment": "A shell invocation without declared semantics is an exit code nobody can interpret.",
           "if": {
-            "properties": { "form": { "const": "shell" } },
-            "required": ["form"]
+            "properties": {
+              "form": {
+                "const": "shell"
+              }
+            },
+            "required": [
+              "form"
+            ]
           },
-          "then": { "required": ["shell_semantics"] }
+          "then": {
+            "required": [
+              "shell_semantics"
+            ]
+          }
         }
       ]
     },
@@ -113,14 +164,29 @@
     "streams": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["stdout", "stderr"],
+      "required": [
+        "stdout",
+        "stderr"
+      ],
       "properties": {
-        "stdout": { "$ref": "#/$defs/byteStream" },
-        "stderr": { "$ref": "#/$defs/byteStream" }
+        "stdout": {
+          "$ref": "#/$defs/byteStream"
+        },
+        "stderr": {
+          "$ref": "#/$defs/byteStream"
+        }
       }
     },
-    "started_at": { "type": "string", "format": "date-time" },
-    "ended_at": { "type": "string", "format": "date-time" },
+    "started_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])",
+      "description": "A2 correct-course (M3 batch N1C). THE PATTERN IS THE ONLY ENFORCEMENT. `format: date-time` was REMOVED, not kept as an annotation: measured on this host (jsonschema 4.23.0, rfc3339_validator installed), a validator built WITH a FormatChecker rejects a non-timestamp here while one built without accepts it — so retaining the keyword would have left the corpus's own locus set dependent on a caller decision plus an installed package, which is the contingency this correct-course exists to remove. The ruling's stated ground was that format is 'a silent no-op absent an optional dependency'; on this host it is not a no-op, and the conclusion (use a pattern) is right for the portability reason rather than that one. WHAT THIS PATTERN ENFORCES, measured: the RFC3339 LEXICAL FORM only, case-insensitive in the date/time separator and the zone designator as RFC 5234 requires. FIELD RANGES ARE UNCHECKED — a month of 13, an mday of 45, an hour of 99 or an offset of +99:99 all match, as does a calendar-invalid date such as 2026-02-31. Range and calendar validity, and the ordering of this field against ended_at, are N3 re-derivation duties. The trailing anchor is (?![\\s\\S]) rather than $, because Python's re matches $ before a final newline while ECMA-262 (which JSON Schema specifies) does not; $ would have made the constraint stricter on a conforming validator than on the one this project runs."
+    },
+    "ended_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])",
+      "description": "As started_at: the pattern is the only enforcement, `format` is absent for the same measured reason, the check is of lexical form with field ranges unchecked, and the trailing anchor is (?![\\s\\S]). **`ended_at >= started_at` is NOT expressible in JSON Schema** — it compares two sibling properties and no keyword relates one instance value to another. Recorded here as an explicit N3 re-derivation duty rather than left to look enforced: a capture whose end precedes its start validates against this schema and must be rejected downstream."
+    },
     "inputs": {
       "type": "array",
       "default": [],
@@ -128,10 +194,19 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["path", "sha256"],
+        "required": [
+          "path",
+          "sha256"
+        ],
         "properties": {
-          "path": { "type": "string", "minLength": 1 },
-          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
         }
       }
     },
@@ -142,22 +217,49 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["path", "sha256", "byte_length"],
+        "required": [
+          "path",
+          "sha256",
+          "byte_length"
+        ],
         "properties": {
-          "path": { "type": "string", "minLength": 1 },
-          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-          "byte_length": { "type": "integer", "minimum": 0 }
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "byte_length": {
+            "type": "integer",
+            "minimum": 0
+          }
         }
       }
     },
     "platform": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["os", "os_release", "interpreter"],
+      "required": [
+        "os",
+        "os_release",
+        "interpreter"
+      ],
       "description": "N2 and N3 must be green on Windows AND WSL (M3-PLAN.md §2), so every capture names the platform it ran on. A dual-platform claim is read from two captures, never asserted by one.",
       "properties": {
-        "os": { "enum": ["windows", "wsl", "linux", "macos"] },
-        "os_release": { "type": "string", "minLength": 1 },
+        "os": {
+          "enum": [
+            "windows",
+            "wsl",
+            "linux",
+            "macos"
+          ]
+        },
+        "os_release": {
+          "type": "string",
+          "minLength": 1
+        },
         "interpreter": {
           "type": "string",
           "minLength": 1,
@@ -168,17 +270,23 @@
     "self_assertions": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["zero_lone_cr", "binary_mode_write"],
+      "required": [
+        "zero_lone_cr",
+        "binary_mode_write"
+      ],
       "description": "Guarded self-checks the generator ran on its OWN output as it wrote (#108, named in ADR-0028 §4). Each is a check that gates the write, not a claim added afterwards. The whole block is REQUIRED on the parent record: if it were optional, a capture silent about the guard and a capture that ran it would be the same document, which is the absent-versus-none_configured conflation ADR-0019 already removed at the check level.",
       "properties": {
         "zero_lone_cr": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["asserted", "count"],
+          "required": [
+            "asserted",
+            "count"
+          ],
           "properties": {
             "asserted": {
-              "type": "boolean",
-              "description": "True only if the assertion actually executed and gated the write. False means it did not run — which is a finding, not a pass."
+              "const": true,
+              "description": "A2 correct-course (M3 batch N1C): `const: true`, not merely a boolean. The previous form let a record state `false` and validate, while this description said false 'is a finding, not a pass' — the finding was expressible and never refused. A capture that did not run the guard is not a conforming capture; the honest way to record one is to not produce the record. The count constraint below still fires independently, so `asserted: false` and `asserted: true, count: 7` fail at distinct loci."
             },
             "count": {
               "type": "integer",
@@ -190,26 +298,45 @@
             {
               "$comment": "The record exists, so the write happened. asserted:true with count>0 therefore describes a state the guard is defined to make impossible, and a schema that admits it lets a generator report a guard it overrode.",
               "if": {
-                "properties": { "asserted": { "const": true } },
-                "required": ["asserted"]
+                "properties": {
+                  "asserted": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "asserted"
+                ]
               },
-              "then": { "properties": { "count": { "const": 0 } } }
+              "then": {
+                "properties": {
+                  "count": {
+                    "const": 0
+                  }
+                }
+              }
             }
           ]
         },
         "binary_mode_write": {
-          "type": "boolean",
-          "description": "The record was written in binary mode. Text mode on this host rewrites LF to CRLF and would silently invalidate every byte_length and sha256 above."
+          "const": true,
+          "description": "A2 correct-course (M3 batch N1C): `const: true`, not merely a boolean. The previous form let a record state `false` and validate, while this description said text mode 'would silently invalidate every byte_length and sha256 above' — a constraint that read as enforced and was not. The record exists, so the write happened; if it happened in text mode the digests above are already wrong and the document is not a capture. Same reasoning as zero_lone_cr above."
         }
       }
     },
-    "notes": { "type": "string" }
+    "notes": {
+      "type": "string"
+    }
   },
   "$defs": {
     "byteStream": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["encoding", "byte_length", "sha256", "data"],
+      "required": [
+        "encoding",
+        "byte_length",
+        "sha256",
+        "data"
+      ],
       "description": "THE BYTE CONTRACT (M3-PLAN.md §2 N2, the P0-2 remedy). A captured stream is carried as base64 of its RAW BYTES. The JSON document itself is UTF-8 and no raw byte is ever embedded directly in a JSON string — that is what made the producer/consumer contract inconsistent in the M2 tools, where the producer wrote platform-encoded stdout and the consumer forced UTF-8 (ADR-0029 decision 2, P0-2; friction #60). Any human-readable form of this stream lives in `rendered` and is DERIVED, never authoritative.",
       "properties": {
         "encoding": {
@@ -234,7 +361,10 @@
         "rendered": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["decode_codec", "decode_result"],
+          "required": [
+            "decode_codec",
+            "decode_result"
+          ],
           "description": "DERIVED VIEW ONLY — never authoritative, and never the thing a verdict is read from. It exists so a human can read the capture without decoding it by hand, and it records honestly when the decode did not round-trip.",
           "properties": {
             "decode_codec": {
@@ -243,7 +373,11 @@
               "description": "The codec attempted, e.g. 'utf-8' or 'cp936'. cp936 is this host's console default and the round trip through it is a §6 fixture class."
             },
             "decode_result": {
-              "enum": ["ok", "replaced", "failed"],
+              "enum": [
+                "ok",
+                "replaced",
+                "failed"
+              ],
               "description": "ok: clean round trip. replaced: decoded with replacement characters, so `text` is LOSSY and differs from the bytes. failed: no text produced."
             },
             "decode_error": {
@@ -259,36 +393,83 @@
             {
               "$comment": "A non-clean decode that does not say what went wrong is a silent lossy render — the class this field exists to prevent.",
               "if": {
-                "properties": { "decode_result": { "enum": ["replaced", "failed"] } },
-                "required": ["decode_result"]
+                "properties": {
+                  "decode_result": {
+                    "enum": [
+                      "replaced",
+                      "failed"
+                    ]
+                  }
+                },
+                "required": [
+                  "decode_result"
+                ]
               },
-              "then": { "required": ["decode_error"] }
+              "then": {
+                "required": [
+                  "decode_error"
+                ]
+              }
             },
             {
               "$comment": "A failed decode cannot also carry text.",
               "if": {
-                "properties": { "decode_result": { "const": "failed" } },
-                "required": ["decode_result"]
+                "properties": {
+                  "decode_result": {
+                    "const": "failed"
+                  }
+                },
+                "required": [
+                  "decode_result"
+                ]
               },
-              "then": { "not": { "required": ["text"] } }
+              "then": {
+                "not": {
+                  "required": [
+                    "text"
+                  ]
+                }
+              }
             },
             {
               "$comment": "A replaced decode MUST carry the lossy text. Without this, 'replaced' can be recorded with nothing to inspect, and the reader cannot see what was lost.",
               "if": {
-                "properties": { "decode_result": { "const": "replaced" } },
-                "required": ["decode_result"]
+                "properties": {
+                  "decode_result": {
+                    "const": "replaced"
+                  }
+                },
+                "required": [
+                  "decode_result"
+                ]
               },
-              "then": { "required": ["text"] }
+              "then": {
+                "required": [
+                  "text"
+                ]
+              }
             },
             {
               "$comment": "A clean decode carries its text and CANNOT carry an error: 'ok' plus decode_error is a self-contradicting record. M3-PLAN §2 N2 names decode_codec, decode_result AND decode_error as the derived field's contents; making decode_error conditional on a non-clean result is a deliberate narrowing, recorded here rather than left silent, because a clean decode has no error to report and a required-but-empty field invites a placeholder.",
               "if": {
-                "properties": { "decode_result": { "const": "ok" } },
-                "required": ["decode_result"]
+                "properties": {
+                  "decode_result": {
+                    "const": "ok"
+                  }
+                },
+                "required": [
+                  "decode_result"
+                ]
               },
               "then": {
-                "required": ["text"],
-                "not": { "required": ["decode_error"] }
+                "required": [
+                  "text"
+                ],
+                "not": {
+                  "required": [
+                    "decode_error"
+                  ]
+                }
               }
             }
           ]
