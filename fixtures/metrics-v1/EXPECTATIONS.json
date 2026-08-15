@@ -2,7 +2,7 @@
   "corpus": "metrics-v1",
   "corpus_version": "v1",
   "frozen_by": "commit SHA recorded in APPROVALS-M3-N1 at the freeze; see M3-PLAN.md §2 N1 Accept-when",
-  "description": "Expected outcomes for gatebraid/metrics@1. This corpus exists because the internal N1 review found the schema had been written with no fixtures at all: its central three-result-state separation — described in the schema as 'the whole point of this schema' — was trusted having never been shown able to fail, which ADR-0028 §1 forbids in one sentence ('a pass from a never-falsified check is not evidence'). Every expectation below was MEASURED with CPython 3.12.2 / jsonschema 4.23.0. Loci are exact and complete; the runner rejects both a missing locus and an unrecorded one. Amended at M3 batch N1C (A3): a locus is now (keyword, path, property) and every `required` expectation records WHICH property is missing, derived from the validator's own per-property error rather than written by hand. This manifest was rewritten by that amendment even though its own cases were not the ones the ruling named: the runner raises a structure error on any `required` expectation lacking `property`, so leaving it untouched would have made the whole corpus exit 2. A forced consequence, recorded rather than presented as a discretionary extension.",
+  "description": "Expected outcomes for gatebraid/metrics@1. This corpus exists because the internal N1 review found the schema had been written with no fixtures at all: its central three-result-state separation — described in the schema as 'the whole point of this schema' — was trusted having never been shown able to fail, which ADR-0028 §1 forbids in one sentence ('a pass from a never-falsified check is not evidence'). Every expectation below was MEASURED with CPython 3.12.2 / jsonschema 4.23.0. Loci are exact and complete; the runner rejects both a missing locus and an unrecorded one. Amended at M3 batch N1C (A3): a locus is now (keyword, path, schema_path, property, extra_count) and every `required` expectation records WHICH property is missing, derived from the validator's own per-property error rather than written by hand. This manifest was rewritten by that amendment even though its own cases were not the ones the ruling named: the runner raises a structure error on any `required` expectation lacking `property`, so leaving it untouched would have made the whole corpus exit 2. A forced consequence, recorded rather than presented as a discretionary extension. Amended at M3 batch N1D: a locus additionally carries the error's `schema_path` (D6 — an instance path cannot say which branch of a conditional fired) and, for `additionalProperties`, an `extra_count` (external review R1 — one and two unexpected properties produced identical loci, so an over-mutated fixture passed a manifest recording one). Every locus in this file was re-measured against the N1D-amended schemas, not carried forward.",
   "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
   "cases": [
     {
@@ -53,7 +53,8 @@
       "expect_errors": [
         {
           "keyword": "not",
-          "path": "metrics/0"
+          "path": "metrics/0",
+          "schema_path": "properties/metrics/items/allOf/0/else/not"
         }
       ]
     },
@@ -68,6 +69,7 @@
         {
           "keyword": "required",
           "path": "metrics/0",
+          "schema_path": "properties/metrics/items/allOf/0/then/required",
           "property": "command"
         }
       ]
@@ -82,7 +84,8 @@
       "expect_errors": [
         {
           "keyword": "const",
-          "path": "metrics/0/denominator"
+          "path": "metrics/0/denominator",
+          "schema_path": "properties/metrics/items/allOf/1/then/properties/denominator/const"
         }
       ]
     },
@@ -97,7 +100,8 @@
       "expect_errors": [
         {
           "keyword": "not",
-          "path": "metrics/0"
+          "path": "metrics/0",
+          "schema_path": "properties/metrics/items/allOf/2/then/not"
         }
       ]
     },
@@ -112,6 +116,7 @@
         {
           "keyword": "required",
           "path": "(root)",
+          "schema_path": "allOf/0/then/required",
           "property": "finalized"
         }
       ]
@@ -126,7 +131,8 @@
       "expect_errors": [
         {
           "keyword": "not",
-          "path": "(root)"
+          "path": "(root)",
+          "schema_path": "allOf/0/else/not"
         }
       ]
     },
@@ -141,7 +147,8 @@
       "expect_errors": [
         {
           "keyword": "enum",
-          "path": "metrics/0/name"
+          "path": "metrics/0/name",
+          "schema_path": "allOf/1/then/properties/metrics/items/properties/name/enum"
         }
       ]
     },
@@ -156,9 +163,122 @@
         {
           "keyword": "required",
           "path": "subject",
+          "schema_path": "allOf/0/then/properties/subject/required",
           "property": "slice_id"
         }
       ]
+    },
+    {
+      "id": "MT1-13",
+      "fixture": "MT1-13-measured-without-value.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "measured requires a value, not only a command",
+      "source": "external read-only review (2026-08-13), adopted at coordinator adjudication",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "metrics/0",
+          "schema_path": "properties/metrics/items/allOf/0/then/required",
+          "property": "value"
+        }
+      ],
+      "externally_contributed": true,
+      "note": "Contributed by the external read-only review and adopted at coordinator adjudication, which reproduced this locus independently against the landed schemas at e0e6783. The review ZIP was absent at intake, so the document was transcribed from the report's exact description and its locus then re-measured here."
+    },
+    {
+      "id": "MT1-14",
+      "fixture": "MT1-14-undefined-denominator-missing.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "undefined_zero_denominator requires the denominator to be present",
+      "source": "external read-only review (2026-08-13), adopted at coordinator adjudication",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "metrics/0",
+          "schema_path": "properties/metrics/items/allOf/1/then/required",
+          "property": "denominator"
+        }
+      ],
+      "externally_contributed": true,
+      "note": "Contributed by the external read-only review and adopted at coordinator adjudication, which reproduced this locus independently against the landed schemas at e0e6783. The review ZIP was absent at intake, so the document was transcribed from the report's exact description and its locus then re-measured here."
+    },
+    {
+      "id": "MT1-15",
+      "fixture": "F1-recorded-at-not-rfc3339.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "F1 — recorded_at must be RFC3339",
+      "source": "external review F1; operator build order N1D §2",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "recorded_at",
+          "schema_path": "properties/recorded_at/pattern"
+        }
+      ]
+    },
+    {
+      "id": "MT1-16",
+      "fixture": "F2-measured-with-zero-denominator.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "F2 — a measured reading may not have an empty denominator",
+      "source": "external review F2; convergence-metrics-v2 §5's three result states",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "metrics/0/denominator",
+          "schema_path": "properties/metrics/items/allOf/3/then/properties/denominator/not"
+        }
+      ]
+    },
+    {
+      "id": "MT1-17",
+      "fixture": "F3-count-metric-with-string-value.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "F3 — a count metric takes a number",
+      "source": "external review F3; convergence-metrics-v2 §5's metric definitions",
+      "expect_errors": [
+        {
+          "keyword": "type",
+          "path": "metrics/0/value",
+          "schema_path": "properties/metrics/items/allOf/4/then/properties/value/type"
+        }
+      ]
+    },
+    {
+      "id": "MT1-18",
+      "fixture": "F5-gate-exit-names-second-subject.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "F5 — one file records one scope for one subject",
+      "source": "external review F5; metrics@1's own subject contract",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "subject",
+          "schema_path": "allOf/4/then/properties/subject/not"
+        }
+      ]
+    },
+    {
+      "id": "MT1-19",
+      "fixture": "F3-interval-metric-with-numeric-value.json",
+      "schema": "schema/metrics.schema.json",
+      "expect": "invalid",
+      "class": "F3 — an interval metric takes a string",
+      "source": "N1D internal review; convergence-metrics-v2 §5 defines elapsed_calendar_time as an interval",
+      "expect_errors": [
+        {
+          "keyword": "type",
+          "path": "metrics/0/value",
+          "schema_path": "properties/metrics/items/allOf/5/then/properties/value/type"
+        }
+      ]
     }
-  ]
+  ],
+  "known_limitation": "No residual collision in this corpus as of M3 batch N1D, measured by sweeping every corpus for identical (schema, locus set) pairs. MT1-05/MT1-08 shared `not@metrics/0` until D6 added the error's `schema_path`, which separates them at `allOf/0/else` versus `allOf/2/then`. The residual pairs elsewhere are EC1-28/EC1-29 and GR2-09/GR2-12, each recorded in its own manifest. What remains unenforceable here is unchanged and is a property of JSON Schema rather than of this corpus: no keyword relates one instance value to another, so cross-property relations are N3 re-derivation duties. F3 RESIDUAL (N1D): `evidence_only_abort_flag` carries NO value-type constraint. convergence-metrics-v2 §5 defines it as neither a count/rate nor one of the readings/intervals — it says 'per-slice it is a flag' — so no family classifies it, and an inert branch asserting the base type would be unfalsifiable. Left unconstrained and escalated for operator ruling rather than forced into a family the committed text does not put it in."
 }

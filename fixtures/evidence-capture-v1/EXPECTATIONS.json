@@ -2,9 +2,9 @@
   "corpus": "evidence-capture-v1",
   "corpus_version": "v1",
   "frozen_by": "not frozen; the freeze follows the external read-only review (M3-PLAN.md §2 N1)",
-  "description": "Expected outcomes for gatebraid/evidence-capture@1, the third frozen interface — which shipped at N1 with no fixtures at all, the same gap the N1 internal review found in metrics@1. Every invalid case is a SINGLE mutation of its NEAREST VALID SIBLING, named per case: valid-argv-capture.json for most, valid-shell-capture-declared.json for EC1-07/25, valid-cp936-lossy-decode.json for EC1-08/09/12, valid-with-outputs.json for EC1-18. Every expectation was MEASURED with CPython 3.12.2 / jsonschema 4.23.0; `required` expectations additionally record WHICH property is missing, derived from the validator's own per-property error rather than written by hand (M3 batch N1C, A3). Byte streams carry REAL bytes: base64, byte_length and sha256 are computed from the content, and the cp936 rendering in EC1-03 was produced by letting the decode raise and recording CPython's own exception text and offset. The schema cannot check those relations and says so; N3 will. An internally incoherent fixture would be a bad fixture regardless of what the schema can see.",
+  "description": "Expected outcomes for gatebraid/evidence-capture@1, the third frozen interface — which shipped at N1 with no fixtures at all, the same gap the N1 internal review found in metrics@1. Every invalid case is a SINGLE mutation of its NEAREST VALID SIBLING, named per case: valid-argv-capture.json for most, valid-shell-capture-declared.json for EC1-07/25, valid-cp936-lossy-decode.json for EC1-08/09/12, valid-with-outputs.json for EC1-18. Every expectation was MEASURED with CPython 3.12.2 / jsonschema 4.23.0; `required` expectations additionally record WHICH property is missing, derived from the validator's own per-property error rather than written by hand (M3 batch N1C, A3). Byte streams carry REAL bytes: base64, byte_length and sha256 are computed from the content, and the cp936 rendering in EC1-03 was produced by letting the decode raise and recording CPython's own exception text and offset. The schema cannot check those relations and says so; N3 will. An internally incoherent fixture would be a bad fixture regardless of what the schema can see. Amended at M3 batch N1D: a locus additionally carries the error's `schema_path` (D6 — an instance path cannot say which branch of a conditional fired) and, for `additionalProperties`, an `extra_count` (external review R1 — one and two unexpected properties produced identical loci, so an over-mutated fixture passed a manifest recording one). Every locus in this file was re-measured against the N1D-amended schemas, not carried forward.",
   "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
-  "known_limitation": "THREE limitations, all MEASURED at M3 batch N1C by sweeping every corpus for identical expected-locus sets. (1) COLLIDING LOCUS SETS REMAIN, and an earlier draft of this note both understated their number and mis-called the one it did name irreducible. Measured, across all three corpora: EC1-09/EC1-10 share required@streams/stdout/rendered:text — separable by schema path (EC1-09 -> properties/streams/properties/stdout/properties/rendered/allOf/2/then/required; EC1-10 -> properties/streams/properties/stdout/properties/rendered/allOf/3/then/required); EC1-11/EC1-12 share not@streams/stdout/rendered — separable by schema path (EC1-11 -> properties/streams/properties/stdout/properties/rendered/allOf/3/then/not; EC1-12 -> properties/streams/properties/stdout/properties/rendered/allOf/1/then/not); EC1-28/EC1-29 share pattern@streams/stdout/data — NOT separable by schema path (EC1-28 -> properties/streams/properties/stdout/properties/data/pattern; EC1-29 -> properties/streams/properties/stdout/properties/data/pattern); MT1-05/MT1-08 share not@metrics/0 — separable by schema path (MT1-05 -> properties/metrics/items/allOf/0/else/not; MT1-08 -> properties/metrics/items/allOf/2/then/not). Three of these are separable by the error's `absolute_schema_path`, which the runner already holds on every error object; only the pair failing the SAME constraint on two different values is irreducible by any locus refinement. Extending the locus tuple to carry the schema path is a change to a committed runner beyond this batch's A3 scope and is escalated, not taken. (2) `ended_at >= started_at` REMAINS unenforceable: it compares two sibling properties and no JSON Schema keyword relates one instance value to another, so a capture whose end precedes its start validates here and must be rejected by N3's re-derivation — recorded in the schema's own `ended_at` description as that duty. (3) The timestamp patterns enforce RFC3339 LEXICAL FORM only: field ranges are unchecked, so a month of 13, an hour of 99 or an offset of +99:99 matches, as does a calendar-invalid date. Measured, not assumed. SCOPE NOTE ON THE RULING: the approval names 'the four timestamp fields'; `gatebraid/evidence-capture@1` carries TWO date-time fields. Read as the four CONSTRAINTS the correct-course names — both timestamps plus binary_mode_write and zero_lone_cr.asserted — which is the only reading under which the count is four, and which produces EC1-34 through EC1-37. Recorded rather than applied silently. Those four are now falsified; `format: date-time` was removed from both timestamp fields rather than retained as an annotation, because a validator built with a FormatChecker on a host carrying rfc3339_validator emits an additional `format` locus and the corpus's own equality check would then fail.",
+  "known_limitation": "THREE limitations, all MEASURED at M3 batch N1C by sweeping every corpus for identical expected-locus sets. (1) COLLIDING LOCUS SETS REMAIN, and an earlier draft of this note both understated their number and mis-called the one it did name irreducible. Measured, across all three corpora: EC1-09/EC1-10 share required@streams/stdout/rendered:text — separable by schema path (EC1-09 -> properties/streams/properties/stdout/properties/rendered/allOf/2/then/required; EC1-10 -> properties/streams/properties/stdout/properties/rendered/allOf/3/then/required); EC1-11/EC1-12 share not@streams/stdout/rendered — separable by schema path (EC1-11 -> properties/streams/properties/stdout/properties/rendered/allOf/3/then/not; EC1-12 -> properties/streams/properties/stdout/properties/rendered/allOf/1/then/not); EC1-28/EC1-29 share pattern@streams/stdout/data — NOT separable by schema path (EC1-28 -> properties/streams/properties/stdout/properties/data/pattern; EC1-29 -> properties/streams/properties/stdout/properties/data/pattern); MT1-05/MT1-08 share not@metrics/0 — separable by schema path (MT1-05 -> properties/metrics/items/allOf/0/else/not; MT1-08 -> properties/metrics/items/allOf/2/then/not). Three of these are separable by the error's `absolute_schema_path`, which the runner already holds on every error object; only the pair failing the SAME constraint on two different values is irreducible by any locus refinement. Extending the locus tuple to carry the schema path is a change to a committed runner beyond this batch's A3 scope and is escalated, not taken. (2) `ended_at >= started_at` REMAINS unenforceable: it compares two sibling properties and no JSON Schema keyword relates one instance value to another, so a capture whose end precedes its start validates here and must be rejected by N3's re-derivation — recorded in the schema's own `ended_at` description as that duty. (3) The timestamp patterns enforce RFC3339 LEXICAL FORM only: field ranges are unchecked, so a month of 13, an hour of 99 or an offset of +99:99 matches, as does a calendar-invalid date. Measured, not assumed. SCOPE NOTE ON THE RULING: the approval names 'the four timestamp fields'; `gatebraid/evidence-capture@1` carries TWO date-time fields. Read as the four CONSTRAINTS the correct-course names — both timestamps plus binary_mode_write and zero_lone_cr.asserted — which is the only reading under which the count is four, and which produces EC1-34 through EC1-37. Recorded rather than applied silently. Those four are now falsified; `format: date-time` was removed from both timestamp fields rather than retained as an annotation, because a validator built with a FormatChecker on a host carrying rfc3339_validator emits an additional `format` locus and the corpus's own equality check would then fail. N1D UPDATE, measured: D6's `schema_path` separated EC1-09/EC1-10 (allOf/2 vs allOf/3) and EC1-11/EC1-12 (allOf/1 vs allOf/3), and MT1-05/MT1-08 in the metrics corpus (allOf/0/else vs allOf/2/then). **EC1-28/EC1-29 remains the only residual pair in this corpus** — two values failing the same `data` pattern, which no locus refinement can separate and which spec §4 forbids separating by echoing the values. One further residual now exists in `gate-run-v2` (GR2-09/GR2-12), recorded in that manifest. R1's `extra_count` closes the additionalProperties multiplicity gap the external review found: one and two unexpected properties are now distinct observations.",
   "cases": [
     {
       "id": "EC1-01",
@@ -75,6 +75,7 @@
         {
           "keyword": "required",
           "path": "invocation",
+          "schema_path": "properties/invocation/allOf/0/then/required",
           "property": "shell_semantics"
         }
       ]
@@ -90,6 +91,7 @@
         {
           "keyword": "required",
           "path": "streams/stdout/rendered",
+          "schema_path": "properties/streams/properties/stdout/properties/rendered/allOf/0/then/required",
           "property": "decode_error"
         }
       ]
@@ -106,6 +108,7 @@
         {
           "keyword": "required",
           "path": "streams/stdout/rendered",
+          "schema_path": "properties/streams/properties/stdout/properties/rendered/allOf/2/then/required",
           "property": "text"
         }
       ]
@@ -122,6 +125,7 @@
         {
           "keyword": "required",
           "path": "streams/stdout/rendered",
+          "schema_path": "properties/streams/properties/stdout/properties/rendered/allOf/3/then/required",
           "property": "text"
         }
       ]
@@ -136,7 +140,8 @@
       "expect_errors": [
         {
           "keyword": "not",
-          "path": "streams/stdout/rendered"
+          "path": "streams/stdout/rendered",
+          "schema_path": "properties/streams/properties/stdout/properties/rendered/allOf/3/then/not"
         }
       ]
     },
@@ -151,7 +156,8 @@
       "expect_errors": [
         {
           "keyword": "not",
-          "path": "streams/stdout/rendered"
+          "path": "streams/stdout/rendered",
+          "schema_path": "properties/streams/properties/stdout/properties/rendered/allOf/1/then/not"
         }
       ]
     },
@@ -165,7 +171,8 @@
       "expect_errors": [
         {
           "keyword": "enum",
-          "path": "streams/stdout/rendered/decode_result"
+          "path": "streams/stdout/rendered/decode_result",
+          "schema_path": "properties/streams/properties/stdout/properties/rendered/properties/decode_result/enum"
         }
       ]
     },
@@ -180,7 +187,8 @@
       "expect_errors": [
         {
           "keyword": "const",
-          "path": "self_assertions/zero_lone_cr/count"
+          "path": "self_assertions/zero_lone_cr/count",
+          "schema_path": "properties/self_assertions/properties/zero_lone_cr/allOf/0/then/properties/count/const"
         }
       ]
     },
@@ -195,6 +203,7 @@
         {
           "keyword": "required",
           "path": "(root)",
+          "schema_path": "required",
           "property": "self_assertions"
         }
       ]
@@ -210,7 +219,8 @@
       "expect_errors": [
         {
           "keyword": "pattern",
-          "path": "generator/source_sha256"
+          "path": "generator/source_sha256",
+          "schema_path": "properties/generator/properties/source_sha256/pattern"
         }
       ]
     },
@@ -224,7 +234,8 @@
       "expect_errors": [
         {
           "keyword": "pattern",
-          "path": "inputs/0/sha256"
+          "path": "inputs/0/sha256",
+          "schema_path": "properties/inputs/items/properties/sha256/pattern"
         }
       ]
     },
@@ -239,7 +250,8 @@
       "expect_errors": [
         {
           "keyword": "pattern",
-          "path": "outputs/0/sha256"
+          "path": "outputs/0/sha256",
+          "schema_path": "properties/outputs/items/properties/sha256/pattern"
         }
       ]
     },
@@ -253,7 +265,8 @@
       "expect_errors": [
         {
           "keyword": "const",
-          "path": "schema"
+          "path": "schema",
+          "schema_path": "properties/schema/const"
         }
       ]
     },
@@ -268,7 +281,9 @@
       "expect_errors": [
         {
           "keyword": "additionalProperties",
-          "path": "(root)"
+          "path": "(root)",
+          "schema_path": "additionalProperties",
+          "extra_count": 1
         }
       ]
     },
@@ -283,7 +298,9 @@
       "expect_errors": [
         {
           "keyword": "additionalProperties",
-          "path": "streams/stdout/rendered"
+          "path": "streams/stdout/rendered",
+          "schema_path": "properties/streams/properties/stdout/properties/rendered/additionalProperties",
+          "extra_count": 1
         }
       ]
     },
@@ -297,7 +314,8 @@
       "expect_errors": [
         {
           "keyword": "enum",
-          "path": "invocation/cwd/resolution"
+          "path": "invocation/cwd/resolution",
+          "schema_path": "properties/invocation/properties/cwd/properties/resolution/enum"
         }
       ]
     },
@@ -311,7 +329,8 @@
       "expect_errors": [
         {
           "keyword": "const",
-          "path": "streams/stdout/encoding"
+          "path": "streams/stdout/encoding",
+          "schema_path": "properties/streams/properties/stdout/properties/encoding/const"
         }
       ]
     },
@@ -325,7 +344,8 @@
       "expect_errors": [
         {
           "keyword": "enum",
-          "path": "platform/os"
+          "path": "platform/os",
+          "schema_path": "properties/platform/properties/os/enum"
         }
       ]
     },
@@ -339,7 +359,8 @@
       "expect_errors": [
         {
           "keyword": "enum",
-          "path": "invocation/shell_semantics/exit_code_source"
+          "path": "invocation/shell_semantics/exit_code_source",
+          "schema_path": "properties/invocation/properties/shell_semantics/properties/exit_code_source/enum"
         }
       ]
     },
@@ -353,7 +374,8 @@
       "expect_errors": [
         {
           "keyword": "enum",
-          "path": "invocation/form"
+          "path": "invocation/form",
+          "schema_path": "properties/invocation/properties/form/enum"
         }
       ]
     },
@@ -367,7 +389,8 @@
       "expect_errors": [
         {
           "keyword": "minimum",
-          "path": "streams/stdout/byte_length"
+          "path": "streams/stdout/byte_length",
+          "schema_path": "properties/streams/properties/stdout/properties/byte_length/minimum"
         }
       ]
     },
@@ -382,7 +405,8 @@
       "expect_errors": [
         {
           "keyword": "pattern",
-          "path": "streams/stdout/data"
+          "path": "streams/stdout/data",
+          "schema_path": "properties/streams/properties/stdout/properties/data/pattern"
         }
       ]
     },
@@ -396,7 +420,8 @@
       "expect_errors": [
         {
           "keyword": "pattern",
-          "path": "streams/stdout/data"
+          "path": "streams/stdout/data",
+          "schema_path": "properties/streams/properties/stdout/properties/data/pattern"
         }
       ]
     },
@@ -410,7 +435,8 @@
       "expect_errors": [
         {
           "keyword": "pattern",
-          "path": "streams/stdout/sha256"
+          "path": "streams/stdout/sha256",
+          "schema_path": "properties/streams/properties/stdout/properties/sha256/pattern"
         }
       ]
     },
@@ -425,7 +451,8 @@
       "expect_errors": [
         {
           "keyword": "maxProperties",
-          "path": "invocation/environment"
+          "path": "invocation/environment",
+          "schema_path": "properties/invocation/properties/environment/maxProperties"
         }
       ]
     },
@@ -440,6 +467,7 @@
         {
           "keyword": "required",
           "path": "(root)",
+          "schema_path": "required",
           "property": "inputs"
         }
       ]
@@ -456,6 +484,7 @@
         {
           "keyword": "required",
           "path": "(root)",
+          "schema_path": "required",
           "property": "platform"
         }
       ]
@@ -470,7 +499,8 @@
       "expect_errors": [
         {
           "keyword": "pattern",
-          "path": "started_at"
+          "path": "started_at",
+          "schema_path": "properties/started_at/pattern"
         }
       ]
     },
@@ -484,7 +514,8 @@
       "expect_errors": [
         {
           "keyword": "pattern",
-          "path": "ended_at"
+          "path": "ended_at",
+          "schema_path": "properties/ended_at/pattern"
         }
       ]
     },
@@ -498,7 +529,8 @@
       "expect_errors": [
         {
           "keyword": "const",
-          "path": "self_assertions/binary_mode_write"
+          "path": "self_assertions/binary_mode_write",
+          "schema_path": "properties/self_assertions/properties/binary_mode_write/const"
         }
       ]
     },
@@ -512,7 +544,73 @@
       "expect_errors": [
         {
           "keyword": "const",
-          "path": "self_assertions/zero_lone_cr/asserted"
+          "path": "self_assertions/zero_lone_cr/asserted",
+          "schema_path": "properties/self_assertions/properties/zero_lone_cr/properties/asserted/const"
+        }
+      ]
+    },
+    {
+      "id": "EC1-38",
+      "fixture": "EC1-38-shell-semantics-missing-pipefail.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "an interior field of declared shell semantics",
+      "source": "external read-only review (2026-08-13), adopted at coordinator adjudication",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "invocation/shell_semantics",
+          "schema_path": "properties/invocation/properties/shell_semantics/required",
+          "property": "pipefail"
+        }
+      ],
+      "externally_contributed": true,
+      "note": "Contributed by the external read-only review and adopted at coordinator adjudication, which reproduced this locus independently against the landed schemas at e0e6783. The review ZIP was absent at intake, so the document was transcribed from the report's exact description and its locus then re-measured here."
+    },
+    {
+      "id": "EC1-39",
+      "fixture": "EC1-39-output-byte-length-negative.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "output length, not stream length",
+      "source": "external read-only review (2026-08-13), adopted at coordinator adjudication",
+      "expect_errors": [
+        {
+          "keyword": "minimum",
+          "path": "outputs/0/byte_length",
+          "schema_path": "properties/outputs/items/properties/byte_length/minimum"
+        }
+      ],
+      "externally_contributed": true,
+      "note": "Contributed by the external read-only review and adopted at coordinator adjudication, which reproduced this locus independently against the landed schemas at e0e6783. The review ZIP was absent at intake, so the document was transcribed from the report's exact description and its locus then re-measured here."
+    },
+    {
+      "id": "EC1-40",
+      "fixture": "F6-argv-capture-carries-shell-semantics.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "F6 — an argv invocation carries no shell semantics",
+      "source": "external review F6; the form: argv description",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "invocation",
+          "schema_path": "properties/invocation/allOf/1/then/not"
+        }
+      ]
+    },
+    {
+      "id": "EC1-41",
+      "fixture": "F7-lossy-decode-empty-error.json",
+      "schema": "schema/evidence-capture.schema.json",
+      "expect": "invalid",
+      "class": "F7 — a required decode error may not be the empty placeholder",
+      "source": "external review F7; the decode_error description",
+      "expect_errors": [
+        {
+          "keyword": "minLength",
+          "path": "streams/stdout/rendered/decode_error",
+          "schema_path": "properties/streams/properties/stdout/properties/rendered/properties/decode_error/minLength"
         }
       ]
     }
