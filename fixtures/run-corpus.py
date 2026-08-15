@@ -24,19 +24,36 @@ every discovered corpus is declared, and every fixture file in a corpus
 directory is referenced by a case. Discovery alone cannot detect what was never
 added.
 
-A LOCUS IS (keyword, path, property)
-------------------------------------
-Amended at M3 batch N1C (A3). Previously a locus was (keyword, path), which
-could not say WHICH required property was missing: three fixtures removing three
-different top-level keys all recorded `required@(root)`, so a validator that
-rejected one of them for another's reason still passed. `jsonschema` emits one
-error per missing property and names it in the message, so `required` loci now
-carry that property and are checked in both directions like any other.
+A LOCUS IS (keyword, path, schema_path, property, extra_count)
+--------------------------------------------------------------
+Amended at N1C (A3) and again at N1D (D6, R1).
 
-The manifest must therefore record `property` on every `required` expectation
-and must NOT record it on any other keyword — both are structure errors. A key
-the runner ignores would read as coverage it does not enforce, which is the
-failure this amendment exists to remove, not to relocate.
+N1C added `property`: three fixtures removing three different top-level keys all
+recorded `required@(root)`, so a validator rejecting one for another's reason
+still passed.
+
+N1D adds `schema_path` — the error's `absolute_schema_path` — because an
+instance path cannot say WHICH branch of a conditional fired. Two fixtures
+exercising the two arms of one `if/then` produced identical loci; the schema path
+separates them, and it was available on every error object all along. Three of
+the four collision pairs disclosed at N1C are separated by it. The fourth,
+EC1-28/EC1-29, is two values failing the SAME constraint and no locus can
+separate them — echoing the values would (spec §4 bars it), so it stays
+documented.
+
+N1D also adds `extra_count` for `additionalProperties` (R1, external review):
+one unexpected property and two unexpected properties produced the same locus
+AND the same schema path, so an over-mutated fixture passed a manifest recording
+one. The count is a multiplicity, never the offending names or values — a
+checker does not quote what it forbids into a record (ADR-0028 §3).
+
+Per keyword the manifest MUST record, and must not record otherwise:
+  every locus  -> keyword, path, schema_path
+  required     -> property
+  additionalProperties -> extra_count
+Each is a structure error in both directions. A key the runner ignores would
+read as coverage it does not enforce, which is the failure these amendments
+remove rather than relocate.
 
 Findings are reported by keyword, path and property, never by echoing the
 offending value into the output (spec §4: a checker never quotes what it forbids
@@ -87,9 +104,19 @@ class StructureError(Exception):
     pass
 
 
+def _reject_nonfinite(token: str):
+    """R2 (external review): Python's json accepts NaN/Infinity/-Infinity, which
+    RFC 8259 does not. A fixture carrying one is not JSON, and a measured metrics
+    value of NaN would otherwise validate as a number. Structure error, exit 2."""
+    raise StructureError(
+        f"non-JSON numeric constant {token!r}; RFC 8259 admits no such literal"
+    )
+
+
 def load_json(path: pathlib.Path, what: str):
     try:
-        return json.loads(path.read_bytes().decode("utf-8"))
+        return json.loads(path.read_bytes().decode("utf-8"),
+                          parse_constant=_reject_nonfinite)
     except FileNotFoundError:
         raise StructureError(f"{what} missing: {path.relative_to(ROOT)}")
     except UnicodeDecodeError as e:
@@ -98,9 +125,21 @@ def load_json(path: pathlib.Path, what: str):
         raise StructureError(f"{what} is not valid JSON: {path.relative_to(ROOT)} ({e})")
 
 
-def locus(err) -> tuple[str, str, str | None]:
+def locus(err):
     path = "/".join(str(p) for p in err.absolute_path) or "(root)"
+    schema_path = "/".join(str(p) for p in err.absolute_schema_path)
     prop = None
+    extra = None
+    if err.validator == "additionalProperties":
+        # R1: multiplicity only. Never the names — the offending keys are exactly
+        # what a checker must not quote into a record (ADR-0028 §3).
+        # This reproduces jsonschema's find_additional_properties WITHOUT its
+        # patternProperties term. Valid only while no schema in scope uses
+        # patternProperties — verified true of all ten committed schemas at N1D. A
+        # schema adding one would make this over-count, and the count is asserted
+        # in both directions, so it would fail loudly rather than silently.
+        declared = set(err.schema.get("properties", {}))
+        extra = len(set(err.instance) - declared)
     if err.validator == "required":
         m = _REQUIRED_MSG.match(err.message)
         if m is None:
@@ -113,26 +152,32 @@ def locus(err) -> tuple[str, str, str | None]:
                 "validator's message wording is not the one this runner parses"
             )
         prop = m.group("prop")
-    return (err.validator, path, prop)
+    return (err.validator, path, schema_path, prop, extra)
 
 
-def loci(errors) -> set[tuple[str, str, str | None]]:
+def loci(errors):
     return {locus(e) for e in errors}
 
 
-def fmt(triples) -> str:
+def fmt(items) -> str:
     out = []
-    for k, p, prop in sorted(triples, key=lambda t: (t[0], t[1], t[2] or "")):
-        out.append(f"{k}@{p}:{prop}" if prop is not None else f"{k}@{p}")
+    for k, p, sp, prop, extra in sorted(items, key=lambda t: tuple(str(x) for x in t)):
+        s = f"{k}@{p}"
+        if prop is not None:
+            s += f":{prop}"
+        if extra is not None:
+            s += f"x{extra}"
+        out.append(f"{s} [{sp}]")
     return ", ".join(out)
 
 
-def expected_locus(case_id: str, e: dict) -> tuple[str, str, str | None]:
-    for key in ("keyword", "path"):
+def expected_locus(case_id: str, e: dict):
+    for key in ("keyword", "path", "schema_path"):
         if key not in e:
             raise StructureError(f"{case_id}: expectation missing {key!r}")
     kw = e["keyword"]
     has_prop = "property" in e
+    has_extra = "extra_count" in e
     if kw == "required" and not has_prop:
         raise StructureError(
             f"{case_id}: a 'required' expectation must record which property is "
@@ -143,7 +188,17 @@ def expected_locus(case_id: str, e: dict) -> tuple[str, str, str | None]:
             f"{case_id}: 'property' is only meaningful on a 'required' "
             f"expectation, not on {kw!r}"
         )
-    return (kw, e["path"], e.get("property"))
+    if kw == "additionalProperties" and not has_extra:
+        raise StructureError(
+            f"{case_id}: an 'additionalProperties' expectation must record "
+            f"extra_count (path {e['path']!r})"
+        )
+    if kw != "additionalProperties" and has_extra:
+        raise StructureError(
+            f"{case_id}: 'extra_count' is only meaningful on an "
+            f"'additionalProperties' expectation, not on {kw!r}"
+        )
+    return (kw, e["path"], e["schema_path"], e.get("property"), e.get("extra_count"))
 
 
 def run_corpus(corpus_dir: pathlib.Path) -> tuple[int, int]:

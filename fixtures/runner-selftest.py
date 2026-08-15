@@ -22,6 +22,16 @@ Amended at M3 batch N1C
   and S09 creates a sibling directory under `fixtures/`, so a seeding bug
   escaping into the real tree by either route would have gone unnoticed. The
   property asserted is "no seeded run mutated anything a seed can reach".
+* **N1D (R3, D9, and three new seeds).** The digest scope gains
+  `fixtures/run-corpus.py` and `fixtures/runner-selftest.py` — S16 rewrites the
+  runner in a throwaway tree and the digest did not cover it, so an escape into
+  the real file would have left "surface UNMODIFIED" green (external review R3);
+  S21/S22 assert directly that the digest moves when either script's bytes move.
+  Digest inputs are now sorted by the NORMALIZED RELATIVE-PATH STRING rather
+  than by `Path` object, because `sorted()` over `Path` collates
+  case-insensitively on Windows and case-sensitively elsewhere — the digest was
+  location-independent but not platform-portable (D9). It is now intended to be
+  both, and a cross-platform comparison is what §7 item 7 will eventually need.
 * **Second-working-directory falsification (D4).** The runner resolves its root
   from `__file__`, so cwd should not matter. That is a claim, so it is tested:
   the suite runs the real corpus from a different working directory and requires
@@ -73,6 +83,13 @@ def digest_scope(root: pathlib.Path) -> list[pathlib.Path]:
     paths = list(declared_corpora(root))
     paths.append(root / "fixtures/CORPORA.json")
     paths.append(root / "schema")
+    # R3 (external review): S16 rewrites fixtures/run-corpus.py in a throwaway
+    # tree, and the digest did not cover it — appending a byte to a copied runner
+    # left the before/after digest identical, so an S16 path bug touching the REAL
+    # runner would have kept the "surface UNMODIFIED" claim green. Both scripts
+    # are seed-reachable and both are now in scope.
+    paths.append(root / "fixtures/run-corpus.py")
+    paths.append(root / "fixtures/runner-selftest.py")
     return paths
 
 
@@ -85,16 +102,23 @@ def corpora_digest(root: pathlib.Path) -> str:
     h = hashlib.sha256()
     for entry in sorted(p.name for p in (root / "fixtures").iterdir()):
         h.update(b"listing\0" + entry.encode("utf-8") + b"\0")
+
+    # D9: collect (normalized relative path string, bytes) and sort by the STRING.
+    # Sorting Path objects collated case-insensitively on Windows and
+    # case-sensitively elsewhere, so the digest was location-independent but not
+    # platform-portable — the coordinator reproduced this host's value from Linux
+    # only by re-sorting identical bytes under casefolded collation. §7 item 7
+    # eventually compares digests across platforms and needs one ordering.
+    entries = []
     for target in digest_scope(root):
-        if target.is_file():
-            files = [target]
-        else:
-            files = sorted(q for q in target.rglob("*") if q.is_file())
+        files = [target] if target.is_file() else [q for q in target.rglob("*") if q.is_file()]
         for q in files:
-            h.update(str(q.relative_to(root)).replace("\\", "/").encode("utf-8"))
-            h.update(b"\0")
-            h.update(q.read_bytes())
-            h.update(b"\0")
+            entries.append((str(q.relative_to(root)).replace("\\", "/"), q))
+    for rel, q in sorted(entries, key=lambda e: e[0]):
+        h.update(rel.encode("utf-8"))
+        h.update(b"\0")
+        h.update(q.read_bytes())
+        h.update(b"\0")
     return h.hexdigest()
 
 
@@ -127,7 +151,11 @@ def s_wrong_locus(d):
     m = json.loads(p.read_text("utf-8"))
     for c in m["cases"]:
         if c["id"] == "GR2-05":
+            # schema_path is mandatory since D6; without it this seed would trip
+            # the STRUCTURE check (exit 2) instead of the locus-mismatch check it
+            # exists to exercise (exit 1). S20 covers the missing-schema_path case.
             c["expect_errors"] = [{"keyword": "required", "path": "notes",
+                                   "schema_path": "properties/notes/required",
                                    "property": "nope"}]
     p.write_text(json.dumps(m, indent=2), encoding="utf-8")
 
@@ -218,6 +246,64 @@ def s_property_on_wrong_keyword(d):
     p.write_text(json.dumps(m, indent=2), encoding="utf-8")
 
 
+def s_two_extra_properties(d):
+    """R1: a SECOND unexpected key must not pass a manifest recording one."""
+    p = d / "fixtures/evidence-capture-v1/unknown-top-level-field.json"
+    doc = json.loads(p.read_text("utf-8"))
+    doc["second_unexpected_key"] = "x"
+    p.write_text(json.dumps(doc, indent=2), encoding="utf-8")
+
+
+def s_nonfinite_json(d):
+    """R2: a non-RFC numeric literal is not JSON; the corpus is unreadable, exit 2."""
+    p = d / "fixtures/metrics-v1/valid-batch.json"
+    p.write_text('{"schema": "gatebraid/metrics@1", "value": NaN}', encoding="utf-8")
+
+
+def s_wrong_schema_path(d):
+    """D6: a recorded schema_path that names the other branch must not count."""
+    p = d / "fixtures/evidence-capture-v1/EXPECTATIONS.json"
+    m = json.loads(p.read_text("utf-8"))
+    for c in m["cases"]:
+        if c["id"] == "EC1-09":
+            for e in c["expect_errors"]:
+                e["schema_path"] = e["schema_path"].replace("allOf/2", "allOf/3")
+    p.write_text(json.dumps(m, indent=2), encoding="utf-8")
+
+
+def s_schema_path_missing(d):
+    """D6: every expectation must record a schema_path."""
+    p = d / "fixtures/metrics-v1/EXPECTATIONS.json"
+    m = json.loads(p.read_text("utf-8"))
+    for c in m["cases"]:
+        if c["id"] == "MT1-06":
+            for e in c["expect_errors"]:
+                e.pop("schema_path", None)
+    p.write_text(json.dumps(m, indent=2), encoding="utf-8")
+
+
+def s_extra_count_missing(d):
+    """R1: an additionalProperties expectation must record extra_count."""
+    p = _ec_manifest(d)
+    m = json.loads(p.read_text("utf-8"))
+    for c in m["cases"]:
+        if c["id"] == "EC1-20":
+            for e in c["expect_errors"]:
+                e.pop("extra_count", None)
+    p.write_text(json.dumps(m, indent=2), encoding="utf-8")
+
+
+def s_extra_count_on_wrong_keyword(d):
+    """R1: extra_count is meaningless anywhere else."""
+    p = _ec_manifest(d)
+    m = json.loads(p.read_text("utf-8"))
+    for c in m["cases"]:
+        if c["id"] == "EC1-28":
+            for e in c["expect_errors"]:
+                e["extra_count"] = 1
+    p.write_text(json.dumps(m, indent=2), encoding="utf-8")
+
+
 CASES = [
     ("S00 untouched copy",            0, s_none,                    "CORPUS CLEAN"),
     ("S01 mutation not killed",       1, s_mutation_not_killed,     "mutation not killed"),
@@ -233,6 +319,13 @@ CASES = [
     ("S12 wrong required property",   1, s_wrong_required_property, "recorded locus did not fire"),
     ("S13 required without property", 2, s_required_without_property, "must record which property"),
     ("S14 property on wrong keyword", 2, s_property_on_wrong_keyword, "only meaningful on a 'required'"),
+    ("S17 second unexpected property",  1, s_two_extra_properties,  "unrecorded locus fired"),
+    ("S18 non-finite JSON literal",     2, s_nonfinite_json,        "non-JSON numeric constant"),
+    ("S19 wrong schema_path",           1, s_wrong_schema_path,     "recorded locus did not fire"),
+    ("S20 schema_path missing",         2, s_schema_path_missing,   "expectation missing 'schema_path'"),
+    ("S23 extra_count missing",         2, s_extra_count_missing,   "must record extra_count"),
+    ("S24 extra_count wrong keyword",   2, s_extra_count_on_wrong_keyword,
+                                           "only meaningful on an 'additionalProperties'"),
 ]
 
 
@@ -300,6 +393,23 @@ def main() -> int:
             shutil.rmtree(elsewhere, ignore_errors=True)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+
+    # S21/S22 (R3): the digest must actually move when either script's bytes move.
+    # A scope that lists a file but never reaches it would pass every seed above.
+    for tag, rel in (("S21 digest sees run-corpus.py", "fixtures/run-corpus.py"),
+                     ("S22 digest sees runner-selftest.py", "fixtures/runner-selftest.py")):
+        tmp = pathlib.Path(tempfile.mkdtemp(prefix="gatebraid-digest-"))
+        try:
+            work = tmp / "tree"
+            shutil.copytree(ROOT, work)
+            base_digest = corpora_digest(work)
+            target = work / rel
+            target.write_bytes(target.read_bytes() + b"\n# digest sensitivity probe\n")
+            moved = corpora_digest(work) != base_digest
+            results.append((tag, "moves", "moves" if moved else "same", moved,
+                            "digest must change when the file changes"))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
 
     after = corpora_digest(ROOT)
 
