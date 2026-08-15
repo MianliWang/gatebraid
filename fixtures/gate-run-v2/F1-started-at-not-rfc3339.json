@@ -1,0 +1,60 @@
+{
+  "schema": "gatebraid/gate-run@2",
+  "slice_id": "P1-S7",
+  "gate": 2,
+  "environment": "windows",
+  "executor": "Claude Lead",
+  "base_sha": "9f2c1a7b4e8d0356af91cc2be74d5108a3f6b2d9",
+  "active_branch": "slice/P1-S7",
+  "started_at": "not-a-timestamp",
+  "ended_at": "2026-08-12T11:30:00Z",
+  "result": "passed",
+  "checks": [
+    {
+      "name": "tests-green-per-plan",
+      "command": "C:/Python312/python.exe -m pytest -q",
+      "result": "pass",
+      "output_ref": "#verification-outputs"
+    },
+    {
+      "name": "allowlist-respected",
+      "command": "git diff --name-only 9f2c1a7b4e8d0356af91cc2be74d5108a3f6b2d9..HEAD",
+      "result": "pass",
+      "output_ref": "#entry-records"
+    },
+    {
+      "name": "ci-status",
+      "result": "none_configured",
+      "output_ref": "#entry-records"
+    }
+  ],
+  "consults": [],
+  "repair_attempts": [],
+  "approvals": [
+    {
+      "type": "Plan Approval (G1→G2)",
+      "comment_url": "https://github.com/MianliWang/gatebraid-scratch/issues/16#issuecomment-5300000001",
+      "author": "MianliWang",
+      "at": "2026-08-12T08:55:00Z"
+    }
+  ],
+  "plan_hash": "3b1f0c8a5d2e47690bc4a1f83e6d5b27c09fae4813d6b7250ac9e13f8b604d7e",
+  "allowlist_hash": "7d4e2a90c1b83f65ae02d7194c6b3f80512ae9dc4b7f6013a852ce9d40f1b6a3",
+  "handoff_fingerprint": {
+    "active_branch_head": "c4a70b18f92e6d35801ba4cf27de960134f8b25a",
+    "tree_sha": "e81b6f204a7c9d3e5028fb1c64a93d7085ce214f",
+    "changed_paths": [
+      "docs/evidence/gatebraid/P1-S7/gate2.md",
+      "src/ready.py",
+      "tests/test_ready.py"
+    ]
+  },
+  "hash_commands": {
+    "allowlist": "C:/Python312/python.exe -c \"import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())\" allowlist.txt",
+    "plan": "C:/Python312/python.exe -c \"import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())\" plan.md"
+  },
+  "evidence_files": [
+    "docs/evidence/gatebraid/P1-S7/gate2.md"
+  ],
+  "notes": "Killing fixture for the N1D correct-course. This document VALIDATED at e0e6783. F1: gate-run@2 started_at accepted an arbitrary string because `format` asserts nothing without a format checker, and run-corpus.py builds none."
+}

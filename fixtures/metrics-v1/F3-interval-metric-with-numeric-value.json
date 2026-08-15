@@ -1,0 +1,22 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "slice",
+  "subject": {
+    "slice_id": "P1-S6"
+  },
+  "recorded_at": "2026-08-12T11:30:00Z",
+  "metrics": [
+    {
+      "entry_id": "x",
+      "name": "elapsed_calendar_time",
+      "state": "measured",
+      "value": 42,
+      "command": "first gate record to terminal disposition"
+    }
+  ],
+  "notes": "Killing fixture added at the N1D internal review. F3's numeric family was falsified by MT1-17 and its NON-numeric family was not — half a constraint trusted without a negative case, which ADR-0028 §1 refuses. elapsed_calendar_time is an interval per convergence-metrics-v2 §5 and takes a string; here it carries a number.",
+  "finalized": {
+    "event": "terminal-disposition",
+    "reference": "5246821761"
+  }
+}

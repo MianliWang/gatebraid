@@ -1,0 +1,23 @@
+{
+  "schema": "gatebraid/gate-run@2",
+  "slice_id": "P2-S1",
+  "gate": 0,
+  "environment": "windows",
+  "executor": "Claude Lead",
+  "base_sha": "0a1b2c3d4e5f60718293a4b5c6d7e8f901234567",
+  "started_at": "2026-08-20T09:00:00Z",
+  "ended_at": "2026-08-20T09:20:00Z",
+  "result": "passed",
+  "bootstrap_exception": true,
+  "checks": [
+    {
+      "name": "startability-from-closed-set-state-packet",
+      "result": "pass",
+      "output_ref": "evidence/capture/P2-S1-gate0-state-packet.json"
+    }
+  ],
+  "evidence_files": [
+    "docs/evidence/gatebraid/P2-S1/gate0.md"
+  ],
+  "notes": "EXTERNALLY CONTRIBUTED — external read-only review (2026-08-13), adopted at coordinator adjudication, which reproduced the stated locus independently against the landed schemas at e0e6783. Transcribed from the review report's exact description: the review ZIP was not present on this host at intake, recorded as such in the batch's provenance section. GR2-11: the bootstrap record omits the approvals FIELD entirely, where GR2-06 covers a present-but-non-matching array. Adjacent branch of the same conditional, and the omission a validator is likeliest to let through."
+}

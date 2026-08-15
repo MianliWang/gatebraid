@@ -1,0 +1,20 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "gate-exit",
+  "subject": {
+    "slice_id": "P1-S7",
+    "gate": 2,
+    "gate_exit_ordinal": 1
+  },
+  "recorded_at": "2026-08-12T11:30:00Z",
+  "metrics": [
+    {
+      "entry_id": "x",
+      "name": "new_contract_defects_per_gate_exit",
+      "state": "measured",
+      "value": "zero",
+      "command": "counted over the committed record"
+    }
+  ],
+  "notes": "Killing fixture for the N1D correct-course. This document VALIDATED at e0e6783. F3: a count metric carrying a string. Before the family constraint the value type was number|string for every name, so a generator still chose part of its own output contract — the thing metrics v2 §5 exists to prevent."
+}

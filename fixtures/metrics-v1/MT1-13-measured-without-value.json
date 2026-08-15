@@ -1,0 +1,19 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "gate-exit",
+  "subject": {
+    "slice_id": "P1-S7",
+    "gate": 2,
+    "gate_exit_ordinal": 1
+  },
+  "recorded_at": "2026-08-12T11:30:00Z",
+  "metrics": [
+    {
+      "entry_id": "x",
+      "name": "new_contract_defects_per_gate_exit",
+      "state": "measured",
+      "command": "counted over the committed record"
+    }
+  ],
+  "notes": "EXTERNALLY CONTRIBUTED — external read-only review (2026-08-13), adopted at coordinator adjudication, which reproduced the stated locus independently against the landed schemas at e0e6783. Transcribed from the review report's exact description: the review ZIP was not present on this host at intake, recorded as such in the batch's provenance section. MT1-13: MT1-06 covers the command half of the measured requirement; this covers the value half. Both are required together and only one was falsified."
+}

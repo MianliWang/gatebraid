@@ -1,0 +1,37 @@
+{
+  "schema": "gatebraid/metrics@1",
+  "scope": "gate-exit",
+  "subject": {
+    "slice_id": "P1-S7",
+    "gate": 2,
+    "gate_exit_ordinal": 1,
+    "batch_id": "M3-N1D"
+  },
+  "recorded_at": "2026-08-12T11:30:00Z",
+  "metrics": [
+    {
+      "entry_id": "ge-1",
+      "name": "new_contract_defects_per_gate_exit",
+      "state": "measured",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 1,
+      "command": "git log --oneline da9e9ee6..HEAD -- protocols/ adr/ | wc -l",
+      "note": "A genuine numeric zero: the unit ran and the numerator is really zero."
+    },
+    {
+      "entry_id": "ge-2",
+      "name": "r3_first_pass_rate",
+      "state": "no_eligible_unit_ran",
+      "note": "The exit was aborted before reaching an R3 review, so no eligible unit ran. This is NOT zero."
+    },
+    {
+      "entry_id": "ge-3",
+      "name": "implementation_test_failures_at_review",
+      "state": "undefined_zero_denominator",
+      "denominator": 0,
+      "note": "Units ran but no gate review was held, so the denominator is empty and the value is undefined — never reported as a number."
+    }
+  ],
+  "notes": "Killing fixture for the N1D correct-course. This document VALIDATED at e0e6783. F5: a gate-exit file also naming a batch. One file records one scope for one subject; two subjects make it unaggregatable by citation."
+}
