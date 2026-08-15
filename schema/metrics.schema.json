@@ -13,9 +13,16 @@
     "metrics"
   ],
   "properties": {
-    "schema": { "const": "gatebraid/metrics@1" },
+    "schema": {
+      "const": "gatebraid/metrics@1"
+    },
     "scope": {
-      "enum": ["gate-exit", "slice", "batch", "milestone"],
+      "enum": [
+        "gate-exit",
+        "slice",
+        "batch",
+        "milestone"
+      ],
       "description": "§5's four collection loci. The scope decides which metric names are admissible, which subject identifiers are required, and when the file is written."
     },
     "subject": {
@@ -23,30 +30,52 @@
       "additionalProperties": false,
       "description": "What this file measures. Required identifiers are enforced per scope below: a metrics file that cannot name its subject cannot be aggregated by citation (§4's one-source clause), and closure criteria consume committed, cited values.",
       "properties": {
-        "slice_id": { "type": "string", "pattern": "^P[0-9]+-S[0-9]+$" },
-        "gate": { "enum": [0, 1, 2, 3] },
+        "slice_id": {
+          "type": "string",
+          "pattern": "^P[0-9]+-S[0-9]+$"
+        },
+        "gate": {
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
         "gate_exit_ordinal": {
           "type": "integer",
           "minimum": 1,
           "description": "Which attempt at this gate exit this file records. The base unit is the gate exit ATTEMPTED (§1), so a second attempt is a second unit, not an overwrite."
         },
-        "batch_id": { "type": "string", "minLength": 1 },
-        "milestone": { "type": "string", "minLength": 1 }
+        "batch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "milestone": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "recorded_at": {
       "type": "string",
-      "format": "date-time",
-      "description": "The unit's own event time — gate exit, stop, batch close, terminal disposition. NEVER retrospective: §5's recording-time rule exists because a classification assigned later is assigned with knowledge the moment did not have."
+      "description": "F1 correct-course (M3 batch N1D, external review). THE PATTERN IS THE ONLY ENFORCEMENT and `format` is REMOVED. `format: date-time` is asserted only when a validator is constructed with a format checker AND an optional package is present; `fixtures/run-corpus.py` constructs none, so this field accepted arbitrary strings. The evidence-capture@1 correct-course closed exactly this class at N1C and the repair was not propagated to the sibling interfaces — the external reviewer caught the omission. WHAT THIS ENFORCES: RFC3339 LEXICAL FORM only, case-insensitive in the separator and zone designator per RFC 5234. FIELD RANGES ARE UNCHECKED — a month of 13 or an offset of +99:99 matches, as does 2026-02-31. Anchored with (?![\\s\\S]) rather than $, because Python's re matches $ before a final newline while ECMA-262, which JSON Schema specifies, does not. The unit's own event time — gate exit, stop, batch close, terminal disposition. NEVER retrospective: §5's recording-time rule exists because a classification assigned later is assigned with knowledge the moment did not have.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])"
     },
     "finalized": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["event", "reference"],
+      "required": [
+        "event",
+        "reference"
+      ],
       "description": "Slice-scoped ONLY, and required there — both directions enforced below. protocols/convergence-metrics-v2.md §5 (Slice-scoped) is the single home of the rule: the authoritative committed home is finalized at Gate 3 exit or at an operator-authored terminal disposition, and GitHub Issue closure is never the finalization event. ADR-0025 §3 carries the terminal-disposition half as alignment.",
       "properties": {
         "event": {
-          "enum": ["gate-3-exit", "terminal-disposition"],
+          "enum": [
+            "gate-3-exit",
+            "terminal-disposition"
+          ],
           "description": "Exactly two. 'issue-closure' is deliberately absent and is not an oversight."
         },
         "reference": {
@@ -59,44 +88,84 @@
     "metrics": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/metricEntry" }
+      "items": {
+        "$ref": "#/$defs/metricEntry"
+      }
     },
-    "notes": { "type": "string" }
+    "notes": {
+      "type": "string"
+    }
   },
   "allOf": [
     {
       "$comment": "§5: a slice-scoped file's whole purpose is to be the committed value a closure criterion reads, so it must say which event finalized it — and must name its slice.",
       "if": {
-        "properties": { "scope": { "const": "slice" } },
-        "required": ["scope"]
+        "properties": {
+          "scope": {
+            "const": "slice"
+          }
+        },
+        "required": [
+          "scope"
+        ]
       },
       "then": {
-        "required": ["finalized"],
+        "required": [
+          "finalized"
+        ],
         "properties": {
-          "subject": { "required": ["slice_id"] },
+          "subject": {
+            "required": [
+              "slice_id"
+            ]
+          },
           "metrics": {
             "items": {
-              "properties": { "name": { "$ref": "#/$defs/sliceNames" } }
+              "properties": {
+                "name": {
+                  "$ref": "#/$defs/sliceNames"
+                }
+              }
             }
           }
         }
       },
       "else": {
-        "not": { "required": ["finalized"] }
+        "not": {
+          "required": [
+            "finalized"
+          ]
+        }
       }
     },
     {
       "$comment": "A gate-exit file must name the gate exit it belongs to, down to which attempt.",
       "if": {
-        "properties": { "scope": { "const": "gate-exit" } },
-        "required": ["scope"]
+        "properties": {
+          "scope": {
+            "const": "gate-exit"
+          }
+        },
+        "required": [
+          "scope"
+        ]
       },
       "then": {
         "properties": {
-          "subject": { "required": ["slice_id", "gate", "gate_exit_ordinal"] },
+          "subject": {
+            "required": [
+              "slice_id",
+              "gate",
+              "gate_exit_ordinal"
+            ]
+          },
           "metrics": {
             "items": {
-              "properties": { "name": { "$ref": "#/$defs/gateExitNames" } }
+              "properties": {
+                "name": {
+                  "$ref": "#/$defs/gateExitNames"
+                }
+              }
             }
           }
         }
@@ -105,15 +174,29 @@
     {
       "$comment": "§5: batch-scoped metrics are recorded at batch close, slice or no slice.",
       "if": {
-        "properties": { "scope": { "const": "batch" } },
-        "required": ["scope"]
+        "properties": {
+          "scope": {
+            "const": "batch"
+          }
+        },
+        "required": [
+          "scope"
+        ]
       },
       "then": {
         "properties": {
-          "subject": { "required": ["batch_id"] },
+          "subject": {
+            "required": [
+              "batch_id"
+            ]
+          },
           "metrics": {
             "items": {
-              "properties": { "name": { "$ref": "#/$defs/batchNames" } }
+              "properties": {
+                "name": {
+                  "$ref": "#/$defs/batchNames"
+                }
+              }
             }
           }
         }
@@ -122,15 +205,191 @@
     {
       "$comment": "§5: milestone-scoped metrics are computed at closure from the committed series, never from memory or narrative.",
       "if": {
-        "properties": { "scope": { "const": "milestone" } },
-        "required": ["scope"]
+        "properties": {
+          "scope": {
+            "const": "milestone"
+          }
+        },
+        "required": [
+          "scope"
+        ]
       },
       "then": {
         "properties": {
-          "subject": { "required": ["milestone"] },
+          "subject": {
+            "required": [
+              "milestone"
+            ]
+          },
           "metrics": {
             "items": {
-              "properties": { "name": { "$ref": "#/$defs/milestoneNames" } }
+              "properties": {
+                "name": {
+                  "$ref": "#/$defs/milestoneNames"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "F5 correct-course (N1D), gate-exit scope. The top-level contract is 'one file records one scope for one subject'; the reviewer validated a gate-exit file that also carried batch_id. Each scope now forbids the identifiers belonging to the others.",
+      "if": {
+        "properties": {
+          "scope": {
+            "const": "gate-exit"
+          }
+        },
+        "required": [
+          "scope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "subject": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "batch_id"
+                  ]
+                },
+                {
+                  "required": [
+                    "milestone"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "F5 correct-course (N1D), slice scope. The top-level contract is 'one file records one scope for one subject'; the reviewer validated a gate-exit file that also carried batch_id. Each scope now forbids the identifiers belonging to the others.",
+      "if": {
+        "properties": {
+          "scope": {
+            "const": "slice"
+          }
+        },
+        "required": [
+          "scope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "subject": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "gate"
+                  ]
+                },
+                {
+                  "required": [
+                    "gate_exit_ordinal"
+                  ]
+                },
+                {
+                  "required": [
+                    "batch_id"
+                  ]
+                },
+                {
+                  "required": [
+                    "milestone"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "F5 correct-course (N1D), batch scope. The top-level contract is 'one file records one scope for one subject'; the reviewer validated a gate-exit file that also carried batch_id. Each scope now forbids the identifiers belonging to the others.",
+      "if": {
+        "properties": {
+          "scope": {
+            "const": "batch"
+          }
+        },
+        "required": [
+          "scope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "subject": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "slice_id"
+                  ]
+                },
+                {
+                  "required": [
+                    "gate"
+                  ]
+                },
+                {
+                  "required": [
+                    "gate_exit_ordinal"
+                  ]
+                },
+                {
+                  "required": [
+                    "milestone"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "F5 correct-course (N1D), milestone scope. The top-level contract is 'one file records one scope for one subject'; the reviewer validated a gate-exit file that also carried batch_id. Each scope now forbids the identifiers belonging to the others.",
+      "if": {
+        "properties": {
+          "scope": {
+            "const": "milestone"
+          }
+        },
+        "required": [
+          "scope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "subject": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "slice_id"
+                  ]
+                },
+                {
+                  "required": [
+                    "gate"
+                  ]
+                },
+                {
+                  "required": [
+                    "gate_exit_ordinal"
+                  ]
+                },
+                {
+                  "required": [
+                    "batch_id"
+                  ]
+                }
+              ]
             }
           }
         }
@@ -159,7 +418,9 @@
       ]
     },
     "batchNames": {
-      "enum": ["normative_surface_delta"]
+      "enum": [
+        "normative_surface_delta"
+      ]
     },
     "milestoneNames": {
       "enum": [
@@ -177,7 +438,11 @@
     "metricEntry": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["entry_id", "name", "state"],
+      "required": [
+        "entry_id",
+        "name",
+        "state"
+      ],
       "description": "One metric reading. The three result states are structurally separated below, which is the whole point of this schema: §5 requires no_eligible_unit_ran, undefined_zero_denominator and numeric zero to be DISTINCT AND NAMED, and the M2 instrument's failures were exactly the class where a zero meant three different things.",
       "properties": {
         "entry_id": {
@@ -191,15 +456,26 @@
           "description": "The metric's §5 name, constrained to the admissible enum for this file's scope by the conditionals above. A name outside its scope's set — a milestone metric in a gate-exit file, say — is rejected."
         },
         "state": {
-          "enum": ["measured", "no_eligible_unit_ran", "undefined_zero_denominator"],
+          "enum": [
+            "measured",
+            "no_eligible_unit_ran",
+            "undefined_zero_denominator"
+          ],
           "description": "§5's three result states, never conflated. measured: units ran and a value exists — a numerator of genuinely zero is a REAL MEASUREMENT and is recorded here with value 0. no_eligible_unit_ran: the metric's unit never executed in the period; the metric does not move; it is NOT zero, and it carries no numerator or denominator because none was counted. undefined_zero_denominator: units ran but the denominator is empty; reported as undefined and NEVER as a number, and the empty denominator is recorded rather than implied."
         },
         "value": {
-          "type": ["number", "string"],
-          "description": "Present if and only if state is measured. Number for a ratio or count; string for an interval (elapsed_calendar_time) or a reading (convergence_reading)."
+          "type": [
+            "number",
+            "string"
+          ],
+          "description": "Present if and only if state is measured. Number for a ratio or count; string for an interval (elapsed_calendar_time) or a reading (convergence_reading). F3 FAMILY NOTE (N1D): metric names split into a numeric family (every count, rate or ratio §5 defines) and a non-numeric family (elapsed_calendar_time, convergence_reading, divergence_reading — §5's one interval and §3's two readings). ONE NAME IS DELIBERATELY UNCONSTRAINED: `evidence_only_abort_flag`. §5 says of evidence-only abort rate that 'per-slice it is a flag'; the identifier here is this schema's own, and §5 places it in neither family. A branch asserting the base type would be inert — it could never fail, so it could never be falsified — so no branch is written and the gap is recorded here and escalated for operator ruling instead."
         },
-        "numerator": { "type": "number" },
-        "denominator": { "type": "number" },
+        "numerator": {
+          "type": "number"
+        },
+        "denominator": {
+          "type": "number"
+        },
         "command": {
           "type": "string",
           "minLength": 1,
@@ -221,14 +497,30 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["count"],
+            "required": [
+              "count"
+            ],
             "properties": {
-              "mechanism": { "enum": ["door", "exception", "stop"] },
+              "mechanism": {
+                "enum": [
+                  "door",
+                  "exception",
+                  "stop"
+                ]
+              },
               "cause": {
-                "enum": ["contract defect", "instrument defect", "operator decision", "external"]
+                "enum": [
+                  "contract defect",
+                  "instrument defect",
+                  "operator decision",
+                  "external"
+                ]
               },
               "attribution": {
-                "enum": ["attributed", "phase_overhead"],
+                "enum": [
+                  "attributed",
+                  "phase_overhead"
+                ],
                 "description": "operator_attended_work_units only. §5: a batch serving no slice, or more than one, records its units as unattributed phase overhead — NEVER divided by formula among slices."
               },
               "ladder_rung": {
@@ -241,63 +533,209 @@
                 ],
                 "description": "instrument_defects_per_evidence_run only: the ADR-0028 ladder the defect sits on."
               },
-              "count": { "type": "number" }
+              "count": {
+                "type": "number"
+              }
             }
           }
         },
         "supersedes": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["entry_id", "file"],
+          "required": [
+            "entry_id",
+            "file"
+          ],
           "description": "§5's correction rule: a correction is a SUPERSEDING ENTRY citing the original, never a silent edit. Both fields are required because a corrected entry usually lives in an earlier committed file, so an id alone does not locate it.",
           "properties": {
-            "entry_id": { "type": "string", "minLength": 1 },
+            "entry_id": {
+              "type": "string",
+              "minLength": 1
+            },
             "file": {
               "type": "string",
               "minLength": 1,
               "description": "Repository path of the file holding the superseded entry."
             },
-            "reason": { "type": "string" }
+            "reason": {
+              "type": "string"
+            }
           }
         },
-        "note": { "type": "string" }
+        "note": {
+          "type": "string"
+        }
       },
       "allOf": [
         {
           "$comment": "The core separation. A measured reading must carry a value and the command that establishes it; a non-measured state must NOT carry a value, which is what makes 'no unit ran' structurally unable to masquerade as zero.",
           "if": {
-            "properties": { "state": { "const": "measured" } },
-            "required": ["state"]
+            "properties": {
+              "state": {
+                "const": "measured"
+              }
+            },
+            "required": [
+              "state"
+            ]
           },
-          "then": { "required": ["value", "command"] },
-          "else": { "not": { "required": ["value"] } }
+          "then": {
+            "required": [
+              "value",
+              "command"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "value"
+              ]
+            }
+          }
         },
         {
           "$comment": "§5: undefined_zero_denominator means units ran and the denominator is EMPTY. The denominator is required and must be zero — without the requirement the state is asserted and never shown, which is the same unevidenced-label class ADR-0028 §2 governs.",
           "if": {
-            "properties": { "state": { "const": "undefined_zero_denominator" } },
-            "required": ["state"]
+            "properties": {
+              "state": {
+                "const": "undefined_zero_denominator"
+              }
+            },
+            "required": [
+              "state"
+            ]
           },
           "then": {
-            "required": ["denominator"],
-            "properties": { "denominator": { "const": 0 } }
+            "required": [
+              "denominator"
+            ],
+            "properties": {
+              "denominator": {
+                "const": 0
+              }
+            }
           }
         },
         {
           "$comment": "§5: no_eligible_unit_ran means the metric's unit NEVER EXECUTED. Carrying a numerator or denominator would be recording counts from units the state says did not run.",
           "if": {
-            "properties": { "state": { "const": "no_eligible_unit_ran" } },
-            "required": ["state"]
+            "properties": {
+              "state": {
+                "const": "no_eligible_unit_ran"
+              }
+            },
+            "required": [
+              "state"
+            ]
           },
           "then": {
             "not": {
               "anyOf": [
-                { "required": ["numerator"] },
-                { "required": ["denominator"] }
+                {
+                  "required": [
+                    "numerator"
+                  ]
+                },
+                {
+                  "required": [
+                    "denominator"
+                  ]
+                }
               ]
             }
           }
+        },
+        {
+          "$comment": "F2 correct-course (N1D). convergence-metrics-v2 §5: an empty denominator is undefined_zero_denominator and is 'reported as undefined and NEVER as a number'. MT1-07 proved only the reverse direction. The reviewer validated {state: measured, value: 0, denominator: 0} — a measured reading whose denominator is the very emptiness the other state exists to name.",
+          "if": {
+            "properties": {
+              "state": {
+                "const": "measured"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "denominator": {
+                "not": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "$comment": "F3 correct-course (N1D), numeric family. Families derived from convergence-metrics-v2 §5's own definitions: every metric §5 defines as a count, a rate or a ratio takes a number. Before this the value type was number|string for every name, so a count could be the string 'zero' and aggregation could receive a non-numeric count — the generator choosing part of its own output contract, which §5 exists to prevent.",
+          "if": {
+            "properties": {
+              "name": {
+                "$ref": "#/$defs/numericMetricNames"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "$comment": "F3, non-numeric family: exactly the three §5 defines as an interval or a reading — elapsed_calendar_time ('first gate record timestamp to Gate 3 exit or terminal disposition') and the two §3 readings. These take a string.",
+          "if": {
+            "properties": {
+              "name": {
+                "$ref": "#/$defs/nonNumericMetricNames"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            }
+          }
         }
+      ]
+    },
+    "numericMetricNames": {
+      "enum": [
+        "new_contract_defects_per_gate_exit",
+        "r3_first_pass_rate",
+        "implementation_test_failures_at_review",
+        "contract_recurrence",
+        "evidence_only_repair_count",
+        "human_round_trips",
+        "operator_attended_work_units",
+        "classification_falsification_failures",
+        "instrument_defects_per_evidence_run",
+        "evidence_bytes_over_implementation_bytes",
+        "normative_surface_delta",
+        "delivered_over_started_slices",
+        "evidence_only_abort_rate",
+        "work_units_per_delivered_slice",
+        "mutation_kill_rate",
+        "false_positive_checks",
+        "false_negative_checks",
+        "post_gate3_escaped_defects"
+      ]
+    },
+    "nonNumericMetricNames": {
+      "enum": [
+        "elapsed_calendar_time",
+        "convergence_reading",
+        "divergence_reading"
       ]
     }
   }

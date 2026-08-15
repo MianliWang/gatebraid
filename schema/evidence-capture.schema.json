@@ -154,6 +154,26 @@
               "shell_semantics"
             ]
           }
+        },
+        {
+          "$comment": "F6 correct-course (N1D). The missing opposite branch: `form: argv` is described as 'executed directly, no shell involved', and the reviewer validated an argv capture carrying shell_semantics. A record cannot both declare no shell and describe the shell's exit-code semantics.",
+          "if": {
+            "properties": {
+              "form": {
+                "const": "argv"
+              }
+            },
+            "required": [
+              "form"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "shell_semantics"
+              ]
+            }
+          }
         }
       ]
     },
@@ -382,7 +402,8 @@
             },
             "decode_error": {
               "type": "string",
-              "description": "Required whenever decode_result is not ok."
+              "description": "Required whenever decode_result is not ok. F7 correct-course (N1D): minLength 1. The empty string satisfied 'required' while saying nothing, which is the required-but-empty placeholder this schema's own decode_error comment warns against — the reviewer validated a lossy decode carrying an empty error.",
+              "minLength": 1
             },
             "text": {
               "type": "string",

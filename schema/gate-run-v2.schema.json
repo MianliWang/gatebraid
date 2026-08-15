@@ -59,13 +59,13 @@
     },
     "started_at": {
       "type": "string",
-      "format": "date-time",
-      "description": "Quote this scalar in YAML. A YAML 1.1 loader resolves an unquoted ISO8601 scalar to a datetime object, which is not type string, and validation fails (friction #55). The loader that validated is recorded beside the record."
+      "description": "F1 correct-course (M3 batch N1D, external review). THE PATTERN IS THE ONLY ENFORCEMENT and `format` is REMOVED. `format: date-time` is asserted only when a validator is constructed with a format checker AND an optional package is present; `fixtures/run-corpus.py` constructs none, so this field accepted arbitrary strings. The evidence-capture@1 correct-course closed exactly this class at N1C and the repair was not propagated to the sibling interfaces — the external reviewer caught the omission. WHAT THIS ENFORCES: RFC3339 LEXICAL FORM only, case-insensitive in the separator and zone designator per RFC 5234. FIELD RANGES ARE UNCHECKED — a month of 13 or an offset of +99:99 matches, as does 2026-02-31. Anchored with (?![\\s\\S]) rather than $, because Python's re matches $ before a final newline while ECMA-262, which JSON Schema specifies, does not. Quote this scalar in YAML. A YAML 1.1 loader resolves an unquoted ISO8601 scalar to a datetime object, which is not type string, and validation fails (friction #55). The loader that validated is recorded beside the record.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])"
     },
     "ended_at": {
       "type": "string",
-      "format": "date-time",
-      "description": "Quote this scalar in YAML — see started_at (friction #55)."
+      "description": "F1 correct-course (M3 batch N1D, external review). THE PATTERN IS THE ONLY ENFORCEMENT and `format` is REMOVED. `format: date-time` is asserted only when a validator is constructed with a format checker AND an optional package is present; `fixtures/run-corpus.py` constructs none, so this field accepted arbitrary strings. The evidence-capture@1 correct-course closed exactly this class at N1C and the repair was not propagated to the sibling interfaces — the external reviewer caught the omission. WHAT THIS ENFORCES: RFC3339 LEXICAL FORM only, case-insensitive in the separator and zone designator per RFC 5234. FIELD RANGES ARE UNCHECKED — a month of 13 or an offset of +99:99 matches, as does 2026-02-31. Anchored with (?![\\s\\S]) rather than $, because Python's re matches $ before a final newline while ECMA-262, which JSON Schema specifies, does not. Quote this scalar in YAML — see started_at (friction #55).",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])"
     },
     "result": {
       "enum": [
@@ -120,44 +120,36 @@
     "consults": {
       "type": "array",
       "default": [],
-      "items": { "type": "string", "pattern": "^CONSULT-(M[0-9]+|[0-9]+)-[0-9]+$" },
+      "items": {
+        "type": "string",
+        "pattern": "^CONSULT-(M[0-9]+|[0-9]+)-[0-9]+$"
+      },
       "description": "Every consult this gate ran, whenever it ran — in sequence or at the Human Diagnosis stop. repair_attempts[].consult_ref remains scoped to in-sequence consults; an HDR-directed consult appears here and never as a consult_ref (friction #94)."
     },
     "repair_attempts": {
       "type": "array",
       "default": [],
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "number",
-          "hypothesis",
-          "result"
-        ],
-        "properties": {
-          "number": {
-            "enum": [
-              1,
-              2
-            ]
-          },
-          "hypothesis": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Must be a NEW hypothesis (ADR-0002 §4)."
-          },
-          "result": {
-            "enum": [
-              "green",
-              "still_red"
-            ]
-          },
-          "consult_ref": {
-            "type": "string",
-            "description": "consult_id if a Codex consult occurred in sequence — at this attempt's position in the unified repair sequence. A consult performed at the Human Diagnosis stop is recorded in top-level consults, never here (friction #94)."
+      "items": false,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/repairAttempt",
+          "properties": {
+            "number": {
+              "const": 1
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/repairAttempt",
+          "properties": {
+            "number": {
+              "const": 2
+            }
           }
         }
-      }
+      ],
+      "$comment": "F8 correct-course (N1D). GROUNDED: protocols/gate-2-contract.md fixes the D6 repair sequence as 'repair 1 ... Codex consult ... repair 2 ... Human Diagnosis Required' and states `repair_limit = 2`; no third repair (quoted as written, lowercase); the control-plane spec §1 'caps repairs at repair_limit (default 2)'; ADR-0002 §4 fixes the same sequence; templates/slice.md carries `repair_limit: 2`. maxItems enforces the cap, prefixItems fixes the order — the sequence is repair 1 THEN repair 2 — and each position $refs $defs/repairAttempt so the per-attempt constraints keep applying. The first form of this repair set prefixItems beside a sibling `items` and thereby orphaned it; see $defs/repairAttempt."
     },
     "approvals": {
       "type": "array",
@@ -197,8 +189,8 @@
           },
           "at": {
             "type": "string",
-            "format": "date-time",
-            "description": "Quote this scalar in YAML (friction #55)."
+            "description": "F1 correct-course (M3 batch N1D, external review). THE PATTERN IS THE ONLY ENFORCEMENT and `format` is REMOVED. `format: date-time` is asserted only when a validator is constructed with a format checker AND an optional package is present; `fixtures/run-corpus.py` constructs none, so this field accepted arbitrary strings. The evidence-capture@1 correct-course closed exactly this class at N1C and the repair was not propagated to the sibling interfaces — the external reviewer caught the omission. WHAT THIS ENFORCES: RFC3339 LEXICAL FORM only, case-insensitive in the separator and zone designator per RFC 5234. FIELD RANGES ARE UNCHECKED — a month of 13 or an offset of +99:99 matches, as does 2026-02-31. Anchored with (?![\\s\\S]) rather than $, because Python's re matches $ before a final newline while ECMA-262, which JSON Schema specifies, does not.",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])"
           }
         }
       }
@@ -318,7 +310,55 @@
           "const": "none",
           "description": "Always none. Gates never remediate — the schema enforces it."
         }
-      }
+      },
+      "allOf": [
+        {
+          "$comment": "F4 correct-course (N1D). GROUNDED, both directions, in protocols/gate-0-contract.md's failure-disposition definitions: 'Decidable ... result: stopped; SET THE MATCHING Next Approval' and 'Error ... Workflow = Blocked with a typed needs_input reason'. So a decidable stop must carry next_approval and must not carry workflow. Before this, both field descriptions said 'X dispositions only' and neither was enforced; the external reviewer validated a decidable stop carrying workflow and an error stop carrying next_approval.",
+          "if": {
+            "properties": {
+              "disposition": {
+                "const": "decidable"
+              }
+            },
+            "required": [
+              "disposition"
+            ]
+          },
+          "then": {
+            "required": [
+              "next_approval"
+            ],
+            "not": {
+              "required": [
+                "workflow"
+              ]
+            }
+          }
+        },
+        {
+          "$comment": "F4, the error branch. Same grounding: an error disposition is 'Workflow = Blocked' and has nothing for a human to accept, so next_approval — the field by which a row reaches the human — must be absent.",
+          "if": {
+            "properties": {
+              "disposition": {
+                "const": "error"
+              }
+            },
+            "required": [
+              "disposition"
+            ]
+          },
+          "then": {
+            "required": [
+              "workflow"
+            ],
+            "not": {
+              "required": [
+                "next_approval"
+              ]
+            }
+          }
+        }
+      ]
     },
     "notes": {
       "type": "string"
@@ -328,23 +368,41 @@
     {
       "$comment": "friction #94, carried from @1 byte-for-byte in intent: two repair attempts with no in-sequence consult validate only as human_diagnosis_required — the consult either happened in sequence (consult_ref) or the gate ended at HDR. Nothing can force a false consult_ref.",
       "if": {
-        "required": ["repair_attempts"],
+        "required": [
+          "repair_attempts"
+        ],
         "properties": {
           "repair_attempts": {
             "minItems": 2,
-            "not": { "contains": { "required": ["consult_ref"] } }
+            "not": {
+              "contains": {
+                "required": [
+                  "consult_ref"
+                ]
+              }
+            }
           }
         }
       },
       "then": {
-        "properties": { "result": { "const": "human_diagnosis_required" } }
+        "properties": {
+          "result": {
+            "const": "human_diagnosis_required"
+          }
+        }
       }
     },
     {
       "$comment": "@2 addition. A record claiming the bootstrap exception must carry the approval that authorized it AND the pointers to the captures it read. Without the first, bootstrap_exception is a self-granted permission — the exact self-certification shape ADR-0028 was written against. Without the second, the record can claim the packet was read and point at nothing: M3-PLAN §2's bootstrap-boundary paragraph makes the checks[].output_ref pointer to committed capture files constitutive of the boundary, not decorative.",
       "if": {
-        "properties": { "bootstrap_exception": { "const": true } },
-        "required": ["bootstrap_exception"]
+        "properties": {
+          "bootstrap_exception": {
+            "const": true
+          }
+        },
+        "required": [
+          "bootstrap_exception"
+        ]
       },
       "then": {
         "properties": {
@@ -352,25 +410,85 @@
             "type": "array",
             "contains": {
               "type": "object",
-              "properties": { "type": { "const": "State Packet Approval" } },
-              "required": ["type"]
+              "properties": {
+                "type": {
+                  "const": "State Packet Approval"
+                }
+              },
+              "required": [
+                "type"
+              ]
             }
           },
           "checks": {
             "type": "array",
-            "items": { "required": ["output_ref"] }
+            "items": {
+              "required": [
+                "output_ref"
+              ]
+            }
           }
         },
-        "required": ["approvals"]
+        "required": [
+          "approvals"
+        ]
       }
     },
     {
       "$comment": "@2 addition, BEYOND the four deltas ADR-0029 P1-1 and M3-PLAN §2 N1 enumerate — flagged for operator ratification at approval. @1 declared stop_record 'Required whenever result is stopped or blocked' in a description and enforced it with nothing, so a stopped gate could validate while saying nothing about what stopped it. That is the ADR-0013/ADR-0019 failure class: a gate that stopped must be RECORDABLE as stopped. @2 is the last moment to fix it without buying an N1 correct-course later, because M3-PLAN §2 forbids N2 and N3 from redefining a frozen interface during implementation.",
       "if": {
-        "properties": { "result": { "enum": ["stopped", "blocked"] } },
-        "required": ["result"]
+        "properties": {
+          "result": {
+            "enum": [
+              "stopped",
+              "blocked"
+            ]
+          }
+        },
+        "required": [
+          "result"
+        ]
       },
-      "then": { "required": ["stop_record"] }
+      "then": {
+        "required": [
+          "stop_record"
+        ]
+      }
     }
-  ]
+  ],
+  "$defs": {
+    "repairAttempt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "number",
+        "hypothesis",
+        "result"
+      ],
+      "properties": {
+        "number": {
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "hypothesis": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Must be a NEW hypothesis (ADR-0002 §4)."
+        },
+        "result": {
+          "enum": [
+            "green",
+            "still_red"
+          ]
+        },
+        "consult_ref": {
+          "type": "string",
+          "description": "consult_id if a Codex consult occurred in sequence — at this attempt's position in the unified repair sequence. A consult performed at the Human Diagnosis stop is recorded in top-level consults, never here (friction #94)."
+        }
+      },
+      "$comment": "Hoisted at N1D so F8's positional constraint can reference it. In JSON Schema 2020-12 `items` applies ONLY to positions at or beyond len(prefixItems), so a two-entry prefixItems plus maxItems: 2 left `items` unreachable at every index a legal array can have — every constraint here was silently dead. The internal review measured it: a repair attempt of {\"number\": 1} alone, with no hypothesis and no result, validated. Each position now $refs this schema and adds only its own number const; `items: false` closes the tail."
+    }
+  }
 }
