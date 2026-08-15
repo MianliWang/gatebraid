@@ -6,3 +6,9 @@
 # and any sibling) carry no normative authority (M3-PLAN §2 N1, R-min).
 /_handoff/
 /CLAUDE.md
+# Editor-local residue: VS Code rewrites it on open, so deleting it is not
+# durable and committing it would put one machine's editor state in the
+# control repository. It failed the 2026-08-13 push door's porcelain check
+# while being provably absent from everything pushed (operator ruling, that
+# date). Root-anchored like the two rules above.
+/.vscode/
