@@ -12,3 +12,9 @@
 # while being provably absent from everything pushed (operator ruling, that
 # date). Root-anchored like the two rules above.
 /.vscode/
+# AGENTS.md at the root is the read-only-consultant instruction surface,
+# installed under the M3 AGENTS-INSTALL approval and SHA-pinned in the
+# operator's preflight baseline. Session material like CLAUDE.md above:
+# never committed, no normative authority. Root-anchored like every rule
+# in this file.
+/AGENTS.md
