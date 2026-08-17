@@ -1,0 +1,556 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/coverage-report@1",
+  "title": "Gatebraid N3 validator coverage report (gatebraid/coverage-report@1)",
+  "description": "CANDIDATE, NOT FROZEN, NOT LANDED — drafted in M3 batch N3 under _handoff/batch-n3/candidates/ and carrying no authority until an operator approval admits it. The artifact M3-PLAN.md §2 N3 requires of the independent validator: full-file coverage with an explicit completeness report, every verified property classified into exactly four classes, and no unlabelled `replayable` credit. ADR-0031 decision 2 makes this format the precondition of its own N3-start corpus freeze — IN-03, IN-04, IN-05 and the five HALF-BUILT remainders freeze AGAINST this document, before N3's implementation — and ADR-0031's second reopening condition stops the phase if the freeze point is reached with the format undefined. Admissibility of the id itself follows ADR-0030: a new id under the `gatebraid/*@n` namespace is admitted by the milestone authority introducing it (M3-PLAN.md §2 N3) plus the operator's batch approval, and amends nothing. Every timestamp pattern here is copied from the three frozen interfaces, `format` deliberately absent, for the reason measured at N1C/N1D: `format: date-time` is asserted only when a validator is built with a FormatChecker AND an optional package is installed, and `fixtures/run-corpus.py` builds none.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "report_id",
+    "validator",
+    "target",
+    "platform",
+    "recorded_at",
+    "trust_boundary",
+    "sections",
+    "properties",
+    "completeness",
+    "verdict",
+    "findings"
+  ],
+  "properties": {
+    "schema": {
+      "const": "gatebraid/coverage-report@1"
+    },
+    "report_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identifier, unique within its slice's evidence directory. Referenced by a gate record's checks[].output_ref and by a dual_platform_claim in a sibling report."
+    },
+    "validator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "source_sha256"
+      ],
+      "description": "Which committed instrument produced this report. Mirrors evidence-capture@1's `generator` deliberately: a verdict whose producer cannot be named cannot be re-run (ADR-0028 §4, 'committed, falsified, reused').",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Frozen at delivery (M3-PLAN.md §2 N3's last Accept-when item)."
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "IN-02 locus. A digest-shaped pattern refuses a `<sha>` placeholder; DETERMINACY-REPORT.md §3's positive control is exactly this class."
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "schema_id"
+      ],
+      "description": "The ONE document this report re-derives verdicts for, pinned by content digest rather than by name. ADR-0028 §2: no row names HEAD, `git status`, or any state the act of recording it will move.",
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "schema_id": {
+          "enum": [
+            "gatebraid/evidence-capture@1",
+            "gatebraid/gate-run@2",
+            "gatebraid/metrics@1"
+          ],
+          "description": "The three interfaces frozen at N1 and the only documents N3 re-derives from (M3-PLAN.md §2 N1: N3 receives the frozen schemas and the corpus, nothing else). `gatebraid/gate-run@1` is deliberately absent: no new M3 record is written as @1 (ADR-0029 decision 2, P1-1), so a coverage report over an @1 record would be a report over history this validator is not delivered to re-derive."
+        }
+      }
+    },
+    "platform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "os",
+        "os_release",
+        "interpreter"
+      ],
+      "description": "BP-03 locus, half one. ONE report records ONE platform: this is an object, never an array, so a single run cannot present itself as covering both. A dual-platform claim is read from two reports via dual_platform_claim below, never asserted by one — the same rule evidence-capture@1's `platform` states for captures.",
+      "properties": {
+        "os": {
+          "enum": [
+            "windows",
+            "wsl",
+            "linux",
+            "macos"
+          ]
+        },
+        "os_release": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interpreter": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "dual_platform_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reports"
+      ],
+      "description": "BP-03 locus, half two. Optional, and the ONLY place a Windows-AND-WSL claim may be made. Absent means this report claims one platform, which is the honest default.",
+      "properties": {
+        "reports": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "description": "Exactly two DISTINCT sibling reports. minItems kills 'one platform presented as covering both'; uniqueItems kills the same report cited twice — the cross-document claim BP-03 names, and `uniqueItems` is the one cross-entry relation JSON Schema does express.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "os",
+              "report_sha256"
+            ],
+            "properties": {
+              "os": {
+                "enum": [
+                  "windows",
+                  "wsl",
+                  "linux",
+                  "macos"
+                ]
+              },
+              "report_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "recorded_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])",
+      "description": "THE PATTERN IS THE ONLY ENFORCEMENT; `format` is absent by the N1C/N1D measurement. Lexical RFC3339 form only — FIELD RANGES ARE UNCHECKED, so a month of 13 or 2026-02-31 matches. Range and calendar validity are the validator's own re-derivation duty, named here rather than left looking enforced. Trailing anchor is (?![\\s\\S]) rather than $ because Python's re matches $ before a final newline and ECMA-262, which JSON Schema specifies, does not."
+    },
+    "trust_boundary": {
+      "const": "N3 independently re-derives record semantics from the captured evidence — it does not independently attest that the capture event occurred as described (that a command ran, in that cwd, with that unmodified output).",
+      "description": "`const`, not a free string, and structurally required. M3-PLAN.md §2 N3 states the boundary and requires it stated; a free field would let each report restate it, soften it, or omit it — the generator choosing part of its own contract, the class metrics@1's enum'd names exist to prevent. The em dash is U+2014."
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "description": "FULL-FILE COVERAGE (M3-PLAN.md §2 N3, the review-4 lesson). Every section of the target document appears here, each with a disposition. Discovery alone cannot detect what was never added, so completeness is asserted against this list rather than inferred from it.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pointer",
+          "disposition"
+        ],
+        "properties": {
+          "pointer": {
+            "type": "string",
+            "pattern": "^(/([^/~]|~[01])*)*$",
+            "description": "RFC 6901 JSON Pointer into the target document. The empty string is the whole document and is legal."
+          },
+          "disposition": {
+            "enum": [
+              "examined",
+              "not_applicable"
+            ],
+            "description": "EXACTLY TWO, and `excluded` is deliberately absent — it is not an oversight, in the manner of metrics@1's missing `issue-closure`. M3-PLAN.md §2 N3 requires 'an explicit completeness report (no excluded section)'. `not_applicable` is a finding that must carry its reason below, never a silent skip."
+            },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required whenever disposition is not_applicable, enforced below. minLength 1 because the empty string satisfies `required` while saying nothing — the F7 correct-course class."
+          }
+        },
+        "allOf": [
+          {
+            "$comment": "A not_applicable section that does not say why is the silent exclusion this format exists to refuse.",
+            "if": {
+              "properties": {
+                "disposition": {
+                  "const": "not_applicable"
+                }
+              },
+              "required": [
+                "disposition"
+              ]
+            },
+            "then": {
+              "required": [
+                "reason"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "properties": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every verified property, each carrying exactly one of M3-PLAN.md §2 N3's four classes. A class may legitimately be empty — the plan says so — which is why no branch here requires any class to be present.",
+      "items": {
+        "$ref": "#/$defs/verifiedProperty"
+      }
+    },
+    "completeness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sections_total",
+        "sections_examined",
+        "unexamined",
+        "complete"
+      ],
+      "description": "IN-05's locus: partial validator coverage claiming completeness.",
+      "properties": {
+        "sections_total": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sections_examined": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unexamined": {
+          "type": "array",
+          "description": "Pointers examined by nothing. Recorded rather than implied, so that `complete` has something to be false about.",
+          "items": {
+            "type": "string",
+            "pattern": "^(/([^/~]|~[01])*)*$"
+          }
+        },
+        "complete": {
+          "type": "boolean",
+          "description": "**`sections_examined + len(unexamined) == sections_total` IS NOT EXPRESSIBLE IN JSON SCHEMA** — it relates three sibling values and no keyword compares one instance value to another. It is recorded here as an explicit re-derivation duty of whatever checks this report, exactly as evidence-capture@1's `ended_at` names its own inexpressible relation, rather than left to look enforced. What IS enforced is the conditional below."
+        }
+      },
+      "allOf": [
+        {
+          "$comment": "IN-05 KILL. A report claiming completeness while naming unexamined sections is the exact item: 'partial validator coverage claiming completeness'. maxItems: 0 is the expressible half and it fires on the mutation.",
+          "if": {
+            "properties": {
+              "complete": {
+                "const": true
+              }
+            },
+            "required": [
+              "complete"
+            ]
+          },
+          "then": {
+            "properties": {
+              "unexamined": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "verdict": {
+      "enum": [
+        "accepted",
+        "rejected"
+      ],
+      "description": "The re-derived verdict on the target document. Not the target's own claim about itself — that is the whole point of an independent validator."
+    },
+    "findings": {
+      "type": "array",
+      "description": "IN-03's locus: a checker never quotes what it forbids into a record (ADR-0028 §3). Findings are reported BY LOCUS AND POSITION, and `additionalProperties: false` on the entry below is what makes a value-bearing field — `value`, `quoted`, `text`, `offending` — structurally unrecordable rather than merely discouraged.",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "IN-02 KILL, locus one: 'placeholder survives its own check', generalized to its N3 shape — a check that failed to notice. A report cannot accept a document while carrying findings against it. Without this, `verdict: accepted` and a populated findings[] validate together, which is precisely a checker reporting a defect it then passed.",
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "accepted"
+          }
+        },
+        "required": [
+          "verdict"
+        ]
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "$comment": "IN-02 KILL, locus two, at a DISTINCT schema path so the two mutations are separable under run-corpus.py's (keyword, path, schema_path, property, extra_count) locus. An accepted report whose own property rows carry a `fail` verdict is the same failure one level down.",
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "accepted"
+          }
+        },
+        "required": [
+          "verdict"
+        ]
+      },
+      "then": {
+        "properties": {
+          "properties": {
+            "items": {
+              "properties": {
+                "verdict": {
+                  "const": "pass"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "A rejected report must say what it rejected on. The mirror of the branch above, and the ADR-0013/ADR-0019 class: an outcome must be recordable, so a rejection with an empty findings[] is a verdict with no locus.",
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "rejected"
+          }
+        },
+        "required": [
+          "verdict"
+        ]
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "verifiedProperty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "property_id",
+        "locus",
+        "class",
+        "verdict"
+      ],
+      "description": "One verified property of the target document. THE FOUR CLASSES ARE THE WHOLE POINT: M3-PLAN.md §2 N3 requires that 'a `replayable` claim is either replayed or reported `capture-trusted`, never silently credited', and the conditionals below are where that becomes a property of the document rather than a hope about the implementer.",
+      "properties": {
+        "property_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locus": {
+          "type": "string",
+          "pattern": "^(/([^/~]|~[01])*)*$",
+          "description": "RFC 6901 pointer into the target. A locus, never a quoted value (ADR-0028 §3)."
+        },
+        "class": {
+          "enum": [
+            "structural",
+            "semantic",
+            "replayed",
+            "capture-trusted"
+          ],
+          "description": "M3-PLAN.md §2 N3's four, verbatim and closed. `replayable` is deliberately NOT a member: it is the unlabelled credit the plan forbids, so it is not expressible here at all. structural: the shape validated against a frozen schema. semantic: a relation the schema cannot express, re-derived by this validator (ended_at >= started_at; a base64 payload's sha256 and byte_length). replayed: independently re-executed, and then `replay` below is required. capture-trusted: accepted on the generator's capture and LABELLED SO."
+        },
+        "verdict": {
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "replay": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command",
+            "pinned_commit",
+            "rederived_sha256"
+          ],
+          "description": "Required if and only if class is `replayed`, both directions enforced below.",
+          "properties": {
+            "command": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The exact command re-executed. A value nobody can recompute is decoration (ADR-0018 §2a; convergence-metrics-v2 §4)."
+            },
+            "pinned_commit": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$",
+              "description": "IN-04 KILL: 'moved HEAD / mutable ref recorded as replayable'. A FULL 40-hex object name, so the strings `HEAD`, `main`, `origin/main` and `@` cannot be written here at all — the pattern refuses them. ADR-0028 §2: mutable references are pinned to SHAs or excluded from the deterministic subset. Full width for the same reason gate-run@2 widened base_sha: an abbreviation unique today is ambiguous after the next thousand objects, which is a replayability claim the record cannot keep."
+            },
+            "rederived_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$",
+              "description": "What the re-execution produced, as a digest rather than as text. BP-01's and BP-02's blocked remainders — sha256 over raw bytes failing to re-derive, byte_length mismatch caught — are recorded here by a validator that actually re-derived them; the ARITHMETIC is this validator's runtime duty, and what the schema enforces is that a `replayed` claim cannot be made without the re-derived digest beside it."
+            }
+          }
+        },
+        "trusted_on": {
+          "const": "generator-capture",
+          "description": "Required if and only if class is `capture-trusted`. `const` because there is exactly one thing such a property is trusted on — the generator's capture event, which M3-PLAN.md §2 N3's trust boundary says N3 does not independently attest. A free string would let a report invent a stronger-sounding basis."
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "$comment": "A `replayed` class with no replay block is exactly the 'silently credited' claim M3-PLAN.md §2 N3 forbids: it asserts independent re-execution and shows nothing.",
+          "if": {
+            "properties": {
+              "class": {
+                "const": "replayed"
+              }
+            },
+            "required": [
+              "class"
+            ]
+          },
+          "then": {
+            "required": [
+              "replay"
+            ]
+          }
+        },
+        {
+          "$comment": "The opposite branch, absent which the constraint above is half a rule. A structural, semantic or capture-trusted row carrying a replay block is claiming re-execution under a class that does not mean it — the F6 shape, where `form: argv` was allowed to carry shell_semantics.",
+          "if": {
+            "properties": {
+              "class": {
+                "enum": [
+                  "structural",
+                  "semantic",
+                  "capture-trusted"
+                ]
+              }
+            },
+            "required": [
+              "class"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "replay"
+              ]
+            }
+          }
+        },
+        {
+          "$comment": "capture-trusted must be LABELLED SO — the plan's own words. The label is the field.",
+          "if": {
+            "properties": {
+              "class": {
+                "const": "capture-trusted"
+              }
+            },
+            "required": [
+              "class"
+            ]
+          },
+          "then": {
+            "required": [
+              "trusted_on"
+            ]
+          }
+        },
+        {
+          "$comment": "And its opposite: a replayed or structural row cannot also claim it was accepted on the capture. Both halves, because a one-directional conditional is the defect class F4 and F6 were written to close.",
+          "if": {
+            "properties": {
+              "class": {
+                "enum": [
+                  "structural",
+                  "semantic",
+                  "replayed"
+                ]
+              }
+            },
+            "required": [
+              "class"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "trusted_on"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "finding_id",
+        "locus",
+        "rule_id"
+      ],
+      "description": "IN-03 KILL. There is NO field here able to carry the offending value, and `additionalProperties: false` is what enforces it: a report adding `value`, `quoted`, `text` or `offending` is rejected on additionalProperties rather than tolerated. ADR-0028 §3: a detector whose output lands in evidence reports findings by index and position, and its negative case uses a real instance with only its report sanitized. `extra_count` mirrors run-corpus.py's own R1 amendment — a multiplicity, never the offending names.",
+      "properties": {
+        "finding_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locus": {
+          "type": "string",
+          "pattern": "^(/([^/~]|~[01])*)*$"
+        },
+        "rule_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Which rule fired, by identifier — not by restating the rule and not by showing what violated it."
+        },
+        "position": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Byte or item offset within the locus, where one applies."
+        },
+        "extra_count": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Multiplicity for a set-shaped finding (how many undeclared properties, not which). run-corpus.py added exactly this at N1D because one unexpected property and two produced the same locus AND the same schema path."
+        }
+      }
+    }
+  }
+}

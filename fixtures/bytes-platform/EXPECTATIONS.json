@@ -1,0 +1,137 @@
+{
+  "corpus": "bytes-platform",
+  "corpus_version": "v1.1",
+  "frozen_by": "corpus v1.1, frozen by the approved N1 correct-course of M3 batch N1E — ADR-0031 decision 2's N3-start freeze, on the authority of ADR-0029's first reopening condition. The commit SHA is recorded in the N1E batch approval. Corpus v1's prior freeze stands at commit 1e2f11ae3b187a08a758b81b85de85d43f210757, recorded in RB-M3-N1 §0.20.2.",
+  "description": "The bytes/platform half of ADR-0031 decision 2's N3-start corpus extension, asserted against `gatebraid/coverage-report@1` (admitted at N1E per ADR-0030's route). Covers the three blocked remainders DETERMINACY-REPORT.md §2 names for the BP items: BP-01's `sha256` re-derivation, BP-02's `byte_length` mismatch, and BP-03's cross-document dual-platform claim — the last of which §2 recorded as having 'nothing to mutate' because no committed artifact made a dual-platform claim. The coverage report is that artifact, which is why these items freeze here and not at N1. Every invalid case is a SINGLE mutation of a valid sibling: BP1-01 for most, BP1-02 for BP1-05 and BP1-06. Every locus was MEASURED, never written by hand. DIGESTS: `target.sha256` is the REAL SHA-256 of the committed file it names and re-derives; every other digest here is SYNTHETIC and is declared so, because the validator these reports describe does not exist yet — which is precisely what ADR-0031 defers. An internally incoherent fixture would be a bad fixture regardless of what the schema can see, so nothing is claimed as real that is not.",
+  "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator; re-measured identical under CPython 3.12.3 / jsonschema 4.10.3 on WSL",
+  "case_provenance": "R3-D method, recorded because the difference is the point. Every case here was constructed by the N1E executor — which authored neither N2 nor N3 — from the ITEM'S WRITTEN DESCRIPTION in M3-PLAN.md §6, CORPUS-v1-PLAN.md §3 and DETERMINACY-REPORT.md §2, NOT from the N3 draft's candidate cases, which were not read until after these were measured. That is what supplies the not-authored-by-the-implementer property here, in place of an external contribution. The two constructions were then compared and BOTH were kept wherever they differed: BP1-03/BP1-04 (this executor) and BP1-08 (the N3 draft) are three distinct loci over the same two remainders, and neither construction found the other's; IN1-07 (this executor) and IN1-11 (the N3 draft) likewise; IN1-12 was reached only by the N3 draft. Cases marked `independently_constructed` were reached by this executor before N3's were read; those marked `n3_draft_contributed` were not, and are carried on the transcribe-then-re-measure method that worked for the seven externally contributed cases at N1D. The residual is named: these are NOT externally contributed, and no external party reviewed them.",
+  "known_limitation": "MEASURED, by a sweep of every expected-locus set across all five corpora: NO collision involves any case in this corpus. Two relations remain UNENFORCEABLE here and are named rather than left looking enforced. (1) Whether `replay.rederived_sha256` EQUALS the digest the target claims is the arithmetic half of BP-01 and BP-02; it relates two documents and no JSON Schema keyword compares them. What is enforced is that a `replayed` claim cannot be made without a re-derived digest beside it (BP1-08), that the digest cannot be absent from a replay block (BP1-03), and that it must be digest-shaped (BP1-04). The comparison itself is N3's runtime duty. (2) An entry in `dual_platform_claim.reports` cannot be checked against the enclosing report's own digest, so a report citing ITSELF as one of its two platforms validates here; `uniqueItems` catches the same sibling cited twice (BP1-06) but not self-citation. Both are recorded as N3 re-derivation duties.",
+  "cases": [
+    {
+      "id": "BP1-01",
+      "fixture": "valid-single-platform-report.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "valid",
+      "class": "positive control — one report, one platform, honestly claimed",
+      "source": "M3-PLAN.md §6 'Bytes and platform'; CORPUS-v1-PLAN.md §3 BP-03 'a dual-platform claim reads two platform blocks or it is not made'",
+      "note": "Without a positive control every negative below would pass a schema that rejected everything (the GR2-07 lesson).",
+      "expect_errors": [],
+      "independently_constructed": true
+    },
+    {
+      "id": "BP1-02",
+      "fixture": "valid-dual-platform-claim.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "valid",
+      "class": "positive control — the only legitimate way to claim both platforms",
+      "source": "CORPUS-v1-PLAN.md §3 BP-03",
+      "note": "Two DISTINCT sibling reports. Pairs with BP1-04/BP1-05, which mutate exactly this document.",
+      "expect_errors": [],
+      "independently_constructed": true
+    },
+    {
+      "id": "BP1-03",
+      "fixture": "bp01-replayed-without-rederived-digest.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "BP-01 blocked remainder — sha256 over raw bytes fails to re-derive",
+      "source": "CORPUS-v1-PLAN.md §3 BP-01; DETERMINACY-REPORT.md §2 'Blocked remainder: sha256 over raw bytes fails to re-derive'",
+      "note": "The §3 mutation is 'decoded text stored as the authority; bytes discarded' — no bytes, no re-derivation, so the replayed claim has nothing behind it.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "properties/1/replay",
+          "schema_path": "properties/properties/items/properties/replay/required",
+          "property": "rederived_sha256"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "BP1-04",
+      "fixture": "bp02-rederived-digest-truncated.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "BP-02 blocked remainder — byte_length mismatch caught",
+      "source": "CORPUS-v1-PLAN.md §3 BP-02; DETERMINACY-REPORT.md §2 'Blocked remainder: byte_length mismatch caught'",
+      "note": "A re-derivation reported by a value that cannot be a digest is a mismatch not caught.",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "properties/1/replay/rederived_sha256",
+          "schema_path": "properties/properties/items/properties/replay/properties/rederived_sha256/pattern"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "BP1-05",
+      "fixture": "bp03-dual-claim-names-one-report.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "BP-03 — one platform's capture presented as covering both",
+      "source": "M3-PLAN.md §6 'Windows-vs-WSL divergence probes'; CORPUS-v1-PLAN.md §3 BP-03",
+      "note": "Mutates BP1-02 by deleting the second report.",
+      "expect_errors": [
+        {
+          "keyword": "minItems",
+          "path": "dual_platform_claim/reports",
+          "schema_path": "properties/dual_platform_claim/properties/reports/minItems"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "BP1-06",
+      "fixture": "bp03-dual-claim-cites-same-report-twice.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "BP-03 — the item verbatim: the same capture cited for both platforms",
+      "source": "CORPUS-v1-PLAN.md §3 BP-03 'one platform's capture presented as covering both'",
+      "note": "The closest expression of BP-03's own wording, and the cross-document relation DETERMINACY-REPORT.md called blocked.",
+      "expect_errors": [
+        {
+          "keyword": "uniqueItems",
+          "path": "dual_platform_claim/reports",
+          "schema_path": "properties/dual_platform_claim/properties/reports/uniqueItems"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "BP1-07",
+      "fixture": "bp03-single-report-claims-two-platforms.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "BP-03 — one report presenting ITSELF as covering both",
+      "source": "CORPUS-v1-PLAN.md §3 BP-03",
+      "note": "platform is an object, never an array, so a single run cannot make the claim at all.",
+      "expect_errors": [
+        {
+          "keyword": "type",
+          "path": "platform",
+          "schema_path": "properties/platform/type"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "BP1-08",
+      "fixture": "bp01-replayed-claim-shows-nothing.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "BP-01 / BP-02 claim discipline — a replayed claim with nothing behind it",
+      "source": "CORPUS-v1-PLAN.md §3 BP-01 and BP-02; M3-PLAN.md §2 N3 'never silently credited'",
+      "note": "INDEPENDENTLY CONVERGENT (R3-D): the N3 draft reached this locus and this executor reached BP1-03's, one level deeper. Both are kept; neither construction found the other's.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "properties/1",
+          "schema_path": "properties/properties/items/allOf/0/then/required",
+          "property": "replay"
+        }
+      ],
+      "n3_draft_contributed": true
+    }
+  ]
+}

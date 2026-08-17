@@ -47,6 +47,24 @@ Amended at M3 batch N1C
   S15's comparison to fail. S00, S11 and S15 assert rather than seed; the column
   header says "condition", not "seeded condition", for that reason.
 
+Amended at M3 batch N1E — the two frozen-surface repairs, each falsified here
+-----------------------------------------------------------------------------
+* **`__pycache__` immunity (S27, S28).** Importing either instrument as a module
+  writes `fixtures/__pycache__/`, which the runner then reported as an undeclared
+  corpus (exit 2) and which moved this digest — a read-only measurement broken by
+  the act of taking it. `sys.dont_write_bytecode` is set below and is NOT the
+  fix: MEASURED at N1E, the flag set in a module's own body cannot suppress that
+  module's own cache, because the loader writes the cache before the body runs.
+  The fix is excluding the name from the discovery walk and from this digest, and
+  S27/S28 are what stop that exclusion from being a comment nobody checked.
+* **The environment exit code (S25, S26).** An uncaught exception exits 1, and 1
+  is the runner's code for "an expectation failed" — so a jsonschema release that
+  could not resolve the committed schemas' relative `$id` reported a surviving
+  mutation. Exit 3 now means "this host could not evaluate the corpus". S25 seeds
+  a reference the validator cannot resolve; S26 seeds the library away entirely.
+  Both must produce 3, and the point of asserting 3 rather than merely non-zero
+  is that the defect was a WRONG non-zero code, not a missing one.
+
   Run:   <python> fixtures/runner-selftest.py
   Exits: 0 = every seeded condition produced its required status
          1 = at least one did not, or a seeded run mutated the real corpus
@@ -55,17 +73,28 @@ Amended at M3 batch N1C
 
 from __future__ import annotations
 
+import sys
+
+# Defence in depth, first thing. Measured caveat: this cannot stop THIS file's
+# own cache when it is imported as a module — the loader writes that before the
+# body runs — which is why `_PYCACHE` is excluded by name below.
+sys.dont_write_bytecode = True
+
 import hashlib
 import json
 import pathlib
 import shutil
 import subprocess
-import sys
 import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "fixtures"
 RUNNER_REL = "fixtures/run-corpus.py"
+
+# Excluded by name from every walk below. The interpreter writes it; no human
+# added it; it is not part of the corpus and must not be able to move a digest
+# whose whole purpose is to say whether a seeded run escaped.
+_PYCACHE = "__pycache__"
 
 
 def declared_corpora(root: pathlib.Path) -> list[pathlib.Path]:
@@ -98,9 +127,14 @@ def corpora_digest(root: pathlib.Path) -> str:
 
     The `fixtures/` directory LISTING is folded in as well, so a stray corpus
     directory appearing in the real tree changes the digest even though nothing
-    inside the declared corpora moved."""
+    inside the declared corpora moved.
+
+    N1E: `__pycache__` is excluded from BOTH the listing and the file walk. It is
+    interpreter output, not corpus content, and while it was in scope this digest
+    reported "the surface moved" for a directory no seed and no author created."""
     h = hashlib.sha256()
-    for entry in sorted(p.name for p in (root / "fixtures").iterdir()):
+    for entry in sorted(p.name for p in (root / "fixtures").iterdir()
+                        if p.name != _PYCACHE):
         h.update(b"listing\0" + entry.encode("utf-8") + b"\0")
 
     # D9: collect (normalized relative path string, bytes) and sort by the STRING.
@@ -111,7 +145,11 @@ def corpora_digest(root: pathlib.Path) -> str:
     # eventually compares digests across platforms and needs one ordering.
     entries = []
     for target in digest_scope(root):
-        files = [target] if target.is_file() else [q for q in target.rglob("*") if q.is_file()]
+        if target.is_file():
+            files = [target]
+        else:
+            files = [q for q in target.rglob("*")
+                     if q.is_file() and _PYCACHE not in q.parts]
         for q in files:
             entries.append((str(q.relative_to(root)).replace("\\", "/"), q))
     for rel, q in sorted(entries, key=lambda e: e[0]):
@@ -304,6 +342,42 @@ def s_extra_count_on_wrong_keyword(d):
     p.write_text(json.dumps(m, indent=2), encoding="utf-8")
 
 
+# --- N1E: the environment class must be 3, never 1 -------------------------
+
+def s_unresolvable_ref(d):
+    """The validator MACHINERY raises. On WSL this was RefResolutionError over a
+    relative `$id`; here it is a pointer to nowhere, which raises on every
+    jsonschema release without touching a network. Either way the runner must say
+    ENVIRONMENT and exit 3 — the exact accident being repaired is that an escape
+    from this path exits 1, the code for a surviving mutation."""
+    p = d / "schema/metrics.schema.json"
+    s = json.loads(p.read_text("utf-8"))
+    s["properties"]["metrics"] = {"$ref": "#/$defs/thisPointerDoesNotExist"}
+    p.write_text(json.dumps(s, indent=2), encoding="utf-8")
+
+
+def s_validator_absent(d):
+    """The library itself is missing. Previously exit 2, which called an absent
+    dependency a malformed corpus; it is an environment fact and is now 3."""
+    p = d / RUNNER_REL
+    src = p.read_text("utf-8")
+    broken = src.replace(
+        "    from jsonschema import Draft202012Validator",
+        "    from jsonschema_absent_by_seed import Draft202012Validator")
+    assert broken != src, "validator-absent seed did not apply"
+    p.write_text(broken, encoding="utf-8", newline="\n")
+
+
+# --- N1E: __pycache__ must not be able to move the measurement -------------
+
+def s_pycache_present(d):
+    """Exactly what importing an instrument produces. The runner must still be
+    clean: before the repair this was exit 2, 'not declared in CORPORA.json'."""
+    cache = d / "fixtures" / _PYCACHE
+    cache.mkdir()
+    (cache / "run-corpus.cpython-312.pyc").write_bytes(b"\xcb\x0d\x0d\x0a seeded")
+
+
 CASES = [
     ("S00 untouched copy",            0, s_none,                    "CORPUS CLEAN"),
     ("S01 mutation not killed",       1, s_mutation_not_killed,     "mutation not killed"),
@@ -326,6 +400,9 @@ CASES = [
     ("S23 extra_count missing",         2, s_extra_count_missing,   "must record extra_count"),
     ("S24 extra_count wrong keyword",   2, s_extra_count_on_wrong_keyword,
                                            "only meaningful on an 'additionalProperties'"),
+    ("S25 validator cannot resolve",    3, s_unresolvable_ref,      "ENVIRONMENT"),
+    ("S26 validator library absent",    3, s_validator_absent,      "not importable"),
+    ("S27 __pycache__ present",         0, s_pycache_present,       "CORPUS CLEAN"),
 ]
 
 
@@ -411,12 +488,30 @@ def main() -> int:
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
+    # S28 (N1E): and the exact converse for __pycache__ — the digest must NOT move
+    # for a directory the interpreter wrote. S21/S22 prove the digest is sensitive;
+    # without S28 the exclusion could be over-broad and nothing would say so.
+    tmp = pathlib.Path(tempfile.mkdtemp(prefix="gatebraid-pycache-"))
+    try:
+        work = tmp / "tree"
+        shutil.copytree(ROOT, work)
+        base_digest = corpora_digest(work)
+        s_pycache_present(work)
+        (work / "schema" / _PYCACHE).mkdir()
+        (work / "schema" / _PYCACHE / "x.pyc").write_bytes(b"\xcb\x0d\x0d\x0a seeded")
+        held = corpora_digest(work) == base_digest
+        results.append(("S28 __pycache__ moves no digest", "same",
+                        "same" if held else "moves", held,
+                        "digest must ignore interpreter output"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
     after = corpora_digest(ROOT)
 
     w = max(len(r[0]) for r in results)
     print(f"{'condition'.ljust(w)}  want  got  verdict  required observation")
     for name, want, got, ok, text in results:
-        print(f"{name.ljust(w)}  {str(want):>4}  {got:>3}  {'PASS' if ok else 'FAIL':<7}  {text}")
+        print(f"{name.ljust(w)}  {str(want):>4}  {str(got):>3}  {'PASS' if ok else 'FAIL':<7}  {text}")
 
     failed = sum(1 for r in results if not r[3])
     scope = ", ".join(p.name for p in digest_scope(ROOT)) + ", fixtures/ listing"

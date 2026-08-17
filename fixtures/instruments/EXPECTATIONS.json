@@ -1,0 +1,211 @@
+{
+  "corpus": "instruments",
+  "corpus_version": "v1.1",
+  "frozen_by": "corpus v1.1, frozen by the approved N1 correct-course of M3 batch N1E — ADR-0031 decision 2's N3-start freeze, on the authority of ADR-0029's first reopening condition. The commit SHA is recorded in the N1E batch approval. Corpus v1's prior freeze stands at commit 1e2f11ae3b187a08a758b81b85de85d43f210757, recorded in RB-M3-N1 §0.20.2.",
+  "description": "The instruments half of ADR-0031 decision 2's N3-start corpus extension, asserted against `gatebraid/coverage-report@1`. Covers IN-02's blocked remainder (a check that failed to notice), IN-03 (checker self-reference), IN-04 (moved HEAD / mutable ref recorded as replayable) and IN-05 (partial validator coverage claiming completeness). IN-01 IS DELIBERATELY ABSENT and does not freeze here — see known_limitation. IN1-05 and IN1-06 CONTAIN REAL FORBIDDEN INSTANCES: IN-03's rule, stated in CORPUS-v1-PLAN.md §3 and repeated in its IN-04 note, is that the negative case uses a real instance and only the REPORT is sanitized. The runner reports these as a locus and, for the additionalProperties case, a multiplicity — never the field name and never the value — so the checker does not quote what it forbids into its record (spec §4, ADR-0028 §3). Every locus was MEASURED. Digests: synthetic except `target.sha256`, as in bytes-platform.",
+  "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator; re-measured identical under CPython 3.12.3 / jsonschema 4.10.3 on WSL",
+  "case_provenance": "R3-D method, recorded because the difference is the point. Every case here was constructed by the N1E executor — which authored neither N2 nor N3 — from the ITEM'S WRITTEN DESCRIPTION in M3-PLAN.md §6, CORPUS-v1-PLAN.md §3 and DETERMINACY-REPORT.md §2, NOT from the N3 draft's candidate cases, which were not read until after these were measured. That is what supplies the not-authored-by-the-implementer property here, in place of an external contribution. The two constructions were then compared and BOTH were kept wherever they differed: BP1-03/BP1-04 (this executor) and BP1-08 (the N3 draft) are three distinct loci over the same two remainders, and neither construction found the other's; IN1-07 (this executor) and IN1-11 (the N3 draft) likewise; IN1-12 was reached only by the N3 draft. Cases marked `independently_constructed` were reached by this executor before N3's were read; those marked `n3_draft_contributed` were not, and are carried on the transcribe-then-re-measure method that worked for the seven externally contributed cases at N1D. The residual is named: these are NOT externally contributed, and no external party reviewed them.",
+  "known_limitation": "THREE items, all measured. (1) DECLARED LOCUS COLLISION: IN1-06 and IN1-11 produce an IDENTICAL locus — same keyword, same instance path, same absolute_schema_path — because a mutable name and an abbreviated object name fail the SAME 40-hex pattern at the same place. No locus refinement separates two values failing one constraint, and spec §4 bars separating them by echoing the values into the record. This is the EC1-28/EC1-29 class exactly, and the disposition follows that precedent: BOTH cases are carried and the collision is DECLARED here rather than papered over by dropping one, which would trade real coverage for a cosmetic tidy. Under the runner's equality rule either fixture would satisfy the other's manifest entry; that is the residual, and it is bounded to this pair. (2) IN-01 DOES NOT FREEZE IN THIS CORPUS. Its assertion — interpreting a pipeline exit code — spans this coverage report AND the target's `invocation.shell_semantics`, and no single locus in one document expresses it. That is ADR-0031's FIRST reopening condition ('an item still inexpressible at its own freeze point ... returns to an approved corpus change before the phase advances'), and this correct-course IS that approved corpus change: it RE-ASSIGNS IN-01's freeze point to corpus v2 at P's start, which M3-PLAN.md §6 already names as the next freeze. The property is not left unenforced meanwhile — N2's layer B refuses at write time to emit a record whose shell semantics and exit-code interpretation disagree, and that is IN-01's INTERIM ENFORCEMENT HOME. ADR-0031 decision 4 is satisfied because the re-assignment happens through the route the ADR itself names, not around it. (3) A CROSS-DOCUMENT ASSERTION MODE WAS REFUSED for now: growing a new instrument mid-flight is the move ADR-0028 §4 exists to prevent.",
+  "cases": [
+    {
+      "id": "IN1-01",
+      "fixture": "valid-coverage-report.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "valid",
+      "class": "positive control — a complete, accepted report",
+      "source": "M3-PLAN.md §2 N3; CORPUS-v1-PLAN.md §3",
+      "note": "All four classes present, each carrying what its class requires.",
+      "expect_errors": [],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-02",
+      "fixture": "in02-placeholder-survives-its-own-check.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-02 — placeholder survives its own check",
+      "source": "CORPUS-v1-PLAN.md §3 IN-02 'a record containing <sha> where a hash belongs'; DETERMINACY-REPORT.md §3 positive control",
+      "note": "The digest-shaped pattern is what refuses it — the class DETERMINACY-REPORT.md §3 used to refute IN-02's own BLOCKED label.",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "validator/source_sha256",
+          "schema_path": "properties/validator/properties/source_sha256/pattern"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-03",
+      "fixture": "in02-accepted-while-carrying-findings.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-02 blocked remainder — a check that failed to notice",
+      "source": "DETERMINACY-REPORT.md §2 IN-02 'the item's own wording is about a check that failed to notice'",
+      "note": "The checker recorded the defect and then passed the document.",
+      "expect_errors": [
+        {
+          "keyword": "maxItems",
+          "path": "findings",
+          "schema_path": "allOf/0/then/properties/findings/maxItems"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-04",
+      "fixture": "in02-accepted-while-a-row-failed.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-02 blocked remainder — the same failure one level down",
+      "source": "DETERMINACY-REPORT.md §2 IN-02",
+      "note": "Distinct schema path from IN1-03, so the two mutations are separable under the runner's locus.",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "properties/0/verdict",
+          "schema_path": "allOf/1/then/properties/properties/items/properties/verdict/const"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-05",
+      "fixture": "in03-finding-quotes-the-forbidden-token.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-03 — checker self-reference",
+      "source": "M3-PLAN.md §6 'checker self-reference (quoting the forbidden token)'; CORPUS-v1-PLAN.md §3 IN-03; ADR-0028 §3",
+      "note": "Real instance, sanitized report: the token is present in the fixture and the runner names only the locus and the multiplicity.",
+      "expect_errors": [
+        {
+          "keyword": "additionalProperties",
+          "path": "findings/0",
+          "schema_path": "properties/findings/items/additionalProperties",
+          "extra_count": 1
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-06",
+      "fixture": "in04-mutable-ref-recorded-as-replayable.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-04 — moved HEAD / mutable ref recorded as replayable",
+      "source": "M3-PLAN.md §6; CORPUS-v1-PLAN.md §3 IN-04 'a row naming HEAD'; ADR-0028 §2",
+      "note": "The 40-hex pattern cannot hold a mutable reference, which is the point of writing it as a pattern.",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "properties/1/replay/pinned_commit",
+          "schema_path": "properties/properties/items/properties/replay/properties/pinned_commit/pattern"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-07",
+      "fixture": "in04-replayable-claimed-as-a-class.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-04 — the unlabelled credit itself",
+      "source": "M3-PLAN.md §2 N3 'a replayable claim is either replayed or reported capture-trusted, never silently credited'",
+      "note": "`replayable` is deliberately absent from the four classes, so the credit is unwritable rather than merely discouraged.",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "properties/1/class",
+          "schema_path": "properties/properties/items/properties/class/enum"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-08",
+      "fixture": "in05-complete-while-naming-unexamined.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-05 — partial validator coverage claiming completeness",
+      "source": "M3-PLAN.md §6; CORPUS-v1-PLAN.md §3 IN-05 'a validator run skipping one section / coverage reported as complete'",
+      "note": "The item verbatim.",
+      "expect_errors": [
+        {
+          "keyword": "maxItems",
+          "path": "completeness/unexamined",
+          "schema_path": "properties/completeness/allOf/0/then/properties/unexamined/maxItems"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-09",
+      "fixture": "in05-section-skipped-without-a-reason.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-05 — the silent skip",
+      "source": "CORPUS-v1-PLAN.md §3 IN-05 'completeness report names the excluded section'",
+      "note": "not_applicable is a finding that must carry its reason; the schema has no `excluded` disposition at all.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "sections/7",
+          "schema_path": "properties/sections/items/allOf/0/then/required",
+          "property": "reason"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-10",
+      "fixture": "rejected-verdict-naming-no-finding.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-02 mirror — a rejection with no locus",
+      "source": "ADR-0013 (Gate 0 verification failures have dispositions); ADR-0019 (every observable outcome must be expressible)",
+      "note": "The opposite branch of IN1-03, absent which that constraint is half a rule (the F4/F6 class).",
+      "expect_errors": [
+        {
+          "keyword": "minItems",
+          "path": "findings",
+          "schema_path": "allOf/2/then/properties/findings/minItems"
+        }
+      ],
+      "independently_constructed": true
+    },
+    {
+      "id": "IN1-11",
+      "fixture": "in04-abbreviated-object-name-as-pinned-commit.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-04 — an abbreviation is not a pin",
+      "source": "ADR-0028 §2; the coverage-report `pinned_commit` description: an abbreviation unique today is ambiguous after the next thousand objects",
+      "note": "DECLARED COLLISION with IN1-06 — identical keyword, instance path and schema path. No locus refinement separates two values failing one pattern, and spec §4 bars separating them by echoing the values. Both carried under R3-F, on the EC1-28/EC1-29 precedent.",
+      "expect_errors": [
+        {
+          "keyword": "pattern",
+          "path": "properties/1/replay/pinned_commit",
+          "schema_path": "properties/properties/items/properties/replay/properties/pinned_commit/pattern"
+        }
+      ],
+      "n3_draft_contributed": true
+    },
+    {
+      "id": "IN1-12",
+      "fixture": "in05-section-disposition-outside-the-enum.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "IN-05 — `excluded` is not an available disposition",
+      "source": "M3-PLAN.md §2 N3 'an explicit completeness report (no excluded section)'",
+      "note": "CONTRIBUTED BY THE N3 DRAFT (R3-D): this executor's independent construction reached IN1-08 and IN1-09 and did not reach this locus. Recorded rather than absorbed.",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "sections/7/disposition",
+          "schema_path": "properties/sections/items/properties/disposition/enum"
+        }
+      ],
+      "n3_draft_contributed": true
+    }
+  ]
+}

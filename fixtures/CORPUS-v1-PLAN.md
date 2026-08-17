@@ -194,9 +194,21 @@ declared, and every fixture file is referenced by a case.
 
 **Exit status decides, not the printed text.**
 `0` every expectation held · `1` an **expectation** failed · `2` a
-**corpus-structure or usage** error. The split is deliberate: "the corpus is
-broken" and "the corpus caught something" are different findings, and one
-non-zero code would conflate them.
+**corpus-structure or usage** error · `3` an **environment** failure — the
+interpreter or validation library could not evaluate the corpus at all. The
+split is deliberate: "the corpus is broken", "the corpus caught something" and
+"this interpreter could not evaluate it" are different findings, and fewer
+codes would conflate them. Exit `3` was added by the approved N1 correct-course
+(M3 batch N1E, ruling A1), which also moved the `jsonschema` import failure
+from `2` to `3`: an absent library is an environment fact, not a malformed
+corpus. One residual is accepted and named rather than left to be found (N1E
+ruling A9): the runner classifies **any** exception from the validation
+machinery as exit `3`, so a genuinely dangling internal `$ref` in a committed
+schema — arguably a corpus defect, exit `2`'s — would also report as `3`.
+Separating "this library cannot resolve it" from "this reference is broken"
+needs version-specific introspection the runner deliberately does not grow
+(ADR-0028 §4); the property the taxonomy exists for is intact — an
+environment condition can never again surface as exit `1`.
 
 **Falsified before first trusted use, by a committed program, not by prose.**
 `fixtures/runner-selftest.py` seeds each condition into a throwaway copy of the
@@ -222,6 +234,13 @@ $ <python> fixtures/runner-selftest.py
 | S09 | an undeclared corpus directory | `2`, `not declared in CORPORA.json` |
 | S10 | a malformed manifest | `2`, `not valid JSON` |
 | S11 | an unexpected command-line argument | `2`, `unexpected argument` |
+
+The table above records v1's original twelve conditions (S00–S11). The
+selftest has since grown by approved batches — it runs **29 conditions
+(S00–S28)** as of the N1E correct-course, S25–S28 covering the exit-3 path
+seeded both ways and `__pycache__` immunity in both directions — and the
+selftest's own printed report is the authoritative enumeration (cite, never
+restate; two copies drift).
 
 S02 and S03 are the two that matter most: together they are the difference
 between a corpus that measures **kills** and one that measures only rejections.

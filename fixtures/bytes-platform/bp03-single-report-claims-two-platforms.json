@@ -1,0 +1,102 @@
+{
+  "schema": "gatebraid/coverage-report@1",
+  "report_id": "bp-07-report",
+  "validator": {
+    "name": "gatebraid-validate",
+    "version": "1.0.0",
+    "source_sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "target": {
+    "path": "fixtures/evidence-capture-v1/valid-with-outputs.json",
+    "sha256": "60850eebb723535369b5e681fa4967ae049c7e590c233531cf8df427498ca3a6",
+    "schema_id": "gatebraid/evidence-capture@1"
+  },
+  "platform": [
+    {
+      "os": "windows",
+      "os_release": "10.0.26200",
+      "interpreter": "CPython 3.12.2"
+    },
+    {
+      "os": "wsl",
+      "os_release": "6.18.33.2",
+      "interpreter": "CPython 3.12.3"
+    }
+  ],
+  "recorded_at": "2026-08-17T12:00:00Z",
+  "trust_boundary": "N3 independently re-derives record semantics from the captured evidence — it does not independently attest that the capture event occurred as described (that a command ran, in that cwd, with that unmodified output).",
+  "sections": [
+    {
+      "pointer": "",
+      "disposition": "examined"
+    },
+    {
+      "pointer": "/schema",
+      "disposition": "examined"
+    },
+    {
+      "pointer": "/generator",
+      "disposition": "examined"
+    },
+    {
+      "pointer": "/invocation",
+      "disposition": "examined"
+    },
+    {
+      "pointer": "/streams",
+      "disposition": "examined"
+    },
+    {
+      "pointer": "/platform",
+      "disposition": "examined"
+    },
+    {
+      "pointer": "/inputs",
+      "disposition": "examined"
+    },
+    {
+      "pointer": "/outputs",
+      "disposition": "examined"
+    }
+  ],
+  "properties": [
+    {
+      "property_id": "schema-id-const",
+      "locus": "/schema",
+      "class": "structural",
+      "verdict": "pass"
+    },
+    {
+      "property_id": "streams-stdout-sha256-rederives",
+      "locus": "/streams/stdout/sha256",
+      "class": "replayed",
+      "verdict": "pass",
+      "replay": {
+        "command": "python fixtures/run-corpus.py",
+        "pinned_commit": "1e2f11ae3b187a08a758b81b85de85d43f210757",
+        "rederived_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+      }
+    },
+    {
+      "property_id": "ended-at-after-started-at",
+      "locus": "/invocation",
+      "class": "semantic",
+      "verdict": "pass"
+    },
+    {
+      "property_id": "capture-event-occurred",
+      "locus": "/invocation/argv",
+      "class": "capture-trusted",
+      "verdict": "pass",
+      "trusted_on": "generator-capture"
+    }
+  ],
+  "completeness": {
+    "sections_total": 8,
+    "sections_examined": 8,
+    "unexamined": [],
+    "complete": true
+  },
+  "verdict": "accepted",
+  "findings": []
+}
