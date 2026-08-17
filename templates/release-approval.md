@@ -86,6 +86,7 @@ override: none
 ### Scope
 
 - This slice only. It does not authorise starting another slice, a
-  contract-cleanup pass, or any change to the control repository.
+  contract-cleanup pass, or any change to the control repository outside the
+  Slice's own frozen allowlist.
 
 — `<operator name>`, operator · `<ISO 8601 date>`
