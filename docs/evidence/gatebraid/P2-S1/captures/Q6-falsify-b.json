@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "Q6-falsify-b",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($owner:String!,$repo:String!,$number:Int!){\n  repository(owner:$owner,name:$repo){\n    issue(number:$number){\n      id number title\n      projectItems(first:10){\n        nodes{\n          id\n          project{ id title }\n          fieldValues(first:50){\n            nodes{\n              ... on ProjectV2ItemFieldTextValue{ text  field{ ... on ProjectV2FieldCommon{ name } } }\n              ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=4"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 180,
+      "sha256": "fc209f94edff8c8a4fd85d784fd90a070c0ef6d790f770cd1bf0315f83f3aab8",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsiaXNzdWUiOnsiaWQiOiJJX2t3RE9UbXd3OTg4QUFBQUJLM2ctNXciLCJudW1iZXIiOjQsInRpdGxlIjoiVEhST1dBV0FZIOKAlCBjcm9zcy1yZXBvIGRlcGVuZGVuY3kgcHJvYmUsIGRlbGV0ZSBhZnRlciBCYXRjaCBBIiwicHJvamVjdEl0ZW1zIjp7Im5vZGVzIjpbXX19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":{\"issue\":{\"id\":\"I_kwDOTmww988AAAABK3g-5w\",\"number\":4,\"title\":\"THROWAWAY — cross-repo dependency probe, delete after Batch A\",\"projectItems\":{\"nodes\":[]}}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T07:42:39.325765Z",
+  "ended_at": "2026-08-20T07:42:39.886495Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Q6 second required case: real issue NOT on the Project (#4). Documents F2 - returns empty nodes at exit 0, NOT a pass; caller must STOP."
+}

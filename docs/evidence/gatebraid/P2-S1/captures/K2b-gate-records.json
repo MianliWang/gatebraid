@@ -1,0 +1,69 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "K2b-gate-records",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S1/checks/k2b_gate_records.py",
+      "docs/evidence/gatebraid/P2-S1/gate0.json",
+      "docs/evidence/gatebraid/P2-S1/gate1.md",
+      "docs/evidence/gatebraid/P2-S1/gate2.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 496,
+      "sha256": "e7fdb350e6fdaa994a17cba1433b35c4d4e1c0390fe43964497d16e628ac977c",
+      "data": "c2NoZW1hOiBzY2hlbWEvZ2F0ZS1ydW4tdjIuc2NoZW1hLmpzb24NCmxvYWRlcjoganNvbnNjaGVtYSA0LjIzLjAsIERyYWZ0MjAyMDEyVmFsaWRhdG9yDQpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMS9nYXRlMC5qc29uICAgICAgICAgICAgIHNjaGVtYT1nYXRlYnJhaWQvZ2F0ZS1ydW5AMiAgIGdhdGU9MCByZXN1bHQ9cGFzc2VkICAgICAgICAgY29uZm9ybXMNCmRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMxL2dhdGUxLm1kICAgICAgICAgICAgICAgc2NoZW1hPWdhdGVicmFpZC9nYXRlLXJ1bkAyICAgZ2F0ZT0xIHJlc3VsdD1uZWVkc19hcHByb3ZhbCBjb25mb3Jtcw0KZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzEvZ2F0ZTIubWQgICAgICAgICAgICAgICBzY2hlbWE9Z2F0ZWJyYWlkL2dhdGUtcnVuQDIgICBnYXRlPTIgcmVzdWx0PW5lZWRzX2FwcHJvdmFsIGNvbmZvcm1zDQpyZWNvcmRzIHZhbGlkYXRlZDogMyAgbm9uLWNvbmZvcm1pbmc6IDANCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "schema: schema/gate-run-v2.schema.json\r\nloader: jsonschema 4.23.0, Draft202012Validator\r\ndocs/evidence/gatebraid/P2-S1/gate0.json             schema=gatebraid/gate-run@2   gate=0 result=passed         conforms\r\ndocs/evidence/gatebraid/P2-S1/gate1.md               schema=gatebraid/gate-run@2   gate=1 result=needs_approval conforms\r\ndocs/evidence/gatebraid/P2-S1/gate2.md               schema=gatebraid/gate-run@2   gate=2 result=needs_approval conforms\r\nrecords validated: 3  non-conforming: 0\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T21:51:56.915110Z",
+  "ended_at": "2026-08-20T21:51:57.272686Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "K2b: every gate record validated against the committed gatebraid/gate-run@2, loader named. Taken before this amendment's own final write to gate2.md, which necessarily moves that file after its row is written; the post-amendment state is re-validated in gate3.md."
+}

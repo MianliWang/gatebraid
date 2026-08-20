@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-writedomains",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "repos/MianliWang/gatebraid/issues/8",
+      "--jq",
+      ".body"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1890,
+      "sha256": "629909606a6a04ab27da36b9f5de9c2202ed54c737c9750237214a869ef681a0",
+      "data": "IyBQMi1TMSDigJQgZ2F0ZWJyYWlkLWNhcHR1cmU6IHRoZSBldmlkZW5jZSBnZW5lcmF0b3IKCkxhbmRzIGBiaW4vZ2F0ZWJyYWlkLWNhcHR1cmUucHlgIGFuZCBgYmluL2dhdGVicmFpZC1jYXB0dXJlLXNlbGZ0ZXN0LnB5YArigJQgYnVpbHQgYXQgTTMgYmF0Y2ggTjIsIGNvcnJlY3RlZCBhbmQgZHVhbC1wbGF0Zm9ybSBncmVlbiBhdCBOMi1SMiDigJQKdGhyb3VnaCBnYXRlcyAw4oCTMyBpbiB0aGUgY29udHJvbCByZXBvc2l0b3J5IChBRFItMDAzMiBkZWNpc2lvbnMgMSwgMgphbmQgNSkuIEZpbmFsIGNhbmRpZGF0ZSBibG9icywgYm91bmQgYXQgTjItUjI6CmA0M2ZmNWEwNmM3ZjdlMWU5YjBiYTVkNmYxNGU5NTZiYzhkNGM3M2QwYCAoNDMsMzM1IEIpIGFuZApgYTQwODY5YmVhM2QxZThkYmFmMjA0NzM0NTZmOTE5ODM4Zjc4OGVlY2AgKDQwLDg0NiBCKS4KCioqRW52aXJvbm1lbnQgaXMgYG1peGVkLXNlZS1wcm9zZWAsIGFuZCB0aGlzIGlzIHRoZSBwcm9zZS4qKiBUaGUKQWNjZXB0LXdoZW4gaXMgZHVhbC1wbGF0Zm9ybSBieSBjb25zdHJ1Y3Rpb246IGV2ZXJ5IG1lYXN1cmVtZW50IHJ1bnMgb24KV2luZG93cyAoQ1B5dGhvbiAzLjEyLjIsIGpzb25zY2hlbWEgNC4yMy4wKSBBTkQgV1NMIFVidW50dSAyNC4wNAooQ1B5dGhvbiAzLjEyLjMsIGpzb25zY2hlbWEgNC4xMC4zKSwgYW5kIGJvdGggbXVzdCBiZSBncmVlbiDigJQgaW5jbHVkaW5nCnRoZSBndWFyZC12ZXJzdXMtRHJhZnQyMDIwMTJWYWxpZGF0b3IgY3Jvc3MtY2hlY2ssIHdoaWNoIGlzIGEgcmVhbApwYXNzL2ZhaWwgb24gYm90aCBwbGF0Zm9ybXMgKE4yLVIyKS4gQSBnYXAgb24gZWl0aGVyIHBsYXRmb3JtIGlzIGEgc3RvcC4KCioqRmlyc3Qgc2FtZS1yZXBvc2l0b3J5IFNsaWNlLioqIFBoYXNlIGFuZCBTbGljZSBib3RoIGxpdmUgaW4gdGhlCmNvbnRyb2wgcmVwb3NpdG9yeSDigJQgYSBjb25maWd1cmF0aW9uIG5vIGdhdGUgY29udHJhY3QgaGFzIGJlZW4gZXhlcmNpc2VkCmluLiBBbnkgY29udHJhY3QgY2xhdXNlIHRoYXQgY2Fubm90IGJlIHNhdGlzZmllZCBhcyB3cml0dGVuIGluIHRoaXMKY29uZmlndXJhdGlvbiBpcyBhIFNUT1AgYW5kIGEgZmluZGluZyB1bmRlciBBRFItMDAzMidzIGZpcnN0IHJlb3BlbmluZwpjb25kaXRpb24sIG5ldmVyIGFuIGltcHJvdmlzYXRpb24uCgoqKlRoZSBjb3JwdXMgaXMgb3V0IG9mIHNjb3BlLioqIENvcnB1cyB2MS4xIGlzIGZyb3plbjsgYGZpeHR1cmVzL2AgYW5kCmBzY2hlbWEvYCBhcmUgb3V0c2lkZSB0aGUgYWxsb3dsaXN0LCBhbmQgYW55IG5lZWRlZCBjaGFuZ2UgdGhlcmUgaXMgYW4KYXBwcm92ZWQgTjEgY29ycmVjdC1jb3Vyc2UsIG5vdCBTbGljZSB3b3JrLgoKYGRlcGVuZHNfb25gIGlzIGVtcHR5OiBQMi1TMSBjb25zdW1lcyBjb3JwdXMgdjEuMSBmcm9tIHRoZSBiYXNlIGNvbW1pdApvZiBpdHMgb3duIGJyYW5jaCwgbm90IGZyb20gYW55IFNsaWNlJ3MgcmVsZWFzZWQgb3V0cHV0LCBhbmQgdGhlIGNvbnRyb2wKcmVwb3NpdG9yeSdzIGlzc3VlcyBjYXJyeSBubyBkZXBlbmRlbmN5IGVkZ2VzIChtZWFzdXJlZCwgTjItRzBSKS4KCiMjIGdhdGVicmFpZC1tZXRhZGF0YQoKYGBgeWFtbApzY2hlbWE6IGdhdGVicmFpZC9zbGljZUAxCnNsaWNlX2lkOiBQMi1TMQpzdGFnZTogUzIKcGhhc2U6IFAyCndvcmtmbG93X3Byb2ZpbGU6IGNsYXNzaWMKZW52aXJvbm1lbnQ6IG1peGVkLXNlZS1wcm9zZQpyaXNrOiBsb3cKZGVwZW5kc19vbjogW10Kd3JpdGVfZG9tYWluczogWyJiaW4vIiwgImRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMxLyJdCnJlc291cmNlX2xvY2tzOiBbXQpyZXBhaXJfbGltaXQ6IDIKY29uc3VsdF9maXJzdDogZmFsc2UKcGFyYWxsZWxfbW9kZTogc2FmZS1zaW5nbGUtd3JpdGVyCmBgYAoK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "# P2-S1 — gatebraid-capture: the evidence generator\n\nLands `bin/gatebraid-capture.py` and `bin/gatebraid-capture-selftest.py`\n— built at M3 batch N2, corrected and dual-platform green at N2-R2 —\nthrough gates 0–3 in the control repository (ADR-0032 decisions 1, 2\nand 5). Final candidate blobs, bound at N2-R2:\n`43ff5a06c7f7e1e9b0ba5d6f14e956bc8d4c73d0` (43,335 B) and\n`a40869bea3d1e8dbaf20473456f919838f788eec` (40,846 B).\n\n**Environment is `mixed-see-prose`, and this is the prose.** The\nAccept-when is dual-platform by construction: every measurement runs on\nWindows (CPython 3.12.2, jsonschema 4.23.0) AND WSL Ubuntu 24.04\n(CPython 3.12.3, jsonschema 4.10.3), and both must be green — including\nthe guard-versus-Draft202012Validator cross-check, which is a real\npass/fail on both platforms (N2-R2). A gap on either platform is a stop.\n\n**First same-repository Slice.** Phase and Slice both live in the\ncontrol repository — a configuration no gate contract has been exercised\nin. Any contract clause that cannot be satisfied as written in this\nconfiguration is a STOP and a finding under ADR-0032's first reopening\ncondition, never an improvisation.\n\n**The corpus is out of scope.** Corpus v1.1 is frozen; `fixtures/` and\n`schema/` are outside the allowlist, and any needed change there is an\napproved N1 correct-course, not Slice work.\n\n`depends_on` is empty: P2-S1 consumes corpus v1.1 from the base commit\nof its own branch, not from any Slice's released output, and the control\nrepository's issues carry no dependency edges (measured, N2-G0R).\n\n## gatebraid-metadata\n\n```yaml\nschema: gatebraid/slice@1\nslice_id: P2-S1\nstage: S2\nphase: P2\nworkflow_profile: classic\nenvironment: mixed-see-prose\nrisk: low\ndepends_on: []\nwrite_domains: [\"bin/\", \"docs/evidence/gatebraid/P2-S1/\"]\nresource_locks: []\nrepair_limit: 2\nconsult_first: false\nparallel_mode: safe-single-writer\n```\n\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T09:01:57.627635Z",
+  "ended_at": "2026-08-20T09:01:58.140906Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 1 Exit: measure the Slice issue's declared write_domains against the frozen allowlist."
+}

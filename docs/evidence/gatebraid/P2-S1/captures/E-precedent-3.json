@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "E-precedent-3",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($owner:String!,$repo:String!,$number:Int!){\n  repository(owner:$owner,name:$repo){\n    issue(number:$number){\n      id number title\n      projectItems(first:10){\n        nodes{\n          id\n          project{ id title }\n          fieldValues(first:50){\n            nodes{\n              ... on ProjectV2ItemFieldTextValue{ text  field{ ... on ProjectV2FieldCommon{ name } } }\n              ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=3"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 537,
+      "sha256": "2257ad776d9ce5ea538e185323daf3df72fbff08773e212a638b94e059fe5394",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsiaXNzdWUiOnsiaWQiOiJJX2t3RE9UbXd3OTg4QUFBQUJLdzQ4TGciLCJudW1iZXIiOjMsInRpdGxlIjoiUGhhc2UgUDEg4oCUIFNhbXBsZSBoaWVyYXJjaHkgYW5kIGRlcGVuZGVuY3kgZW5jb2RpbmciLCJwcm9qZWN0SXRlbXMiOnsibm9kZXMiOlt7ImlkIjoiUFZUSV9sQUhPQlJvZlVzNEJldW03emcwb2FoTSIsInByb2plY3QiOnsiaWQiOiJQVlRfa3dIT0JSb2ZVczRCZXVtNyIsInRpdGxlIjoiTWlhbmxpIEVuZ2luZWVyaW5nIn0sImZpZWxkVmFsdWVzIjp7Im5vZGVzIjpbe30seyJ0ZXh0IjoiUGhhc2UgUDEg4oCUIFNhbXBsZSBoaWVyYXJjaHkgYW5kIGRlcGVuZGVuY3kgZW5jb2RpbmciLCJmaWVsZCI6eyJuYW1lIjoiVGl0bGUifX0seyJuYW1lIjoiVG9kbyIsIm9wdGlvbklkIjoiZjc1YWQ4NDYiLCJmaWVsZCI6eyJuYW1lIjoiU3RhdHVzIn19LHsidGV4dCI6IlMxIiwiZmllbGQiOnsibmFtZSI6IlN0YWdlIn19LHsidGV4dCI6IlAxIiwiZmllbGQiOnsibmFtZSI6IlBoYXNlIn19XX19XX19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":{\"issue\":{\"id\":\"I_kwDOTmww988AAAABKw48Lg\",\"number\":3,\"title\":\"Phase P1 — Sample hierarchy and dependency encoding\",\"projectItems\":{\"nodes\":[{\"id\":\"PVTI_lAHOBRofUs4Beum7zg0oahM\",\"project\":{\"id\":\"PVT_kwHOBRofUs4Beum7\",\"title\":\"Mianli Engineering\"},\"fieldValues\":{\"nodes\":[{},{\"text\":\"Phase P1 — Sample hierarchy and dependency encoding\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"text\":\"S1\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P1\",\"field\":{\"name\":\"Phase\"}}]}}]}}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T07:45:18.642484Z",
+  "ended_at": "2026-08-20T07:45:19.220076Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Container precedent: Phase P1 item (#3) measured shape, which the P2 item must mirror."
+}

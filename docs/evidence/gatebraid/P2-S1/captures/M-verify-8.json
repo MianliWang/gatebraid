@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "M-verify-8",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($owner:String!,$repo:String!,$number:Int!){\n  repository(owner:$owner,name:$repo){\n    issue(number:$number){\n      id number title\n      projectItems(first:10){\n        nodes{\n          id\n          project{ id title }\n          fieldValues(first:50){\n            nodes{\n              ... on ProjectV2ItemFieldTextValue{ text  field{ ... on ProjectV2FieldCommon{ name } } }\n              ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=8"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1082,
+      "sha256": "5022c54489e5e086d74f3d2f78e2e4fe8b4eafb93931d58e24094e32fcf1f8cd",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsiaXNzdWUiOnsiaWQiOiJJX2t3RE9UbXd3OTg4QUFBQUJOU2JjMGciLCJudW1iZXIiOjgsInRpdGxlIjoiUDItUzEg4oCUIGdhdGVicmFpZC1jYXB0dXJlOiB0aGUgZXZpZGVuY2UgZ2VuZXJhdG9yIiwicHJvamVjdEl0ZW1zIjp7Im5vZGVzIjpbeyJpZCI6IlBWVElfbEFIT0JSb2ZVczRCZXVtN3pnM0RyNUEiLCJwcm9qZWN0Ijp7ImlkIjoiUFZUX2t3SE9CUm9mVXM0QmV1bTciLCJ0aXRsZSI6Ik1pYW5saSBFbmdpbmVlcmluZyJ9LCJmaWVsZFZhbHVlcyI6eyJub2RlcyI6W3t9LHsidGV4dCI6IlAyLVMxIOKAlCBnYXRlYnJhaWQtY2FwdHVyZTogdGhlIGV2aWRlbmNlIGdlbmVyYXRvciIsImZpZWxkIjp7Im5hbWUiOiJUaXRsZSJ9fSx7Im5hbWUiOiJUb2RvIiwib3B0aW9uSWQiOiJmNzVhZDg0NiIsImZpZWxkIjp7Im5hbWUiOiJTdGF0dXMifX0seyJuYW1lIjoiR2F0ZSAwIOKAlCBWZXJpZnlpbmciLCJvcHRpb25JZCI6IjAzNmE5ZmRjIiwiZmllbGQiOnsibmFtZSI6IldvcmtmbG93In19LHsibmFtZSI6IuKAlCIsIm9wdGlvbklkIjoiMzk2OTZiYjUiLCJmaWVsZCI6eyJuYW1lIjoiR2F0ZSJ9fSx7Im5hbWUiOiLigJQiLCJvcHRpb25JZCI6IjQ1MGVlMTMwIiwiZmllbGQiOnsibmFtZSI6Ik5leHQgQXBwcm92YWwifX0seyJuYW1lIjoibWl4ZWQtc2VlLXByb3NlIiwib3B0aW9uSWQiOiIxZTQzZWM4NSIsImZpZWxkIjp7Im5hbWUiOiJFbnZpcm9ubWVudCJ9fSx7Im5hbWUiOiJDbGF1ZGUgTGVhZCIsIm9wdGlvbklkIjoiY2U4NTljN2QiLCJmaWVsZCI6eyJuYW1lIjoiRXhlY3V0b3IifX0seyJuYW1lIjoibG93Iiwib3B0aW9uSWQiOiJlMjkxMjQ5YyIsImZpZWxkIjp7Im5hbWUiOiJSaXNrIn19LHsidGV4dCI6IlMyIiwiZmllbGQiOnsibmFtZSI6IlN0YWdlIn19LHsidGV4dCI6IlAyIiwiZmllbGQiOnsibmFtZSI6IlBoYXNlIn19LHsidGV4dCI6IlAyLVMxIiwiZmllbGQiOnsibmFtZSI6IlNsaWNlIn19LHsidGV4dCI6IjViYzQxZDc2NjdkMWFlMDE5YjIyOGQ0M2VkMWVmMjllYTVjMGI5MjgiLCJmaWVsZCI6eyJuYW1lIjoiQmFzZSBTSEEifX1dfX1dfX19fX0=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":{\"issue\":{\"id\":\"I_kwDOTmww988AAAABNSbc0g\",\"number\":8,\"title\":\"P2-S1 — gatebraid-capture: the evidence generator\",\"projectItems\":{\"nodes\":[{\"id\":\"PVTI_lAHOBRofUs4Beum7zg3Dr5A\",\"project\":{\"id\":\"PVT_kwHOBRofUs4Beum7\",\"title\":\"Mianli Engineering\"},\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S1 — gatebraid-capture: the evidence generator\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"name\":\"Gate 0 — Verifying\",\"optionId\":\"036a9fdc\",\"field\":{\"name\":\"Workflow\"}},{\"name\":\"—\",\"optionId\":\"39696bb5\",\"field\":{\"name\":\"Gate\"}},{\"name\":\"—\",\"optionId\":\"450ee130\",\"field\":{\"name\":\"Next Approval\"}},{\"name\":\"mixed-see-prose\",\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"name\":\"Claude Lead\",\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"name\":\"low\",\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S1\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"5bc41d7667d1ae019b228d43ed1ef29ea5c0b928\",\"field\":{\"name\":\"Base SHA\"}}]}}]}}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T07:46:18.617369Z",
+  "ended_at": "2026-08-20T07:46:19.210205Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Post-mutation verification read, issue #8 item."
+}
