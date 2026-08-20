@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "K1-blobs",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S1/checks/k1_blobs.py",
+      "42f16e1881c8f09e1d03acea568b50a8f41c167b"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 756,
+      "sha256": "ab0cbb95328d5895b0f913c7e5d9b5404689c6c83fa774eaff9b3911a556344d",
+      "data": "Y29tbWl0OiA0MmYxNmUxODgxYzhmMDllMWQwM2FjZWE1NjhiNTBhOGY0MWMxNjdiDQpwYXRoICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJvdW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBsYW5kZWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmVyZGljdA0KYmluL2dhdGVicmFpZC1jYXB0dXJlLXNlbGZ0ZXN0LnB5ICBhNDA4NjliZWEzZDFlOGRiYWYyMDQ3MzQ1NmY5MTk4MzhmNzg4ZWVjICAgYTQwODY5YmVhM2QxZThkYmFmMjA0NzM0NTZmOTE5ODM4Zjc4OGVlYyAgIE1BVENIDQogIGJ5dGVzICAgICAgICAgICAgICAgICAgICAgICAgICAgIDQwODQ2ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA0MDg0NiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTUFUQ0gNCmJpbi9nYXRlYnJhaWQtY2FwdHVyZS5weSAgICAgICAgICAgNDNmZjVhMDZjN2Y3ZTFlOWIwYmE1ZDZmMTRlOTU2YmM4ZDRjNzNkMCAgIDQzZmY1YTA2YzdmN2UxZTliMGJhNWQ2ZjE0ZTk1NmJjOGQ0YzczZDAgICBNQVRDSA0KICBieXRlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICA0MzMzNSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNDMzMzUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1BVENIDQpleHRyYSBwYXRocyB1bmRlciBiaW4vOiBOT05FDQpibG9icyBjb21wYXJlZDogMiAgbWlzbWF0Y2hlczogMA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "commit: 42f16e1881c8f09e1d03acea568b50a8f41c167b\r\npath                               bound                                      landed                                     verdict\r\nbin/gatebraid-capture-selftest.py  a40869bea3d1e8dbaf20473456f919838f788eec   a40869bea3d1e8dbaf20473456f919838f788eec   MATCH\r\n  bytes                            40846                                      40846                                      MATCH\r\nbin/gatebraid-capture.py           43ff5a06c7f7e1e9b0ba5d6f14e956bc8d4c73d0   43ff5a06c7f7e1e9b0ba5d6f14e956bc8d4c73d0   MATCH\r\n  bytes                            43335                                      43335                                      MATCH\r\nextra paths under bin/: NONE\r\nblobs compared: 2  mismatches: 0\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T21:51:56.386969Z",
+  "ended_at": "2026-08-20T21:51:56.614706Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "K1: the landed bin/ pair against the blobs bound at N2-R2, read from the object database at a pinned commit. Repairs the Gate 2 landed-blobs-match-bound check, whose output_ref resolved to no row."
+}

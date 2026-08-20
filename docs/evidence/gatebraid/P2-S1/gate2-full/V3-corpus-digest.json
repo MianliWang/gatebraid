@@ -1,0 +1,66 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "V3-corpus-digest",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "fixtures/runner-selftest.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2994,
+      "sha256": "83a6adf416a5ac46595657d7a1bb9f952788041c5f360e5fa60cf34552a1ec16",
+      "data": "Y29uZGl0aW9uICAgICAgICAgICAgICAgICAgICAgICAgICAgd2FudCAgZ290ICB2ZXJkaWN0ICByZXF1aXJlZCBvYnNlcnZhdGlvbg0KUzAwIHVudG91Y2hlZCBjb3B5ICAgICAgICAgICAgICAgICAgICAgMCAgICAwICBQQVNTICAgICBDT1JQVVMgQ0xFQU4NClMwMSBtdXRhdGlvbiBub3Qga2lsbGVkICAgICAgICAgICAgICAgIDEgICAgMSAgUEFTUyAgICAgbXV0YXRpb24gbm90IGtpbGxlZA0KUzAyIHJlY29yZGVkIGxvY3VzIHNpbGVudCAgICAgICAgICAgICAgMSAgICAxICBQQVNTICAgICByZWNvcmRlZCBsb2N1cyBkaWQgbm90IGZpcmUNClMwMyB1bnJlY29yZGVkIGxvY3VzIGZpcmVkICAgICAgICAgICAgIDEgICAgMSAgUEFTUyAgICAgdW5yZWNvcmRlZCBsb2N1cyBmaXJlZA0KUzA0IHZhbGlkIGNhc2UgYnJva2VuICAgICAgICAgICAgICAgICAgMSAgICAxICBQQVNTICAgICBleHBlY3RlZCB2YWxpZA0KUzA1IGZpeHR1cmUgbWlzc2luZyAgICAgICAgICAgICAgICAgICAgMiAgICAyICBQQVNTICAgICBmaXh0dXJlIG1pc3NpbmcNClMwNiBzY2hlbWEgbWlzc2luZyAgICAgICAgICAgICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgc2NoZW1hIG1pc3NpbmcNClMwNyBpbnZhbGlkIGNhc2UgdW5zcGVjaWZpZWQgICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgcmVjb3JkcyBubyBleHBlY3RlZCBlcnJvcg0KUzA4IG9ycGhhbiBmaXh0dXJlIGZpbGUgICAgICAgICAgICAgICAgMiAgICAyICBQQVNTICAgICByZWZlcmVuY2VkIGJ5IG5vIGNhc2UNClMwOSB1bmRlY2xhcmVkIGNvcnB1cyBkaXIgICAgICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgbm90IGRlY2xhcmVkIGluIENPUlBPUkEuanNvbg0KUzEwIG1hbGZvcm1lZCBtYW5pZmVzdCAgICAgICAgICAgICAgICAgMiAgICAyICBQQVNTICAgICBub3QgdmFsaWQgSlNPTg0KUzEyIHdyb25nIHJlcXVpcmVkIHByb3BlcnR5ICAgICAgICAgICAgMSAgICAxICBQQVNTICAgICByZWNvcmRlZCBsb2N1cyBkaWQgbm90IGZpcmUNClMxMyByZXF1aXJlZCB3aXRob3V0IHByb3BlcnR5ICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgbXVzdCByZWNvcmQgd2hpY2ggcHJvcGVydHkNClMxNCBwcm9wZXJ0eSBvbiB3cm9uZyBrZXl3b3JkICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgb25seSBtZWFuaW5nZnVsIG9uIGEgJ3JlcXVpcmVkJw0KUzE3IHNlY29uZCB1bmV4cGVjdGVkIHByb3BlcnR5ICAgICAgICAgMSAgICAxICBQQVNTICAgICB1bnJlY29yZGVkIGxvY3VzIGZpcmVkDQpTMTggbm9uLWZpbml0ZSBKU09OIGxpdGVyYWwgICAgICAgICAgICAyICAgIDIgIFBBU1MgICAgIG5vbi1KU09OIG51bWVyaWMgY29uc3RhbnQNClMxOSB3cm9uZyBzY2hlbWFfcGF0aCAgICAgICAgICAgICAgICAgIDEgICAgMSAgUEFTUyAgICAgcmVjb3JkZWQgbG9jdXMgZGlkIG5vdCBmaXJlDQpTMjAgc2NoZW1hX3BhdGggbWlzc2luZyAgICAgICAgICAgICAgICAyICAgIDIgIFBBU1MgICAgIGV4cGVjdGF0aW9uIG1pc3NpbmcgJ3NjaGVtYV9wYXRoJw0KUzIzIGV4dHJhX2NvdW50IG1pc3NpbmcgICAgICAgICAgICAgICAgMiAgICAyICBQQVNTICAgICBtdXN0IHJlY29yZCBleHRyYV9jb3VudA0KUzI0IGV4dHJhX2NvdW50IHdyb25nIGtleXdvcmQgICAgICAgICAgMiAgICAyICBQQVNTICAgICBvbmx5IG1lYW5pbmdmdWwgb24gYW4gJ2FkZGl0aW9uYWxQcm9wZXJ0aWVzJw0KUzI1IHZhbGlkYXRvciBjYW5ub3QgcmVzb2x2ZSAgICAgICAgICAgMyAgICAzICBQQVNTICAgICBFTlZJUk9OTUVOVA0KUzI2IHZhbGlkYXRvciBsaWJyYXJ5IGFic2VudCAgICAgICAgICAgMyAgICAzICBQQVNTICAgICBub3QgaW1wb3J0YWJsZQ0KUzI3IF9fcHljYWNoZV9fIHByZXNlbnQgICAgICAgICAgICAgICAgMCAgICAwICBQQVNTICAgICBDT1JQVVMgQ0xFQU4NClMxMSB1bmV4cGVjdGVkIGFyZ3VtZW50ICAgICAgICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgdW5leHBlY3RlZCBhcmd1bWVudA0KUzE1IGN3ZC1pbmRlcGVuZGVuY2UgaG9sZHMgICAgICAgICAgICAgMCAgICAwICBQQVNTICAgICBDT1JQVVMgQ0xFQU4gZnJvbSBib3RoDQpTMTYgY3dkLWluZGVwZW5kZW5jZSBmYWxzaWZpZWQgICAgICAgIT0wICAgIDIgIFBBU1MgICAgIG11c3QgTk9UIGJlIGNsZWFuIGZyb20gZWxzZXdoZXJlDQpTMjEgZGlnZXN0IHNlZXMgcnVuLWNvcnB1cy5weSAgICAgICBtb3ZlcyAgbW92ZXMgIFBBU1MgICAgIGRpZ2VzdCBtdXN0IGNoYW5nZSB3aGVuIHRoZSBmaWxlIGNoYW5nZXMNClMyMiBkaWdlc3Qgc2VlcyBydW5uZXItc2VsZnRlc3QucHkgIG1vdmVzICBtb3ZlcyAgUEFTUyAgICAgZGlnZXN0IG11c3QgY2hhbmdlIHdoZW4gdGhlIGZpbGUgY2hhbmdlcw0KUzI4IF9fcHljYWNoZV9fIG1vdmVzIG5vIGRpZ2VzdCAgICAgc2FtZSAgc2FtZSAgUEFTUyAgICAgZGlnZXN0IG11c3QgaWdub3JlIGludGVycHJldGVyIG91dHB1dA0KDQpkaWdlc3Qgc2NvcGUgICAgICAgICAgICAgICAgICA6IGJ5dGVzLXBsYXRmb3JtLCBldmlkZW5jZS1jYXB0dXJlLXYxLCBnYXRlLXJ1bi12MiwgaW5zdHJ1bWVudHMsIG1ldHJpY3MtdjEsIENPUlBPUkEuanNvbiwgc2NoZW1hLCBydW4tY29ycHVzLnB5LCBydW5uZXItc2VsZnRlc3QucHksIGZpeHR1cmVzLyBsaXN0aW5nDQpkaWdlc3QgYmVmb3JlICAgICAgICAgICAgICAgICA6IGY2MTI4YTBhNTMzNjMxNjJkOTY3Y2I4NmU5ZWE5MTU4NjQ1NWM3YjVmYjEyZDU1YjhhNDgyNWU1ZmU5NjU2ODYNCmRpZ2VzdCBhZnRlciAgICAgICAgICAgICAgICAgIDogZjYxMjhhMGE1MzM2MzE2MmQ5NjdjYjg2ZTllYTkxNTg2NDU1YzdiNWZiMTJkNTViOGE0ODI1ZTVmZTk2NTY4Ng0Kc2VlZC1yZWFjaGFibGUgc3VyZmFjZSBVTk1PRElGSUVEOiBUcnVlDQpjb25kaXRpb25zIGZhaWxlZCAgICAgICAgICAgICA6IDANClNFTEZURVNUIENMRUFOOiBldmVyeSBzZWVkZWQgY29uZGl0aW9uIHByb2R1Y2VkIGl0cyByZXF1aXJlZCBleGl0IHN0YXR1cw0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "condition                           want  got  verdict  required observation\r\nS00 untouched copy                     0    0  PASS     CORPUS CLEAN\r\nS01 mutation not killed                1    1  PASS     mutation not killed\r\nS02 recorded locus silent              1    1  PASS     recorded locus did not fire\r\nS03 unrecorded locus fired             1    1  PASS     unrecorded locus fired\r\nS04 valid case broken                  1    1  PASS     expected valid\r\nS05 fixture missing                    2    2  PASS     fixture missing\r\nS06 schema missing                     2    2  PASS     schema missing\r\nS07 invalid case unspecified           2    2  PASS     records no expected error\r\nS08 orphan fixture file                2    2  PASS     referenced by no case\r\nS09 undeclared corpus dir              2    2  PASS     not declared in CORPORA.json\r\nS10 malformed manifest                 2    2  PASS     not valid JSON\r\nS12 wrong required property            1    1  PASS     recorded locus did not fire\r\nS13 required without property          2    2  PASS     must record which property\r\nS14 property on wrong keyword          2    2  PASS     only meaningful on a 'required'\r\nS17 second unexpected property         1    1  PASS     unrecorded locus fired\r\nS18 non-finite JSON literal            2    2  PASS     non-JSON numeric constant\r\nS19 wrong schema_path                  1    1  PASS     recorded locus did not fire\r\nS20 schema_path missing                2    2  PASS     expectation missing 'schema_path'\r\nS23 extra_count missing                2    2  PASS     must record extra_count\r\nS24 extra_count wrong keyword          2    2  PASS     only meaningful on an 'additionalProperties'\r\nS25 validator cannot resolve           3    3  PASS     ENVIRONMENT\r\nS26 validator library absent           3    3  PASS     not importable\r\nS27 __pycache__ present                0    0  PASS     CORPUS CLEAN\r\nS11 unexpected argument                2    2  PASS     unexpected argument\r\nS15 cwd-independence holds             0    0  PASS     CORPUS CLEAN from both\r\nS16 cwd-independence falsified       !=0    2  PASS     must NOT be clean from elsewhere\r\nS21 digest sees run-corpus.py       moves  moves  PASS     digest must change when the file changes\r\nS22 digest sees runner-selftest.py  moves  moves  PASS     digest must change when the file changes\r\nS28 __pycache__ moves no digest     same  same  PASS     digest must ignore interpreter output\r\n\r\ndigest scope                  : bytes-platform, evidence-capture-v1, gate-run-v2, instruments, metrics-v1, CORPORA.json, schema, run-corpus.py, runner-selftest.py, fixtures/ listing\r\ndigest before                 : f6128a0a53363162d967cb86e9ea91586455c7b5fb12d55b8a4825e5fe965686\r\ndigest after                  : f6128a0a53363162d967cb86e9ea91586455c7b5fb12d55b8a4825e5fe965686\r\nseed-reachable surface UNMODIFIED: True\r\nconditions failed             : 0\r\nSELFTEST CLEAN: every seeded condition produced its required exit status\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T21:48:15.894066Z",
+  "ended_at": "2026-08-20T21:50:13.084456Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "V3 full output, materialized at the Gate 2 evidence amendment. Re-derivation; the frozen digest is unmoved and reproduces byte for byte."
+}
