@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "M-verify-7",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($owner:String!,$repo:String!,$number:Int!){\n  repository(owner:$owner,name:$repo){\n    issue(number:$number){\n      id number title\n      projectItems(first:10){\n        nodes{\n          id\n          project{ id title }\n          fieldValues(first:50){\n            nodes{\n              ... on ProjectV2ItemFieldTextValue{ text  field{ ... on ProjectV2FieldCommon{ name } } }\n              ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=7"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 545,
+      "sha256": "9277e93f22f8472574ba3da4384fcf957ab58f0e73ef712f2fab955eabf472a1",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsiaXNzdWUiOnsiaWQiOiJJX2t3RE9UbXd3OTg4QUFBQUJOU2JMZ3ciLCJudW1iZXIiOjcsInRpdGxlIjoiUGhhc2UgUDIg4oCUIEV2aWRlbmNlIGdlbmVyYXRvciBhbmQgaW5kZXBlbmRlbnQgdmFsaWRhdG9yIiwicHJvamVjdEl0ZW1zIjp7Im5vZGVzIjpbeyJpZCI6IlBWVElfbEFIT0JSb2ZVczRCZXVtN3pnM0RyMzAiLCJwcm9qZWN0Ijp7ImlkIjoiUFZUX2t3SE9CUm9mVXM0QmV1bTciLCJ0aXRsZSI6Ik1pYW5saSBFbmdpbmVlcmluZyJ9LCJmaWVsZFZhbHVlcyI6eyJub2RlcyI6W3t9LHsidGV4dCI6IlBoYXNlIFAyIOKAlCBFdmlkZW5jZSBnZW5lcmF0b3IgYW5kIGluZGVwZW5kZW50IHZhbGlkYXRvciIsImZpZWxkIjp7Im5hbWUiOiJUaXRsZSJ9fSx7Im5hbWUiOiJUb2RvIiwib3B0aW9uSWQiOiJmNzVhZDg0NiIsImZpZWxkIjp7Im5hbWUiOiJTdGF0dXMifX0seyJ0ZXh0IjoiUzIiLCJmaWVsZCI6eyJuYW1lIjoiU3RhZ2UifX0seyJ0ZXh0IjoiUDIiLCJmaWVsZCI6eyJuYW1lIjoiUGhhc2UifX1dfX1dfX19fX0=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":{\"issue\":{\"id\":\"I_kwDOTmww988AAAABNSbLgw\",\"number\":7,\"title\":\"Phase P2 — Evidence generator and independent validator\",\"projectItems\":{\"nodes\":[{\"id\":\"PVTI_lAHOBRofUs4Beum7zg3Dr30\",\"project\":{\"id\":\"PVT_kwHOBRofUs4Beum7\",\"title\":\"Mianli Engineering\"},\"fieldValues\":{\"nodes\":[{},{\"text\":\"Phase P2 — Evidence generator and independent validator\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}}]}}]}}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T07:46:19.496670Z",
+  "ended_at": "2026-08-20T07:46:20.226967Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Post-mutation verification read, issue #7 item."
+}

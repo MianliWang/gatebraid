@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "Q4-real-json",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "project",
+      "view",
+      "1",
+      "--owner",
+      "MianliWang",
+      "--format",
+      "json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 287,
+      "sha256": "2c7f26535bd4beb25f99ad139d3c540d56e80cfaaff181fa481f7299ed41ad9b",
+      "data": "eyJjbG9zZWQiOmZhbHNlLCJmaWVsZHMiOnsidG90YWxDb3VudCI6Mjd9LCJpZCI6IlBWVF9rd0hPQlJvZlVzNEJldW03IiwiaXRlbXMiOnsidG90YWxDb3VudCI6MTF9LCJudW1iZXIiOjEsIm93bmVyIjp7ImxvZ2luIjoiTWlhbmxpV2FuZyIsInR5cGUiOiJVc2VyIn0sInB1YmxpYyI6ZmFsc2UsInJlYWRtZSI6IiIsInNob3J0RGVzY3JpcHRpb24iOiIiLCJ0aXRsZSI6Ik1pYW5saSBFbmdpbmVlcmluZyIsInVybCI6Imh0dHBzOi8vZ2l0aHViLmNvbS91c2Vycy9NaWFubGlXYW5nL3Byb2plY3RzLzEifQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"closed\":false,\"fields\":{\"totalCount\":27},\"id\":\"PVT_kwHOBRofUs4Beum7\",\"items\":{\"totalCount\":11},\"number\":1,\"owner\":{\"login\":\"MianliWang\",\"type\":\"User\"},\"public\":false,\"readme\":\"\",\"shortDescription\":\"\",\"title\":\"Mianli Engineering\",\"url\":\"https://github.com/users/MianliWang/projects/1\"}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-20T07:42:05.205849Z",
+  "ended_at": "2026-08-20T07:42:06.105431Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Q4 machine-readable variant for identity assertion (id/number/owner)."
+}

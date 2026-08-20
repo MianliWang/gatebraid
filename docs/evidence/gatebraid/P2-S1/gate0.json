@@ -1,0 +1,197 @@
+{
+  "schema": "gatebraid/gate-run@2",
+  "slice_id": "P2-S1",
+  "gate": 0,
+  "environment": "mixed-see-prose",
+  "executor": "Claude Lead",
+  "base_sha": "5bc41d7667d1ae019b228d43ed1ef29ea5c0b928",
+  "started_at": "2026-08-20T07:41:25.261522Z",
+  "ended_at": "2026-08-20T07:46:22.022799Z",
+  "result": "passed",
+  "bootstrap_exception": true,
+  "approvals": [
+    {
+      "type": "State Packet Approval",
+      "author": "MianliWang",
+      "comment_url": "https://github.com/MianliWang/gatebraid/issues/8#issuecomment-5352888364",
+      "at": "2026-08-20T07:38:58Z"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Q1 identity (first and alone; value asserted non-null/non-empty/exact, not exit-only)",
+      "result": "pass",
+      "command": "gh api user --jq .login",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q1-real.json@sha256:89e57bc8f0e04d129176ed5fcea0ded476d1d23de5bf1da459dfd12c3b0771df"
+    },
+    {
+      "name": "Q2 approval provenance (author is the operator MianliWang, never the executor; grant 5352888364)",
+      "result": "pass",
+      "command": "gh api repos/MianliWang/gatebraid/issues/comments/5352888364 --jq '{author: .user.login, url: .html_url}'",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q2-real.json@sha256:52e5a47050c6f01889888e79cf3287ff8d32a0c0bb2dd8ec263134e88684a73b"
+    },
+    {
+      "name": "Q3 slice issue #8 OPEN with exact title",
+      "result": "pass",
+      "command": "gh issue view 8 --repo MianliWang/gatebraid --json number,state,title,url",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q3-real.json@sha256:e4800fa31d7df72baf26fad6913235b8aa51a14c87d88b5f3f9c90aed4e96eea"
+    },
+    {
+      "name": "Q4 Project identity PVT_kwHOBRofUs4Beum7, number 1, owner MianliWang, private",
+      "result": "pass",
+      "command": "gh project view 1 --owner MianliWang --format json",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q4-real-json.json@sha256:5f1dc0d16e6138453570f87769b41a7c5b86ea31aa218bcb836054102c13fab3"
+    },
+    {
+      "name": "Q5 field/option ids read fresh; the three cited option ids present",
+      "result": "pass",
+      "command": "gh project field-list 1 --owner MianliWang --format json",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q5-real-json.json@sha256:c9a40ad80c5590d3354fa59d43b0a791db8d9785075e911128daa0dba05e7c00"
+    },
+    {
+      "name": "Q6 per-item field read, item addressed by item id not Title (F4); non-empty nodes (F2)",
+      "result": "pass",
+      "command": "gh api graphql -f query=<INVENTORY §Q6 form verbatim> -F owner=MianliWang -F repo=gatebraid -F number=8",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q6-real.json@sha256:a000ae86a43d750581a9d46dba2027d3847e812b79b8052055f0565428ee8847"
+    },
+    {
+      "name": "Q7 dependency read, blocked_by direction: empty, matching depends_on: []",
+      "result": "pass",
+      "command": "gh api repos/MianliWang/gatebraid/issues/8/dependencies/blocked_by",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q7-real-blockedby.json@sha256:017d94dccec5ee6d65b0e227610f40307525e9e5e4c9cf3227816a624f3bedc1"
+    },
+    {
+      "name": "Q7 dependency read, blocking direction (both directions required, P0-4): empty",
+      "result": "pass",
+      "command": "gh api repos/MianliWang/gatebraid/issues/8/dependencies/blocking",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q7-real-blocking.json@sha256:f9adbbcbfc64de9070fad9958f04e6b94a7db5454a2fe4cb0122ccf70ea163cf"
+    },
+    {
+      "name": "Q1 falsified in-window: seeded bad endpoint fails closed (exit 1, HTTP 404)",
+      "result": "pass",
+      "command": "gh api users/definitely-not-a-real-account-xyzzy-99999",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q1-falsify.json@sha256:be3369ba96deb9fcf286f08881b64c4b5893e5ece17fa3e16d6c45059db467af"
+    },
+    {
+      "name": "Q2 falsified in-window: seeded bad comment id fails closed (exit 1, HTTP 404)",
+      "result": "pass",
+      "command": "gh api repos/MianliWang/gatebraid/issues/comments/1 --jq '{author: .user.login, url: .html_url}'",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q2-falsify.json@sha256:c592e5c92209423a6905b6c71c5f7759ca43bf1dd46ea8d2163dc1bdd1ee34b7"
+    },
+    {
+      "name": "Q3 falsified in-window: nonexistent issue fails closed (exit 1)",
+      "result": "pass",
+      "command": "gh issue view 99999 --repo MianliWang/gatebraid --json number,state,title,url",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q3-falsify.json@sha256:4bf38ff6325e5b2862647e598d7a2fe60d0e8c2f93104de21153718744ae3ce9"
+    },
+    {
+      "name": "Q4 falsified in-window: nonexistent project fails closed (exit 1)",
+      "result": "pass",
+      "command": "gh project view 99999 --owner MianliWang",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q4-falsify.json@sha256:52386bd54550ffc9b185833942cc81bf73ae4ea9f41ee9fe36dc42851f6d1ec9"
+    },
+    {
+      "name": "Q5 falsified in-window: nonexistent project fails closed (exit 1)",
+      "result": "pass",
+      "command": "gh project field-list 99999 --owner MianliWang",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q5-falsify.json@sha256:6b52b4a96118b610e37644b0f99011d8f03fb3ac6aca6fc5eb34242684e8c28d"
+    },
+    {
+      "name": "Q6 falsified in-window (a): nonexistent issue fails closed (exit 1, errors[] NOT_FOUND)",
+      "result": "pass",
+      "command": "gh api graphql ... -F number=99999",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q6-falsify-a.json@sha256:607b74383ec11f14f911fc10e50cd35f5d1b8814fd8ec8a69ce67b25682cf0d2"
+    },
+    {
+      "name": "Q6 falsified in-window (b): real issue NOT on the Project returns exit 0 with empty nodes -- NOT a pass; F2 makes the caller stop. Recorded as the measured limit of the form.",
+      "result": "pass",
+      "command": "gh api graphql ... -F number=4",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q6-falsify-b.json@sha256:9b0c6a05cad8c28e75c31e208d2bb9f342adda8ebda253d061304be0078dd7da"
+    },
+    {
+      "name": "Q6 falsified in-window (c): wrong owner fails closed (exit 1)",
+      "result": "pass",
+      "command": "gh api graphql ... -F owner=definitely-not-an-owner-xyzzy",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q6-falsify-owner.json@sha256:ed8cc7d899582a634f3748a1a8d79c4590eae1f2a5652d48db2e1d33e366b80b"
+    },
+    {
+      "name": "Q7 falsified in-window (a): issue with no dependencies returns empty, NOT an error",
+      "result": "pass",
+      "command": "gh api repos/MianliWang/gatebraid/issues/6/dependencies/blocked_by",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q7-falsify-a.json@sha256:de30a4e53d7d5809717b91f7419c7a8f2eaf2783d9bc6d7c602580ca5fe006f1"
+    },
+    {
+      "name": "Q7 falsified in-window (b): nonexistent issue fails closed (exit 1, HTTP 404)",
+      "result": "pass",
+      "command": "gh api repos/MianliWang/gatebraid/issues/99999/dependencies/blocked_by",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q7-falsify-b.json@sha256:d0ffc71744178e1edc33fcc7f4d3344855ed8dac4ca2de8c5082b145f4384b74"
+    },
+    {
+      "name": "Provenance of superseded comment 5352490936 read and deliberately NOT cited in approvals[]",
+      "result": "pass",
+      "command": "gh api repos/MianliWang/gatebraid/issues/comments/5352490936 --jq '{author: .user.login, url: .html_url}'",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q2-superseded-check.json@sha256:b4f978613a24dd21e5c865c6ef03a4f22951ab56be36b812ff6f748eefcd14cd"
+    },
+    {
+      "name": "Working-tree predicate at entry: porcelain empty AND HEAD == base-branch head (friction #84, one predicate not two)",
+      "result": "pass",
+      "command": "git rev-parse HEAD",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/E-head.json@sha256:8fcdbc52fee95d4ea0f302c152e38ba06feffe80e66d8776d9e57c4252c3724b"
+    },
+    {
+      "name": "Base-branch head on the remote equals HEAD and the Base SHA field",
+      "result": "pass",
+      "command": "git ls-remote origin refs/heads/main",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/E-remote.json@sha256:15fe71b68718a013dacc4a0dd3e5be638749c0da357897729a3fe2bfc6523873"
+    },
+    {
+      "name": "Ref namespace enumerated: one ref outside refs/heads|remotes|tags -- a pre-existing Codex consultant checkpoint ref, REPORTED NOT ADOPTED per gate-0-contract.md:31 (friction #103); not slice-introduced",
+      "result": "pass",
+      "command": "git for-each-ref --format=%(refname)",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/E-refns.json@sha256:0b242f270d9700804812ab71c6e8bee6cbacc8fc3ae205dc5549925ec6cb7ac2"
+    },
+    {
+      "name": "Slice #8 gatebraid-metadata parses valid against gatebraid/slice@1 (Draft202012Validator, 0 errors)",
+      "result": "pass",
+      "command": "gh api repos/MianliWang/gatebraid/issues/8 --jq .body",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/E-meta.json@sha256:fd72359e8728881b7a565f6db43d937961f91f19614dc252cace50d2c052212c"
+    },
+    {
+      "name": "Environment field matches the host: Environment=mixed-see-prose, gate ran on Windows; the WSL half is evidence, not an Environment-Change mismatch (packet §4 ruling). No mismatch.",
+      "result": "pass",
+      "command": "gh api graphql ... -F number=8",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/Q6-real.json@sha256:a000ae86a43d750581a9d46dba2027d3847e812b79b8052055f0565428ee8847"
+    },
+    {
+      "name": "Container precedent measured before mirroring: #2 carries Stage only, #3 carries Stage+Phase",
+      "result": "pass",
+      "command": "gh api graphql ... -F number=2",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/E-precedent-2.json@sha256:1d41f98325ea84d6a1e6632f63acc70d25c6dce49b4ff0bc514889faaf312358"
+    },
+    {
+      "name": "Container precedent measured: Phase P1 (#3) shape",
+      "result": "pass",
+      "command": "gh api graphql ... -F number=3",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/E-precedent-3.json@sha256:6b148f486297fe663ee5b156f1a020e631015d1a8549a9e635af67c7f72fad02"
+    },
+    {
+      "name": "M-1 verified: P2-S1 item Workflow = 'Gate 0 - Verifying' option 036a9fdc (written by id)",
+      "result": "pass",
+      "command": "gh project item-edit --id PVTI_lAHOBRofUs4Beum7zg3Dr5A --field-id PVTSSF_lAHOBRofUs4Beum7zhZGqt0 --single-select-option-id 036a9fdc",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/M-verify-8.json@sha256:810c1530dca973dc28b244630f473dbdf3fd299de6cd3dbe3c1391e37fd92cf8"
+    },
+    {
+      "name": "M-2 verified: Phase P2 item gains Stage=S2, Phase=P2, mirroring #3's measured shape",
+      "result": "pass",
+      "command": "gh project item-edit --id PVTI_lAHOBRofUs4Beum7zg3Dr30 ... --text S2 / P2",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/M-verify-7.json@sha256:b4e37c03d54a42fc40ae6ccdc6a1fcb3ec0a571d8001b5ae6899392aa4c67849"
+    },
+    {
+      "name": "M-3 verified: Stage S2 item gains Stage=S2 ONLY, mirroring #2's measured shape (no Phase)",
+      "result": "pass",
+      "command": "gh project item-edit --id PVTI_lAHOBRofUs4Beum7zg3Dr2w ... --text S2",
+      "output_ref": "docs/evidence/gatebraid/P2-S1/captures/M-verify-6.json@sha256:9a97d10a5d95d1c1c15959380ab2e373592c870b1d8baf8b441d3967bbd28fb1"
+    }
+  ],
+  "notes": "Bootstrap-marked: startability read through the operator-approved closed-set state packet STATE-PACKET-M3-N2-FINAL.md (6,876 B, blob 0c1f4b1cabd029a7824c3c30aa46352eb55b30fb, sha256 920bd8ef0462aed4460f0d33407b7cf7e034662f5a7a41897be81d4f35cdb458), the unhardened snapshot/frontier pair being no authority before O0 (ADR-0029 decision 2). Every capture was written by bin/gatebraid-capture.py from the blob-verified candidate 43ff5a06c7f7e1e9b0ba5d6f14e956bc8d4c73d0 -- the tool this Slice exists to land, capturing its own gate, which is the bootstrap the exception names. This record claims NO N3 validation, is excluded from V's admission series, and is re-validated by N3 after N3's own Gate 3. EXIT ACTIONS DELIBERATELY NOT PERFORMED: gate-0-contract.md's Exit sets Gate = 'G0 passed' and Workflow -> 'Gate 1 - Planning'; this window withholds both pending coordinator adjudication, so Workflow remains 'Gate 0 - Verifying' and Gate remains the bare em-dash option. The prior Gate 0 window (2026-08-18) expired under its own no-overnight rule after stopping at Q2 for a missing approval comment; its 12 captures are retained host-local and are NOT cited here. Comment 5352490936 was superseded for carrying its drafting wrapper and is not cited. Working tree carries this gate's own evidence only (docs/evidence/gatebraid/P2-S1/); no commit, branch or push was made in this window."
+}

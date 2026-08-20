@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "Q6-falsify-owner",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($owner:String!,$repo:String!,$number:Int!){\n  repository(owner:$owner,name:$repo){\n    issue(number:$number){\n      id number title\n      projectItems(first:10){\n        nodes{\n          id\n          project{ id title }\n          fieldValues(first:50){\n            nodes{\n              ... on ProjectV2ItemFieldTextValue{ text  field{ ... on ProjectV2FieldCommon{ name } } }\n              ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "owner=definitely-not-an-owner-xyzzy",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=8"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 221,
+      "sha256": "79a995eee95d16c41b17d99a4b8c490f74ff4a44100396cd7185f0032b5b4016",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOm51bGx9LCJlcnJvcnMiOlt7InR5cGUiOiJOT1RfRk9VTkQiLCJwYXRoIjpbInJlcG9zaXRvcnkiXSwibG9jYXRpb25zIjpbeyJsaW5lIjoyLCJjb2x1bW4iOjN9XSwibWVzc2FnZSI6IkNvdWxkIG5vdCByZXNvbHZlIHRvIGEgUmVwb3NpdG9yeSB3aXRoIHRoZSBuYW1lICdkZWZpbml0ZWx5LW5vdC1hbi1vd25lci14eXp6eS9nYXRlYnJhaWQnLiJ9XX0=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":null},\"errors\":[{\"type\":\"NOT_FOUND\",\"path\":[\"repository\"],\"locations\":[{\"line\":2,\"column\":3}],\"message\":\"Could not resolve to a Repository with the name 'definitely-not-an-owner-xyzzy/gatebraid'.\"}]}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 95,
+      "sha256": "5c4204caf790662273140caf597ddecb3ba5357aac77ff065889c81284135e8a",
+      "data": "Z2g6IENvdWxkIG5vdCByZXNvbHZlIHRvIGEgUmVwb3NpdG9yeSB3aXRoIHRoZSBuYW1lICdkZWZpbml0ZWx5LW5vdC1hbi1vd25lci14eXp6eS9nYXRlYnJhaWQnLgo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "gh: Could not resolve to a Repository with the name 'definitely-not-an-owner-xyzzy/gatebraid'.\n"
+      }
+    }
+  },
+  "started_at": "2026-08-20T07:42:40.167699Z",
+  "ended_at": "2026-08-20T07:42:40.660825Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Q6 seeded bad input: wrong owner. MUST fail closed."
+}
