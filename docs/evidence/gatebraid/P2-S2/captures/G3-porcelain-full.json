@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-porcelain-full",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1621,
+      "sha256": "5a417edaa0a8c685b95c6ce0f7e733b701c1f14b006e82d6f85dd5888cd8a498",
+      "data": "Pz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzMtUTEtcmVsZWFzZS1hcHByb3ZhbC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NhcHR1cmVzL0czLWF1dG9jbG9zZS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NhcHR1cmVzL0czLWNpLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzMtY29tbWl0LWtleXdvcmRzLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzMtZHJpZnQtY29tbWl0cy5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NhcHR1cmVzL0czLWRyaWZ0LWNvbXBsZW1lbnQuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jYXB0dXJlcy9HMy1kcmlmdC1kaWZmLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzMtZmllbGRzLXJlYWRiYWNrLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzMtZ2F0ZS1yZWNvcmRzLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzMtaWRlbnRpdHkuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jYXB0dXJlcy9HMy1pc3N1ZS1zdGF0ZS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NhcHR1cmVzL0czLWxzcmVtb3RlLWFmdGVyLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzMtbHNyZW1vdGUtYmVmb3JlLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzMtcG9yY2VsYWluLWNvbXBsZW1lbnQuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jYXB0dXJlcy9HMy1wb3JjZWxhaW4tZnVsbC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NhcHR1cmVzL0czLXByLWJvZHkta2V5d29yZHMuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jYXB0dXJlcy9HMy1wci1jbG9zaW5nLXJlZnMuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jYXB0dXJlcy9HMy1wci1jcmVhdGUuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jYXB0dXJlcy9HMy1wdXNoLWRyeXJ1bi5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NhcHR1cmVzL0czLXB1c2guanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jYXB0dXJlcy9HMy1yZWZucy5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NhcHR1cmVzL0czLXdyaXRlLWdhdGUuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jYXB0dXJlcy9HMy13cml0ZS13b3JrZmxvdy5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NoZWNrcy9jbG9zaW5nLWtleXdvcmQtc2Nhbi5weQo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jaGVja3MvdmFsaWRhdGUtZ2F0ZS1yZWNvcmRzLnB5Cj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2dhdGUzLm1kCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "?? docs/evidence/gatebraid/P2-S2/captures/G3-Q1-release-approval.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-autoclose.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-ci.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-commit-keywords.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-drift-commits.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-drift-complement.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-drift-diff.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-fields-readback.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-gate-records.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-identity.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-issue-state.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-lsremote-after.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-lsremote-before.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-porcelain-complement.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-porcelain-full.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-pr-body-keywords.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-pr-closing-refs.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-pr-create.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-push-dryrun.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-push.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-refns.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-write-gate.json\n?? docs/evidence/gatebraid/P2-S2/captures/G3-write-workflow.json\n?? docs/evidence/gatebraid/P2-S2/checks/closing-keyword-scan.py\n?? docs/evidence/gatebraid/P2-S2/checks/validate-gate-records.py\n?? docs/evidence/gatebraid/P2-S2/gate3.md\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T19:02:13.470580Z",
+  "ended_at": "2026-08-21T19:02:13.522361Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The unrestricted working tree at the door, recorded in full and not filtered. Every entry is this gate's own evidence - its capture files and two committed check scripts - which is committed together with gate3.md. gate3.md itself is absent because it is written after this row: a gate cannot list its own record as untracked before that record exists, the same boundary the contract names for head equality. The contract's empty-porcelain criterion is met on the complement above."
+}

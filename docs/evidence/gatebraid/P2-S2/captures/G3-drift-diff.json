@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-drift-diff",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "diff",
+      "--name-only",
+      "fa2c965c45ca9402588fa46f1f7d2c90e209679c",
+      "16c3f16939787c135c3aa1f1982995c854c9e32e"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 290,
+      "sha256": "4fa3dfb4cdfd940b0ca078454bf02fba9853ac09874adaff9700e8b6d1b97eb5",
+      "data": "ZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzItVDgtcGlubmVkLmpzb24KZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY2FwdHVyZXMvRzItaGFuZG9mZi1maW5nZXJwcmludC5qc29uCmRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NhcHR1cmVzL0cyLXdyaXRlZG9tYWlucy12ZXJpZnkuanNvbgpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9jaGVja3MvdmVyaWZ5LXdyaXRlZG9tYWlucy5weQpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9nYXRlMi5tZAo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "docs/evidence/gatebraid/P2-S2/captures/G2-T8-pinned.json\ndocs/evidence/gatebraid/P2-S2/captures/G2-handoff-fingerprint.json\ndocs/evidence/gatebraid/P2-S2/captures/G2-writedomains-verify.json\ndocs/evidence/gatebraid/P2-S2/checks/verify-writedomains.py\ndocs/evidence/gatebraid/P2-S2/gate2.md\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T18:53:00.512775Z",
+  "ended_at": "2026-08-21T18:53:00.570579Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 3 Action 1, drift check. Pinned at both ends per ADR-0028 s4: the Gate 2 handoff fingerprint's tree_sha fa2c965c45ca9402588fa46f1f7d2c90e209679c against the amendment commit 16c3f16939787c135c3aa1f1982995c854c9e32e. Neither end names HEAD."
+}

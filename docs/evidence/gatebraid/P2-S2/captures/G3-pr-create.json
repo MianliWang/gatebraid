@@ -1,0 +1,81 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-pr-create",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "pr",
+      "create",
+      "--repo",
+      "MianliWang/gatebraid",
+      "--base",
+      "main",
+      "--head",
+      "slice/P2-S2",
+      "--title",
+      "P2-S2 — gatebraid-validate: the independent evidence validator and its selftest",
+      "--body-file",
+      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/1b6d872a-4ff2-49a8-aa6c-d5398a852e3b/scratchpad/pr-body-P2-S2.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 48,
+      "sha256": "0fd137b7b82d23cff1b9faefa2537aa2a80faf6edd19d36f32f06f671dbe3a68",
+      "data": "aHR0cHM6Ly9naXRodWIuY29tL01pYW5saVdhbmcvZ2F0ZWJyYWlkL3B1bGwvMTEK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "https://github.com/MianliWang/gatebraid/pull/11\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T18:56:47.082366Z",
+  "ended_at": "2026-08-21T18:56:49.348176Z",
+  "inputs": [
+    {
+      "path": "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/1b6d872a-4ff2-49a8-aa6c-d5398a852e3b/scratchpad/pr-body-P2-S2.md",
+      "sha256": "68700bf396f630d781d55166ebabcc970b2b5504e820d38e58d456ba622c4066"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The pull request, opened base main <- head slice/P2-S2, with the Slice issue linked by the plain reference Refs #10 inside the body and by no other form. The body file is pinned by sha256 as an input, hashed before the command ran. The merge is not authorized on this grant and is not performed."
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-lsremote-after",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "ls-remote",
+      "origin"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 545,
+      "sha256": "82a17c3b2f72edeef04ae8f954e6dd37d14cc58b2bf5465413d5542a303fec82",
+      "data": "MTFkYmFjNDc5MjdiZmY1YWE3YzllODYxMjRlODVkYjllY2RiYzY1MAlIRUFECjgyMzUwMmI0ZjVlYmE5ZThjNjBjNjA1NjgxNjgxNzk4MGJmZWE2ODUJcmVmcy9oZWFkcy9tMS1jb250cm9sLXBsYW5lCjRmZjNmN2IxZjQ5ZjY4NTNiNTg0ZjI1NWE2MWNiNmI5OTc5N2FjYjQJcmVmcy9oZWFkcy9tMy9uMC1yYXRpZmljYXRpb24KMTFkYmFjNDc5MjdiZmY1YWE3YzllODYxMjRlODVkYjllY2RiYzY1MAlyZWZzL2hlYWRzL21haW4KZjQxODYzNDIwMzc4NzBjMzNjNTBiYjViNjRhMzE0MzBiNDYyYWMzZQlyZWZzL2hlYWRzL3NsaWNlL1AyLVMxCjE2YzNmMTY5Mzk3ODdjMTM1YzNhYTFmMTk4Mjk5NWM4NTRjOWUzMmUJcmVmcy9oZWFkcy9zbGljZS9QMi1TMgo4MjM1MDJiNGY1ZWJhOWU4YzYwYzYwNTY4MTY4MTc5ODBiZmVhNjg1CXJlZnMvcHVsbC8xL2hlYWQKNGZmM2Y3YjFmNDlmNjg1M2I1ODRmMjU1YTYxY2I2Yjk5Nzk3YWNiNAlyZWZzL3B1bGwvNS9oZWFkCmY0MTg2MzQyMDM3ODcwYzMzYzUwYmI1YjY0YTMxNDMwYjQ2MmFjM2UJcmVmcy9wdWxsLzkvaGVhZAo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "11dbac47927bff5aa7c9e86124e85db9ecdbc650\tHEAD\n823502b4f5eba9e8c60c6056816817980bfea685\trefs/heads/m1-control-plane\n4ff3f7b1f49f6853b584f255a61cb6b99797acb4\trefs/heads/m3/n0-ratification\n11dbac47927bff5aa7c9e86124e85db9ecdbc650\trefs/heads/main\nf4186342037870c33c50bb5b64a31430b462ac3e\trefs/heads/slice/P2-S1\n16c3f16939787c135c3aa1f1982995c854c9e32e\trefs/heads/slice/P2-S2\n823502b4f5eba9e8c60c6056816817980bfea685\trefs/pull/1/head\n4ff3f7b1f49f6853b584f255a61cb6b99797acb4\trefs/pull/5/head\nf4186342037870c33c50bb5b64a31430b462ac3e\trefs/pull/9/head\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T18:56:27.397530Z",
+  "ended_at": "2026-08-21T18:56:28.023692Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The complete remote ref set immediately after the push. Exactly one ref is new; main is unmoved at the value it held before, so no write reached the base branch except through the pull request."
+}
