@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T5",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-validate.py",
+      "--record",
+      "docs/evidence/gatebraid/P2-S2/checks/corrupted-capture.json",
+      "--coverage-out",
+      "docs/evidence/gatebraid/P2-S2/coverage-corrupted.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 661,
+      "sha256": "766fd0e5bd68e2a250064e2556e1ff816c7ebbf665f05ad198a5296f01f3a0f7",
+      "data": "dGFyZ2V0ICAgICAgICA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NoZWNrcy9jb3JydXB0ZWQtY2FwdHVyZS5qc29uDQppbnRlcmZhY2UgICAgIDogZ2F0ZWJyYWlkL2V2aWRlbmNlLWNhcHR1cmVAMQ0KbG9hZGVyICAgICAgICA6IENQeXRob24gMy4xMi4yIChDOlxQeXRob24zMTJccHl0aG9uLmV4ZSksIGpzb25zY2hlbWEgNC4yMy4wLCBEcmFmdDIwMjAxMlZhbGlkYXRvcg0Kc3RydWN0dXJhbCAgICA6IDAgZXJyb3IgbG9jdXMvbG9jaQ0KcHJvcGVydGllcyAgICA6IDE2IHJvd3MNCiAgIHN0cnVjdHVyYWwgICAgICAgMQ0KICAgc2VtYW50aWMgICAgICAgICAxMQ0KICAgcmVwbGF5ZWQgICAgICAgICAwDQogICBjYXB0dXJlLXRydXN0ZWQgIDQNCmZpbmRpbmdzICAgICAgOiAxDQogICBGMDAxICAgICAvc3RyZWFtcy9zdGRvdXQvc2hhMjU2ICAgICAgICAgICAgICAgICAgICAgICAgIHNoYTI1Ni1kb2VzLW5vdC1yZWRlcml2ZQ0KdmVyZGljdCAgICAgICA6IHJlamVjdGVkDQpjb3ZlcmFnZS1vdXQgIDogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvY292ZXJhZ2UtY29ycnVwdGVkLmpzb24gIGJ5dGVzPTU0OTkgc2hhMjU2PTAyNzc4NDJhNGQ0MmQ3MGRmZmQwODg2ZWU3NjYzYWVkOGViMWNiYzI1YjFkZWEzMWJkNjUzNjVjZDI3OTdhNjANCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "target        : docs/evidence/gatebraid/P2-S2/checks/corrupted-capture.json\r\ninterface     : gatebraid/evidence-capture@1\r\nloader        : CPython 3.12.2 (C:\\Python312\\python.exe), jsonschema 4.23.0, Draft202012Validator\r\nstructural    : 0 error locus/loci\r\nproperties    : 16 rows\r\n   structural       1\r\n   semantic         11\r\n   replayed         0\r\n   capture-trusted  4\r\nfindings      : 1\r\n   F001     /streams/stdout/sha256                         sha256-does-not-rederive\r\nverdict       : rejected\r\ncoverage-out  : docs/evidence/gatebraid/P2-S2/coverage-corrupted.json  bytes=5499 sha256=0277842a4d42d70dffd0886ee7663aed8eb1cbc25b1dea31bd65365cd2797a60\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T03:43:29.726253Z",
+  "ended_at": "2026-08-21T03:43:30.166284Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T5: the deliberately corrupted N2 output. Green is NON-ZERO exit and a rejection naming the corrupted locus. The input is schema-valid, so only re-derivation can catch it."
+}

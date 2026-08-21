@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "Q2-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "repos/MianliWang/gatebraid/issues/comments/1",
+      "--jq",
+      "{author: .user.login, url: .html_url, created: .created_at, updated: .updated_at}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 126,
+      "sha256": "a8793cf4df67c95ba68db7d0dac403591d7406c3df25f88ad5c56f8a6a9abb5b",
+      "data": "eyJtZXNzYWdlIjoiTm90IEZvdW5kIiwiZG9jdW1lbnRhdGlvbl91cmwiOiJodHRwczovL2RvY3MuZ2l0aHViLmNvbS9yZXN0L2lzc3Vlcy9jb21tZW50cyNnZXQtYW4taXNzdWUtY29tbWVudCIsInN0YXR1cyI6IjQwNCJ9",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/issues/comments#get-an-issue-comment\",\"status\":\"404\"}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 25,
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6",
+      "data": "Z2g6IE5vdCBGb3VuZCAoSFRUUCA0MDQpCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "gh: Not Found (HTTP 404)\n"
+      }
+    }
+  },
+  "started_at": "2026-08-21T01:14:36.562046Z",
+  "ended_at": "2026-08-21T01:14:37.021009Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Seeded bad input: comment id 1 does not exist in MianliWang/gatebraid. Must fail closed (non-zero)."
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-slice-body",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "issue",
+      "view",
+      "10",
+      "--repo",
+      "MianliWang/gatebraid",
+      "--json",
+      "body"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2402,
+      "sha256": "a71030d19a0e65162747676fb6dd28311adcbda3ee6d2162f496e3365e2c3d2a",
+      "data": "eyJib2R5IjoiIyBQMi1TMiDigJQgdGhlIGluZGVwZW5kZW50IGV2aWRlbmNlIHZhbGlkYXRvciAoTjMpXG5cbiMjIEdvYWxcblxuTGFuZCBNMydzIGluZGVwZW5kZW50IGV2aWRlbmNlIHZhbGlkYXRvcjogdGhlIHRvb2wgdGhhdCByZS1kZXJpdmVzIHZlcmRpY3RzXG5mcm9tIGNhcHR1cmVkIGV2aWRlbmNlIEpTT04gYW5kIHRoZSBmcm96ZW4gc2NoZW1hcyBhbG9uZSwgcHVibGlzaGVzIGFcbmBnYXRlYnJhaWQvY292ZXJhZ2UtcmVwb3J0QDFgIGNsYXNzaWZ5aW5nIGV2ZXJ5IHZlcmlmaWVkIHByb3BlcnR5LCBhbmQga2lsbHNcbnRoZSBOMSBjb3JwdXMgbXV0YXRpb25zIGluZGVwZW5kZW50bHkgb2YgdGhlIGdlbmVyYXRvciAoTTMtUExBTiDCpzIgTjM7XG5BRFItMDAzMSBOMy1zdGFydCBmcmVlemU7IEFEUi0wMDMyIGRlY2lzaW9ucyAxIGFuZCA1KS4gVGhlIHNjcmlwdCdzIG9mZmljaWFsXG5uYW1lIGlzIHJhdGlmaWVkIHBlciBBRFItMDAzMCBpbiB0aGlzIFNsaWNlJ3MgU3RhdGUgUGFja2V0IEFwcHJvdmFsLCBub3RcbmFzc3VtZWQgaGVyZS5cblxuIyMgQ29udGV4dFxuXG4tIFdoeSBub3c6IE4yIChQMi1TMSwgIzgpIGlzIGxhbmRlZCBhbmQgY2xvc2VkOyB0aGUgTjIvTjMgYm9vdHN0cmFwIGJvdW5kYXJ5XG4gIGV4cGlyZXMgYXQgTjIgKyBOMyBHYXRlIDMgY29tcGxldGlvbiwgYW5kIE4zIHJlLXZhbGlkYXRlcyBOMidzXG4gIGJvb3RzdHJhcC1tYXJrZWQgcmVjb3JkcyBhZnRlciBpdHMgb3duIEdhdGUgMy5cbi0gSW5kZXBlbmRlbmNlOiBhdXRob3JlZCB3aXRob3V0IHJlYWRpbmcgTjIncyBpbXBsZW1lbnRhdGlvbiDigJQgdGhlIGF1dGhvcmluZ1xuICBzZXNzaW9uIHJlY2VpdmVzIHRoZSBmcm96ZW4gc2NoZW1hcyBhbmQgdGhlIE4xIGNvcnB1cyBvbmx5OyB0aGVcbiAgaW1wb3J0cy1hbmQtYXV0aG9yc2hpcCBpbmRlcGVuZGVuY2UgcmV2aWV3IGlzIHBlcmZvcm1lZCBieSB0aGUgY29vcmRpbmF0b3JcbiAgZnJvbSB0aGUgcmVjb3JkIGJlZm9yZSBmcmVlemUgKE0zLVBMQU4gwqcyIE4zKS5cbi0gTm9uLWdvYWxzOiBubyBjaGFuZ2UgdG8gYW55IE4yIGZpbGU7IG5vIGNvcnB1cyBjaGFuZ2UgKElOLTAxIGlzXG4gIHJlLWFzc2lnbmVkIHRvIGNvcnB1cyB2MiBhdCBQKTsgbm8gTzAgbWF0ZXJpYWw7IG5vIGNvbnRyYWN0LCBzY2hlbWEsIEFEUlxuICBvciB0ZW1wbGF0ZSBlZGl0LlxuLSBSZWxhdGVkOiBTdGFnZSBTMiBgIzZgIMK3IFBoYXNlIFAyIGAjN2AgwrcgUDItUzEgYCM4YCDCt1xuICBgc2NoZW1hL2NvdmVyYWdlLXJlcG9ydC5zY2hlbWEuanNvbmAgwrcgQURSLTAwMjggLyBBRFItMDAzMCAvIEFEUi0wMDMxIC9cbiAgQURSLTAwMzIuXG5cbiMjIEFjY2VwdGFuY2VcblxuLSBbIF0gTTMtUExBTiDCpzIgTjMgQWNjZXB0LXdoZW4sIGluIGZ1bGw6IGFsbCBhcHBsaWNhYmxlIE4xIG11dGF0aW9ucyBraWxsZWRcbiAgICAgIGluZGVwZW5kZW50bHkgb2YgTjI7IGEgZGVsaWJlcmF0ZWx5IGNvcnJ1cHRlZCBOMiBvdXRwdXQgcmVqZWN0ZWQ7XG4gICAgICBkdWFsLXBsYXRmb3JtOyB0aGUgaW5kZXBlbmRlbmNlIHJldmlldyAoaW1wb3J0cyBhbmQgYXV0aG9yc2hpcCkgb25cbiAgICAgIHJlY29yZDsgdGhlIGNvdmVyYWdlIHJlcG9ydCBjbGFzc2lmaWVzIGV2ZXJ5IHZlcmlmaWVkIHByb3BlcnR5IGFzXG4gICAgICBgc3RydWN0dXJhbGAsIGBzZW1hbnRpY2AsIGByZXBsYXllZGAsIG9yIGBjYXB0dXJlLXRydXN0ZWRgIHdpdGggbm9cbiAgICAgIHVubGFiZWxsZWQgYHJlcGxheWFibGVgIGNyZWRpdDsgbGFuZGVkIG9uY2UgdGhyb3VnaCBpdHMgb3duIGdhdGU7XG4gICAgICBmcm96ZW4gYXQgZGVsaXZlcnkuXG4tIFsgXSBFdmVyeSByZWNvcmQgdGhpcyBTbGljZSBwcm9kdWNlcyB2YWxpZGF0ZXMgYWdhaW5zdCB0aGUgZnJvemVuXG4gICAgICBpbnRlcmZhY2VzLCBsb2FkZXIgbmFtZWQsIGFzIHBhcnQgb2YgaXRzIG93biBldmlkZW5jZS5cblxuIyMgR2F0ZSBldmlkZW5jZVxuXG48IS0tIEZpbGxlZCBhcyBnYXRlcyBjb21wbGV0ZTogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvIC0tPlxuXG4jIyBnYXRlYnJhaWQtbWV0YWRhdGFcblxuYGBgeWFtbFxuc2NoZW1hOiBnYXRlYnJhaWQvc2xpY2VAMVxuc2xpY2VfaWQ6IFAyLVMyXG5zdGFnZTogUzJcbnBoYXNlOiBQMlxud29ya2Zsb3dfcHJvZmlsZTogY2xhc3NpY1xuZW52aXJvbm1lbnQ6IG1peGVkLXNlZS1wcm9zZVxucmlzazogbG93XG5kZXBlbmRzX29uOiBbXVxud3JpdGVfZG9tYWluczpcbiAgLSBiaW4vXG4gIC0gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvXG5yZXNvdXJjZV9sb2NrczogW11cbnJlcGFpcl9saW1pdDogMlxuY29uc3VsdF9maXJzdDogZmFsc2VcbnBhcmFsbGVsX21vZGU6IHNhZmUtc2luZ2xlLXdyaXRlclxuYGBgXG4ifQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"body\":\"# P2-S2 — the independent evidence validator (N3)\\n\\n## Goal\\n\\nLand M3's independent evidence validator: the tool that re-derives verdicts\\nfrom captured evidence JSON and the frozen schemas alone, publishes a\\n`gatebraid/coverage-report@1` classifying every verified property, and kills\\nthe N1 corpus mutations independently of the generator (M3-PLAN §2 N3;\\nADR-0031 N3-start freeze; ADR-0032 decisions 1 and 5). The script's official\\nname is ratified per ADR-0030 in this Slice's State Packet Approval, not\\nassumed here.\\n\\n## Context\\n\\n- Why now: N2 (P2-S1, #8) is landed and closed; the N2/N3 bootstrap boundary\\n  expires at N2 + N3 Gate 3 completion, and N3 re-validates N2's\\n  bootstrap-marked records after its own Gate 3.\\n- Independence: authored without reading N2's implementation — the authoring\\n  session receives the frozen schemas and the N1 corpus only; the\\n  imports-and-authorship independence review is performed by the coordinator\\n  from the record before freeze (M3-PLAN §2 N3).\\n- Non-goals: no change to any N2 file; no corpus change (IN-01 is\\n  re-assigned to corpus v2 at P); no O0 material; no contract, schema, ADR\\n  or template edit.\\n- Related: Stage S2 `#6` · Phase P2 `#7` · P2-S1 `#8` ·\\n  `schema/coverage-report.schema.json` · ADR-0028 / ADR-0030 / ADR-0031 /\\n  ADR-0032.\\n\\n## Acceptance\\n\\n- [ ] M3-PLAN §2 N3 Accept-when, in full: all applicable N1 mutations killed\\n      independently of N2; a deliberately corrupted N2 output rejected;\\n      dual-platform; the independence review (imports and authorship) on\\n      record; the coverage report classifies every verified property as\\n      `structural`, `semantic`, `replayed`, or `capture-trusted` with no\\n      unlabelled `replayable` credit; landed once through its own gate;\\n      frozen at delivery.\\n- [ ] Every record this Slice produces validates against the frozen\\n      interfaces, loader named, as part of its own evidence.\\n\\n## Gate evidence\\n\\n<!-- Filled as gates complete: docs/evidence/gatebraid/P2-S2/ -->\\n\\n## gatebraid-metadata\\n\\n```yaml\\nschema: gatebraid/slice@1\\nslice_id: P2-S2\\nstage: S2\\nphase: P2\\nworkflow_profile: classic\\nenvironment: mixed-see-prose\\nrisk: low\\ndepends_on: []\\nwrite_domains:\\n  - bin/\\n  - docs/evidence/gatebraid/P2-S2/\\nresource_locks: []\\nrepair_limit: 2\\nconsult_first: false\\nparallel_mode: safe-single-writer\\n```\\n\"}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T01:17:25.577609Z",
+  "ended_at": "2026-08-21T01:17:26.180762Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Contract action 6, part 1: the live Slice body, read from GitHub."
+}

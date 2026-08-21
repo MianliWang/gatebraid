@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-fields-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($item:ID!){ node(id:$item){ ... on ProjectV2Item { id project{ id } content{ ... on Issue { number state } } fieldValues(first:50){ nodes{ ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name } } } ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } } } } } } }",
+      "-F",
+      "item=PVTI_lAHOBRofUs4Beum7zg3ZWpw"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 945,
+      "sha256": "edf7cb2b91f0a0a5283a8bca5d017dd375290a5d09b93ab70d56be8cc2917e8c",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiaWQiOiJQVlRJX2xBSE9CUm9mVXM0QmV1bTd6ZzNaV3B3IiwicHJvamVjdCI6eyJpZCI6IlBWVF9rd0hPQlJvZlVzNEJldW03In0sImNvbnRlbnQiOnsibnVtYmVyIjoxMCwic3RhdGUiOiJPUEVOIn0sImZpZWxkVmFsdWVzIjp7Im5vZGVzIjpbe30seyJ0ZXh0IjoiUDItUzIg4oCUIHRoZSBpbmRlcGVuZGVudCBldmlkZW5jZSB2YWxpZGF0b3IgKE4zKSIsImZpZWxkIjp7Im5hbWUiOiJUaXRsZSJ9fSx7Im5hbWUiOiJUb2RvIiwib3B0aW9uSWQiOiJmNzVhZDg0NiIsImZpZWxkIjp7Im5hbWUiOiJTdGF0dXMifX0seyJuYW1lIjoiR2F0ZSAxIOKAlCBQbGFubmluZyIsIm9wdGlvbklkIjoiZjZiNTcxNTMiLCJmaWVsZCI6eyJuYW1lIjoiV29ya2Zsb3cifX0seyJuYW1lIjoiRzAgcGFzc2VkIiwib3B0aW9uSWQiOiI2OTIyMDAzYSIsImZpZWxkIjp7Im5hbWUiOiJHYXRlIn19LHsibmFtZSI6IuKAlCIsIm9wdGlvbklkIjoiNDUwZWUxMzAiLCJmaWVsZCI6eyJuYW1lIjoiTmV4dCBBcHByb3ZhbCJ9fSx7Im5hbWUiOiJtaXhlZC1zZWUtcHJvc2UiLCJvcHRpb25JZCI6IjFlNDNlYzg1IiwiZmllbGQiOnsibmFtZSI6IkVudmlyb25tZW50In19LHsibmFtZSI6IkNsYXVkZSBMZWFkIiwib3B0aW9uSWQiOiJjZTg1OWM3ZCIsImZpZWxkIjp7Im5hbWUiOiJFeGVjdXRvciJ9fSx7Im5hbWUiOiJsb3ciLCJvcHRpb25JZCI6ImUyOTEyNDljIiwiZmllbGQiOnsibmFtZSI6IlJpc2sifX0seyJ0ZXh0IjoiUzIiLCJmaWVsZCI6eyJuYW1lIjoiU3RhZ2UifX0seyJ0ZXh0IjoiUDIiLCJmaWVsZCI6eyJuYW1lIjoiUGhhc2UifX0seyJ0ZXh0IjoiUDItUzIiLCJmaWVsZCI6eyJuYW1lIjoiU2xpY2UifX0seyJ0ZXh0IjoiMTFkYmFjNDc5MjdiZmY1YWE3YzllODYxMjRlODVkYjllY2RiYzY1MCIsImZpZWxkIjp7Im5hbWUiOiJCYXNlIFNIQSJ9fV19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"id\":\"PVTI_lAHOBRofUs4Beum7zg3ZWpw\",\"project\":{\"id\":\"PVT_kwHOBRofUs4Beum7\"},\"content\":{\"number\":10,\"state\":\"OPEN\"},\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S2 — the independent evidence validator (N3)\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"name\":\"Gate 1 — Planning\",\"optionId\":\"f6b57153\",\"field\":{\"name\":\"Workflow\"}},{\"name\":\"G0 passed\",\"optionId\":\"6922003a\",\"field\":{\"name\":\"Gate\"}},{\"name\":\"—\",\"optionId\":\"450ee130\",\"field\":{\"name\":\"Next Approval\"}},{\"name\":\"mixed-see-prose\",\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"name\":\"Claude Lead\",\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"name\":\"low\",\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S2\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"11dbac47927bff5aa7c9e86124e85db9ecdbc650\",\"field\":{\"name\":\"Base SHA\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T02:50:12.475167Z",
+  "ended_at": "2026-08-21T02:50:13.318063Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Read-back of both granted writes, item addressed by item id, every value echoed with its option id."
+}

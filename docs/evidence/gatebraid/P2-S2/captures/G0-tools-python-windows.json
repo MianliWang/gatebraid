@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-tools-python-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "-c",
+      "import sys,json,jsonschema,yaml,importlib.metadata as m;print(json.dumps({'python':sys.version.split()[0],'exe':sys.executable,'platform':sys.platform,'jsonschema':m.version('jsonschema'),'pyyaml':yaml.__version__}))"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 122,
+      "sha256": "d2a50fd480b7a6031f4901c053d1c880750c126aca214001087d57c647519321",
+      "data": "eyJweXRob24iOiAiMy4xMi4yIiwgImV4ZSI6ICJDOlxcUHl0aG9uMzEyXFxweXRob24uZXhlIiwgInBsYXRmb3JtIjogIndpbjMyIiwgImpzb25zY2hlbWEiOiAiNC4yMy4wIiwgInB5eWFtbCI6ICI2LjAuMiJ9DQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"python\": \"3.12.2\", \"exe\": \"C:\\\\Python312\\\\python.exe\", \"platform\": \"win32\", \"jsonschema\": \"4.23.0\", \"pyyaml\": \"6.0.2\"}\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T01:16:52.612096Z",
+  "ended_at": "2026-08-21T01:16:52.999859Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Contract action 4/5: the Windows loader host named in the packet's environment semantics."
+}

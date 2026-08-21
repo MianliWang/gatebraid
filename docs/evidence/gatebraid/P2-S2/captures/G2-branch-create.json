@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-branch-create",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "checkout",
+      "-b",
+      "slice/P2-S2",
+      "11dbac47927bff5aa7c9e86124e85db9ecdbc650"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 39,
+      "sha256": "7b8c2b51f2bb43f77948185eaa6db1d886c284eabd4c65796df962e2f7f67d80",
+      "data": "U3dpdGNoZWQgdG8gYSBuZXcgYnJhbmNoICdzbGljZS9QMi1TMicK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "Switched to a new branch 'slice/P2-S2'\n"
+      }
+    }
+  },
+  "started_at": "2026-08-21T03:25:43.160754Z",
+  "ended_at": "2026-08-21T03:25:43.259334Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 2 entry: Active Branch created from Y. Branch creation and switching, not a checkout against baseline state - the working tree's tracked content is identical because slice/P2-S2 starts at the same commit as main."
+}

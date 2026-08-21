@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-approval-body",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "repos/MianliWang/gatebraid/issues/comments/5364439544",
+      "--jq",
+      ".body"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3785,
+      "sha256": "ebb653dd4f48ce5c98d8edaca1afc56f53e1203ec077149e9cf21676bd706088",
+      "data": "KipHYXRlIDAgYWRqdWRpY2F0aW9uLCBjbG9zZWQtc2V0IHJ1bGluZywgYW5kIHRoZSBHYXRlIDEgd2luZG93IOKAlCBTbGljZSBQMi1TMioqIChwb3N0ZWQgMjAyNi0wOC0yMSkKCioqR2F0ZSAwIGlzIGNvb3JkaW5hdG9yLWFkanVkaWNhdGVkIFBBU1MuKiogVGhlIHdvcmtpbmctdHJlZSByZWNvcmQKYWRqdWRpY2F0ZWQgaGVyZSBpcyBgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvZ2F0ZTAubWRgIGF0IHNoYTI1NgpgYTI0ZWJlZGEyMDJjNzAzNTM4MzI3OGJiYWIxNTMyNzM5OTk4MzBlMGQxNTM2MzJlODc3NjJjMjU0M2IyMmFjZGAsCjEyLDk2NyBieXRlcy4gSW5kZXBlbmRlbnRseSByZS12ZXJpZmllZCBmcm9tIHN0YWdlZCBieXRlcyBpbiB0aGUKY29vcmRpbmF0b3IncyBzYW5kYm94OiB0aGUgYGdhdGUtcnVuQDJgIGJsb2NrIHZhbGlkYXRlcyB3aXRoIDAgZXJyb3JzCihEcmFmdDIwMjAxMlZhbGlkYXRvcik7IGFsbCAyNSBgY2hlY2tzW11gIHJvd3MgY2FycnkgYW4gYG91dHB1dF9yZWZgLCBldmVyeQpyZWZlcmVuY2VkIGZpbGUgZXhpc3RzLCBhbmQgZXZlcnkgc2hhMjU2IHBpbiBtYXRjaGVzOyBhbGwgMzQgY2FwdHVyZXMgcGFzcwp0aGUgbGFuZGVkIGdlbmVyYXRvcidzIGAtLXZlcmlmeS1yZWNvcmQgLS1yZWRlcml2ZWA7IGFuZCBhbiBpbmRlcGVuZGVudAppZGVudGlmaWVyIHNjYW4gb3ZlciBldmVyeSBkZWNvZGVkIHBheWxvYWQgcmVwcm9kdWNlcyB0aGUgc3dlZXAncyByZXN1bHQKZXhhY3RseSDigJQgb25lIG91dC1vZi1zZXQgaWRlbnRpZmllciwgYGNsaS9jbGlgLCBvbmx5IGluCmBHMC10b29scy1naC5qc29uYCwgdGhlIHJlbGVhc2UgVVJMIGluc2lkZSBgZ2ggLS12ZXJzaW9uYCdzIG93biBzdGRvdXQuCgoqKlJ1bGluZyBvbiDCpzAg4oCUIChhKS4qKiBUaGUgY2xvc2VkLXNldCBydWxlIGdvdmVybnMgaWRlbnRpZmllcnMgdGhpcwp3b3JrZmxvdyAqKnF1ZXJpZXMsIHJlYWRzLCB3cml0ZXMsIG9yIGVudW1lcmF0ZXMqKi4gQW4gaWRlbnRpZmllciB0aGF0CmFwcGVhcnMgb25seSBpbnNpZGUgYSBjb250cmFjdC1tYW5kYXRlZCB0b29sJ3Mgc2VsZi1kZXNjcmliaW5nIG91dHB1dCBpcyBhCioqbWVudGlvbiwgbm90IGEgdG91Y2gqKjogaXQgbmFtZXMgdGhlIHRvb2wsIG5vdCBhIHJlcG9zaXRvcnkgdGhpcyBzZXNzaW9uCnJlYWNoZWQuIGBjbGkvY2xpYCBpbiB0aGUgYGdoIC0tdmVyc2lvbmAgYmFubmVyIChjb250cmFjdCBhY3Rpb24gNSkgaXMKcnVsZWQgYSBtZW50aW9uOyBubyBzY29wZSB3YXMgZXhjZWVkZWQuIE1lbnRpb25zIGFyZSBuZXZlciBzaWxlbnRseQpkcm9wcGVkOiB0aGUgc3dlZXAgc3VyZmFjZXMgdGhlbSBhbmQgdGhlIGNsYXNzaWZpY2F0aW9uIGlzIHRoZQpvcGVyYXRvcidzL2Nvb3JkaW5hdG9yJ3Mg4oCUIHdoaWNoIGlzIGV4YWN0bHkgd2hhdCBoYXBwZW5lZCwgYW5kIHRoZQpgbmVlZHNfYXBwcm92YWxgIHJlY29yZCB3YXMgdGhlIGNvcnJlY3QgaG9uZXN0IHN0YXRlLiBUaGUgYHN0b3BfcmVjb3JkYAplbnVtZXJhdGlvbiBnYXAgdGhlIHJlcG9ydCBwcm92ZWQgKG5laXRoZXIgYGRlY2lkYWJsZWAgbm9yIGBlcnJvcmAgZml0cyBhCmNsb3NlZC1zZXQgY2xhc3NpZmljYXRpb24gd2l0aG91dCB1bmF1dGhvcml6ZWQgd3JpdGVzKSBpcyBhIHJlYWwgIzE1Ny1mYW1pbHkKZmluZGluZywgcm91dGVkIHRvIHRoZSBEMTYgcHJvdG9jb2wtYW1lbmRtZW50IGJhdGNoOiB0aGUgY2xvc2VkLXNldCBydWxlCmdhaW5zIHRoZSB0b3VjaC12cy1tZW50aW9uIGRpc3RpbmN0aW9uIHRoZXJlLCBpbiBjb21taXR0ZWQgdGV4dC4gRnJpY3Rpb24Kb3JkaW5hbHMgc3RheSB1bmNsYWltZWQgdW50aWwgdGhlIG5leHQgYXBwZW5kLgoKKipHcmFudGVkIG9uIHRoaXMgY29tbWVudCwgaW4gb3JkZXIsIGluIHRoZSBzYW1lIHNlc3Npb246KioKCjEuICoqQW1lbmQgYGdhdGUwLm1kYCoqIOKAlCBhbm5vdGF0ZSB0aGUgYGNsb3NlZC1zZXQtY29tcGxlbWVudC1zd2VlcGAgcm93J3MKICAgZGlzcG9zaXRpb24gd2l0aCB0aGlzIHJ1bGluZywgY2l0aW5nIHRoaXMgY29tbWVudCBieSBVUkw7IHRoZW4gc2V0CiAgIGByZXN1bHQ6IHBhc3NlZGAsIHRoZSBsYXN0IHRoaW5nIHdyaXR0ZW47IHJlLXZhbGlkYXRlIHRoZSBibG9jayB0byAwCiAgIGVycm9ycywgbG9hZGVyIG5hbWVkLiBXb3JraW5nIHRyZWUgb25seSDigJQgc3RpbGwgbm8gY29tbWl0LCBubyBsZWFzZS4KMi4gKipGaWVsZCB3cml0ZXMgYnkgb3B0aW9uIGlkLCBlYWNoIHJlYWQgYmFjayBieSBpZDoqKiBgR2F0ZWAg4oaSCiAgIGBHMCBwYXNzZWRgIChgNjkyMjAwM2FgKSDCtyBgV29ya2Zsb3dgIOKGkiBgR2F0ZSAxIOKAlCBQbGFubmluZ2AKICAgKGBmNmI1NzE1M2ApLgozLiAqKlRoZSBHYXRlIDEgd2luZG93LCBwZXIgYHByb3RvY29scy9nYXRlLTEtY29udHJhY3QubWRgIGFuZCBpdHMKICAgdGVtcGxhdGVzOioqIGRyYWZ0IGFuZCBmcmVlemUgdGhlIHBsYW4gYW5kIHRoZSBhbGxvd2xpc3Qg4oCUIHRoZQogICBhbGxvd2xpc3QgaXMgZXhhY3RseSBgYmluL2dhdGVicmFpZC12YWxpZGF0ZS5weWAsCiAgIGBiaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLXNlbGZ0ZXN0LnB5YCwgYW5kCiAgIGBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9gLCBhbmQgbm90aGluZyBlbHNlICh0aGUgcmF0aWZpZWQgbmFtZTsKICAgdGhlIG1ldGFkYXRhJ3MgYHdyaXRlX2RvbWFpbnNgIHByZWZpeGVzKTsgYHBsYW5faGFzaGAgYW5kCiAgIGBhbGxvd2xpc3RfaGFzaGAgcmVwcm9kdWNpYmxlIGZyb20gdGhlIHJlY29yZGVkIGNvbW1hbmRzLCB2ZXJiYXRpbTsKICAgYWNjZXB0YW5jZSBmcm96ZW4gYWdhaW5zdCB0aGUgaW5zdHJ1bWVudCdzIG93biBlbWl0dGVkIHN1bW1hcnksCiAgIGNvdW50LWZyZWUgKHRoZSA0N+KGkjQ2IGxlc3Nvbik7IHRoZSBwbGFuJ3MgdGVzdCBpdGVtcyBtYXAgb250byBNMy1QTEFOCiAgIMKnMiBOMydzIEFjY2VwdC13aGVuLCBpbmNsdWRpbmcgdGhlIGNvcnJ1cHRlZC1OMi1vdXRwdXQgcmVqZWN0aW9uLCB0aGUKICAgZHVhbC1wbGF0Zm9ybSBydW4sIGFuZCB0aGUgY292ZXJhZ2UgcmVwb3J0IGNsYXNzaWZ5aW5nIGV2ZXJ5IHZlcmlmaWVkCiAgIHByb3BlcnR5IHdpdGggbm8gdW5sYWJlbGxlZCBgcmVwbGF5YWJsZWAgY3JlZGl0OyBldmVyeSBjYXB0dXJlIGJ5IHRoZQogICBsYW5kZWQgZ2VuZXJhdG9yIHdpdGggYG91dHB1dF9yZWZgIHBpbnMuIEdhdGUgMSBldmlkZW5jZSBhbmQgZXhpdAogICBjaGVja2xpc3QgcGVyIHRoZSB0ZW1wbGF0ZXMsIHdvcmtpbmcgdHJlZSBvbmx5Lgo0LiAqKlNUT1AgYXQgdGhlIEdhdGUgMSByZXBvcnQuKiogVGhlIFBsYW4gQXBwcm92YWwgKEcx4oaSRzIpIGlzIGl0cyBvd24KICAgcG9zdGVkIGNvbW1lbnQgYWZ0ZXIgY29vcmRpbmF0b3IgYWRqdWRpY2F0aW9uLiBUaGUgbm8tb3Zlcm5pZ2h0LWdhcAogICBydWxlIGFwcGxpZXMgdG8gdGhpcyB3aW5kb3cuCgpOb3QgYXV0aG9yaXplZDogdGhlIFdyaXRlciBMZWFzZTsgYW55IGNvbW1pdCwgYnJhbmNoIGNyZWF0aW9uLCBwdXNoIG9yCnRhZzsgYW55IG90aGVyIGZpZWxkIHdyaXRlOyBhbnkgbGFiZWw7IGFueSBlZGl0IHRvIGFueSBOMiBmaWxlIG9yIHRvCmBfaGFuZG9mZi9iYXRjaC1uMy9gIGJvZGllczsgYW55IHJlYWQgb2YgTjIgaW1wbGVtZW50YXRpb24gY29udGVudHMuIE9uCmFueSBmYWlsZWQgY2hlY2sgb3IgYW55IHVuY2VydGFpbnR5OiBTVE9QIGFuZCByZXBvcnQg4oCUIG5ldmVyIGltcHJvdmlzZS4KCuKAlCBNaWFubGkgV2FuZywgb3BlcmF0b3IgwrcgMjAyNi0wOC0yMQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "**Gate 0 adjudication, closed-set ruling, and the Gate 1 window — Slice P2-S2** (posted 2026-08-21)\n\n**Gate 0 is coordinator-adjudicated PASS.** The working-tree record\nadjudicated here is `docs/evidence/gatebraid/P2-S2/gate0.md` at sha256\n`a24ebeda202c7035383278bbab153273999830e0d153632e87762c2543b22acd`,\n12,967 bytes. Independently re-verified from staged bytes in the\ncoordinator's sandbox: the `gate-run@2` block validates with 0 errors\n(Draft202012Validator); all 25 `checks[]` rows carry an `output_ref`, every\nreferenced file exists, and every sha256 pin matches; all 34 captures pass\nthe landed generator's `--verify-record --rederive`; and an independent\nidentifier scan over every decoded payload reproduces the sweep's result\nexactly — one out-of-set identifier, `cli/cli`, only in\n`G0-tools-gh.json`, the release URL inside `gh --version`'s own stdout.\n\n**Ruling on §0 — (a).** The closed-set rule governs identifiers this\nworkflow **queries, reads, writes, or enumerates**. An identifier that\nappears only inside a contract-mandated tool's self-describing output is a\n**mention, not a touch**: it names the tool, not a repository this session\nreached. `cli/cli` in the `gh --version` banner (contract action 5) is\nruled a mention; no scope was exceeded. Mentions are never silently\ndropped: the sweep surfaces them and the classification is the\noperator's/coordinator's — which is exactly what happened, and the\n`needs_approval` record was the correct honest state. The `stop_record`\nenumeration gap the report proved (neither `decidable` nor `error` fits a\nclosed-set classification without unauthorized writes) is a real #157-family\nfinding, routed to the D16 protocol-amendment batch: the closed-set rule\ngains the touch-vs-mention distinction there, in committed text. Friction\nordinals stay unclaimed until the next append.\n\n**Granted on this comment, in order, in the same session:**\n\n1. **Amend `gate0.md`** — annotate the `closed-set-complement-sweep` row's\n   disposition with this ruling, citing this comment by URL; then set\n   `result: passed`, the last thing written; re-validate the block to 0\n   errors, loader named. Working tree only — still no commit, no lease.\n2. **Field writes by option id, each read back by id:** `Gate` →\n   `G0 passed` (`6922003a`) · `Workflow` → `Gate 1 — Planning`\n   (`f6b57153`).\n3. **The Gate 1 window, per `protocols/gate-1-contract.md` and its\n   templates:** draft and freeze the plan and the allowlist — the\n   allowlist is exactly `bin/gatebraid-validate.py`,\n   `bin/gatebraid-validate-selftest.py`, and\n   `docs/evidence/gatebraid/P2-S2/`, and nothing else (the ratified name;\n   the metadata's `write_domains` prefixes); `plan_hash` and\n   `allowlist_hash` reproducible from the recorded commands, verbatim;\n   acceptance frozen against the instrument's own emitted summary,\n   count-free (the 47→46 lesson); the plan's test items map onto M3-PLAN\n   §2 N3's Accept-when, including the corrupted-N2-output rejection, the\n   dual-platform run, and the coverage report classifying every verified\n   property with no unlabelled `replayable` credit; every capture by the\n   landed generator with `output_ref` pins. Gate 1 evidence and exit\n   checklist per the templates, working tree only.\n4. **STOP at the Gate 1 report.** The Plan Approval (G1→G2) is its own\n   posted comment after coordinator adjudication. The no-overnight-gap\n   rule applies to this window.\n\nNot authorized: the Writer Lease; any commit, branch creation, push or\ntag; any other field write; any label; any edit to any N2 file or to\n`_handoff/batch-n3/` bodies; any read of N2 implementation contents. On\nany failed check or any uncertainty: STOP and report — never improvise.\n\n— Mianli Wang, operator · 2026-08-21\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T02:46:46.540488Z",
+  "ended_at": "2026-08-21T02:46:47.121280Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The full body of the Gate 0 adjudication and Gate 1 approval, captured before it is acted on."
+}

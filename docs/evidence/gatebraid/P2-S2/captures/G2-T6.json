@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T6",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-validate.py",
+      "--verify-coverage",
+      "docs/evidence/gatebraid/P2-S2/coverage-windows.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 678,
+      "sha256": "d70fbfe22ead1879b24c2512119677303295b490485932c4869e2651e67fed16",
+      "data": "cmVwb3J0ICAgICAgICA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyL2NvdmVyYWdlLXdpbmRvd3MuanNvbg0KbG9hZGVyICAgICAgICA6IENQeXRob24gMy4xMi4yIChDOlxQeXRob24zMTJccHl0aG9uLmV4ZSksIGpzb25zY2hlbWEgNC4yMy4wLCBEcmFmdDIwMjAxMlZhbGlkYXRvcg0Kc3RydWN0dXJhbCAgICA6IDAgZXJyb3IgbG9jdXMvbG9jaQ0KY2xhc3NpZmljYXRpb24sIGV2ZXJ5IHZlcmlmaWVkIHByb3BlcnR5IGNhcnJ5aW5nIGV4YWN0bHkgb25lIGNsYXNzOg0KICAgc3RydWN0dXJhbCAgICAgICAxDQogICBzZW1hbnRpYyAgICAgICAgIDExDQogICByZXBsYXllZCAgICAgICAgIDANCiAgIGNhcHR1cmUtdHJ1c3RlZCAgNA0KY2xhc3NpZmllZCByb3dzICAgICAgICAgICAgICAgOiAxNg0Kcm93cyBpbiB0aGUgcmVwb3J0ICAgICAgICAgICAgOiAxNg0KcmUtZGVyaXZhdGlvbiBmaW5kaW5ncyAgICAgICAgOiAwDQp1bmxhYmVsbGVkIHJlcGxheWFibGUgY3JlZGl0cyA6IDANCg0KQ09WRVJBR0UgQ0xFQU46IGV2ZXJ5IHZlcmlmaWVkIHByb3BlcnR5IGNhcnJpZXMgZXhhY3RseSBvbmUgb2YgdGhlIGZvdXIgY2xhc3NlcyBhbmQgbm8gcmVwbGF5YWJsZSBjbGFpbSBpcyBjcmVkaXRlZCB3aXRob3V0IGEgbGFiZWwNCnVubGFiZWxsZWQgcmVwbGF5YWJsZSBjcmVkaXRzIDogMA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "report        : docs/evidence/gatebraid/P2-S2/coverage-windows.json\r\nloader        : CPython 3.12.2 (C:\\Python312\\python.exe), jsonschema 4.23.0, Draft202012Validator\r\nstructural    : 0 error locus/loci\r\nclassification, every verified property carrying exactly one class:\r\n   structural       1\r\n   semantic         11\r\n   replayed         0\r\n   capture-trusted  4\r\nclassified rows               : 16\r\nrows in the report            : 16\r\nre-derivation findings        : 0\r\nunlabelled replayable credits : 0\r\n\r\nCOVERAGE CLEAN: every verified property carries exactly one of the four classes and no replayable claim is credited without a label\r\nunlabelled replayable credits : 0\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T03:43:30.434201Z",
+  "ended_at": "2026-08-21T03:43:30.773854Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T6: coverage-report classification completeness, re-read from the emitted document rather than trusted from the emitting run."
+}
