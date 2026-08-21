@@ -184,6 +184,28 @@ exit 0
 bin/gatebraid-validate-selftest.py
 bin/gatebraid-validate.py
 ```
+**Disclosure: the run above was captured at `2026-08-21T03:43:31.069750Z`, when
+`HEAD` stood at `c4bcf9c46c235505cb0d9577cf688c38f43530d1`, the first of this
+slice's three commits, so its two lines are the diff as it stood mid-slice and
+not the 93 paths the slice landed — read alone, this row would credit T8 with
+more scope than it measured.** Its capture is
+`docs/evidence/gatebraid/P2-S2/captures/G2-T8.json`; it stands as recorded and
+is not rewritten.
+
+Re-run under the Release Approval, pinned at both ends so the scope no longer
+depends on where `HEAD` stands — the criterion's full defined scope, base to the
+head Review 1 examined:
+```
+$ git diff --name-only 11dbac47927bff5aa7c9e86124e85db9ecdbc650..0a94b945d07d5f04014346eef91938f6fb072feb
+exit 0
+bin/gatebraid-validate-selftest.py
+bin/gatebraid-validate.py
+docs/evidence/gatebraid/P2-S2/captures/G0-baseline-main.json
+docs/evidence/gatebraid/P2-S2/captures/G0-baseline.json
+docs/evidence/gatebraid/P2-S2/captures/G0-closed-set-sweep.json
+docs/evidence/gatebraid/P2-S2/captures/G0-head.json
+[elided: 6 of 93 lines shown; full output: docs/evidence/gatebraid/P2-S2/captures/G2-T8-pinned.json]
+```
 
 **V9 — T9 — negative criterion N-B: independence of N2 in imports**
 ```
@@ -206,25 +228,119 @@ INDEPENDENCE CLEAN: no module-level third-party import, and no path from either 
 
 ### Review 1
 
+Reviewer: `Claude Read-Only Team`, a fresh read-only session that authored none
+of the work it reviewed and authors none of it. Verdicts transcribed verbatim
+from that session's report, `_handoff/batch-n3/REVIEW1-M3-P2S2.md`, verified
+before transcription at
+`sha256:a9d6311bfa0e1fe8d209d2cfc9cb9fac192fccd56fab9dc85957fa49c5b1545c`,
+38,544 bytes — the value the Release Approval cites.
+
 | Item | Verdict | Evidence |
 |---|---|---|
-| R1 allowlist confinement | | `#verification-outputs` V8 |
-| R2 test-plan coverage | | `#verification-outputs` V1–V9 |
-| R3 evidence is rows that reproduce | | `#entry-records`, `#verification-outputs` |
-| R4 negative criterion | | `#verification-outputs` V8 and V9 |
-| R5 no prohibited action | | `#required-disclosures` |
+| R1 allowlist confinement | **PASS** | report rows A1–A5; `#verification-outputs` V8 |
+| R2 test-plan coverage | **PASS** | report rows B1–B5; `#verification-outputs` V1–V9 |
+| R3 evidence is rows that reproduce | **PASS** | report rows C1–C12; `#entry-records`, `#verification-outputs` |
+| R4 negative criterion | **PASS** (+F-A) | report rows D1–D4; `#verification-outputs` V8 and V9 |
+| R5 no prohibited action | **PASS** | report rows E1–E9; `#required-disclosures` |
 
-**Reviewer rows**
+**Verdict block, transcribed verbatim from the report identified above**
 ```
-NOT RUN IN THIS WINDOW. The Plan Approval grants the build and stops at the
-Gate 2 report; Review 1 runs in a fresh read-only window under its own
-dispatch, as Executor = Claude Read-Only Team. Verdicts are the reviewer's to
-write, last, and the implementer never pre-fills them — so the cells above are
-left empty rather than filled by the session that produced the work.
+| Item | Verdict | Basis |
+|---|---|---|
+| **R1** allowlist confinement | **PASS** | Rows A1–A5 |
+| **R2** the frozen plan is covered | **PASS** | Rows B1–B5 |
+| **R3** evidence is rows that reproduce | **PASS** | Rows C1–C12 |
+| **R4** negative criteria | **PASS** | Rows D1–D4 |
+| **R5** no prohibited action | **PASS** | Rows E1–E9 |
+
+**Findings: one, non-blocking.**
+
+| Id | Severity | Item | Summary |
+|---|---|---|---|
+| **F-A** | observation, non-blocking | R4 / R2 | T8's captured run measures 2 of the 93 landed paths, and `gate2.md`'s V8 row does not disclose that its `HEAD` was mid-slice. The criterion itself holds over the full 93 — measured independently at rows A1–A3 and D1. |
+
+No finding blocks the Release Approval. F-A is a disclosure gap in a record
+row, not a defect in the delivered work.
 ```
 
-- Reviewer write disclosure: `not yet run`
-- Rules given to the reviewer: `not yet dispatched`
+F-A is ruled by the coordinator in the Release Approval as a **record defect,
+not a substance failure**, and is repaired in the open above: row V8 now carries
+the disclosure the finding asks for, and the pinned re-run measures the full 93.
+
+**Reviewer rows** (the commands the reviewer ran, with outputs)
+```
+RUN. Full rows are in the report identified above, which is the transcription
+source and is pinned by the sha256 recorded there. Summarised by section:
+
+  A1-A5  R1: the diff counted at 93 paths, name-status tally "93 A" (no M, no
+         D), top-level tally 2 bin/ + 91 docs/; complement outside the frozen
+         allowlist = 0; both bin/ blob ids and sizes taken by ls-tree without
+         reading either file.
+  B1-B5  R2: plan_hash and allowlist_hash reproduced with the recorded
+         hash_commands before any mapping was trusted; T1-T9 mapped onto V1-V9;
+         the Accept-when items checked one by one against the frozen plan.
+  C1-C12 R3: rows re-run in this window with every --coverage-out redirected
+         outside the repository and git status --porcelain re-measured empty
+         after each; the corrupted-output rejection reproduced exactly; the
+         coverage report re-validated at 0 errors; the capture records
+         re-verified and re-derived by the landed generator.
+  D1-D4  R4: both negative criteria re-run over the full 93-path set, 0 paths
+         outside the allowlist and 0 import violations; falsified at D4 by a
+         decoy that tripped three findings including n2-token-in-string,
+         showing the criterion fires when it should.
+  E1-E9  R5: no push, no fetch, no ref write, no gh mutation, no commit, no
+         tracked-file edit; N2's two implementation files never read, only
+         executed; a closed-set identifier sweep whose complement is fully
+         explained.
+```
+
+- Reviewer write disclosure: `the report file only, at the ignored path
+  _handoff/batch-n3/REVIEW1-M3-P2S2.md (git check-ignore: .gitignore:7:/_handoff/)
+  — 0 commits, 0 tracked-file edits, 0 gh mutations, 0 pushes/fetches/ref
+  writes; scratch files written outside the repository and the files they were
+  copied from re-hashed unchanged; bin/gatebraid-capture.py and
+  bin/gatebraid-capture-selftest.py never read`
+- Rules given to the reviewer: `the conduct rules (measure never declare; cite
+  never restate; a checker never echoes a forbidden value into its record; a
+  bare zero states what it searched; closed-set by complement with the
+  touch-vs-mention ruling; never read N2's two implementation files, executing
+  them being permitted; GH_CONFIG_DIR pinned on every gh call with the identity
+  check first and alone; gh api endpoints without a leading slash;
+  PYTHONDONTWRITEBYTECODE=1 on every Python invocation; on any uncertainty stop
+  and ask), the two pre-briefs, the coordinator-measured entry facts, and the
+  five items R1-R5 — plus the standing host rules in CLAUDE.md (manual approval
+  mode, merging never routine, the business-repository prohibition and its
+  negative-check method, the ADR-0009/0027 tooling prohibition, no force-push,
+  no worktrees, official names only, the dash-versus-arrow byte rule, and
+  Windows-side git only)`
+
+### Independence review — M3-PLAN §2 N3 line 113
+
+Reviewer: the coordinator — the party that authored neither N2 nor N3 and may
+read both — from the record and from blob-verified staged bytes. This is the
+review M3-PLAN §2 N3's Accept-when names. Transcribed verbatim from
+`_handoff/batch-n3/INDEPENDENCE-REVIEW-M3-P2S2.md`, verified before
+transcription at
+`sha256:c65571e7ac3c49f659a07141c7e0d894b758737c733931b9dd02216b6e87fcf7`,
+3,752 bytes — the value the Release Approval cites.
+
+**Verdicts, transcribed verbatim from the review identified above**
+```
+**Imports verdict: CONFIRMED independent.** Consistent with T9's
+in-window result (0 violations).
+
+**Authorship verdict: CONFIRMED independent.** The texts read as two
+implementations of one committed spec, not as one text derived from the
+other.
+
+**Line-113 verdict: independence of imports AND authorship CONFIRMED.**
+This document is cited by the Release Approval and transcribed into the
+gate record by the writer session under that grant.
+```
+
+The mechanised imports half also ran in-window as T9 (row V9, 0 violations);
+the transcribed verdict is an independent re-measurement of that half plus the
+authorship half, which this gate did not itself perform.
 
 ## Repair record
 
@@ -236,8 +352,8 @@ first captured run, so the repair sequence was never entered and
 
 ## Required disclosures
 
-- Deviations: Review 1 is **not run in this window** and `review-five-items` is recorded `not_run` — the grant stops at this report and dispatches the review to a fresh read-only window; the verdict cells are left empty because verdicts are the reviewer's to write and the implementer never pre-fills them · the Gate 1 Exit elements parked at the previous report are **discharged here** and recorded at E5, not carried further · commit messages follow the repository's committed convention, which carries no co-author trailer; adding one would name a second party in a history whose authorship discipline is itself ADR-0020/ADR-0022 governed and audited, so the house shape was kept and the choice is disclosed rather than made silently · the selftest writes its seeded fixtures to a temporary directory **outside every repository** (`tempfile.mkdtemp()`), which `protocols/gate-2-contract.md` permits and which is named here as the contract requires · `bin/gatebraid-capture.py` was executed throughout and never read, keeping this Slice's isolation certification intact.
-- Reviewer write disclosure: `not yet run`
+- Deviations: this file was **amended after Review 1**, under the Release Approval of `2026-08-21T18:34:43Z`, by the same writer session that produced the work — the amendment re-ran T8 pinned at both ends, added the V8 disclosure the reviewer's finding F-A asks for, transcribed the Review 1 verdict block and the M3-PLAN line-113 independence verdict from the two `_handoff/` sources the approval pins by sha256 (both verified before copying, both read and never edited), and only then moved `result` to `passed` as the last write; `review-five-items` moves from `not_run` to `pass` on that transcription · the transcription is performed by the writer session rather than the reviewer, which is the shape the approval directs and is why the verdict block is quoted verbatim rather than paraphrased · a second Review-record block, `Independence review — M3-PLAN §2 N3 line 113`, is appended under the template's "one block per review, appended in order" rule although the template names only numbered `Review <n>` blocks; the heading is new and the choice is disclosed rather than made silently · the Gate 1 Exit elements parked at the previous report are **discharged here** and recorded at E5, not carried further · commit messages follow the repository's committed convention, which carries no co-author trailer; adding one would name a second party in a history whose authorship discipline is itself ADR-0020/ADR-0022 governed and audited, so the house shape was kept and the choice is disclosed rather than made silently · the selftest writes its seeded fixtures to a temporary directory **outside every repository** (`tempfile.mkdtemp()`), which `protocols/gate-2-contract.md` permits and which is named here as the contract requires · `bin/gatebraid-capture.py` was executed throughout and never read, keeping this Slice's isolation certification intact.
+- Reviewer write disclosure: `the report file only, at the ignored path _handoff/batch-n3/REVIEW1-M3-P2S2.md — 0 commits, 0 tracked-file edits, 0 gh mutations, 0 pushes/fetches/ref writes; N2's two implementation files never read`
 - Environment: Windows 11 host, Git Bash (MSYS2) shell; declared `environment: mixed-see-prose` = Windows loader host `C:\Python312\python.exe` (CPython 3.12.2, jsonschema 4.23.0, PyYAML 6.0.2) AND WSL `/usr/bin/python3` (CPython 3.12.3, jsonschema 4.10.3, PyYAML 6.0.1); `GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid` on every `gh` call; `PYTHONDONTWRITEBYTECODE=1` on every Python invocation; every `gh api` endpoint written without a leading slash, because MSYS rewrites leading-slash endpoints into filesystem paths.
 
 ## gatebraid-metadata
@@ -251,8 +367,8 @@ executor: Claude Lead
 base_sha: 11dbac47927bff5aa7c9e86124e85db9ecdbc650
 active_branch: slice/P2-S2
 started_at: '2026-08-21T03:24:47Z'
-ended_at: '2026-08-21T03:50:01Z'
-result: needs_approval
+ended_at: '2026-08-21T18:46:41.752982Z'
+result: passed
 bootstrap_exception: true
 checks:
 - name: plan-approval-verified
@@ -313,14 +429,30 @@ checks:
   result: pass
   command: git diff --name-only 11dbac47927bff5aa7c9e86124e85db9ecdbc650..HEAD
   output_ref: docs/evidence/gatebraid/P2-S2/captures/G2-T8.json
+- name: T8R-negative-criterion-N-A-pinned
+  # Re-run under the Release Approval, pinned at both ends: 93 paths, 0 outside
+  # the frozen allowlist. The original T8 row is kept, not rewritten.
+  result: pass
+  command: git diff --name-only 11dbac47927bff5aa7c9e86124e85db9ecdbc650..0a94b945d07d5f04014346eef91938f6fb072feb
+  output_ref: docs/evidence/gatebraid/P2-S2/captures/G2-T8-pinned.json
 - name: T9-negative-criterion-N-B
   result: pass
   command: C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S2/checks/independence-check.py bin/gatebraid-validate.py
     bin/gatebraid-validate-selftest.py
   output_ref: docs/evidence/gatebraid/P2-S2/captures/G2-T9.json
 - name: review-five-items
-  result: not_run
+  # Review 1 ran under Executor = Claude Read-Only Team; R1-R5 all PASS with one
+  # non-blocking observation, F-A, transcribed verbatim from the report the
+  # approval pins by sha256 and repaired in the open at row V8.
+  result: pass
   command: Review 1, read-only, in a fresh window under its own dispatch
+  output_ref: '#review-record'
+- name: independence-review-line-113
+  # M3-PLAN 2 N3 Accept-when: the independence review (imports AND authorship)
+  # is on record. Performed by the coordinator, not by this gate; transcribed
+  # here under the Release Approval from the source it pins by sha256.
+  result: pass
+  command: coordinator review of imports and authorship over blob-verified staged bytes
   output_ref: '#review-record'
 handoff_fingerprint:
   active_branch_head: dd56346221f2b65d78202fdc59479f243fc9cb4d
@@ -430,8 +562,13 @@ plan_hash: 6f68e9a09fe89242dff6d8cec2052d27e9e9ed42e32d45ef061aaeff2592f346
 allowlist_hash: 0c0090ec87b5a47838edfe8bad7d8350a79d50fc642c3e1d10b1582a09223d86
 evidence_files:
 - docs/evidence/gatebraid/P2-S2/gate2.md
-notes: 'result is needs_approval, not passed: Review 1 has not run. The Plan Approval grants the build
-  and stops at this report, and `passed` is the Release Approval''s to grant after review. Two defects
+notes: 'Amended under the Release Approval of 2026-08-21T18:34:43Z, which is the grant that moves
+  this record to passed: T8 was re-run pinned at both ends and captured as G2-T8-pinned (93 paths,
+  0 outside the frozen allowlist), row V8 now discloses that its original run measured the mid-slice
+  HEAD c4bcf9c46c235505cb0d9577cf688c38f43530d1 at 2026-08-21T03:43:31.069750Z, and Review 1''s
+  verdict block and the M3-PLAN line-113 independence verdict are transcribed verbatim from the two
+  sources the approval pins by sha256, both verified before copying and neither edited. result moved
+  to passed as the last write in the file. Two defects
   found by this gate''s own checks and fixed inside it, both recorded because a check that finds nothing
   proves less than one that finds something: (1) the validator''s first report builder broke its own completeness
   arithmetic, caught by T6 re-reading the emitted document rather than trusting the run that wrote it;
