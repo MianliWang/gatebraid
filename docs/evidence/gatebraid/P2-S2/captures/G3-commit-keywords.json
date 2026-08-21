@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-commit-keywords",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S2/checks/closing-keyword-scan.py",
+      "--range",
+      "11dbac47927bff5aa7c9e86124e85db9ecdbc650..16c3f16939787c135c3aa1f1982995c854c9e32e"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 741,
+      "sha256": "d6b8665378addea02b7e18e963854eedb6deccf72b8a829bedd5167761abd9dd",
+      "data": "U0VBUkNIRUQ6CiAgZ2l0IHJhbmdlIDExZGJhYzQ3OTI3YmZmNWFhN2M5ZTg2MTI0ZTg1ZGI5ZWNkYmM2NTAuLjE2YzNmMTY5Mzk3ODdjMTM1YzNhYTFmMTk4Mjk5NWM4NTRjOWUzMmUgLS0gNCBjb21taXQgbWVzc2FnZShzKSwgaGVhZGxpbmUgYW5kIGJvZHkKUEFUVEVSTiA6IGtleXdvcmQtdGhlbi1yZWZlcmVuY2UsIGtleXdvcmQgaW4ge2Nsb3NlLGNsb3NlcyxjbG9zZWQsZml4LGZpeGVzLGZpeGVkLHJlc29sdmUscmVzb2x2ZXMscmVzb2x2ZWR9LCBhbnkgY2FzZTsKICAgICAgICAgIHJlZmVyZW5jZSBpbiB7I24sIG93bmVyL3JlcG8jbiwgPHVybCBlbmRpbmcgaXNzdWVzL24+fS4KICAgICAgICAgIFRoZSBiYXJlIHRva2VuIGlzIE5PVCBtYXRjaGVkOiBhIGNvbnZlbnRpb25hbC1jb21taXQgZml4KHNjb3BlKTogcHJlZml4CiAgICAgICAgICByZWZlcmVuY2VzIG5vdGhpbmcgYW5kIGlzIG5vdCBhIG1hdGNoLgoKQ0xPU0lORy1LRVlXT1JEIE1BVENIRVMgKGRlZnVzZWQgZm9yIHRoZSByZWNvcmQpOiAwCiAgKG5vbmUgLS0gdGhlIHplcm8gYWJvdmUgaXMgb3ZlciB0aGUgc291cmNlcyBuYW1lZCBhdCB0aGUgdG9wIG9mIHRoaXMgb3V0cHV0KQoKUExBSU4gUkVGRVJFTkNFUyAocGVybWl0dGVkOyB0aGlzIGlzIGhvdyBhIFNsaWNlIGlzc3VlIGlzIGxpbmtlZCk6IDAKICAobm9uZSkKClZFUkRJQ1Q6IFBBU1MgLS0gbm8gY2xvc2luZyBrZXl3b3JkIHByZWNlZGVzIGFueSBpc3N1ZSByZWZlcmVuY2UK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "SEARCHED:\n  git range 11dbac47927bff5aa7c9e86124e85db9ecdbc650..16c3f16939787c135c3aa1f1982995c854c9e32e -- 4 commit message(s), headline and body\nPATTERN : keyword-then-reference, keyword in {close,closes,closed,fix,fixes,fixed,resolve,resolves,resolved}, any case;\n          reference in {#n, owner/repo#n, <url ending issues/n>}.\n          The bare token is NOT matched: a conventional-commit fix(scope): prefix\n          references nothing and is not a match.\n\nCLOSING-KEYWORD MATCHES (defused for the record): 0\n  (none -- the zero above is over the sources named at the top of this output)\n\nPLAIN REFERENCES (permitted; this is how a Slice issue is linked): 0\n  (none)\n\nVERDICT: PASS -- no closing keyword precedes any issue reference\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T19:01:45.633735Z",
+  "ended_at": "2026-08-21T19:01:45.985455Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S2/checks/closing-keyword-scan.py",
+      "sha256": "7385660ab4d27e34869a5dae5fe8842d89e240a64819c53a5250765a349961e4"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Closure precondition (b), commit-message half. First run BEFORE the push, because contract row 2b makes a closing keyword in a commit message an uncorrectable error - amending history is a force-push, which this gate prohibits. Re-captured here after the checker was corrected to emit LF rather than the platform line ending; the verdict is unchanged. The checker was falsified in-window on seeded input carrying all three reference forms before either run was trusted."
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-handoff-fingerprint",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD",
+      "HEAD^{tree}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 82,
+      "sha256": "bcde0272d10168accd45cfbeaf4044fe599112923576597eed28526fd2812ec6",
+      "data": "ZGQ1NjM0NjIyMWYyYjY1ZDc4MjAyZmRjNTk0NzlmMjQzZmM5Y2I0ZApmYTJjOTY1YzQ1Y2E5NDAyNTg4ZmE0NmYxZjdkMmM5MGUyMDk2NzljCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "dd56346221f2b65d78202fdc59479f243fc9cb4d\nfa2c965c45ca9402588fa46f1f7d2c90e209679c\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T03:47:13.869238Z",
+  "ended_at": "2026-08-21T03:47:13.924904Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "ADR-0011 section 2 handoff fingerprint, Gate 3's drift comparand: the active branch head, its tree sha, and the sorted changed-path set, all as of the state BEFORE this gate record's own commit."
+}

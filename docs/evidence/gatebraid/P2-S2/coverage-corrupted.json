@@ -1,0 +1,211 @@
+{
+ "schema": "gatebraid/coverage-report@1",
+ "report_id": "cov-corrupted-capture.json",
+ "validator": {
+  "name": "gatebraid-validate",
+  "version": "1.0.0",
+  "source_sha256": "1519ff37ac476dfb9f8233ca0d6d35344f363d9d0a41aac622c165f5477f1692"
+ },
+ "target": {
+  "path": "docs/evidence/gatebraid/P2-S2/checks/corrupted-capture.json",
+  "sha256": "8f89fe3b9f1f427aba55caa94cca5965efd484ef71c2a439798414c9fc6071ae",
+  "schema_id": "gatebraid/evidence-capture@1"
+ },
+ "platform": {
+  "os": "windows",
+  "os_release": "Windows-11-10.0.26200-SP0",
+  "interpreter": "CPython 3.12.2 (C:\\Python312\\python.exe), jsonschema 4.23.0, Draft202012Validator"
+ },
+ "recorded_at": "2026-08-21T03:43:30Z",
+ "trust_boundary": "N3 independently re-derives record semantics from the captured evidence — it does not independently attest that the capture event occurred as described (that a command ran, in that cwd, with that unmodified output).",
+ "sections": [
+  {
+   "pointer": "",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/schema",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/capture_id",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/generator",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/invocation",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/exit_code",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/streams",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/started_at",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/ended_at",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/inputs",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/outputs",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/platform",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/self_assertions",
+   "disposition": "examined"
+  },
+  {
+   "pointer": "/notes",
+   "disposition": "examined"
+  }
+ ],
+ "properties": [
+  {
+   "property_id": "structural-shape",
+   "locus": "",
+   "class": "structural",
+   "verdict": "pass",
+   "note": "validated against the frozen interface with the loader named"
+  },
+  {
+   "property_id": "no-placeholder-survives",
+   "locus": "",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "structural placeholder scan over every string value"
+  },
+  {
+   "property_id": "capture-started_at-calendar",
+   "locus": "/started_at",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "field ranges re-derived; the schema pattern is lexical only"
+  },
+  {
+   "property_id": "capture-ended_at-calendar",
+   "locus": "/ended_at",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "field ranges re-derived; the schema pattern is lexical only"
+  },
+  {
+   "property_id": "capture-interval-ordered",
+   "locus": "/ended_at",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "ended_at >= started_at, named inexpressible by the schema"
+  },
+  {
+   "property_id": "stream-stdout-decodes",
+   "locus": "/streams/stdout/data",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "base64 payload decoded from the record's own bytes"
+  },
+  {
+   "property_id": "stream-stdout-byte-length",
+   "locus": "/streams/stdout/byte_length",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "byte_length re-derived from the decoded payload"
+  },
+  {
+   "property_id": "stream-stdout-sha256",
+   "locus": "/streams/stdout/sha256",
+   "class": "semantic",
+   "verdict": "fail",
+   "note": "sha256 re-derived over the raw bytes before base64"
+  },
+  {
+   "property_id": "stream-stderr-decodes",
+   "locus": "/streams/stderr/data",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "base64 payload decoded from the record's own bytes"
+  },
+  {
+   "property_id": "stream-stderr-byte-length",
+   "locus": "/streams/stderr/byte_length",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "byte_length re-derived from the decoded payload"
+  },
+  {
+   "property_id": "stream-stderr-sha256",
+   "locus": "/streams/stderr/sha256",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "sha256 re-derived over the raw bytes before base64"
+  },
+  {
+   "property_id": "zero-lone-cr-count",
+   "locus": "/self_assertions/zero_lone_cr/count",
+   "class": "semantic",
+   "verdict": "pass",
+   "note": "lone-CR count re-derived from the decoded stream bytes"
+  },
+  {
+   "property_id": "capture-exit_code",
+   "locus": "/exit_code",
+   "class": "capture-trusted",
+   "verdict": "pass",
+   "trusted_on": "generator-capture",
+   "note": "accepted on the generator's capture; not independently attested"
+  },
+  {
+   "property_id": "capture-invocation",
+   "locus": "/invocation",
+   "class": "capture-trusted",
+   "verdict": "pass",
+   "trusted_on": "generator-capture",
+   "note": "accepted on the generator's capture; not independently attested"
+  },
+  {
+   "property_id": "capture-platform",
+   "locus": "/platform",
+   "class": "capture-trusted",
+   "verdict": "pass",
+   "trusted_on": "generator-capture",
+   "note": "accepted on the generator's capture; not independently attested"
+  },
+  {
+   "property_id": "capture-generator",
+   "locus": "/generator",
+   "class": "capture-trusted",
+   "verdict": "pass",
+   "trusted_on": "generator-capture",
+   "note": "accepted on the generator's capture; not independently attested"
+  }
+ ],
+ "completeness": {
+  "sections_total": 14,
+  "sections_examined": 14,
+  "unexamined": [],
+  "complete": true
+ },
+ "verdict": "rejected",
+ "findings": [
+  {
+   "finding_id": "F001",
+   "locus": "/streams/stdout/sha256",
+   "rule_id": "sha256-does-not-rederive"
+  }
+ ]
+}

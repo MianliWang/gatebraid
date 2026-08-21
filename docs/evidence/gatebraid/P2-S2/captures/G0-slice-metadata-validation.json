@@ -1,0 +1,77 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-slice-metadata-validation",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/90d70168-51d5-4c54-ad71-63b5f2237ca4/scratchpad/validate-slice.py",
+      "docs/evidence/gatebraid/P2-S2/captures/G0-slice-body.json",
+      "schema/slice.schema.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 336,
+      "sha256": "4ba6321034e6dccc9202b378f3565b4ffb936490ccb9b524043b635a3c63d6de",
+      "data": "eyJsb2FkZXIiOiAiUHlZQU1MIDYuMC4yIC8ganNvbnNjaGVtYSA0LjIzLjAgLyBEcmFmdDIwMjAxMlZhbGlkYXRvciIsICJmZW5jZXNfdW5kZXJfaGVhZGluZyI6IDEsICJkZWNsYXJlZF9zY2hlbWEiOiAiZ2F0ZWJyYWlkL3NsaWNlQDEiLCAiZmlsZV9pZCI6ICJnYXRlYnJhaWQvc2xpY2VAMSIsICJpZF9tYXRjaCI6IHRydWUsICJlcnJvcl9jb3VudCI6IDAsICJlcnJvcnMiOiBbXSwgInNsaWNlX2lkIjogIlAyLVMyIiwgImVudmlyb25tZW50IjogIm1peGVkLXNlZS1wcm9zZSIsICJ3cml0ZV9kb21haW5zIjogWyJiaW4vIiwgImRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyLyJdfQ0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"loader\": \"PyYAML 6.0.2 / jsonschema 4.23.0 / Draft202012Validator\", \"fences_under_heading\": 1, \"declared_schema\": \"gatebraid/slice@1\", \"file_id\": \"gatebraid/slice@1\", \"id_match\": true, \"error_count\": 0, \"errors\": [], \"slice_id\": \"P2-S2\", \"environment\": \"mixed-see-prose\", \"write_domains\": [\"bin/\", \"docs/evidence/gatebraid/P2-S2/\"]}\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T01:17:26.578451Z",
+  "ended_at": "2026-08-21T01:17:26.909206Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S2/captures/G0-slice-body.json",
+      "sha256": "5ed639b175c66ff107430b7cf73f111f4e8c0dfe186f2d66850b21bb34935acc"
+    },
+    {
+      "path": "schema/slice.schema.json",
+      "sha256": "6e645655ff286d7101a26a5739697d5d19c240b016767b6d5f1f64e5fc99cd34"
+    },
+    {
+      "path": "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/90d70168-51d5-4c54-ad71-63b5f2237ca4/scratchpad/validate-slice.py",
+      "sha256": "0a9bd0a908b0c11fbbd190b7ffb6a744ca890746a2e279e88214389d3334399a"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Contract action 6, part 2: the metadata block parsed out of the LIVE body and validated against the committed gatebraid/slice@1. Schema, body capture and validator script are all SHA-pinned as inputs before the command runs. Failure => error disposition."
+}

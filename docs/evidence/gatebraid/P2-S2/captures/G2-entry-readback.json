@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-entry-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($item:ID!){ node(id:$item){ ... on ProjectV2Item { content{ ... on Issue { number labels(first:20){nodes{name}} } } fieldValues(first:50){ nodes{ ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name } } } ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } } } } } } }",
+      "-F",
+      "item=PVTI_lAHOBRofUs4Beum7zg3ZWpw"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 968,
+      "sha256": "c9868bf4e70c854b05c852d00c7169bbd593b767138b79aab6567041c5133432",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiY29udGVudCI6eyJudW1iZXIiOjEwLCJsYWJlbHMiOnsibm9kZXMiOltdfX0sImZpZWxkVmFsdWVzIjp7Im5vZGVzIjpbe30seyJ0ZXh0IjoiUDItUzIg4oCUIHRoZSBpbmRlcGVuZGVudCBldmlkZW5jZSB2YWxpZGF0b3IgKE4zKSIsImZpZWxkIjp7Im5hbWUiOiJUaXRsZSJ9fSx7Im5hbWUiOiJUb2RvIiwib3B0aW9uSWQiOiJmNzVhZDg0NiIsImZpZWxkIjp7Im5hbWUiOiJTdGF0dXMifX0seyJuYW1lIjoiR2F0ZSAyIOKAlCBJbXBsZW1lbnRpbmciLCJvcHRpb25JZCI6IjQxMzExN2Y5IiwiZmllbGQiOnsibmFtZSI6IldvcmtmbG93In19LHsibmFtZSI6IkcxIHBhc3NlZCIsIm9wdGlvbklkIjoiMmEyZmYwMGUiLCJmaWVsZCI6eyJuYW1lIjoiR2F0ZSJ9fSx7Im5hbWUiOiLigJQiLCJvcHRpb25JZCI6IjQ1MGVlMTMwIiwiZmllbGQiOnsibmFtZSI6Ik5leHQgQXBwcm92YWwifX0seyJuYW1lIjoibWl4ZWQtc2VlLXByb3NlIiwib3B0aW9uSWQiOiIxZTQzZWM4NSIsImZpZWxkIjp7Im5hbWUiOiJFbnZpcm9ubWVudCJ9fSx7Im5hbWUiOiJDbGF1ZGUgTGVhZCIsIm9wdGlvbklkIjoiY2U4NTljN2QiLCJmaWVsZCI6eyJuYW1lIjoiRXhlY3V0b3IifX0seyJuYW1lIjoibG93Iiwib3B0aW9uSWQiOiJlMjkxMjQ5YyIsImZpZWxkIjp7Im5hbWUiOiJSaXNrIn19LHsidGV4dCI6IlMyIiwiZmllbGQiOnsibmFtZSI6IlN0YWdlIn19LHsidGV4dCI6IlAyIiwiZmllbGQiOnsibmFtZSI6IlBoYXNlIn19LHsidGV4dCI6IlAyLVMyIiwiZmllbGQiOnsibmFtZSI6IlNsaWNlIn19LHsidGV4dCI6IjExZGJhYzQ3OTI3YmZmNWFhN2M5ZTg2MTI0ZTg1ZGI5ZWNkYmM2NTAiLCJmaWVsZCI6eyJuYW1lIjoiQmFzZSBTSEEifX0seyJ0ZXh0IjoiUm91Z2hFZ29pc3Q6UDItUzItZ2F0ZTI6MjAyNi0wOC0yMVQwMzoyNDo0N1oiLCJmaWVsZCI6eyJuYW1lIjoiV3JpdGVyIExlYXNlIn19XX19fX0=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"content\":{\"number\":10,\"labels\":{\"nodes\":[]}},\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S2 — the independent evidence validator (N3)\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"name\":\"Gate 2 — Implementing\",\"optionId\":\"413117f9\",\"field\":{\"name\":\"Workflow\"}},{\"name\":\"G1 passed\",\"optionId\":\"2a2ff00e\",\"field\":{\"name\":\"Gate\"}},{\"name\":\"—\",\"optionId\":\"450ee130\",\"field\":{\"name\":\"Next Approval\"}},{\"name\":\"mixed-see-prose\",\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"name\":\"Claude Lead\",\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"name\":\"low\",\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S2\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"11dbac47927bff5aa7c9e86124e85db9ecdbc650\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"RoughEgoist:P2-S2-gate2:2026-08-21T03:24:47Z\",\"field\":{\"name\":\"Writer Lease\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T03:25:07.310536Z",
+  "ended_at": "2026-08-21T03:25:07.899668Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Read-back of Gate 2 entry state: lease held and exact, Workflow Implementing, Next Approval bare, needs-human absent."
+}

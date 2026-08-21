@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T1",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-validate-selftest.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3186,
+      "sha256": "7bd7edcbc37787380b46d077b806c81bf15f09430280688a105abff3fc9318a6",
+      "data": "aWQgICAgIGNvbmRpdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2FudCAgIGdvdCAgdmVyZGljdCByZXF1aXJlZCBvYnNlcnZhdGlvbg0KUzAwICAgIHVudG91Y2hlZCBjYXB0dXJlIGFjY2VwdGVkICAgICAgICAgICAgICAgMCAgICAgMCAgUEFTUyAgICBhIHZhbGlkIHJlY29yZCBtdXN0IGJlIGFjY2VwdGVkDQpTMDEgICAgc2hhMjU2IGRvZXMgbm90IHJlLWRlcml2ZSAgICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIHNjaGVtYS12YWxpZDsgY2F1Z2h0IG9ubHkgYnkgcmUtZGVyaXZhdGlvbg0KUzAyICAgIGJ5dGVfbGVuZ3RoIG1pc21hdGNoICAgICAgICAgICAgICAgICAgICAgMSAgICAgMSAgUEFTUyAgICBkZWNsYXJlZCBsZW5ndGggbXVzdCBtYXRjaCB0aGUgZGVjb2RlZCBwYXlsb2FkDQpTMDMgICAgZW5kZWRfYXQgcHJlY2VkZXMgc3RhcnRlZF9hdCAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIG5hbWVkIGluZXhwcmVzc2libGUgYnkgdGhlIHNjaGVtYQ0KUzA0ICAgIGNhbGVuZGFyLWltcG9zc2libGUgdGltZXN0YW1wICAgICAgICAgICAgMSAgICAgMSAgUEFTUyAgICB0aGUgc2NoZW1hIHBhdHRlcm4gaXMgbGV4aWNhbCBvbmx5DQpTMDUgICAgcGF5bG9hZCBkb2VzIG5vdCBkZWNvZGUgICAgICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIHRoZSBiYXNlNjQgZ3JhbW1hciBpcyB0aGUgZmllbGQgdGhlIGJ5dGUgY29udHJhY3QgcmVzdHMgb24NClMwNiAgICBsb25lLUNSIGNvdW50IGRpc2FncmVlcyB3aXRoIGJ5dGVzICAgICAgIDEgICAgIDEgIFBBU1MgICAgYnl0ZS9saW5lLWVuZGluZyBkaXNjaXBsaW5lIHJlLWRlcml2ZWQNClMwNmIgICBDUkxGIHBheWxvYWQsIHRydWUgY291bnQgMCwgYWNjZXB0ZWQgICAgIDAgICAgIDAgIFBBU1MgICAgdGhlIGNvdW50ZXIgbXVzdCBub3QgZmlyZSBvbiBhIGNvcnJlY3QgcmVjb3JkDQpTMDcgICAgcGxhY2Vob2xkZXIgc3Vydml2ZXMgaXRzIG93biBjaGVjayAgICAgICAxICAgICAxICBQQVNTICAgIElOLTAyJ3MgbG9jdXMNClMwOCAgICBjb21wbGV0ZW5lc3MgYXJpdGhtZXRpYyBicm9rZW4gICAgICAgICAgIDEgICAgIDEgIFBBU1MgICAgbmFtZWQgaW5leHByZXNzaWJsZSBieSB0aGUgc2NoZW1hDQpTMDkgICAgcmVwbGF5ZWQgY2xhaW0gc2hvd3Mgbm90aGluZyAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIHRoZSB1bmxhYmVsbGVkIGNyZWRpdCB0aGUgcGxhbiBmb3JiaWRzDQpTMTAgICAgY2FwdHVyZS10cnVzdGVkIHdpdGhvdXQgaXRzIGxhYmVsICAgICAgICAxICAgICAxICBQQVNTICAgIGNhcHR1cmUtdHJ1c3RlZCBtdXN0IGJlIExBQkVMTEVEIHNvDQpTMTEgICAgb25lIE9TIGNsYWltZWQgYXMgdHdvIHBsYXRmb3JtcyAgICAgICAgICAxICAgICAxICBQQVNTICAgIHN0cnVjdHVyYWxseSB2YWxpZDsgY2F1Z2h0IG9ubHkgYnkgcmUtZGVyaXZhdGlvbg0KUzExYiAgIGNsYWltIG9taXRzIGl0cyBvd24gcGxhdGZvcm0gICAgICAgICAgICAgMSAgICAgMSAgUEFTUyAgICBhIGNsYWltIGFib3V0IHJ1bnMgdGhlIHJlcG9ydCBkaWQgbm90IG1ha2UNClMxMiAgICBlbWl0dGVkIHJlcG9ydCB2ZXJpZmllcyBjbGVhbiAgICAgICAgICAgIDAgICAgIDAgIFBBU1MgICAgdGhlIHZhbGlkYXRvcidzIG93biBvdXRwdXQgbXVzdCBzdXJ2aXZlIGl0cyBvd24gcmUtcmVhZGluZw0KUzEzICAgIGJyb2tlbiByZXBvcnQgcmVmdXNlZCBvbiByZS1yZWFkICAgICAgICAgMSAgICAgMSAgUEFTUyAgICBJTi0wNTogcGFydGlhbCBjb3ZlcmFnZSBjbGFpbWluZyBjb21wbGV0ZW5lc3MNClMxNCAgICBmcm96ZW4gY29ycHVzIGNsZWFuICAgICAgICAgICAgICAgICAgICAgIDAgICAgIDAgIFBBU1MgICAgZXZlcnkgZGVjbGFyZWQgY2FzZSByZWFjaGVzIGl0cyByZWNvcmRlZCBkaXNwb3NpdGlvbiBhbmQgbG9jdXMgc2V0DQpTMTUgICAgdW5rbm93biBpbnRlcmZhY2UgcmVmdXNlZCAgICAgICAgICAgICAgICAyICAgICAyICBQQVNTICAgIGFuIGlucHV0IGVycm9yIGlzIGV4aXQgMiwgZGlzdGluY3QgZnJvbSBhIHJlamVjdGlvbg0KUzE2ICAgIG5vbi1KU09OIGlucHV0IHJlZnVzZWQgICAgICAgICAgICAgICAgICAgMiAgICAgMiAgUEFTUyAgICBleGl0IDIgZGlzdGluZ3Vpc2hlcyBhIGJyb2tlbiBpbnB1dCBmcm9tIGEgcmVqZWN0ZWQgcmVjb3JkDQpTMTcgICAgbm8gbW9kZSBpcyBhIHVzYWdlIGVycm9yICAgICAgICAgICAgICAgICAyICAgICAyICBQQVNTICAgIGV4YWN0bHkgb25lIG1vZGUgaXMgcmVxdWlyZWQNClMxOCAgICB0d28gbW9kZXMgaXMgYSB1c2FnZSBlcnJvciAgICAgICAgICAgICAgIDIgICAgIDIgIFBBU1MgICAgZXhhY3RseSBvbmUgbW9kZSBpcyByZXF1aXJlZA0KUzE5ICAgIHZlcmlmeS1jb3ZlcmFnZSByZWZ1c2VzIHRvIGVtaXQgICAgICAgICAgMiAgICAgMiAgUEFTUyAgICByZS1yZWFkaW5nIGEgcmVwb3J0IGlzIG5vdCB3cml0aW5nIG9uZQ0KUzIwICAgIGVtaXR0ZWQgcmVjb3JkIGlzIExGLW9ubHkgICAgICAgICAgICAgICAgMCAgICAgMCAgUEFTUyAgICBiaW5hcnkgd3JpdGU7IG5vIHBsYXRmb3JtIG5ld2xpbmUgdHJhbnNsYXRpb24gcmVhY2hlcyB0aGUgcmVjb3JkDQpTMjEgICAgc2NoZW1hIGxvYWRlciBuYW1lZCBpbiB0aGUgb3V0cHV0ICAgICAgICAwICAgICAwICBQQVNTICAgIGEgc3RydWN0dXJhbCBjbGFpbSB3aG9zZSBsb2FkZXIgaXMgdW5uYW1lZCBpcyB1bnJlcHJvZHVjaWJsZQ0KUzIyICAgIHNlZWQgZGlzY3JpbWluYXRlcyAoUzAwICE9IFMwMSkgICAgICAgICAgMCAgICAgMCAgUEFTUyAgICBvbmUgZmxpcHBlZCBieXRlIG11c3QgY2hhbmdlIHRoZSB2ZXJkaWN0LCBvciB0aGUgc3VpdGUgaXMgYmxpbmQNCg0Kc2NyYXRjaCBkaXJlY3RvcnkgICAgICAgICAgICAgOiBvdXRzaWRlIGV2ZXJ5IHJlcG9zaXRvcnkgKHRlbXBmaWxlLm1rZHRlbXApDQp2YWxpZGF0b3IgdW5kZXIgdGVzdCAgICAgICAgICA6IEQ6XEdpdGh1YiByZXBvXEdhdGVicmFpZFxiaW5cZ2F0ZWJyYWlkLXZhbGlkYXRlLnB5DQppbnRlcnByZXRlciAgICAgICAgICAgICAgICAgICA6IEM6XFB5dGhvbjMxMlxweXRob24uZXhlDQpjb25kaXRpb25zIGZhaWxlZCAgICAgICAgICAgICA6IDANClNFTEZURVNUIENMRUFOOiBldmVyeSBzZWVkZWQgY29uZGl0aW9uIHByb2R1Y2VkIGl0cyByZXF1aXJlZCBleGl0IHN0YXR1cw0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "id     condition                             want   got  verdict required observation\r\nS00    untouched capture accepted               0     0  PASS    a valid record must be accepted\r\nS01    sha256 does not re-derive                1     1  PASS    schema-valid; caught only by re-derivation\r\nS02    byte_length mismatch                     1     1  PASS    declared length must match the decoded payload\r\nS03    ended_at precedes started_at             1     1  PASS    named inexpressible by the schema\r\nS04    calendar-impossible timestamp            1     1  PASS    the schema pattern is lexical only\r\nS05    payload does not decode                  1     1  PASS    the base64 grammar is the field the byte contract rests on\r\nS06    lone-CR count disagrees with bytes       1     1  PASS    byte/line-ending discipline re-derived\r\nS06b   CRLF payload, true count 0, accepted     0     0  PASS    the counter must not fire on a correct record\r\nS07    placeholder survives its own check       1     1  PASS    IN-02's locus\r\nS08    completeness arithmetic broken           1     1  PASS    named inexpressible by the schema\r\nS09    replayed claim shows nothing             1     1  PASS    the unlabelled credit the plan forbids\r\nS10    capture-trusted without its label        1     1  PASS    capture-trusted must be LABELLED so\r\nS11    one OS claimed as two platforms          1     1  PASS    structurally valid; caught only by re-derivation\r\nS11b   claim omits its own platform             1     1  PASS    a claim about runs the report did not make\r\nS12    emitted report verifies clean            0     0  PASS    the validator's own output must survive its own re-reading\r\nS13    broken report refused on re-read         1     1  PASS    IN-05: partial coverage claiming completeness\r\nS14    frozen corpus clean                      0     0  PASS    every declared case reaches its recorded disposition and locus set\r\nS15    unknown interface refused                2     2  PASS    an input error is exit 2, distinct from a rejection\r\nS16    non-JSON input refused                   2     2  PASS    exit 2 distinguishes a broken input from a rejected record\r\nS17    no mode is a usage error                 2     2  PASS    exactly one mode is required\r\nS18    two modes is a usage error               2     2  PASS    exactly one mode is required\r\nS19    verify-coverage refuses to emit          2     2  PASS    re-reading a report is not writing one\r\nS20    emitted record is LF-only                0     0  PASS    binary write; no platform newline translation reaches the record\r\nS21    schema loader named in the output        0     0  PASS    a structural claim whose loader is unnamed is unreproducible\r\nS22    seed discriminates (S00 != S01)          0     0  PASS    one flipped byte must change the verdict, or the suite is blind\r\n\r\nscratch directory             : outside every repository (tempfile.mkdtemp)\r\nvalidator under test          : D:\\Github repo\\Gatebraid\\bin\\gatebraid-validate.py\r\ninterpreter                   : C:\\Python312\\python.exe\r\nconditions failed             : 0\r\nSELFTEST CLEAN: every seeded condition produced its required exit status\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T03:42:44.627277Z",
+  "ended_at": "2026-08-21T03:42:54.643218Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T1: validator selftest, Windows. Green is exit 0, the selftest's own summary reporting it clean, and conditions failed reading 0."
+}

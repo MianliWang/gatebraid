@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-T2-dryrun",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl.exe",
+      "-e",
+      "bash",
+      "-lc",
+      "cd \"/mnt/d/Github repo/Gatebraid\" && python3 -B bin/gatebraid-validate-selftest.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 2,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 128,
+      "sha256": "03e035c54d684b9987f13ce27278355b49e4536a67f2698e019fb66fd4490822",
+      "data": "cHl0aG9uMzogY2FuJ3Qgb3BlbiBmaWxlICcvbW50L2QvR2l0aHViIHJlcG8vR2F0ZWJyYWlkL2Jpbi9nYXRlYnJhaWQtdmFsaWRhdGUtc2VsZnRlc3QucHknOiBbRXJybm8gMl0gTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "python3: can't open file '/mnt/d/Github repo/Gatebraid/bin/gatebraid-validate-selftest.py': [Errno 2] No such file or directory\n"
+      }
+    }
+  },
+  "started_at": "2026-08-21T02:58:24.723079Z",
+  "ended_at": "2026-08-21T02:58:26.671392Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T2 dry-run, validator selftest on WSL - the second declared platform. Proves the wsl.exe harness, the quoted cd into the /mnt path, and the interpreter all resolve there."
+}

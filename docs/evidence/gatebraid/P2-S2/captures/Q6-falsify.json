@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "Q6-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($owner:String!,$repo:String!,$number:Int!){ repository(owner:$owner,name:$repo){ issue(number:$number){ id number title projectItems(first:10){ nodes{ id project{ id title } fieldValues(first:50){ nodes{ ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name id } } } ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name id } } } } } } } } } }",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=99999"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 205,
+      "sha256": "36cffd14eb6dd381884f7e7b5f17732bdae99641db93c9ef0fdee9f75796a4e0",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsiaXNzdWUiOm51bGx9fSwiZXJyb3JzIjpbeyJ0eXBlIjoiTk9UX0ZPVU5EIiwicGF0aCI6WyJyZXBvc2l0b3J5IiwiaXNzdWUiXSwibG9jYXRpb25zIjpbeyJsaW5lIjoxLCJjb2x1bW4iOjg4fV0sIm1lc3NhZ2UiOiJDb3VsZCBub3QgcmVzb2x2ZSB0byBhbiBJc3N1ZSB3aXRoIHRoZSBudW1iZXIgb2YgOTk5OTkuIn1dfQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":{\"issue\":null}},\"errors\":[{\"type\":\"NOT_FOUND\",\"path\":[\"repository\",\"issue\"],\"locations\":[{\"line\":1,\"column\":88}],\"message\":\"Could not resolve to an Issue with the number of 99999.\"}]}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 60,
+      "sha256": "ec0e0d9445676da7cb9a76fc72e8149ecbf4302da2e66756e198242e36c46bf1",
+      "data": "Z2g6IENvdWxkIG5vdCByZXNvbHZlIHRvIGFuIElzc3VlIHdpdGggdGhlIG51bWJlciBvZiA5OTk5OS4K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "gh: Could not resolve to an Issue with the number of 99999.\n"
+      }
+    }
+  },
+  "started_at": "2026-08-21T01:13:49.954060Z",
+  "ended_at": "2026-08-21T01:13:50.403959Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Seeded bad input: issue number 99999 does not exist in MianliWang/gatebraid (closed-set repo, no foreign identifier). Committed falsification for Q6, case one. Must fail closed: issue null => F2 STOP."
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-writedomains-verify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S2/checks/verify-writedomains.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 486,
+      "sha256": "e255344195365fc80ce6e48b032d062635ed1924541610687908fdcf955bb291",
+      "data": "bG9hZGVyICAgICAgICAgICAgICAgICAgICAgOiBQeVlBTUwgNi4wLjIgLyBqc29uc2NoZW1hIDQuMjMuMCAvIERyYWZ0MjAyMDEyVmFsaWRhdG9yDQpsaXZlIHdyaXRlX2RvbWFpbnMgICAgICAgICA6IFsnYmluL2dhdGVicmFpZC12YWxpZGF0ZS5weScsICdiaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLXNlbGZ0ZXN0LnB5JywgJ2RvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMyLyddDQpzbGljZUAxIHZhbGlkYXRpb24gZXJyb3JzICA6IDANCmFsbG93bGlzdF9oYXNoIGZyb20gdGhlIGlzc3VlOiAwYzAwOTBlYzg3YjVhNDc4MzhlZGZlOGJhZDdkODM1MGE3OWQ1MGZjNjQyYzNlMWQxMGIxNTgyYTA5MjIzZDg2DQpmcm96ZW4gYWxsb3dsaXN0X2hhc2ggICAgICAgIDogMGMwMDkwZWM4N2I1YTQ3ODM4ZWRmZThiYWQ3ZDgzNTBhNzlkNTBmYzY0MmMzZTFkMTBiMTU4MmEwOTIyM2Q4Ng0KQllURS1FUVVBTCBUTyBUSEUgRlJPWkVOIEFMTE9XTElTVDogVHJ1ZQ0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "loader                     : PyYAML 6.0.2 / jsonschema 4.23.0 / Draft202012Validator\r\nlive write_domains         : ['bin/gatebraid-validate.py', 'bin/gatebraid-validate-selftest.py', 'docs/evidence/gatebraid/P2-S2/']\r\nslice@1 validation errors  : 0\r\nallowlist_hash from the issue: 0c0090ec87b5a47838edfe8bad7d8350a79d50fc642c3e1d10b1582a09223d86\r\nfrozen allowlist_hash        : 0c0090ec87b5a47838edfe8bad7d8350a79d50fc642c3e1d10b1582a09223d86\r\nBYTE-EQUAL TO THE FROZEN ALLOWLIST: True\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T03:49:38.773749Z",
+  "ended_at": "2026-08-21T03:49:39.657425Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S2/checks/verify-writedomains.py",
+      "sha256": "5d8d4bd7f04e90c7e4dd39fd7bc4f62425b0fc91e95ffaff949010674a0c74ef"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "E5: the Slice body's write_domains re-read live and its allowlist_hash recomputed, so the agreement the Gate 1 Exit establishes is shown as a measurement rather than as a claim."
+}

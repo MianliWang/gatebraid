@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-plan-approval-body",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "repos/MianliWang/gatebraid/issues/comments/5364783775",
+      "--jq",
+      ".body"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3898,
+      "sha256": "0889375f6a88d1f32c9b1690d322020baa3c1cc5323b0304927a524904e88e71",
+      "data": "KipQbGFuIEFwcHJvdmFsIChHMeKGkkcyKSDigJQgU2xpY2UgUDItUzIqKiAocG9zdGVkIDIwMjYtMDgtMjEpCgoqKkdhdGUgMSBpcyBjb29yZGluYXRvci1hZGp1ZGljYXRlZCBQQVNTLioqIFRoZSBmcm96ZW4gcmVjb3JkIGlzCmBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMi9nYXRlMS5tZGAsIHNoYTI1NgpgNGY5YTg5MGM5MjcwNGE5OGVlYjU2YzU5NWFhOTlmYzZjODUyYjgxZjNmODk0YmNlN2E3MTBkOGQ5ODJiZWNhMGAsCjE4LDc1NiBieXRlcyDigJQgYGdhdGUtcnVuQDJgIHZhbGlkYXRlcyAwIGVycm9ycy4gKipCb3RoIGZyb3plbiBoYXNoZXMgd2VyZQpyZXByb2R1Y2VkIGluIHRoZSBjb29yZGluYXRvcidzIHNhbmRib3ggYnkgcnVubmluZyB0aGUgcmVjb3JkZWQgY29tbWFuZHMKdmVyYmF0aW0gb3ZlciB0aGUgZmluYWwgZmlsZToqKgpgcGxhbl9oYXNoIDZmNjhlOWEwOWZlODkyNDJkZmY2ZDhjZWMyMDUyZDI3ZTllOWVkNDJlMzJkNDVlZjA2MWFhZWZmMjU5MmYzNDZgIMK3CmBhbGxvd2xpc3RfaGFzaCAwYzAwOTBlYzg3YjVhNDc4MzhlZGZlOGJhZDdkODM1MGE3OWQ1MGZjNjQyYzNlMWQxMGIxNTgyYTA5MjIzZDg2YC4KQWxsIDE2IG5ldyBjYXB0dXJlcyBwYXNzIHRoZSBsYW5kZWQgZ2VuZXJhdG9yJ3MgYC0tdmVyaWZ5LXJlY29yZAotLXJlZGVyaXZlYCAoNDkvNDkgY3VtdWxhdGl2ZSkuIFRoZSBhbWVuZGVkIGBnYXRlMC5tZGAgKHNoYTI1NgpgNThmYTBhOGbigKY3YmU1OThgKSByZS12YWxpZGF0ZXMgYXQgYHJlc3VsdDogcGFzc2VkYCB3aXRoIHRoZSBjbG9zZWQtc2V0CnJ1bGluZyBjaXRlZCBpbiBwbGFjZSwgYW5kIHRoZSBkaXNwb3NpdGlvbi12cy1jYXB0dXJlIGdhcCBob25lc3RseQpyZWNvcmRlZC4gVGhlIGRyeS1ydW4gcm93cyBhcmUgYWNjZXB0ZWQgZm9yIHdoYXQgdGhleSBlc3RhYmxpc2gg4oCUIHBhdGgKcmVzb2x1dGlvbiBvbiBib3RoIHBsYXRmb3Jtcywgbm90IGdyZWVuIHJ1bnMg4oCUIGFuZCBHMS1GMyAod2hhdApnYXRlLTEtY29udHJhY3QgYWN0aW9uIDQgZXN0YWJsaXNoZXMgd2hlbiB0aGUgYXJ0aWZhY3RzIGFyZSBHYXRlLTItYXV0aG9yZWQKYnkgZGVzaWduKSBqb2lucyB0aGUgdG91Y2gtdnMtbWVudGlvbiBkaXN0aW5jdGlvbiBhbmQgdGhlIGBzdG9wX3JlY29yZGAKZW51bWVyYXRpb24gZ2FwIGluIHRoZSAqKkQxNioqIHByb3RvY29sLWFtZW5kbWVudCBzY29wZS4gVGhlIGZpdmUgcGFya2VkCkV4aXQgZWxlbWVudHMgcmVjb3JkZWQgYG5vdF9ydW5gIHdlcmUgdGhlIGNvcnJlY3QgaG9uZXN0IHN0YXRlIGFuZCBhcmUKZGlzY2hhcmdlZCBiZWxvdy4KCioqQXV0aG9yaXplZCBvbiB0aGlzIGdyYW50LCBpbiBvcmRlciDigJQgc2luZ2xlIHdyaXRlciwgdGhpcyBzZXNzaW9uOioqCgoxLiAqKkNvbXBsZXRlIEdhdGUgMSdzIHBhcmtlZCBleGl0LCBwZXIgdGhlIGNvbnRyYWN0OioqIHRoZQogICBgd3JpdGVfZG9tYWluc2Agd3JpdGViYWNrIOKAlCB0aGUgb25lIGlzc3VlLWJvZHkgZWRpdCwgc2V0dGluZyB0aGUKICAgbWV0YWRhdGEncyBgd3JpdGVfZG9tYWluc2AgdG8gYnl0ZS1lcXVhbGl0eSB3aXRoIHRoZSBmcm96ZW4gYWxsb3dsaXN0LAogICB0aGUgYmxvY2sgcmUtdmFsaWRhdGVkIGFnYWluc3QgYGdhdGVicmFpZC9zbGljZUAxYCAoMCBlcnJvcnMsIGxvYWRlcgogICBuYW1lZCkgYW5kIGJvZHkgYnl0ZS1maWRlbGl0eSByZS1jaGVja2VkIGFmdGVyIHRoZSBlZGl0OyBmaWVsZCB3cml0ZXMKICAgYnkgb3B0aW9uIGlkLCBlYWNoIHJlYWQgYmFjazogYEdhdGVgIOKGkiBgRzEgcGFzc2VkYCAoYDJhMmZmMDBlYCkgwrcKICAgYFdvcmtmbG93YCDihpIgYE5lZWRzIFBsYW4gQXBwcm92YWxgIChgMmFkNmFmODVgKSDCtyBgTmV4dCBBcHByb3ZhbGAg4oaSCiAgIGBQbGFuIEFwcHJvdmFsIChHMeKGkkcyKWAgKGBlNDViOWFlNWApOyBhcHBseSBgbmVlZHMtaHVtYW5gIHBlciBzcGVjIMKnMS4KMi4gKipHYXRlIDIgZW50cnksIHBlciBgcHJvdG9jb2xzL2dhdGUtMi1jb250cmFjdC5tZGAsIGNvbnN1bWluZyB0aGlzCiAgIGFwcHJvdmFsOioqIHZlcmlmeSB0aGlzIGNvbW1lbnQgKGF1dGhvciBgTWlhbmxpV2FuZ2AsIG5vdCB0aGUKICAgZXhlY3V0b3I7IGBjcmVhdGVkX2F0ID09IHVwZGF0ZWRfYXRgKTsgdGFrZSB0aGUgYFdyaXRlciBMZWFzZWAgYW5kCiAgIHJlYWQgaXQgYmFjazsgYFdvcmtmbG93YCDihpIgYEdhdGUgMiDigJQgSW1wbGVtZW50aW5nYCAoYDQxMzExN2Y5YCk7CiAgIGBOZXh0IEFwcHJvdmFsYCDihpIgdGhlIGJhcmUgb3B0aW9uIChgNDUwZWUxMzBgKTsgcmVtb3ZlIGBuZWVkcy1odW1hbmAKICAgKGJvdGggbGFiZWwgb3BlcmF0aW9ucyByZWNvcmRlZCwgbmVpdGhlciBza2lwcGVkIOKAlCB0aGUgUDItUzEgc2hhcGUpOwogICBiYXNlbGluZSByZS1yZWFkOyBjcmVhdGUgYHNsaWNlL1AyLVMyYCBmcm9tCiAgIGAxMWRiYWM0NzkyN2JmZjVhYTdjOWU4NjEyNGU4NWRiOWVjZGJjNjUwYC4KMy4gKipUaGUgR2F0ZSAyIHdpbmRvdyDigJQgYnVpbGQgdG8gdGhlIGZyb3plbiBwbGFuLCBub3RoaW5nIGVsc2U6KiogYXV0aG9yCiAgIGBiaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLnB5YCBhbmQgYGJpbi9nYXRlYnJhaWQtdmFsaWRhdGUtc2VsZnRlc3QucHlgCiAgIChLMS9LMikgYW5kIHRoaXMgU2xpY2UncyBldmlkZW5jZSAoSzMpOyBydW4gVDHigJNUOSB0byB0aGUgcGxhbidzCiAgIGluc3RydW1lbnQtc3VtbWFyeSBhY2NlcHRhbmNlIChjb3VudC1mcmVlKTsgZXZlcnkgY2FwdHVyZSBieSB0aGUKICAgbGFuZGVkIGdlbmVyYXRvciB3aXRoIGBvdXRwdXRfcmVmYCBwaW5zOyBjb21taXRzIG9uIGBzbGljZS9QMi1TMmAKICAgY29uZmluZWQgdG8gdGhlIGZyb3plbiBhbGxvd2xpc3Q7IHRoZSBnYXRlMiByZWNvcmQgcGVyIHRlbXBsYXRlIHdpdGgKICAgYHJlc3VsdDogbmVlZHNfYXBwcm92YWxgIOKAlCBgcGFzc2VkYCBpcyB0aGUgUmVsZWFzZSBBcHByb3ZhbCdzIHRvCiAgIGdyYW50LCBhZnRlciByZXZpZXcuIEJ1ZGdldCBub3RlOiBgZml4dHVyZXMvcnVubmVyLXNlbGZ0ZXN0LnB5YAogICBtZWFzdXJlZCAybTQ2cyBhdCBHMS1GMiDigJQgc2NoZWR1bGUgVDcgYWNjb3JkaW5nbHksIG5ldmVyIHRydW5jYXRlIGl0LgogICBUaGUgaXNvbGF0aW9uIGNlcnRpZmljYXRpb24gaG9sZHMgdGhyb3VnaG91dDogTjIncyBzb3VyY2UgaXMgbmV2ZXIKICAgcmVhZDsgdGhlIGxhbmRlZCBjYXB0dXJlIHRvb2wgaXMgZXhlY3V0ZWQgb25seS4KNC4gKipTVE9QIGF0IHRoZSBHYXRlIDIgcmVwb3J0LioqIFJldmlldyAxIHJ1bnMgaW4gYSBmcmVzaCByZWFkLW9ubHkKICAgd2luZG93IHVuZGVyIGl0cyBvd24gZGlzcGF0Y2g7IHRoZSBSZWxlYXNlIEFwcHJvdmFsIGZvbGxvd3MKICAgYWRqdWRpY2F0aW9uLiBUaGUgbm8tb3Zlcm5pZ2h0LWdhcCBydWxlIGFwcGxpZXMgdG8gdGhpcyB3aW5kb3cuCgpOb3QgYXV0aG9yaXplZDogYW55IHB1c2gsIFBSLCB0YWcsIG9yIG1lcmdlOyBgcmVzdWx0OiBwYXNzZWRgOyBhbnkgcGF0aApvdXRzaWRlIHRoZSBmcm96ZW4gYWxsb3dsaXN0OyBhbnkgZWRpdCB0byBhbnkgTjIgZmlsZSwgY29udHJhY3QsIHNjaGVtYSwKQURSLCB0ZW1wbGF0ZSwgb3IgdGhlIGZyb3plbiBjb3JwdXM7IGFueSByZWFkIG9mIE4yIGltcGxlbWVudGF0aW9uCmNvbnRlbnRzOyBhbnkgbGFiZWwgYmV5b25kIHRoZSB0d28gb3BlcmF0aW9ucyBuYW1lZDsgTjMtZXh0ZXJuYWwKbWF0ZXJpYWwuIE9uIGFueSByZWQgY2hlY2sgdGhlIHJlcGFpciBzZXF1ZW5jZSBmb2xsb3dzIHRoZSBjb250cmFjdAooYHJlcGFpcl9saW1pdDogMmApOyBvbiBhbnkgdW5jZXJ0YWludHk6IFNUT1AgYW5kIHJlcG9ydCDigJQgbmV2ZXIKaW1wcm92aXNlLgoK4oCUIE1pYW5saSBXYW5nLCBvcGVyYXRvciDCtyAyMDI2LTA4LTIxCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "**Plan Approval (G1→G2) — Slice P2-S2** (posted 2026-08-21)\n\n**Gate 1 is coordinator-adjudicated PASS.** The frozen record is\n`docs/evidence/gatebraid/P2-S2/gate1.md`, sha256\n`4f9a890c92704a98eeb56c595aa99fc6c852b81f3f894bce7a710d8d982beca0`,\n18,756 bytes — `gate-run@2` validates 0 errors. **Both frozen hashes were\nreproduced in the coordinator's sandbox by running the recorded commands\nverbatim over the final file:**\n`plan_hash 6f68e9a09fe89242dff6d8cec2052d27e9e9ed42e32d45ef061aaeff2592f346` ·\n`allowlist_hash 0c0090ec87b5a47838edfe8bad7d8350a79d50fc642c3e1d10b1582a09223d86`.\nAll 16 new captures pass the landed generator's `--verify-record\n--rederive` (49/49 cumulative). The amended `gate0.md` (sha256\n`58fa0a8f…7be598`) re-validates at `result: passed` with the closed-set\nruling cited in place, and the disposition-vs-capture gap honestly\nrecorded. The dry-run rows are accepted for what they establish — path\nresolution on both platforms, not green runs — and G1-F3 (what\ngate-1-contract action 4 establishes when the artifacts are Gate-2-authored\nby design) joins the touch-vs-mention distinction and the `stop_record`\nenumeration gap in the **D16** protocol-amendment scope. The five parked\nExit elements recorded `not_run` were the correct honest state and are\ndischarged below.\n\n**Authorized on this grant, in order — single writer, this session:**\n\n1. **Complete Gate 1's parked exit, per the contract:** the\n   `write_domains` writeback — the one issue-body edit, setting the\n   metadata's `write_domains` to byte-equality with the frozen allowlist,\n   the block re-validated against `gatebraid/slice@1` (0 errors, loader\n   named) and body byte-fidelity re-checked after the edit; field writes\n   by option id, each read back: `Gate` → `G1 passed` (`2a2ff00e`) ·\n   `Workflow` → `Needs Plan Approval` (`2ad6af85`) · `Next Approval` →\n   `Plan Approval (G1→G2)` (`e45b9ae5`); apply `needs-human` per spec §1.\n2. **Gate 2 entry, per `protocols/gate-2-contract.md`, consuming this\n   approval:** verify this comment (author `MianliWang`, not the\n   executor; `created_at == updated_at`); take the `Writer Lease` and\n   read it back; `Workflow` → `Gate 2 — Implementing` (`413117f9`);\n   `Next Approval` → the bare option (`450ee130`); remove `needs-human`\n   (both label operations recorded, neither skipped — the P2-S1 shape);\n   baseline re-read; create `slice/P2-S2` from\n   `11dbac47927bff5aa7c9e86124e85db9ecdbc650`.\n3. **The Gate 2 window — build to the frozen plan, nothing else:** author\n   `bin/gatebraid-validate.py` and `bin/gatebraid-validate-selftest.py`\n   (K1/K2) and this Slice's evidence (K3); run T1–T9 to the plan's\n   instrument-summary acceptance (count-free); every capture by the\n   landed generator with `output_ref` pins; commits on `slice/P2-S2`\n   confined to the frozen allowlist; the gate2 record per template with\n   `result: needs_approval` — `passed` is the Release Approval's to\n   grant, after review. Budget note: `fixtures/runner-selftest.py`\n   measured 2m46s at G1-F2 — schedule T7 accordingly, never truncate it.\n   The isolation certification holds throughout: N2's source is never\n   read; the landed capture tool is executed only.\n4. **STOP at the Gate 2 report.** Review 1 runs in a fresh read-only\n   window under its own dispatch; the Release Approval follows\n   adjudication. The no-overnight-gap rule applies to this window.\n\nNot authorized: any push, PR, tag, or merge; `result: passed`; any path\noutside the frozen allowlist; any edit to any N2 file, contract, schema,\nADR, template, or the frozen corpus; any read of N2 implementation\ncontents; any label beyond the two operations named; N3-external\nmaterial. On any red check the repair sequence follows the contract\n(`repair_limit: 2`); on any uncertainty: STOP and report — never\nimprovise.\n\n— Mianli Wang, operator · 2026-08-21\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T03:20:45.422452Z",
+  "ended_at": "2026-08-21T03:20:45.901495Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Full body of the Plan Approval (G1->G2), captured before it is acted on."
+}

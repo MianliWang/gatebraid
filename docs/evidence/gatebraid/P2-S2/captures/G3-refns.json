@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-refns",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "for-each-ref",
+      "--format=%(refname) %(objecttype)"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 568,
+      "sha256": "924500ba176743bbb0a02ff47007af97f29174ac3ef3dab9072d0e9d19c125e0",
+      "data": "cmVmcy9jb2RleC90dXJuLWRpZmZzL2NoZWNrcG9pbnRzLzY1Njg3MzRkYjY0MjllMDg2MGNmMDk1NGIxOWFmZmZhYWRiOTNjOTk2MGQ2NjZlZmIyM2QxMDE4ZjE1MmJlMzcvN2Y4ZDgwMmMxMTgwNDJkMjAzODJhMTZhMjUwZWExYzVmYjBiZDg3ZWZkNmUyYTJlZTMyMjE1NThhZGU5YzhmMy8xNzg1NDg5OTAwOTMxL2MwZGE0MDA1LTFmZjYtNDM0YS1iMWE1LTlhZDFhMmFmMWIwZSB0cmVlCnJlZnMvaGVhZHMvbTEtY29udHJvbC1wbGFuZSBjb21taXQKcmVmcy9oZWFkcy9tMy9uMC1yYXRpZmljYXRpb24gY29tbWl0CnJlZnMvaGVhZHMvbWFpbiBjb21taXQKcmVmcy9oZWFkcy9zbGljZS9QMi1TMSBjb21taXQKcmVmcy9oZWFkcy9zbGljZS9QMi1TMiBjb21taXQKcmVmcy9yZW1vdGVzL29yaWdpbi9IRUFEIGNvbW1pdApyZWZzL3JlbW90ZXMvb3JpZ2luL20xLWNvbnRyb2wtcGxhbmUgY29tbWl0CnJlZnMvcmVtb3Rlcy9vcmlnaW4vbTMvbjAtcmF0aWZpY2F0aW9uIGNvbW1pdApyZWZzL3JlbW90ZXMvb3JpZ2luL21haW4gY29tbWl0CnJlZnMvcmVtb3Rlcy9vcmlnaW4vc2xpY2UvUDItUzEgY29tbWl0Cg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e tree\nrefs/heads/m1-control-plane commit\nrefs/heads/m3/n0-ratification commit\nrefs/heads/main commit\nrefs/heads/slice/P2-S1 commit\nrefs/heads/slice/P2-S2 commit\nrefs/remotes/origin/HEAD commit\nrefs/remotes/origin/m1-control-plane commit\nrefs/remotes/origin/m3/n0-ratification commit\nrefs/remotes/origin/main commit\nrefs/remotes/origin/slice/P2-S1 commit\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T18:53:01.421952Z",
+  "ended_at": "2026-08-21T18:53:01.474751Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "gate-3-contract Action 1, friction #103: every ref outside refs/heads, refs/remotes and refs/tags is reported and not adopted."
+}

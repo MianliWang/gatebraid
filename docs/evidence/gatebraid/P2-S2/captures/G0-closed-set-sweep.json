@@ -1,0 +1,78 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-closed-set-sweep",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S2/closed-set-sweep-rev6.py",
+      "docs/evidence/gatebraid/P2-S2/captures/Q1-real.json",
+      "docs/evidence/gatebraid/P2-S2/captures/Q2-real.json",
+      "docs/evidence/gatebraid/P2-S2/captures/Q3-real.json",
+      "docs/evidence/gatebraid/P2-S2/captures/Q4-real.json",
+      "docs/evidence/gatebraid/P2-S2/captures/Q5-real.json",
+      "docs/evidence/gatebraid/P2-S2/captures/Q6-real.json",
+      "docs/evidence/gatebraid/P2-S2/captures/Q7-real-blocked-by.json",
+      "docs/evidence/gatebraid/P2-S2/captures/Q7-real-blocking.json",
+      "docs/evidence/gatebraid/P2-S2/captures/G0-subissues-of-7.json",
+      "docs/evidence/gatebraid/P2-S2/captures/G0-slice-body.json",
+      "docs/evidence/gatebraid/P2-S2/captures/G0-tools-gh.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1823,
+      "sha256": "8600422825182bd420506223b800a42ba122654092d0cc193327dfcca4af140b",
+      "data": "RkFMU0lGSUNBVElPTiAoYmVmb3JlIGFueSB0cnVzdGVkIHVzZSk6DQogICBDMSBmb3JlaWduIGlkZW50aXR5IGNhdWdodCAgICAgICAgICAgICAgICAgUEFTUw0KICAgQzIgcGVybWl0dGVkIGlkZW50aXR5IHN1cmZhY2VkICAgICAgICAgICAgIFBBU1MNCiAgIEMzIG5vIFxuIGFydGlmYWN0IChucGFzcy9mYWlsIGFic2VudCkgICAgICBQQVNTDQogICBDM2IgcmVhbCB0b2tlbiBzdGlsbCBzZWVuIChwYXNzL2ZhaWwpICAgICAgUEFTUw0KICAgQzQgYXBpLXBhdGggaWRlbnRpdHkgY2F1Z2h0ICAgICAgICAgICAgICAgIFBBU1MNCiAgIEM1IGVtcHR5IGlucHV0IHNhZmUgICAgICAgICAgICAgICAgICAgICAgICBQQVNTDQogICBDNiBmaWxlIHBhdGggbm90IGFuIGlkZW50aXR5ICAgICAgICAgICAgICAgUEFTUw0KICAgQzcgYXBpIHVzZXJzLyBwYXRoIG5vdCBhbiBpZGVudGl0eSAgICAgICAgIFBBU1MNCiAgIEM4IGFwaSBsaWNlbnNlcy8gcGF0aCBub3QgYW4gaWRlbnRpdHkgICAgICBQQVNTDQogICBDOSAuZ2l0IHN1ZmZpeCBub3JtYWxpemVkICAgICAgICAgICAgICAgICAgUEFTUw0KICAgQzEwIGFwaSByZXBvcy8gcGF0aCBpcyB0aGUgaWRlbnRpdHkgICAgICAgIFBBU1MNCiAgIEMxMSBmb3JlaWduIGFwaSByZXBvcyBpZGVudGl0eSBjYXVnaHQgICAgICBQQVNTDQogICBDMTIgZG9jcy5naXRodWIuY29tIG5vdCBhbiBpZGVudGl0eSAgICAgICAgUEFTUw0KICAgQzEzIHdlYiB1c2Vycy8gcm91dGUgbm90IGFuIGlkZW50aXR5ICAgICAgIFBBU1MNCiAgIEMxNCBpZGVudGl0eSBpbnNpZGUgYmFzZTY0IHBheWxvYWQgZm91bmQgICBQQVNTDQogICBDMTRiIGJhc2U2NCBibG9iIG5vdCBzdXJmYWNlZCBhcyBhIHRva2VuICAgUEFTUw0KICAgQzE1IHJlYWwgdGhpcmQtcGFydHkgcmVwbyBzdGlsbCBjYXVnaHQgICAgIFBBU1MNCiAgIEFMTCBTRUVERUQgQ09ORElUSU9OUyBQQVNTOiBUcnVlDQoNClNXRUVQIG92ZXIgMTEgcmVjb3JkZWQgcmVzcG9uc2UgZmlsZXM6DQogICAtIEcwLXNsaWNlLWJvZHkuanNvbg0KICAgLSBHMC1zdWJpc3N1ZXMtb2YtNy5qc29uDQogICAtIEcwLXRvb2xzLWdoLmpzb24NCiAgIC0gUTEtcmVhbC5qc29uDQogICAtIFEyLXJlYWwuanNvbg0KICAgLSBRMy1yZWFsLmpzb24NCiAgIC0gUTQtcmVhbC5qc29uDQogICAtIFE1LXJlYWwuanNvbg0KICAgLSBRNi1yZWFsLmpzb24NCiAgIC0gUTctcmVhbC1ibG9ja2VkLWJ5Lmpzb24NCiAgIC0gUTctcmVhbC1ibG9ja2luZy5qc29uDQoNClRJRVIgMSAtIHJlcG9zaXRvcnkgaWRlbnRpdGllczogMiBkaXN0aW5jdA0KICAgTWlhbmxpV2FuZy9nYXRlYnJhaWQgICAgICAgICAgICAgUEVSTUlUVEVEDQogICBjbGkvY2xpICAgICAgICAgICAgICAgICAgICAgICAgICAqKiogT1VUU0lERSAqKioNCiAgIE9VVFNJREUgVEhFIFBFUk1JVFRFRCBTRVQ6IDENCiAgIFZFUkRJQ1Q6IFNUT1AgLSBTRVQgTk9UIENMT1NFRA0KDQpUSUVSIDIgLSAxMSBvdGhlciBhL2IgdG9rZW5zLCBzdXJmYWNlZCBmb3IgY2xhc3NpZmljYXRpb246DQogICAgTWlhbmxpV2FuZy9nYXRlYnJhaWQNCiAgICBNaWFubGlXYW5nL2dhdGVicmFpZC5naXQNCiAgICBOMi9OMw0KICAgIGJpbi9nYXRlYnJhaWQtY2FwdHVyZS1zZWxmdGVzdC5weQ0KICAgIGJpbi9nYXRlYnJhaWQtY2FwdHVyZS5weQ0KICAgIGZpZWxkL29wdGlvbg0KICAgIGdhdGVicmFpZC9jb3ZlcmFnZS1yZXBvcnQNCiAgICBnYXRlYnJhaWQvZXZpZGVuY2UtY2FwdHVyZQ0KICAgIGdhdGVicmFpZC9zbGljZQ0KICAgIG5wYXNzL2ZhaWwNCiAgICBzY2hlbWEvY292ZXJhZ2UtcmVwb3J0LnNjaGVtYS5qc29uDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "FALSIFICATION (before any trusted use):\r\n   C1 foreign identity caught                 PASS\r\n   C2 permitted identity surfaced             PASS\r\n   C3 no \\n artifact (npass/fail absent)      PASS\r\n   C3b real token still seen (pass/fail)      PASS\r\n   C4 api-path identity caught                PASS\r\n   C5 empty input safe                        PASS\r\n   C6 file path not an identity               PASS\r\n   C7 api users/ path not an identity         PASS\r\n   C8 api licenses/ path not an identity      PASS\r\n   C9 .git suffix normalized                  PASS\r\n   C10 api repos/ path is the identity        PASS\r\n   C11 foreign api repos identity caught      PASS\r\n   C12 docs.github.com not an identity        PASS\r\n   C13 web users/ route not an identity       PASS\r\n   C14 identity inside base64 payload found   PASS\r\n   C14b base64 blob not surfaced as a token   PASS\r\n   C15 real third-party repo still caught     PASS\r\n   ALL SEEDED CONDITIONS PASS: True\r\n\r\nSWEEP over 11 recorded response files:\r\n   - G0-slice-body.json\r\n   - G0-subissues-of-7.json\r\n   - G0-tools-gh.json\r\n   - Q1-real.json\r\n   - Q2-real.json\r\n   - Q3-real.json\r\n   - Q4-real.json\r\n   - Q5-real.json\r\n   - Q6-real.json\r\n   - Q7-real-blocked-by.json\r\n   - Q7-real-blocking.json\r\n\r\nTIER 1 - repository identities: 2 distinct\r\n   MianliWang/gatebraid             PERMITTED\r\n   cli/cli                          *** OUTSIDE ***\r\n   OUTSIDE THE PERMITTED SET: 1\r\n   VERDICT: STOP - SET NOT CLOSED\r\n\r\nTIER 2 - 11 other a/b tokens, surfaced for classification:\r\n    MianliWang/gatebraid\r\n    MianliWang/gatebraid.git\r\n    N2/N3\r\n    bin/gatebraid-capture-selftest.py\r\n    bin/gatebraid-capture.py\r\n    field/option\r\n    gatebraid/coverage-report\r\n    gatebraid/evidence-capture\r\n    gatebraid/slice\r\n    npass/fail\r\n    schema/coverage-report.schema.json\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-21T01:28:11.138906Z",
+  "ended_at": "2026-08-21T01:28:11.213035Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S2/closed-set-sweep-rev6.py",
+      "sha256": "6b89796362572be0ddbd2dd8dd720ce1ac5bd25f9f684230035e20fa1a1dbc32"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Closed-set complement sweep, rev 6, over this gate's own captures. Rev 6 decodes evidence-capture@1 base64 payloads before matching: rev 5 scanned the ENVELOPE and would have reported CLOSED while seeing none of the evidence. 17 seeded conditions falsify it first. Not a gate-contract action and not a packet query; run as the standing CLAUDE.md negative-check discipline. Its finding is disclosed in the record, not self-adjudicated."
+}
