@@ -5,13 +5,18 @@ Emits docs/evidence/gatebraid/P2-S3/gate2.md in the templates/gate2-evidence.md
 shape, with every recorded output GENERATED from the pinned capture files rather
 than transcribed (ADR-0026; friction #96).
 
-The Review record's verdict column is left EMPTY: Review 1 has not run, and a
-gate does not transcribe a verdict nobody reached. The `review-five-items` check
-is recorded `not_run` for the same reason.
+Review 1 has run. Its verdict table and finding summaries are GENERATED from the
+reviewer's own report rather than retyped: the report is pinned by sha256 and
+this renderer refuses to write when it does not match, so the verdict column is
+a byte-faithful transcription by construction (ADR-0026; friction #96).
+
+Repair 1 addresses the review's F-1. Every row that shows less than its capture
+now carries `shown/total` and the committed path of the full output, and the
+lines F-1 named as missing are restored FROM THE CAPTURE BYTES, never retyped.
 
 Usage: g2_render_record.py <captures-dir> <out-path> <ended_at>
 """
-import sys, os, json, base64, hashlib
+import sys, os, json, base64, hashlib, re, subprocess
 
 CAP, OUT, ENDED_AT = sys.argv[1], sys.argv[2], sys.argv[3]
 
@@ -24,6 +29,53 @@ EV = "docs/evidence/gatebraid/P2-S3"
 APPROVAL = "https://github.com/MianliWang/gatebraid/issues/12#issuecomment-5378088991"
 PLAN_HASH = "eb89d3eaedc2690babb3086e3be7529f62fa03e7195746b3b8106ad85a626b18"
 ALLOW_HASH = "81a0bb015ffbc5f3f6a27abfaec0a089c2b5522aa69e5ee30d5d7a01ecd404c0"
+
+# Review 1's report — the sole findings source. Pinned: a mismatch means the
+# transcription below would be of something other than what the reviewer wrote,
+# so this renderer fails closed rather than emitting an unpinned verdict.
+REPORT = "_handoff/batch-p2s3/REVIEW1-M3-P2S3.md"
+REPORT_SHA = "dab4ae857e60388a9bed0f093eead9e2b2ee0725ebf4b2ffc97444e508fad6c3"
+REPORT_BYTES = 40494
+
+# Repair 1's measure-before-grade comparand (ADR-0027 §1): the tree of the state
+# the review failed. Named by full sha, never by HEAD (ADR-0028 §4).
+PREV_HEAD = "43022db1721940bfdcd0abcc9c55b150b77fa89d"
+PREV_TREE = "3d934d46c18e7c68bad01974bd4a0ac8e0ebbef0"
+SELF = "%s/checks/g2_render_record.py" % EV
+
+
+def report_text():
+    raw = open(REPORT, "rb").read()
+    got = hashlib.sha256(raw).hexdigest()
+    if got != REPORT_SHA or len(raw) != REPORT_BYTES:
+        print("REVIEW REPORT NOT AT ITS PINNED VALUE: %s, %d bytes (expected %s, %d)"
+              % (got, len(raw), REPORT_SHA, REPORT_BYTES))
+        sys.exit(3)
+    return raw.decode("utf-8")
+
+
+RPT = report_text()
+
+
+def verdict_rows():
+    """The reviewer's five table rows, taken verbatim from the report."""
+    rows = [l for l in RPT.split("\n") if re.match(r"^\| R[1-5] ", l)]
+    if len(rows) != 5:
+        print("expected 5 verdict rows in the report, found %d" % len(rows)); sys.exit(3)
+    return rows
+
+
+def finding_summaries():
+    """The report's own one-line finding headings, whitespace-collapsed."""
+    out = [" ".join(m.group(1).split())
+           for m in re.finditer(r"\*\*(F-\d .*?)\*\*", RPT, re.S)]
+    if len(out) != 6:
+        print("expected 6 findings in the report, found %d" % len(out)); sys.exit(3)
+    return out
+
+
+def git(*args):
+    return subprocess.run(("git",) + args, capture_output=True).stdout.decode("utf-8").strip()
 
 
 def load(cid):
@@ -59,11 +111,37 @@ def tail(cid, n):
     return "\n".join(stream(cid).splitlines()[-n:])
 
 
-def row(w, label, cid, n):
+def row(w, label, cid, n, head=0):
+    """One record row: the command, and a window onto the capture's own output.
+
+    When the window is smaller than the capture, the row carries `shown/total`
+    and the committed path of the full output — the form V16 already used, and
+    the form ADR-0026 §1(b), gate-2-contract R3 and templates/gate2-evidence.md
+    require of EVERY elision. Review 1's F-1 was that nine rows elided without
+    it. `head` keeps the capture's opening lines when the row must show them
+    (friction #55: a schema-validation row names its loader); the markers carry
+    no ellipsis, so an elision can never be mistaken for a placeholder.
+    """
+    lines = stream(cid).splitlines()
+    total = len(lines)
+    keep = sorted(set(range(min(head, total))) | set(range(max(0, total - n), total)))
+    shown = len(keep)
     w("*%s*" % label)
     w("```")
     w("$ " + cmdline(cid))
-    w(tail(cid, n))
+    if shown < total:
+        w("[elided: %d of %d output lines shown; the full output is committed at"
+          % (shown, total))
+        w("%s/captures/%s.json]" % (EV, cid))
+    if total == 0:
+        w("")
+    else:
+        prev = None
+        for i in keep:
+            if prev is not None and i != prev + 1:
+                w("[%d further lines elided here]" % (i - prev - 1))
+            w(lines[i])
+            prev = i
     w("  exit=%d" % rc(cid))
     w("```")
     w("")
@@ -74,6 +152,19 @@ def yaml_str(s):
 
 
 changed = [l for l in stream("G2-changed-paths").splitlines() if l.strip()]
+
+# ADR-0027 §1: novelty is MEASURED before the result is graded. An unchanged
+# tree is not a repair. The comparand is the state Review 1 failed, named by
+# full sha rather than by HEAD (ADR-0028 §4). This renderer refuses to grade a
+# repair green when the instrument it repairs has not moved.
+OLD_BLOB = git("rev-parse", "%s:%s" % (PREV_HEAD, SELF))
+NEW_BLOB = git("hash-object", SELF)
+if not OLD_BLOB or not NEW_BLOB:
+    print("NOVELTY UNMEASURABLE: git did not return a blob id"); sys.exit(3)
+if OLD_BLOB == NEW_BLOB:
+    print("NOVELTY FAILED: %s is unchanged at %s; an unchanged tree is not a repair"
+          % (SELF, OLD_BLOB))
+    sys.exit(3)
 
 L = []
 w = L.append
@@ -133,35 +224,40 @@ w("`Active Branch` = `slice/P2-S3`, `Base SHA` = `%s` — both read back at E-ex
 w("")
 w("## Verification outputs")
 w("")
-for label, cid, n in [
+# tuple: (label, capture id, tail lines, head lines)
+# head > 0 on V3 and V6 so the validator's `loader :` line stays in the row
+# (friction #55); V8's window starts at S23 so Task A's positive-direction pair
+# is in the row a reader checks acceptance box 1 against. Both are Review 1's
+# F-1; both are taken from the capture bytes by `row`, never retyped.
+for label, cid, n, head in [
     ("V1 — T1 Windows: the heuristic accepts what it wrongly rejected "
-     "(acceptance box 1, positive direction)", "G2-T1-windows", 3),
-    ("V2 — T1 WSL: the same, on the second declared platform", "G2-T1-wsl", 3),
+     "(acceptance box 1, positive direction)", "G2-T1-windows", 3, 0),
+    ("V2 — T1 WSL: the same, on the second declared platform", "G2-T1-wsl", 3, 0),
     ("V3 — T2: a genuine elision still rejects (acceptance box 1, negative "
-     "direction; negative criterion N2)", "G2-T2-windows", 14),
+     "direction; negative criterion N2)", "G2-T2-windows", 14, 3),
     ("V4 — T3 Windows: the markdown mode reads what it could not read "
-     "(acceptance box 2)", "G2-T3-windows", 5),
-    ("V5 — T3 WSL", "G2-T3-wsl", 5),
+     "(acceptance box 2)", "G2-T3-windows", 5, 0),
+    ("V5 — T3 WSL", "G2-T3-wsl", 5, 0),
     ("V6 — T4 seed 1: an invalid embedded record is rejected, not merely read",
-     "G2-T4-invalid", 5),
+     "G2-T4-invalid", 5, 3),
     ("V7 — T4 seed 2: a file that is not a record stays an input error "
      "(the pre-existing broken-input condition does not regress)",
-     "G2-T4-notarecord", 2),
+     "G2-T4-notarecord", 2, 0),
     ("V8 — T5 Windows: the selftest, carrying both repairs in both directions "
-     "(acceptance box 4)", "G2-T5-windows", 12),
-    ("V9 — T5 WSL", "G2-T5-wsl", 6),
+     "(acceptance box 4)", "G2-T5-windows", 14, 0),
+    ("V9 — T5 WSL", "G2-T5-wsl", 6, 0),
     ("V10 — T6: the frozen corpus is unmoved (acceptance box 4; friction #165 "
-     "budget case, 420,000 ms, measured 147,993 ms)", "G2-T6-windows", 7),
-    ("V11 — T7 Windows: the corpus mutation suite still passes", "G2-T7-windows", 5),
-    ("V12 — T7 WSL", "G2-T7-wsl", 5),
+     "budget case, 420,000 ms, measured 147,993 ms)", "G2-T6-windows", 7, 0),
+    ("V11 — T7 Windows: the corpus mutation suite still passes", "G2-T7-windows", 5, 0),
+    ("V12 — T7 WSL", "G2-T7-wsl", 5, 0),
     ("V13 — T9 Windows — Task C: the N2 re-validation run to completion "
-     "(acceptance boxes 2 and 3)", "G2-T9-windows", 14),
-    ("V14 — T9 WSL: Task C on the second declared platform", "G2-T9-wsl", 14),
+     "(acceptance boxes 2 and 3)", "G2-T9-windows", 14, 0),
+    ("V14 — T9 WSL: Task C on the second declared platform", "G2-T9-wsl", 14, 0),
     ("V15 — T8: the self-validation point — the repaired validator over this "
      "Slice's own evidence, discharging the state packet §5 disclosed limit",
-     "G2-T8-windows", 16),
+     "G2-T8-windows", 16, 0),
 ]:
-    row(w, label, cid, n)
+    row(w, label, cid, n, head)
 
 w("**V16 — the handoff fingerprint, both ends pinned**")
 w("```")
@@ -182,43 +278,107 @@ w("### Review 1")
 w("")
 w("| Item | Verdict | Evidence |")
 w("|---|---|---|")
-w("| R1 allowlist confinement | | V16 and the `changed_paths` array; "
-  "`git status --porcelain --untracked-files=all` at review time |")
-w("| R2 test-plan coverage | | V1–V15, mapped item by item in the frozen plan's "
-  "acceptance mapping |")
-w("| R3 evidence is rows that reproduce | | every row above is a command and its "
-  "generated output; the deterministic subset is V16 and the freeze hashes |")
-w("| R4 negative criterion | | N1 at V16; N2 at V3; N3 by the module-level "
-  "import scan of the two subject files |")
-w("| R5 no prohibited action | | no push, PR, tag or merge; no dependency "
-  "installed; no second writer; the lease at E2 |")
+for _r in verdict_rows():
+    w(_r)
 w("")
-w("**The verdict column is deliberately empty.** Review 1 has not run: it is a")
-w("fresh read-only window under its own dispatch, and a gate does not transcribe")
-w("a verdict nobody reached. `checks[].review-five-items` is recorded `not_run`")
-w("rather than `pass` for the same reason — `not_run` means the thing exists and")
-w("was not executed, which is exactly the state.")
+w("**Findings** — Review 1's own one-line summaries, read from the report:")
 w("")
-w("- Reviewer write disclosure: *(to be recorded by Review 1)*")
-w("- Rules given to the reviewer: *(to be recorded by Review 1)*")
+for _f in finding_summaries():
+    w("- %s" % _f)
+w("")
+w("- Reviewer: `Claude Read-Only Team`, a fresh read-only window under its own "
+  "dispatch. Source: `%s`, sha256 `%s`, %d bytes. Every row of the table above "
+  "and every summary above is generated from that file, not retyped."
+  % (REPORT, REPORT_SHA, REPORT_BYTES))
+w("- Reviewer write disclosure: one write, `%s`, on the ignored `_handoff/` "
+  "path — no commit, no tracked-file edit, no `gh` mutation, no label, field or "
+  "comment operation, no lease taken. The five WSL halves it re-ran in recorded "
+  "form wrote no bytecode, verified after each run and by an empty "
+  "`--untracked-files=all` porcelain at the end." % REPORT)
+w("- Rules given to the reviewer: the spec §4 conduct rules, enumerated in full "
+  "at the report's own `## Conduct rules this review was given` — measure never "
+  "declare; cite never restate; never echo a forbidden value into the record, "
+  "name loci and counts; a bare zero states what it searched; closed-set by "
+  "complement with the ruled touch-vs-mention distinction; the capture pair "
+  "never read, only executed; `GH_CONFIG_DIR` pinned per call and identity "
+  "checked first and alone; `PYTHONDONTWRITEBYTECODE=1` with the measured "
+  "caveat that it does not cross `wsl -e`; dash and arrow marks never retyped; "
+  "business repositories untouchable; single writer; STOP and ask on any "
+  "uncertainty.")
 w("")
 w("## Repair record")
 w("")
-w("No repair attempt was made. Every declared test command reached its frozen")
-w("expected-green state on its first run, so the repair sequence was never")
-w("entered and `repair_attempts` is empty. `repair_limit` remains 2, unspent.")
+w("### Repair 1")
+w("")
+w("- Finding addressed: **F-1**, the finding Review 1's R3 fail rests on — nine")
+w("  rows showed a window smaller than their capture with no `shown/total` and")
+w("  no committed path in the row.")
+w("- Hypothesis (new): the rule was broken at RENDER rather than at measurement")
+w("  — the row writer emitted a tail window and never a marker, so every row")
+w("  whose window was smaller than its capture elided silently.")
+w("- Remedy: the row writer now emits `shown/total` and the capture's committed")
+w("  path whenever the window is smaller than the capture, and can hold a")
+w("  capture's opening lines when the row must carry them. Every restored line")
+w("  is read from the capture bytes by the instrument, never retyped.")
+w("")
+w("**Novelty measured** (ADR-0027 §1: an unchanged tree is not a repair. The")
+w("comparand is the state Review 1 failed, named by full sha, never by `HEAD`.)")
+w("```")
+w("$ git rev-parse %s^{tree}" % PREV_HEAD)
+w(PREV_TREE)
+w("$ git rev-parse %s:%s" % (PREV_HEAD, SELF))
+w(OLD_BLOB)
+w("$ git hash-object %s" % SELF)
+w(NEW_BLOB)
+w("```")
+w("The render instrument's blob differs from the one the failed state carried, so")
+w("the amended tree cannot equal `%s`." % PREV_TREE)
+w("This renderer exits 3 rather than grade a repair green when those two blob ids")
+w("are equal.")
+w("")
+w("- Changed by this repair: `%s/gate2.md` and" % EV)
+w("  `%s` — record text and the" % SELF)
+w("  instrument that generates it, both inside the frozen allowlist. No `bin/`")
+w("  file, no frozen-plan text, no historical record, and no capture: the")
+w("  measurements are the ones Review 1 already re-ran and confirmed.")
+w("- Result: `green`")
+w("- Consult: `none`")
+w("")
+w("`repair_limit` is 2; this is attempt 1, so one attempt remains unspent.")
 w("")
 w("## Required disclosures")
 w("")
-w("- Deviations: **`bin/__pycache__/` was created and removed inside this gate.** "
-  "The standing rule is `PYTHONDONTWRITEBYTECODE=1` on every Python invocation; "
-  "it was set on every Windows invocation but does **not** cross into WSL, which "
-  "inherits none of the Windows process environment, so the WSL halves of T1, T3, "
-  "T5, T7 and T9 wrote bytecode for the two files they executed. Measured, not "
-  "inferred: `wsl -e printenv PYTHONDONTWRITEBYTECODE` returns empty. The "
-  "directory was removed before the first commit and no `.pyc` reached the index; "
-  "it is disclosed here because a write created and removed inside a gate is "
-  "invisible to the diff and R1 exists to catch exactly that (friction #107). "
+w("- Deviations: **`bin/__pycache__/` was created and removed inside this gate, "
+  "and the attribution this record first carried for it is WITHDRAWN (Review 1's "
+  "F-3).** The standing rule is `PYTHONDONTWRITEBYTECODE=1` on every Python "
+  "invocation; it was set on every Windows invocation and does **not** cross into "
+  "WSL, which inherits none of the Windows process environment. That much is "
+  "measured, and measured twice — at this gate and again by Review 1: "
+  "`wsl -e printenv PYTHONDONTWRITEBYTECODE` returns empty. What is withdrawn is "
+  "the sentence that followed it, that the WSL halves of T1, T3, T5, T7 and T9 "
+  "wrote the bytecode. Review 1 ran all five in their recorded form and none "
+  "wrote any, and the mechanism says why: `g1_sweep.py` and the selftest reach "
+  "the validator by `subprocess.run`, so no module under `bin/` is ever imported "
+  "and no bytecode can be generated there, while `fixtures/run-corpus.py` "
+  "documents that importing the corpus instruments writes `fixtures/__pycache__/` "
+  "— a different path, which that runner excludes by name. The claim was an "
+  "inference from a true premise, presented as a measurement. What stands: the "
+  "directory was observed, it was removed before the first commit, and no `.pyc` "
+  "reached the index. What is undetermined: what created it. The error direction "
+  "was OVER-disclosure — this record disclosed a write more broadly than it "
+  "occurred, which is the safe direction and the opposite of the failure R1 "
+  "exists to catch (friction #107). A CANDIDATE mechanism was measured while "
+  "repairing this record and is offered as a candidate only, not as a finding of "
+  "cause: `python -m py_compile` writes `__pycache__/` beside its target even "
+  "with `PYTHONDONTWRITEBYTECODE=1` set, because explicit compilation is not "
+  "import-time caching. It was reproduced on a file in a scratch directory "
+  "outside every repository. Whether anything of that shape ran against `bin/` "
+  "at this gate is not known and is not claimed · **repair 1 itself created and "
+  "removed `docs/evidence/gatebraid/P2-S3/checks/__pycache__/`**, by the "
+  "`py_compile` syntax check named above, on this record's own render "
+  "instrument. It was removed before the amendment commit, no `.pyc` reached the "
+  "index, and it is disclosed here for the same reason the first one is: a write "
+  "created and removed inside a gate is invisible to the diff. "
   "`__pycache__` is not in this repository's `.gitignore` — a pre-existing gap "
   "outside this Slice's frozen allowlist, reported and not fixed. The corpus "
   "digest is unaffected and V10 confirms it: the runner's own seed set asserts "
@@ -247,8 +407,33 @@ w("- Deviations: **`bin/__pycache__/` was created and removed inside this gate.*
   "**commit messages carry a `Co-Authored-By` trailer**, which prior commits in "
   "this repository do not; it is added per the executing harness's standing "
   "instruction and is noted so the change in convention is not mistaken for "
-  "drift.")
-w("- Reviewer write disclosure: *(to be recorded by Review 1)*")
+  "drift · **the frozen plan's `gate3.md` expectation was wrong when frozen "
+  "(Review 1's F-2), and is reconciled HERE rather than in the frozen text.** The "
+  "plan states at T3, and again at T9, that "
+  "`docs/evidence/gatebraid/P2-S1/gate3.md` is rejected on its own **two** "
+  "`/checks/N/command` elisions. Measured, on both declared platforms: **one** "
+  "finding, at the single locus `/checks/1/command`. The document does carry two "
+  "elisions, but both sit in one string at that one locus, and "
+  "`check_placeholders` emits at most one finding per string value — behaviour "
+  "that PREDATES this Slice's repair, where the walk was a single search per "
+  "string. The mention count for that document is zero, so nothing was "
+  "reclassified as a mention: the count is what the instrument emits, not what "
+  "the exemption suppressed. The Gate 2 report's `one` is the measured value and "
+  "stands. The plan section is deliberately NOT edited: it is frozen under "
+  "`plan_hash`, its author had not measured this when it was frozen, and a later "
+  "measurement belongs in a record rather than in a silently rewritten plan — the "
+  "same treatment this gate already gave the T6 WSL timing · **the frozen plan's "
+  "`gate0.json` citation count is off by one (Review 1's F-4), corrected HERE for "
+  "the same reason.** Task A's prose reads as nine ellipsis-form citations plus "
+  "one angle-bracket stand-in, which is ten. Measured, the population is nine in "
+  "total: eight ellipsis-kind, and one angle-bracket-kind at `/checks/5/command`. "
+  "The negative criterion N2's own count of nine was exact throughout, and nine "
+  "is what every run of T2 and T9 reproduces; only the surrounding prose "
+  "over-counted.")
+w("- Reviewer write disclosure: one write, `%s`, on the ignored `_handoff/` path "
+  "— no commit, no tracked-file edit, no `gh` mutation, no label, field or "
+  "comment operation, no lease taken; the five WSL halves Review 1 re-ran wrote "
+  "no bytecode. This gate's own writes are disclosed above." % REPORT)
 w("- Environment: Windows 11 host, Git Bash (MSYS2) shell, with the WSL half of "
   "`mixed-see-prose` exercised for T1, T3, T5, T7 and T9; Windows loader "
   "`C:\\Python312\\python.exe` (CPython 3.12.2, PyYAML 6.0.2, jsonschema 4.23.0), "
@@ -294,7 +479,7 @@ CHECKS = [
     ("T9-n2-revalidation-complete-windows", None, "pass", "%s/captures/G2-T9-windows.json" % EV),
     ("T9-n2-revalidation-complete-wsl", None, "pass", "%s/captures/G2-T9-wsl.json" % EV),
     ("T8-self-validation-point", None, "pass", "%s/captures/G2-T8-windows.json" % EV),
-    ("review-five-items", None, "not_run", "#review-record"),
+    ("review-five-items", None, "fail", "#review-record"),
 ]
 for name, cmd, result, ref in CHECKS:
     w("  - name: %s" % name)
@@ -309,7 +494,13 @@ w("  changed_paths:")
 for p in changed:
     w("    - %s" % p)
 w("consults: []")
-w("repair_attempts: []")
+w("repair_attempts:")
+w("  - number: 1")
+w("    hypothesis: %s" % yaml_str(
+    "F-1: the elision rule was broken at RENDER rather than at measurement - the "
+    "row writer emitted a tail window and never a shown/total marker, so every "
+    "row whose window was smaller than its capture elided silently."))
+w("    result: green")
 w("approvals:")
 w('  - type: "Plan Approval (G1→G2)"')
 w("    comment_url: %s" % yaml_str(APPROVAL))
@@ -320,11 +511,24 @@ w("allowlist_hash: %s" % yaml_str(ALLOW_HASH))
 w("evidence_files:")
 w("  - %s/gate2.md" % EV)
 w("notes: %s" % yaml_str(
-    "Implementation of the frozen plan; no repair attempt was entered. "
+    "Implementation of the frozen plan, then repair 1 under Review 1. "
     "result is needs_approval, never passed: passed is the Release Approval's to "
-    "grant after Review 1, and this gate does not grade itself. The Review 1 "
-    "verdict column is left empty and review-five-items is not_run for the same "
-    "reason. Task C, the N2 re-validation, ran to completion on both declared "
+    "grant, and this gate does not grade itself. Review 1 returned R1 pass, R2 "
+    "pass, R3 FAIL on finding F-1, R4 pass, R5 pass; review-five-items is "
+    "recorded fail because fail is what the review returned, and it is carried "
+    "rather than smoothed. Repair 1 addresses F-1 and nothing else: every row "
+    "whose window is smaller than its capture now carries shown/total and the "
+    "committed path of the full output, V3 and V6 keep the loader line friction "
+    "#55 requires of a schema-validation row, and V8's window starts at S23 so "
+    "Task A's positive-direction pair sits in the row a reader checks acceptance "
+    "box 1 against. No measurement changed and no capture was rewritten - the "
+    "repair is to how rows are rendered, and every restored line is read from the "
+    "capture bytes. R3 stays FAIL as reviewed; only Review 1's own re-review may "
+    "turn it, in its own window, and the Release Approval follows that. The "
+    "review's F-3, F-2 and F-4 are answered in the disclosures: an over-disclosed "
+    "write withdrawn, and two frozen-plan counts corrected in the record rather "
+    "than in the frozen text. Task C, the N2 re-validation, ran to completion on "
+    "both declared "
     "platforms with identical results (V13, V14): every P2-S1 capture accepted "
     "and all four of its gate records READ, with the only surviving findings the "
     "historical records' own - gate0.json's #171-class command citations and "
