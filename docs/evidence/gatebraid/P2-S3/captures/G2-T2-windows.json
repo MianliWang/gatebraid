@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T2-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "bin/gatebraid-validate.py",
+      "--record",
+      "docs/evidence/gatebraid/P2-S1/gate0.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1247,
+      "sha256": "f01a8441e9ad14519f2b5471f33bbe5fb5707d0f0bfc522f21dee8a9adc48730",
+      "data": "dGFyZ2V0ICAgICAgICA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMxL2dhdGUwLmpzb24NCmludGVyZmFjZSAgICAgOiBnYXRlYnJhaWQvZ2F0ZS1ydW5AMg0KbG9hZGVyICAgICAgICA6IENQeXRob24gMy4xMi4yIChDOlxQeXRob24zMTJccHl0aG9uLmV4ZSksIGpzb25zY2hlbWEgNC4yMy4wLCBEcmFmdDIwMjAxMlZhbGlkYXRvcg0Kc3RydWN0dXJhbCAgICA6IDAgZXJyb3IgbG9jdXMvbG9jaQ0KcHJvcGVydGllcyAgICA6IDcgcm93cw0KICAgc3RydWN0dXJhbCAgICAgICAxDQogICBzZW1hbnRpYyAgICAgICAgIDYNCiAgIHJlcGxheWVkICAgICAgICAgMA0KICAgY2FwdHVyZS10cnVzdGVkICAwDQpmaW5kaW5ncyAgICAgIDogOQ0KICAgRjAwMSAgICAgL2NoZWNrcy81L2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQogICBGMDAyICAgICAvY2hlY2tzLzEzL2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCiAgIEYwMDMgICAgIC9jaGVja3MvMTQvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KICAgRjAwNCAgICAgL2NoZWNrcy8xNS9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQogICBGMDA1ICAgICAvY2hlY2tzLzIzL2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCiAgIEYwMDYgICAgIC9jaGVja3MvMjQvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KICAgRjAwNyAgICAgL2NoZWNrcy8yNS9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQogICBGMDA4ICAgICAvY2hlY2tzLzI3L2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCiAgIEYwMDkgICAgIC9jaGVja3MvMjgvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KdmVyZGljdCAgICAgICA6IHJlamVjdGVkDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "target        : docs/evidence/gatebraid/P2-S1/gate0.json\r\ninterface     : gatebraid/gate-run@2\r\nloader        : CPython 3.12.2 (C:\\Python312\\python.exe), jsonschema 4.23.0, Draft202012Validator\r\nstructural    : 0 error locus/loci\r\nproperties    : 7 rows\r\n   structural       1\r\n   semantic         6\r\n   replayed         0\r\n   capture-trusted  0\r\nfindings      : 9\r\n   F001     /checks/5/command                              placeholder-survives-its-own-check\r\n   F002     /checks/13/command                             placeholder-survives-its-own-check\r\n   F003     /checks/14/command                             placeholder-survives-its-own-check\r\n   F004     /checks/15/command                             placeholder-survives-its-own-check\r\n   F005     /checks/23/command                             placeholder-survives-its-own-check\r\n   F006     /checks/24/command                             placeholder-survives-its-own-check\r\n   F007     /checks/25/command                             placeholder-survives-its-own-check\r\n   F008     /checks/27/command                             placeholder-survives-its-own-check\r\n   F009     /checks/28/command                             placeholder-survives-its-own-check\r\nverdict       : rejected\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T05:14:33.423243Z",
+  "ended_at": "2026-08-22T05:14:33.806286Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T2 Windows: negative direction, the criterion the Slice is judged on. gate0.json must STILL reject and its findings must still be the record's own #171-class /checks/N/command citations. A repair that makes this record clean is wrong (negative criterion N2)."
+}

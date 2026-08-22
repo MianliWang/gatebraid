@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-writedomains-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "issue",
+      "view",
+      "12",
+      "--repo",
+      "MianliWang/gatebraid",
+      "--json",
+      "body"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3276,
+      "sha256": "7281fa356f97222aef7e4d8592c446bc3cd7645a9ab51e6946c433d12a5a62dc",
+      "data": "eyJib2R5IjoiIyBQMi1TMyDigJQgZ2F0ZWJyYWlkLXZhbGlkYXRlIHJlcGFpcjogaGV1cmlzdGljIHNjb3BlLCBtYXJrZG93biByZWNvcmRzLCBOMiByZS12YWxpZGF0aW9uIGNvbXBsZXRpb25cblxuIyMgR29hbFxuXG5SZXBhaXIgdGhlIHR3byBpbnN0cnVtZW50IGRlZmVjdHMgYGdhdGVicmFpZC12YWxpZGF0ZWAncyBmaXJzdCBwcm9kdWN0aW9uXG5ydW4gZXhwb3NlZCAoZnJpY3Rpb24gIzE2OSwgIzE3MCkgYW5kIGNvbXBsZXRlIHRoZSBOMiByZS12YWxpZGF0aW9uIHRoYXRcbnJ1biBsZWZ0IGJvdW5kZWQ6IHNjb3BlIHRoZSBwbGFjZWhvbGRlciBoZXVyaXN0aWMgdG8gY29tbWFuZCBhbmQgY2l0YXRpb25cbmZpZWxkcyBzbyBHcmFwaFFMIGlubGluZS1mcmFnbWVudCBzcHJlYWRzIGFuZCBub3Rlcy1maWVsZCBpZFxuYWJicmV2aWF0aW9ucyBhcmUgY2xhc3NpZmllZCBhcyBtZW50aW9ucywgbm90IGVsaXNpb25zOyBhZGQgYVxubWFya2Rvd24tZ2F0ZS1yZWNvcmQgbW9kZSAoYCMjIGdhdGVicmFpZC1tZXRhZGF0YWAgZXh0cmFjdGlvbiwgdGhlXG5BRFItMDAyNiBmb3JtKSBzbyBhbGwgZm91ciBnYXRlIHJlY29yZHMgb2YgYW55IFNsaWNlIGFyZSB3aXRoaW4gdGhlXG52YWxpZGF0b3IncyByZWFjaDsgdGhlbiByZS1ydW4gdGhlIGZ1bGwgTjIgcmUtdmFsaWRhdGlvbiB0byBjb21wbGV0aW9uXG5hbmQgcmVjb3JkIGl0IOKAlCBkaXNjaGFyZ2luZyB0aGUgcmVtYWluZGVyIHRoZSBQMi1TMiBjbG9zdXJlIG5hbWVkIGFzXG5vd2VkLiBGaWxlcyB1bmRlciByZXBhaXI6IGBiaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLnB5YCBhbmRcbmBiaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLXNlbGZ0ZXN0LnB5YCAodGhlIHJhdGlmaWVkIG5hbWVzOyBubyBuZXcgdG9vbCxcbm5vIG5ldyBuYW1lKS5cblxuIyMgQ29udGV4dFxuXG4tIFdoeSBub3c6IHRoZSBQMi1TMiBjbG9zdXJlJ3MgYm91bmRlZCBkaXNjaGFyZ2UgKGlzc3VlICMxMCwgdGhlIENsb3N1cmVcbiAgUmVzdW1lJ3MgdmVyYmF0aW0gcGFzc2FnZSkgbGVhdmVzIHRoZSBmdWxsIG1lY2hhbmljYWwgcmUtdmFsaWRhdGlvbiBvZlxuICBOMidzIGZvdXIgZ2F0ZSByZWNvcmRzIG93ZWQgdW50aWwgdGhpcyBTbGljZSBsYW5kczsgTzEgd2lsbCByZWx5IG9uXG4gIHRoZSB2YWxpZGF0b3Igb3ZlciByZWFsIHJlY29yZHMsIHNvIHRoZSBvdmVyLW1hdGNoIGlzIHJlcGFpcmVkIGJlZm9yZVxuICB0aGUgdG9vbGNoYWluIGlzIGxlYW5lZCBvbi5cbi0gQm90aCByZXBhaXJzIGNhcnJ5IHRoZWlyIGZhbHNpZmljYXRpb25zOiB0aGUgaGV1cmlzdGljIGZpeCBpcyBzZWVkZWRcbiAgaW4gYm90aCBkaXJlY3Rpb25zIChhIGdlbnVpbmUgZWxpc2lvbiBtdXN0IHN0aWxsIHJlamVjdCDigJQgdGhlXG4gIFAyLVMyLWNsb3N1cmUgZmFsc2lmaWNhdGlvbiBwYWlyIGlzIHRoZSBtb2RlbCk7IHRoZSBtYXJrZG93biBtb2RlIGlzXG4gIHNlZWRlZCB3aXRoIGEgdmFsaWQgYW5kIGFuIGludmFsaWQgZW1iZWRkZWQgcmVjb3JkLlxuLSBOb24tZ29hbHM6IG5vIGNoYW5nZSB0byBgYmluL2dhdGVicmFpZC1jYXB0dXJlKi5weWAgKG5ldmVyIHJlYWQsIG9ubHlcbiAgZXhlY3V0ZWQpOyBubyBjb250cmFjdCwgc2NoZW1hLCBBRFIsIHRlbXBsYXRlIG9yIGNvcnB1cyB0ZXh0OyBubyBlZGl0XG4gIHRvIGFueSBtZXJnZWQgaGlzdG9yaWNhbCBnYXRlIHJlY29yZCDigJQgYGdhdGUwLmpzb25gJ3MgbmluZSAjMTcxLWNsYXNzXG4gIGNpdGF0aW9ucyBzdGF5IHJlY29yZGVkLCBub3QgcmVwYWlyZWQuXG4tIFJlbGF0ZWQ6IFBoYXNlIFAyIGAjN2AgwrcgUDItUzEgYCM4YCDCtyBQMi1TMiBgIzEwYCDCtyBQUiBgIzExYCDCt1xuICBmcmljdGlvbiAjMTY5LyMxNzAvIzE3MSDCtyB0aGUgUDItUzIgQ2xvc3VyZSBSZXN1bWUgcnVsaW5ncyAoYSnigJMoYykuXG5cbiMjIEFjY2VwdGFuY2VcblxuLSBbIF0gVGhlIDExIFAyLVMxIGNhcHR1cmVzIHJlamVjdGVkIGF0IHRoZSBQMi1TMiBjbG9zdXJlIHZhbGlkYXRlXG4gICAgICBgYWNjZXB0ZWRgIHdpdGggdGhlIHJlcGFpcmVkIGhldXJpc3RpYywgQU5EIGEgZ2VudWluZWx5IGVsaWRlZFxuICAgICAgY2FwdHVyZSBzdGlsbCByZWplY3RzIOKAlCBib3RoIHNob3duIGJ5IHNlZWRlZCBydW5zLCBzdW1tYXJpZXNcbiAgICAgIGVtaXR0ZWQgYnkgdGhlIGluc3RydW1lbnQgaXRzZWxmLlxuLSBbIF0gQWxsIGZvdXIgUDItUzEgZ2F0ZSByZWNvcmRzIChgZ2F0ZTAuanNvbmAsIGBnYXRlMS5tZGAsIGBnYXRlMi5tZGAsXG4gICAgICBgZ2F0ZTMubWRgKSBhcmUgcmVhZCBhbmQgdmVyZGljdHMgZW1pdHRlZCBieSB0aGUgdmFsaWRhdG9yJ3Mgb3duXG4gICAgICByZWNvcmQgbW9kZTsgYGdhdGUwLmpzb25gJ3MgbmluZSBnZW51aW5lIGZpbmRpbmdzIHJlcHJvZHVjZVxuICAgICAgKHRoZXkgYXJlIHRoZSByZWNvcmQncywgbm90IHRoZSB0b29sJ3MpLlxuLSBbIF0gVGhlIGZ1bGwgTjIgcmUtdmFsaWRhdGlvbiByZS1ydW5zIHRvIGNvbXBsZXRpb24gb24gdGhlIGRlY2xhcmVkXG4gICAgICBwbGF0Zm9ybXMgYW5kIGl0cyByZXN1bHRzIGFyZSByZWNvcmRlZCBpbiB0aGlzIFNsaWNlJ3MgZXZpZGVuY2Ug4oCUXG4gICAgICB0aGUgUDItUzIgY2xvc3VyZSdzIG93ZWQgcmVtYWluZGVyLCBkaXNjaGFyZ2VkLlxuLSBbIF0gVGhlIHNlbGZ0ZXN0IGNvdmVycyBib3RoIHJlcGFpcnMgYW5kIGlzIGdyZWVuIG9uIGJvdGggcGxhdGZvcm1zO1xuICAgICAgdGhlIGZyb3plbiBjb3JwdXMgZGlnZXN0IGlzIHVubW92ZWQgYmVmb3JlIGFuZCBhZnRlci5cblxuIyMgR2F0ZSBldmlkZW5jZVxuXG48IS0tIEZpbGxlZCBhcyBnYXRlcyBjb21wbGV0ZTogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvIC0tPlxuXG4jIyBnYXRlYnJhaWQtbWV0YWRhdGFcblxuYGBgeWFtbFxuc2NoZW1hOiBnYXRlYnJhaWQvc2xpY2VAMVxuc2xpY2VfaWQ6IFAyLVMzXG5zdGFnZTogUzJcbnBoYXNlOiBQMlxud29ya2Zsb3dfcHJvZmlsZTogY2xhc3NpY1xuZW52aXJvbm1lbnQ6IG1peGVkLXNlZS1wcm9zZVxucmlzazogbG93XG5kZXBlbmRzX29uOiBbXVxud3JpdGVfZG9tYWluczpcbiAgLSBiaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLnB5XG4gIC0gYmluL2dhdGVicmFpZC12YWxpZGF0ZS1zZWxmdGVzdC5weVxuICAtIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMzL1xucmVzb3VyY2VfbG9ja3M6IFtdXG5yZXBhaXJfbGltaXQ6IDJcbmNvbnN1bHRfZmlyc3Q6IGZhbHNlXG5wYXJhbGxlbF9tb2RlOiBzYWZlLXNpbmdsZS13cml0ZXJcbmBgYFxuIn0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"body\":\"# P2-S3 — gatebraid-validate repair: heuristic scope, markdown records, N2 re-validation completion\\n\\n## Goal\\n\\nRepair the two instrument defects `gatebraid-validate`'s first production\\nrun exposed (friction #169, #170) and complete the N2 re-validation that\\nrun left bounded: scope the placeholder heuristic to command and citation\\nfields so GraphQL inline-fragment spreads and notes-field id\\nabbreviations are classified as mentions, not elisions; add a\\nmarkdown-gate-record mode (`## gatebraid-metadata` extraction, the\\nADR-0026 form) so all four gate records of any Slice are within the\\nvalidator's reach; then re-run the full N2 re-validation to completion\\nand record it — discharging the remainder the P2-S2 closure named as\\nowed. Files under repair: `bin/gatebraid-validate.py` and\\n`bin/gatebraid-validate-selftest.py` (the ratified names; no new tool,\\nno new name).\\n\\n## Context\\n\\n- Why now: the P2-S2 closure's bounded discharge (issue #10, the Closure\\n  Resume's verbatim passage) leaves the full mechanical re-validation of\\n  N2's four gate records owed until this Slice lands; O1 will rely on\\n  the validator over real records, so the over-match is repaired before\\n  the toolchain is leaned on.\\n- Both repairs carry their falsifications: the heuristic fix is seeded\\n  in both directions (a genuine elision must still reject — the\\n  P2-S2-closure falsification pair is the model); the markdown mode is\\n  seeded with a valid and an invalid embedded record.\\n- Non-goals: no change to `bin/gatebraid-capture*.py` (never read, only\\n  executed); no contract, schema, ADR, template or corpus text; no edit\\n  to any merged historical gate record — `gate0.json`'s nine #171-class\\n  citations stay recorded, not repaired.\\n- Related: Phase P2 `#7` · P2-S1 `#8` · P2-S2 `#10` · PR `#11` ·\\n  friction #169/#170/#171 · the P2-S2 Closure Resume rulings (a)–(c).\\n\\n## Acceptance\\n\\n- [ ] The 11 P2-S1 captures rejected at the P2-S2 closure validate\\n      `accepted` with the repaired heuristic, AND a genuinely elided\\n      capture still rejects — both shown by seeded runs, summaries\\n      emitted by the instrument itself.\\n- [ ] All four P2-S1 gate records (`gate0.json`, `gate1.md`, `gate2.md`,\\n      `gate3.md`) are read and verdicts emitted by the validator's own\\n      record mode; `gate0.json`'s nine genuine findings reproduce\\n      (they are the record's, not the tool's).\\n- [ ] The full N2 re-validation re-runs to completion on the declared\\n      platforms and its results are recorded in this Slice's evidence —\\n      the P2-S2 closure's owed remainder, discharged.\\n- [ ] The selftest covers both repairs and is green on both platforms;\\n      the frozen corpus digest is unmoved before and after.\\n\\n## Gate evidence\\n\\n<!-- Filled as gates complete: docs/evidence/gatebraid/P2-S3/ -->\\n\\n## gatebraid-metadata\\n\\n```yaml\\nschema: gatebraid/slice@1\\nslice_id: P2-S3\\nstage: S2\\nphase: P2\\nworkflow_profile: classic\\nenvironment: mixed-see-prose\\nrisk: low\\ndepends_on: []\\nwrite_domains:\\n  - bin/gatebraid-validate.py\\n  - bin/gatebraid-validate-selftest.py\\n  - docs/evidence/gatebraid/P2-S3/\\nresource_locks: []\\nrepair_limit: 2\\nconsult_first: false\\nparallel_mode: safe-single-writer\\n```\\n\"}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T04:40:07.504723Z",
+  "ended_at": "2026-08-22T04:40:07.994226Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 1 exit: read-back of the sanctioned write_domains rewrite from the live issue body."
+}

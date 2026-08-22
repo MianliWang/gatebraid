@@ -1,0 +1,64 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-baseline-reread",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "ls-remote",
+      "origin",
+      "refs/heads/main"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 57,
+      "sha256": "25d450c2f6a0b1f2ae2cdcfba01f8ae584b8f64eb22e9d2b46de52b225961074",
+      "data": "NjNjODQwMWY1ZGY2YmE0NDZjZjAwMjIzMmZjYjI4MDY3M2MyOGUwMAlyZWZzL2hlYWRzL21haW4K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "63c8401f5df6ba446cf002232fcb280673c28e00\trefs/heads/main\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T05:09:33.757957Z",
+  "ended_at": "2026-08-22T05:09:34.744800Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 2 entry: baseline re-read (ADR-0011 section 9). Y = the head of the base branch now, read from the remote. Compared against the plan baseline X = 63c8401f5df6ba446cf002232fcb280673c28e00 recorded in gate0.md. The outcome is recorded in gate2.md in every case, including no change."
+}

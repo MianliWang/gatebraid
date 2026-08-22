@@ -1,0 +1,66 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "Q7-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "repos/MianliWang/gatebraid/issues/99999/dependencies/blocked_by"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 156,
+      "sha256": "0a8e134fdfb3bcf09c4ca548dd58a23cf0474d8599545431f642fbb0634ab380",
+      "data": "eyJtZXNzYWdlIjoiTm90IEZvdW5kIiwiZG9jdW1lbnRhdGlvbl91cmwiOiJodHRwczovL2RvY3MuZ2l0aHViLmNvbS9yZXN0L2lzc3Vlcy9pc3N1ZS1kZXBlbmRlbmNpZXMjbGlzdC1kZXBlbmRlbmNpZXMtYW4taXNzdWUtaXMtYmxvY2tlZC1ieSIsInN0YXR1cyI6IjQwNCJ9",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/issues/issue-dependencies#list-dependencies-an-issue-is-blocked-by\",\"status\":\"404\"}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 25,
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6",
+      "data": "Z2g6IE5vdCBGb3VuZCAoSFRUUCA0MDQpCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "gh: Not Found (HTTP 404)\n"
+      }
+    }
+  },
+  "started_at": "2026-08-22T03:11:59.425626Z",
+  "ended_at": "2026-08-22T03:11:59.852648Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Falsify-before-trust for Q7: seeded nonexistent issue number 99999. Must fail closed, never an empty list folded into 'no dependencies'."
+}

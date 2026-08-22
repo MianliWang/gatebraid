@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T4-invalid",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "bin/gatebraid-validate.py",
+      "--record",
+      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/0846d62b-0514-43be-8d3b-c1ee296ee47c/scratchpad/t4-invalid.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 654,
+      "sha256": "1c14b43c464576f125df82dd0a3de1a64396cae2842da93b13cf167e322b6b78",
+      "data": "dGFyZ2V0ICAgICAgICA6IEM6L1VzZXJzL3JvdWdoL0FwcERhdGEvTG9jYWwvVGVtcC9jbGF1ZGUvZC0tR2l0aHViLXJlcG8tR2F0ZWJyYWlkLzA4NDZkNjJiLTA1MTQtNDNiZS04ZDNiLWMxZWUyOTZlZTQ3Yy9zY3JhdGNocGFkL3Q0LWludmFsaWQubWQNCmludGVyZmFjZSAgICAgOiBnYXRlYnJhaWQvZ2F0ZS1ydW5AMg0KbG9hZGVyICAgICAgICA6IENQeXRob24gMy4xMi4yIChDOlxQeXRob24zMTJccHl0aG9uLmV4ZSksIGpzb25zY2hlbWEgNC4yMy4wLCBEcmFmdDIwMjAxMlZhbGlkYXRvcg0Kc3RydWN0dXJhbCAgICA6IDEgZXJyb3IgbG9jdXMvbG9jaQ0KICAgcGF0dGVybiAgICAgICAgICAgICAgICBiYXNlX3NoYSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHByb3BlcnRpZXMvYmFzZV9zaGEvcGF0dGVybg0KcHJvcGVydGllcyAgICA6IDQgcm93cw0KICAgc3RydWN0dXJhbCAgICAgICAxDQogICBzZW1hbnRpYyAgICAgICAgIDMNCiAgIHJlcGxheWVkICAgICAgICAgMA0KICAgY2FwdHVyZS10cnVzdGVkICAwDQpmaW5kaW5ncyAgICAgIDogMQ0KICAgRjAwMSAgICAgL2Jhc2Vfc2hhICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3R1cmFsOnBhdHRlcm4NCnZlcmRpY3QgICAgICAgOiByZWplY3RlZA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "target        : C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/0846d62b-0514-43be-8d3b-c1ee296ee47c/scratchpad/t4-invalid.md\r\ninterface     : gatebraid/gate-run@2\r\nloader        : CPython 3.12.2 (C:\\Python312\\python.exe), jsonschema 4.23.0, Draft202012Validator\r\nstructural    : 1 error locus/loci\r\n   pattern                base_sha                                 properties/base_sha/pattern\r\nproperties    : 4 rows\r\n   structural       1\r\n   semantic         3\r\n   replayed         0\r\n   capture-trusted  0\r\nfindings      : 1\r\n   F001     /base_sha                                      structural:pattern\r\nverdict       : rejected\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T05:15:00.577099Z",
+  "ended_at": "2026-08-22T05:15:01.030893Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T4 seed 1 (scratch path outside every repository, named per the gate-2 contract): a markdown record whose embedded block is schema-invalid - abbreviated base_sha, the @2 delta. Must exit 1: reading a record is not accepting it."
+}

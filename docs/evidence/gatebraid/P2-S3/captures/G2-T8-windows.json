@@ -1,0 +1,69 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T8-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S3/checks/g1_sweep.py",
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S3/captures/*.json",
+      "docs/evidence/gatebraid/P2-S3/gate0.md",
+      "docs/evidence/gatebraid/P2-S3/gate1.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 847,
+      "sha256": "65aebb607a5bff572b9c0b86e8ce347736ab9b584649a642d0f67ef742f4ee92",
+      "data": "aW50ZXJwcmV0ZXIgICA6IEM6L1B5dGhvbjMxMi9weXRob24NCmRvY3VtZW50cyAgICAgOiA4Mw0KRzAtc2xpY2UtYm9keS5qc29uIHJjPTENCiAgIEYwMDEgICAgIC9zdHJlYW1zL3N0ZG91dC9yZW5kZXJlZC90ZXh0ICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KRzEtZXhpdC1maWVsZHMtcmVhZGJhY2suanNvbiByYz0xDQogICBGMDAxICAgICAvc3RyZWFtcy9zdGRvdXQvcmVuZGVyZWQvdGV4dCAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCkcxLXdyaXRlZG9tYWlucy1lZGl0Lmpzb24gcmM9MQ0KICAgRjAwMSAgICAgL3N0cmVhbXMvc3Rkb3V0L3JlbmRlcmVkL3RleHQgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQpHMS13cml0ZWRvbWFpbnMtcmVhZGJhY2suanNvbiByYz0xDQogICBGMDAxICAgICAvc3RyZWFtcy9zdGRvdXQvcmVuZGVyZWQvdGV4dCAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCkcyLWVudHJ5LXJlYWRiYWNrLmpzb24gcmM9MQ0KICAgRjAwMSAgICAgL3N0cmVhbXMvc3Rkb3V0L3JlbmRlcmVkL3RleHQgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQpHMi1sZWFzZS10YWtlLmpzb24gcmM9MQ0KICAgRjAwMSAgICAgL25vdGVzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQpTV0VFUCBDT01QTEVURSByZWplY3RlZF9vcl9lcnJvcmVkPTYNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "interpreter   : C:/Python312/python\r\ndocuments     : 83\r\nG0-slice-body.json rc=1\r\n   F001     /streams/stdout/rendered/text                  placeholder-survives-its-own-check\r\nG1-exit-fields-readback.json rc=1\r\n   F001     /streams/stdout/rendered/text                  placeholder-survives-its-own-check\r\nG1-writedomains-edit.json rc=1\r\n   F001     /streams/stdout/rendered/text                  placeholder-survives-its-own-check\r\nG1-writedomains-readback.json rc=1\r\n   F001     /streams/stdout/rendered/text                  placeholder-survives-its-own-check\r\nG2-entry-readback.json rc=1\r\n   F001     /streams/stdout/rendered/text                  placeholder-survives-its-own-check\r\nG2-lease-take.json rc=1\r\n   F001     /notes                                         placeholder-survives-its-own-check\r\nSWEEP COMPLETE rejected_or_errored=6\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T05:20:34.438955Z",
+  "ended_at": "2026-08-22T05:21:09.546014Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T8 Windows - the self-validation point named by the frozen plan and required by the state packet section 5. The REPAIRED validator over this Slice's own evidence, including the Gate 0 and Gate 1 records through the new markdown mode. Expected state stands as frozen: every document READ, the only remaining rejections at loci this Slice deliberately does not exempt. A clean sweep is not expected and must not be engineered."
+}

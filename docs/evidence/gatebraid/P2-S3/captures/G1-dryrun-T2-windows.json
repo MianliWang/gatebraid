@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-dryrun-T2-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S3/checks/g1_sweep.py",
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S1/gate0.json",
+      "docs/evidence/gatebraid/P2-S1/gate1.md",
+      "docs/evidence/gatebraid/P2-S1/gate2.md",
+      "docs/evidence/gatebraid/P2-S1/gate3.md",
+      "docs/evidence/gatebraid/P2-S3/gate0.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1046,
+      "sha256": "004bcd46d58c8c71e4742ab2f23c5155b5fc5226624e3aaa99f7d740e4829988",
+      "data": "aW50ZXJwcmV0ZXIgICA6IEM6L1B5dGhvbjMxMi9weXRob24NCmRvY3VtZW50cyAgICAgOiA1DQpnYXRlMC5qc29uIHJjPTENCiAgIEYwMDEgICAgIC9jaGVja3MvNS9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KICAgRjAwMiAgICAgL2NoZWNrcy8xMy9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQogICBGMDAzICAgICAvY2hlY2tzLzE0L2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCiAgIEYwMDQgICAgIC9jaGVja3MvMTUvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KICAgRjAwNSAgICAgL2NoZWNrcy8yMy9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQogICBGMDA2ICAgICAvY2hlY2tzLzI0L2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCiAgIEYwMDcgICAgIC9jaGVja3MvMjUvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KICAgRjAwOCAgICAgL2NoZWNrcy8yNy9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQogICBGMDA5ICAgICAvY2hlY2tzLzI4L2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCmdhdGUxLm1kIHJjPTINCiAgIA0KZ2F0ZTIubWQgcmM9Mg0KICAgDQpnYXRlMy5tZCByYz0yDQogICANCmdhdGUwLm1kIHJjPTINCiAgIA0KU1dFRVAgQ09NUExFVEUgcmVqZWN0ZWRfb3JfZXJyb3JlZD01DQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "interpreter   : C:/Python312/python\r\ndocuments     : 5\r\ngate0.json rc=1\r\n   F001     /checks/5/command                              placeholder-survives-its-own-check\r\n   F002     /checks/13/command                             placeholder-survives-its-own-check\r\n   F003     /checks/14/command                             placeholder-survives-its-own-check\r\n   F004     /checks/15/command                             placeholder-survives-its-own-check\r\n   F005     /checks/23/command                             placeholder-survives-its-own-check\r\n   F006     /checks/24/command                             placeholder-survives-its-own-check\r\n   F007     /checks/25/command                             placeholder-survives-its-own-check\r\n   F008     /checks/27/command                             placeholder-survives-its-own-check\r\n   F009     /checks/28/command                             placeholder-survives-its-own-check\r\ngate1.md rc=2\r\n   \r\ngate2.md rc=2\r\n   \r\ngate3.md rc=2\r\n   \r\ngate0.md rc=2\r\n   \r\nSWEEP COMPLETE rejected_or_errored=5\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T04:28:07.329353Z",
+  "ended_at": "2026-08-22T04:28:08.595143Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 1 action 4 dry-run: T2 on the Windows half. All four P2-S1 gate records plus this Slice's gate0.md. Pre-repair these error at exit 2 (friction #170); post-repair they must be read by the markdown mode."
+}

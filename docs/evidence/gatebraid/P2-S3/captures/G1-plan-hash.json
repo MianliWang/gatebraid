@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-plan-hash",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S3/checks/g1_hashes.py",
+      "plan",
+      "docs/evidence/gatebraid/P2-S3/gate1.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 394,
+      "sha256": "f203fe0e603bd24c724bd47b615fbb70a0011eff4a2cded6f91c7e3e1ed84978",
+      "data": "YWxnb3JpdGhtICAgICA6IGxpbmVzIHN0cmljdGx5IGJldHdlZW4gJyMjIFBsYW4gKGZyb3plbiBhdCBleGl0KScgYW5kIHRoZSBuZXh0ICcjIyAnIGxpbmUsDQogICAgICAgICAgICAgICAgZWFjaCByc3RyaXBwZWQsIGxlYWRpbmcvdHJhaWxpbmcgYmxhbmsgbGluZXMgZHJvcHBlZCwNCiAgICAgICAgICAgICAgICBqb2luZWQgd2l0aCBMRiwgb25lIHRyYWlsaW5nIExGDQpzb3VyY2UgICAgICAgIDogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvZ2F0ZTEubWQNCnBsYW4gbGluZXMgICAgOiAyNjENCmJ5dGVzICAgICAgICAgOiAxNzA1OQ0KcGxhbl9oYXNoICAgICA6IGViODlkM2VhZWRjMjY5MGJhYmIzMDg2ZTNiZTc1MjlmNjJmYTAzZTcxOTU3NDZiM2I4MTA2YWQ4NWE2MjZiMTgNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "algorithm     : lines strictly between '## Plan (frozen at exit)' and the next '## ' line,\r\n                each rstripped, leading/trailing blank lines dropped,\r\n                joined with LF, one trailing LF\r\nsource        : docs/evidence/gatebraid/P2-S3/gate1.md\r\nplan lines    : 261\r\nbytes         : 17059\r\nplan_hash     : eb89d3eaedc2690babb3086e3be7529f62fa03e7195746b3b8106ad85a626b18\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T04:38:07.281756Z",
+  "ended_at": "2026-08-22T04:38:07.355470Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S3/gate1.md",
+      "sha256": "23882ea2915f9fb4852c50188d0a311d4df3b6fcdb584ca7c69d41bb781f3aa9"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 1 action 6 freeze: plan_hash, reproduced by the command recorded beside the value, over the lines strictly between the load-bearing heading and the next '## ' line."
+}

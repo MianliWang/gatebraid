@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "Q6-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=\nquery($owner:String!,$repo:String!,$number:Int!){\n  repository(owner:$owner,name:$repo){\n    issue(number:$number){\n      id number\n      projectItems(first:10){ nodes{ id project{ id } } }\n    }\n  }\n}",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=99999"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 204,
+      "sha256": "a1e0df7154dee5e91f66ae904058ec91aceb43f767b3922a8c5f39c1a8e011f0",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsiaXNzdWUiOm51bGx9fSwiZXJyb3JzIjpbeyJ0eXBlIjoiTk9UX0ZPVU5EIiwicGF0aCI6WyJyZXBvc2l0b3J5IiwiaXNzdWUiXSwibG9jYXRpb25zIjpbeyJsaW5lIjo0LCJjb2x1bW4iOjV9XSwibWVzc2FnZSI6IkNvdWxkIG5vdCByZXNvbHZlIHRvIGFuIElzc3VlIHdpdGggdGhlIG51bWJlciBvZiA5OTk5OS4ifV19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":{\"issue\":null}},\"errors\":[{\"type\":\"NOT_FOUND\",\"path\":[\"repository\",\"issue\"],\"locations\":[{\"line\":4,\"column\":5}],\"message\":\"Could not resolve to an Issue with the number of 99999.\"}]}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 60,
+      "sha256": "ec0e0d9445676da7cb9a76fc72e8149ecbf4302da2e66756e198242e36c46bf1",
+      "data": "Z2g6IENvdWxkIG5vdCByZXNvbHZlIHRvIGFuIElzc3VlIHdpdGggdGhlIG51bWJlciBvZiA5OTk5OS4K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "gh: Could not resolve to an Issue with the number of 99999.\n"
+      }
+    }
+  },
+  "started_at": "2026-08-22T03:11:23.136269Z",
+  "ended_at": "2026-08-22T03:11:23.549984Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Falsify-before-trust for Q6: seeded nonexistent issue number 99999. Must fail closed (errors array / non-zero), never an empty nodes list folded into absent."
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-tools-python-wsl",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl",
+      "-e",
+      "python3",
+      "-c",
+      "import sys,json,yaml,importlib.metadata as m;print(json.dumps({'python':sys.version.split()[0],'exe':sys.executable,'platform':sys.platform,'jsonschema':m.version('jsonschema'),'pyyaml':yaml.__version__}))"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 112,
+      "sha256": "4749d540e7134ca30ce341fe1e6e9cffc08bc4741e2b435a69538ecba87e588f",
+      "data": "eyJweXRob24iOiAiMy4xMi4zIiwgImV4ZSI6ICIvdXNyL2Jpbi9weXRob24zIiwgInBsYXRmb3JtIjogImxpbnV4IiwgImpzb25zY2hlbWEiOiAiNC4xMC4zIiwgInB5eWFtbCI6ICI2LjAuMSJ9Cg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"python\": \"3.12.3\", \"exe\": \"/usr/bin/python3\", \"platform\": \"linux\", \"jsonschema\": \"4.10.3\", \"pyyaml\": \"6.0.1\"}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T03:14:15.753029Z",
+  "ended_at": "2026-08-22T03:14:15.984487Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 0 A4: WSL-half platform probe. The gate runs on the Windows host; the WSL half is evidence for the mixed-see-prose matrix, not an Environment-Change mismatch (packet section 4)."
+}
