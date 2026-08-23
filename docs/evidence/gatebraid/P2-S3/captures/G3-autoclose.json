@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-autoclose",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($p:ID!){ node(id:$p){ ... on ProjectV2 { workflows(first:20){ nodes{ name enabled } } } } }",
+      "-F",
+      "p=PVT_kwHOBRofUs4Beum7"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 331,
+      "sha256": "816ba2712e34a0e3dcb0356cb8df90e5fb8af2622680d8a9df985d156b2380fc",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsid29ya2Zsb3dzIjp7Im5vZGVzIjpbeyJuYW1lIjoiQXV0by1hZGQgc3ViLWlzc3VlcyB0byBwcm9qZWN0IiwiZW5hYmxlZCI6dHJ1ZX0seyJuYW1lIjoiQXV0by1jbG9zZSBpc3N1ZSIsImVuYWJsZWQiOmZhbHNlfSx7Im5hbWUiOiJJdGVtIGFkZGVkIHRvIHByb2plY3QiLCJlbmFibGVkIjp0cnVlfSx7Im5hbWUiOiJJdGVtIGNsb3NlZCIsImVuYWJsZWQiOnRydWV9LHsibmFtZSI6IlB1bGwgcmVxdWVzdCBsaW5rZWQgdG8gaXNzdWUiLCJlbmFibGVkIjp0cnVlfSx7Im5hbWUiOiJQdWxsIHJlcXVlc3QgbWVyZ2VkIiwiZW5hYmxlZCI6dHJ1ZX1dfX19fQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"workflows\":{\"nodes\":[{\"name\":\"Auto-add sub-issues to project\",\"enabled\":true},{\"name\":\"Auto-close issue\",\"enabled\":false},{\"name\":\"Item added to project\",\"enabled\":true},{\"name\":\"Item closed\",\"enabled\":true},{\"name\":\"Pull request linked to issue\",\"enabled\":true},{\"name\":\"Pull request merged\",\"enabled\":true}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-23T04:27:53.367924Z",
+  "ended_at": "2026-08-23T04:27:53.894621Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 3 closure precondition (a), ADR-0012 sec 2: all built-in Project workflows read and printed, so the Auto-close issue row is read in context rather than asserted alone."
+}

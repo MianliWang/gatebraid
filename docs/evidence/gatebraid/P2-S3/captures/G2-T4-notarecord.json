@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T4-notarecord",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "bin/gatebraid-validate.py",
+      "--record",
+      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/0846d62b-0514-43be-8d3b-c1ee296ee47c/scratchpad/t4-notarecord.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 2,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 205,
+      "sha256": "4c0266eb777f516d76a170cb48e4073683848e00067193a8663a101d11da3a9f",
+      "data": "U1RSVUNUVVJFOiBDOi9Vc2Vycy9yb3VnaC9BcHBEYXRhL0xvY2FsL1RlbXAvY2xhdWRlL2QtLUdpdGh1Yi1yZXBvLUdhdGVicmFpZC8wODQ2ZDYyYi0wNTE0LTQzYmUtOGQzYi1jMWVlMjk2ZWU0N2Mvc2NyYXRjaHBhZC90NC1ub3RhcmVjb3JkLm1kIGlzIG5vdCBVVEYtOCBKU09OIChFeHBlY3RpbmcgdmFsdWU6IGxpbmUgMSBjb2x1bW4gMSAoY2hhciAwKSkNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "STRUCTURE: C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/0846d62b-0514-43be-8d3b-c1ee296ee47c/scratchpad/t4-notarecord.md is not UTF-8 JSON (Expecting value: line 1 column 1 (char 0))\r\n"
+      }
+    }
+  },
+  "started_at": "2026-08-22T05:15:01.314285Z",
+  "ended_at": "2026-08-22T05:15:01.413897Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T4 seed 2: a file that is neither JSON nor carries a gatebraid-metadata heading. Must exit 2 - the pre-existing broken-input condition must not regress now that a second front end exists."
+}

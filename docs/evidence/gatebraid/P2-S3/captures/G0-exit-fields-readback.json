@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-exit-fields-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=\nquery($item:ID!){\n  node(id:$item){\n    ... on ProjectV2Item {\n      id\n      fieldValues(first:50){\n        nodes{\n          ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name } } }\n          ... on ProjectV2ItemFieldSingleSelectValue{ optionId field{ ... on ProjectV2FieldCommon{ name } } }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "item=PVTI_lAHOBRofUs4Beum7zg3i6M0"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1008,
+      "sha256": "2a708f1d7c45039cac26973016582aa0886d82da33ace439a0c0d693c5b37a79",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiaWQiOiJQVlRJX2xBSE9CUm9mVXM0QmV1bTd6ZzNpNk0wIiwiZmllbGRWYWx1ZXMiOnsibm9kZXMiOlt7fSx7InRleHQiOiJQMi1TMyDigJQgZ2F0ZWJyYWlkLXZhbGlkYXRlIHJlcGFpcjogaGV1cmlzdGljIHNjb3BlLCBtYXJrZG93biByZWNvcmRzLCBOMiByZS12YWxpZGF0aW9uIGNvbXBsZXRpb24iLCJmaWVsZCI6eyJuYW1lIjoiVGl0bGUifX0seyJvcHRpb25JZCI6ImY3NWFkODQ2IiwiZmllbGQiOnsibmFtZSI6IlN0YXR1cyJ9fSx7Im9wdGlvbklkIjoiZjZiNTcxNTMiLCJmaWVsZCI6eyJuYW1lIjoiV29ya2Zsb3cifX0seyJvcHRpb25JZCI6IjY5MjIwMDNhIiwiZmllbGQiOnsibmFtZSI6IkdhdGUifX0seyJvcHRpb25JZCI6IjQ1MGVlMTMwIiwiZmllbGQiOnsibmFtZSI6Ik5leHQgQXBwcm92YWwifX0seyJvcHRpb25JZCI6IjFlNDNlYzg1IiwiZmllbGQiOnsibmFtZSI6IkVudmlyb25tZW50In19LHsib3B0aW9uSWQiOiJjZTg1OWM3ZCIsImZpZWxkIjp7Im5hbWUiOiJFeGVjdXRvciJ9fSx7Im9wdGlvbklkIjoiZTI5MTI0OWMiLCJmaWVsZCI6eyJuYW1lIjoiUmlzayJ9fSx7InRleHQiOiJTMiIsImZpZWxkIjp7Im5hbWUiOiJTdGFnZSJ9fSx7InRleHQiOiJQMiIsImZpZWxkIjp7Im5hbWUiOiJQaGFzZSJ9fSx7InRleHQiOiJQMi1TMyIsImZpZWxkIjp7Im5hbWUiOiJTbGljZSJ9fSx7InRleHQiOiI2M2M4NDAxZjVkZjZiYTQ0NmNmMDAyMjMyZmNiMjgwNjczYzI4ZTAwIiwiZmllbGQiOnsibmFtZSI6IkJhc2UgU0hBIn19LHsidGV4dCI6IjIwMjYtMDgtMjJUMDM6MzU6MTBaIEdhdGUgMCBwYXNzZWQ7IHJlY29yZCBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMy9nYXRlMC5tZCAod29ya2luZyBmaWxlLCBjb21taXR0ZWQgYXQgR2F0ZSAyKTsgaGFuZG9mZiBjb21tZW50IDUzNzc2NDI2MjI7IEdhdGUgMSBub3Qgb3BlbmVkIG9uIHRoaXMgZ3JhbnQuIiwiZmllbGQiOnsibmFtZSI6Ikxhc3QgQ2hlY2twb2ludCJ9fV19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"id\":\"PVTI_lAHOBRofUs4Beum7zg3i6M0\",\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S3 — gatebraid-validate repair: heuristic scope, markdown records, N2 re-validation completion\",\"field\":{\"name\":\"Title\"}},{\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"optionId\":\"f6b57153\",\"field\":{\"name\":\"Workflow\"}},{\"optionId\":\"6922003a\",\"field\":{\"name\":\"Gate\"}},{\"optionId\":\"450ee130\",\"field\":{\"name\":\"Next Approval\"}},{\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S3\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"63c8401f5df6ba446cf002232fcb280673c28e00\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-08-22T03:35:10Z Gate 0 passed; record docs/evidence/gatebraid/P2-S3/gate0.md (working file, committed at Gate 2); handoff comment 5377642622; Gate 1 not opened on this grant.\",\"field\":{\"name\":\"Last Checkpoint\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T03:36:26.786780Z",
+  "ended_at": "2026-08-22T03:36:27.337358Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 0 exit: read-back of the three field writes by option id and text, after the handoff comment was posted. Verified by id, never by a dash-bearing name."
+}

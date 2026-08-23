@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-ref-namespace",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "for-each-ref",
+      "--format=%(refname) %(objecttype) %(objectname)"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1099,
+      "sha256": "c1ce3f3cfb770f1fdc6b4ed9dad992616f0e42d27cb80873b7dbb0736d33d0fd",
+      "data": "cmVmcy9jb2RleC90dXJuLWRpZmZzL2NoZWNrcG9pbnRzLzY1Njg3MzRkYjY0MjllMDg2MGNmMDk1NGIxOWFmZmZhYWRiOTNjOTk2MGQ2NjZlZmIyM2QxMDE4ZjE1MmJlMzcvN2Y4ZDgwMmMxMTgwNDJkMjAzODJhMTZhMjUwZWExYzVmYjBiZDg3ZWZkNmUyYTJlZTMyMjE1NThhZGU5YzhmMy8xNzg1NDg5OTAwOTMxL2MwZGE0MDA1LTFmZjYtNDM0YS1iMWE1LTlhZDFhMmFmMWIwZSB0cmVlIDhjN2RmODRkNjJhNWQ3MGQ0YTllZDJmMDVlZGYyNjYxYmJmNWJkNDMKcmVmcy9oZWFkcy9tMS1jb250cm9sLXBsYW5lIGNvbW1pdCA4MjM1MDJiNGY1ZWJhOWU4YzYwYzYwNTY4MTY4MTc5ODBiZmVhNjg1CnJlZnMvaGVhZHMvbTMvbjAtcmF0aWZpY2F0aW9uIGNvbW1pdCA0ZmYzZjdiMWY0OWY2ODUzYjU4NGYyNTVhNjFjYjZiOTk3OTdhY2I0CnJlZnMvaGVhZHMvbWFpbiBjb21taXQgNjNjODQwMWY1ZGY2YmE0NDZjZjAwMjIzMmZjYjI4MDY3M2MyOGUwMApyZWZzL2hlYWRzL3NsaWNlL1AyLVMxIGNvbW1pdCBmNDE4NjM0MjAzNzg3MGMzM2M1MGJiNWI2NGEzMTQzMGI0NjJhYzNlCnJlZnMvaGVhZHMvc2xpY2UvUDItUzIgY29tbWl0IDhjNzEwY2EwNTA2ZTMwMDY1Mzc3OWQ0MzJmZDdlNTZhZTU4YzQyMTIKcmVmcy9yZW1vdGVzL29yaWdpbi9IRUFEIGNvbW1pdCA2M2M4NDAxZjVkZjZiYTQ0NmNmMDAyMjMyZmNiMjgwNjczYzI4ZTAwCnJlZnMvcmVtb3Rlcy9vcmlnaW4vbTEtY29udHJvbC1wbGFuZSBjb21taXQgODIzNTAyYjRmNWViYTllOGM2MGM2MDU2ODE2ODE3OTgwYmZlYTY4NQpyZWZzL3JlbW90ZXMvb3JpZ2luL20zL24wLXJhdGlmaWNhdGlvbiBjb21taXQgNGZmM2Y3YjFmNDlmNjg1M2I1ODRmMjU1YTYxY2I2Yjk5Nzk3YWNiNApyZWZzL3JlbW90ZXMvb3JpZ2luL21haW4gY29tbWl0IDYzYzg0MDFmNWRmNmJhNDQ2Y2YwMDIyMzJmY2IyODA2NzNjMjhlMDAKcmVmcy9yZW1vdGVzL29yaWdpbi9zbGljZS9QMi1TMSBjb21taXQgZjQxODYzNDIwMzc4NzBjMzNjNTBiYjViNjRhMzE0MzBiNDYyYWMzZQpyZWZzL3JlbW90ZXMvb3JpZ2luL3NsaWNlL1AyLVMyIGNvbW1pdCA4YzcxMGNhMDUwNmUzMDA2NTM3NzlkNDMyZmQ3ZTU2YWU1OGM0MjEyCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e tree 8c7df84d62a5d70d4a9ed2f05edf2661bbf5bd43\nrefs/heads/m1-control-plane commit 823502b4f5eba9e8c60c6056816817980bfea685\nrefs/heads/m3/n0-ratification commit 4ff3f7b1f49f6853b584f255a61cb6b99797acb4\nrefs/heads/main commit 63c8401f5df6ba446cf002232fcb280673c28e00\nrefs/heads/slice/P2-S1 commit f4186342037870c33c50bb5b64a31430b462ac3e\nrefs/heads/slice/P2-S2 commit 8c710ca0506e300653779d432fd7e56ae58c4212\nrefs/remotes/origin/HEAD commit 63c8401f5df6ba446cf002232fcb280673c28e00\nrefs/remotes/origin/m1-control-plane commit 823502b4f5eba9e8c60c6056816817980bfea685\nrefs/remotes/origin/m3/n0-ratification commit 4ff3f7b1f49f6853b584f255a61cb6b99797acb4\nrefs/remotes/origin/main commit 63c8401f5df6ba446cf002232fcb280673c28e00\nrefs/remotes/origin/slice/P2-S1 commit f4186342037870c33c50bb5b64a31430b462ac3e\nrefs/remotes/origin/slice/P2-S2 commit 8c710ca0506e300653779d432fd7e56ae58c4212\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T03:13:02.007292Z",
+  "ended_at": "2026-08-22T03:13:02.059920Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 0 A1b: ref namespace enumerated; any ref outside refs/heads, refs/remotes, refs/tags is reported, not adopted (friction #103)."
+}

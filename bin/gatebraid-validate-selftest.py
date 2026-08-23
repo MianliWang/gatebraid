@@ -57,6 +57,28 @@ def write(path, doc):
     return path
 
 
+
+def yaml_dump(doc):
+    """Emit the seed documents as YAML using the standard library only.
+
+    The selftest must not acquire a third-party dependency in order to exercise
+    one; these seeds are flat by construction, so a minimal emitter is honest and
+    sufficient.
+    """
+    out = []
+    for k, v in doc.items():
+        if isinstance(v, list):
+            out.append("%s:" % k)
+            for item in v:
+                first = True
+                for ik, iv in item.items():
+                    out.append(("  - " if first else "    ") + "%s: %s" % (ik, json.dumps(iv)))
+                    first = False
+        else:
+            out.append("%s: %s" % (k, json.dumps(v)))
+    return "\n".join(out) + "\n"
+
+
 def rebuild_stream(doc, raw):
     """Set a stream payload AND its declared digest/length consistently."""
     st = doc["streams"]["stdout"]
@@ -299,6 +321,89 @@ def main():
         rc_b, _ = run(["--record", os.path.join(tmp, "s01.json")])
         c.check("S22", "seed discriminates (S00 != S01)", 0, 0 if rc_a != rc_b else 1,
                 "one flipped byte must change the verdict, or the suite is blind")
+
+        # ---- S23-S26 Task A: the mention test, seeded in BOTH directions ----
+        # The repair must excuse a quoted GraphQL spread and must NOT excuse an
+        # ellipsis standing in for omitted command text. A repair that only stops
+        # rejecting things passes S23 and fails S24, which is the point.
+        d = json.load(open(CAPTURE_SRC, encoding="utf-8"))
+        d["invocation"]["argv"] = ["gh", "api", "graphql", "-f",
+                                   "query={ nodes { ... on ProjectV2Item { id } } }"]
+        p_ = write(os.path.join(tmp, "s23.json"), d)
+        rc, out = run(["--record", p_])
+        c.check("S23", "GraphQL spread in argv is a mention", 0, rc,
+                "a captured command may contain an ellipsis because the command did",
+                None, out)
+
+        d = json.load(open(CAPTURE_SRC, encoding="utf-8"))
+        d["invocation"]["argv"] = ["gh", "api", "graphql", "...", "-F", "number=8"]
+        p_ = write(os.path.join(tmp, "s24.json"), d)
+        rc, out = run(["--record", p_])
+        c.check("S24", "elided command text still rejects", 1, rc,
+                "an ellipsis standing alone replaces omitted text and stays a finding",
+                "placeholder-survives-its-own-check", out)
+
+        d = json.load(open(CAPTURE_SRC, encoding="utf-8"))
+        d["notes"] = "item asserted == PVTI_...zg3Dr5A, never by Title"
+        p_ = write(os.path.join(tmp, "s25.json"), d)
+        rc, out = run(["--record", p_])
+        c.check("S25", "id abbreviation in notes is a mention", 0, rc,
+                "an ellipsis bounded by identifier characters abbreviates, it does not elide",
+                None, out)
+
+        d = json.load(open(CAPTURE_SRC, encoding="utf-8"))
+        d["platform"]["os_release"] = "..."
+        p_ = write(os.path.join(tmp, "s26.json"), d)
+        rc, out = run(["--record", p_])
+        c.check("S26", "ellipsis outside a quoting field rejects", 1, rc,
+                "the exemption is scoped to command and citation loci, not to the document",
+                "placeholder-survives-its-own-check", out)
+
+        # ---- S27-S30 Task B: the markdown record mode, BOTH directions ----
+        d = json.load(open(CAPTURE_SRC, encoding="utf-8"))
+        gate_doc = {
+            "schema": "gatebraid/gate-run@2", "slice_id": "P9-S9", "gate": 0,
+            "environment": "windows", "executor": "Claude Lead",
+            "base_sha": "0" * 40, "result": "passed",
+            "checks": [{"name": "seed", "result": "pass"}],
+        }
+        md = ("# Gate 0 evidence - P9-S9\n\n## Records\n\nseed\n\n"
+              "## gatebraid-metadata\n\n```yaml\n"
+              + yaml_dump(gate_doc) + "```\n")
+        p_ = os.path.join(tmp, "s27.md")
+        with open(p_, "wb") as fh:
+            fh.write(md.encode("utf-8"))
+        rc, out = run(["--record", p_])
+        c.check("S27", "markdown gate record is read", 0, rc,
+                "the ADR-0026 record form its own contracts mandate must be readable",
+                "gatebraid/gate-run@2", out)
+
+        bad = dict(gate_doc)
+        bad["base_sha"] = "63c8401"           # abbreviated: the @2 delta
+        md = ("# Gate 0 evidence - P9-S9\n\n## gatebraid-metadata\n\n```yaml\n"
+              + yaml_dump(bad) + "```\n")
+        p_ = os.path.join(tmp, "s28.md")
+        with open(p_, "wb") as fh:
+            fh.write(md.encode("utf-8"))
+        rc, out = run(["--record", p_])
+        c.check("S28", "invalid embedded record rejects", 1, rc,
+                "reading a record is not accepting it; the schema still governs", None, out)
+
+        p_ = os.path.join(tmp, "s29.md")
+        with open(p_, "wb") as fh:
+            fh.write(b"# Not a record\n\nprose only, no metadata block\n")
+        rc, out = run(["--record", p_])
+        c.check("S29", "markdown without a block is an input error", 2, rc,
+                "a broken input must not become a record by being markdown", None, out)
+
+        p_ = os.path.join(tmp, "s30.md")
+        with open(p_, "wb") as fh:
+            fh.write(b"# R\n\n## gatebraid-metadata\n\nheading but no fenced block\n")
+        rc, out = run(["--record", p_])
+        c.check("S30", "heading without a fence is an input error", 2, rc,
+                "a half-formed record fails closed rather than validating an empty document",
+                None, out)
+
 
     finally:
         shutil.rmtree(tmp, ignore_errors=True)

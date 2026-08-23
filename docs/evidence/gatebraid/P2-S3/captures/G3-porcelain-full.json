@@ -1,0 +1,64 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-porcelain-full",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain",
+      "--untracked-files=all"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 918,
+      "sha256": "f55ae3128dd77ccd75b85832aba4b43d0f2267e6ce7ed2dad4e4c50fdf47c6c4",
+      "data": "Pz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvY2FwdHVyZXMvRzMtUTEtcmVhc3NpZ25tZW50Lmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvY2FwdHVyZXMvRzMtUTEtcmVsZWFzZS1hcHByb3ZhbC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMzL2NhcHR1cmVzL0czLWRyaWZ0LWNvbW1pdHMuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMy9jYXB0dXJlcy9HMy1kcmlmdC1jb21wbGVtZW50Lmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvY2FwdHVyZXMvRzMtZHJpZnQtZGlmZi5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMzL2NhcHR1cmVzL0czLWZpZWxkcy1yZWFkYmFjay5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMzL2NhcHR1cmVzL0czLWlkZW50aXR5Lmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvY2FwdHVyZXMvRzMtbGVhc2UtcmVhZGJhY2suanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMy9jYXB0dXJlcy9HMy1sZWFzZS10YWtlLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvY2FwdHVyZXMvRzMtcG9yY2VsYWluLWNvbXBsZW1lbnQuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMy9jYXB0dXJlcy9HMy1yZXZhbGlkYXRlLW1hcmtkb3duLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvY2FwdHVyZXMvRzMtcmV2YWxpZGF0ZS1zdHJ1Y3R1cmFsLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzMvY2FwdHVyZXMvRzMtd3JpdGUtZ2F0ZS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMzL2NhcHR1cmVzL0czLXdyaXRlLXdvcmtmbG93Lmpzb24K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "?? docs/evidence/gatebraid/P2-S3/captures/G3-Q1-reassignment.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-Q1-release-approval.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-drift-commits.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-drift-complement.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-drift-diff.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-fields-readback.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-identity.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-lease-readback.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-lease-take.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-porcelain-complement.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-revalidate-markdown.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-revalidate-structural.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-write-gate.json\n?? docs/evidence/gatebraid/P2-S3/captures/G3-write-workflow.json\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-23T04:27:28.453282Z",
+  "ended_at": "2026-08-23T04:27:28.527272Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 3 action 1: the UNRESTRICTED porcelain, recorded in full rather than only in the form that passes. Its entries are this gate's own untracked captures."
+}

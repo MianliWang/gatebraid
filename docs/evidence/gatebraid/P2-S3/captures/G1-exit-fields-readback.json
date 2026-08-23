@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-exit-fields-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=\nquery($item:ID!){\n  node(id:$item){\n    ... on ProjectV2Item {\n      content{ ... on Issue { number labels(first:20){ nodes{ name } } } }\n      fieldValues(first:50){\n        nodes{\n          ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name } } }\n          ... on ProjectV2ItemFieldSingleSelectValue{ optionId field{ ... on ProjectV2FieldCommon{ name } } }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "item=PVTI_lAHOBRofUs4Beum7zg3i6M0"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1038,
+      "sha256": "19ed07a5089fa4f370b65d588dbfd7018de54f9f02ae8f0c7ab84080772fa075",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiY29udGVudCI6eyJudW1iZXIiOjEyLCJsYWJlbHMiOnsibm9kZXMiOlt7Im5hbWUiOiJuZWVkcy1odW1hbiJ9XX19LCJmaWVsZFZhbHVlcyI6eyJub2RlcyI6W3t9LHt9LHsidGV4dCI6IlAyLVMzIOKAlCBnYXRlYnJhaWQtdmFsaWRhdGUgcmVwYWlyOiBoZXVyaXN0aWMgc2NvcGUsIG1hcmtkb3duIHJlY29yZHMsIE4yIHJlLXZhbGlkYXRpb24gY29tcGxldGlvbiIsImZpZWxkIjp7Im5hbWUiOiJUaXRsZSJ9fSx7Im9wdGlvbklkIjoiZjc1YWQ4NDYiLCJmaWVsZCI6eyJuYW1lIjoiU3RhdHVzIn19LHsib3B0aW9uSWQiOiIyYWQ2YWY4NSIsImZpZWxkIjp7Im5hbWUiOiJXb3JrZmxvdyJ9fSx7Im9wdGlvbklkIjoiMmEyZmYwMGUiLCJmaWVsZCI6eyJuYW1lIjoiR2F0ZSJ9fSx7Im9wdGlvbklkIjoiZTQ1YjlhZTUiLCJmaWVsZCI6eyJuYW1lIjoiTmV4dCBBcHByb3ZhbCJ9fSx7Im9wdGlvbklkIjoiMWU0M2VjODUiLCJmaWVsZCI6eyJuYW1lIjoiRW52aXJvbm1lbnQifX0seyJvcHRpb25JZCI6ImNlODU5YzdkIiwiZmllbGQiOnsibmFtZSI6IkV4ZWN1dG9yIn19LHsib3B0aW9uSWQiOiJlMjkxMjQ5YyIsImZpZWxkIjp7Im5hbWUiOiJSaXNrIn19LHsidGV4dCI6IlMyIiwiZmllbGQiOnsibmFtZSI6IlN0YWdlIn19LHsidGV4dCI6IlAyIiwiZmllbGQiOnsibmFtZSI6IlBoYXNlIn19LHsidGV4dCI6IlAyLVMzIiwiZmllbGQiOnsibmFtZSI6IlNsaWNlIn19LHsidGV4dCI6IjYzYzg0MDFmNWRmNmJhNDQ2Y2YwMDIyMzJmY2IyODA2NzNjMjhlMDAiLCJmaWVsZCI6eyJuYW1lIjoiQmFzZSBTSEEifX0seyJ0ZXh0IjoiMjAyNi0wOC0yMlQwNDo1MDowMFogR2F0ZSAxIHBhc3NlZDsgcGxhbiBhbmQgYWxsb3dsaXN0IGZyb3plbiAocGxhbl9oYXNoIGViODlkM2VhLi4uLCBhbGxvd2xpc3RfaGFzaCA4MWEwYmIwMS4uLik7IGdhdGUxLm1kIG5lZWRzX2FwcHJvdmFsOyBhd2FpdGluZyBQbGFuIEFwcHJvdmFsIChHMSB0byBHMikuIiwiZmllbGQiOnsibmFtZSI6Ikxhc3QgQ2hlY2twb2ludCJ9fV19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"content\":{\"number\":12,\"labels\":{\"nodes\":[{\"name\":\"needs-human\"}]}},\"fieldValues\":{\"nodes\":[{},{},{\"text\":\"P2-S3 — gatebraid-validate repair: heuristic scope, markdown records, N2 re-validation completion\",\"field\":{\"name\":\"Title\"}},{\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"optionId\":\"2ad6af85\",\"field\":{\"name\":\"Workflow\"}},{\"optionId\":\"2a2ff00e\",\"field\":{\"name\":\"Gate\"}},{\"optionId\":\"e45b9ae5\",\"field\":{\"name\":\"Next Approval\"}},{\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S3\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"63c8401f5df6ba446cf002232fcb280673c28e00\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-08-22T04:50:00Z Gate 1 passed; plan and allowlist frozen (plan_hash eb89d3ea..., allowlist_hash 81a0bb01...); gate1.md needs_approval; awaiting Plan Approval (G1 to G2).\",\"field\":{\"name\":\"Last Checkpoint\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T04:40:48.743179Z",
+  "ended_at": "2026-08-22T04:40:49.293430Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 1 exit: read-back of the three sanctioned field writes plus Last Checkpoint and the needs-human label, verified by option id."
+}

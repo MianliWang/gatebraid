@@ -1,0 +1,64 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-push",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "push",
+      "origin",
+      "slice/P2-S3"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 274,
+      "sha256": "803dbc9251a4e034bca6a06707f520dace2c1aea7bada73bf2bb54c3fd30b5bd",
+      "data": "cmVtb3RlOiAKcmVtb3RlOiBDcmVhdGUgYSBwdWxsIHJlcXVlc3QgZm9yICdzbGljZS9QMi1TMycgb24gR2l0SHViIGJ5IHZpc2l0aW5nOiAgICAgICAgCnJlbW90ZTogICAgICBodHRwczovL2dpdGh1Yi5jb20vTWlhbmxpV2FuZy9nYXRlYnJhaWQvcHVsbC9uZXcvc2xpY2UvUDItUzMgICAgICAgIApyZW1vdGU6IApUbyBodHRwczovL2dpdGh1Yi5jb20vTWlhbmxpV2FuZy9nYXRlYnJhaWQuZ2l0CiAqIFtuZXcgYnJhbmNoXSAgICAgIHNsaWNlL1AyLVMzIC0+IHNsaWNlL1AyLVMzCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "remote: \nremote: Create a pull request for 'slice/P2-S3' on GitHub by visiting:        \nremote:      https://github.com/MianliWang/gatebraid/pull/new/slice/P2-S3        \nremote: \nTo https://github.com/MianliWang/gatebraid.git\n * [new branch]      slice/P2-S3 -> slice/P2-S3\n"
+      }
+    }
+  },
+  "started_at": "2026-08-23T04:29:44.540797Z",
+  "ended_at": "2026-08-23T04:29:47.198874Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 3 action 2: the publication push. slice/P2-S3 only, no force, no tags, per the Release Approval."
+}

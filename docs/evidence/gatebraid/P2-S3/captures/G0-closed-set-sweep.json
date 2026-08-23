@@ -1,0 +1,66 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-closed-set-sweep",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S3/checks/g0_closed_set_sweep.py",
+      "docs/evidence/gatebraid/P2-S3/captures"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 518,
+      "sha256": "9a13c65fac23bc38fbd6ed7b348992a796765d074edab2961a19e086376f7e4c",
+      "data": "ew0KICJzZWxmdGVzdCI6ICJQQVNTRUQgKDQgcG9zaXRpdmUgc2VlZHMgY2F1Z2h0LCA5IG5lZ2F0aXZlIHNlZWRzIGNsZWFuKSIsDQogImZpbGVzX3NjYW5uZWQiOiA0MiwNCiAicGVybWl0dGVkIjogWw0KICAiTWlhbmxpV2FuZy9nYXRlYnJhaWQiLA0KICAiTWlhbmxpV2FuZy9nYXRlYnJhaWQtc2NyYXRjaCINCiBdLA0KICJrbm93bl9tZW50aW9uc19mb3VuZCI6IFsNCiAgImNsaS9jbGkiDQogXSwNCiAia25vd25fbWVudGlvbl9zaXRlcyI6IFsNCiAgew0KICAgImlkZW50aWZpZXIiOiAiY2xpL2NsaSIsDQogICAiZmlsZSI6ICJHMC10b29scy1naC5qc29uIiwNCiAgICJ3aGVyZSI6ICJlbnZlbG9wZSINCiAgfSwNCiAgew0KICAgImlkZW50aWZpZXIiOiAiY2xpL2NsaSIsDQogICAiZmlsZSI6ICJHMC10b29scy1naC5qc29uIiwNCiAgICJ3aGVyZSI6ICJwYXlsb2FkOnN0ZG91dCINCiAgfQ0KIF0sDQogIm91dHNpZGVfcGVybWl0dGVkX3NldCI6IFtdLA0KICJ2ZXJkaWN0IjogIlNFVCBDTE9TRUQiDQp9DQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\r\n \"selftest\": \"PASSED (4 positive seeds caught, 9 negative seeds clean)\",\r\n \"files_scanned\": 42,\r\n \"permitted\": [\r\n  \"MianliWang/gatebraid\",\r\n  \"MianliWang/gatebraid-scratch\"\r\n ],\r\n \"known_mentions_found\": [\r\n  \"cli/cli\"\r\n ],\r\n \"known_mention_sites\": [\r\n  {\r\n   \"identifier\": \"cli/cli\",\r\n   \"file\": \"G0-tools-gh.json\",\r\n   \"where\": \"envelope\"\r\n  },\r\n  {\r\n   \"identifier\": \"cli/cli\",\r\n   \"file\": \"G0-tools-gh.json\",\r\n   \"where\": \"payload:stdout\"\r\n  }\r\n ],\r\n \"outside_permitted_set\": [],\r\n \"verdict\": \"SET CLOSED\"\r\n}\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T03:32:48.548640Z",
+  "ended_at": "2026-08-22T03:32:48.669016Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 0 closed-set complement sweep, re-run over the complete capture set, scanning decoded base64 payloads as well as envelopes. Instrument carries its own falsification (4 positive seeds caught, 9 negative seeds clean) and exits 2 refusing to report a verdict if a seed fails. Two earlier revisions of this instrument were refuted before this run and are disclosed in the record."
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T9-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S3/checks/g1_sweep.py",
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S1/captures/*.json",
+      "docs/evidence/gatebraid/P2-S1/gate0.json",
+      "docs/evidence/gatebraid/P2-S1/gate1.md",
+      "docs/evidence/gatebraid/P2-S1/gate2.md",
+      "docs/evidence/gatebraid/P2-S1/gate3.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1077,
+      "sha256": "750e2119a9a3c8d54de89ef237631d7d3501b497279c50c7e24ab7014eeb308f",
+      "data": "aW50ZXJwcmV0ZXIgICA6IEM6L1B5dGhvbjMxMi9weXRob24NCmRvY3VtZW50cyAgICAgOiA0MA0KZ2F0ZTAuanNvbiByYz0xDQogICBGMDAxICAgICAvY2hlY2tzLzUvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCiAgIEYwMDIgICAgIC9jaGVja3MvMTMvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KICAgRjAwMyAgICAgL2NoZWNrcy8xNC9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQogICBGMDA0ICAgICAvY2hlY2tzLzE1L2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCiAgIEYwMDUgICAgIC9jaGVja3MvMjMvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KICAgRjAwNiAgICAgL2NoZWNrcy8yNC9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQogICBGMDA3ICAgICAvY2hlY2tzLzI1L2NvbW1hbmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNCiAgIEYwMDggICAgIC9jaGVja3MvMjcvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjaw0KICAgRjAwOSAgICAgL2NoZWNrcy8yOC9jb21tYW5kICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrDQpnYXRlMy5tZCByYz0xDQogICBGMDAxICAgICAvY2hlY2tzLzEvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sNClNXRUVQIENPTVBMRVRFIHJlamVjdGVkX29yX2Vycm9yZWQ9Mg0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "interpreter   : C:/Python312/python\r\ndocuments     : 40\r\ngate0.json rc=1\r\n   F001     /checks/5/command                              placeholder-survives-its-own-check\r\n   F002     /checks/13/command                             placeholder-survives-its-own-check\r\n   F003     /checks/14/command                             placeholder-survives-its-own-check\r\n   F004     /checks/15/command                             placeholder-survives-its-own-check\r\n   F005     /checks/23/command                             placeholder-survives-its-own-check\r\n   F006     /checks/24/command                             placeholder-survives-its-own-check\r\n   F007     /checks/25/command                             placeholder-survives-its-own-check\r\n   F008     /checks/27/command                             placeholder-survives-its-own-check\r\n   F009     /checks/28/command                             placeholder-survives-its-own-check\r\ngate3.md rc=1\r\n   F001     /checks/1/command                              placeholder-survives-its-own-check\r\nSWEEP COMPLETE rejected_or_errored=2\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T05:15:48.438893Z",
+  "ended_at": "2026-08-22T05:16:04.704876Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T9 Windows - Task C: the N2 re-validation run to COMPLETION over P2-S1's captures and all four of its gate records. This is the discharge of the remainder the P2-S2 closure left owed. Surviving findings are the historical records' own and are recorded, never repaired."
+}

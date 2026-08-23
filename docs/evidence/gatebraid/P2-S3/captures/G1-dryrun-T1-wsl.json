@@ -1,0 +1,66 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-dryrun-T1-wsl",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl",
+      "-e",
+      "python3",
+      "docs/evidence/gatebraid/P2-S3/checks/g1_sweep.py",
+      "python3",
+      "docs/evidence/gatebraid/P2-S1/captures/*.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1461,
+      "sha256": "048017dd64b736479d87ebd5ffb2b4100313d2a6c56a30ce732e703d0b44f2f1",
+      "data": "aW50ZXJwcmV0ZXIgICA6IHB5dGhvbjMKZG9jdW1lbnRzICAgICA6IDM2CkUtcHJlY2VkZW50LTIuanNvbiByYz0xCiAgIEYwMDEgICAgIC9pbnZvY2F0aW9uL2FyZ3YvNCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjawpFLXByZWNlZGVudC0zLmpzb24gcmM9MQogICBGMDAxICAgICAvaW52b2NhdGlvbi9hcmd2LzQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sKRzEtdmVyaWZ5LWV4aXQuanNvbiByYz0xCiAgIEYwMDEgICAgIC9pbnZvY2F0aW9uL2FyZ3YvNCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjawpHMS12ZXJpZnktZmxpcC5qc29uIHJjPTEKICAgRjAwMSAgICAgL2ludm9jYXRpb24vYXJndi80ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrCk0tdmVyaWZ5LTYuanNvbiByYz0xCiAgIEYwMDEgICAgIC9pbnZvY2F0aW9uL2FyZ3YvNCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjawpNLXZlcmlmeS03Lmpzb24gcmM9MQogICBGMDAxICAgICAvaW52b2NhdGlvbi9hcmd2LzQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sKTS12ZXJpZnktOC5qc29uIHJjPTEKICAgRjAwMSAgICAgL2ludm9jYXRpb24vYXJndi80ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrClE2LWZhbHNpZnktYS5qc29uIHJjPTEKICAgRjAwMSAgICAgL2ludm9jYXRpb24vYXJndi80ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrClE2LWZhbHNpZnktYi5qc29uIHJjPTEKICAgRjAwMSAgICAgL2ludm9jYXRpb24vYXJndi80ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrClE2LWZhbHNpZnktb3duZXIuanNvbiByYz0xCiAgIEYwMDEgICAgIC9pbnZvY2F0aW9uL2FyZ3YvNCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXItc3Vydml2ZXMtaXRzLW93bi1jaGVjawpRNi1yZWFsLmpzb24gcmM9MQogICBGMDAxICAgICAvaW52b2NhdGlvbi9hcmd2LzQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sKICAgRjAwMiAgICAgL25vdGVzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlci1zdXJ2aXZlcy1pdHMtb3duLWNoZWNrClNXRUVQIENPTVBMRVRFIHJlamVjdGVkX29yX2Vycm9yZWQ9MTEK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "interpreter   : python3\ndocuments     : 36\nE-precedent-2.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nE-precedent-3.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nG1-verify-exit.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nG1-verify-flip.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nM-verify-6.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nM-verify-7.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nM-verify-8.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nQ6-falsify-a.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nQ6-falsify-b.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nQ6-falsify-owner.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\nQ6-real.json rc=1\n   F001     /invocation/argv/4                             placeholder-survives-its-own-check\n   F002     /notes                                         placeholder-survives-its-own-check\nSWEEP COMPLETE rejected_or_errored=11\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T04:30:15.415109Z",
+  "ended_at": "2026-08-22T04:30:25.933990Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 1 action 4 dry-run: T1 on the WSL half of the mixed-see-prose matrix, unrepaired validator."
+}

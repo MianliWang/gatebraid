@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T5-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "bin/gatebraid-validate-selftest.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 4468,
+      "sha256": "6a98daebf4331486ef80699b6b715ad1978dccafd8da698f2f064f0cf46ab519",
+      "data": "aWQgICAgIGNvbmRpdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2FudCAgIGdvdCAgdmVyZGljdCByZXF1aXJlZCBvYnNlcnZhdGlvbg0KUzAwICAgIHVudG91Y2hlZCBjYXB0dXJlIGFjY2VwdGVkICAgICAgICAgICAgICAgICAgICAgMCAgICAgMCAgUEFTUyAgICBhIHZhbGlkIHJlY29yZCBtdXN0IGJlIGFjY2VwdGVkDQpTMDEgICAgc2hhMjU2IGRvZXMgbm90IHJlLWRlcml2ZSAgICAgICAgICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIHNjaGVtYS12YWxpZDsgY2F1Z2h0IG9ubHkgYnkgcmUtZGVyaXZhdGlvbg0KUzAyICAgIGJ5dGVfbGVuZ3RoIG1pc21hdGNoICAgICAgICAgICAgICAgICAgICAgICAgICAgMSAgICAgMSAgUEFTUyAgICBkZWNsYXJlZCBsZW5ndGggbXVzdCBtYXRjaCB0aGUgZGVjb2RlZCBwYXlsb2FkDQpTMDMgICAgZW5kZWRfYXQgcHJlY2VkZXMgc3RhcnRlZF9hdCAgICAgICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIG5hbWVkIGluZXhwcmVzc2libGUgYnkgdGhlIHNjaGVtYQ0KUzA0ICAgIGNhbGVuZGFyLWltcG9zc2libGUgdGltZXN0YW1wICAgICAgICAgICAgICAgICAgMSAgICAgMSAgUEFTUyAgICB0aGUgc2NoZW1hIHBhdHRlcm4gaXMgbGV4aWNhbCBvbmx5DQpTMDUgICAgcGF5bG9hZCBkb2VzIG5vdCBkZWNvZGUgICAgICAgICAgICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIHRoZSBiYXNlNjQgZ3JhbW1hciBpcyB0aGUgZmllbGQgdGhlIGJ5dGUgY29udHJhY3QgcmVzdHMgb24NClMwNiAgICBsb25lLUNSIGNvdW50IGRpc2FncmVlcyB3aXRoIGJ5dGVzICAgICAgICAgICAgIDEgICAgIDEgIFBBU1MgICAgYnl0ZS9saW5lLWVuZGluZyBkaXNjaXBsaW5lIHJlLWRlcml2ZWQNClMwNmIgICBDUkxGIHBheWxvYWQsIHRydWUgY291bnQgMCwgYWNjZXB0ZWQgICAgICAgICAgIDAgICAgIDAgIFBBU1MgICAgdGhlIGNvdW50ZXIgbXVzdCBub3QgZmlyZSBvbiBhIGNvcnJlY3QgcmVjb3JkDQpTMDcgICAgcGxhY2Vob2xkZXIgc3Vydml2ZXMgaXRzIG93biBjaGVjayAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIElOLTAyJ3MgbG9jdXMNClMwOCAgICBjb21wbGV0ZW5lc3MgYXJpdGhtZXRpYyBicm9rZW4gICAgICAgICAgICAgICAgIDEgICAgIDEgIFBBU1MgICAgbmFtZWQgaW5leHByZXNzaWJsZSBieSB0aGUgc2NoZW1hDQpTMDkgICAgcmVwbGF5ZWQgY2xhaW0gc2hvd3Mgbm90aGluZyAgICAgICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIHRoZSB1bmxhYmVsbGVkIGNyZWRpdCB0aGUgcGxhbiBmb3JiaWRzDQpTMTAgICAgY2FwdHVyZS10cnVzdGVkIHdpdGhvdXQgaXRzIGxhYmVsICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIGNhcHR1cmUtdHJ1c3RlZCBtdXN0IGJlIExBQkVMTEVEIHNvDQpTMTEgICAgb25lIE9TIGNsYWltZWQgYXMgdHdvIHBsYXRmb3JtcyAgICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIHN0cnVjdHVyYWxseSB2YWxpZDsgY2F1Z2h0IG9ubHkgYnkgcmUtZGVyaXZhdGlvbg0KUzExYiAgIGNsYWltIG9taXRzIGl0cyBvd24gcGxhdGZvcm0gICAgICAgICAgICAgICAgICAgMSAgICAgMSAgUEFTUyAgICBhIGNsYWltIGFib3V0IHJ1bnMgdGhlIHJlcG9ydCBkaWQgbm90IG1ha2UNClMxMiAgICBlbWl0dGVkIHJlcG9ydCB2ZXJpZmllcyBjbGVhbiAgICAgICAgICAgICAgICAgIDAgICAgIDAgIFBBU1MgICAgdGhlIHZhbGlkYXRvcidzIG93biBvdXRwdXQgbXVzdCBzdXJ2aXZlIGl0cyBvd24gcmUtcmVhZGluZw0KUzEzICAgIGJyb2tlbiByZXBvcnQgcmVmdXNlZCBvbiByZS1yZWFkICAgICAgICAgICAgICAgMSAgICAgMSAgUEFTUyAgICBJTi0wNTogcGFydGlhbCBjb3ZlcmFnZSBjbGFpbWluZyBjb21wbGV0ZW5lc3MNClMxNCAgICBmcm96ZW4gY29ycHVzIGNsZWFuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgIDAgIFBBU1MgICAgZXZlcnkgZGVjbGFyZWQgY2FzZSByZWFjaGVzIGl0cyByZWNvcmRlZCBkaXNwb3NpdGlvbiBhbmQgbG9jdXMgc2V0DQpTMTUgICAgdW5rbm93biBpbnRlcmZhY2UgcmVmdXNlZCAgICAgICAgICAgICAgICAgICAgICAyICAgICAyICBQQVNTICAgIGFuIGlucHV0IGVycm9yIGlzIGV4aXQgMiwgZGlzdGluY3QgZnJvbSBhIHJlamVjdGlvbg0KUzE2ICAgIG5vbi1KU09OIGlucHV0IHJlZnVzZWQgICAgICAgICAgICAgICAgICAgICAgICAgMiAgICAgMiAgUEFTUyAgICBleGl0IDIgZGlzdGluZ3Vpc2hlcyBhIGJyb2tlbiBpbnB1dCBmcm9tIGEgcmVqZWN0ZWQgcmVjb3JkDQpTMTcgICAgbm8gbW9kZSBpcyBhIHVzYWdlIGVycm9yICAgICAgICAgICAgICAgICAgICAgICAyICAgICAyICBQQVNTICAgIGV4YWN0bHkgb25lIG1vZGUgaXMgcmVxdWlyZWQNClMxOCAgICB0d28gbW9kZXMgaXMgYSB1c2FnZSBlcnJvciAgICAgICAgICAgICAgICAgICAgIDIgICAgIDIgIFBBU1MgICAgZXhhY3RseSBvbmUgbW9kZSBpcyByZXF1aXJlZA0KUzE5ICAgIHZlcmlmeS1jb3ZlcmFnZSByZWZ1c2VzIHRvIGVtaXQgICAgICAgICAgICAgICAgMiAgICAgMiAgUEFTUyAgICByZS1yZWFkaW5nIGEgcmVwb3J0IGlzIG5vdCB3cml0aW5nIG9uZQ0KUzIwICAgIGVtaXR0ZWQgcmVjb3JkIGlzIExGLW9ubHkgICAgICAgICAgICAgICAgICAgICAgMCAgICAgMCAgUEFTUyAgICBiaW5hcnkgd3JpdGU7IG5vIHBsYXRmb3JtIG5ld2xpbmUgdHJhbnNsYXRpb24gcmVhY2hlcyB0aGUgcmVjb3JkDQpTMjEgICAgc2NoZW1hIGxvYWRlciBuYW1lZCBpbiB0aGUgb3V0cHV0ICAgICAgICAgICAgICAwICAgICAwICBQQVNTICAgIGEgc3RydWN0dXJhbCBjbGFpbSB3aG9zZSBsb2FkZXIgaXMgdW5uYW1lZCBpcyB1bnJlcHJvZHVjaWJsZQ0KUzIyICAgIHNlZWQgZGlzY3JpbWluYXRlcyAoUzAwICE9IFMwMSkgICAgICAgICAgICAgICAgMCAgICAgMCAgUEFTUyAgICBvbmUgZmxpcHBlZCBieXRlIG11c3QgY2hhbmdlIHRoZSB2ZXJkaWN0LCBvciB0aGUgc3VpdGUgaXMgYmxpbmQNClMyMyAgICBHcmFwaFFMIHNwcmVhZCBpbiBhcmd2IGlzIGEgbWVudGlvbiAgICAgICAgICAgIDAgICAgIDAgIFBBU1MgICAgYSBjYXB0dXJlZCBjb21tYW5kIG1heSBjb250YWluIGFuIGVsbGlwc2lzIGJlY2F1c2UgdGhlIGNvbW1hbmQgZGlkDQpTMjQgICAgZWxpZGVkIGNvbW1hbmQgdGV4dCBzdGlsbCByZWplY3RzICAgICAgICAgICAgICAxICAgICAxICBQQVNTICAgIGFuIGVsbGlwc2lzIHN0YW5kaW5nIGFsb25lIHJlcGxhY2VzIG9taXR0ZWQgdGV4dCBhbmQgc3RheXMgYSBmaW5kaW5nDQpTMjUgICAgaWQgYWJicmV2aWF0aW9uIGluIG5vdGVzIGlzIGEgbWVudGlvbiAgICAgICAgICAwICAgICAwICBQQVNTICAgIGFuIGVsbGlwc2lzIGJvdW5kZWQgYnkgaWRlbnRpZmllciBjaGFyYWN0ZXJzIGFiYnJldmlhdGVzLCBpdCBkb2VzIG5vdCBlbGlkZQ0KUzI2ICAgIGVsbGlwc2lzIG91dHNpZGUgYSBxdW90aW5nIGZpZWxkIHJlamVjdHMgICAgICAgMSAgICAgMSAgUEFTUyAgICB0aGUgZXhlbXB0aW9uIGlzIHNjb3BlZCB0byBjb21tYW5kIGFuZCBjaXRhdGlvbiBsb2NpLCBub3QgdG8gdGhlIGRvY3VtZW50DQpTMjcgICAgbWFya2Rvd24gZ2F0ZSByZWNvcmQgaXMgcmVhZCAgICAgICAgICAgICAgICAgICAwICAgICAwICBQQVNTICAgIHRoZSBBRFItMDAyNiByZWNvcmQgZm9ybSBpdHMgb3duIGNvbnRyYWN0cyBtYW5kYXRlIG11c3QgYmUgcmVhZGFibGUNClMyOCAgICBpbnZhbGlkIGVtYmVkZGVkIHJlY29yZCByZWplY3RzICAgICAgICAgICAgICAgIDEgICAgIDEgIFBBU1MgICAgcmVhZGluZyBhIHJlY29yZCBpcyBub3QgYWNjZXB0aW5nIGl0OyB0aGUgc2NoZW1hIHN0aWxsIGdvdmVybnMNClMyOSAgICBtYXJrZG93biB3aXRob3V0IGEgYmxvY2sgaXMgYW4gaW5wdXQgZXJyb3IgICAgIDIgICAgIDIgIFBBU1MgICAgYSBicm9rZW4gaW5wdXQgbXVzdCBub3QgYmVjb21lIGEgcmVjb3JkIGJ5IGJlaW5nIG1hcmtkb3duDQpTMzAgICAgaGVhZGluZyB3aXRob3V0IGEgZmVuY2UgaXMgYW4gaW5wdXQgZXJyb3IgICAgICAyICAgICAyICBQQVNTICAgIGEgaGFsZi1mb3JtZWQgcmVjb3JkIGZhaWxzIGNsb3NlZCByYXRoZXIgdGhhbiB2YWxpZGF0aW5nIGFuIGVtcHR5IGRvY3VtZW50DQoNCnNjcmF0Y2ggZGlyZWN0b3J5ICAgICAgICAgICAgIDogb3V0c2lkZSBldmVyeSByZXBvc2l0b3J5ICh0ZW1wZmlsZS5ta2R0ZW1wKQ0KdmFsaWRhdG9yIHVuZGVyIHRlc3QgICAgICAgICAgOiBEOlxHaXRodWIgcmVwb1xHYXRlYnJhaWRcYmluXGdhdGVicmFpZC12YWxpZGF0ZS5weQ0KaW50ZXJwcmV0ZXIgICAgICAgICAgICAgICAgICAgOiBDOlxQeXRob24zMTJccHl0aG9uLmV4ZQ0KY29uZGl0aW9ucyBmYWlsZWQgICAgICAgICAgICAgOiAwDQpTRUxGVEVTVCBDTEVBTjogZXZlcnkgc2VlZGVkIGNvbmRpdGlvbiBwcm9kdWNlZCBpdHMgcmVxdWlyZWQgZXhpdCBzdGF0dXMNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "id     condition                                   want   got  verdict required observation\r\nS00    untouched capture accepted                     0     0  PASS    a valid record must be accepted\r\nS01    sha256 does not re-derive                      1     1  PASS    schema-valid; caught only by re-derivation\r\nS02    byte_length mismatch                           1     1  PASS    declared length must match the decoded payload\r\nS03    ended_at precedes started_at                   1     1  PASS    named inexpressible by the schema\r\nS04    calendar-impossible timestamp                  1     1  PASS    the schema pattern is lexical only\r\nS05    payload does not decode                        1     1  PASS    the base64 grammar is the field the byte contract rests on\r\nS06    lone-CR count disagrees with bytes             1     1  PASS    byte/line-ending discipline re-derived\r\nS06b   CRLF payload, true count 0, accepted           0     0  PASS    the counter must not fire on a correct record\r\nS07    placeholder survives its own check             1     1  PASS    IN-02's locus\r\nS08    completeness arithmetic broken                 1     1  PASS    named inexpressible by the schema\r\nS09    replayed claim shows nothing                   1     1  PASS    the unlabelled credit the plan forbids\r\nS10    capture-trusted without its label              1     1  PASS    capture-trusted must be LABELLED so\r\nS11    one OS claimed as two platforms                1     1  PASS    structurally valid; caught only by re-derivation\r\nS11b   claim omits its own platform                   1     1  PASS    a claim about runs the report did not make\r\nS12    emitted report verifies clean                  0     0  PASS    the validator's own output must survive its own re-reading\r\nS13    broken report refused on re-read               1     1  PASS    IN-05: partial coverage claiming completeness\r\nS14    frozen corpus clean                            0     0  PASS    every declared case reaches its recorded disposition and locus set\r\nS15    unknown interface refused                      2     2  PASS    an input error is exit 2, distinct from a rejection\r\nS16    non-JSON input refused                         2     2  PASS    exit 2 distinguishes a broken input from a rejected record\r\nS17    no mode is a usage error                       2     2  PASS    exactly one mode is required\r\nS18    two modes is a usage error                     2     2  PASS    exactly one mode is required\r\nS19    verify-coverage refuses to emit                2     2  PASS    re-reading a report is not writing one\r\nS20    emitted record is LF-only                      0     0  PASS    binary write; no platform newline translation reaches the record\r\nS21    schema loader named in the output              0     0  PASS    a structural claim whose loader is unnamed is unreproducible\r\nS22    seed discriminates (S00 != S01)                0     0  PASS    one flipped byte must change the verdict, or the suite is blind\r\nS23    GraphQL spread in argv is a mention            0     0  PASS    a captured command may contain an ellipsis because the command did\r\nS24    elided command text still rejects              1     1  PASS    an ellipsis standing alone replaces omitted text and stays a finding\r\nS25    id abbreviation in notes is a mention          0     0  PASS    an ellipsis bounded by identifier characters abbreviates, it does not elide\r\nS26    ellipsis outside a quoting field rejects       1     1  PASS    the exemption is scoped to command and citation loci, not to the document\r\nS27    markdown gate record is read                   0     0  PASS    the ADR-0026 record form its own contracts mandate must be readable\r\nS28    invalid embedded record rejects                1     1  PASS    reading a record is not accepting it; the schema still governs\r\nS29    markdown without a block is an input error     2     2  PASS    a broken input must not become a record by being markdown\r\nS30    heading without a fence is an input error      2     2  PASS    a half-formed record fails closed rather than validating an empty document\r\n\r\nscratch directory             : outside every repository (tempfile.mkdtemp)\r\nvalidator under test          : D:\\Github repo\\Gatebraid\\bin\\gatebraid-validate.py\r\ninterpreter                   : C:\\Python312\\python.exe\r\nconditions failed             : 0\r\nSELFTEST CLEAN: every seeded condition produced its required exit status\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T05:15:01.706336Z",
+  "ended_at": "2026-08-22T05:15:19.283582Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T5 Windows: the selftest, now carrying S23-S30 covering both directions of Task A and both directions of Task B."
+}

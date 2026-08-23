@@ -86,6 +86,50 @@ RFC3339 = re.compile(
 # ellipsis fillers without this file ever needing to carry an example of one.
 PLACEHOLDER = re.compile(r"<[^>]{1,64}>|\.{3}|\bTBD\b|\bTODO\b")
 
+# ---- the mention test (friction #169) ------------------------------------
+# The rule above is correct about what it matches and wrong about what that
+# means in a field whose job is to QUOTE foreign text. A captured command line
+# may contain an ellipsis because the command did; a citation may abbreviate an
+# identifier. Neither is a promise standing in for a measurement.
+#
+# A hit is reclassified as a MENTION only when BOTH hold:
+#   (a) its locus is a command or citation field, and
+#   (b) the hit matches one of two NAMED quoting forms.
+# Everything else stays a finding. Locus alone is deliberately not enough: the
+# same `/checks/N/command` locus carries GraphQL spreads that must be excused
+# and elided command citations that must NOT be, and only the form separates
+# the two populations.
+#
+# Mentions are recorded as a labelled property, never silently dropped.
+MENTION_LOCUS = (
+    re.compile(r"^/invocation/argv/\d+$"),      # a captured command's argv
+    re.compile(r"^/checks/\d+/command$"),       # a gate record's command citation
+    re.compile(r"^/notes$"),                    # the annotation / citation field
+)
+
+# Form 1: a GraphQL inline-fragment spread, `... on TypeName`.
+MENTION_SPREAD = re.compile(r"\.{3}\s+on\s+[A-Za-z_][A-Za-z0-9_]*")
+# Form 2: an intra-token identifier abbreviation - an ellipsis BOUNDED by
+# identifier characters rather than standing alone as a token. An ellipsis with
+# whitespace or punctuation beside it is standing in for omitted text and stays
+# a finding, which is what keeps an elided command citation reportable.
+MENTION_ABBREV = re.compile(r"[A-Za-z0-9_]\.{3}[A-Za-z0-9_]")
+
+
+def _is_mention_locus(locus):
+    """Is this a field whose job is to quote foreign text?"""
+    return any(rx.match(locus) for rx in MENTION_LOCUS)
+
+
+def _is_mention(text, match):
+    """Is this PLACEHOLDER hit one of the two named quoting forms?"""
+    if match.group(0) != "...":
+        return False            # angle-bracket stand-ins and TBD/TODO never qualify
+    if MENTION_SPREAD.match(text, match.start()):
+        return True
+    return bool(MENTION_ABBREV.match(text, max(0, match.start() - 1)))
+
+
 
 # ----------------------------------------------------------------- loader
 
@@ -268,8 +312,15 @@ def check_timestamps(doc, props, findings, fields, rule_prefix):
 
 
 def check_placeholders(doc, props, findings):
-    """No placeholder survives into a field that should carry a measurement."""
+    """No placeholder survives into a field that should carry a measurement.
+
+    A hit inside a command or citation field that matches one of the two named
+    quoting forms is a MENTION rather than an elision (friction #169). Mentions
+    are counted and labelled rather than dropped, so the exemption is visible in
+    the record it applies to.
+    """
     hits = []
+    mentions = []
 
     def walk(node, path):
         if isinstance(node, dict):
@@ -278,13 +329,26 @@ def check_placeholders(doc, props, findings):
         elif isinstance(node, list):
             for i, v in enumerate(node):
                 walk(v, path + [i])
-        elif isinstance(node, str) and PLACEHOLDER.search(node):
-            hits.append(_pointer(*path))
+        elif isinstance(node, str):
+            locus = _pointer(*path)
+            excused = _is_mention_locus(locus)
+            flagged = False
+            for m in PLACEHOLDER.finditer(node):
+                if excused and _is_mention(node, m):
+                    mentions.append(locus)
+                elif not flagged:
+                    hits.append(locus)
+                    flagged = True
 
     walk(doc, [])
     props.append(Prop("no-placeholder-survives", "", "semantic",
                       "pass" if not hits else "fail",
-                      note="structural placeholder scan over every string value"))
+                      note="structural placeholder scan over every string value; a hit "
+                           "in a command or citation field matching a named quoting "
+                           "form is classified as a mention, not an elision"))
+    props.append(Prop("placeholder-mentions-classified", "", "semantic", "pass",
+                      note="quoting-form mentions excused at command/citation loci: %d"
+                           % len(mentions)))
     for h in hits:
         findings.append(Finding(h, "placeholder-survives-its-own-check"))
 
@@ -542,13 +606,64 @@ def write_json(path, obj):
 
 # ------------------------------------------------------------------- modes
 
+# The ADR-0026 gate record is markdown carrying its gatebraid/gate-run@2 block in
+# a fenced yaml section. Reading only JSON left three of every Slice's four gate
+# records outside this validator's reach (friction #170): the record form the
+# contracts mandate was the one form it could not open.
+MD_HEADING = re.compile(r"^##[ \t]+gatebraid-metadata[ \t]*$", re.M)
+MD_FENCE = re.compile(r"^```[ \t]*ya?ml[ \t]*\r?\n(.*?)^```[ \t]*$", re.M | re.S)
+
+
+def load_yaml_document(text, path):
+    """Extract and parse the `## gatebraid-metadata` block of a markdown record.
+
+    The YAML loader is imported HERE, inside the function and guarded, for the
+    same reason `load_schema_validator` imports the JSON Schema loader here: this
+    file's module level stays standard-library only, and the Slice's frozen
+    negative criterion N3 forbids changing that to fix a defect.
+
+    Returns None when the text carries no metadata heading - the caller then
+    reports the original input error, so a genuinely broken input stays an input
+    error rather than becoming a record.
+    """
+    m = MD_HEADING.search(text)
+    if not m:
+        return None
+    fence = MD_FENCE.search(text, m.end())
+    if not fence:
+        raise InputError(
+            "STRUCTURE: %s has a `## gatebraid-metadata` heading but no fenced yaml "
+            "block under it" % path)
+    try:
+        import yaml
+    except ImportError as exc:  # pragma: no cover - environment failure
+        raise InputError("STRUCTURE: the YAML loader is unavailable (%s)" % exc)
+    try:
+        doc = yaml.safe_load(fence.group(1))
+    except Exception as exc:
+        raise InputError("STRUCTURE: %s carries an unparseable metadata block (%s)"
+                         % (path, exc))
+    return doc
+
+
+
 def validate_document(path):
     with open(path, "rb") as fh:
         raw = fh.read()
     try:
-        doc = json.loads(raw.decode("utf-8"))
-    except (UnicodeDecodeError, ValueError) as exc:
-        raise InputError("STRUCTURE: %s is not UTF-8 JSON (%s)" % (path, exc))
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise InputError("STRUCTURE: %s is not UTF-8 (%s)" % (path, exc))
+    try:
+        doc = json.loads(text)
+        source_form = "json"
+    except ValueError as exc:
+        # Not JSON. It may still be an ADR-0026 markdown record; if it is not,
+        # the original input error stands and the exit status stays 2.
+        doc = load_yaml_document(text, path)
+        if doc is None:
+            raise InputError("STRUCTURE: %s is not UTF-8 JSON (%s)" % (path, exc))
+        source_form = "markdown"
     if not isinstance(doc, dict) or "schema" not in doc:
         raise InputError("STRUCTURE: %s declares no `schema` and cannot be re-derived" % path)
     schema_id = doc["schema"]

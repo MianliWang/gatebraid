@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-record-falsify-abbrev-sha",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "docs/evidence/gatebraid/P2-S3/checks/g0_record_validation.py",
+      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/0846d62b-0514-43be-8d3b-c1ee296ee47c/scratchpad/seedR-abbrev-sha.md",
+      "schema/gate-run-v2.schema.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 3,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 884,
+      "sha256": "0cf7f930c74a2aca72c9624a0a0d30dd309a7f25e5c244f844f28cbc0b4357bb",
+      "data": "eyJsb2FkZXIiOiAiUHlZQU1MIDYuMC4yIC8ganNvbnNjaGVtYSA0LjIzLjAgLyBEcmFmdDIwMjAxMlZhbGlkYXRvciIsICJpbnRlcnByZXRlciI6ICJDOlxcUHl0aG9uMzEyXFxweXRob24uZXhlIiwgInJlY29yZCI6ICJDOi9Vc2Vycy9yb3VnaC9BcHBEYXRhL0xvY2FsL1RlbXAvY2xhdWRlL2QtLUdpdGh1Yi1yZXBvLUdhdGVicmFpZC8wODQ2ZDYyYi0wNTE0LTQzYmUtOGQzYi1jMWVlMjk2ZWU0N2Mvc2NyYXRjaHBhZC9zZWVkUi1hYmJyZXYtc2hhLm1kIiwgInJlY29yZF9ieXRlcyI6IDI0ODU4LCAicmVjb3JkX3NoYTI1NiI6ICJjYTliMDllYzgxYzZiNmNlMWRhZWUzOWRjZTE0YmJiNTkzNjA3ZjIwYzkyZjkzM2U2MjE2ZTNmYWVjNTQ5OTVhIiwgImNybGZfYnl0ZXMiOiAwLCAiZmVuY2VzX3VuZGVyX2hlYWRpbmciOiAxLCAiZGVjbGFyZWRfc2NoZW1hIjogImdhdGVicmFpZC9nYXRlLXJ1bkAyIiwgImZpbGVfaWQiOiAiZ2F0ZWJyYWlkL2dhdGUtcnVuQDIiLCAiaWRfbWF0Y2giOiB0cnVlLCAiZ2F0ZSI6IDAsICJyZXN1bHQiOiAicGFzc2VkIiwgImJvb3RzdHJhcF9leGNlcHRpb25fcHJlc2VudCI6IGZhbHNlLCAiYmFzZV9zaGFfbGVuIjogNywgImNoZWNrc190b3RhbCI6IDI5LCAiY2hlY2tzX3dpdGhfb3V0cHV0X3JlZiI6IDI5LCAiYXBwcm92YWxzIjogW3sidHlwZSI6ICJTdGF0ZSBQYWNrZXQgQXBwcm92YWwiLCAiYXV0aG9yIjogIk1pYW5saVdhbmcifV0sICJzdGFydGVkX2F0X2lzX3N0ciI6IHRydWUsICJlbmRlZF9hdF9pc19zdHIiOiB0cnVlLCAiZXJyb3JfY291bnQiOiAxLCAiZXJyb3JzIjogW3sicGF0aCI6IFsiYmFzZV9zaGEiXSwgIm1lc3NhZ2UiOiAiJzYzYzg0MDEnIGRvZXMgbm90IG1hdGNoICdeWzAtOWEtZl17NDB9JCcifV19DQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"loader\": \"PyYAML 6.0.2 / jsonschema 4.23.0 / Draft202012Validator\", \"interpreter\": \"C:\\\\Python312\\\\python.exe\", \"record\": \"C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/0846d62b-0514-43be-8d3b-c1ee296ee47c/scratchpad/seedR-abbrev-sha.md\", \"record_bytes\": 24858, \"record_sha256\": \"ca9b09ec81c6b6ce1daee39dce14bbb593607f20c92f933e6216e3faec54995a\", \"crlf_bytes\": 0, \"fences_under_heading\": 1, \"declared_schema\": \"gatebraid/gate-run@2\", \"file_id\": \"gatebraid/gate-run@2\", \"id_match\": true, \"gate\": 0, \"result\": \"passed\", \"bootstrap_exception_present\": false, \"base_sha_len\": 7, \"checks_total\": 29, \"checks_with_output_ref\": 29, \"approvals\": [{\"type\": \"State Packet Approval\", \"author\": \"MianliWang\"}], \"started_at_is_str\": true, \"ended_at_is_str\": true, \"error_count\": 1, \"errors\": [{\"path\": [\"base_sha\"], \"message\": \"'63c8401' does not match '^[0-9a-f]{40}$'\"}]}\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T03:32:25.005535Z",
+  "ended_at": "2026-08-22T03:32:25.375756Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Falsify-before-trust for the gate-run@2 record validator (ADR-0028 section 4), seed seedR-abbrev-sha. Each seed targets a documented @2 delta or required property and must be rejected before the record's own validation pass is trusted."
+}

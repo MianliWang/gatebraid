@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "Q3-real",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "issue",
+      "view",
+      "12",
+      "--repo",
+      "MianliWang/gatebraid",
+      "--json",
+      "number,state,title,url"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 197,
+      "sha256": "5f2f5f084d2e779c2481f461bbf3df796782f7b0697484632ba4ff6420530242",
+      "data": "eyJudW1iZXIiOjEyLCJzdGF0ZSI6Ik9QRU4iLCJ0aXRsZSI6IlAyLVMzIOKAlCBnYXRlYnJhaWQtdmFsaWRhdGUgcmVwYWlyOiBoZXVyaXN0aWMgc2NvcGUsIG1hcmtkb3duIHJlY29yZHMsIE4yIHJlLXZhbGlkYXRpb24gY29tcGxldGlvbiIsInVybCI6Imh0dHBzOi8vZ2l0aHViLmNvbS9NaWFubGlXYW5nL2dhdGVicmFpZC9pc3N1ZXMvMTIifQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"number\":12,\"state\":\"OPEN\",\"title\":\"P2-S3 — gatebraid-validate repair: heuristic scope, markdown records, N2 re-validation completion\",\"url\":\"https://github.com/MianliWang/gatebraid/issues/12\"}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T03:09:24.530908Z",
+  "ended_at": "2026-08-22T03:09:25.016814Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Packet row Q3: the Slice issue. Non-zero or state != OPEN -> STOP."
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T3-wsl",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl",
+      "-e",
+      "python3",
+      "docs/evidence/gatebraid/P2-S3/checks/g1_sweep.py",
+      "python3",
+      "docs/evidence/gatebraid/P2-S1/gate1.md",
+      "docs/evidence/gatebraid/P2-S1/gate2.md",
+      "docs/evidence/gatebraid/P2-S1/gate3.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 187,
+      "sha256": "2b179ee724bbd1862d1673aa82b9b546d1d469279895f35a6b2ae13abf806637",
+      "data": "aW50ZXJwcmV0ZXIgICA6IHB5dGhvbjMKZG9jdW1lbnRzICAgICA6IDMKZ2F0ZTMubWQgcmM9MQogICBGMDAxICAgICAvY2hlY2tzLzEvY29tbWFuZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyLXN1cnZpdmVzLWl0cy1vd24tY2hlY2sKU1dFRVAgQ09NUExFVEUgcmVqZWN0ZWRfb3JfZXJyb3JlZD0xCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "interpreter   : python3\ndocuments     : 3\ngate3.md rc=1\n   F001     /checks/1/command                              placeholder-survives-its-own-check\nSWEEP COMPLETE rejected_or_errored=1\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-22T05:14:35.752750Z",
+  "ended_at": "2026-08-22T05:14:36.712032Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "T3 WSL half."
+}
