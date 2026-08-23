@@ -1,0 +1,256 @@
+{
+  "corpus": "state-pipeline",
+  "corpus_version": "v1.2",
+  "frozen_by": "Frozen at O0's start by the operator's Batch Approval on MianliWang/gatebraid#14, comment id 5386631542, executed as batch O0-B1; the freeze commit SHA is recorded in that batch's report. This is the second of the two freeze points ADR-0031 decision 2 adds, and it is a SEPARATE freeze from the N1E correct-course that declared corpus v1.1 — which is why this corpus reads v1.2 while the five corpora frozen at or before N1E remain at v1.1. THE ASYMMETRY IS DELIBERATE AND IS DISCLOSED RATHER THAN RESOLVED: the N1E precedent moved every corpus's version together in one commit, and doing that here would have touched five EXPECTATIONS.json files outside the four-path set this batch's approval fixes, which the approval makes a STOP rather than a judgment call. `corpus_version` is descriptive metadata that fixtures/run-corpus.py neither reads nor compares across corpora, so the asymmetry costs no assertion; it is carried to the batch's independent review for ruling.",
+  "description": "Expected outcomes for the thirteen state-pipeline items of M3-PLAN.md §6, plus the gatebraid/snapshot@1 schema's own valid seed set. Every locus below was MEASURED against the committed schema by running the validator and recording what fired, not asserted from reading; the loci were then re-derived independently by fixtures/run-corpus.py, which requires the observed set to EQUAL the recorded set in both directions. WHY THIS CORPUS COULD NOT EXIST BEFORE NOW, in one line, with the detail left where it lives: all thirteen items assert tool outcomes against a snapshot-document schema that did not exist, and fixtures/DETERMINACY-REPORT.md is the single home of the item-by-item classification, its falsification case and the counts — this manifest references it and restates none of it, because an enumeration copied into a second home drifts. ADR-0031 decision 2 is the authority for freezing them here, at O0's start, against the schema O0 defines as its own first deliverable. THE FOUR VALID CASES ARE NOT §6 ITEMS. They are the schema's seed positives, required because a conditional exercised only by negative cases would pass every one of them by rejecting everything — the lesson recorded at GR2-07. They are numbered in this corpus's own sequence and carry no SP designation, so no reader can take them for items the catalog owes. The thirteen SP items appear here EXACTLY as classified: none invented, none dropped, each named by its own designation in the `class` and `source` fields and in its filename, following the convention the instruments corpus set at N1E.",
+  "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
+  "cases": [
+    {
+      "id": "SP1-01",
+      "fixture": "valid-canonical-snapshot.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "valid",
+      "class": "healthy read, canonical shape",
+      "source": "CORPUS-v1-PLAN.md §2 — the positive control every negative is measured against.",
+      "expect_errors": []
+    },
+    {
+      "id": "SP1-02",
+      "fixture": "valid-degraded-all-undecidable.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "valid",
+      "class": "fail-closed, positive arm",
+      "source": "M3-PLAN.md §2 O0 P0-1. Added for the reason GR2-07 was: a conditional exercised only by negative cases would pass them all by rejecting everything. This is the degraded document that MUST be accepted.",
+      "expect_errors": []
+    },
+    {
+      "id": "SP1-03",
+      "fixture": "valid-non-slice-item-excluded.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "valid",
+      "class": "non-Slice exclusion, positive arm",
+      "source": "M3-PLAN.md §2 O0 P0-4 'verdicts only for items carrying Slice metadata' — the excluded-with-reason row that must validate.",
+      "expect_errors": []
+    },
+    {
+      "id": "SP1-04",
+      "fixture": "valid-aborted-item-not-startable.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "valid",
+      "class": "Aborted candidacy, positive arm",
+      "source": "ADR-0025 decision 8. An Aborted item may be carried with a non-startable verdict; only `startable` is refused.",
+      "expect_errors": []
+    },
+    {
+      "id": "SP1-05",
+      "fixture": "sp01-non-zero-exit-swallowed.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-01 auth failure",
+      "source": "CORPUS-v1-PLAN.md §2 SP-01; M3-PLAN.md §6 'auth failure'; ADR-0029 decision 2 P0-1 (a non-zero gh exit folded into None), verified at source.",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "sources/0/exit_code",
+          "schema_path": "properties/sources/items/allOf/0/then/properties/exit_code/not"
+        },
+        {
+          "keyword": "required",
+          "path": "sources/0",
+          "schema_path": "properties/sources/items/allOf/0/then/required",
+          "property": "failure_detail"
+        }
+      ]
+    },
+    {
+      "id": "SP1-06",
+      "fixture": "sp02-permission-read-as-no-dependency.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-02 permission failure",
+      "source": "CORPUS-v1-PLAN.md §2 SP-02; M3-PLAN.md §6 'permission failure'; the 403-read-as-no-such-dependency shape.",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "sources/0/status",
+          "schema_path": "properties/sources/items/allOf/1/then/properties/status/not"
+        }
+      ]
+    },
+    {
+      "id": "SP1-07",
+      "fixture": "sp03-rate-limit-named-as-permission.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-03 rate limit",
+      "source": "CORPUS-v1-PLAN.md §2 SP-03 'rate-limit state named distinctly from permission'; M3-PLAN.md §6 'rate limit'.",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "sources/0/status",
+          "schema_path": "properties/sources/items/allOf/2/then/properties/status/const"
+        }
+      ]
+    },
+    {
+      "id": "SP1-08",
+      "fixture": "sp04-partial-result-reported-complete.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-04 network / server error",
+      "source": "CORPUS-v1-PLAN.md §2 SP-04 'partial result returned as complete'; M3-PLAN.md §6 'network/server error'.",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "sources/0/complete",
+          "schema_path": "properties/sources/items/allOf/3/then/properties/complete/const"
+        }
+      ]
+    },
+    {
+      "id": "SP1-09",
+      "fixture": "sp05-parse-failure-flattened-to-verdict.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-05 malformed GitHub response",
+      "source": "CORPUS-v1-PLAN.md §2 SP-05 'parse exception caught and flattened to empty'; M3-PLAN.md §6 'malformed GitHub response'.",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "items/0/verdict",
+          "schema_path": "allOf/0/then/properties/items/items/properties/verdict/const"
+        }
+      ]
+    },
+    {
+      "id": "SP1-10",
+      "fixture": "sp06-incomplete-without-bounded-flag.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-06 missing dependency page",
+      "source": "CORPUS-v1-PLAN.md §2 SP-06 'bounded-snapshot flag + fail closed at the cap'; M3-PLAN.md §2 O0 P0-3.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "sources/0",
+          "schema_path": "properties/sources/items/allOf/4/then/required",
+          "property": "bounded"
+        }
+      ]
+    },
+    {
+      "id": "SP1-11",
+      "fixture": "sp07-completeness-asserted-with-next-page.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-07 truncated connections",
+      "source": "CORPUS-v1-PLAN.md §2 SP-07 'completeness asserted without pagination'; ADR-0029 decision 2 P0-3, verified at source.",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "sources/0/complete",
+          "schema_path": "properties/sources/items/allOf/5/then/properties/complete/const"
+        }
+      ]
+    },
+    {
+      "id": "SP1-12",
+      "fixture": "sp08-unknown-state-treated-unblocked.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-08 unknown Issue state",
+      "source": "CORPUS-v1-PLAN.md §2 SP-08 'unknown state != OPEN treated as unblocked'; ADR-0029 decision 2 P0-4, verified at source.",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "items/0/verdict",
+          "schema_path": "properties/items/items/allOf/0/then/properties/verdict/const"
+        }
+      ]
+    },
+    {
+      "id": "SP1-13",
+      "fixture": "sp09-verdict-emitted-for-non-slice-item.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-09 non-Slice Project item",
+      "source": "CORPUS-v1-PLAN.md §2 SP-09 'a verdict emitted for a non-Slice row'; M3-PLAN.md §2 O0 P0-4.",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "items/0",
+          "schema_path": "properties/items/items/allOf/1/then/not"
+        },
+        {
+          "keyword": "required",
+          "path": "items/0",
+          "schema_path": "properties/items/items/allOf/1/then/required",
+          "property": "excluded_reason"
+        }
+      ]
+    },
+    {
+      "id": "SP1-14",
+      "fixture": "sp10-snapshot-missing-schema-key.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-10 missing snapshot schema / version",
+      "source": "CORPUS-v1-PLAN.md §2 SP-10 'consumed as if current'. The item that presupposed this schema: DETERMINACY-REPORT.md §2 records its need as 'the very schema it tests for'.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "(root)",
+          "schema_path": "required",
+          "property": "schema"
+        }
+      ]
+    },
+    {
+      "id": "SP1-15",
+      "fixture": "sp11-one-direction-dependency-loss.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-11 one-direction dependency loss",
+      "source": "CORPUS-v1-PLAN.md §2 SP-11 'one direction trusted without the cross-check'; M3-PLAN.md §2 O0 P0-4 'both dependency directions cross-checked'.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "items/0/dependencies",
+          "schema_path": "properties/items/items/properties/dependencies/required",
+          "property": "blocking"
+        }
+      ]
+    },
+    {
+      "id": "SP1-16",
+      "fixture": "sp12-soft-dependency-silently-ignored.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-12 soft Gate-1/Gate-2 dependency unsatisfied",
+      "source": "CORPUS-v1-PLAN.md §2 SP-12 'silent ignore'; M3-PLAN.md §2 O0 P0-4 'declared soft dependencies parsed or the output says it did not'.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "items/0/soft_dependencies",
+          "schema_path": "properties/items/items/properties/soft_dependencies/required",
+          "property": "parse_status"
+        }
+      ]
+    },
+    {
+      "id": "SP1-17",
+      "fixture": "sp13-aborted-item-presented-as-ready.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "SP-13 aborted item presented as ready",
+      "source": "CORPUS-v1-PLAN.md §2 SP-13; ADR-0025 decision 8's candidacy intersection, from measured friction #85.",
+      "expect_errors": [
+        {
+          "keyword": "not",
+          "path": "items/0/verdict",
+          "schema_path": "properties/items/items/allOf/5/then/properties/verdict/not"
+        }
+      ]
+    }
+  ]
+}
