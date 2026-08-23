@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-commit-keywords",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python",
+      "-B",
+      "docs/evidence/gatebraid/P2-S2/checks/closing-keyword-scan.py",
+      "--range",
+      "63c8401f5df6ba446cf002232fcb280673c28e00..870a0ca026959014bf5bf0a14eaafefc104e6026"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 741,
+      "sha256": "c0a2c2a0eef93dc00c00b40e7fb3a44395d295caf6c13a9eb90fce2b60021201",
+      "data": "U0VBUkNIRUQ6CiAgZ2l0IHJhbmdlIDYzYzg0MDFmNWRmNmJhNDQ2Y2YwMDIyMzJmY2IyODA2NzNjMjhlMDAuLjg3MGEwY2EwMjY5NTkwMTRiZjViZjBhMTRlYWFmZWZjMTA0ZTYwMjYgLS0gNyBjb21taXQgbWVzc2FnZShzKSwgaGVhZGxpbmUgYW5kIGJvZHkKUEFUVEVSTiA6IGtleXdvcmQtdGhlbi1yZWZlcmVuY2UsIGtleXdvcmQgaW4ge2Nsb3NlLGNsb3NlcyxjbG9zZWQsZml4LGZpeGVzLGZpeGVkLHJlc29sdmUscmVzb2x2ZXMscmVzb2x2ZWR9LCBhbnkgY2FzZTsKICAgICAgICAgIHJlZmVyZW5jZSBpbiB7I24sIG93bmVyL3JlcG8jbiwgPHVybCBlbmRpbmcgaXNzdWVzL24+fS4KICAgICAgICAgIFRoZSBiYXJlIHRva2VuIGlzIE5PVCBtYXRjaGVkOiBhIGNvbnZlbnRpb25hbC1jb21taXQgZml4KHNjb3BlKTogcHJlZml4CiAgICAgICAgICByZWZlcmVuY2VzIG5vdGhpbmcgYW5kIGlzIG5vdCBhIG1hdGNoLgoKQ0xPU0lORy1LRVlXT1JEIE1BVENIRVMgKGRlZnVzZWQgZm9yIHRoZSByZWNvcmQpOiAwCiAgKG5vbmUgLS0gdGhlIHplcm8gYWJvdmUgaXMgb3ZlciB0aGUgc291cmNlcyBuYW1lZCBhdCB0aGUgdG9wIG9mIHRoaXMgb3V0cHV0KQoKUExBSU4gUkVGRVJFTkNFUyAocGVybWl0dGVkOyB0aGlzIGlzIGhvdyBhIFNsaWNlIGlzc3VlIGlzIGxpbmtlZCk6IDAKICAobm9uZSkKClZFUkRJQ1Q6IFBBU1MgLS0gbm8gY2xvc2luZyBrZXl3b3JkIHByZWNlZGVzIGFueSBpc3N1ZSByZWZlcmVuY2UK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "SEARCHED:\n  git range 63c8401f5df6ba446cf002232fcb280673c28e00..870a0ca026959014bf5bf0a14eaafefc104e6026 -- 7 commit message(s), headline and body\nPATTERN : keyword-then-reference, keyword in {close,closes,closed,fix,fixes,fixed,resolve,resolves,resolved}, any case;\n          reference in {#n, owner/repo#n, <url ending issues/n>}.\n          The bare token is NOT matched: a conventional-commit fix(scope): prefix\n          references nothing and is not a match.\n\nCLOSING-KEYWORD MATCHES (defused for the record): 0\n  (none -- the zero above is over the sources named at the top of this output)\n\nPLAIN REFERENCES (permitted; this is how a Slice issue is linked): 0\n  (none)\n\nVERDICT: PASS -- no closing keyword precedes any issue reference\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-23T04:28:36.185909Z",
+  "ended_at": "2026-08-23T04:28:36.427969Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 3 closure precondition (b), commit-message half, ADR-0018 sec 1. Run BEFORE the push: contract row 2b makes a closing keyword in a commit message an uncorrectable error, because amending history is a force-push and this gate prohibits it. The checker is P2-S2's committed instrument, reused per ADR-0028 sec 4 and falsified in-window on seeded input carrying all three reference forms before this run was trusted."
+}

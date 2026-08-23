@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-pr-closing-refs",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "pr",
+      "view",
+      "13",
+      "--repo",
+      "MianliWang/gatebraid",
+      "--json",
+      "number,state,isDraft,baseRefName,headRefName,headRefOid,closingIssuesReferences,url,title"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 345,
+      "sha256": "0bd89a3fea46db74d3b9ca752f139713ed3827f9443a95aef72865ce424bc7e2",
+      "data": "eyJiYXNlUmVmTmFtZSI6Im1haW4iLCJjbG9zaW5nSXNzdWVzUmVmZXJlbmNlcyI6W10sImhlYWRSZWZOYW1lIjoic2xpY2UvUDItUzMiLCJoZWFkUmVmT2lkIjoiODcwYTBjYTAyNjk1OTAxNGJmNWJmMGExNGVhYWZlZmMxMDRlNjAyNiIsImlzRHJhZnQiOmZhbHNlLCJudW1iZXIiOjEzLCJzdGF0ZSI6Ik9QRU4iLCJ0aXRsZSI6IlAyLVMzIOKAlCBnYXRlYnJhaWQtdmFsaWRhdGUgcmVwYWlyOiBoZXVyaXN0aWMgc2NvcGUsIG1hcmtkb3duIHJlY29yZHMsIE4yIHJlLXZhbGlkYXRpb24gY29tcGxldGlvbiIsInVybCI6Imh0dHBzOi8vZ2l0aHViLmNvbS9NaWFubGlXYW5nL2dhdGVicmFpZC9wdWxsLzEzIn0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"baseRefName\":\"main\",\"closingIssuesReferences\":[],\"headRefName\":\"slice/P2-S3\",\"headRefOid\":\"870a0ca026959014bf5bf0a14eaafefc104e6026\",\"isDraft\":false,\"number\":13,\"state\":\"OPEN\",\"title\":\"P2-S3 — gatebraid-validate repair: heuristic scope, markdown records, N2 re-validation completion\",\"url\":\"https://github.com/MianliWang/gatebraid/pull/13\"}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-23T04:30:54.531197Z",
+  "ended_at": "2026-08-23T04:30:55.094866Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 3 closure precondition (b), pull-request half: GitHub's own view of what this pull request would close. Empty is the criterion."
+}

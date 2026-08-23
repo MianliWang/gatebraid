@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-lease-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($item:ID!){ node(id:$item){ ... on ProjectV2Item { content{ ... on Issue { number state labels(first:20){nodes{name}} } } fieldValues(first:50){ nodes{ ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name } } } ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } } } } } } }",
+      "-F",
+      "item=PVTI_lAHOBRofUs4Beum7zg3i6M0"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1285,
+      "sha256": "c62227769fb41652585fa7989eabb874a3ed45837de33630b065b58a462220b2",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiY29udGVudCI6eyJudW1iZXIiOjEyLCJzdGF0ZSI6Ik9QRU4iLCJsYWJlbHMiOnsibm9kZXMiOltdfX0sImZpZWxkVmFsdWVzIjp7Im5vZGVzIjpbe30seyJ0ZXh0IjoiUDItUzMg4oCUIGdhdGVicmFpZC12YWxpZGF0ZSByZXBhaXI6IGhldXJpc3RpYyBzY29wZSwgbWFya2Rvd24gcmVjb3JkcywgTjIgcmUtdmFsaWRhdGlvbiBjb21wbGV0aW9uIiwiZmllbGQiOnsibmFtZSI6IlRpdGxlIn19LHsibmFtZSI6IlRvZG8iLCJvcHRpb25JZCI6ImY3NWFkODQ2IiwiZmllbGQiOnsibmFtZSI6IlN0YXR1cyJ9fSx7Im5hbWUiOiJOZWVkcyBSZXZpZXciLCJvcHRpb25JZCI6IjliOGE1YTYyIiwiZmllbGQiOnsibmFtZSI6IldvcmtmbG93In19LHsibmFtZSI6IkcxIHBhc3NlZCIsIm9wdGlvbklkIjoiMmEyZmYwMGUiLCJmaWVsZCI6eyJuYW1lIjoiR2F0ZSJ9fSx7Im5hbWUiOiLigJQiLCJvcHRpb25JZCI6IjQ1MGVlMTMwIiwiZmllbGQiOnsibmFtZSI6Ik5leHQgQXBwcm92YWwifX0seyJuYW1lIjoibWl4ZWQtc2VlLXByb3NlIiwib3B0aW9uSWQiOiIxZTQzZWM4NSIsImZpZWxkIjp7Im5hbWUiOiJFbnZpcm9ubWVudCJ9fSx7Im5hbWUiOiJDbGF1ZGUgTGVhZCIsIm9wdGlvbklkIjoiY2U4NTljN2QiLCJmaWVsZCI6eyJuYW1lIjoiRXhlY3V0b3IifX0seyJuYW1lIjoibG93Iiwib3B0aW9uSWQiOiJlMjkxMjQ5YyIsImZpZWxkIjp7Im5hbWUiOiJSaXNrIn19LHsidGV4dCI6IlMyIiwiZmllbGQiOnsibmFtZSI6IlN0YWdlIn19LHsidGV4dCI6IlAyIiwiZmllbGQiOnsibmFtZSI6IlBoYXNlIn19LHsidGV4dCI6IlAyLVMzIiwiZmllbGQiOnsibmFtZSI6IlNsaWNlIn19LHsidGV4dCI6IjYzYzg0MDFmNWRmNmJhNDQ2Y2YwMDIyMzJmY2IyODA2NzNjMjhlMDAiLCJmaWVsZCI6eyJuYW1lIjoiQmFzZSBTSEEifX0seyJ0ZXh0IjoiMjAyNi0wOC0yMlQwNTozNjowMFogR2F0ZSAyIGJ1aWx0IHRvIHRoZSBmcm96ZW4gcGxhbjsgVDEtVDkgZ3JlZW47IGdhdGUyLm1kIG5lZWRzX2FwcHJvdmFsLCBmaW5nZXJwcmludCAyOGQ1ZGZjZC4uLjsgYXdhaXRpbmcgUmV2aWV3IDEuIE5vdCBwdXNoZWQuIiwiZmllbGQiOnsibmFtZSI6Ikxhc3QgQ2hlY2twb2ludCJ9fSx7InRleHQiOiJSb3VnaEVnb2lzdDpwMnMzLWdhdGUzLWNsYXVkZS13cml0ZXI6MjAyNi0wOC0yM1QwNDoxNzozMVoiLCJmaWVsZCI6eyJuYW1lIjoiV3JpdGVyIExlYXNlIn19LHsidGV4dCI6InNsaWNlL1AyLVMzIiwiZmllbGQiOnsibmFtZSI6IkFjdGl2ZSBCcmFuY2gifX1dfX19fQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"content\":{\"number\":12,\"state\":\"OPEN\",\"labels\":{\"nodes\":[]}},\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S3 — gatebraid-validate repair: heuristic scope, markdown records, N2 re-validation completion\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"name\":\"Needs Review\",\"optionId\":\"9b8a5a62\",\"field\":{\"name\":\"Workflow\"}},{\"name\":\"G1 passed\",\"optionId\":\"2a2ff00e\",\"field\":{\"name\":\"Gate\"}},{\"name\":\"—\",\"optionId\":\"450ee130\",\"field\":{\"name\":\"Next Approval\"}},{\"name\":\"mixed-see-prose\",\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"name\":\"Claude Lead\",\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"name\":\"low\",\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S3\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"63c8401f5df6ba446cf002232fcb280673c28e00\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-08-22T05:36:00Z Gate 2 built to the frozen plan; T1-T9 green; gate2.md needs_approval, fingerprint 28d5dfcd...; awaiting Review 1. Not pushed.\",\"field\":{\"name\":\"Last Checkpoint\"}},{\"text\":\"RoughEgoist:p2s3-gate3-claude-writer:2026-08-23T04:17:31Z\",\"field\":{\"name\":\"Writer Lease\"}},{\"text\":\"slice/P2-S3\",\"field\":{\"name\":\"Active Branch\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-23T04:17:45.159622Z",
+  "ended_at": "2026-08-23T04:17:45.734769Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Writer Lease read back after the reassignment write; the new value is this session's own label."
+}

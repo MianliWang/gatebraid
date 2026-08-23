@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-lsremote-before",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "ls-remote",
+      "origin"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 604,
+      "sha256": "08b0ad5ca0bad89cc9aa739b4e4aff1e4897cad9a771ef1e6e547143413f751d",
+      "data": "NjNjODQwMWY1ZGY2YmE0NDZjZjAwMjIzMmZjYjI4MDY3M2MyOGUwMAlIRUFECjgyMzUwMmI0ZjVlYmE5ZThjNjBjNjA1NjgxNjgxNzk4MGJmZWE2ODUJcmVmcy9oZWFkcy9tMS1jb250cm9sLXBsYW5lCjRmZjNmN2IxZjQ5ZjY4NTNiNTg0ZjI1NWE2MWNiNmI5OTc5N2FjYjQJcmVmcy9oZWFkcy9tMy9uMC1yYXRpZmljYXRpb24KNjNjODQwMWY1ZGY2YmE0NDZjZjAwMjIzMmZjYjI4MDY3M2MyOGUwMAlyZWZzL2hlYWRzL21haW4KZjQxODYzNDIwMzc4NzBjMzNjNTBiYjViNjRhMzE0MzBiNDYyYWMzZQlyZWZzL2hlYWRzL3NsaWNlL1AyLVMxCjhjNzEwY2EwNTA2ZTMwMDY1Mzc3OWQ0MzJmZDdlNTZhZTU4YzQyMTIJcmVmcy9oZWFkcy9zbGljZS9QMi1TMgo4MjM1MDJiNGY1ZWJhOWU4YzYwYzYwNTY4MTY4MTc5ODBiZmVhNjg1CXJlZnMvcHVsbC8xL2hlYWQKOGM3MTBjYTA1MDZlMzAwNjUzNzc5ZDQzMmZkN2U1NmFlNThjNDIxMglyZWZzL3B1bGwvMTEvaGVhZAo0ZmYzZjdiMWY0OWY2ODUzYjU4NGYyNTVhNjFjYjZiOTk3OTdhY2I0CXJlZnMvcHVsbC81L2hlYWQKZjQxODYzNDIwMzc4NzBjMzNjNTBiYjViNjRhMzE0MzBiNDYyYWMzZQlyZWZzL3B1bGwvOS9oZWFkCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "63c8401f5df6ba446cf002232fcb280673c28e00\tHEAD\n823502b4f5eba9e8c60c6056816817980bfea685\trefs/heads/m1-control-plane\n4ff3f7b1f49f6853b584f255a61cb6b99797acb4\trefs/heads/m3/n0-ratification\n63c8401f5df6ba446cf002232fcb280673c28e00\trefs/heads/main\nf4186342037870c33c50bb5b64a31430b462ac3e\trefs/heads/slice/P2-S1\n8c710ca0506e300653779d432fd7e56ae58c4212\trefs/heads/slice/P2-S2\n823502b4f5eba9e8c60c6056816817980bfea685\trefs/pull/1/head\n8c710ca0506e300653779d432fd7e56ae58c4212\trefs/pull/11/head\n4ff3f7b1f49f6853b584f255a61cb6b99797acb4\trefs/pull/5/head\nf4186342037870c33c50bb5b64a31430b462ac3e\trefs/pull/9/head\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-23T04:29:41.731158Z",
+  "ended_at": "2026-08-23T04:29:42.468082Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 3 action 2: every remote ref before the publication push, so the after-state can be differenced rather than described."
+}
