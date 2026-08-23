@@ -320,9 +320,24 @@ docs/evidence/gatebraid/P2-S3/captures/G0-head.json
 - F-5 — explanatory prose outside ADR-0026 §1's content classes. Observation, not a P2-S3 defect.
 - F-6 — T8 re-run now returns seven rejections, not six. Not a defect.
 
-- Reviewer: `Claude Read-Only Team`, a fresh read-only window under its own dispatch. Source: `_handoff/batch-p2s3/REVIEW1-M3-P2S3.md`, sha256 `dab4ae857e60388a9bed0f093eead9e2b2ee0725ebf4b2ffc97444e508fad6c3`, 40494 bytes. Every row of the table above and every summary above is generated from that file, not retyped.
+- Reviewer: `Claude Read-Only Team`, a fresh read-only window under its own dispatch. Source: `_handoff/batch-p2s3/REVIEW1-M3-P2S3.md`, measured to its `fingerprint boundary 2` — sha256 `1439acf8857f39b5be16e324aebfcf9fbeefac6886f8701283928bdf1566b596`, 55053 bytes. Every row of the table above and every summary above is generated from that file, not retyped.
 - Reviewer write disclosure: one write, `_handoff/batch-p2s3/REVIEW1-M3-P2S3.md`, on the ignored `_handoff/` path — no commit, no tracked-file edit, no `gh` mutation, no label, field or comment operation, no lease taken. The five WSL halves it re-ran in recorded form wrote no bytecode, verified after each run and by an empty `--untracked-files=all` porcelain at the end.
 - Rules given to the reviewer: the spec §4 conduct rules, enumerated in full at the report's own `## Conduct rules this review was given` — measure never declare; cite never restate; never echo a forbidden value into the record, name loci and counts; a bare zero states what it searched; closed-set by complement with the ruled touch-vs-mention distinction; the capture pair never read, only executed; `GH_CONFIG_DIR` pinned per call and identity checked first and alone; `PYTHONDONTWRITEBYTECODE=1` with the measured caveat that it does not cross `wsl -e`; dash and arrow marks never retyped; business repositories untouchable; single writer; STOP and ask on any uncertainty.
+
+### Re-review after repair 1
+
+The R3 row in the table above is Review 1's FIRST-PASS verdict, recorded as it
+was returned. Repair 1 — recorded in full at `## Repair record` below — was
+built against it, and the same read-only window that failed R3 re-checked it.
+Its ruling, read from the report and not retyped:
+
+> **R3 on re-review: PASS.**
+
+> R1, R2, R4 and R5 are unchanged at PASS. All five items now pass. Disposition remains the Release Approval's to decide; this window grades and stops.
+
+- Re-review source: the same report, its `## Re-review after repair 1` addendum, measured to `fingerprint boundary 2` — sha256 `1439acf8857f39b5be16e324aebfcf9fbeefac6886f8701283928bdf1566b596`, 55053 bytes. This renderer re-hashes that prefix on every run and refuses to write when it does not match, so the citation is measured here, not carried.
+- Scope of the re-review: **R3 only**. R1, R2, R4 and R5 were not reopened and are unchanged at PASS. The reviewer graded and stopped; disposition is the Release Approval's.
+- `review-five-items` is therefore recorded `pass`: that is the truthful final state of the COMPLETED sequence — R1 pass, R2 pass, R3 fail then repair 1 then pass on re-review, R4 pass, R5 pass. The intermediate FAIL is not erased; it stands in the table above and in the repair record below, which is what makes the final value auditable rather than merely asserted.
 
 ## Repair record
 
@@ -347,7 +362,7 @@ $ git rev-parse 43022db1721940bfdcd0abcc9c55b150b77fa89d^{tree}
 $ git rev-parse 43022db1721940bfdcd0abcc9c55b150b77fa89d:docs/evidence/gatebraid/P2-S3/checks/g2_render_record.py
 2e91706f1bf36d4f60f0622888d4979b93f6bd2a
 $ git hash-object docs/evidence/gatebraid/P2-S3/checks/g2_render_record.py
-3786265b60156bf197f5055715cbd1e5f2b35bc8
+10f4c1ebde97f3607b96808fb6a8ff83935f601a
 ```
 The render instrument's blob differs from the one the failed state carried, so
 the amended tree cannot equal `3d934d46c18e7c68bad01974bd4a0ac8e0ebbef0`.
@@ -382,7 +397,7 @@ base_sha: 63c8401f5df6ba446cf002232fcb280673c28e00
 active_branch: slice/P2-S3
 started_at: "2026-08-22T05:07:00Z"
 ended_at: "2026-08-22T07:26:00Z"
-result: needs_approval
+result: passed
 checks:
   - name: plan-approval-verified
     command: "gh api repos/MianliWang/gatebraid/issues/comments/5378088991 --jq '{author,url,created,updated}'"
@@ -446,7 +461,7 @@ checks:
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S3/captures/G2-T8-windows.json"
   - name: review-five-items
-    result: fail
+    result: pass
     output_ref: "#review-record"
 handoff_fingerprint:
   active_branch_head: "28d5dfcd83b83b7541a3d8f73732fb833a3d119c"
@@ -559,5 +574,5 @@ plan_hash: "eb89d3eaedc2690babb3086e3be7529f62fa03e7195746b3b8106ad85a626b18"
 allowlist_hash: "81a0bb015ffbc5f3f6a27abfaec0a089c2b5522aa69e5ee30d5d7a01ecd404c0"
 evidence_files:
   - docs/evidence/gatebraid/P2-S3/gate2.md
-notes: "Implementation of the frozen plan, then repair 1 under Review 1. result is needs_approval, never passed: passed is the Release Approval's to grant, and this gate does not grade itself. Review 1 returned R1 pass, R2 pass, R3 FAIL on finding F-1, R4 pass, R5 pass; review-five-items is recorded fail because fail is what the review returned, and it is carried rather than smoothed. Repair 1 addresses F-1 and nothing else: every row whose window is smaller than its capture now carries shown/total and the committed path of the full output, V3 and V6 keep the loader line friction #55 requires of a schema-validation row, and V8's window starts at S23 so Task A's positive-direction pair sits in the row a reader checks acceptance box 1 against. No measurement changed and no capture was rewritten - the repair is to how rows are rendered, and every restored line is read from the capture bytes. R3 stays FAIL as reviewed; only Review 1's own re-review may turn it, in its own window, and the Release Approval follows that. The review's F-3, F-2 and F-4 are answered in the disclosures: an over-disclosed write withdrawn, and two frozen-plan counts corrected in the record rather than in the frozen text. Task C, the N2 re-validation, ran to completion on both declared platforms with identical results (V13, V14): every P2-S1 capture accepted and all four of its gate records READ, with the only surviving findings the historical records' own - gate0.json's #171-class command citations and gate3.md's elision - recorded and not repaired, as the grant requires. That discharges the remainder the P2-S2 closure left owed. The corpus digest is unmoved at f6128a0a53363162d967cb86e9ea91586455c7b5fb12d55b8a4825e5fe965686 and the digest's scope does not cover bin/, so this Slice's allowlist could not have moved it. No push, PR, tag or merge; publication is Gate 3."
+notes: "Implementation of the frozen plan, then repair 1 under Review 1, then the re-review that closed it. This gate never graded itself: it exited needs_approval and stayed there until the Release Approval (issue 12 comment 5381788134) granted passed, and this amendment is that grant being executed, not the gate re-scoring its own work. Review 1 returned R1 pass, R2 pass, R3 FAIL on finding F-1, R4 pass, R5 pass. Repair 1 addressed F-1 and the same read-only window re-checked R3 alone and ruled it PASS on re-review; review-five-items is therefore recorded pass, the completed sequence's truthful final state, with the intermediate FAIL carried in the record rather than smoothed. Repair 1 addresses F-1 and nothing else: every row whose window is smaller than its capture now carries shown/total and the committed path of the full output, V3 and V6 keep the loader line friction #55 requires of a schema-validation row, and V8's window starts at S23 so Task A's positive-direction pair sits in the row a reader checks acceptance box 1 against. No measurement changed and no capture was rewritten - the repair is to how rows are rendered, and every restored line is read from the capture bytes. R3 was turned by Review 1's own re-review, in its own window, which is the only thing that could turn it; this record transcribes that ruling and does not substitute its own. The review's F-3, F-2 and F-4 are answered in the disclosures: an over-disclosed write withdrawn, and two frozen-plan counts corrected in the record rather than in the frozen text. Task C, the N2 re-validation, ran to completion on both declared platforms with identical results (V13, V14): every P2-S1 capture accepted and all four of its gate records READ, with the only surviving findings the historical records' own - gate0.json's #171-class command citations and gate3.md's elision - recorded and not repaired, as the grant requires. That discharges the remainder the P2-S2 closure left owed. The corpus digest is unmoved at f6128a0a53363162d967cb86e9ea91586455c7b5fb12d55b8a4825e5fe965686 and the digest's scope does not cover bin/, so this Slice's allowlist could not have moved it. No push, PR, tag or merge; publication is Gate 3."
 ```

@@ -34,8 +34,17 @@ ALLOW_HASH = "81a0bb015ffbc5f3f6a27abfaec0a089c2b5522aa69e5ee30d5d7a01ecd404c0"
 # transcription below would be of something other than what the reviewer wrote,
 # so this renderer fails closed rather than emitting an unpinned verdict.
 REPORT = "_handoff/batch-p2s3/REVIEW1-M3-P2S3.md"
-REPORT_SHA = "dab4ae857e60388a9bed0f093eead9e2b2ee0725ebf4b2ffc97444e508fad6c3"
-REPORT_BYTES = 40494
+REPORT_SHA = "ca7586d8e7c741b5abab318cb3363574b155e0ee116eb2b54c1aff5dbc26f3a9"
+REPORT_BYTES = 56244
+
+# The re-review addendum is self-measured to its own named boundary, because a
+# hash cannot cover the bytes that state it. The READ GATE above is the full
+# current file; the value this record CITES is the boundary-2 one, which is what
+# the Release Approval cites. Both are verified rather than declared: the prefix
+# is re-hashed at render time and a mismatch is fatal, exactly as the full-file
+# pin is.
+ADDENDUM_SHA = "1439acf8857f39b5be16e324aebfcf9fbeefac6886f8701283928bdf1566b596"
+ADDENDUM_BYTES = 55053
 
 # Repair 1's measure-before-grade comparand (ADR-0027 §1): the tree of the state
 # the review failed. Named by full sha, never by HEAD (ADR-0028 §4).
@@ -50,6 +59,11 @@ def report_text():
     if got != REPORT_SHA or len(raw) != REPORT_BYTES:
         print("REVIEW REPORT NOT AT ITS PINNED VALUE: %s, %d bytes (expected %s, %d)"
               % (got, len(raw), REPORT_SHA, REPORT_BYTES))
+        sys.exit(3)
+    pre = hashlib.sha256(raw[:ADDENDUM_BYTES]).hexdigest()
+    if pre != ADDENDUM_SHA:
+        print("ADDENDUM BOUNDARY 2 NOT AT ITS PINNED VALUE: %s over %d bytes "
+              "(expected %s)" % (pre, ADDENDUM_BYTES, ADDENDUM_SHA))
         sys.exit(3)
     return raw.decode("utf-8")
 
@@ -72,6 +86,31 @@ def finding_summaries():
     if len(out) != 6:
         print("expected 6 findings in the report, found %d" % len(out)); sys.exit(3)
     return out
+
+
+def rereview_ruling():
+    """Section H's ruling, taken verbatim from the addendum.
+
+    The re-review is Review 1's own window re-checking R3 and nothing else. Its
+    verdict is transcribed the same way the first-pass table is — read out of
+    the report, never retyped — so this record cannot drift from what the
+    reviewer wrote, and a change in the report's wording stops the render rather
+    than passing silently.
+    """
+    sec = re.search(r"^### H\. Ruling\n(.*?)\n<!-- fingerprint boundary 2",
+                    RPT, re.S | re.M)
+    if not sec:
+        print("re-review ruling section not found in the report"); sys.exit(3)
+    body = sec.group(1)
+    verdict = re.search(r"^\*\*(R3 on re-review: .*?)\*\*$", body, re.M)
+    # The scope paragraph closes the section, so it runs to the section end —
+    # which the boundary-2 comment already pins, as the file's sha256 pins the
+    # whole. No terminator of its own is needed or invented.
+    scope = re.search(r"^(R1, R2, R4 and R5 are unchanged at PASS\..*)",
+                      body, re.S | re.M)
+    if not verdict or not scope:
+        print("re-review ruling not in the expected form"); sys.exit(3)
+    return verdict.group(1), " ".join(scope.group(1).split())
 
 
 def git(*args):
@@ -287,9 +326,10 @@ for _f in finding_summaries():
     w("- %s" % _f)
 w("")
 w("- Reviewer: `Claude Read-Only Team`, a fresh read-only window under its own "
-  "dispatch. Source: `%s`, sha256 `%s`, %d bytes. Every row of the table above "
-  "and every summary above is generated from that file, not retyped."
-  % (REPORT, REPORT_SHA, REPORT_BYTES))
+  "dispatch. Source: `%s`, measured to its `fingerprint boundary 2` — sha256 "
+  "`%s`, %d bytes. Every row of the table above and every summary above is "
+  "generated from that file, not retyped."
+  % (REPORT, ADDENDUM_SHA, ADDENDUM_BYTES))
 w("- Reviewer write disclosure: one write, `%s`, on the ignored `_handoff/` "
   "path — no commit, no tracked-file edit, no `gh` mutation, no label, field or "
   "comment operation, no lease taken. The five WSL halves it re-ran in recorded "
@@ -305,6 +345,32 @@ w("- Rules given to the reviewer: the spec §4 conduct rules, enumerated in full
   "caveat that it does not cross `wsl -e`; dash and arrow marks never retyped; "
   "business repositories untouchable; single writer; STOP and ask on any "
   "uncertainty.")
+w("")
+w("### Re-review after repair 1")
+w("")
+_verdict, _scope = rereview_ruling()
+w("The R3 row in the table above is Review 1's FIRST-PASS verdict, recorded as it")
+w("was returned. Repair 1 — recorded in full at `## Repair record` below — was")
+w("built against it, and the same read-only window that failed R3 re-checked it.")
+w("Its ruling, read from the report and not retyped:")
+w("")
+w("> **%s**" % _verdict)
+w("")
+w("> %s" % _scope)
+w("")
+w("- Re-review source: the same report, its `## Re-review after repair 1` "
+  "addendum, measured to `fingerprint boundary 2` — sha256 `%s`, %d bytes. "
+  "This renderer re-hashes that prefix on every run and refuses to write when "
+  "it does not match, so the citation is measured here, not carried."
+  % (ADDENDUM_SHA, ADDENDUM_BYTES))
+w("- Scope of the re-review: **R3 only**. R1, R2, R4 and R5 were not reopened "
+  "and are unchanged at PASS. The reviewer graded and stopped; disposition is "
+  "the Release Approval's.")
+w("- `review-five-items` is therefore recorded `pass`: that is the truthful "
+  "final state of the COMPLETED sequence — R1 pass, R2 pass, R3 fail then "
+  "repair 1 then pass on re-review, R4 pass, R5 pass. The intermediate FAIL is "
+  "not erased; it stands in the table above and in the repair record below, "
+  "which is what makes the final value auditable rather than merely asserted.")
 w("")
 w("## Repair record")
 w("")
@@ -457,7 +523,7 @@ w("base_sha: %s" % BASE_SHA)
 w("active_branch: slice/P2-S3")
 w("started_at: %s" % yaml_str(STARTED_AT))
 w("ended_at: %s" % yaml_str(ENDED_AT))
-w("result: needs_approval")
+w("result: passed")
 w("checks:")
 CHECKS = [
     ("plan-approval-verified", "gh api repos/MianliWang/gatebraid/issues/comments/5378088991 --jq '{author,url,created,updated}'", "pass", "#entry-records"),
@@ -479,7 +545,7 @@ CHECKS = [
     ("T9-n2-revalidation-complete-windows", None, "pass", "%s/captures/G2-T9-windows.json" % EV),
     ("T9-n2-revalidation-complete-wsl", None, "pass", "%s/captures/G2-T9-wsl.json" % EV),
     ("T8-self-validation-point", None, "pass", "%s/captures/G2-T8-windows.json" % EV),
-    ("review-five-items", None, "fail", "#review-record"),
+    ("review-five-items", None, "pass", "#review-record"),
 ]
 for name, cmd, result, ref in CHECKS:
     w("  - name: %s" % name)
@@ -511,20 +577,26 @@ w("allowlist_hash: %s" % yaml_str(ALLOW_HASH))
 w("evidence_files:")
 w("  - %s/gate2.md" % EV)
 w("notes: %s" % yaml_str(
-    "Implementation of the frozen plan, then repair 1 under Review 1. "
-    "result is needs_approval, never passed: passed is the Release Approval's to "
-    "grant, and this gate does not grade itself. Review 1 returned R1 pass, R2 "
-    "pass, R3 FAIL on finding F-1, R4 pass, R5 pass; review-five-items is "
-    "recorded fail because fail is what the review returned, and it is carried "
-    "rather than smoothed. Repair 1 addresses F-1 and nothing else: every row "
+    "Implementation of the frozen plan, then repair 1 under Review 1, then the "
+    "re-review that closed it. This gate never graded itself: it exited "
+    "needs_approval and stayed there until the Release Approval "
+    "(issue 12 comment 5381788134) granted passed, and this amendment is that "
+    "grant being executed, not the gate re-scoring its own work. Review 1 "
+    "returned R1 pass, R2 pass, R3 FAIL on finding F-1, R4 pass, R5 pass. "
+    "Repair 1 addressed F-1 and the same read-only window re-checked R3 alone "
+    "and ruled it PASS on re-review; review-five-items is therefore recorded "
+    "pass, the completed sequence's truthful final state, with the intermediate "
+    "FAIL carried in the record rather than smoothed. Repair 1 addresses F-1 "
+    "and nothing else: every row "
     "whose window is smaller than its capture now carries shown/total and the "
     "committed path of the full output, V3 and V6 keep the loader line friction "
     "#55 requires of a schema-validation row, and V8's window starts at S23 so "
     "Task A's positive-direction pair sits in the row a reader checks acceptance "
     "box 1 against. No measurement changed and no capture was rewritten - the "
     "repair is to how rows are rendered, and every restored line is read from the "
-    "capture bytes. R3 stays FAIL as reviewed; only Review 1's own re-review may "
-    "turn it, in its own window, and the Release Approval follows that. The "
+    "capture bytes. R3 was turned by Review 1's own re-review, in its own "
+    "window, which is the only thing that could turn it; this record transcribes "
+    "that ruling and does not substitute its own. The "
     "review's F-3, F-2 and F-4 are answered in the disclosures: an over-disclosed "
     "write withdrawn, and two frozen-plan counts corrected in the record rather "
     "than in the frozen text. Task C, the N2 re-validation, ran to completion on "
