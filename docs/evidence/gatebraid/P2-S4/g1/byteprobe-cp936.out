@@ -1,0 +1,7 @@
+stdout.encoding : gbk
+payload         : 'em dash ¡ª CJK ÖÐÎÄ end'
+utf-8 bytes     : 656d206461736820e2809420434a4b20e4b8ade6968720656e64
+---TEXT-PATH---
+em dash ¡ª CJK ÖÐÎÄ end
+---BYTES-PATH---
+em dash â€” CJK ä¸­æ–‡ end

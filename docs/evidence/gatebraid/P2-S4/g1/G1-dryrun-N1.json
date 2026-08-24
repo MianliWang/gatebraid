@@ -1,0 +1,69 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-dryrun-N1",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g1/negative-criterion-N1.py",
+      "df666070ead7fa21bc72b6c99d2644923b37e787",
+      "HEAD"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 253,
+      "sha256": "079f0f532d3ec862b91c88dafa59ff704592baef83d17ed1c5551bc8e359e07d",
+      "data": "cmFuZ2UgICAgICAgICAgOiBkZjY2NjA3MGVhZDdmYTIxYmM3MmI2Yzk5ZDI2NDQ5MjNiMzdlNzg3Li5IRUFEDQphbGxvd2VkIHByZWZpeGVzOg0KICAgYmluLw0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvDQpjaGFuZ2VkIHBhdGhzICA6IDANCmluc2lkZSBhbGxvd2xpc3Q6IDANCm91dHNpZGUgICAgICAgICA6IDANCg0KTjEgSE9MRFM6IGV2ZXJ5IGNoYW5nZWQgcGF0aCBpcyBpbnNpZGUgdGhlIGZyb3plbiBhbGxvd2xpc3QNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "range          : df666070ead7fa21bc72b6c99d2644923b37e787..HEAD\r\nallowed prefixes:\r\n   bin/\r\n   docs/evidence/gatebraid/P2-S4/\r\nchanged paths  : 0\r\ninside allowlist: 0\r\noutside         : 0\r\n\r\nN1 HOLDS: every changed path is inside the frozen allowlist\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T09:46:55.746079Z",
+  "ended_at": "2026-08-24T09:46:55.938553Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/g1/negative-criterion-N1.py",
+      "sha256": "8fb070514e2ff0237dc7684964bb7333e3cb8ab5bc854bc61495194fcbe54ae8"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

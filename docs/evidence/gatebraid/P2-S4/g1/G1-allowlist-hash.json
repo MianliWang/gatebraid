@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-allowlist-hash",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g1/hash-allowlist.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 242,
+      "sha256": "9ee7140ab78e4b3281590e72905744f4df518d27bf7f99889cceb0dc939306e6",
+      "data": "ZW50cmllcyAoc29ydGVkIGJ5IGJ5dGUgdmFsdWUpOg0KICAgJ2Jpbi8nDQogICAnZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvJw0KcGF5bG9hZCBieXRlcyA6IGInYmluL1xuZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvXG4nDQpwYXlsb2FkIGxlbmd0aDogMzYNCmFsbG93bGlzdF9oYXNoOiBmZWI2ZDljOGZmYmJhYTA4MjQyZDY4ZTY0ZGI3YjEzYjNmMDgwYWFhZTM2NjdmMDFkN2QyMmJkYjBjMDYxNjU1DQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "entries (sorted by byte value):\r\n   'bin/'\r\n   'docs/evidence/gatebraid/P2-S4/'\r\npayload bytes : b'bin/\\ndocs/evidence/gatebraid/P2-S4/\\n'\r\npayload length: 36\r\nallowlist_hash: feb6d9c8ffbbaa08242d68e64db7b13b3f080aaae3667f01d7d22bdb0c061655\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T09:52:57.292649Z",
+  "ended_at": "2026-08-24T09:52:57.381087Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/g1/hash-allowlist.py",
+      "sha256": "e8bc81f6f6dfa73ed32371e7834dd274ba9e8e41cfc0b99770b38ad715441134"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
