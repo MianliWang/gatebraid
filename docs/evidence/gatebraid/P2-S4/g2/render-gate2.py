@@ -175,7 +175,10 @@ ROWS = [
      "(acceptance 3; loader named in the output)", ["G2-D6a"], 12, True),
     ("V10 — D6b · the same, WSL half", ["G2-D6b"], 12, True),
     ("V11 — D7 · the frozen surface held unmoved (acceptance 2: the "
-     "batch-pinned digest)", ["G2-D7"], 10, True),
+     "batch-pinned digest), at two of the plan's three named points — after "
+     "the last implementation commit, and at Gate 2 exit; the third, before "
+     "the first implementation commit, was missed and is disclosed",
+     ["G2-D7", "G2-D7-exit"], 10, True),
     ("V12 — D8 · the freeze precedes the implementation in commit history "
      "(acceptance 2)", ["G2-D8"], None, False),
     ("V13 — N1 · path scope: the diff touches nothing outside the frozen "
@@ -189,6 +192,10 @@ ROWS = [
      "command; recorded because it is the falsification of the instrument the "
      "declared commands rely on)",
      ["G2-T3selftest-windows", "G2-T3selftest-wsl"], 12, True),
+    ("V18 — this gate's captures machine-validated under the capture tool's own "
+     "write-path guard, re-derivation layer included (NOT a declared test-plan "
+     "command; it is what makes the `output_ref` targets evidence rather than "
+     "filenames)", ["G2-captures-validation"], None, False),
 ]
 for label, cids, limit, tail in ROWS:
     row(label, cids, limit, tail)
@@ -263,7 +270,16 @@ w("- Deviations: **D7 was not run at the first of its three named points.** The 
   "beside the work they certify — the pattern ADR-0028 §4 warns about — and are "
   "offered as mechanical aids to R4 rather than as independent certification; "
   "each states the pattern it proxies for, its explicit scope, and the "
-  "direction in which it errs · **commit messages carry a `Co-Authored-By` "
+  "direction in which it errs · **the handoff fingerprint, V13 (N1), V12 (D8) "
+  "and V18's sweep were all measured at the commit BEFORE this record's own "
+  "commit**, which is what the fingerprint's definition requires and what makes "
+  "it Gate 3's comparand. The files the final commit adds — this record, the "
+  "renderer's and sweep's own captures, and the re-taken fingerprint captures — "
+  "are therefore outside those measurements. Every one of them is under "
+  "`docs/evidence/gatebraid/P2-S4/`, so the allowlist claim is unaffected, and "
+  "a reviewer re-running N1 at the final head measures the wider set. This is "
+  "the boundary any sweep has over its own output, named rather than left to "
+  "be noticed · **commit messages carry a `Co-Authored-By` "
   "trailer** per the executing harness's standing instruction, noted so the "
   "convention change is not mistaken for drift."
   % BASE_SHA)
@@ -325,6 +341,8 @@ CHECKS = [
     ("N4-no-verdict-without-validation", None, "%s/G2-N4.json" % CAP),
     ("harness-selftest-windows", None, "%s/G2-T3selftest-windows.json" % CAP),
     ("harness-selftest-wsl", None, "%s/G2-T3selftest-wsl.json" % CAP),
+    ("captures-machine-validated", None,
+     "%s/G2-captures-validation.json" % CAP),
     ("allowlist-respected",
      "git diff --name-only %s..HEAD" % BASE_SHA, "#verification-outputs"),
 ]
