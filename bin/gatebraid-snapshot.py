@@ -189,11 +189,21 @@ class ReplayTransport(object):
                               transport_error="transcript for %r has no page %d"
                                               % (source_id, page_index))
         page = pages[page_index]
+        if "exit_code" not in page:
+            # A transcript page that does not name an exit status does not mean
+            # success. Defaulting to 0 here would put an implicit success
+            # assumption on a path that reaches a verdict, which is the exact
+            # shape this Slice's negative criterion N2 searches for - and N2
+            # found it here on its first run.
+            return ReadResult(
+                exit_code=EX_DATAERR,
+                transport_error="the transcript page for %r does not name an "
+                                "exit status" % source_id)
         body = page.get("stdout", "")
         if not isinstance(body, str):
             body = json.dumps(body, ensure_ascii=False)
         return ReadResult(
-            exit_code=page.get("exit_code", 0),
+            exit_code=page["exit_code"],
             stdout=body,
             stderr=page.get("stderr", ""),
             http_status=page.get("http_status"),

@@ -69,9 +69,24 @@ def write_json(path, doc):
     return path
 
 
+def with_exit_status(doc):
+    """Stamp the success exit onto any transcript page that does not name one.
+
+    The TOOL refuses a page with no exit status, because defaulting it to 0
+    would put an implicit success assumption on a path that reaches a verdict.
+    This helper makes the SEEDS say `exit_code: 0` explicitly instead: the
+    fixture states success and the tool never infers it.
+    """
+    for entry in (doc.get("reads") or {}).values():
+        pages = entry if isinstance(entry, list) else [entry]
+        for page in pages:
+            page.setdefault("exit_code", 0)
+    return doc
+
+
 def healthy_transcript():
     """A document with every source `ok` and complete. The positive control."""
-    return {
+    return with_exit_status({
         "reads": {
             "project_items": {"stdout": {"nodes": [
                 {"item_id": "PVTI_a", "issue": "MianliWang/gatebraid#14",
@@ -88,13 +103,15 @@ def healthy_transcript():
             "dep_blocked_by": {"stdout": {"edges": {}}},
             "dep_blocking": {"stdout": {"edges": {}}},
         }
-    }
+    })
 
 
 def seed(mutate):
     doc = copy.deepcopy(healthy_transcript())
     mutate(doc["reads"])
-    return doc
+    # Normalised AFTER the mutation: a seed that replaces a source entry
+    # supplies a fresh page, and that page must state its exit status too.
+    return with_exit_status(doc)
 
 
 class Conditions(object):
@@ -367,6 +384,21 @@ def main():
         rc, _, err = run(["--replay", p, "--schema", os.path.join(tmp, "no-schema.json")])
         c.check("S36", "an absent schema is a usage error, never a pass", 2, rc,
                 "a tool that cannot self-validate must not emit", "STRUCTURE", err)
+
+        # ---- a transcript page that names no exit status is NOT success -----
+        # Written WITHOUT with_exit_status() on purpose: this is the one seed
+        # that must reach the tool with the field genuinely absent.
+        bare = {"reads": {
+            "project_items": {"stdout": {"nodes": [], "hasNextPage": False}},
+            "issue_states": {"stdout": {"states": {}}},
+            "dep_blocked_by": {"stdout": {"edges": {}}},
+            "dep_blocking": {"stdout": {"edges": {}}}}}
+        p = write_json(os.path.join(tmp, "S37.json"), bare)
+        out = os.path.join(tmp, "S37-out.json")
+        rc, _, err = run(["--replay", p, "--out", out])
+        c.check("S37", "a page naming no exit status is not read as success", 3, rc,
+                "defaulting an absent exit to 0 is an implicit success "
+                "assumption on a verdict-relevant path; N2 found it here")
 
     finally:
         shutil.rmtree(tmp, ignore_errors=True)

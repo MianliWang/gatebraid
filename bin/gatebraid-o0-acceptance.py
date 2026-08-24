@@ -106,9 +106,24 @@ def write_json(path, doc):
 
 # ------------------------------------------------------------ transcripts
 
+def with_exit_status(doc):
+    """Stamp the success exit onto any transcript page that does not name one.
+
+    The producer refuses a page with no exit status, because defaulting it to 0
+    would put an implicit success assumption on a path that reaches a verdict.
+    The seeds therefore state success explicitly rather than letting the tool
+    infer it.
+    """
+    for entry in (doc.get("reads") or {}).values():
+        pages = entry if isinstance(entry, list) else [entry]
+        for page in pages:
+            page.setdefault("exit_code", 0)
+    return doc
+
+
 def healthy_reads():
     """A transcript every source of which is `ok` and complete."""
-    return {
+    return with_exit_status({
         "reads": {
             "project_items": {"stdout": {"nodes": [
                 {"item_id": "PVTI_acceptance_a", "issue": "MianliWang/gatebraid#9",
@@ -119,13 +134,15 @@ def healthy_reads():
             "dep_blocked_by": {"stdout": {"edges": {}}},
             "dep_blocking": {"stdout": {"edges": {}}},
         }
-    }
+    })
 
 
 def seeded(mutate):
     doc = copy.deepcopy(healthy_reads())
     mutate(doc["reads"])
-    return doc
+    # Normalised AFTER the mutation: a seed that replaces a source entry
+    # supplies a fresh page, and that page must state its exit status too.
+    return with_exit_status(doc)
 
 
 INDUCED_CASES = [
