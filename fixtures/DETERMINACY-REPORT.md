@@ -276,3 +276,76 @@ inspection, and reproduced §3's inspections before ratifying them.
      `evidence-capture` 4, `gate-run-v2` 3 — the committed pattern constraints
      that refute IN-02's first-draft BLOCKED label, three of which are now
      killed by EC1-16/17/18.
+
+---
+
+## 7. Freeze addendum (batch O0-B1, 2026-08-23) — the thirteen are built
+
+Recorded as a dated addendum, never a silent edit (metrics v2 §5's correction
+rule, the form §6 already used). **§2's item-by-item verdicts are unchanged and
+are not withdrawn.** They remain the accurate record of what was measurable at
+N1B. What moves is their disposition: the thirteen state-pipeline items were
+BLOCKED on an artifact that did not exist, that artifact now exists, and they
+are frozen against it.
+
+**Authority.** ADR-0031 decision 2's second freeze point — *"SP-01…SP-13 freeze
+at O0's start, before O0's implementation, against the snapshot-document schema
+O0 defines as its own first deliverable"* — executed under the operator's Batch
+Approval on `MianliWang/gatebraid#14`, comment id `5386631542`, as batch O0-B1.
+
+**What discharged the block.** §1 named two missing things and said neither was
+N1's to create: a snapshot-document schema, and a runner assertion mode for tool
+behaviour. **Only the first was built.** `schema/snapshot.schema.json`
+(`gatebraid/snapshot@1`) landed first in the same batch, and the thirteen items
+are asserted against it by the runner's existing single assertion shape — a
+document is valid or invalid against a JSON Schema. **No new assertion mode was
+added, and none was needed:** each item's tool outcome is expressed as a
+property of the document the tool must emit, so "fail closed" becomes "a
+document with a degraded source cannot carry a verdict other than
+`undecidable`", and the existing runner kills it. §1's second gap is therefore
+not closed but *dissolved* for these items; it stands for any future item whose
+assertion genuinely spans two documents, which is exactly where IN-01 remains.
+
+**Where they live.** `fixtures/state-pipeline/`, corpus version `v1.2`, thirteen
+invalid cases plus four valid seed positives that are **not §6 items** and carry
+no SP designation. Each of the thirteen kills on its own distinct ground:
+measured across all five corpora, they add **zero** new (schema, locus-set)
+collisions to the three already declared. Every locus was measured and then
+independently re-derived by `fixtures/run-corpus.py`, which requires observed
+and recorded sets to be equal in both directions.
+
+**The corpus digest moved, by measurement and not to a target.** The frozen
+value before this batch was
+`f6128a0a53363162d967cb86e9ea91586455c7b5fb12d55b8a4825e5fe965686`, reproduced
+on the pre-batch tree before any file was written. **At this batch's freeze,
+measured on its final tree, the digest was**
+
+```
+66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e
+```
+
+with `conditions failed: 0` and `seed-reachable surface UNMODIFIED: True`, from
+`fixtures/runner-selftest.py`. That is the value as of this freeze and not a
+claim about any later tree: a subsequent approved change inside the digest's
+scope moves it, and the instrument's own output at a given commit is the
+authority there. The scope gained `state-pipeline` here; this file's own
+contents are not in it, which is why appending this addendum does not move the
+value — verified by re-measuring after it was written rather than assumed.
+
+**Where the twenty-one now stand.** Thirteen here; IN-03, IN-04, IN-05 and four
+of the five HALF-BUILT remainders at N3's start (batch N1E, in
+`fixtures/bytes-platform/` and `fixtures/instruments/`); **one item, IN-01, is
+still frozen in neither place** — the N1E correct-course re-assigned it to
+corpus v2 at P's start, because its assertion spans a coverage report and its
+target's shell semantics and no single locus in one document expresses it. That
+is ADR-0031's first reopening condition operating as designed, and the reason is
+recorded in `fixtures/instruments/EXPECTATIONS.json`'s `known_limitation`. This
+addendum does not restate it and does not change it.
+
+**What this addendum does not claim.** It does not claim the thirteen assert
+that the O0 tools *behave* correctly — no tool exists yet, which is the whole
+point of fixtures-first. It claims that the document those tools must emit is
+now specified, and that thirteen ways of emitting a document that lies about its
+own integrity are now rejected before any tool is written to emit one. The
+behavioural half is P2-S4's to demonstrate, against this corpus, and
+`M3-PLAN.md` §2 O0's Accept-when is what will judge it.

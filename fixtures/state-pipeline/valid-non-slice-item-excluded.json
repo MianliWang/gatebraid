@@ -1,0 +1,45 @@
+{
+  "schema": "gatebraid/snapshot@1",
+  "snapshot_version": 1,
+  "generated_at": "2026-08-23T07:00:00Z",
+  "generator": {
+    "name": "gatebraid-snapshot",
+    "version": "1.0.0"
+  },
+  "sources": [
+    {
+      "source_id": "project-items",
+      "query": "gh api graphql (project items, PVT_kwHOBRofUs4Beum7)",
+      "status": "ok",
+      "complete": true,
+      "exit_code": 0,
+      "http_status": 200
+    },
+    {
+      "source_id": "dependencies",
+      "query": "gh api repos/MianliWang/gatebraid/issues/9/dependencies/blocked_by",
+      "status": "ok",
+      "complete": true,
+      "exit_code": 0,
+      "http_status": 200
+    }
+  ],
+  "items": [
+    {
+      "item_id": "PVTI_synthetic_b",
+      "issue": "MianliWang/gatebraid#5",
+      "issue_state": "OPEN",
+      "slice_metadata_present": false,
+      "excluded_reason": "Project row carries no gatebraid/slice@1 metadata block",
+      "dependencies": {
+        "blocked_by": [],
+        "blocking": [],
+        "cross_check": "consistent"
+      },
+      "soft_dependencies": {
+        "declared": false,
+        "parse_status": "parsed"
+      }
+    }
+  ]
+}

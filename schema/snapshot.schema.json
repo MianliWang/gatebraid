@@ -1,0 +1,654 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/snapshot@1",
+  "title": "Gatebraid control-plane snapshot document (gatebraid/snapshot@1)",
+  "description": "The document `gatebraid-snapshot` emits and `gatebraid-frontier` consumes: a point-in-time read of the control plane, carrying its own integrity with it. Introduced at M3 node O0 as that node's first deliverable, admitted under ADR-0030 by the milestone authority that introduces it (M3-PLAN.md §2 O0, ratified by ADR-0029) plus the operator's batch approval; it amends ADR-0010 not at all. THE DESIGN RULE, stated because it is the whole point: a consumer must never be able to read a degraded snapshot as a healthy one. Every way a read can go wrong is therefore REPRESENTABLE AND DISTINCT here — a closed source-status enumeration covering M3-PLAN.md §2 O0's P0-1 classes, a closed Issue-state enumeration whose `UNKNOWN` member exists precisely so an unrecognised state cannot be silently absorbed into `OPEN` (P0-4), bounded-snapshot flags for every capped connection (P0-3), both dependency directions with their cross-check, and a declared-soft-dependency parse status that makes 'I did not parse this' a thing the document says rather than a thing it omits. The conditionals in `allOf` are where fail-closed becomes structure rather than intention: a document whose sources are degraded cannot carry a verdict other than `undecidable`, and no verdict at all may be emitted for an item that carries no Slice metadata. The classification of which corpus items assert what against this schema lives in fixtures/DETERMINACY-REPORT.md, which is its single home; this description deliberately does not restate it, because an enumeration copied into a second home drifts. `format` is deliberately absent throughout and every timestamp is a lexical `pattern`, matching the frozen interfaces for the reason measured at N1C/N1D: `format: date-time` is asserted only when the validator is built with a FormatChecker and an optional package is installed, and fixtures/run-corpus.py builds none. A lexical pattern admits 2026-02-31; range checking is delegated, as the other schemas delegate it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "snapshot_version",
+    "generated_at",
+    "generator",
+    "sources",
+    "items"
+  ],
+  "properties": {
+    "schema": {
+      "const": "gatebraid/snapshot@1",
+      "description": "P0-4's mandatory version check has a structural half and this is it: a snapshot document that does not say what it is cannot be consumed. The consumer refuses an absent or unrecognised value rather than assuming the current one."
+    },
+    "snapshot_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Document revision within `gatebraid/snapshot@1`. Separate from the schema id on purpose: the id changes when the contract breaks, this changes when the emitter's output shape moves compatibly, and P0-4 requires both to be present rather than inferred."
+    },
+    "generated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])"
+    },
+    "generator": {
+      "$ref": "#/$defs/generator"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      },
+      "description": "Per-source integrity status, one entry per read the snapshot rests on (P0-1). A snapshot with no sources asserts a view of the control plane it never took, so the minimum is one."
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      },
+      "description": "The Project items read. An empty array is legitimate — a healthy read of an empty candidate pool — and is not the same claim as a degraded read, which the source entries carry."
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "FAIL CLOSED, the P0-1/P0-3 kill and the one conditional this whole document exists for. If ANY source is degraded — a status outside `ok`, or an incomplete read — then no item may carry a verdict other than `undecidable`. This is what stops a dropped edge or a truncated page from being read as an absence of blockers, which is exactly ADR-0029 decision 2's P0-1 finding: a non-zero `gh` exit folded into `None` and the missing dependency then reported as no dependency. The condition is `anyOf` over both degradation kinds so that one conditional, and therefore one locus, covers them.",
+      "if": {
+        "required": [
+          "sources"
+        ],
+        "properties": {
+          "sources": {
+            "contains": {
+              "$ref": "#/$defs/degradedSource"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "properties": {
+                "verdict": {
+                  "const": "undecidable"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "degradedSource": {
+      "$comment": "A source is degraded if its status is not `ok` OR its read was incomplete. Kept as one named definition so the fail-closed conditional above has a single `contains` branch rather than two, which keeps its failure to one locus.",
+      "type": "object",
+      "anyOf": [
+        {
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "not": {
+                "const": "ok"
+              }
+            }
+          }
+        },
+        {
+          "required": [
+            "complete"
+          ],
+          "properties": {
+            "complete": {
+              "const": false
+            }
+          }
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "query",
+        "status",
+        "complete",
+        "exit_code"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The identity of the read, recorded so a reader can re-run it. protocols/state-packet-queries-v1.md §2 requires every query's exact invocation to be recoverable; this is that field."
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "auth_failure",
+            "permission_failure",
+            "rate_limited",
+            "network_error",
+            "server_error",
+            "parse_error",
+            "unexpected_endpoint"
+          ],
+          "description": "CLOSED enumeration of P0-1's failure classes. Closed on purpose: an open vocabulary would let a new failure mode arrive as a string nobody checks. `rate_limited` is a member distinct from `permission_failure` because GitHub returns 403 for both and collapsing them loses the difference between 'retry later' and 'never'."
+        },
+        "complete": {
+          "type": "boolean",
+          "description": "Whether every page of every verdict-relevant connection was read. Asserted, never assumed — P0-3's finding was that completeness was asserted without being established."
+        },
+        "exit_code": {
+          "type": "integer",
+          "description": "The process exit status as measured. Present so a non-zero exit is surfaced in the document rather than swallowed by the caller."
+        },
+        "http_status": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "rate_limit_remaining": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "bounded": {
+          "$ref": "#/$defs/bounded"
+        },
+        "failure_detail": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "$comment": "A failing source must SAY it failed and must not report a success exit. Without this a status may be set while the exit code that produced it reads 0, which is the swallowed non-zero exit itself.",
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "not": {
+                  "const": "ok"
+                }
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "failure_detail"
+            ],
+            "properties": {
+              "exit_code": {
+                "not": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "$comment": "An HTTP error status cannot coexist with `ok`. This is the 403-read-as-no-such-dependency shape: a permission refusal returned as an empty answer.",
+          "if": {
+            "required": [
+              "http_status"
+            ],
+            "properties": {
+              "http_status": {
+                "type": "integer",
+                "minimum": 400
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "not": {
+                  "const": "ok"
+                }
+              }
+            }
+          }
+        },
+        {
+          "$comment": "An exhausted rate-limit budget names itself. Recorded separately from the permission class it shares an HTTP code with, so the two are distinguishable in the document rather than only in the reader's head.",
+          "if": {
+            "required": [
+              "rate_limit_remaining"
+            ],
+            "properties": {
+              "rate_limit_remaining": {
+                "const": 0
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "const": "rate_limited"
+              }
+            }
+          }
+        },
+        {
+          "$comment": "A failed read is not a complete read. Separate from the first conditional so that a partial result presented as complete fails on its own locus.",
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "not": {
+                  "const": "ok"
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "complete": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "$comment": "P0-3: an incomplete read MUST carry its bounded-snapshot flag. An incomplete read that does not say where it stopped is indistinguishable from a complete one at the point of consumption.",
+          "if": {
+            "required": [
+              "complete"
+            ],
+            "properties": {
+              "complete": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "bounded"
+            ]
+          }
+        },
+        {
+          "$comment": "And the converse: carrying a bounded flag while claiming completeness is the truncated-connection shape — `hasNextPage` observed and completeness asserted anyway.",
+          "if": {
+            "required": [
+              "bounded"
+            ]
+          },
+          "then": {
+            "properties": {
+              "complete": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "bounded": {
+      "$comment": "P0-3's bounded-snapshot flag.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason",
+        "cap",
+        "observed",
+        "has_next_page"
+      ],
+      "properties": {
+        "reason": {
+          "enum": [
+            "page_cap_reached",
+            "connection_truncated",
+            "query_failed"
+          ]
+        },
+        "cap": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "has_next_page": {
+          "type": "boolean"
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "issue",
+        "issue_state",
+        "slice_metadata_present",
+        "dependencies",
+        "soft_dependencies"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "issue": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+#[0-9]+$"
+        },
+        "issue_state": {
+          "enum": [
+            "OPEN",
+            "CLOSED",
+            "UNKNOWN"
+          ],
+          "description": "CLOSED enumeration. `UNKNOWN` is a member rather than an absence precisely so that a state the reader does not recognise is REPRESENTABLE AND DISTINCT: P0-4's finding was that an unknown state, not being `OPEN`, was treated as unblocked. Here it can only be carried forward as `UNKNOWN`, and the conditional below makes that force `undecidable`."
+        },
+        "issue_state_raw": {
+          "type": "string",
+          "description": "What was actually read, when it did not map into the closed enumeration. Kept beside `UNKNOWN` so the unrecognised value is diagnosable without being trusted."
+        },
+        "slice_metadata_present": {
+          "type": "boolean"
+        },
+        "slice_id": {
+          "type": "string",
+          "pattern": "^P[0-9]+-S[0-9]+$"
+        },
+        "workflow": {
+          "enum": [
+            "Backlog",
+            "Gate 0 — Verifying",
+            "Gate 1 — Planning",
+            "Needs Plan Approval",
+            "Gate 2 — Implementing",
+            "Needs Review",
+            "Repair Required",
+            "Codex Consultation",
+            "Human Diagnosis Required",
+            "Blocked",
+            "Needs Release Approval",
+            "Gate 3 — Releasing",
+            "Done",
+            "Aborted",
+            "UNKNOWN"
+          ],
+          "description": "The fourteen `Workflow` options in the spec's own order, plus `UNKNOWN` for the same reason `issue_state` carries one. Four of the fourteen contain U+2014 EM DASH and were copied from the committed spec table, never re-typed."
+        },
+        "verdict": {
+          "enum": [
+            "startable",
+            "blocked",
+            "undecidable"
+          ],
+          "description": "A dependency verdict, not a work queue (ADR-0025 decision 8). `startable` here is one conjunct of workability; the consumer performs the candidacy intersection or does not claim readiness."
+        },
+        "excluded_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dependencies": {
+          "$ref": "#/$defs/dependencies"
+        },
+        "soft_dependencies": {
+          "$ref": "#/$defs/softDependencies"
+        }
+      },
+      "allOf": [
+        {
+          "$comment": "P0-4: an unknown Issue state yields `undecidable`, NEVER unblocked. The measured defect was that `state != OPEN` was read as not-blocking.",
+          "if": {
+            "required": [
+              "issue_state"
+            ],
+            "properties": {
+              "issue_state": {
+                "const": "UNKNOWN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "verdict": {
+                "const": "undecidable"
+              }
+            }
+          }
+        },
+        {
+          "$comment": "P0-4: verdicts only for items carrying Slice metadata. A non-Slice Project row gets no verdict at all and is excluded with a stated reason — an exclusion nobody can read is indistinguishable from an omission.",
+          "if": {
+            "required": [
+              "slice_metadata_present"
+            ],
+            "properties": {
+              "slice_metadata_present": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "excluded_reason"
+            ],
+            "not": {
+              "required": [
+                "verdict"
+              ]
+            }
+          }
+        },
+        {
+          "$comment": "The positive arm: an item that DOES carry Slice metadata owes its identity, its Workflow and a verdict. Without this the previous conditional could be satisfied by emitting nothing at all.",
+          "if": {
+            "required": [
+              "slice_metadata_present"
+            ],
+            "properties": {
+              "slice_metadata_present": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "slice_id",
+              "workflow",
+              "verdict"
+            ]
+          }
+        },
+        {
+          "$comment": "P0-4: both dependency directions cross-checked. A mismatch, or a cross-check that was never performed, is `undecidable` — not a tie broken in favour of the direction that happened to be read.",
+          "if": {
+            "required": [
+              "dependencies"
+            ],
+            "properties": {
+              "dependencies": {
+                "required": [
+                  "cross_check"
+                ],
+                "properties": {
+                  "cross_check": {
+                    "enum": [
+                      "mismatch",
+                      "not_performed"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "verdict": {
+                "const": "undecidable"
+              }
+            }
+          }
+        },
+        {
+          "$comment": "P0-4: a declared soft dependency is parsed, or the output says it did not. Saying so costs a verdict: an unparsed declaration cannot leave the item startable.",
+          "if": {
+            "required": [
+              "soft_dependencies"
+            ],
+            "properties": {
+              "soft_dependencies": {
+                "required": [
+                  "parse_status"
+                ],
+                "properties": {
+                  "parse_status": {
+                    "const": "not_parsed"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "verdict": {
+                "const": "undecidable"
+              }
+            }
+          }
+        },
+        {
+          "$comment": "ADR-0025 decision 8's candidacy intersection: an `Aborted` slice is never a candidate, whatever its edges say. Stated as an exclusion rather than a positive const because `blocked` and `undecidable` are both legitimate for a terminated item; `startable` never is.",
+          "if": {
+            "required": [
+              "workflow"
+            ],
+            "properties": {
+              "workflow": {
+                "const": "Aborted"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "verdict": {
+                "not": {
+                  "const": "startable"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "dependencies": {
+      "$comment": "BOTH directions are structurally required. A one-directional read that reports as complete is the defect P0-4 names, and the cheapest way to have it is to make the second direction optional.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocked_by",
+        "blocking",
+        "cross_check"
+      ],
+      "properties": {
+        "blocked_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/edge"
+          }
+        },
+        "blocking": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/edge"
+          }
+        },
+        "cross_check": {
+          "enum": [
+            "consistent",
+            "mismatch",
+            "not_performed"
+          ],
+          "description": "The result of comparing the two directions against each other. `not_performed` is a member because a cross-check that did not happen must be sayable; the conditional on the item makes either non-consistent value force `undecidable`."
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue",
+        "state"
+      ],
+      "properties": {
+        "issue": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+#[0-9]+$"
+        },
+        "state": {
+          "enum": [
+            "OPEN",
+            "CLOSED",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "softDependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declared",
+        "parse_status"
+      ],
+      "properties": {
+        "declared": {
+          "type": "boolean"
+        },
+        "parse_status": {
+          "enum": [
+            "parsed",
+            "not_parsed"
+          ],
+          "description": "Required whether or not anything was declared, so that 'I did not parse this' is a value the document carries rather than a silence the reader must interpret."
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
