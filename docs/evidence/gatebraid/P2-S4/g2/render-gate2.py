@@ -294,7 +294,19 @@ w("- Environment: Windows 11 host, Git Bash (MSYS2) shell, `mixed-see-prose` "
   "environment; `GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid` on every `gh` "
   "call, every endpoint written without a leading slash (friction #33); the "
   "selftest seeds and the harness's parallel tree are written to scratch paths "
-  "outside every repository, as the contract requires such a path to be named.")
+  "outside every repository, as the contract requires such a path to be named. "
+  "**BP-01 fired once more during this gate, on the executor's own verification "
+  "rather than on a deliverable, and is recorded because it is a measurement.** "
+  "Checking that this record's `Plan Approval (G1→G2)` carries U+2192 was first "
+  "attempted by piping `gh project field-list --format json` into a Python "
+  "reader; the console codec re-encoded the response and the live option name "
+  "arrived as the codepoints U+922B U+625C, so the comparison returned a FALSE "
+  "mismatch. Re-measured by writing the response to a file and reading it with "
+  "an explicit UTF-8 decode, the live option is U+2192 and the record string is "
+  "byte-identical to it; `Gate 2 — Implementing` is U+2014 on the same "
+  "measurement. The corrupted read was not acted on, and the hazard the frozen "
+  "plan's P0-2 addresses is therefore live on this host in both directions — "
+  "which is what D5's `B-premise` case independently establishes.")
 w()
 w("## gatebraid-metadata")
 w()
