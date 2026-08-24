@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-N3",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g2/negative-criterion-N3.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2125,
+      "sha256": "fcd5b818be9f1f623dc3acaed657ac103e80d15506f68f7714c1ab7d49730184",
+      "data": "Y3JpdGVyaW9uICAgICAgOiBOMyAtIG5vIGxpdmUgbmV0d29yayBjYWxsIGluIGFueSBkZWNsYXJlZCB0ZXN0IGNvbW1hbmQNCnBhdHRlcm4gcHJveGllZDogYSBkZWNsYXJlZCB0ZXN0IGRlcGVuZGluZyBvbiB0aGUgbGl2ZSBjb250cm9sIHBsYW5lDQplcnJzIHRvd2FyZCAgICA6IEZBTFNFIFBPU0lUSVZFIChhIG1lbnRpb24gaW4gcHJvc2UgdHJpcHMgaXQpDQpzY29wZSAgICAgICAgICA6DQogICB0aGUgZGVjbGFyZWQtY29tbWFuZCB0YWJsZSBvZiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9nYXRlMS5tZA0KICAgYmluL2dhdGVicmFpZC1vMC1hY2NlcHRhbmNlLnB5DQogICBOT1QgaW4gc2NvcGU6IGJpbi9nYXRlYnJhaWQtc25hcHNob3QucHksIHdoaWNoIGNhcnJpZXMgYSBsaXZlIGdoIHRyYW5zcG9ydCBieSBkZXNpZ24NCnNoYXBlcyBzZWFyY2hlZDoNCiAgIE4zYSAgYSBgZ2hgIGludm9jYXRpb24gaW4gYSBkZWNsYXJlZCBjb21tYW5kJ3MgYXJndg0KICAgTjNiICBhbiBIVFRQIGNsaWVudCBuYW1lZCBpbiB0aGUgaGFybmVzcyBzb3VyY2U6IHJlcXVlc3RzLCBodHRweCwgYWlvaHR0cCwgdXJsbGliLCB1cmxvcGVuLCBodHRwLmNsaWVudCwgSFRUUENvbm5lY3Rpb24sIHNvY2tldA0KDQpkZWNsYXJlZCBjb21tYW5kcyByZWFkIGZyb20gdGhlIGZyb3plbiBwbGFuIDogMTMNCiAgIEQxYSAgYEM6L1B5dGhvbjMxMi9weXRob24uZXhlIC1CIGJpbi9nYXRlYnJhaWQtc25hcHNob3Qtc2VsZnRlc3QucHlgDQogICBEMWIgIGB3c2wgLWUgYmFzaCAtbGMgImNkICcvbW50L2QvR2l0aHViIHJlcG8vR2F0ZWJyYWlkJyAmJiBQWVRIT05ET05UV1JJVEVCWVRFQ09ERT0xIHB5dGhvbjMgLUIgYmluL2dhdGVicmFpZC1zbmFwc2hvdC1zZWwNCiAgIEQyYSAgYEM6L1B5dGhvbjMxMi9weXRob24uZXhlIC1CIGJpbi9nYXRlYnJhaWQtZnJvbnRpZXItc2VsZnRlc3QucHlgDQogICBEMmIgIGB3c2wgLWUgYmFzaCAtbGMgImNkICcvbW50L2QvR2l0aHViIHJlcG8vR2F0ZWJyYWlkJyAmJiBQWVRIT05ET05UV1JJVEVCWVRFQ09ERT0xIHB5dGhvbjMgLUIgYmluL2dhdGVicmFpZC1mcm9udGllci1zZWwNCiAgIEQzYSAgYEM6L1B5dGhvbjMxMi9weXRob24uZXhlIC1CIGJpbi9nYXRlYnJhaWQtbzAtYWNjZXB0YW5jZS5weSAtLWluZHVjZWQtZmFpbHVyZXMgLS1vdXQgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvYWNjZQ0KICAgRDNiICB0aGUgRDNhIGNvbW1hbmQgdW5kZXIgYHdzbCAtZSBiYXNoIC1sY2Agd2l0aCBgUFlUSE9ORE9OVFdSSVRFQllURUNPREU9MSBweXRob24zIC1CYA0KICAgRDQgICBgQzovUHl0aG9uMzEyL3B5dGhvbi5leGUgLUIgYmluL2dhdGVicmFpZC1vMC1hY2NlcHRhbmNlLnB5IC0tZGVwZW5kZW5jeS1kaXJlY3Rpb25zIC0tb3V0IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0DQogICBENSAgIGBDOi9QeXRob24zMTIvcHl0aG9uLmV4ZSAtQiBiaW4vZ2F0ZWJyYWlkLW8wLWFjY2VwdGFuY2UucHkgLS1ieXRlLWNvbnRyYWN0IC0tb3V0IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2FjY2VwdGENCiAgIEQ2YSAgYEM6L1B5dGhvbjMxMi9weXRob24uZXhlIC1CIGJpbi9nYXRlYnJhaWQtdmFsaWRhdGUucHkgLS1jb3JwdXMgZml4dHVyZXNgDQogICBENmIgIHRoZSBENmEgY29tbWFuZCB1bmRlciBgd3NsIC1lIGJhc2ggLWxjYCB3aXRoIGBQWVRIT05ET05UV1JJVEVCWVRFQ09ERT0xIHB5dGhvbjMgLUJgDQogICBENyAgIGBDOi9QeXRob24zMTIvcHl0aG9uLmV4ZSAtQiBmaXh0dXJlcy9ydW5uZXItc2VsZnRlc3QucHlgDQogICBEOCAgIGBnaXQgbWVyZ2UtYmFzZSAtLWlzLWFuY2VzdG9yIGRmNjY2MDcwZWFkN2ZhMjFiYzcyYjZjOTlkMjY0NDkyM2IzN2U3ODcgSEVBRGANCiAgIE4xICAgYEM6L1B5dGhvbjMxMi9weXRob24uZXhlIC1CIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2cxL25lZ2F0aXZlLWNyaXRlcmlvbi1OMS5weSBkZjY2NjA3MGVhZDdmYTIxYmM3MmI2Yzk5ZDI2NDQ5Mg0KDQptYXRjaGVzICAgICAgICA6IDANCg0KTjMgSE9MRFM6IG5vIGRlY2xhcmVkIGNvbW1hbmQgaW52b2tlcyBgZ2hgIGFuZCB0aGUgaGFybmVzcyBzb3VyY2UgbmFtZXMgbm8gSFRUUCBjbGllbnQNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "criterion      : N3 - no live network call in any declared test command\r\npattern proxied: a declared test depending on the live control plane\r\nerrs toward    : FALSE POSITIVE (a mention in prose trips it)\r\nscope          :\r\n   the declared-command table of docs/evidence/gatebraid/P2-S4/gate1.md\r\n   bin/gatebraid-o0-acceptance.py\r\n   NOT in scope: bin/gatebraid-snapshot.py, which carries a live gh transport by design\r\nshapes searched:\r\n   N3a  a `gh` invocation in a declared command's argv\r\n   N3b  an HTTP client named in the harness source: requests, httpx, aiohttp, urllib, urlopen, http.client, HTTPConnection, socket\r\n\r\ndeclared commands read from the frozen plan : 13\r\n   D1a  `C:/Python312/python.exe -B bin/gatebraid-snapshot-selftest.py`\r\n   D1b  `wsl -e bash -lc \"cd '/mnt/d/Github repo/Gatebraid' && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-snapshot-sel\r\n   D2a  `C:/Python312/python.exe -B bin/gatebraid-frontier-selftest.py`\r\n   D2b  `wsl -e bash -lc \"cd '/mnt/d/Github repo/Gatebraid' && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-frontier-sel\r\n   D3a  `C:/Python312/python.exe -B bin/gatebraid-o0-acceptance.py --induced-failures --out docs/evidence/gatebraid/P2-S4/acce\r\n   D3b  the D3a command under `wsl -e bash -lc` with `PYTHONDONTWRITEBYTECODE=1 python3 -B`\r\n   D4   `C:/Python312/python.exe -B bin/gatebraid-o0-acceptance.py --dependency-directions --out docs/evidence/gatebraid/P2-S4\r\n   D5   `C:/Python312/python.exe -B bin/gatebraid-o0-acceptance.py --byte-contract --out docs/evidence/gatebraid/P2-S4/accepta\r\n   D6a  `C:/Python312/python.exe -B bin/gatebraid-validate.py --corpus fixtures`\r\n   D6b  the D6a command under `wsl -e bash -lc` with `PYTHONDONTWRITEBYTECODE=1 python3 -B`\r\n   D7   `C:/Python312/python.exe -B fixtures/runner-selftest.py`\r\n   D8   `git merge-base --is-ancestor df666070ead7fa21bc72b6c99d2644923b37e787 HEAD`\r\n   N1   `C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S4/g1/negative-criterion-N1.py df666070ead7fa21bc72b6c99d264492\r\n\r\nmatches        : 0\r\n\r\nN3 HOLDS: no declared command invokes `gh` and the harness source names no HTTP client\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T12:54:47.666713Z",
+  "ended_at": "2026-08-24T12:54:47.726955Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

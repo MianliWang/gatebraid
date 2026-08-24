@@ -1,0 +1,173 @@
+{
+ "cases": [
+  {
+   "case_id": "I-P0-1-auth",
+   "clause": "P0-1 auth_failure",
+   "consumer_exit": 3,
+   "description": "a read answered 401",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 3,
+   "reasons": [
+    "a source is degraded, so no item can carry a verdict other than undecidable"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-1-perm",
+   "clause": "P0-1 permission_failure",
+   "consumer_exit": 3,
+   "description": "403 with budget remaining",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 3,
+   "reasons": [
+    "a source is degraded, so no item can carry a verdict other than undecidable"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-1-rate",
+   "clause": "P0-1 rate_limited",
+   "consumer_exit": 3,
+   "description": "403 with the budget exhausted",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 3,
+   "reasons": [
+    "a source is degraded, so no item can carry a verdict other than undecidable"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-1-net",
+   "clause": "P0-1 network_error",
+   "consumer_exit": 3,
+   "description": "the read could not be performed",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 3,
+   "reasons": [
+    "a source is degraded, so no item can carry a verdict other than undecidable"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-1-server",
+   "clause": "P0-1 server_error",
+   "consumer_exit": 3,
+   "description": "the endpoint answered 503",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 3,
+   "reasons": [
+    "a source is degraded, so no item can carry a verdict other than undecidable"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-1-parse",
+   "clause": "P0-1 parse_error",
+   "consumer_exit": 3,
+   "description": "a body that is not JSON",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 3,
+   "reasons": [
+    "a source is degraded, so no item can carry a verdict other than undecidable"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-1-endpoint",
+   "clause": "P0-1 unexpected_endpoint",
+   "consumer_exit": 3,
+   "description": "a shape the tool does not know",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 3,
+   "reasons": [
+    "a source is degraded, so no item can carry a verdict other than undecidable"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-3-cap",
+   "clause": "P0-3 page cap",
+   "consumer_exit": 3,
+   "description": "a capped connection with pages outstanding",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 3,
+   "reasons": [
+    "a source is degraded, so no item can carry a verdict other than undecidable"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-4-state",
+   "clause": "P0-4 unknown issue state",
+   "consumer_exit": 0,
+   "description": "a state outside the closed set",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 0,
+   "reasons": [
+    "the Issue state did not map into the closed enumeration; an unrecognised state is undecidable, never unblocked"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-4-workflow",
+   "clause": "P0-4 unknown workflow",
+   "consumer_exit": 0,
+   "description": "a Workflow outside the closed set",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 0,
+   "reasons": [
+    "the Workflow value did not map into the closed enumeration"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-4-crosscheck",
+   "clause": "P0-4 cross-check mismatch",
+   "consumer_exit": 0,
+   "description": "one direction unmirrored",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 0,
+   "reasons": [
+    "the two dependency directions disagree"
+   ],
+   "required": "undecidable"
+  },
+  {
+   "case_id": "I-P0-4-soft",
+   "clause": "P0-4 soft dependency not parsed",
+   "consumer_exit": 0,
+   "description": "a declaration that did not parse",
+   "exercised": true,
+   "observed": "undecidable",
+   "producer_exit": 0,
+   "reasons": [
+    "a declared soft dependency was not parsed, and an unparsed declaration cannot leave the item startable"
+   ],
+   "required": "undecidable"
+  }
+ ],
+ "harness": {
+  "name": "gatebraid-o0-acceptance",
+  "version": "1.0.0"
+ },
+ "mode": "induced-failures",
+ "report": "gatebraid/o0-acceptance@1",
+ "summary": {
+  "clean": true,
+  "declared": 12,
+  "failed": 0,
+  "met": 12,
+  "unexercised": 0
+ }
+}

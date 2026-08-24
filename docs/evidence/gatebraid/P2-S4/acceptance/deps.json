@@ -1,0 +1,79 @@
+{
+ "cases": [
+  {
+   "blocked_by_count": 1,
+   "blocking_count": 1,
+   "both_directions_non_empty": true,
+   "case_id": "D-both-consistent",
+   "clause": "allOf[2] positive arm; both directions non-empty",
+   "consumer_exit": 0,
+   "description": "an item carrying Slice metadata, blocked_by and blocking both non-empty and agreeing",
+   "exercised": true,
+   "observed": "blocked",
+   "positive_arm_complete": true,
+   "required": "blocked"
+  },
+  {
+   "blocked_by_count": 1,
+   "blocking_count": 1,
+   "both_directions_non_empty": true,
+   "case_id": "D-mismatch",
+   "clause": "allOf[3] consequence half",
+   "consumer_exit": 0,
+   "description": "a non-empty relation asserted in one direction and not the other",
+   "exercised": true,
+   "observed": "undecidable",
+   "required": "undecidable"
+  },
+  {
+   "blocked_by_count": 1,
+   "blocking_count": 1,
+   "both_directions_non_empty": true,
+   "case_id": "D-not-performed",
+   "clause": "allOf[3] consequence half",
+   "consumer_exit": 0,
+   "description": "a non-empty relation whose cross-check was never performed",
+   "exercised": true,
+   "observed": "undecidable",
+   "required": "undecidable"
+  },
+  {
+   "blocked_by_count": 1,
+   "blocking_count": 1,
+   "both_directions_non_empty": true,
+   "case_id": "D-non-slice",
+   "clause": "allOf[1]",
+   "consumer_exit": 0,
+   "description": "a row with no Slice metadata, carrying a reason and no verdict",
+   "excluded_with_reason": true,
+   "exercised": true,
+   "observed": "<no verdict>",
+   "required": "<no verdict>"
+  },
+  {
+   "blocked_by_count": 0,
+   "blocking_count": 1,
+   "both_directions_non_empty": false,
+   "case_id": "D-aborted",
+   "clause": "allOf[5]",
+   "consumer_exit": 0,
+   "description": "an Aborted row, which may be blocked but never startable",
+   "exercised": true,
+   "observed": "blocked",
+   "required": "blocked"
+  }
+ ],
+ "harness": {
+  "name": "gatebraid-o0-acceptance",
+  "version": "1.0.0"
+ },
+ "mode": "dependency-directions",
+ "report": "gatebraid/o0-acceptance@1",
+ "summary": {
+  "clean": true,
+  "declared": 5,
+  "failed": 0,
+  "met": 5,
+  "unexercised": 0
+ }
+}

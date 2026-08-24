@@ -1,0 +1,53 @@
+{
+ "cases": [
+  {
+   "case_id": "B-premise",
+   "clause": "P0-2 premise",
+   "description": "the parent console really does corrupt a text-layer write",
+   "detail": "a byte-contract test under a UTF-8 console would pass while measuring nothing, so the premise is measured first",
+   "exercised": true,
+   "observed": "corrupted",
+   "required": "corrupted"
+  },
+  {
+   "case_id": "B-producer",
+   "clause": "P0-2 producing half",
+   "description": "the producer's stdout bytes under a cp936 parent console",
+   "detail": "the emitted document must carry the U+2014 mark as its UTF-8 encoding, not as the console's",
+   "exercised": true,
+   "observed": "byte-exact UTF-8",
+   "required": "byte-exact UTF-8"
+  },
+  {
+   "case_id": "B-consumer",
+   "clause": "P0-2 consuming half",
+   "description": "the consumer's stdout bytes under a cp936 parent console",
+   "detail": "the consumer read the producer's bytes and re-emitted the mark unchanged",
+   "exercised": true,
+   "observed": "byte-exact UTF-8",
+   "required": "byte-exact UTF-8"
+  },
+  {
+   "case_id": "B-roundtrip",
+   "clause": "P0-2 round trip",
+   "description": "the cp936 run and the ordinary run emit identical bytes",
+   "detail": "the console codec must make no difference to the emitted document at all",
+   "exercised": true,
+   "observed": "identical",
+   "required": "identical"
+  }
+ ],
+ "harness": {
+  "name": "gatebraid-o0-acceptance",
+  "version": "1.0.0"
+ },
+ "mode": "byte-contract",
+ "report": "gatebraid/o0-acceptance@1",
+ "summary": {
+  "clean": true,
+  "declared": 4,
+  "failed": 0,
+  "met": 4,
+  "unexercised": 0
+ }
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-T3selftest-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-o0-acceptance-selftest.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3235,
+      "sha256": "0d22216c78406118c85077bec4f71a17c2c81a135f27c3499cb2058a3f41e8dd",
+      "data": "aWQgICAgIGNvbmRpdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2FudCAgICAgICAgICBnb3QgICAgICAgICAgIHZlcmRpY3QgcmVxdWlyZWQgb2JzZXJ2YXRpb24NCkEwMSAgICB0aGUgcmVhbCBwYWlyIHBhc3NlcyAtLWluZHVjZWQtZmFpbHVyZXMgICAgICAgICAgICAgIDAgICAgICAgICAgICAgMCAgICAgICAgICAgICBQQVNTICAgIHRoZSBwb3NpdGl2ZSBjb250cm9sOiBhIGhhcm5lc3MgdGhhdCBmYWlsZWQgaGVyZSB3b3VsZCBiZSBtZWFzdXJpbmcgaXRzIG93biBkZWZlY3QNCkEwMiAgICB0aGUgcmVhbCBwYWlyIHBhc3NlcyAtLWRlcGVuZGVuY3ktZGlyZWN0aW9ucyAgICAgICAgIDAgICAgICAgICAgICAgMCAgICAgICAgICAgICBQQVNTICAgIHRoZSBwb3NpdGl2ZSBjb250cm9sOiBhIGhhcm5lc3MgdGhhdCBmYWlsZWQgaGVyZSB3b3VsZCBiZSBtZWFzdXJpbmcgaXRzIG93biBkZWZlY3QNCkEwMyAgICB0aGUgcmVhbCBwYWlyIHBhc3NlcyAtLWNvcnB1cyAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAgMCAgICAgICAgICAgICBQQVNTICAgIHRoZSBwb3NpdGl2ZSBjb250cm9sOiBhIGhhcm5lc3MgdGhhdCBmYWlsZWQgaGVyZSB3b3VsZCBiZSBtZWFzdXJpbmcgaXRzIG93biBkZWZlY3QNCkEwNCAgICB0aGUgcmVhbCBwYWlyIHBhc3NlcyAtLWJ5dGUtY29udHJhY3QgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAgMCAgICAgICAgICAgICBQQVNTICAgIHRoZSBjcDkzNiBwcmVtaXNlIGhvbGRzIG9uIHRoaXMgaG9zdA0KQTA1ICAgIGEgZmFpbC1vcGVuIGNvbnN1bWVyIG1ha2VzIHRoZSBoYXJuZXNzIEZBSUwgICAgICAgICAgMSAgICAgICAgICAgICAxICAgICAgICAgICAgIFBBU1MgICAgYSBjb25zdW1lciB0aGF0IGFsd2F5cyBzYXlzIHN0YXJ0YWJsZSBpcyB0aGUgUDAtMSBkZWZlY3QgaXRzZWxmDQpBMDYgICAgYW5kIGV2ZXJ5IGluZHVjZWQgY2FzZSBpcyByZXBvcnRlZCBmYWlsaW5nICAgICAgICAgICBUcnVlICAgICAgICAgIFRydWUgICAgICAgICAgUEFTUyAgICBhbGwgdHdlbHZlLCBub3QgYSBzYW1wbGU6IGVhY2ggY2xhc3MgaXMgaW5kZXBlbmRlbnRseSBzZWVkZWQNCkEwNyAgICBhbmQgdGhlIHN1bW1hcnkgZG9lcyBub3QgY2xhaW0gdW5kZWNpZGFibGUgY292ZXJhZ2UgIFRydWUgICAgICAgICAgVHJ1ZSAgICAgICAgICBQQVNTICAgIHRoZSBzdW1tYXJ5IGxpbmUgbXVzdCBtb3ZlIHdpdGggdGhlIG1lYXN1cmVtZW50DQpBMDggICAgYSBmYWlsLW9wZW4gY29uc3VtZXIgZmFpbHMgZGVwZW5kZW5jeS1kaXJlY3Rpb25zIHRvbyAxICAgICAgICAgICAgIDEgICAgICAgICAgICAgUEFTUyAgICB0aGUgY3Jvc3MtY2hlY2sgY2xhdXNlcyBhcmUgd2hlcmUgYSBmYWlsLW9wZW4gY29uc3VtZXIgaGlkZXMNCkEwOSAgICBhbmQgaXMgY2F1Z2h0IG92ZXIgdGhlIGZyb3plbiBjb3JwdXMgICAgICAgICAgICAgICAgIDEgICAgICAgICAgICAgMSAgICAgICAgICAgICBQQVNTICAgIGEgY29uc3VtZXIgdGhhdCByZWZ1c2VzIG5vdGhpbmcgYWNjZXB0cyBldmVyeSBjb3JwdXMgbmVnYXRpdmUNCkExMCAgICBhIHNpbGVudCBjb25zdW1lciBleGl0cyAxLCBuZXZlciAwICAgICAgICAgICAgICAgICAgIDEgICAgICAgICAgICAgMSAgICAgICAgICAgICBQQVNTICAgIGFuIHVuZXhlcmNpc2VkIGNhc2UgaXMgYSBmYWlsdXJlLCBub3QgYSBza2lwDQpBMTEgICAgYW5kIHRoZSBjYXNlcyBhcmUgY291bnRlZCB1bmV4ZXJjaXNlZCAgICAgICAgICAgICAgICBUcnVlICAgICAgICAgIFRydWUgICAgICAgICAgUEFTUyAgICBhIGNhc2Ugbm9ib2R5IHJhbiBtdXN0IGJlIHZpc2libGUgYXMgc3VjaCBpbiB0aGUgc3VtbWFyeQ0KQTEyICAgIHRoZSByZXBvcnQgZmlsZSBpcyB3cml0dGVuICAgICAgICAgICAgICAgICAgICAgICAgICAgVHJ1ZSAgICAgICAgICBUcnVlICAgICAgICAgIFBBU1MgICAgdGhlIEpTT04gYW5kIHRoZSBwcmludGVkIHRhYmxlIGFyZSB0aGUgc2FtZSBtZWFzdXJlbWVudA0KQTEzICAgIGFuZCByZWNvcmRzIHRoZSBydW4gYXMgY2xlYW4gICAgICAgICAgICAgICAgICAgICAgICAgVHJ1ZSAgICAgICAgICBUcnVlICAgICAgICAgIFBBU1MgICAgYSBtYWNoaW5lIHJlYWRlciBtdXN0IHJlYWNoIHRoZSBzYW1lIHZlcmRpY3QgYXMgdGhlIGh1bWFuIG9uZQ0KQTE0ICAgIGFuZCBjYXJyaWVzIGV2ZXJ5IGRlY2xhcmVkIGNhc2UgICAgICAgICAgICAgICAgICAgICAgMTIgICAgICAgICAgICAxMiAgICAgICAgICAgIFBBU1MgICAgdGhlIGZpbGUgaXMgdGhlIHJlY29yZCwgbm90IGEgc3VtbWFyeSBvZiBvbmUNCkExNSAgICBhbmQgcmVjb3JkcyBhIGZhaWxpbmcgcnVuIGFzIE5PVCBjbGVhbiAgICAgICAgICAgICAgIEZhbHNlICAgICAgICAgRmFsc2UgICAgICAgICBQQVNTICAgIHRoZSBmaWxlIG11c3Qgbm90IGRpc2FncmVlIHdpdGggdGhlIGV4aXQgc3RhdHVzDQpBMTYgICAgbm8gbW9kZSBzZWxlY3RlZCBpcyBhIHVzYWdlIGVycm9yICAgICAgICAgICAgICAgICAgICAyICAgICAgICAgICAgIDIgICAgICAgICAgICAgUEFTUyAgICBhIGhhcm5lc3Mgd2l0aCBubyBtb2RlIG11c3Qgbm90IGRlZmF1bHQgdG8gdGhlIGNoZWFwZXN0IG9uZQ0KQTE3ICAgIHR3byBtb2RlcyBhdCBvbmNlIGlzIGEgdXNhZ2UgZXJyb3IgICAgICAgICAgICAgICAgICAgMiAgICAgICAgICAgICAyICAgICAgICAgICAgIFBBU1MgICAgb25lIG1vZGUsIG9uZSBzdW1tYXJ5LCBvbmUgZXhpdCBzdGF0dXMNCg0Kc2NyYXRjaCBkaXJlY3RvcnkgICAgICAgICAgICAgOiBvdXRzaWRlIGV2ZXJ5IHJlcG9zaXRvcnkgKHRlbXBmaWxlLm1rZHRlbXApDQpoYXJuZXNzIHVuZGVyIHRlc3QgICAgICAgICAgICA6IEQ6XEdpdGh1YiByZXBvXEdhdGVicmFpZFxiaW5cZ2F0ZWJyYWlkLW8wLWFjY2VwdGFuY2UucHkNCmludGVycHJldGVyICAgICAgICAgICAgICAgICAgIDogQzpcUHl0aG9uMzEyXHB5dGhvbi5leGUNCmZhbHNpZmljYXRpb24gbWV0aG9kICAgICAgICAgIDogYSBjb21wbGV0ZSBwYXJhbGxlbCB0cmVlIHdpdGggdGhlIGNvbnN1bWVyIHJlcGxhY2VkIGJ5IGEgZmFpbC1vcGVuIHN0dWINCm5ldHdvcmsgcmVhZHMgcGVyZm9ybWVkICAgICAgIDogMA0KY29uZGl0aW9ucyBmYWlsZWQgICAgICAgICAgICAgOiAwDQpTRUxGVEVTVCBDTEVBTjogZXZlcnkgc2VlZGVkIGNvbmRpdGlvbiBwcm9kdWNlZCBpdHMgcmVxdWlyZWQgZXhpdCBzdGF0dXMNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "id     condition                                            want          got           verdict required observation\r\nA01    the real pair passes --induced-failures              0             0             PASS    the positive control: a harness that failed here would be measuring its own defect\r\nA02    the real pair passes --dependency-directions         0             0             PASS    the positive control: a harness that failed here would be measuring its own defect\r\nA03    the real pair passes --corpus                        0             0             PASS    the positive control: a harness that failed here would be measuring its own defect\r\nA04    the real pair passes --byte-contract                 0             0             PASS    the cp936 premise holds on this host\r\nA05    a fail-open consumer makes the harness FAIL          1             1             PASS    a consumer that always says startable is the P0-1 defect itself\r\nA06    and every induced case is reported failing           True          True          PASS    all twelve, not a sample: each class is independently seeded\r\nA07    and the summary does not claim undecidable coverage  True          True          PASS    the summary line must move with the measurement\r\nA08    a fail-open consumer fails dependency-directions too 1             1             PASS    the cross-check clauses are where a fail-open consumer hides\r\nA09    and is caught over the frozen corpus                 1             1             PASS    a consumer that refuses nothing accepts every corpus negative\r\nA10    a silent consumer exits 1, never 0                   1             1             PASS    an unexercised case is a failure, not a skip\r\nA11    and the cases are counted unexercised                True          True          PASS    a case nobody ran must be visible as such in the summary\r\nA12    the report file is written                           True          True          PASS    the JSON and the printed table are the same measurement\r\nA13    and records the run as clean                         True          True          PASS    a machine reader must reach the same verdict as the human one\r\nA14    and carries every declared case                      12            12            PASS    the file is the record, not a summary of one\r\nA15    and records a failing run as NOT clean               False         False         PASS    the file must not disagree with the exit status\r\nA16    no mode selected is a usage error                    2             2             PASS    a harness with no mode must not default to the cheapest one\r\nA17    two modes at once is a usage error                   2             2             PASS    one mode, one summary, one exit status\r\n\r\nscratch directory             : outside every repository (tempfile.mkdtemp)\r\nharness under test            : D:\\Github repo\\Gatebraid\\bin\\gatebraid-o0-acceptance.py\r\ninterpreter                   : C:\\Python312\\python.exe\r\nfalsification method          : a complete parallel tree with the consumer replaced by a fail-open stub\r\nnetwork reads performed       : 0\r\nconditions failed             : 0\r\nSELFTEST CLEAN: every seeded condition produced its required exit status\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T12:56:16.143163Z",
+  "ended_at": "2026-08-24T12:56:53.148705Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

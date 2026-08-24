@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D4",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-o0-acceptance.py",
+      "--dependency-directions",
+      "--out",
+      "docs/evidence/gatebraid/P2-S4/acceptance/deps.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1296,
+      "sha256": "9b0c2e23c4ec8739b3183f531bcc331818810bdc308be4224ca9d8f6e9a2322e",
+      "data": "Y2FzZSAgICAgICAgICAgICAgY2xhdXNlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlcXVpcmVkICAgICAgICAgICBvYnNlcnZlZCAgICAgICAgICAgdmVyZGljdA0KRC1ib3RoLWNvbnNpc3RlbnQgYWxsT2ZbMl0gcG9zaXRpdmUgYXJtOyBib3RoIGRpcmVjdGlvbnMgbm9uLWVtcHR5IGJsb2NrZWQgICAgICAgICAgICBibG9ja2VkICAgICAgICAgICAgUEFTUw0KRC1taXNtYXRjaCAgICAgICAgYWxsT2ZbM10gY29uc2VxdWVuY2UgaGFsZiAgICAgICAgICAgICAgICAgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgUEFTUw0KRC1ub3QtcGVyZm9ybWVkICAgYWxsT2ZbM10gY29uc2VxdWVuY2UgaGFsZiAgICAgICAgICAgICAgICAgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgUEFTUw0KRC1ub24tc2xpY2UgICAgICAgYWxsT2ZbMV0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxubyB2ZXJkaWN0PiAgICAgICA8bm8gdmVyZGljdD4gICAgICAgUEFTUw0KRC1hYm9ydGVkICAgICAgICAgYWxsT2ZbNV0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJsb2NrZWQgICAgICAgICAgICBibG9ja2VkICAgICAgICAgICAgUEFTUw0KDQptb2RlICAgICAgICAgICAgICAgICAgICAgICAgICA6IGRlcGVuZGVuY3ktZGlyZWN0aW9ucw0KaGFybmVzcyAgICAgICAgICAgICAgICAgICAgICAgOiBnYXRlYnJhaWQtbzAtYWNjZXB0YW5jZSAxLjAuMA0KaW50ZXJwcmV0ZXIgICAgICAgICAgICAgICAgICAgOiBDOlxQeXRob24zMTJccHl0aG9uLmV4ZQ0KbmV0d29yayByZWFkcyBwZXJmb3JtZWQgICAgICAgOiAwDQpjYXNlcyBkZWNsYXJlZCAgICAgICAgICAgICAgICA6IDUNCmNhc2VzIG1lZXRpbmcgcmVxdWlyZWQgb3V0Y29tZTogNQ0KY2xhc3NlcyByZXBvcnRlZCB1bmV4ZXJjaXNlZCAgOiAwDQpjYXNlcyBmYWlsaW5nICAgICAgICAgICAgICAgICA6IDANCmNhc2VzIGV4ZXJjaXNpbmcgYSBOT04tRU1QVFkgcmVsYXRpb24gaW4gQk9USCBkaXJlY3Rpb25zIDogNA0KYWxsT2ZbMl0gcG9zaXRpdmUgYXJtIGNvbXBsZXRlIChpZCwgd29ya2Zsb3cgYW5kIHZlcmRpY3QpIDogMQ0KDQpBQ0NFUFRBTkNFIENMRUFOOiBldmVyeSBkZWNsYXJlZCBjYXNlIG1ldCBpdHMgcmVxdWlyZWQgb3V0Y29tZQ0Kb3V0ICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9hY2NlcHRhbmNlL2RlcHMuanNvbg0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "case              clause                                           required           observed           verdict\r\nD-both-consistent allOf[2] positive arm; both directions non-empty blocked            blocked            PASS\r\nD-mismatch        allOf[3] consequence half                        undecidable        undecidable        PASS\r\nD-not-performed   allOf[3] consequence half                        undecidable        undecidable        PASS\r\nD-non-slice       allOf[1]                                         <no verdict>       <no verdict>       PASS\r\nD-aborted         allOf[5]                                         blocked            blocked            PASS\r\n\r\nmode                          : dependency-directions\r\nharness                       : gatebraid-o0-acceptance 1.0.0\r\ninterpreter                   : C:\\Python312\\python.exe\r\nnetwork reads performed       : 0\r\ncases declared                : 5\r\ncases meeting required outcome: 5\r\nclasses reported unexercised  : 0\r\ncases failing                 : 0\r\ncases exercising a NON-EMPTY relation in BOTH directions : 4\r\nallOf[2] positive arm complete (id, workflow and verdict) : 1\r\n\r\nACCEPTANCE CLEAN: every declared case met its required outcome\r\nout                           : docs/evidence/gatebraid/P2-S4/acceptance/deps.json\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T12:54:23.993279Z",
+  "ended_at": "2026-08-24T12:54:25.526792Z",
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/acceptance/deps.json",
+      "sha256": "a340bad08bc062d1c410418f9cf68f74e177bb905f1226407279067ad7965e31",
+      "byte_length": 2110
+    }
+  ],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
