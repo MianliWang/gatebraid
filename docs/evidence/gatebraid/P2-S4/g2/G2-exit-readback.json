@@ -1,0 +1,69 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-exit-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($item:ID!){ node(id:$item){ ... on ProjectV2Item { content{ ... on Issue { number state labels(first:20){ nodes{ name } } } } fieldValues(first:50){ nodes{ ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name } } } ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } } } } } } }",
+      "-F",
+      "item=PVTI_lAHOBRofUs4Beum7zg3ogLM"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1709,
+      "sha256": "52f34d00a417c08c649b8764d5f2cab9f94f68f3b7f8ebd03396e7821ad3e08e",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiY29udGVudCI6eyJudW1iZXIiOjE0LCJzdGF0ZSI6Ik9QRU4iLCJsYWJlbHMiOnsibm9kZXMiOltdfX0sImZpZWxkVmFsdWVzIjp7Im5vZGVzIjpbe30seyJ0ZXh0IjoiUDItUzQg4oCUIE8wIHNuYXBzaG90L2Zyb250aWVyIGhhcmRlbmluZzogdGhlIGZhaWwtY2xvc2VkIHBhaXIiLCJmaWVsZCI6eyJuYW1lIjoiVGl0bGUifX0seyJuYW1lIjoiVG9kbyIsIm9wdGlvbklkIjoiZjc1YWQ4NDYiLCJmaWVsZCI6eyJuYW1lIjoiU3RhdHVzIn19LHsibmFtZSI6Ik5lZWRzIFJldmlldyIsIm9wdGlvbklkIjoiOWI4YTVhNjIiLCJmaWVsZCI6eyJuYW1lIjoiV29ya2Zsb3cifX0seyJuYW1lIjoiRzEgcGFzc2VkIiwib3B0aW9uSWQiOiIyYTJmZjAwZSIsImZpZWxkIjp7Im5hbWUiOiJHYXRlIn19LHsibmFtZSI6IuKAlCIsIm9wdGlvbklkIjoiNDUwZWUxMzAiLCJmaWVsZCI6eyJuYW1lIjoiTmV4dCBBcHByb3ZhbCJ9fSx7Im5hbWUiOiJtaXhlZC1zZWUtcHJvc2UiLCJvcHRpb25JZCI6IjFlNDNlYzg1IiwiZmllbGQiOnsibmFtZSI6IkVudmlyb25tZW50In19LHsibmFtZSI6IkNsYXVkZSBMZWFkIiwib3B0aW9uSWQiOiJjZTg1OWM3ZCIsImZpZWxkIjp7Im5hbWUiOiJFeGVjdXRvciJ9fSx7Im5hbWUiOiJsb3ciLCJvcHRpb25JZCI6ImUyOTEyNDljIiwiZmllbGQiOnsibmFtZSI6IlJpc2sifX0seyJ0ZXh0IjoiUzIiLCJmaWVsZCI6eyJuYW1lIjoiU3RhZ2UifX0seyJ0ZXh0IjoiUDIiLCJmaWVsZCI6eyJuYW1lIjoiUGhhc2UifX0seyJ0ZXh0IjoiUDItUzQiLCJmaWVsZCI6eyJuYW1lIjoiU2xpY2UifX0seyJ0ZXh0IjoiZGY2NjYwNzBlYWQ3ZmEyMWJjNzJiNmM5OWQyNjQ0OTIzYjM3ZTc4NyIsImZpZWxkIjp7Im5hbWUiOiJCYXNlIFNIQSJ9fSx7InRleHQiOiIyMDI2LTA4LTI0VDEzOjA2OjM1WiBHYXRlIDIgY29tcGxldGUsIG5lZWRzIHJldmlldzsgcmVjb3JkIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2dhdGUyLm1kIHNoYTI1NiA5OWI0ZDc0M2UxZTRiOGE3YTU0N2M2NGMwZjVjOWJkZTJkY2M0MjY3OTA1ZGY2MzFhZTRlM2ZjZjQzMzNmOGI1IChjb21taXR0ZWQpOyBoYW5kb2ZmX2ZpbmdlcnByaW50IGFjdGl2ZV9icmFuY2hfaGVhZCA1MGQwOGRlNjUxNThmYWYyM2YxYWU4NmFlZWJjZGUzOWU5MjljMzU5IHRyZWUgZjc5NzI5NzAwNWQzNWQxNTA3OTlhZjMwMGVjYzIyZGFlZjM1ZGFjOSwgMTM3IGNoYW5nZWQgcGF0aHMgYWxsIGluc2lkZSB0aGUgZnJvemVuIGFsbG93bGlzdDsgYnJhbmNoIHNsaWNlL1AyLVM0IExPQ0FMIE9OTFksIG5ldmVyIHB1c2hlZDsgV3JpdGVyIExlYXNlIFJvdWdoRWdvaXN0OnAyczQtZ2F0ZTItY2xhdWRlLWxlYWQ6MjAyNi0wOC0yNFQxMjoyMTo1M1ogc3RpbGwgaGVsZDsgcmVzdWx0IG5lZWRzX2FwcHJvdmFsIC0tIHRoaXMgZ2F0ZSBkb2VzIG5vdCBncmFkZSBpdHNlbGY7IFJldmlldyAxIHJ1bnMgaW4gYSBmcmVzaCByZWFkLW9ubHkgd2luZG93IHVuZGVyIGl0cyBvd24gZGlzcGF0Y2guIiwiZmllbGQiOnsibmFtZSI6Ikxhc3QgQ2hlY2twb2ludCJ9fSx7InRleHQiOiJSb3VnaEVnb2lzdDpwMnM0LWdhdGUyLWNsYXVkZS1sZWFkOjIwMjYtMDgtMjRUMTI6MjE6NTNaIiwiZmllbGQiOnsibmFtZSI6IldyaXRlciBMZWFzZSJ9fSx7InRleHQiOiJzbGljZS9QMi1TNCIsImZpZWxkIjp7Im5hbWUiOiJBY3RpdmUgQnJhbmNoIn19XX19fX0=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"content\":{\"number\":14,\"state\":\"OPEN\",\"labels\":{\"nodes\":[]}},\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S4 — O0 snapshot/frontier hardening: the fail-closed pair\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"name\":\"Needs Review\",\"optionId\":\"9b8a5a62\",\"field\":{\"name\":\"Workflow\"}},{\"name\":\"G1 passed\",\"optionId\":\"2a2ff00e\",\"field\":{\"name\":\"Gate\"}},{\"name\":\"—\",\"optionId\":\"450ee130\",\"field\":{\"name\":\"Next Approval\"}},{\"name\":\"mixed-see-prose\",\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"name\":\"Claude Lead\",\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"name\":\"low\",\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S4\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"df666070ead7fa21bc72b6c99d2644923b37e787\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-08-24T13:06:35Z Gate 2 complete, needs review; record docs/evidence/gatebraid/P2-S4/gate2.md sha256 99b4d743e1e4b8a7a547c64c0f5c9bde2dcc4267905df631ae4e3fcf4333f8b5 (committed); handoff_fingerprint active_branch_head 50d08de65158faf23f1ae86aeebcde39e929c359 tree f797297005d35d150799af300ecc22daef35dac9, 137 changed paths all inside the frozen allowlist; branch slice/P2-S4 LOCAL ONLY, never pushed; Writer Lease RoughEgoist:p2s4-gate2-claude-lead:2026-08-24T12:21:53Z still held; result needs_approval -- this gate does not grade itself; Review 1 runs in a fresh read-only window under its own dispatch.\",\"field\":{\"name\":\"Last Checkpoint\"}},{\"text\":\"RoughEgoist:p2s4-gate2-claude-lead:2026-08-24T12:21:53Z\",\"field\":{\"name\":\"Writer Lease\"}},{\"text\":\"slice/P2-S4\",\"field\":{\"name\":\"Active Branch\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T13:06:49.309804Z",
+  "ended_at": "2026-08-24T13:06:49.902608Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
