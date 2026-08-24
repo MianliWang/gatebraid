@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-captures-validation",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/checks-g0-verify-captures.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3858,
+      "sha256": "2a4eb935aa017c82d262e765dab5fbc77c9612feea73d1aeef7d56d15e9546ec",
+      "data": "RzAtUTEtZmFsc2lmeS1iYWRmaWVsZC5qc29uICAgICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTE3NjQgY3JsZj0wIGxvbmVfY3I9MA0KRzAtUTEtZmFsc2lmeS1ub2F1dGguanNvbiAgICAgICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTIxNjggY3JsZj0wIGxvbmVfY3I9MA0KRzAtUTEtaWRlbnRpdHkuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTE2MzMgY3JsZj0wIGxvbmVfY3I9MA0KRzAtUTItYXBwcm92YWwuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTIyMzcgY3JsZj0wIGxvbmVfY3I9MA0KRzAtUTItZmFsc2lmeS5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTIyMTUgY3JsZj0wIGxvbmVfY3I9MA0KRzAtUTMtZmFsc2lmeS5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTIxMTEgY3JsZj0wIGxvbmVfY3I9MA0KRzAtUTMtaXNzdWUuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTIwNTAgY3JsZj0wIGxvbmVfY3I9MA0KRzAtUTQtcHJvamVjdC5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTIzNjMwIGNybGY9MCBsb25lX2NyPTANCkcwLVE1LWZhbHNpZnkuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0xODk5IGNybGY9MCBsb25lX2NyPTANCkcwLVE1LWZpZWxkLWxpc3QtanNvbi5qc29uICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0xMjI3MiBjcmxmPTAgbG9uZV9jcj0wDQpHMC1RNS1maWVsZC1saXN0Lmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9NTM0MyBjcmxmPTAgbG9uZV9jcj0wDQpHMC1RNi1mYWxzaWZ5LWJhZGZpZWxkLmpzb24gICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MjcxNyBjcmxmPTAgbG9uZV9jcj0wDQpHMC1RNi1mYWxzaWZ5LW5vaXNzdWUuanNvbiAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MzAwNyBjcmxmPTAgbG9uZV9jcj0wDQpHMC1RNi1mYWxzaWZ5LXNlbGVjdG9yLmpzb24gICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MzI5MiBjcmxmPTAgbG9uZV9jcj0wDQpHMC1RNi1pdGVtLWZpZWxkcy5qc29uICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9NTIyNyBjcmxmPTAgbG9uZV9jcj0wDQpHMC1RNy1ibG9ja2VkLWJ5Lmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTYxNiBjcmxmPTAgbG9uZV9jcj0wDQpHMC1RNy1ibG9ja2luZy5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTYxMiBjcmxmPTAgbG9uZV9jcj0wDQpHMC1RNy1mYWxzaWZ5Lmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MjI2MCBjcmxmPTAgbG9uZV9jcj0wDQpHMC1iYXNlbGluZS1tYWluLmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTU3OCBjcmxmPTAgbG9uZV9jcj0wDQpHMC1jYXB0dXJlcy12YWxpZGF0aW9uLmpzb24gICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTA3NDEgY3JsZj0wIGxvbmVfY3I9MA0KRzAtY2xvc2VkLXNldC1zd2VlcC1wYXNzMS5qc29uICAgICAgICAgICAgICAgICBleGl0PTAgIGJ5dGVzPTE3NDAzIGNybGY9MCBsb25lX2NyPTANCkcwLWNsb3NlZC1zZXQtc3dlZXAuanNvbiAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz02MjM4IGNybGY9MCBsb25lX2NyPTANCkcwLWVudi1maWVsZC5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0zMTY2IGNybGY9MCBsb25lX2NyPTANCkcwLWhlYWQuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0xNTY5IGNybGY9MCBsb25lX2NyPTANCkcwLWhvc3QtcHJvYmUuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0yMjg5IGNybGY9MCBsb25lX2NyPTANCkcwLXBvcmNlbGFpbi1iYXNlbGluZS5qc29uICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0xNzM2IGNybGY9MCBsb25lX2NyPTANCkcwLXBvcmNlbGFpbi1mdWxsLmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz01MTI5IGNybGY9MCBsb25lX2NyPTANCkcwLXBvcmNlbGFpbi1vdXRzaWRlLWRvbWFpbi5qc29uICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0xODIyIGNybGY9MCBsb25lX2NyPTANCkcwLXJlY29yZC12YWxpZGF0aW9uLXJlamVjdGVkLXBhc3MxLmpzb24gICAgICAgZXhpdD0wICBieXRlcz0zMDg1IGNybGY9MCBsb25lX2NyPTANCkcwLXJlY29yZC12YWxpZGF0aW9uLmpzb24gICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0yODEzIGNybGY9MCBsb25lX2NyPTANCkcwLXJlZi1uYW1lc3BhY2UuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz00ODEzIGNybGY9MCBsb25lX2NyPTANCkcwLXJlbW90ZS5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0xNzQ2IGNybGY9MCBsb25lX2NyPTANCkcwLXJlbmRlci1yZWNvcmQuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0yMDQxIGNybGY9MCBsb25lX2NyPTANCkcwLXNsaWNlLWJvZHktZmFpbGVkLWF0dGVtcHQuanNvbiAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0yNTAxIGNybGY9MCBsb25lX2NyPTANCkcwLXNsaWNlLWJvZHkuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhpdD0wICBieXRlcz0xMzYxNyBjcmxmPTAgbG9uZV9jcj0wDQpHMC1zbGljZS1tZXRhZGF0YS1sb2FkZXIuanNvbiAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MjIwOSBjcmxmPTAgbG9uZV9jcj0wDQpHMC1zbGljZS1tZXRhZGF0YS1zZWxmdGVzdC5qc29uICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9NTIyMyBjcmxmPTAgbG9uZV9jcj0wDQpHMC1zbGljZS1tZXRhZGF0YS12YWxpZGF0aW9uLW9uLWVtcHR5Lmpzb24gICAgIGV4aXQ9MCAgYnl0ZXM9MjEwOCBjcmxmPTAgbG9uZV9jcj0wDQpHMC1zbGljZS1tZXRhZGF0YS12YWxpZGF0aW9uLmpzb24gICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9NDA1OSBjcmxmPTAgbG9uZV9jcj0wDQpHMC10b29scy1jbGF1ZGUuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTc4OCBjcmxmPTAgbG9uZV9jcj0wDQpHMC10b29scy1jb2RleC5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTUwOSBjcmxmPTAgbG9uZV9jcj0wDQpHMC10b29scy1naC5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTczMSBjcmxmPTAgbG9uZV9jcj0wDQpHMC10b29scy1naXQuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTUzMiBjcmxmPTAgbG9uZV9jcj0wDQpHMC10b29scy1weXRob24td2luZG93cy5qc29uICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTgzNiBjcmxmPTAgbG9uZV9jcj0wDQpHMC10b29scy1weXRob24td3NsLmpzb24gICAgICAgICAgICAgICAgICAgICAgIGV4aXQ9MCAgYnl0ZXM9MTk0NiBjcmxmPTAgbG9uZV9jcj0wDQoNCmNhcHR1cmVzIHZlcmlmaWVkIDogNDUNCmFjY2VwdGVkICAgICAgICAgIDogNDUNCnJlamVjdGVkICAgICAgICAgIDogMA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "G0-Q1-falsify-badfield.json                    exit=0  bytes=1764 crlf=0 lone_cr=0\r\nG0-Q1-falsify-noauth.json                      exit=0  bytes=2168 crlf=0 lone_cr=0\r\nG0-Q1-identity.json                            exit=0  bytes=1633 crlf=0 lone_cr=0\r\nG0-Q2-approval.json                            exit=0  bytes=2237 crlf=0 lone_cr=0\r\nG0-Q2-falsify.json                             exit=0  bytes=2215 crlf=0 lone_cr=0\r\nG0-Q3-falsify.json                             exit=0  bytes=2111 crlf=0 lone_cr=0\r\nG0-Q3-issue.json                               exit=0  bytes=2050 crlf=0 lone_cr=0\r\nG0-Q4-project.json                             exit=0  bytes=23630 crlf=0 lone_cr=0\r\nG0-Q5-falsify.json                             exit=0  bytes=1899 crlf=0 lone_cr=0\r\nG0-Q5-field-list-json.json                     exit=0  bytes=12272 crlf=0 lone_cr=0\r\nG0-Q5-field-list.json                          exit=0  bytes=5343 crlf=0 lone_cr=0\r\nG0-Q6-falsify-badfield.json                    exit=0  bytes=2717 crlf=0 lone_cr=0\r\nG0-Q6-falsify-noissue.json                     exit=0  bytes=3007 crlf=0 lone_cr=0\r\nG0-Q6-falsify-selector.json                    exit=0  bytes=3292 crlf=0 lone_cr=0\r\nG0-Q6-item-fields.json                         exit=0  bytes=5227 crlf=0 lone_cr=0\r\nG0-Q7-blocked-by.json                          exit=0  bytes=1616 crlf=0 lone_cr=0\r\nG0-Q7-blocking.json                            exit=0  bytes=1612 crlf=0 lone_cr=0\r\nG0-Q7-falsify.json                             exit=0  bytes=2260 crlf=0 lone_cr=0\r\nG0-baseline-main.json                          exit=0  bytes=1578 crlf=0 lone_cr=0\r\nG0-captures-validation.json                    exit=0  bytes=10741 crlf=0 lone_cr=0\r\nG0-closed-set-sweep-pass1.json                 exit=0  bytes=17403 crlf=0 lone_cr=0\r\nG0-closed-set-sweep.json                       exit=0  bytes=6238 crlf=0 lone_cr=0\r\nG0-env-field.json                              exit=0  bytes=3166 crlf=0 lone_cr=0\r\nG0-head.json                                   exit=0  bytes=1569 crlf=0 lone_cr=0\r\nG0-host-probe.json                             exit=0  bytes=2289 crlf=0 lone_cr=0\r\nG0-porcelain-baseline.json                     exit=0  bytes=1736 crlf=0 lone_cr=0\r\nG0-porcelain-full.json                         exit=0  bytes=5129 crlf=0 lone_cr=0\r\nG0-porcelain-outside-domain.json               exit=0  bytes=1822 crlf=0 lone_cr=0\r\nG0-record-validation-rejected-pass1.json       exit=0  bytes=3085 crlf=0 lone_cr=0\r\nG0-record-validation.json                      exit=0  bytes=2813 crlf=0 lone_cr=0\r\nG0-ref-namespace.json                          exit=0  bytes=4813 crlf=0 lone_cr=0\r\nG0-remote.json                                 exit=0  bytes=1746 crlf=0 lone_cr=0\r\nG0-render-record.json                          exit=0  bytes=2041 crlf=0 lone_cr=0\r\nG0-slice-body-failed-attempt.json              exit=0  bytes=2501 crlf=0 lone_cr=0\r\nG0-slice-body.json                             exit=0  bytes=13617 crlf=0 lone_cr=0\r\nG0-slice-metadata-loader.json                  exit=0  bytes=2209 crlf=0 lone_cr=0\r\nG0-slice-metadata-selftest.json                exit=0  bytes=5223 crlf=0 lone_cr=0\r\nG0-slice-metadata-validation-on-empty.json     exit=0  bytes=2108 crlf=0 lone_cr=0\r\nG0-slice-metadata-validation.json              exit=0  bytes=4059 crlf=0 lone_cr=0\r\nG0-tools-claude.json                           exit=0  bytes=1788 crlf=0 lone_cr=0\r\nG0-tools-codex.json                            exit=0  bytes=1509 crlf=0 lone_cr=0\r\nG0-tools-gh.json                               exit=0  bytes=1731 crlf=0 lone_cr=0\r\nG0-tools-git.json                              exit=0  bytes=1532 crlf=0 lone_cr=0\r\nG0-tools-python-windows.json                   exit=0  bytes=1836 crlf=0 lone_cr=0\r\nG0-tools-python-wsl.json                       exit=0  bytes=1946 crlf=0 lone_cr=0\r\n\r\ncaptures verified : 45\r\naccepted          : 45\r\nrejected          : 0\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:39:38.265739Z",
+  "ended_at": "2026-08-24T04:39:44.724371Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/checks-g0-verify-captures.py",
+      "sha256": "cb4c3490ed4eaf9d8cf3b710af8903c4831b0490a3ae596637181a555589232d"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Final pass. Every capture checked with the capture tool's own write-path guard plus re-derivation. This driver's own output is written after it exits and so is not in the set it checks."
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-Q6-item-fields",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=\nquery($owner:String!,$repo:String!,$number:Int!){\n  repository(owner:$owner,name:$repo){\n    issue(number:$number){\n      id number title\n      projectItems(first:10){\n        nodes{\n          id\n          project{ id title }\n          fieldValues(first:50){\n            nodes{\n              ... on ProjectV2ItemFieldTextValue{ text  field{ ... on ProjectV2FieldCommon{ name } } }\n              ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=14"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1092,
+      "sha256": "0b310b8c3e3bc15d1117dc2a394ca2abecf57d8e3f2ae06c1ff5956882640906",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsiaXNzdWUiOnsiaWQiOiJJX2t3RE9UbXd3OTg4QUFBQUJOM3dFT0EiLCJudW1iZXIiOjE0LCJ0aXRsZSI6IlAyLVM0IOKAlCBPMCBzbmFwc2hvdC9mcm9udGllciBoYXJkZW5pbmc6IHRoZSBmYWlsLWNsb3NlZCBwYWlyIiwicHJvamVjdEl0ZW1zIjp7Im5vZGVzIjpbeyJpZCI6IlBWVElfbEFIT0JSb2ZVczRCZXVtN3pnM29nTE0iLCJwcm9qZWN0Ijp7ImlkIjoiUFZUX2t3SE9CUm9mVXM0QmV1bTciLCJ0aXRsZSI6Ik1pYW5saSBFbmdpbmVlcmluZyJ9LCJmaWVsZFZhbHVlcyI6eyJub2RlcyI6W3t9LHsidGV4dCI6IlAyLVM0IOKAlCBPMCBzbmFwc2hvdC9mcm9udGllciBoYXJkZW5pbmc6IHRoZSBmYWlsLWNsb3NlZCBwYWlyIiwiZmllbGQiOnsibmFtZSI6IlRpdGxlIn19LHsibmFtZSI6IlRvZG8iLCJvcHRpb25JZCI6ImY3NWFkODQ2IiwiZmllbGQiOnsibmFtZSI6IlN0YXR1cyJ9fSx7Im5hbWUiOiJCYWNrbG9nIiwib3B0aW9uSWQiOiJkOTIxOTExYyIsImZpZWxkIjp7Im5hbWUiOiJXb3JrZmxvdyJ9fSx7Im5hbWUiOiLigJQiLCJvcHRpb25JZCI6IjM5Njk2YmI1IiwiZmllbGQiOnsibmFtZSI6IkdhdGUifX0seyJuYW1lIjoi4oCUIiwib3B0aW9uSWQiOiI0NTBlZTEzMCIsImZpZWxkIjp7Im5hbWUiOiJOZXh0IEFwcHJvdmFsIn19LHsibmFtZSI6Im1peGVkLXNlZS1wcm9zZSIsIm9wdGlvbklkIjoiMWU0M2VjODUiLCJmaWVsZCI6eyJuYW1lIjoiRW52aXJvbm1lbnQifX0seyJuYW1lIjoiQ2xhdWRlIExlYWQiLCJvcHRpb25JZCI6ImNlODU5YzdkIiwiZmllbGQiOnsibmFtZSI6IkV4ZWN1dG9yIn19LHsibmFtZSI6ImxvdyIsIm9wdGlvbklkIjoiZTI5MTI0OWMiLCJmaWVsZCI6eyJuYW1lIjoiUmlzayJ9fSx7InRleHQiOiJTMiIsImZpZWxkIjp7Im5hbWUiOiJTdGFnZSJ9fSx7InRleHQiOiJQMiIsImZpZWxkIjp7Im5hbWUiOiJQaGFzZSJ9fSx7InRleHQiOiJQMi1TNCIsImZpZWxkIjp7Im5hbWUiOiJTbGljZSJ9fSx7InRleHQiOiJlNWU4ZWU2YjhhYzBmMmZjMGRhMWM5MjE1YjE4ZmU2MzUzOTg2ODkzIiwiZmllbGQiOnsibmFtZSI6IkJhc2UgU0hBIn19XX19XX19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":{\"issue\":{\"id\":\"I_kwDOTmww988AAAABN3wEOA\",\"number\":14,\"title\":\"P2-S4 — O0 snapshot/frontier hardening: the fail-closed pair\",\"projectItems\":{\"nodes\":[{\"id\":\"PVTI_lAHOBRofUs4Beum7zg3ogLM\",\"project\":{\"id\":\"PVT_kwHOBRofUs4Beum7\",\"title\":\"Mianli Engineering\"},\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S4 — O0 snapshot/frontier hardening: the fail-closed pair\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"name\":\"Backlog\",\"optionId\":\"d921911c\",\"field\":{\"name\":\"Workflow\"}},{\"name\":\"—\",\"optionId\":\"39696bb5\",\"field\":{\"name\":\"Gate\"}},{\"name\":\"—\",\"optionId\":\"450ee130\",\"field\":{\"name\":\"Next Approval\"}},{\"name\":\"mixed-see-prose\",\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"name\":\"Claude Lead\",\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"name\":\"low\",\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S4\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"e5e8ee6b8ac0f2fc0da1c9215b18fe6353986893\",\"field\":{\"name\":\"Base SHA\"}}]}}]}}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:22:30.710412Z",
+  "ended_at": "2026-08-24T04:22:33.331287Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Protocol v1 section 3 candidate form, verified live. One difference from the sketch, recorded per section 0: optionId added to the SingleSelect fragment so option ids are read rather than inferred from labels."
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-slice-body",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "bash",
+      "-c",
+      "GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid gh api repos/MianliWang/gatebraid/issues/14 --jq .body > docs/evidence/gatebraid/P2-S4/captures/slice-body-14.md",
+      "--form",
+      "shell",
+      "--shell-exe",
+      "bash",
+      "--pipefail",
+      "true",
+      "--exit-code-source",
+      "process"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 4,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 157,
+      "sha256": "69f5519080eaf4c3a8900ff6c94fe8295d61829c17161fb23806005b55bc84b9",
+      "data": "VG8gZ2V0IHN0YXJ0ZWQgd2l0aCBHaXRIdWIgQ0xJLCBwbGVhc2UgcnVuOiAgZ2ggYXV0aCBsb2dpbgpBbHRlcm5hdGl2ZWx5LCBwb3B1bGF0ZSB0aGUgR0hfVE9LRU4gZW52aXJvbm1lbnQgdmFyaWFibGUgd2l0aCBhIEdpdEh1YiBBUEkgYXV0aGVudGljYXRpb24gdG9rZW4uCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "To get started with GitHub CLI, please run:  gh auth login\nAlternatively, populate the GH_TOKEN environment variable with a GitHub API authentication token.\n"
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:28:37.774992Z",
+  "ended_at": "2026-08-24T04:28:38.621322Z",
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/captures/slice-body-14.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_length": 0
+    }
+  ],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Issue #14 body bytes, written to a file the metadata check then reads."
+}

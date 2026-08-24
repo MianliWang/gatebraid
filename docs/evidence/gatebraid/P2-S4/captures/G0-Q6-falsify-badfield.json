@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-Q6-falsify-badfield",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($owner:String!,$repo:String!,$number:Int!){ repository(owner:$owner,name:$repo){ issue(number:$number){ id noSuchFieldOnIssue } } }",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=14"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 271,
+      "sha256": "a6d5456bca477f082e97f40f583b9654adc77b74122c86e34183666f58088060",
+      "data": "eyJlcnJvcnMiOlt7InBhdGgiOlsicXVlcnkiLCJyZXBvc2l0b3J5IiwiaXNzdWUiLCJub1N1Y2hGaWVsZE9uSXNzdWUiXSwiZXh0ZW5zaW9ucyI6eyJjb2RlIjoidW5kZWZpbmVkRmllbGQiLCJ0eXBlTmFtZSI6Iklzc3VlIiwiZmllbGROYW1lIjoibm9TdWNoRmllbGRPbklzc3VlIn0sImxvY2F0aW9ucyI6W3sibGluZSI6MSwiY29sdW1uIjoxMTR9XSwibWVzc2FnZSI6IkZpZWxkICdub1N1Y2hGaWVsZE9uSXNzdWUnIGRvZXNuJ3QgZXhpc3Qgb24gdHlwZSAnSXNzdWUnIn1dfQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"errors\":[{\"path\":[\"query\",\"repository\",\"issue\",\"noSuchFieldOnIssue\"],\"extensions\":{\"code\":\"undefinedField\",\"typeName\":\"Issue\",\"fieldName\":\"noSuchFieldOnIssue\"},\"locations\":[{\"line\":1,\"column\":114}],\"message\":\"Field 'noSuchFieldOnIssue' doesn't exist on type 'Issue'\"}]}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 61,
+      "sha256": "2e7090a6ee7db636637e9d468ff847699705d532f3302263bea3e3b5486284aa",
+      "data": "Z2g6IEZpZWxkICdub1N1Y2hGaWVsZE9uSXNzdWUnIGRvZXNuJ3QgZXhpc3Qgb24gdHlwZSAnSXNzdWUnCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "gh: Field 'noSuchFieldOnIssue' doesn't exist on type 'Issue'\n"
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:24:00.412323Z",
+  "ended_at": "2026-08-24T04:24:00.963679Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Seeded field name absent from the GraphQL schema."
+}
