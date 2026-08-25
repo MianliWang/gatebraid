@@ -180,14 +180,21 @@ ROWS = [
      "the first implementation commit, was missed and is disclosed",
      ["G2-D7", "G2-D7-exit"], 10, True),
     ("V12 — D8 · the freeze precedes the implementation in commit history "
-     "(acceptance 2)", ["G2-D8"], None, False),
+     "(acceptance 2) — the reference is PINNED to the fingerprint commit at "
+     "repair 1; it named `HEAD` before, which does not reproduce",
+     ["G2-D8"], None, False),
     ("V13 — N1 · path scope: the diff touches nothing outside the frozen "
-     "allowlist", ["G2-N1"], None, False),
+     "allowlist — PINNED to the fingerprint commit at repair 1, and it now "
+     "reproduces the recorded 137 rather than moving with the tip",
+     ["G2-N1"], None, False),
     ("V14 — N2 · no fail-open on a verdict-relevant path (proxy, scope and "
-     "matches printed)", ["G2-N2"], None, False),
+     "matches printed; the scope statement names its false-NEGATIVE channels "
+     "from repair 1)", ["G2-N2"], None, False),
     ("V15 — N3 · no live network call in any declared test command",
      ["G2-N3"], 26, False),
-    ("V16 — N4 · no verdict without validation, both halves", ["G2-N4"], None, False),
+    ("V16 — N4 · no verdict without validation, both halves; the structural "
+     "half's claim is corrected at repair 1 to what was measured — one guarded "
+     "construction site, NOT an unforgeable type", ["G2-N4"], None, False),
     ("V17 — T3 harness selftest, both platforms (NOT a declared test-plan "
      "command; recorded because it is the falsification of the instrument the "
      "declared commands rely on)",
@@ -195,7 +202,9 @@ ROWS = [
     ("V18 — this gate's captures machine-validated under the capture tool's own "
      "write-path guard, re-derivation layer included (NOT a declared test-plan "
      "command; it is what makes the `output_ref` targets evidence rather than "
-     "filenames)", ["G2-captures-validation"], None, False),
+     "filenames). The count in this row is the WORKING TREE at "
+     "`2026-08-24T13:02:34Z`; see the disclosures for the three instants and "
+     "their three figures", ["G2-captures-validation"], None, False),
 ]
 for label, cids, limit, tail in ROWS:
     row(label, cids, limit, tail)
@@ -233,7 +242,31 @@ w("- Rules given to the reviewer: [written by the reviewer]")
 w()
 w("## Repair record")
 w()
-w("No repair was entered at this gate; `repair_limit` 2 is unspent.")
+w("### Repair 1")
+w()
+w("- Hypothesis (new): the record's own reproducibility, not its measurements, "
+  "is what is defective — two rows nominated as deterministic name a moving "
+  "ref, and three prose claims (N4's reach, N2's reach, the capture count) "
+  "assert more or less than what was measured.")
+w()
+w("**Novelty measured** (ADR-0027 §1; the comparand is the tree Review 1 "
+  "examined, not a failed state — no review item was red)")
+row("tree at the reviewed state, and the paths this repair changes",
+    ["G2-R1-tree-before", "G2-R1-changed"])
+w("- The changed-path list above is measured before this record is re-rendered, "
+  "so it does not include this record itself (`gate2.md`) nor any capture "
+  "written after that measurement — this row's own capture, and the "
+  "record-validation capture. Every one of them is under "
+  "`docs/evidence/gatebraid/P2-S4/g2/`, no `bin/` path is among them, and the "
+  "repair commit's own diff is the comparand the bounded re-check runs.")
+w("- Result: `green`")
+w("- Consult: `none`")
+w("- Scope: `docs/evidence/gatebraid/P2-S4/` only. **No `bin/` file changed — "
+  "not one byte**, verified by `git status --porcelain --untracked-files=all -- "
+  "bin/` returning empty and by the repair commit's diff carrying no `bin/` "
+  "path. No behavioural change was made to either tool or to either checker; "
+  "every edit is to what a record or a checker SAYS about what it measured.")
+w("- `repair_limit` 2: **one spent, one remains.**")
 w()
 w("## Required disclosures")
 w()
@@ -270,16 +303,68 @@ w("- Deviations: **D7 was not run at the first of its three named points.** The 
   "beside the work they certify — the pattern ADR-0028 §4 warns about — and are "
   "offered as mechanical aids to R4 rather than as independent certification; "
   "each states the pattern it proxies for, its explicit scope, and the "
-  "direction in which it errs · **the handoff fingerprint, V13 (N1), V12 (D8) "
-  "and V18's sweep were all measured at the commit BEFORE this record's own "
-  "commit**, which is what the fingerprint's definition requires and what makes "
-  "it Gate 3's comparand. The files the final commit adds — this record, the "
-  "renderer's and sweep's own captures, and the re-taken fingerprint captures — "
-  "are therefore outside those measurements. Every one of them is under "
-  "`docs/evidence/gatebraid/P2-S4/`, so the allowlist claim is unaffected, and "
-  "a reviewer re-running N1 at the final head measures the wider set. This is "
-  "the boundary any sweep has over its own output, named rather than left to "
-  "be noticed · **commit messages carry a `Co-Authored-By` "
+  "direction in which it errs · **the handoff fingerprint and V18's sweep were "
+  "measured at the commit BEFORE this record's own commit**, which is what the "
+  "fingerprint's definition requires and what makes it Gate 3's comparand. "
+  "V12 (D8) and V13 (N1) described the same instant but named `HEAD` to reach "
+  "it; **repair 1 pins both to `50d08de6…`** so they reproduce, and N1 now "
+  "returns the recorded `137` instead of moving with the tip. The files each "
+  "later commit adds are outside those measurements; every one of them is under "
+  "`docs/evidence/gatebraid/P2-S4/`, so the allowlist claim is unaffected. This "
+  "is the boundary any sweep has over its own output, named rather than left to "
+  "be noticed · **REPAIR 1, F-01 — what was pinned and what was deliberately "
+  "not.** `V12` and `V13` are pinned, and so are `G2-fp-tree` "
+  "(`git rev-parse 50d08de6…^{tree}`, which still derives the tree rather than "
+  "restating it) and `G2-fp-diff` "
+  "(`git diff --name-only df666070…..50d08de6…`, which reproduces the 137 paths "
+  "exactly), plus the `allowlist-respected` `checks[]` row. **`G2-fp-head` is "
+  "left naming `HEAD`, on purpose.** Pinning it would turn "
+  "`git rev-parse HEAD` into `git rev-parse 50d08de6…`, a command that echoes "
+  "its own argument and establishes nothing; the row's only content is *what "
+  "the branch head was at that instant*, and pinning would destroy it while "
+  "making the row look deterministic. The grant says not to manufacture "
+  "agreement, and that is what manufacturing it would look like. The claim is "
+  "corroborated instead: `G2-fp-tree` derives `f797297005…` from that commit "
+  "and it matches the recorded `tree_sha` · **REPAIR 1, F-03 — an overclaim in "
+  "this record, corrected.** The N4 structural half was described as making the "
+  "validated type UNFORGEABLE. Review 1 measured that false: `_VALIDATION_TOKEN` "
+  "is a reachable module attribute, a holder of the module forged a "
+  "`ValidatedSnapshot`, and `consume()` carries no `isinstance` guard — it "
+  "rejected a duck-typed stand-in only incidentally, by `AttributeError`. The "
+  "accurate claim, now carried by the checker's own output, is one guarded "
+  "construction site inside `validate()`: strong against accidental refactor, "
+  "NOT proof against a determined caller in the same module. **The N4 property "
+  "itself holds in both halves**; the overstatement was in prose. `isinstance` "
+  "was NOT added — that is hardening, not correction, and shipping un-reviewed "
+  "behaviour after the review is what this sequence must not do; it is debt. "
+  "**`bin/gatebraid-frontier.py`'s module docstring carries the same word and "
+  "was not edited**, because this repair changes no `bin/` byte; that line is "
+  "debt too, and it is named here so the correction is not mistaken for "
+  "complete · **REPAIR 1, F-02 — N2's reach was overstated by omission.** N2 "
+  "declares it errs toward false positives and owed an account of its "
+  "false-NEGATIVE channels. Two are now named in its own scope statement: the "
+  "`X or <empty-literal>` idiom is not searched at all — 32 `or`-expressions in "
+  "`bin/gatebraid-snapshot.py` by AST count, re-derived here and equal to "
+  "Review 1's — and N2a's `fail_closed` test is a substring search for "
+  "`\"raise\"` that a comment or string literal could satisfy. Review 1 "
+  "adjudicated all 32 independently and the property holds; **the correction is "
+  "that N2 is not what establishes it.** The checker's behaviour is unchanged: "
+  "changing what it detects after its gate exited would ship un-reviewed "
+  "behaviour · **REPAIR 1, F-05 — one figure, three instants.** The capture "
+  "count in `g2/` is **30** committed at the fingerprint commit `50d08de6…`, "
+  "**34** in the working tree when the sweep ran (`2026-08-24T13:02:34Z` to "
+  "`13:02:38Z`, ten seconds before that commit at `13:02:48Z`), and **41** at "
+  "the tip `0964979c…`; all three are re-derived here and all three are true of "
+  "their own instant. A fourth figure, **33**, appears in this Slice's posted "
+  "Gate 2 handoff comment `5395615534` and originated with this executor: it "
+  "was the standalone sweep run before `G2-D7-exit` and the sweep's own capture "
+  "existed. The posted comment is durable and is not edited; the figure is "
+  "corrected here. **The ambiguity was the defect, not any figure** · "
+  "**REPAIR 1, F-04 is RECORDED, NOT REPAIRED.** The live `gh` transport stays "
+  "committed and unmeasured: covering it needs a test this frozen plan does not "
+  "declare, and the boundary is already disclosed above and named in N3's "
+  "scope. It goes to the closure ledger as debt · **commit messages carry a "
+  "`Co-Authored-By` "
   "trailer** per the executing harness's standing instruction, noted so the "
   "convention change is not mistaken for drift."
   % BASE_SHA)
@@ -356,7 +441,8 @@ CHECKS = [
     ("captures-machine-validated", None,
      "%s/G2-captures-validation.json" % CAP),
     ("allowlist-respected",
-     "git diff --name-only %s..HEAD" % BASE_SHA, "#verification-outputs"),
+     "git diff --name-only %s..50d08de65158faf23f1ae86aeebcde39e929c359"
+     % BASE_SHA, "#verification-outputs"),
 ]
 for name, command, ref in CHECKS:
     w("  - name: %s" % name)
@@ -372,7 +458,14 @@ w("  changed_paths:")
 for p in sorted(diff_paths()):
     w("    - %s" % p)
 w("consults: []")
-w("repair_attempts: []")
+w("repair_attempts:")
+w("  - number: 1")
+w('    hypothesis: "The record\'s reproducibility and the reach of three of its '
+  'prose claims are defective, not its measurements: two rows nominated as '
+  'deterministic name a moving ref, N4 was called unforgeable, N2 did not name '
+  'its false-negative channels, and one capture count was stated without its '
+  'instant. Corrections only; no bin/ byte and no checker behaviour changed."')
+w("    result: green")
 w("approvals:")
 w('  - type: "Plan Approval (G1→G2)"')
 w('    comment_url: "https://github.com/MianliWang/gatebraid/issues/14#issuecomment-5394791863"')
@@ -388,15 +481,25 @@ w("evidence_files:")
 w("  - docs/evidence/gatebraid/P2-S4/gate2.md")
 w('notes: "Implementation of the frozen plan in three tasks, each shipping a '
   'tool and its committed falsification. This gate does not grade itself: '
-  '`result` is needs_approval and the Review 1 verdicts are left for the '
-  'reviewer, who runs in a fresh read-only window under its own dispatch. The '
-  'second approvals[] entry is the operator Writer Assignment that supplements '
-  'the Plan Approval and, by its clause 2, amends the window clause so that '
-  'Gate 2 opens in the session presenting that comment URL; it is recorded as '
-  'the same approval type because it grants no new door, it re-addresses the '
-  'existing one. The frozen schema and corpus were never written: N1 shows the '
-  'whole range touches only bin/ and this Slice evidence path, and D7 shows '
-  'the digest unmoved at '
+  '`result` is needs_approval and the Review 1 verdict cells are left blank for '
+  'the reviewer; transcription of a passing review happens under the Release '
+  'Approval, not here. APPROVALS[] OVER-COUNTS PLAN APPROVALS BY ONE AND CANNOT '
+  'DO OTHERWISE, so a consumer reading approvals[] alone must read this note '
+  'too: comment 5394791863 is the Plan Approval, and comment 5395086921 is the '
+  'operator WRITER ASSIGNMENT, a DIFFERENT act, whose clause 2 amends the Plan '
+  'Approval window clause so Gate 2 opens in the session presenting its URL and '
+  'whose clause 7 makes the writer role transferable only by an operator '
+  'comment on the issue. Both entries carry type Plan Approval because the '
+  'frozen gatebraid/gate-run@2 enumeration for approvals[].type has ten members '
+  'and none is Writer Assignment: the typing is SCHEMA-FORCED, not chosen. A '
+  'reader consuming approvals[] without this sentence counts two Plan Approvals '
+  'where one Plan Approval and one Writer Assignment occurred. The schema '
+  'belongs to the batch lane and is not this Slice to change; the missing '
+  'member is queued for its next revision (Review 1, F-06). Repair 1 of 2 is '
+  'spent on record corrections only -- no bin/ byte and no checker behaviour '
+  'changed -- and one repair remains. The frozen schema and corpus were never '
+  'written: N1 over the whole range touches only bin/ and this Slice evidence '
+  'path, and D7 shows the digest unmoved at '
   '66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e. No push, '
   'PR, tag or merge; publication is Gate 3."')
 w("```")

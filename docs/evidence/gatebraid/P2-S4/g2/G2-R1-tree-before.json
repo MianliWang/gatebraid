@@ -1,6 +1,6 @@
 {
   "schema": "gatebraid/evidence-capture@1",
-  "capture_id": "G2-D8",
+  "capture_id": "G2-R1-tree-before",
   "generator": {
     "name": "gatebraid-capture",
     "version": "1.0.0",
@@ -10,10 +10,8 @@
     "form": "argv",
     "argv": [
       "git",
-      "merge-base",
-      "--is-ancestor",
-      "df666070ead7fa21bc72b6c99d2644923b37e787",
-      "50d08de65158faf23f1ae86aeebcde39e929c359"
+      "rev-parse",
+      "0964979cc58a6726a1e4c40debc4e0e887ad3d0d^{tree}"
     ],
     "cwd": {
       "path": "D:\\Github repo\\Gatebraid",
@@ -24,13 +22,13 @@
   "streams": {
     "stdout": {
       "encoding": "base64",
-      "byte_length": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "data": "",
+      "byte_length": 41,
+      "sha256": "59cfa7c772d1cdb79f87ec7da43eb621899a8beea8e67b3bbcb92d3b25a6ff00",
+      "data": "NzQ0MGUwMjU3ZTliZGQ5OGYwODI1Zjg3OTU5YWM5ZjU2YWEwYjU0OAo=",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": ""
+        "text": "7440e0257e9bdd98f0825f87959ac9f56aa0b548\n"
       }
     },
     "stderr": {
@@ -45,8 +43,8 @@
       }
     }
   },
-  "started_at": "2026-08-25T03:51:55.563603Z",
-  "ended_at": "2026-08-25T03:51:55.615497Z",
+  "started_at": "2026-08-25T03:55:50.587055Z",
+  "ended_at": "2026-08-25T03:55:50.633327Z",
   "inputs": [],
   "outputs": [],
   "platform": {

@@ -22,6 +22,29 @@ check is built to over-report and be adjudicated rather than to under-report and
 be trusted.  WHERE THE PROXY OVER-MATCHES, THE PATTERN GOVERNS - a match is a
 question to answer in the record, not an automatic failure of the Slice.
 
+WHAT THIS PROXY DOES NOT COVER, recorded here after Review 1 measured it
+(finding F-02).  A checker that declares it errs toward false positives owes an
+honest account of its false-NEGATIVE channels, and this one has two:
+
+  * THE `X or <empty-literal>` IDIOM IS NOT SEARCHED AT ALL, and it is the most
+    common fail-open-SHAPED construct in the subject files - 32 `or`-expressions
+    in `bin/gatebraid-snapshot.py` by AST count, 3 in
+    `bin/gatebraid-frontier.py`.  Review 1 adjudicated all 32 independently and
+    the property holds: none can yield a silent `startable`, because of the
+    `degraded` gate, the `have_blocked_by`/`have_blocking` presence flags
+    feeding `cross_check`, and `closed()` mapping anything outside the frozen
+    enumeration to `UNKNOWN`.  THE CORRECTION IS THAT N2 IS NOT WHAT
+    ESTABLISHES THAT - a reviewer's independent reading is.  A zero from this
+    check is not evidence about that idiom.
+  * N2a's `fail_closed` test is a SUBSTRING SEARCH for `"raise"` over the
+    handler body, which a comment or a string literal could satisfy.  A handler
+    that merely mentions the word would be credited with re-raising.
+
+Neither channel is closed here: this is a documentary correction to a record
+that overstated the check's reach, and changing what the checker detects after
+its gate has exited would be shipping un-reviewed behaviour.  Both are queued as
+debt.
+
 SCOPE is an explicit path set, never "the added file" (friction #110):
 `bin/gatebraid-snapshot.py` and `bin/gatebraid-frontier.py` - the two tools that
 can reach a verdict.  The harness and the selftests are deliberately OUT of
@@ -133,6 +156,16 @@ def main():
           "into exit_code")
     print("   N2c  `.get(` with a non-None default on a verdict-relevant field")
     print("verdict-relevant fields : %s" % ", ".join(VERDICT_RELEVANT))
+    print("NOT searched by this proxy (false-negative channels, Review 1 F-02):")
+    print("   the `X or <empty-literal>` idiom -- 32 or-expressions in "
+          "bin/gatebraid-snapshot.py by AST count, 3 in bin/gatebraid-frontier.py.")
+    print("   Review 1 adjudicated all 32 independently and the property holds;")
+    print("   N2 is NOT what establishes that, and a zero here is not evidence "
+          "about that idiom.")
+    print("   N2a's fail_closed test is a substring search for \"raise\", which "
+          "a comment or")
+    print("   string literal could satisfy -- a handler merely mentioning the "
+          "word is credited.")
     print()
     print("matches        : %d" % len(findings))
     for shape, rel, line_no, text, why in findings:

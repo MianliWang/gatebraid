@@ -8,8 +8,8 @@ TWO HALVES, as the frozen plan declares them.
 
   N4a  A SOURCE SCAN that every verdict-emitting path is dominated by the
        validation call.  The scan does not look for a call ordering, which is
-       not decidable by search; it checks the STRUCTURE the tool uses to make
-       the ordering unforgeable:
+       not decidable by search; it checks the STRUCTURE that makes the ordering
+       HARD TO BREAK BY ACCIDENT:
          1. `ValidatedSnapshot` is constructed in exactly ONE place;
          2. that place is lexically inside `def validate(`;
          3. the constructor refuses a wrong token, so no other site can build
@@ -19,6 +19,19 @@ TWO HALVES, as the frozen plan declares them.
        `validate` would trip this while remaining correct.  That is the safe
        direction, because the failure it guards against is a verdict emitted
        from an unvalidated document.
+
+       WHAT N4a DOES *NOT* ESTABLISH, corrected here after Review 1 measured it
+       (finding F-03).  An earlier wording of this check called the type
+       UNFORGEABLE.  That is false and the reviewer demonstrated it:
+       `_VALIDATION_TOKEN` is a reachable module attribute, so a caller holding
+       the module can pass it and construct a `ValidatedSnapshot` successfully,
+       and `consume()` carries no `isinstance` guard - it rejected a duck-typed
+       stand-in only incidentally, by `AttributeError`.  The accurate claim is
+       the narrower one: ONE construction site, inside `validate()`, guarded by
+       a token so that an accidental second site fails loudly.  Strong against
+       refactor drift; NOT proof against a determined caller in the same
+       module.  The N4 property itself holds in both halves - the overstatement
+       was in the prose, never in the measurement.
 
   N4b  A SEEDED BEHAVIOURAL RUN on frozen corpus material -
        `fixtures/state-pipeline/sp10-snapshot-missing-schema-key.json`, the
@@ -139,6 +152,10 @@ def main():
         print("      line %-5d inside %s()" % (site + 1, enclosing[i]))
     print("   constructor refuses a wrong token    : %s" % guarded)
     print("   consume() takes the validated object : %s" % bool(consume_sig))
+    print("   NOT established by N4a               : that the type cannot be "
+          "forged. _VALIDATION_TOKEN is a reachable module attribute and "
+          "consume() has no isinstance guard, so a caller holding the module "
+          "can construct one (Review 1, F-03).")
     print()
     print("N4b measured on %s:"
           % os.path.relpath(SP10, REPO).replace(os.sep, "/"))
@@ -157,8 +174,10 @@ def main():
         print("N4 DOES NOT HOLD: %d match(es) stand and each needs adjudication "
               "in the record" % len(findings))
         return 1
-    print("N4 HOLDS: the validated type is unforgeable and constructed only in "
-          "validate(), and the corpus fixture the plan names produces no verdict")
+    print("N4 HOLDS: one construction site, inside validate(), guarded by a "
+          "token so an accidental second site fails loudly -- strong against "
+          "refactor drift, NOT proof against a determined caller in the same "
+          "module -- and the corpus fixture the plan names produces no verdict")
     return 0
 
 

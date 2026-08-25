@@ -13,7 +13,7 @@
       "-B",
       "docs/evidence/gatebraid/P2-S4/g1/negative-criterion-N1.py",
       "df666070ead7fa21bc72b6c99d2644923b37e787",
-      "HEAD"
+      "50d08de65158faf23f1ae86aeebcde39e929c359"
     ],
     "cwd": {
       "path": "D:\\Github repo\\Gatebraid",
@@ -27,13 +27,13 @@
   "streams": {
     "stdout": {
       "encoding": "base64",
-      "byte_length": 257,
-      "sha256": "22360d90bfe2ba03b9144cf4e1831e92d1762fd7f69d889a1aaf2507e833aa15",
-      "data": "cmFuZ2UgICAgICAgICAgOiBkZjY2NjA3MGVhZDdmYTIxYmM3MmI2Yzk5ZDI2NDQ5MjNiMzdlNzg3Li5IRUFEDQphbGxvd2VkIHByZWZpeGVzOg0KICAgYmluLw0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvDQpjaGFuZ2VkIHBhdGhzICA6IDEzNw0KaW5zaWRlIGFsbG93bGlzdDogMTM3DQpvdXRzaWRlICAgICAgICAgOiAwDQoNCk4xIEhPTERTOiBldmVyeSBjaGFuZ2VkIHBhdGggaXMgaW5zaWRlIHRoZSBmcm96ZW4gYWxsb3dsaXN0DQo=",
+      "byte_length": 293,
+      "sha256": "9643f4d7056da56ef6e755ec7667fdba780867c5c3bf3793aca6e498d8032c46",
+      "data": "cmFuZ2UgICAgICAgICAgOiBkZjY2NjA3MGVhZDdmYTIxYmM3MmI2Yzk5ZDI2NDQ5MjNiMzdlNzg3Li41MGQwOGRlNjUxNThmYWYyM2YxYWU4NmFlZWJjZGUzOWU5MjljMzU5DQphbGxvd2VkIHByZWZpeGVzOg0KICAgYmluLw0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvDQpjaGFuZ2VkIHBhdGhzICA6IDEzNw0KaW5zaWRlIGFsbG93bGlzdDogMTM3DQpvdXRzaWRlICAgICAgICAgOiAwDQoNCk4xIEhPTERTOiBldmVyeSBjaGFuZ2VkIHBhdGggaXMgaW5zaWRlIHRoZSBmcm96ZW4gYWxsb3dsaXN0DQo=",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "range          : df666070ead7fa21bc72b6c99d2644923b37e787..HEAD\r\nallowed prefixes:\r\n   bin/\r\n   docs/evidence/gatebraid/P2-S4/\r\nchanged paths  : 137\r\ninside allowlist: 137\r\noutside         : 0\r\n\r\nN1 HOLDS: every changed path is inside the frozen allowlist\r\n"
+        "text": "range          : df666070ead7fa21bc72b6c99d2644923b37e787..50d08de65158faf23f1ae86aeebcde39e929c359\r\nallowed prefixes:\r\n   bin/\r\n   docs/evidence/gatebraid/P2-S4/\r\nchanged paths  : 137\r\ninside allowlist: 137\r\noutside         : 0\r\n\r\nN1 HOLDS: every changed path is inside the frozen allowlist\r\n"
       }
     },
     "stderr": {
@@ -48,8 +48,8 @@
       }
     }
   },
-  "started_at": "2026-08-24T13:03:01.304227Z",
-  "ended_at": "2026-08-24T13:03:01.412155Z",
+  "started_at": "2026-08-25T03:51:55.924600Z",
+  "ended_at": "2026-08-25T03:51:56.042934Z",
   "inputs": [],
   "outputs": [],
   "platform": {
