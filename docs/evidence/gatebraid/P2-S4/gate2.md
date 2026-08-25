@@ -496,24 +496,164 @@ afbaab4f6dc51d050b8fe7fb7b356667088ce1c9
 
 | Item | Verdict | Evidence |
 |---|---|---|
-| R1 allowlist confinement | | V13, and `git status --porcelain --untracked-files=all` at review time |
-| R2 test-plan coverage | | V1–V13, item-by-item mapping in the frozen plan's acceptance mapping |
-| R3 evidence is rows that reproduce | | every row above; the deterministic subset is V12, V13, V14, V15, V16 |
-| R4 negative criterion | | V13 (N1), V14 (N2), V15 (N3), V16 (N4) |
-| R5 no prohibited action | | E2–E5; no push, PR, merge, tag or dependency install appears in any capture |
+| R1 allowlist confinement | **PASS** | Review 1 §2. 137 paths over `<base>..50d08de6`, 6 `bin/` + 131 evidence, **0 outside**; byte-identical to `changed_paths` and to `G2-fp-diff.json`. Re-checked at C1 and D1, including the whole `bin/` tree object |
+| R2 test-plan coverage | **PASS** | Review 1 §3. All four Acceptance boxes map to declared commands as the frozen plan states; **all 13 declared commands re-run in the review session, all green, all exit 0**. Two disclosed coverage limits weighed as F-04 |
+| R3 evidence is rows that reproduce | **PASS**, with **F-01** | Review 1 §4. Frozen hashes, fingerprint pair, both diffs and the record-validation run reproduce byte-identically; all 12 elisions carry `shown/total` and a committed path whose line count matches; 41/41 captures re-verified. F-01 discharged at repair 1; re-checked at C2 and D2 |
+| R4 negative criterion | **PASS**, with **F-02**, **F-03** | Review 1 §6. N1 holds **and still fires** on the O0-B1 range (exit 1, 21 outside); N2's property re-established by independent AST enumeration, not inherited; N3 holds; N4 holds in both halves. F-02 and F-03 record limits of the checkers, not failures of the properties |
+| R5 no prohibited action | **PASS** | Review 1 §8. No push (no remote ref exists), no PR, no tag, no merge, no dependency installation, no disabled hook or check — the repository carries no CI, hook or dependency-manifest file at all — and no second writer |
 
-**Reviewer rows** (the commands the reviewer ran, with outputs — including, for R3's deterministic subset, the byte-identity re-runs)
+Two supplementary items the reviewer measured beyond the five, recorded because they close questions this record raised against itself:
+
+| Item | Verdict | Evidence |
+|---|---|---|
+| R3-Q D7 at the missed point | **CLOSED BY MEASUREMENT — surface unmoved at every point** | Review 1 §5. The branch point was materialised with `git archive` and the digest measured there: `66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e`, equal to the batch-frozen value and to both points this gate measured. **A writer cannot close its own gap; this one was closed by the reviewer** |
+| R4-B induced-failure matrix | **CONFIRMED — 12/12, 0 unexercised** | Review 1 §7. Re-run independently, with the clause-to-schema mapping built from `$defs.item.allOf`'s own `$comment` text rather than from this harness's labels — so the three previously-unasserted conditionals are shown to fire **behaviourally**, not merely to be labelled as firing |
+
+**Reviewer rows** (the commands the reviewer ran, with outputs — including, for R3's deterministic subset, the byte-identity re-runs). **Transcribed under the Release Approval by the writer session holding the lease, from the three sealed reports and from nothing else**; the reviewer's own rule is that it never transcribes. Each source is cited by name, byte size and sha256, and each was re-verified at transcription time.
+
+| source | bytes | sha256 | sealed prefix |
+|---|---|---|---|
+| `_handoff/batch-o0/REVIEW1-M3-P2S4.md` | 46,125 | `651f4bf676ad5516985eb7e1b9efc5cbcef93c4278f4a8e0e5763a0a27018945` | 45,582 B, `096dbac63965bcceb596796e882325b252f552e414e19f2a4d2be3618c979840` |
+| `_handoff/batch-o0/REVIEW1-ADDENDUM-M3-P2S4.md` | 29,661 | `a76602ea355fcebf00a2c42b7ab536cd4195114ffa743e0b47703f4b6fb7ee21` | 29,208 B, `a459e86e850306cdd1060642a80276698d473a9a7b032d48d5e3c67e1df96867` |
+| `_handoff/batch-o0/REVIEW1-ADDENDUM2-M3-P2S4.md` | 28,260 | `1ba2dd811d41da244e6078cd2afde1cb041738b3849fbb391f3b92a9fb924e75` | 27,806 B, `f9e3daf9e412b3b0f5dac9671fd72e13ed759bfb9fbece30b1fc8b00f49b54fb` |
+
+**The three sources are session material under `_handoff/`, which the tracked `.gitignore` excludes — they do not land in this repository.** Stated because it bounds what this record can offer: the identities above make a retained copy checkable, and the measured values below are carried into the record so it stands without them, but a later reader who does not hold those files cannot re-derive the reviewer's own terminal output from here. What that reader CAN do is re-run the same commands against this branch, which is what makes the verdicts checkable rather than merely attributed.
+
+What the reviewer measured, by item:
 ```
-[written by the reviewer]
+R1  git diff --name-only <base>..50d08de6  = 137 paths
+      6 bin/ + 131 docs/evidence/gatebraid/P2-S4/, 0 outside
+      byte-identical to the record's changed_paths AND to the committed
+      capture G2-fp-diff.json (both sha256
+      ec21760706921912ca25e09bc7fd1cb9c019ff7b2fb2ec28e361fa0c8b030cbd, 7,725 B)
+      50d08de6..0964979c = 13 paths, all evidence
+      porcelain empty incl. --untracked-files=all; no remote ref for the branch
+R2  all four Acceptance boxes map to declared commands as the frozen plan states
+      all 13 declared commands RE-RUN in the review session: all green, all exit 0
+R3  both frozen hashes, the fingerprint pair, both diffs and the
+      record-validation run reproduce byte-identically
+      all 12 elisions carry shown/total and a committed full-output path
+      whose real line count matches
+      41/41 captures re-verified under --verify-record --rederive
+R3-Q  D7's missed point CLOSED BY MEASUREMENT: the reviewer materialised the
+      branch point with git archive and measured the digest there =
+      66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e,
+      equal to the batch-frozen value and to both points this gate measured
+R4  N1 holds and still FIRES on the O0-B1 range (exit 1, 21 outside)
+      N2's property independently re-established by AST enumeration, not inherited
+      N3 holds; no declared command reaches the network
+      N4 holds in both halves
+R4-B  induced-failure matrix CONFIRMED 12/12, 0 unexercised, re-run in the
+      review session; the clause-to-schema mapping was built from
+      $defs.item.allOf's own $comment text, NOT from this harness's labels,
+      so the three previously-unasserted conditionals are shown to fire
+      BEHAVIOURALLY; D4 exercises a non-empty relation in both directions
+      in 4 of 5 cases
+R5  no push (no remote ref exists), no pull request, no tag, no merge, no
+      dependency installation, no disabled hook or check (the repository
+      contains no CI, hook or dependency-manifest file at all), no second writer
 ```
 
-**Findings** (only if any verdict is fail — one row per finding: what was measured, not a story about it)
+Bounded re-check 1, on repair 1 — six of seven PASS, **C4 FAIL** (F-09):
 ```
-[written by the reviewer]
+C1 PASS  13 paths, all evidence; -- bin/ empty; and the whole bin/ TREE OBJECT
+           identical at both commits, cff967daf75872071f53319d0fe07274cc8fb76f
+C2 PASS  all four pinned captures reproduce byte-identically from their own
+           recorded argv; the checks[] row reproduces 137
+C3 RULED CORRECT AS LEFT   G2-fp-head is outside the nominated subset
+           (V12-V16), so decision 2's exclusion limb is satisfied
+C4 FAIL  the D7 substitute sentence attributes to V13 a range V13 no longer
+           covers -> F-09, one-reference fix
+C5 PASS with F-08         F-03, F-02, F-06 correct and documentary-only
+C6 PASS  every field, the lease, the comment set and the absence of
+           push/PR/tag/merge verified; the '6' was an arithmetic slip,
+           the state is unchanged at 7
+C7 PASS  nothing changes; V12/V13 now reproduce BETTER than when first passed
 ```
 
-- Reviewer write disclosure: [written by the reviewer]
-- Rules given to the reviewer: [written by the reviewer]
+Bounded re-check 2, on repair 2 — **seven of seven PASS, no FAIL**:
+```
+D1 PASS  6 paths, all evidence, none bin/; 32fb583f:bin =
+           cff967daf75872071f53319d0fe07274cc8fb76f, unmoved across both repairs
+D2 PASS  structural : 0, findings : 0, verdict : accepted, exit 0 -- re-run
+D3 PASS with F-11   repair_attempts = 1 entry, result: needs_approval,
+           ledger in both sites with PROVISIONAL in both
+D4 PASS  the moving-reference scan over the corrected paragraph returns 0;
+           ruled correct, not an over-correction
+D5 PASS  notes and the comment block carry 0 elision-shaped tokens
+D6 PASS  fingerprint 50d08de6/f797297005/137; cells blank; Gate G1 passed;
+           7 comments, 5395615534 last; lease held; sweep 46/46; no bytecode
+D7 PASS  nothing changes; F-09 DISCHARGED
+```
+
+**Findings** (one row per finding: what was measured, not a story about it). Thirteen were raised across the three documents. **No verdict is FAIL**: C4's FAIL was on a prose sentence, was repaired, and is discharged.
+```
+F-01  two rows in the nominated deterministic subset named HEAD rather than a
+        pinned SHA (ADR-0028 decision 2). DISCHARGED at repair 1.
+F-02  N2's shapes do not cover the X or <empty-literal> idiom -- 32
+        or-expressions in bin/gatebraid-snapshot.py by AST count. The property
+        holds; N2 is not what establishes it. CORRECTED at repair 1;
+        shape coverage RECORDED AS DEBT, not repaired.
+F-03  'unforgeable' overstated the N4 mechanism: _VALIDATION_TOKEN is a
+        reachable module attribute, the reviewer forged a ValidatedSnapshot,
+        and consume() has no isinstance guard. CORRECTED at repair 1.
+        The isinstance guard and the same word surviving in
+        bin/gatebraid-frontier.py's docstring are RECORDED AS DEBT --
+        hardening after review would ship un-reviewed behaviour.
+F-04  the live gh transport is committed and unmeasured. Established: it
+        constructs no HTTP client, handles no credential, adds no network
+        dependency to any acceptance result. NOT established: that it
+        functions. RECORDED, NOT REPAIRED -- covering it needs a test this
+        frozen plan does not declare.
+F-05  capture counts diverged across dispatch, record and tree. CORRECTED at
+        repair 1 with the instant each figure describes.
+F-06  approvals[] cannot express the Writer Assignment: the frozen
+        gate-run@2 enumeration has 10 members and none is Writer Assignment,
+        so the typing is SCHEMA-FORCED. Note tightened at repair 1.
+        RECORDED; queued for the schema's next revision.
+F-07  the reviewer's own isolation incident, self-reported: a grep scoped to
+        bin/ rather than to its six subject files returned 8 comment lines
+        from a landed tool barred to that window. Quarantined, unused,
+        disclosed; accepted as correctly handled. Not a Slice defect.
+F-08  the sweep-interval edge was named by arithmetic, not in words.
+        CORRECTED at repair 2: both endpoints and both true distances
+        (13.31 s from the start edge, 9.54 s from the end edge).
+F-09  the D7 substitute sentence cited V13 for a range V13 no longer covered
+        after repair 1 pinned it. THE ONE FAIL. CORRECTED at repair 2 and
+        DISCHARGED -- ruled replaced with a stronger argument than the fix
+        the reviewer specified.
+F-10  G2-R1-changed runs git status --porcelain and does not reproduce
+        (525 bytes recorded, 0 live). Not a defect: outside the deterministic
+        subset, no truthful pinned form exists, and the reproducible
+        comparand is supplied beside it. RECORDED, NOT REPAIRED.
+F-11  the repair_attempts caveat is a YAML comment, so a machine consumer
+        reading the array alone cannot see it: yaml.safe_load returns 19 keys
+        and the caveat text is not among them, because A COMMENT IS NOT DATA.
+        No placement closes the machine case; only notes reaches the data
+        layer, and notes carries it. Neither site claims otherwise -- both
+        phrase the ledger as an imperative to a reader, never as a mechanism.
+        RECORDED, NOT REPAIRED; queued with F-06 for the same revision.
+F-12  cosmetic residue of repair 2's rewrite: an orphaned closing apostrophe
+        in the caveat comment and a missing space after a separator. Both sit
+        inside prose or a YAML comment, both ASSERT NOTHING, the document
+        parses and the landed validator accepts it. RECORDED, NOT REPAIRED.
+F-13  removing a true MENTION to satisfy a scanner sets a precedent worth
+        naming. The HEAD token in the parenthetical was a mention, not a use;
+        under ADR-0018 section 2 -- where a proxy over-matches, THE PATTERN
+        GOVERNS -- adjudicating it in place would ALSO have been correct.
+        Removal won here because this record's own subject is that ambiguity,
+        and it cost nothing: the superseded sentence is named, the defect
+        described, the literal text recoverable from 3a0f4ac9. RECORDED, NOT
+        REPAIRED, and explicitly NOT licence to edit away a true mention
+        whenever a checker complains.
+```
+
+**Open at transcription: F-04, F-11, F-12, F-13 — all informational or debt, none routing to a stop.** The queued `gatebraid/gate-run@2` revision carries three items: the friction-#94 conditional keyed on a bare count, F-06's missing `Writer Assignment` type, and F-11. The closure ledger carries F-04's unmeasured live transport, the N4 `isinstance` guard, N2's shape coverage, and `bin/gatebraid-frontier.py`'s surviving docstring word.
+
+**The repair-residue class, recorded as the durable lesson.** Three corrections each seeded the next finding — F-08 an ambiguity between two TRUE figures, F-10 a non-reproducing row, F-12 two characters that assert nothing. **Severity is strictly decreasing, not compounding**, and each was caught by the re-check that followed, which is what earned those re-checks their cost. **A correction to prose is itself prose and inherits the same failure modes** — that is the lesson, and it is why a repair is re-checked rather than trusted.
+
+- Reviewer write disclosure: **`none` on any tracked path, across all three review windows.** Each window's sole write was its own report under `_handoff/`, which `git check-ignore -v` confirms is excluded by `.gitignore:7:/_handoff/` and is therefore not a tracked-file edit. Measured each time: **zero commits, zero tracked files modified/added/deleted, zero `gh` mutations** — every `gh` call was a read (`api user`, `api …/issues/comments/…`, `api graphql` query, `pr list`) — zero label/field/comment operations, no lease taken, no ref created, moved or deleted, and no checkout: the branch point was materialised with `git archive` rather than by moving `HEAD`. Bytecode: none, searched before and after every run. Scratch material lived outside every repository.
+- Rules given to the reviewer: measure never declare; cite never restate; a checker never echoes a forbidden value into its record, name loci and counts, and a bare zero states what it searched; closed-set by complement over its own outputs with the ruled touch-vs-mention distinction, permitted set `MianliWang/gatebraid` + `MianliWang/gatebraid-scratch`; every `gh` read pins `GH_CONFIG_DIR`, endpoints without a leading slash, identity check first and alone; every Python invocation carries `-B` and `PYTHONDONTWRITEBYTECODE=1`, the variable set inside any `wsl -e` command, no `py_compile`, any bytecode removed and disclosed; on any uncertainty STOP and ask; **isolation** — the four landed evidence tools are used and never read, the six new `bin/` files are the subject; **sole write** its own report, zero commits, zero tracked-file edits, zero `gh` mutations; **the verdicts are the reviewer's to write and it never transcribes**, transcription being the writer's under the Release Approval; friction ordinals unclaimed; and the host hazard named in advance — the console mangles U+2014 and U+2192, so compare BYTES wherever a mark decides an outcome. Both re-checks carried the same rules verbatim (spec §4, friction #97).
 
 ## Repair record
 
@@ -573,7 +713,8 @@ cff967daf75872071f53319d0fe07274cc8fb76f
 ## Required disclosures
 
 - Deviations: **D7 was not run at the first of its three named points.** The frozen plan requires the frozen surface to be re-measured by D7 *before the first implementation commit*, after the last, and at Gate 2 exit. It was run after the last implementation commit and at exit, and NOT before the first one; the omission is the executor's. **What stands in its place is not a substitute measurement at the missed instant but two PINNED facts that compose into the property that measurement would have established, neither of them naming a reference that can move.** First, `V19`: `schema/` and `fixtures/` are the SAME TREE OBJECTS at the plan baseline `df666070ead7fa21bc72b6c99d2644923b37e787` and at the fingerprint commit `50d08de6…` - `schema` is `afbaab4f6dc51d050b8fe7fb7b356667088ce1c9` at both and `fixtures` is `802366bed1ce3fe6a156bd5d3b967b071d8d76b2` at both - so neither frozen directory was written anywhere inside the span the missed instant sits in, in whatever order the commits of that span fell. A tree object is content, so this is stronger than a path-set argument: it cannot be satisfied by a write that was later reverted. Second, `V13` pinned shows that same span carrying 137 paths with none outside `bin/` and `docs/evidence/gatebraid/P2-S4/`. **Every commit after the fingerprint commit is record-only**, confined to `docs/evidence/gatebraid/P2-S4/`, which is why nothing here needs to reach past that commit to stay true. *(An earlier revision of this paragraph cited `V13` for a range ending at the branch head rather than at a pinned commit. Repair 1 pinned `V13` to end at the fingerprint commit, which made that citation false about `V13` while its conclusion stayed true; Review 1's addendum ruled it F-09, the one correction owed, and this is that correction. The superseded sentence is named, not silently replaced.)* `V11` shows `digest before` equal to `digest after` equal to the batch-frozen value at the two points D7 did run. The schema half was also measured before the first implementation commit incidentally, by the producer's own startup line naming `schema/snapshot.schema.json sha256=95ecf38e…`. The timing requirement was still missed and is recorded as missed · **two seeded cases in the harness were corrected by their own first run**, both disclosed because a seed that measures nothing is the defect this project has recorded most often: a capped transcript whose pages carried no item exercised the bounded flag and then had no item to carry a verdict, and an ASCII-only probe file needed its non-ASCII payload as escapes rather than as literals · **negative criterion N2 fired on this Slice's own implementation and the implementation was changed rather than the criterion.** The replay transport read `exit_code` with a non-`None` default, which places an implicit success assumption on a path that reaches a verdict; commit `1da43d8` removes it and S37 seeds the new behaviour. N2 now holds with zero matches · **`bin/gatebraid-snapshot.py` carries a live `gh` transport that no declared test command exercises.** Every declared command selects the replay transport or reads a frozen fixture, so the live path is committed but unmeasured at this gate; N3's scope names this explicitly rather than leaving it implied · **the three negative-criterion checkers for N2, N3 and N4 were authored at this gate**, not at Gate 1, which committed only N1's. They are instruments authored beside the work they certify — the pattern ADR-0028 §4 warns about — and are offered as mechanical aids to R4 rather than as independent certification; each states the pattern it proxies for, its explicit scope, and the direction in which it errs · **the handoff fingerprint and V18's sweep were measured at the commit BEFORE this record's own commit**, which is what the fingerprint's definition requires and what makes it Gate 3's comparand. V12 (D8) and V13 (N1) described the same instant but named `HEAD` to reach it; **repair 1 pins both to `50d08de6…`** so they reproduce, and N1 now returns the recorded `137` instead of moving with the tip. The files each later commit adds are outside those measurements; every one of them is under `docs/evidence/gatebraid/P2-S4/`, so the allowlist claim is unaffected. This is the boundary any sweep has over its own output, named rather than left to be noticed · **REPAIR 1, F-01 — what was pinned and what was deliberately not.** `V12` and `V13` are pinned, and so are `G2-fp-tree` (`git rev-parse 50d08de6…^{tree}`, which still derives the tree rather than restating it) and `G2-fp-diff` (`git diff --name-only df666070…..50d08de6…`, which reproduces the 137 paths exactly), plus the `allowlist-respected` `checks[]` row. **`G2-fp-head` is left naming `HEAD`, on purpose.** Pinning it would turn `git rev-parse HEAD` into `git rev-parse 50d08de6…`, a command that echoes its own argument and establishes nothing; the row's only content is *what the branch head was at that instant*, and pinning would destroy it while making the row look deterministic. The grant says not to manufacture agreement, and that is what manufacturing it would look like. **Why leaving it is sufficient, stated in the corrected form Review 1's addendum ruled under C3.** An earlier revision of this clause said the head claim was *corroborated* by `G2-fp-tree`; that was a shade too strong and is withdrawn. `G2-fp-tree` takes `50d08de6…` as its own argument, so it would reproduce identically even if the head claim were wrong — it cannot independently confirm that this commit WAS the branch head. It does not need to. The row sits **outside the nominated deterministic subset**, so ADR-0028 decision 2 is satisfied by its exclusion limb rather than by pinning; and everything the fingerprint must SPECIFY for Gate 3's drift check is carried by pinned, reproducing rows — that the commit exists on this branch (`V12`), that its tree is the recorded `tree_sha` (`G2-fp-tree`), and that its changed paths are exactly the 137 of `G2-fp-diff`. What is left unpinned is **provenance — how this writer arrived at that commit — not specification**, and provenance is inherently unreproducible. Decision 2 handles exactly that case by exclusion rather than by faking ·**REPAIR 1, F-03 — an overclaim in this record, corrected.** The N4 structural half was described as making the validated type UNFORGEABLE. Review 1 measured that false: `_VALIDATION_TOKEN` is a reachable module attribute, a holder of the module forged a `ValidatedSnapshot`, and `consume()` carries no `isinstance` guard — it rejected a duck-typed stand-in only incidentally, by `AttributeError`. The accurate claim, now carried by the checker's own output, is one guarded construction site inside `validate()`: strong against accidental refactor, NOT proof against a determined caller in the same module. **The N4 property itself holds in both halves**; the overstatement was in prose. `isinstance` was NOT added — that is hardening, not correction, and shipping un-reviewed behaviour after the review is what this sequence must not do; it is debt. **`bin/gatebraid-frontier.py`'s module docstring carries the same word and was not edited**, because this repair changes no `bin/` byte; that line is debt too, and it is named here so the correction is not mistaken for complete · **REPAIR 1, F-02 — N2's reach was overstated by omission.** N2 declares it errs toward false positives and owed an account of its false-NEGATIVE channels. Two are now named in its own scope statement: the `X or <empty-literal>` idiom is not searched at all — 32 `or`-expressions in `bin/gatebraid-snapshot.py` by AST count, re-derived here and equal to Review 1's — and N2a's `fail_closed` test is a substring search for `"raise"` that a comment or string literal could satisfy. Review 1 adjudicated all 32 independently and the property holds; **the correction is that N2 is not what establishes it.** The checker's behaviour is unchanged: changing what it detects after its gate exited would ship un-reviewed behaviour · **REPAIR 1, F-05 — one figure, three instants.** The capture count in `g2/` is **30** committed at the fingerprint commit `50d08de6…`, **34** in the working tree while the sweep ran — **a sweep is an INTERVAL, not an instant, and both endpoints are given here because naming only one made two correct figures read as a contradiction (Review 1 addendum, F-08)**: the sweep ran `2026-08-24T13:02:34.689Z` to `13:02:38.461Z` and the commit is stamped `13:02:48Z`, so the true distances are **13.31 s from its start edge and 9.54 s from its end edge**; the circulating figures *fourteen* and *ten* are second-truncated derivations of those two, one per edge, and neither was wrong except in failing to say which edge it measured from — and **41** at the tip `0964979c…`; all three are re-derived here and all three are true of their own instant. A fourth figure, **33**, appears in this Slice's posted Gate 2 handoff comment `5395615534` and originated with this executor: it was the standalone sweep run before `G2-D7-exit` and the sweep's own capture existed. The posted comment is durable and is not edited; the figure is corrected here. **The ambiguity was the defect, not any figure** · **REPAIR 2, F-10 — a row in this record does not reproduce, and that is recorded rather than left to be discovered.** `G2-R1-changed`, added by repair 1 as its novelty measurement, runs `git status --porcelain --untracked-files=all` — the second term in ADR-0028 decision 2's own prohibition — and it does NOT reproduce: 525 bytes recorded, 0 live, the tree now being clean. **Not a defect, and this record makes no claim that it reproduces.** It is outside the nominated deterministic subset, so decision 2's exclusion limb applies; a working-tree novelty measurement has no truthful pinned form, since pinning it would describe a different thing; and the reproducible comparand is supplied beside it — the repair commit's own diff, which is what the bounded re-check actually used. Its sibling `G2-R1-tree-before`, pinned to `0964979c…^{tree}`, reproduces byte-identically. Named here so no later reader mistakes its non-reproduction for drift · **REPAIR 1, F-04 is RECORDED, NOT REPAIRED.** The live `gh` transport stays committed and unmeasured: covering it needs a test this frozen plan does not declare, and the boundary is already disclosed above and named in N3's scope. It goes to the closure ledger as debt · **commit messages carry a `Co-Authored-By` trailer** per the executing harness's standing instruction, noted so the convention change is not mistaken for drift.
-- Reviewer write disclosure: `none` — no review has run at the time this record is written.
+- Reviewer write disclosure: **`none` on any tracked path, across all three review windows** — mirrored from the Review record above. Each window's sole write was its own `_handoff/` report, excluded by `.gitignore:7:/_handoff/`; zero commits, zero tracked-file edits, zero `gh` mutations, no lease taken, no ref moved, no checkout.
+- **Transcription is not a repair, and no later reader should count a third.** Filling the Review record's verdict cells is the Gate 2 contract's own Exit step once the reviewers pass — *reviewers pass → `Gate = G2 passed`, Workflow → `Needs Release Approval`* — and it spends nothing from the repair budget. **The budget remains: `repair_limit` 2, both spent, zero remaining**, exactly as the Repair record states. The two repairs changed what this record SAYS; this step records what the reviewer RULED, and the reviewer's own rule is that it never transcribes.
 - Environment: Windows 11 host, Git Bash (MSYS2) shell, `mixed-see-prose` with the WSL half exercised for D1b, D2b, D3b, D6b and V17; Windows loader `C:\Python312\python.exe` (CPython 3.12.2, jsonschema 4.23.0), WSL `/usr/bin/python3` (CPython 3.12.3, jsonschema 4.10.3); `PYTHONDONTWRITEBYTECODE=1` on every Windows Python invocation and set inside the `wsl` command on the WSL half, which inherits no Windows process environment; `GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid` on every `gh` call, every endpoint written without a leading slash (friction #33); the selftest seeds and the harness's parallel tree are written to scratch paths outside every repository, as the contract requires such a path to be named. **BP-01 fired once more during this gate, on the executor's own verification rather than on a deliverable, and is recorded because it is a measurement.** Checking that this record's `Plan Approval (G1→G2)` carries U+2192 was first attempted by piping `gh project field-list --format json` into a Python reader; the console codec re-encoded the response and the live option name arrived as the codepoints U+922B U+625C, so the comparison returned a FALSE mismatch. Re-measured by writing the response to a file and reading it with an explicit UTF-8 decode, the live option is U+2192 and the record string is byte-identical to it; `Gate 2 — Implementing` is U+2014 on the same measurement. The corrupted read was not acted on, and the hazard the frozen plan's P0-2 addresses is therefore live on this host in both directions — which is what D5's `B-premise` case independently establishes.
 
 ## gatebraid-metadata
@@ -587,7 +728,7 @@ executor: Claude Lead
 base_sha: df666070ead7fa21bc72b6c99d2644923b37e787
 active_branch: slice/P2-S4
 started_at: "2026-08-24T12:20:50.302787Z"
-ended_at: "2026-08-25T08:48:38Z"
+ended_at: "2026-08-25T09:49:22Z"
 result: needs_approval
 checks:
   - name: plan-approval-verified
@@ -670,6 +811,9 @@ checks:
   - name: frozen-surface-by-tree-object
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S4/g2/G2-frozen-trees.json"
+  - name: review-five-items
+    result: pass
+    output_ref: "#review-record"
   - name: allowlist-respected
     command: "git diff --name-only df666070ead7fa21bc72b6c99d2644923b37e787..50d08de65158faf23f1ae86aeebcde39e929c359"
     result: pass
@@ -846,5 +990,5 @@ plan_hash: "cb577dbf7fd1c0443b5e7ffbb94aacd7ada64385230afb6faa498815a4828913"
 allowlist_hash: "feb6d9c8ffbbaa08242d68e64db7b13b3f080aaae3667f01d7d22bdb0c061655"
 evidence_files:
   - docs/evidence/gatebraid/P2-S4/gate2.md
-notes: "Implementation of the frozen plan in three tasks, each shipping a tool and its committed falsification. This gate does not grade itself: `result` is needs_approval and the Review 1 verdict cells are left blank for the reviewer; transcription of a passing review happens under the Release Approval, not here. APPROVALS[] OVER-COUNTS PLAN APPROVALS BY ONE AND CANNOT DO OTHERWISE, so a consumer reading approvals[] alone must read this note too: comment 5394791863 is the Plan Approval, and comment 5395086921 is the operator WRITER ASSIGNMENT, a DIFFERENT act, whose clause 2 amends the Plan Approval window clause so Gate 2 opens in the session presenting its URL and whose clause 7 makes the writer role transferable only by an operator comment on the issue. Both entries carry type Plan Approval because the frozen gatebraid/gate-run@2 enumeration for approvals[].type has ten members and none is Writer Assignment: the typing is SCHEMA-FORCED, not chosen. A reader consuming approvals[] without this sentence counts two Plan Approvals where one Plan Approval and one Writer Assignment occurred. The schema belongs to the batch lane and is not this Slice to change; the missing member is queued for its next revision (Review 1, F-06). Repair 1 of 2 is spent on record corrections only -- no bin/ byte and no checker behaviour changed. Repair 2 spends the second and last: four prose corrections ruled by Review 1 addendum -- F-09, the one FAIL, where repair 1 pinned V13 and left the D7 disclosure citing it for a range it no longer covers; the C3 justification restated to what the mechanism supports; F-08 naming the sweep interval edge at both sites; and F-10 declaring a row that does not reproduce. THE REPAIR BUDGET IS NOW EXHAUSTED: repair_limit is 2 and both are spent, so any further finding routes to a decidable stop with result stopped, not to a third repair. REPAIR 2 IS DELIBERATELY NOT AN ENTRY IN repair_attempts AND ITS ABSENCE IS NOT A REDUCTION OF THE COUNT: two repairs are spent, ZERO remain, and no third is available. That array models the gate-2-contract D6 red-check sequence -- its own $comment grounds it in the ordered sequence repair 1, then Codex consult, then repair 2, then Human Diagnosis Required -- and neither repair here was an instance of it, since no review item was ever red and both corrected prose in a record that already validated. Recording repair 2 there trips allOf[0], whose antecedent is a bare count naming no result, and forces result human_diagnosis_required, which is false of this gate; inventing a consult_ref is refused in the schema own words. A reader seeing only the array must not conclude one repair remains: none does. PROVISIONAL REPRESENTATION pending the gate-run@2 revision that keys that conditional on the sequence it means rather than on a count, carried by ADR through the batch lane beside F-06 missing Writer Assignment type, and NOT YET NORMATIVE for a later Slice. The frozen schema and corpus were never written: N1 over the whole range touches only bin/ and this Slice evidence path, and D7 shows the digest unmoved at 66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e. No push, PR, tag or merge; publication is Gate 3."
+notes: "Implementation of the frozen plan in three tasks, each shipping a tool and its committed falsification. THIS GATE STILL DOES NOT GRADE ITSELF: Review 1 returned R1-R5 all PASS across three sealed documents and those verdicts are TRANSCRIBED here by the writer under the Release Approval step, from the sealed reports and not from memory; result stays needs_approval, because passed is the Release Approval to grant and not this record to claim. TRANSCRIPTION IS NOT A REPAIR and spends nothing: the budget remains repair_limit 2, both spent, ZERO remaining, and no later reader should count a third. Thirteen findings were raised; none is a FAIL at close -- C4 FAILed on a prose sentence, was repaired and is discharged as F-09. Open and recorded rather than repaired: F-04, F-11, F-12, F-13, plus the debt named at repair 1.APPROVALS[] OVER-COUNTS PLAN APPROVALS BY ONE AND CANNOT DO OTHERWISE, so a consumer reading approvals[] alone must read this note too: comment 5394791863 is the Plan Approval, and comment 5395086921 is the operator WRITER ASSIGNMENT, a DIFFERENT act, whose clause 2 amends the Plan Approval window clause so Gate 2 opens in the session presenting its URL and whose clause 7 makes the writer role transferable only by an operator comment on the issue. Both entries carry type Plan Approval because the frozen gatebraid/gate-run@2 enumeration for approvals[].type has ten members and none is Writer Assignment: the typing is SCHEMA-FORCED, not chosen. A reader consuming approvals[] without this sentence counts two Plan Approvals where one Plan Approval and one Writer Assignment occurred. The schema belongs to the batch lane and is not this Slice to change; the missing member is queued for its next revision (Review 1, F-06). Repair 1 of 2 is spent on record corrections only -- no bin/ byte and no checker behaviour changed. Repair 2 spends the second and last: four prose corrections ruled by Review 1 addendum -- F-09, the one FAIL, where repair 1 pinned V13 and left the D7 disclosure citing it for a range it no longer covers; the C3 justification restated to what the mechanism supports; F-08 naming the sweep interval edge at both sites; and F-10 declaring a row that does not reproduce. THE REPAIR BUDGET IS NOW EXHAUSTED: repair_limit is 2 and both are spent, so any further finding routes to a decidable stop with result stopped, not to a third repair. REPAIR 2 IS DELIBERATELY NOT AN ENTRY IN repair_attempts AND ITS ABSENCE IS NOT A REDUCTION OF THE COUNT: two repairs are spent, ZERO remain, and no third is available. That array models the gate-2-contract D6 red-check sequence -- its own $comment grounds it in the ordered sequence repair 1, then Codex consult, then repair 2, then Human Diagnosis Required -- and neither repair here was an instance of it, since no review item was ever red and both corrected prose in a record that already validated. Recording repair 2 there trips allOf[0], whose antecedent is a bare count naming no result, and forces result human_diagnosis_required, which is false of this gate; inventing a consult_ref is refused in the schema own words. A reader seeing only the array must not conclude one repair remains: none does. PROVISIONAL REPRESENTATION pending the gate-run@2 revision that keys that conditional on the sequence it means rather than on a count, carried by ADR through the batch lane beside F-06 missing Writer Assignment type, and NOT YET NORMATIVE for a later Slice. The frozen schema and corpus were never written: N1 over the whole range touches only bin/ and this Slice evidence path, and D7 shows the digest unmoved at 66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e. No push, PR, tag or merge; publication is Gate 3."
 ```

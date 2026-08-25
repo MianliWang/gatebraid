@@ -223,30 +223,250 @@ w("### Review 1")
 w()
 w("| Item | Verdict | Evidence |")
 w("|---|---|---|")
-w("| R1 allowlist confinement | | V13, and `git status --porcelain "
-  "--untracked-files=all` at review time |")
-w("| R2 test-plan coverage | | V1–V13, item-by-item mapping in the frozen "
-  "plan's acceptance mapping |")
-w("| R3 evidence is rows that reproduce | | every row above; the deterministic "
-  "subset is V12, V13, V14, V15, V16 |")
-w("| R4 negative criterion | | V13 (N1), V14 (N2), V15 (N3), V16 (N4) |")
-w("| R5 no prohibited action | | E2–E5; no push, PR, merge, tag or dependency "
-  "install appears in any capture |")
+w("| R1 allowlist confinement | **PASS** | Review 1 §2. 137 paths over "
+  "`<base>..50d08de6`, 6 `bin/` + 131 evidence, **0 outside**; byte-identical "
+  "to `changed_paths` and to `G2-fp-diff.json`. Re-checked at C1 and D1, "
+  "including the whole `bin/` tree object |")
+w("| R2 test-plan coverage | **PASS** | Review 1 §3. All four Acceptance boxes "
+  "map to declared commands as the frozen plan states; **all 13 declared "
+  "commands re-run in the review session, all green, all exit 0**. Two "
+  "disclosed coverage limits weighed as F-04 |")
+w("| R3 evidence is rows that reproduce | **PASS**, with **F-01** | Review 1 "
+  "§4. Frozen hashes, fingerprint pair, both diffs and the record-validation "
+  "run reproduce byte-identically; all 12 elisions carry `shown/total` and a "
+  "committed path whose line count matches; 41/41 captures re-verified. F-01 "
+  "discharged at repair 1; re-checked at C2 and D2 |")
+w("| R4 negative criterion | **PASS**, with **F-02**, **F-03** | Review 1 §6. "
+  "N1 holds **and still fires** on the O0-B1 range (exit 1, 21 outside); N2's "
+  "property re-established by independent AST enumeration, not inherited; N3 "
+  "holds; N4 holds in both halves. F-02 and F-03 record limits of the "
+  "checkers, not failures of the properties |")
+w("| R5 no prohibited action | **PASS** | Review 1 §8. No push (no remote ref "
+  "exists), no PR, no tag, no merge, no dependency installation, no disabled "
+  "hook or check — the repository carries no CI, hook or dependency-manifest "
+  "file at all — and no second writer |")
+w()
+w("Two supplementary items the reviewer measured beyond the five, recorded "
+  "because they close questions this record raised against itself:")
+w()
+w("| Item | Verdict | Evidence |")
+w("|---|---|---|")
+w("| R3-Q D7 at the missed point | **CLOSED BY MEASUREMENT — surface unmoved "
+  "at every point** | Review 1 §5. The branch point was materialised with "
+  "`git archive` and the digest measured there: "
+  "`66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e`, equal "
+  "to the batch-frozen value and to both points this gate measured. **A writer "
+  "cannot close its own gap; this one was closed by the reviewer** |")
+w("| R4-B induced-failure matrix | **CONFIRMED — 12/12, 0 unexercised** | "
+  "Review 1 §7. Re-run independently, with the clause-to-schema mapping built "
+  "from `$defs.item.allOf`'s own `$comment` text rather than from this "
+  "harness's labels — so the three previously-unasserted conditionals are "
+  "shown to fire **behaviourally**, not merely to be labelled as firing |")
 w()
 w("**Reviewer rows** (the commands the reviewer ran, with outputs — including, "
-  "for R3's deterministic subset, the byte-identity re-runs)")
+  "for R3's deterministic subset, the byte-identity re-runs). **Transcribed "
+  "under the Release Approval by the writer session holding the lease, from "
+  "the three sealed reports and from nothing else**; the reviewer's own rule "
+  "is that it never transcribes. Each source is cited by name, byte size and "
+  "sha256, and each was re-verified at transcription time.")
+w()
+w("| source | bytes | sha256 | sealed prefix |")
+w("|---|---|---|---|")
+w("| `_handoff/batch-o0/REVIEW1-M3-P2S4.md` | 46,125 | "
+  "`651f4bf676ad5516985eb7e1b9efc5cbcef93c4278f4a8e0e5763a0a27018945` | "
+  "45,582 B, `096dbac63965bcceb596796e882325b252f552e414e19f2a4d2be3618c979840` |")
+w("| `_handoff/batch-o0/REVIEW1-ADDENDUM-M3-P2S4.md` | 29,661 | "
+  "`a76602ea355fcebf00a2c42b7ab536cd4195114ffa743e0b47703f4b6fb7ee21` | "
+  "29,208 B, `a459e86e850306cdd1060642a80276698d473a9a7b032d48d5e3c67e1df96867` |")
+w("| `_handoff/batch-o0/REVIEW1-ADDENDUM2-M3-P2S4.md` | 28,260 | "
+  "`1ba2dd811d41da244e6078cd2afde1cb041738b3849fbb391f3b92a9fb924e75` | "
+  "27,806 B, `f9e3daf9e412b3b0f5dac9671fd72e13ed759bfb9fbece30b1fc8b00f49b54fb` |")
+w()
+w("**The three sources are session material under `_handoff/`, which the "
+  "tracked `.gitignore` excludes — they do not land in this repository.** "
+  "Stated because it bounds what this record can offer: the identities above "
+  "make a retained copy checkable, and the measured values below are carried "
+  "into the record so it stands without them, but a later reader who does not "
+  "hold those files cannot re-derive the reviewer's own terminal output from "
+  "here. What that reader CAN do is re-run the same commands against this "
+  "branch, which is what makes the verdicts checkable rather than merely "
+  "attributed.")
+w()
+w("What the reviewer measured, by item:")
 w("```")
-w("[written by the reviewer]")
+w("R1  git diff --name-only <base>..50d08de6  = 137 paths")
+w("      6 bin/ + 131 docs/evidence/gatebraid/P2-S4/, 0 outside")
+w("      byte-identical to the record's changed_paths AND to the committed")
+w("      capture G2-fp-diff.json (both sha256")
+w("      ec21760706921912ca25e09bc7fd1cb9c019ff7b2fb2ec28e361fa0c8b030cbd, 7,725 B)")
+w("      50d08de6..0964979c = 13 paths, all evidence")
+w("      porcelain empty incl. --untracked-files=all; no remote ref for the branch")
+w("R2  all four Acceptance boxes map to declared commands as the frozen plan states")
+w("      all 13 declared commands RE-RUN in the review session: all green, all exit 0")
+w("R3  both frozen hashes, the fingerprint pair, both diffs and the")
+w("      record-validation run reproduce byte-identically")
+w("      all 12 elisions carry shown/total and a committed full-output path")
+w("      whose real line count matches")
+w("      41/41 captures re-verified under --verify-record --rederive")
+w("R3-Q  D7's missed point CLOSED BY MEASUREMENT: the reviewer materialised the")
+w("      branch point with git archive and measured the digest there =")
+w("      66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e,")
+w("      equal to the batch-frozen value and to both points this gate measured")
+w("R4  N1 holds and still FIRES on the O0-B1 range (exit 1, 21 outside)")
+w("      N2's property independently re-established by AST enumeration, not inherited")
+w("      N3 holds; no declared command reaches the network")
+w("      N4 holds in both halves")
+w("R4-B  induced-failure matrix CONFIRMED 12/12, 0 unexercised, re-run in the")
+w("      review session; the clause-to-schema mapping was built from")
+w("      $defs.item.allOf's own $comment text, NOT from this harness's labels,")
+w("      so the three previously-unasserted conditionals are shown to fire")
+w("      BEHAVIOURALLY; D4 exercises a non-empty relation in both directions")
+w("      in 4 of 5 cases")
+w("R5  no push (no remote ref exists), no pull request, no tag, no merge, no")
+w("      dependency installation, no disabled hook or check (the repository")
+w("      contains no CI, hook or dependency-manifest file at all), no second writer")
 w("```")
 w()
-w("**Findings** (only if any verdict is fail — one row per finding: what was "
-  "measured, not a story about it)")
+w("Bounded re-check 1, on repair 1 — six of seven PASS, **C4 FAIL** (F-09):")
 w("```")
-w("[written by the reviewer]")
+w("C1 PASS  13 paths, all evidence; -- bin/ empty; and the whole bin/ TREE OBJECT")
+w("           identical at both commits, cff967daf75872071f53319d0fe07274cc8fb76f")
+w("C2 PASS  all four pinned captures reproduce byte-identically from their own")
+w("           recorded argv; the checks[] row reproduces 137")
+w("C3 RULED CORRECT AS LEFT   G2-fp-head is outside the nominated subset")
+w("           (V12-V16), so decision 2's exclusion limb is satisfied")
+w("C4 FAIL  the D7 substitute sentence attributes to V13 a range V13 no longer")
+w("           covers -> F-09, one-reference fix")
+w("C5 PASS with F-08         F-03, F-02, F-06 correct and documentary-only")
+w("C6 PASS  every field, the lease, the comment set and the absence of")
+w("           push/PR/tag/merge verified; the '6' was an arithmetic slip,")
+w("           the state is unchanged at 7")
+w("C7 PASS  nothing changes; V12/V13 now reproduce BETTER than when first passed")
 w("```")
 w()
-w("- Reviewer write disclosure: [written by the reviewer]")
-w("- Rules given to the reviewer: [written by the reviewer]")
+w("Bounded re-check 2, on repair 2 — **seven of seven PASS, no FAIL**:")
+w("```")
+w("D1 PASS  6 paths, all evidence, none bin/; 32fb583f:bin =")
+w("           cff967daf75872071f53319d0fe07274cc8fb76f, unmoved across both repairs")
+w("D2 PASS  structural : 0, findings : 0, verdict : accepted, exit 0 -- re-run")
+w("D3 PASS with F-11   repair_attempts = 1 entry, result: needs_approval,")
+w("           ledger in both sites with PROVISIONAL in both")
+w("D4 PASS  the moving-reference scan over the corrected paragraph returns 0;")
+w("           ruled correct, not an over-correction")
+w("D5 PASS  notes and the comment block carry 0 elision-shaped tokens")
+w("D6 PASS  fingerprint 50d08de6/f797297005/137; cells blank; Gate G1 passed;")
+w("           7 comments, 5395615534 last; lease held; sweep 46/46; no bytecode")
+w("D7 PASS  nothing changes; F-09 DISCHARGED")
+w("```")
+w()
+w("**Findings** (one row per finding: what was measured, not a story about it). "
+  "Thirteen were raised across the three documents. **No verdict is FAIL**: "
+  "C4's FAIL was on a prose sentence, was repaired, and is discharged.")
+w("```")
+w("F-01  two rows in the nominated deterministic subset named HEAD rather than a")
+w("        pinned SHA (ADR-0028 decision 2). DISCHARGED at repair 1.")
+w("F-02  N2's shapes do not cover the X or <empty-literal> idiom -- 32")
+w("        or-expressions in bin/gatebraid-snapshot.py by AST count. The property")
+w("        holds; N2 is not what establishes it. CORRECTED at repair 1;")
+w("        shape coverage RECORDED AS DEBT, not repaired.")
+w("F-03  'unforgeable' overstated the N4 mechanism: _VALIDATION_TOKEN is a")
+w("        reachable module attribute, the reviewer forged a ValidatedSnapshot,")
+w("        and consume() has no isinstance guard. CORRECTED at repair 1.")
+w("        The isinstance guard and the same word surviving in")
+w("        bin/gatebraid-frontier.py's docstring are RECORDED AS DEBT --")
+w("        hardening after review would ship un-reviewed behaviour.")
+w("F-04  the live gh transport is committed and unmeasured. Established: it")
+w("        constructs no HTTP client, handles no credential, adds no network")
+w("        dependency to any acceptance result. NOT established: that it")
+w("        functions. RECORDED, NOT REPAIRED -- covering it needs a test this")
+w("        frozen plan does not declare.")
+w("F-05  capture counts diverged across dispatch, record and tree. CORRECTED at")
+w("        repair 1 with the instant each figure describes.")
+w("F-06  approvals[] cannot express the Writer Assignment: the frozen")
+w("        gate-run@2 enumeration has 10 members and none is Writer Assignment,")
+w("        so the typing is SCHEMA-FORCED. Note tightened at repair 1.")
+w("        RECORDED; queued for the schema's next revision.")
+w("F-07  the reviewer's own isolation incident, self-reported: a grep scoped to")
+w("        bin/ rather than to its six subject files returned 8 comment lines")
+w("        from a landed tool barred to that window. Quarantined, unused,")
+w("        disclosed; accepted as correctly handled. Not a Slice defect.")
+w("F-08  the sweep-interval edge was named by arithmetic, not in words.")
+w("        CORRECTED at repair 2: both endpoints and both true distances")
+w("        (13.31 s from the start edge, 9.54 s from the end edge).")
+w("F-09  the D7 substitute sentence cited V13 for a range V13 no longer covered")
+w("        after repair 1 pinned it. THE ONE FAIL. CORRECTED at repair 2 and")
+w("        DISCHARGED -- ruled replaced with a stronger argument than the fix")
+w("        the reviewer specified.")
+w("F-10  G2-R1-changed runs git status --porcelain and does not reproduce")
+w("        (525 bytes recorded, 0 live). Not a defect: outside the deterministic")
+w("        subset, no truthful pinned form exists, and the reproducible")
+w("        comparand is supplied beside it. RECORDED, NOT REPAIRED.")
+w("F-11  the repair_attempts caveat is a YAML comment, so a machine consumer")
+w("        reading the array alone cannot see it: yaml.safe_load returns 19 keys")
+w("        and the caveat text is not among them, because A COMMENT IS NOT DATA.")
+w("        No placement closes the machine case; only notes reaches the data")
+w("        layer, and notes carries it. Neither site claims otherwise -- both")
+w("        phrase the ledger as an imperative to a reader, never as a mechanism.")
+w("        RECORDED, NOT REPAIRED; queued with F-06 for the same revision.")
+w("F-12  cosmetic residue of repair 2's rewrite: an orphaned closing apostrophe")
+w("        in the caveat comment and a missing space after a separator. Both sit")
+w("        inside prose or a YAML comment, both ASSERT NOTHING, the document")
+w("        parses and the landed validator accepts it. RECORDED, NOT REPAIRED.")
+w("F-13  removing a true MENTION to satisfy a scanner sets a precedent worth")
+w("        naming. The HEAD token in the parenthetical was a mention, not a use;")
+w("        under ADR-0018 section 2 -- where a proxy over-matches, THE PATTERN")
+w("        GOVERNS -- adjudicating it in place would ALSO have been correct.")
+w("        Removal won here because this record's own subject is that ambiguity,")
+w("        and it cost nothing: the superseded sentence is named, the defect")
+w("        described, the literal text recoverable from 3a0f4ac9. RECORDED, NOT")
+w("        REPAIRED, and explicitly NOT licence to edit away a true mention")
+w("        whenever a checker complains.")
+w("```")
+w()
+w("**Open at transcription: F-04, F-11, F-12, F-13 — all informational or debt, "
+  "none routing to a stop.** The queued `gatebraid/gate-run@2` revision carries "
+  "three items: the friction-#94 conditional keyed on a bare count, F-06's "
+  "missing `Writer Assignment` type, and F-11. The closure ledger carries "
+  "F-04's unmeasured live transport, the N4 `isinstance` guard, N2's shape "
+  "coverage, and `bin/gatebraid-frontier.py`'s surviving docstring word.")
+w()
+w("**The repair-residue class, recorded as the durable lesson.** Three "
+  "corrections each seeded the next finding — F-08 an ambiguity between two "
+  "TRUE figures, F-10 a non-reproducing row, F-12 two characters that assert "
+  "nothing. **Severity is strictly decreasing, not compounding**, and each was "
+  "caught by the re-check that followed, which is what earned those re-checks "
+  "their cost. **A correction to prose is itself prose and inherits the same "
+  "failure modes** — that is the lesson, and it is why a repair is re-checked "
+  "rather than trusted.")
+w()
+w("- Reviewer write disclosure: **`none` on any tracked path, across all three "
+  "review windows.** Each window's sole write was its own report under "
+  "`_handoff/`, which `git check-ignore -v` confirms is excluded by "
+  "`.gitignore:7:/_handoff/` and is therefore not a tracked-file edit. Measured "
+  "each time: **zero commits, zero tracked files modified/added/deleted, zero "
+  "`gh` mutations** — every `gh` call was a read (`api user`, "
+  "`api …/issues/comments/…`, `api graphql` query, `pr list`) — zero "
+  "label/field/comment operations, no lease taken, no ref created, moved or "
+  "deleted, and no checkout: the branch point was materialised with "
+  "`git archive` rather than by moving `HEAD`. Bytecode: none, searched before "
+  "and after every run. Scratch material lived outside every repository.")
+w("- Rules given to the reviewer: measure never declare; cite never restate; a "
+  "checker never echoes a forbidden value into its record, name loci and counts, "
+  "and a bare zero states what it searched; closed-set by complement over its "
+  "own outputs with the ruled touch-vs-mention distinction, permitted set "
+  "`MianliWang/gatebraid` + `MianliWang/gatebraid-scratch`; every `gh` read pins "
+  "`GH_CONFIG_DIR`, endpoints without a leading slash, identity check first and "
+  "alone; every Python invocation carries `-B` and `PYTHONDONTWRITEBYTECODE=1`, "
+  "the variable set inside any `wsl -e` command, no `py_compile`, any bytecode "
+  "removed and disclosed; on any uncertainty STOP and ask; **isolation** — the "
+  "four landed evidence tools are used and never read, the six new `bin/` files "
+  "are the subject; **sole write** its own report, zero commits, zero "
+  "tracked-file edits, zero `gh` mutations; **the verdicts are the reviewer's "
+  "to write and it never transcribes**, transcription being the writer's under "
+  "the Release Approval; friction ordinals unclaimed; and the host hazard named "
+  "in advance — the console mangles U+2014 and U+2192, so compare BYTES "
+  "wherever a mark decides an outcome. Both re-checks carried the same rules "
+  "verbatim (spec §4, friction #97).")
 w()
 w("## Repair record")
 w()
@@ -479,8 +699,19 @@ w("- Deviations: **D7 was not run at the first of its three named points.** The 
   "trailer** per the executing harness's standing instruction, noted so the "
   "convention change is not mistaken for drift."
   % BASE_SHA)
-w("- Reviewer write disclosure: `none` — no review has run at the time this "
-  "record is written.")
+w("- Reviewer write disclosure: **`none` on any tracked path, across all three "
+  "review windows** — mirrored from the Review record above. Each window's "
+  "sole write was its own `_handoff/` report, excluded by "
+  "`.gitignore:7:/_handoff/`; zero commits, zero tracked-file edits, zero "
+  "`gh` mutations, no lease taken, no ref moved, no checkout.")
+w("- **Transcription is not a repair, and no later reader should count a "
+  "third.** Filling the Review record's verdict cells is the Gate 2 contract's "
+  "own Exit step once the reviewers pass — *reviewers pass → `Gate = G2 "
+  "passed`, Workflow → `Needs Release Approval`* — and it spends nothing from "
+  "the repair budget. **The budget remains: `repair_limit` 2, both spent, zero "
+  "remaining**, exactly as the Repair record states. The two repairs changed "
+  "what this record SAYS; this step records what the reviewer RULED, and the "
+  "reviewer's own rule is that it never transcribes.")
 w("- Environment: Windows 11 host, Git Bash (MSYS2) shell, `mixed-see-prose` "
   "with the WSL half exercised for D1b, D2b, D3b, D6b and V17; Windows loader "
   "`C:\\Python312\\python.exe` (CPython 3.12.2, jsonschema 4.23.0), WSL "
@@ -552,6 +783,7 @@ CHECKS = [
     ("captures-machine-validated", None,
      "%s/G2-captures-validation.json" % CAP),
     ("frozen-surface-by-tree-object", None, "%s/G2-frozen-trees.json" % CAP),
+    ("review-five-items", None, "#review-record"),
     ("allowlist-respected",
      "git diff --name-only %s..50d08de65158faf23f1ae86aeebcde39e929c359"
      % BASE_SHA, "#verification-outputs"),
@@ -605,10 +837,17 @@ w('allowlist_hash: "feb6d9c8ffbbaa08242d68e64db7b13b3f080aaae3667f01d7d22bdb0c06
 w("evidence_files:")
 w("  - docs/evidence/gatebraid/P2-S4/gate2.md")
 w('notes: "Implementation of the frozen plan in three tasks, each shipping a '
-  'tool and its committed falsification. This gate does not grade itself: '
-  '`result` is needs_approval and the Review 1 verdict cells are left blank for '
-  'the reviewer; transcription of a passing review happens under the Release '
-  'Approval, not here. APPROVALS[] OVER-COUNTS PLAN APPROVALS BY ONE AND CANNOT '
+  'tool and its committed falsification. THIS GATE STILL DOES NOT GRADE '
+  'ITSELF: Review 1 returned R1-R5 all PASS across three sealed documents and '
+  'those verdicts are TRANSCRIBED here by the writer under the Release '
+  'Approval step, from the sealed reports and not from memory; result stays '
+  'needs_approval, because passed is the Release Approval to grant and not '
+  'this record to claim. TRANSCRIPTION IS NOT A REPAIR and spends nothing: '
+  'the budget remains repair_limit 2, both spent, ZERO remaining, and no '
+  'later reader should count a third. Thirteen findings were raised; none is '
+  'a FAIL at close -- C4 FAILed on a prose sentence, was repaired and is '
+  'discharged as F-09. Open and recorded rather than repaired: F-04, F-11, '
+  'F-12, F-13, plus the debt named at repair 1.APPROVALS[] OVER-COUNTS PLAN APPROVALS BY ONE AND CANNOT '
   'DO OTHERWISE, so a consumer reading approvals[] alone must read this note '
   'too: comment 5394791863 is the Plan Approval, and comment 5395086921 is the '
   'operator WRITER ASSIGNMENT, a DIFFERENT act, whose clause 2 amends the Plan '
