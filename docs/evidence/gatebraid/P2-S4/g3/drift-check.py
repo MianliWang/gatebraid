@@ -31,11 +31,26 @@ import os
 import subprocess
 import sys
 
+def out(line=""):
+    """Write one line as EXPLICIT UTF-8 BYTES to a binary sink.
+
+    Not `print`. This instrument scans arbitrary text and echoes matched context,
+    so its output carries whatever non-ASCII its input carries -- and on this host
+    a cp936 console re-encodes a text-layer write, producing bytes that are not
+    valid UTF-8. Measured here rather than assumed: the first run of this check
+    against the pull-request body emitted a 0xa1 lead byte and its capture
+    recorded `decode_result: replaced`. That is BP-01, the exact defect class this
+    Slice ships tools to remove, appearing in the Slice's own gate instrument. The
+    fix is the one the Slice's own P0-2 requires of its producer.
+    """
+    sys.stdout.buffer.write((line + chr(10)).encode("utf-8"))
+
+
 EVIDENCE_PREFIX = "docs/evidence/gatebraid/P2-S4/"
 WATCHED = ("refs/heads/", "refs/remotes/", "refs/tags/")
 
 if len(sys.argv) != 4:
-    print("USAGE: drift-check.py <tree_sha> <active_branch_head> <head>")
+    out("USAGE: drift-check.py <tree_sha> <active_branch_head> <head>")
     raise SystemExit(2)
 
 TREE_SHA, ACTIVE_BRANCH_HEAD, HEAD = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -47,8 +62,8 @@ def git(*args):
     p = subprocess.run(["git"] + list(args), cwd=REPO,
                        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if p.returncode != 0:
-        print("GIT FAILED: git %s -> exit %d" % (" ".join(args), p.returncode))
-        print(p.stderr.decode("utf-8", "replace").strip())
+        out("GIT FAILED: git %s -> exit %d" % (" ".join(args), p.returncode))
+        out(p.stderr.decode("utf-8", "replace").strip())
         raise SystemExit(2)
     return p.stdout.decode("utf-8", "replace")
 
@@ -59,67 +74,67 @@ def outside(paths):
 
 failures = []
 
-print("tree_sha (as reviewed)        : %s" % TREE_SHA)
-print("active_branch_head            : %s" % ACTIVE_BRANCH_HEAD)
-print("head at drift-check time      : %s" % HEAD)
-print("evidence prefix               : %s" % EVIDENCE_PREFIX)
-print()
+out("tree_sha (as reviewed)        : %s" % TREE_SHA)
+out("active_branch_head            : %s" % ACTIVE_BRANCH_HEAD)
+out("head at drift-check time      : %s" % HEAD)
+out("evidence prefix               : %s" % EVIDENCE_PREFIX)
+out()
 
 # ---- A ---------------------------------------------------------------------
 a_paths = [x for x in git("diff", "--name-only", TREE_SHA, HEAD).splitlines() if x.strip()]
 a_out = outside(a_paths)
-print("A  git diff --name-only <tree_sha> <head>")
-print("     paths changed              : %d" % len(a_paths))
-print("     outside the evidence dir   : %d" % len(a_out))
+out("A  git diff --name-only <tree_sha> <head>")
+out("     paths changed              : %d" % len(a_paths))
+out("     outside the evidence dir   : %d" % len(a_out))
 for x in a_out:
-    print("        %s" % x)
+    out("        %s" % x)
 if a_out:
     failures.append("A")
 
 # ---- B ---------------------------------------------------------------------
 commits = [c for c in git("rev-list", "--reverse",
                           "%s..%s" % (ACTIVE_BRANCH_HEAD, HEAD)).splitlines() if c.strip()]
-print("B  every commit in <active_branch_head>..<head>")
-print("     commits examined           : %d" % len(commits))
+out("B  every commit in <active_branch_head>..<head>")
+out("     commits examined           : %d" % len(commits))
 b_bad = 0
 for c in commits:
     paths = [x for x in git("diff-tree", "--no-commit-id", "--name-only", "-r",
                             c).splitlines() if x.strip()]
-    out = outside(paths)
-    print("        %s  changed=%-3d outside=%d" % (c, len(paths), len(out)))
-    for x in out:
-        print("           %s" % x)
-    b_bad += len(out)
+    stray = outside(paths)
+    out("        %s  changed=%-3d outside=%d" % (c, len(paths), len(stray)))
+    for x in stray:
+        out("           %s" % x)
+    b_bad += len(stray)
 if b_bad:
     failures.append("B")
 
 # ---- C ---------------------------------------------------------------------
 porcelain = [x for x in git("status", "--porcelain").splitlines() if x.strip()]
-print("C  git status --porcelain")
-print("     entries                    : %d" % len(porcelain))
+out("C  git status --porcelain")
+out("     entries                    : %d" % len(porcelain))
 for x in porcelain:
-    print("        %s" % x)
+    out("        %s" % x)
 if porcelain:
     failures.append("C")
 
 # ---- D ---------------------------------------------------------------------
 refs = [x for x in git("for-each-ref", "--format=%(refname)").splitlines() if x.strip()]
 unwatched = [r for r in refs if not r.startswith(WATCHED)]
-print("D  git for-each-ref")
-print("     refs total                 : %d" % len(refs))
-print("     outside the three watched namespaces : %d" % len(unwatched))
+out("D  git for-each-ref")
+out("     refs total                 : %d" % len(refs))
+out("     outside the three watched namespaces : %d" % len(unwatched))
 for r in unwatched:
-    print("        %s" % r)
-print("     watched namespaces         : %s" % ", ".join(WATCHED))
-print("     DISPOSITION: any ref above is REPORTED, NOT ADOPTED (friction #103).")
-print("     This Slice introduced none of them: it created exactly one ref,")
-print("     refs/heads/slice/P2-S4, which is inside refs/heads/.")
+    out("        %s" % r)
+out("     watched namespaces         : %s" % ", ".join(WATCHED))
+out("     DISPOSITION: any ref above is REPORTED, NOT ADOPTED (friction #103).")
+out("     This Slice introduced none of them: it created exactly one ref,")
+out("     refs/heads/slice/P2-S4, which is inside refs/heads/.")
 
-print()
-print("checks failed                 : %d %s" % (len(failures),
+out()
+out("checks failed                 : %d %s" % (len(failures),
                                                  ("(" + ", ".join(failures) + ")") if failures else ""))
 if failures:
-    print("DRIFT FOUND: route back to Needs Review; no publication")
+    out("DRIFT FOUND: route back to Needs Review; no publication")
     raise SystemExit(1)
-print("NO DRIFT: the reviewed work is unchanged; every change since the "
+out("NO DRIFT: the reviewed work is unchanged; every change since the "
       "fingerprint is inside the slice's own evidence directory")

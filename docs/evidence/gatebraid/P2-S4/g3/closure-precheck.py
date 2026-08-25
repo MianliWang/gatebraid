@@ -44,11 +44,26 @@ REFERENCE = (r"(?:#\d+"
 PROHIBITED = re.compile(KEYWORD + r"\s*:?\s+" + REFERENCE, re.I)
 BARE = re.compile(KEYWORD, re.I)
 
+def out(line=""):
+    """Write one line as EXPLICIT UTF-8 BYTES to a binary sink.
+
+    Not `print`. This instrument scans arbitrary text and echoes matched context,
+    so its output carries whatever non-ASCII its input carries -- and on this host
+    a cp936 console re-encodes a text-layer write, producing bytes that are not
+    valid UTF-8. Measured here rather than assumed: the first run of this check
+    against the pull-request body emitted a 0xa1 lead byte and its capture
+    recorded `decode_result: replaced`. That is BP-01, the exact defect class this
+    Slice ships tools to remove, appearing in the Slice's own gate instrument. The
+    fix is the one the Slice's own P0-2 requires of its producer.
+    """
+    sys.stdout.buffer.write((line + chr(10)).encode("utf-8"))
+
+
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 
 if len(sys.argv) != 3 or sys.argv[1] not in ("--range", "--file"):
-    print("USAGE: closure-precheck.py --range <base>..<head> | --file <path>")
+    out("USAGE: closure-precheck.py --range <base>..<head> | --file <path>")
     raise SystemExit(2)
 
 mode, target = sys.argv[1], sys.argv[2]
@@ -57,14 +72,14 @@ if mode == "--range":
     p = subprocess.run(["git", "log", "--format=%H%n%B%n---COMMIT-END---", target],
                        cwd=REPO, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if p.returncode != 0:
-        print("GIT FAILED: %s" % p.stderr.decode("utf-8", "replace").strip())
+        out("GIT FAILED: %s" % p.stderr.decode("utf-8", "replace").strip())
         raise SystemExit(2)
     text = p.stdout.decode("utf-8", "replace")
     scope = "every commit message in %s (%d commits)" % (
         target, text.count("---COMMIT-END---"))
 else:
     if not os.path.isfile(target):
-        print("USAGE: no file at %s" % target)
+        out("USAGE: no file at %s" % target)
         raise SystemExit(2)
     with open(target, "rb") as fh:
         text = fh.read().decode("utf-8", "replace")
@@ -78,26 +93,26 @@ def context(m):
     return text[max(0, m.start() - 60):m.start() + 45].replace("\n", " ").strip()
 
 
-print("check          : Gate 3 closure precondition (b), keyword half")
-print("scope          : %s" % scope)
-print("pattern        : a closing keyword IMMEDIATELY PRECEDING an issue reference")
-print("keywords       : close/closes/closed, fix/fixes/fixed, resolve/resolves/resolved")
-print("reference forms: #n | owner/repo#n | https://github.com/owner/repo/issues/n")
-print()
-print("PROHIBITED PATTERN matches   : %d" % len(hits))
+out("check          : Gate 3 closure precondition (b), keyword half")
+out("scope          : %s" % scope)
+out("pattern        : a closing keyword IMMEDIATELY PRECEDING an issue reference")
+out("keywords       : close/closes/closed, fix/fixes/fixed, resolve/resolves/resolved")
+out("reference forms: #n | owner/repo#n | https://github.com/owner/repo/issues/n")
+out()
+out("PROHIBITED PATTERN matches   : %d" % len(hits))
 for m in hits:
-    print("   %r" % m.group(0))
-    print("      %s" % context(m))
-print()
-print("bare keyword tokens          : %d  (NOT prohibited; printed so the count "
+    out("   %r" % m.group(0))
+    out("      %s" % context(m))
+out()
+out("bare keyword tokens          : %d  (NOT prohibited; printed so the count "
       "above states what it searched)" % len(bare))
 for m in bare[:12]:
-    print("   %-12r %s" % (m.group(0), context(m)))
+    out("   %-12r %s" % (m.group(0), context(m)))
 if len(bare) > 12:
-    print("   [... shown 12 of %d]" % len(bare))
-print()
+    out("   [... shown 12 of %d]" % len(bare))
+out()
 if hits:
-    print("CLOSURE PRECONDITION (b) FAILS: the prohibited pattern is present")
+    out("CLOSURE PRECONDITION (b) FAILS: the prohibited pattern is present")
     raise SystemExit(1)
-print("CLOSURE PRECONDITION (b) HOLDS: no closing keyword immediately precedes "
+out("CLOSURE PRECONDITION (b) HOLDS: no closing keyword immediately precedes "
       "an issue reference in the scope above")
