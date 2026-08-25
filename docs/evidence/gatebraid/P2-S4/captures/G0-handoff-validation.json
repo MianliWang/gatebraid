@@ -1,0 +1,76 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-handoff-validation",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "-c",
+      "\nimport re,sys,yaml,json,importlib.metadata as md\nfrom jsonschema import Draft202012Validator\ns=open('_handoff/batch-o0/HANDOFF-P2S4-G0.md',encoding='utf-8').read()\nblk=re.search(r'```yaml\\n(.*?)\\n```', s, re.S).group(1)\ndoc=yaml.safe_load(blk)\nsch=json.load(open('schema/handoff.schema.json',encoding='utf-8'))\nerrs=sorted(Draft202012Validator(sch).iter_errors(doc), key=lambda e:list(e.path))\nprint('loader      : PyYAML', yaml.__version__, '/ jsonschema', md.version('jsonschema'), '/ Draft202012Validator')\nprint('workflow_to : codepoints beyond ASCII =', [hex(ord(c)) for c in doc['workflow_to'] if ord(c)>127])\nprint('gate        :', doc['gate'], '| slice_id:', doc['slice_id'])\nfor e in errs: print('ERROR', '/'.join(map(str,e.path)) or '(root)', e.validator, e.message[:110])\nprint('errors      :', len(errs))\nprint('VALID against gatebraid/handoff@1' if not errs else 'INVALID')\nsys.exit(1 if errs else 0)\n"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONIOENCODING": "utf-8"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 210,
+      "sha256": "0508ea65f8d3f92acf299f14e212444c1290f414fe4de58226765d420a26c428",
+      "data": "bG9hZGVyICAgICAgOiBQeVlBTUwgNi4wLjIgLyBqc29uc2NoZW1hIDQuMjMuMCAvIERyYWZ0MjAyMDEyVmFsaWRhdG9yDQp3b3JrZmxvd190byA6IGNvZGVwb2ludHMgYmV5b25kIEFTQ0lJID0gWycweDIwMTQnXQ0KZ2F0ZSAgICAgICAgOiAwIHwgc2xpY2VfaWQ6IFAyLVM0DQplcnJvcnMgICAgICA6IDANClZBTElEIGFnYWluc3QgZ2F0ZWJyYWlkL2hhbmRvZmZAMQ0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "loader      : PyYAML 6.0.2 / jsonschema 4.23.0 / Draft202012Validator\r\nworkflow_to : codepoints beyond ASCII = ['0x2014']\r\ngate        : 0 | slice_id: P2-S4\r\nerrors      : 0\r\nVALID against gatebraid/handoff@1\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:41:57.103890Z",
+  "ended_at": "2026-08-24T04:41:57.447455Z",
+  "inputs": [
+    {
+      "path": "_handoff/batch-o0/HANDOFF-P2S4-G0.md",
+      "sha256": "09605c68fdb812ae5df267750b89b79337a1b125af2f7c0665f5e724e8096aeb"
+    },
+    {
+      "path": "schema/handoff.schema.json",
+      "sha256": "f97b0b482ddc434df86de2b5e70422aa1a855655dbbfdd1d323516708b1d2f82"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The handoff body is validated against gatebraid/handoff@1 BEFORE it is posted. PYTHONIOENCODING is declared and pinned to utf-8: the first attempt let the child inherit this host's cp936 console codec, which mangled the em dash in the Workflow label into non-UTF-8 bytes - the BP-01 class, occurring in the act of recording it."
+}

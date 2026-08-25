@@ -1,0 +1,69 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E-exit-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($item:ID!){ node(id:$item){ ... on ProjectV2Item { content{ ... on Issue { number state labels(first:20){ nodes{ name } } } } fieldValues(first:50){ nodes{ ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name } } } ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } } } } } } }",
+      "-F",
+      "item=PVTI_lAHOBRofUs4Beum7zg3ogLM"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1578,
+      "sha256": "29b183ba3b1ca9826bb105076296937ef7e6e28b53cf6013bffab0112d48e228",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiY29udGVudCI6eyJudW1iZXIiOjE0LCJzdGF0ZSI6Ik9QRU4iLCJsYWJlbHMiOnsibm9kZXMiOltdfX0sImZpZWxkVmFsdWVzIjp7Im5vZGVzIjpbe30seyJ0ZXh0IjoiUDItUzQg4oCUIE8wIHNuYXBzaG90L2Zyb250aWVyIGhhcmRlbmluZzogdGhlIGZhaWwtY2xvc2VkIHBhaXIiLCJmaWVsZCI6eyJuYW1lIjoiVGl0bGUifX0seyJuYW1lIjoiVG9kbyIsIm9wdGlvbklkIjoiZjc1YWQ4NDYiLCJmaWVsZCI6eyJuYW1lIjoiU3RhdHVzIn19LHsibmFtZSI6IkdhdGUgMiDigJQgSW1wbGVtZW50aW5nIiwib3B0aW9uSWQiOiI0MTMxMTdmOSIsImZpZWxkIjp7Im5hbWUiOiJXb3JrZmxvdyJ9fSx7Im5hbWUiOiJHMSBwYXNzZWQiLCJvcHRpb25JZCI6IjJhMmZmMDBlIiwiZmllbGQiOnsibmFtZSI6IkdhdGUifX0seyJuYW1lIjoi4oCUIiwib3B0aW9uSWQiOiI0NTBlZTEzMCIsImZpZWxkIjp7Im5hbWUiOiJOZXh0IEFwcHJvdmFsIn19LHsibmFtZSI6Im1peGVkLXNlZS1wcm9zZSIsIm9wdGlvbklkIjoiMWU0M2VjODUiLCJmaWVsZCI6eyJuYW1lIjoiRW52aXJvbm1lbnQifX0seyJuYW1lIjoiQ2xhdWRlIExlYWQiLCJvcHRpb25JZCI6ImNlODU5YzdkIiwiZmllbGQiOnsibmFtZSI6IkV4ZWN1dG9yIn19LHsibmFtZSI6ImxvdyIsIm9wdGlvbklkIjoiZTI5MTI0OWMiLCJmaWVsZCI6eyJuYW1lIjoiUmlzayJ9fSx7InRleHQiOiJTMiIsImZpZWxkIjp7Im5hbWUiOiJTdGFnZSJ9fSx7InRleHQiOiJQMiIsImZpZWxkIjp7Im5hbWUiOiJQaGFzZSJ9fSx7InRleHQiOiJQMi1TNCIsImZpZWxkIjp7Im5hbWUiOiJTbGljZSJ9fSx7InRleHQiOiJkZjY2NjA3MGVhZDdmYTIxYmM3MmI2Yzk5ZDI2NDQ5MjNiMzdlNzg3IiwiZmllbGQiOnsibmFtZSI6IkJhc2UgU0hBIn19LHsidGV4dCI6IjIwMjYtMDgtMjRUMDk6NTQ6MTlaIEdhdGUgMSBwYXNzZWQ7IHJlY29yZCBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9nYXRlMS5tZCBzaGEyNTYgMmEzZThlZTM5OTFiYjc2ODY0NTllMmM4ZGQ0ZjE4ZDYyOTNlNTEyYjY5YzBjMGE3NTQ2NmQwNDUxODdlNGJlMyAod29ya2luZyBmaWxlLCBjb21taXR0ZWQgYXQgR2F0ZSAyKTsgcGxhbl9oYXNoIGNiNTc3ZGJmN2ZkMWMwNDQzYjVlN2ZmYmI5NGFhY2Q3YWRhNjQzODUyMzBhZmI2ZmFhNDk4ODE1YTQ4Mjg5MTM7IGFsbG93bGlzdF9oYXNoIGZlYjZkOWM4ZmZiYmFhMDgyNDJkNjhlNjRkYjdiMTNiM2YwODBhYWFlMzY2N2YwMWQ3ZDIyYmRiMGMwNjE2NTU7IGhhbmRvZmYgY29tbWVudCA1MzkzNTc3NjczOyBuZWVkcy1odW1hbiBPTjsgUGxhbiBBcHByb3ZhbCBpcyB0aGUgb25seSBkb29yIHRvIEdhdGUgMiwgd2hpY2ggZG9lcyBub3Qgb3BlbiBvbiB0aGlzIGdyYW50LiIsImZpZWxkIjp7Im5hbWUiOiJMYXN0IENoZWNrcG9pbnQifX0seyJ0ZXh0IjoiUm91Z2hFZ29pc3Q6cDJzNC1nYXRlMi1jbGF1ZGUtbGVhZDoyMDI2LTA4LTI0VDEyOjIxOjUzWiIsImZpZWxkIjp7Im5hbWUiOiJXcml0ZXIgTGVhc2UifX0seyJ0ZXh0Ijoic2xpY2UvUDItUzQiLCJmaWVsZCI6eyJuYW1lIjoiQWN0aXZlIEJyYW5jaCJ9fV19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"content\":{\"number\":14,\"state\":\"OPEN\",\"labels\":{\"nodes\":[]}},\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S4 — O0 snapshot/frontier hardening: the fail-closed pair\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"name\":\"Gate 2 — Implementing\",\"optionId\":\"413117f9\",\"field\":{\"name\":\"Workflow\"}},{\"name\":\"G1 passed\",\"optionId\":\"2a2ff00e\",\"field\":{\"name\":\"Gate\"}},{\"name\":\"—\",\"optionId\":\"450ee130\",\"field\":{\"name\":\"Next Approval\"}},{\"name\":\"mixed-see-prose\",\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"name\":\"Claude Lead\",\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"name\":\"low\",\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S4\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"df666070ead7fa21bc72b6c99d2644923b37e787\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-08-24T09:54:19Z Gate 1 passed; record docs/evidence/gatebraid/P2-S4/gate1.md sha256 2a3e8ee3991bb7686459e2c8dd4f18d6293e512b69c0c0a75466d045187e4be3 (working file, committed at Gate 2); plan_hash cb577dbf7fd1c0443b5e7ffbb94aacd7ada64385230afb6faa498815a4828913; allowlist_hash feb6d9c8ffbbaa08242d68e64db7b13b3f080aaae3667f01d7d22bdb0c061655; handoff comment 5393577673; needs-human ON; Plan Approval is the only door to Gate 2, which does not open on this grant.\",\"field\":{\"name\":\"Last Checkpoint\"}},{\"text\":\"RoughEgoist:p2s4-gate2-claude-lead:2026-08-24T12:21:53Z\",\"field\":{\"name\":\"Writer Lease\"}},{\"text\":\"slice/P2-S4\",\"field\":{\"name\":\"Active Branch\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T12:22:27.351970Z",
+  "ended_at": "2026-08-24T12:22:27.898300Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-handoff-validation",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "-c",
+      "\nimport re,sys,yaml,json,importlib.metadata as md\nfrom jsonschema import Draft202012Validator\ns=open('_handoff/batch-o0/HANDOFF-P2S4-G2.md',encoding='utf-8').read()\nblk=re.search(r'```yaml\\n(.*?)\\n```', s, re.S).group(1)\ndoc=yaml.safe_load(blk)\nsch=json.load(open('schema/handoff.schema.json',encoding='utf-8'))\nsch.pop('$id',None)\nerrs=sorted(Draft202012Validator(sch).iter_errors(doc), key=lambda e: list(e.absolute_path))\nprint('loader        : CPython %s, jsonschema %s, Draft202012Validator' % (sys.version.split()[0], md.version('jsonschema')))\nprint('document      : _handoff/batch-o0/HANDOFF-P2S4-G2.md (embedded yaml block)')\nprint('schema        : schema/handoff.schema.json')\nprint('structural    : %d error locus/loci' % len(errs))\nfor e in errs[:10]:\n    print('   %-16s %s' % (e.validator, '/'.join(str(p) for p in e.absolute_path) or '(root)'))\nprint('verdict       : %s' % ('accepted' if not errs else 'rejected'))\nsys.exit(0 if not errs else 1)\n"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 255,
+      "sha256": "7a59066ce9f23f7e0f5965aa05bae4075535d139bea67c06b6346a3c9c6380a0",
+      "data": "bG9hZGVyICAgICAgICA6IENQeXRob24gMy4xMi4yLCBqc29uc2NoZW1hIDQuMjMuMCwgRHJhZnQyMDIwMTJWYWxpZGF0b3INCmRvY3VtZW50ICAgICAgOiBfaGFuZG9mZi9iYXRjaC1vMC9IQU5ET0ZGLVAyUzQtRzIubWQgKGVtYmVkZGVkIHlhbWwgYmxvY2spDQpzY2hlbWEgICAgICAgIDogc2NoZW1hL2hhbmRvZmYuc2NoZW1hLmpzb24NCnN0cnVjdHVyYWwgICAgOiAwIGVycm9yIGxvY3VzL2xvY2kNCnZlcmRpY3QgICAgICAgOiBhY2NlcHRlZA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "loader        : CPython 3.12.2, jsonschema 4.23.0, Draft202012Validator\r\ndocument      : _handoff/batch-o0/HANDOFF-P2S4-G2.md (embedded yaml block)\r\nschema        : schema/handoff.schema.json\r\nstructural    : 0 error locus/loci\r\nverdict       : accepted\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T13:06:07.086171Z",
+  "ended_at": "2026-08-24T13:06:07.446989Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

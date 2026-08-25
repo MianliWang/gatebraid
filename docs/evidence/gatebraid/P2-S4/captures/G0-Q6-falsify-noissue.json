@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-Q6-falsify-noissue",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=\nquery($owner:String!,$repo:String!,$number:Int!){\n  repository(owner:$owner,name:$repo){\n    issue(number:$number){\n      id number title\n      projectItems(first:10){\n        nodes{\n          id\n          project{ id title }\n          fieldValues(first:50){\n            nodes{\n              ... on ProjectV2ItemFieldTextValue{ text  field{ ... on ProjectV2FieldCommon{ name } } }\n              ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+      "-F",
+      "owner=MianliWang",
+      "-F",
+      "repo=gatebraid",
+      "-F",
+      "number=999999"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 205,
+      "sha256": "f389e0ee69a40f96c1bd5c8d1679e1e52357f4f10c1e152a2b02e79bb81a1dce",
+      "data": "eyJkYXRhIjp7InJlcG9zaXRvcnkiOnsiaXNzdWUiOm51bGx9fSwiZXJyb3JzIjpbeyJ0eXBlIjoiTk9UX0ZPVU5EIiwicGF0aCI6WyJyZXBvc2l0b3J5IiwiaXNzdWUiXSwibG9jYXRpb25zIjpbeyJsaW5lIjo0LCJjb2x1bW4iOjV9XSwibWVzc2FnZSI6IkNvdWxkIG5vdCByZXNvbHZlIHRvIGFuIElzc3VlIHdpdGggdGhlIG51bWJlciBvZiA5OTk5OTkuIn1dfQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"repository\":{\"issue\":null}},\"errors\":[{\"type\":\"NOT_FOUND\",\"path\":[\"repository\",\"issue\"],\"locations\":[{\"line\":4,\"column\":5}],\"message\":\"Could not resolve to an Issue with the number of 999999.\"}]}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 61,
+      "sha256": "ae952fae8952bec50bc992b48d88588f24f09d6f98cf7873fdb8f971d79a7938",
+      "data": "Z2g6IENvdWxkIG5vdCByZXNvbHZlIHRvIGFuIElzc3VlIHdpdGggdGhlIG51bWJlciBvZiA5OTk5OTkuCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "gh: Could not resolve to an Issue with the number of 999999.\n"
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:23:59.602672Z",
+  "ended_at": "2026-08-24T04:24:00.071713Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Seeded nonexistent issue number in the permitted repository."
+}

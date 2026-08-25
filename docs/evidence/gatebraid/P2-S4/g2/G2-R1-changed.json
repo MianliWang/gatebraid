@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R1-changed",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain",
+      "--untracked-files=all"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 525,
+      "sha256": "f9ad781e7b005f2244443c2392ed610e7478a3be9a5d5348299cffa882fd6634",
+      "data": "IE0gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvZzIvRzItRDguanNvbgogTSBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9nMi9HMi1OMS5qc29uCiBNIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2cyL0cyLU4yLmpzb24KIE0gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvZzIvRzItTjQuanNvbgogTSBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9nMi9HMi1mcC1kaWZmLmpzb24KIE0gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvZzIvRzItZnAtdHJlZS5qc29uCiBNIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2cyL25lZ2F0aXZlLWNyaXRlcmlvbi1OMi5weQogTSBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9nMi9uZWdhdGl2ZS1jcml0ZXJpb24tTjQucHkKIE0gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvZzIvcmVuZGVyLWdhdGUyLnB5Cj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2cyL0cyLVIxLXRyZWUtYmVmb3JlLmpzb24K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": " M docs/evidence/gatebraid/P2-S4/g2/G2-D8.json\n M docs/evidence/gatebraid/P2-S4/g2/G2-N1.json\n M docs/evidence/gatebraid/P2-S4/g2/G2-N2.json\n M docs/evidence/gatebraid/P2-S4/g2/G2-N4.json\n M docs/evidence/gatebraid/P2-S4/g2/G2-fp-diff.json\n M docs/evidence/gatebraid/P2-S4/g2/G2-fp-tree.json\n M docs/evidence/gatebraid/P2-S4/g2/negative-criterion-N2.py\n M docs/evidence/gatebraid/P2-S4/g2/negative-criterion-N4.py\n M docs/evidence/gatebraid/P2-S4/g2/render-gate2.py\n?? docs/evidence/gatebraid/P2-S4/g2/G2-R1-tree-before.json\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T03:55:50.916403Z",
+  "ended_at": "2026-08-25T03:55:50.975771Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

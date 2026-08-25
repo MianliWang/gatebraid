@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-Q5-field-list",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "project",
+      "field-list",
+      "1",
+      "--owner",
+      "MianliWang"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1563,
+      "sha256": "b948d6bfcdd1474babfe300461f51e846899cfafc3aad2d2f96ce95c91a84afd",
+      "data": "VGl0bGUJUHJvamVjdFYyRmllbGQJUFZURl9sQUhPQlJvZlVzNEJldW03emhaR3BwbwpBc3NpZ25lZXMJUHJvamVjdFYyRmllbGQJUFZURl9sQUhPQlJvZlVzNEJldW03emhaR3BwcwpTdGF0dXMJUHJvamVjdFYyU2luZ2xlU2VsZWN0RmllbGQJUFZUU1NGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHB3CkxhYmVscwlQcm9qZWN0VjJGaWVsZAlQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHAwCkxpbmtlZCBwdWxsIHJlcXVlc3RzCVByb2plY3RWMkZpZWxkCVBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkdwcDQKTWlsZXN0b25lCVByb2plY3RWMkZpZWxkCVBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkdwcDgKUmVwb3NpdG9yeQlQcm9qZWN0VjJGaWVsZAlQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHFBClJldmlld2VycwlQcm9qZWN0VjJGaWVsZAlQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHFFClBhcmVudCBpc3N1ZQlQcm9qZWN0VjJGaWVsZAlQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHFJClN1Yi1pc3N1ZXMgcHJvZ3Jlc3MJUHJvamVjdFYyRmllbGQJUFZURl9sQUhPQlJvZlVzNEJldW03emhaR3BxTQpDcmVhdGVkCVByb2plY3RWMkZpZWxkCVBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkdwcVEKVXBkYXRlZAlQcm9qZWN0VjJGaWVsZAlQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHFVCkNsb3NlZAlQcm9qZWN0VjJGaWVsZAlQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHFZCldvcmtmbG93CVByb2plY3RWMlNpbmdsZVNlbGVjdEZpZWxkCVBWVFNTRl9sQUhPQlJvZlVzNEJldW03emhaR3F0MApHYXRlCVByb2plY3RWMlNpbmdsZVNlbGVjdEZpZWxkCVBWVFNTRl9sQUhPQlJvZlVzNEJldW03emhaSmJ4UQpFeGVjdXRvcglQcm9qZWN0VjJTaW5nbGVTZWxlY3RGaWVsZAlQVlRTU0ZfbEFIT0JSb2ZVczRCZXVtN3poWkpjQkkKTmV4dCBBcHByb3ZhbAlQcm9qZWN0VjJTaW5nbGVTZWxlY3RGaWVsZAlQVlRTU0ZfbEFIT0JSb2ZVczRCZXVtN3poWkpjQzgKRW52aXJvbm1lbnQJUHJvamVjdFYyU2luZ2xlU2VsZWN0RmllbGQJUFZUU1NGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY0QwClJpc2sJUHJvamVjdFYyU2luZ2xlU2VsZWN0RmllbGQJUFZUU1NGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY0Q0ClN0YWdlCVByb2plY3RWMkZpZWxkCVBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjSk0KUGhhc2UJUHJvamVjdFYyRmllbGQJUFZURl9sQUhPQlJvZlVzNEJldW03emhaSmNLRQpTbGljZQlQcm9qZWN0VjJGaWVsZAlQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY09NCkJhc2UgU0hBCVByb2plY3RWMkZpZWxkCVBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjUFUKQWN0aXZlIEJyYW5jaAlQcm9qZWN0VjJGaWVsZAlQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY1FNClBhcmFsbGVsIEdyb3VwCVByb2plY3RWMkZpZWxkCVBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjUW8KV3JpdGVyIExlYXNlCVByb2plY3RWMkZpZWxkCVBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjU1UKTGFzdCBDaGVja3BvaW50CVByb2plY3RWMkZpZWxkCVBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjVE0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "Title\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGppo\nAssignees\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpps\nStatus\tProjectV2SingleSelectField\tPVTSSF_lAHOBRofUs4Beum7zhZGppw\nLabels\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpp0\nLinked pull requests\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpp4\nMilestone\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpp8\nRepository\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpqA\nReviewers\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpqE\nParent issue\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpqI\nSub-issues progress\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpqM\nCreated\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpqQ\nUpdated\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpqU\nClosed\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZGpqY\nWorkflow\tProjectV2SingleSelectField\tPVTSSF_lAHOBRofUs4Beum7zhZGqt0\nGate\tProjectV2SingleSelectField\tPVTSSF_lAHOBRofUs4Beum7zhZJbxQ\nExecutor\tProjectV2SingleSelectField\tPVTSSF_lAHOBRofUs4Beum7zhZJcBI\nNext Approval\tProjectV2SingleSelectField\tPVTSSF_lAHOBRofUs4Beum7zhZJcC8\nEnvironment\tProjectV2SingleSelectField\tPVTSSF_lAHOBRofUs4Beum7zhZJcD0\nRisk\tProjectV2SingleSelectField\tPVTSSF_lAHOBRofUs4Beum7zhZJcD4\nStage\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZJcJM\nPhase\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZJcKE\nSlice\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZJcOM\nBase SHA\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZJcPU\nActive Branch\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZJcQM\nParallel Group\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZJcQo\nWriter Lease\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZJcSU\nLast Checkpoint\tProjectV2Field\tPVTF_lAHOBRofUs4Beum7zhZJcTM\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:21:29.333395Z",
+  "ended_at": "2026-08-24T04:21:33.815474Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

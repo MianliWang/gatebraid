@@ -1,0 +1,64 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-porcelain-full",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain",
+      "--untracked-files=all"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1468,
+      "sha256": "50cf2d492d2b67c3da34c5254c48043dab0eebb7dc88fa3102f90c0a4fff69f2",
+      "data": "Pz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtUTEtZmFsc2lmeS1iYWRmaWVsZC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2NhcHR1cmVzL0cwLVExLWZhbHNpZnktbm9hdXRoLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtUTEtaWRlbnRpdHkuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9jYXB0dXJlcy9HMC1RMi1hcHByb3ZhbC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2NhcHR1cmVzL0cwLVEyLWZhbHNpZnkuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9jYXB0dXJlcy9HMC1RMy1mYWxzaWZ5Lmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtUTMtaXNzdWUuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9jYXB0dXJlcy9HMC1RNC1wcm9qZWN0Lmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtUTUtZmFsc2lmeS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2NhcHR1cmVzL0cwLVE1LWZpZWxkLWxpc3QtanNvbi5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2NhcHR1cmVzL0cwLVE1LWZpZWxkLWxpc3QuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9jYXB0dXJlcy9HMC1RNi1mYWxzaWZ5LWJhZGZpZWxkLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtUTYtZmFsc2lmeS1ub2lzc3VlLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtUTYtZmFsc2lmeS1zZWxlY3Rvci5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2NhcHR1cmVzL0cwLVE2LWl0ZW0tZmllbGRzLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtUTctYmxvY2tlZC1ieS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2NhcHR1cmVzL0cwLVE3LWJsb2NraW5nLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtUTctZmFsc2lmeS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2NhcHR1cmVzL0cwLWJhc2VsaW5lLW1haW4uanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9jYXB0dXJlcy9HMC1oZWFkLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtcG9yY2VsYWluLWJhc2VsaW5lLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvY2FwdHVyZXMvRzAtcmVmLW5hbWVzcGFjZS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2NhcHR1cmVzL0cwLXJlbW90ZS5qc29uCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "?? docs/evidence/gatebraid/P2-S4/captures/G0-Q1-falsify-badfield.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q1-falsify-noauth.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q1-identity.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q2-approval.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q2-falsify.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q3-falsify.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q3-issue.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q4-project.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q5-falsify.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q5-field-list-json.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q5-field-list.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q6-falsify-badfield.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q6-falsify-noissue.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q6-falsify-selector.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q6-item-fields.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q7-blocked-by.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q7-blocking.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-Q7-falsify.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-baseline-main.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-head.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-porcelain-baseline.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-ref-namespace.json\n?? docs/evidence/gatebraid/P2-S4/captures/G0-remote.json\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:25:44.397649Z",
+  "ended_at": "2026-08-24T04:25:44.484300Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Unfiltered view including untracked. Every entry is under docs/evidence/gatebraid/P2-S4/, i.e. this gate's own evidence; zero entries outside it."
+}

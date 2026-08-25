@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-plan-hash",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g1/hash-plan.py",
+      "docs/evidence/gatebraid/P2-S4/gate1.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 281,
+      "sha256": "31cfa4149b1f3d7ed02e79fef161a38ba5199efc323b94fec197e9d5544d3d0b",
+      "data": "cmVjb3JkICAgICAgICA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2dhdGUxLm1kDQpoZWFkaW5nIGF0ICAgIDogbGluZSAzICgxLWJhc2VkKQ0KbmV4dCAnIyMgJyBhdCA6IGxpbmUgMTY2ICgxLWJhc2VkKQ0KcGxhbiBsaW5lcyAgICA6IDE2MSBhZnRlciBzdHJpcHBpbmcgYW5kIHRyaW1taW5nDQpwYXlsb2FkIGxlbmd0aDogMTE3OTINCnBsYW5faGFzaCAgICAgOiBjYjU3N2RiZjdmZDFjMDQ0M2I1ZTdmZmJiOTRhYWNkN2FkYTY0Mzg1MjMwYWZiNmZhYTQ5ODgxNWE0ODI4OTEzDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "record        : docs/evidence/gatebraid/P2-S4/gate1.md\r\nheading at    : line 3 (1-based)\r\nnext '## ' at : line 166 (1-based)\r\nplan lines    : 161 after stripping and trimming\r\npayload length: 11792\r\nplan_hash     : cb577dbf7fd1c0443b5e7ffbb94aacd7ada64385230afb6faa498815a4828913\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T09:52:57.772097Z",
+  "ended_at": "2026-08-24T09:52:57.860173Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/g1/hash-plan.py",
+      "sha256": "17649cdb5535f4cc09e114ca135e23750aabfa35b69de1d8cd0263d690ed0ada"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/gate1.md",
+      "sha256": "42390786df0126ad1a69c91373d049eb142f157755d438dfb3c2c25d0910212b"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

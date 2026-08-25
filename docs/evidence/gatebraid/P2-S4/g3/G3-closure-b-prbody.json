@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-closure-b-prbody",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g3/closure-precheck.py",
+      "--file",
+      "_handoff/batch-o0/PR-BODY-P2S4.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1351,
+      "sha256": "06e012dbc05dc8c71fa03086d2aec64300ddb51f656d11520706dae7dddbde00",
+      "data": "Y2hlY2sgICAgICAgICAgOiBHYXRlIDMgY2xvc3VyZSBwcmVjb25kaXRpb24gKGIpLCBrZXl3b3JkIGhhbGYKc2NvcGUgICAgICAgICAgOiB0aGUgZmlsZSBfaGFuZG9mZi9iYXRjaC1vMC9QUi1CT0RZLVAyUzQubWQgKDM4ODEgYnl0ZXMpCnBhdHRlcm4gICAgICAgIDogYSBjbG9zaW5nIGtleXdvcmQgSU1NRURJQVRFTFkgUFJFQ0VESU5HIGFuIGlzc3VlIHJlZmVyZW5jZQprZXl3b3JkcyAgICAgICA6IGNsb3NlL2Nsb3Nlcy9jbG9zZWQsIGZpeC9maXhlcy9maXhlZCwgcmVzb2x2ZS9yZXNvbHZlcy9yZXNvbHZlZApyZWZlcmVuY2UgZm9ybXM6ICNuIHwgb3duZXIvcmVwbyNuIHwgaHR0cHM6Ly9naXRodWIuY29tL293bmVyL3JlcG8vaXNzdWVzL24KClBST0hJQklURUQgUEFUVEVSTiBtYXRjaGVzICAgOiAwCgpiYXJlIGtleXdvcmQgdG9rZW5zICAgICAgICAgIDogNiAgKE5PVCBwcm9oaWJpdGVkOyBwcmludGVkIHNvIHRoZSBjb3VudCBhYm92ZSBzdGF0ZXMgd2hhdCBpdCBzZWFyY2hlZCkKICAgJ2Nsb3NlZCcgICAgICMjIFNsaWNlIFAyLVM0IOKAlCBPMCBzbmFwc2hvdC9mcm9udGllciBoYXJkZW5pbmc6IHRoZSBmYWlsLWNsb3NlZCBwYWlyICBSZWZzICMxNCAgRGVsaXZlcnMgTTMtUExBTiDCpzIgbm8KICAgJ2Nsb3NlZCcgICAgIGJlY29tZXMgYSBgc291cmNlc1tdYCBlbnRyeSB3aXRoIGEgc3RhdHVzIGZyb20gdGhlIHNjaGVtYSdzIGNsb3NlZCBlbnVtZXJhdGlvbi4gQSByZWFkIHRoYXQgZmFpbHMgd2hpbGUgdAogICAnY2xvc2VkJyAgICAgYW4gaW5jb21wbGV0ZSByZWFkIGFuZCBzYXlzIHdoZXJlIGl0IHN0b3BwZWQuIC0gKipQMC00Kiog4oCUIGNsb3NlZCBlbnVtZXJhdGlvbnMsIGJvdGggZGVwZW5kZW5jeSBkaXJlY3RpbwogICAnY2xvc2VkJyAgICAgdW5ibG9ja2VkLiBBbiBgQWJvcnRlZGAgc2xpY2UgaXMgbmV2ZXIgYHN0YXJ0YWJsZWAuICBFdmVyeSBjbG9zZWQgZW51bWVyYXRpb24gaXMgKipyZWFkIGZyb20gdGhlIGZyb3plbgogICAnZml4JyAgICAgICAgbmQgcmUtdHlwaW5nIGVpdGhlciBtYXJrIGlzIGhvdyB0aGV5IGRyaWZ0LiAgYHNjaGVtYS9gIGFuZCBgZml4dHVyZXMvYCBhcmUgdGhlIGJhdGNoIGxhbmUncywgZnJvemVuLCBhbmQKICAgJ2Nsb3NlZCcgICAgIFIyIMK3IFIzIMK3IFI0IMK3IFI1IGFsbCBQQVNTKiosIHdpdGggdHdvIHN1cHBsZW1lbnRhcnkgaXRlbXMgY2xvc2VkIGJ5IG1lYXN1cmVtZW50LiBUd28gcmVwYWlycyB3ZXJlIHNwZW50CgpDTE9TVVJFIFBSRUNPTkRJVElPTiAoYikgSE9MRFM6IG5vIGNsb3Npbmcga2V5d29yZCBpbW1lZGlhdGVseSBwcmVjZWRlcyBhbiBpc3N1ZSByZWZlcmVuY2UgaW4gdGhlIHNjb3BlIGFib3ZlCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "check          : Gate 3 closure precondition (b), keyword half\nscope          : the file _handoff/batch-o0/PR-BODY-P2S4.md (3881 bytes)\npattern        : a closing keyword IMMEDIATELY PRECEDING an issue reference\nkeywords       : close/closes/closed, fix/fixes/fixed, resolve/resolves/resolved\nreference forms: #n | owner/repo#n | https://github.com/owner/repo/issues/n\n\nPROHIBITED PATTERN matches   : 0\n\nbare keyword tokens          : 6  (NOT prohibited; printed so the count above states what it searched)\n   'closed'     ## Slice P2-S4 — O0 snapshot/frontier hardening: the fail-closed pair  Refs #14  Delivers M3-PLAN §2 no\n   'closed'     becomes a `sources[]` entry with a status from the schema's closed enumeration. A read that fails while t\n   'closed'     an incomplete read and says where it stopped. - **P0-4** — closed enumerations, both dependency directio\n   'closed'     unblocked. An `Aborted` slice is never `startable`.  Every closed enumeration is **read from the frozen\n   'fix'        nd re-typing either mark is how they drift.  `schema/` and `fixtures/` are the batch lane's, frozen, and\n   'closed'     R2 · R3 · R4 · R5 all PASS**, with two supplementary items closed by measurement. Two repairs were spent\n\nCLOSURE PRECONDITION (b) HOLDS: no closing keyword immediately precedes an issue reference in the scope above\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T20:08:11.666489Z",
+  "ended_at": "2026-08-25T20:08:11.739261Z",
+  "inputs": [
+    {
+      "path": "_handoff/batch-o0/PR-BODY-P2S4.md",
+      "sha256": "a3ece881882327176f02767ae36e6fa818ce23e4d5366d09ea5309e1001a0f79"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

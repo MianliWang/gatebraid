@@ -1,0 +1,62 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-ref-namespace",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "for-each-ref",
+      "--format=%(refname) %(objecttype) %(objectname)"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1401,
+      "sha256": "6ed549592d0ab1ee49e3dae909bfc452f1c786097ea00ec462e6e5f22b90ae56",
+      "data": "cmVmcy9jb2RleC90dXJuLWRpZmZzL2NoZWNrcG9pbnRzLzY1Njg3MzRkYjY0MjllMDg2MGNmMDk1NGIxOWFmZmZhYWRiOTNjOTk2MGQ2NjZlZmIyM2QxMDE4ZjE1MmJlMzcvN2Y4ZDgwMmMxMTgwNDJkMjAzODJhMTZhMjUwZWExYzVmYjBiZDg3ZWZkNmUyYTJlZTMyMjE1NThhZGU5YzhmMy8xNzg1NDg5OTAwOTMxL2MwZGE0MDA1LTFmZjYtNDM0YS1iMWE1LTlhZDFhMmFmMWIwZSB0cmVlIDhjN2RmODRkNjJhNWQ3MGQ0YTllZDJmMDVlZGYyNjYxYmJmNWJkNDMKcmVmcy9oZWFkcy9iYXRjaC9vMC1iMSBjb21taXQgOWRkMDQxNWE5MTBlNGJkYWZiMGFiZTY2YTY1MTg5ZDlhZmY5NWNiMwpyZWZzL2hlYWRzL20xLWNvbnRyb2wtcGxhbmUgY29tbWl0IDgyMzUwMmI0ZjVlYmE5ZThjNjBjNjA1NjgxNjgxNzk4MGJmZWE2ODUKcmVmcy9oZWFkcy9tMy9uMC1yYXRpZmljYXRpb24gY29tbWl0IDRmZjNmN2IxZjQ5ZjY4NTNiNTg0ZjI1NWE2MWNiNmI5OTc5N2FjYjQKcmVmcy9oZWFkcy9tYWluIGNvbW1pdCBkZjY2NjA3MGVhZDdmYTIxYmM3MmI2Yzk5ZDI2NDQ5MjNiMzdlNzg3CnJlZnMvaGVhZHMvc2xpY2UvUDItUzEgY29tbWl0IGY0MTg2MzQyMDM3ODcwYzMzYzUwYmI1YjY0YTMxNDMwYjQ2MmFjM2UKcmVmcy9oZWFkcy9zbGljZS9QMi1TMiBjb21taXQgOGM3MTBjYTA1MDZlMzAwNjUzNzc5ZDQzMmZkN2U1NmFlNThjNDIxMgpyZWZzL2hlYWRzL3NsaWNlL1AyLVMzIGNvbW1pdCA5NzU2NzU3OTY0NGU3NGJiOTU1ZDVlNjQyYmEyYzk2ZTMzYzk5MzE2CnJlZnMvcmVtb3Rlcy9vcmlnaW4vSEVBRCBjb21taXQgZGY2NjYwNzBlYWQ3ZmEyMWJjNzJiNmM5OWQyNjQ0OTIzYjM3ZTc4NwpyZWZzL3JlbW90ZXMvb3JpZ2luL2JhdGNoL28wLWIxIGNvbW1pdCA5ZGQwNDE1YTkxMGU0YmRhZmIwYWJlNjZhNjUxODlkOWFmZjk1Y2IzCnJlZnMvcmVtb3Rlcy9vcmlnaW4vbTEtY29udHJvbC1wbGFuZSBjb21taXQgODIzNTAyYjRmNWViYTllOGM2MGM2MDU2ODE2ODE3OTgwYmZlYTY4NQpyZWZzL3JlbW90ZXMvb3JpZ2luL20zL24wLXJhdGlmaWNhdGlvbiBjb21taXQgNGZmM2Y3YjFmNDlmNjg1M2I1ODRmMjU1YTYxY2I2Yjk5Nzk3YWNiNApyZWZzL3JlbW90ZXMvb3JpZ2luL21haW4gY29tbWl0IGRmNjY2MDcwZWFkN2ZhMjFiYzcyYjZjOTlkMjY0NDkyM2IzN2U3ODcKcmVmcy9yZW1vdGVzL29yaWdpbi9zbGljZS9QMi1TMSBjb21taXQgZjQxODYzNDIwMzc4NzBjMzNjNTBiYjViNjRhMzE0MzBiNDYyYWMzZQpyZWZzL3JlbW90ZXMvb3JpZ2luL3NsaWNlL1AyLVMyIGNvbW1pdCA4YzcxMGNhMDUwNmUzMDA2NTM3NzlkNDMyZmQ3ZTU2YWU1OGM0MjEyCnJlZnMvcmVtb3Rlcy9vcmlnaW4vc2xpY2UvUDItUzMgY29tbWl0IDk3NTY3NTc5NjQ0ZTc0YmI5NTVkNWU2NDJiYTJjOTZlMzNjOTkzMTYK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e tree 8c7df84d62a5d70d4a9ed2f05edf2661bbf5bd43\nrefs/heads/batch/o0-b1 commit 9dd0415a910e4bdafb0abe66a65189d9aff95cb3\nrefs/heads/m1-control-plane commit 823502b4f5eba9e8c60c6056816817980bfea685\nrefs/heads/m3/n0-ratification commit 4ff3f7b1f49f6853b584f255a61cb6b99797acb4\nrefs/heads/main commit df666070ead7fa21bc72b6c99d2644923b37e787\nrefs/heads/slice/P2-S1 commit f4186342037870c33c50bb5b64a31430b462ac3e\nrefs/heads/slice/P2-S2 commit 8c710ca0506e300653779d432fd7e56ae58c4212\nrefs/heads/slice/P2-S3 commit 97567579644e74bb955d5e642ba2c96e33c99316\nrefs/remotes/origin/HEAD commit df666070ead7fa21bc72b6c99d2644923b37e787\nrefs/remotes/origin/batch/o0-b1 commit 9dd0415a910e4bdafb0abe66a65189d9aff95cb3\nrefs/remotes/origin/m1-control-plane commit 823502b4f5eba9e8c60c6056816817980bfea685\nrefs/remotes/origin/m3/n0-ratification commit 4ff3f7b1f49f6853b584f255a61cb6b99797acb4\nrefs/remotes/origin/main commit df666070ead7fa21bc72b6c99d2644923b37e787\nrefs/remotes/origin/slice/P2-S1 commit f4186342037870c33c50bb5b64a31430b462ac3e\nrefs/remotes/origin/slice/P2-S2 commit 8c710ca0506e300653779d432fd7e56ae58c4212\nrefs/remotes/origin/slice/P2-S3 commit 97567579644e74bb955d5e642ba2c96e33c99316\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:24:55.514920Z",
+  "ended_at": "2026-08-24T04:24:55.597163Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

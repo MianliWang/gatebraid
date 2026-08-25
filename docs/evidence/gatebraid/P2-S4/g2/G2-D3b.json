@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D3b",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl",
+      "-e",
+      "bash",
+      "-lc",
+      "cd '/mnt/d/Github repo/Gatebraid' && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-o0-acceptance.py --induced-failures --out docs/evidence/gatebraid/P2-S4/acceptance/induced.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1742,
+      "sha256": "6bcbbc173c9d4a77a114e74a8d8bdd3a6043cb7b6bba5e8cfc05b194404997d0",
+      "data": "Y2FzZSAgICAgICAgICAgICAgY2xhdXNlICAgICAgICAgICAgICAgICAgICAgICAgICByZXF1aXJlZCAgICAgICAgICAgb2JzZXJ2ZWQgICAgICAgICAgIHZlcmRpY3QKSS1QMC0xLWF1dGggICAgICAgUDAtMSBhdXRoX2ZhaWx1cmUgICAgICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC0xLXBlcm0gICAgICAgUDAtMSBwZXJtaXNzaW9uX2ZhaWx1cmUgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC0xLXJhdGUgICAgICAgUDAtMSByYXRlX2xpbWl0ZWQgICAgICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC0xLW5ldCAgICAgICAgUDAtMSBuZXR3b3JrX2Vycm9yICAgICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC0xLXNlcnZlciAgICAgUDAtMSBzZXJ2ZXJfZXJyb3IgICAgICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC0xLXBhcnNlICAgICAgUDAtMSBwYXJzZV9lcnJvciAgICAgICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC0xLWVuZHBvaW50ICAgUDAtMSB1bmV4cGVjdGVkX2VuZHBvaW50ICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC0zLWNhcCAgICAgICAgUDAtMyBwYWdlIGNhcCAgICAgICAgICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC00LXN0YXRlICAgICAgUDAtNCB1bmtub3duIGlzc3VlIHN0YXRlICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC00LXdvcmtmbG93ICAgUDAtNCB1bmtub3duIHdvcmtmbG93ICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC00LWNyb3NzY2hlY2sgUDAtNCBjcm9zcy1jaGVjayBtaXNtYXRjaCAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKSS1QMC00LXNvZnQgICAgICAgUDAtNCBzb2Z0IGRlcGVuZGVuY3kgbm90IHBhcnNlZCB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MKCm1vZGUgICAgICAgICAgICAgICAgICAgICAgICAgIDogaW5kdWNlZC1mYWlsdXJlcwpoYXJuZXNzICAgICAgICAgICAgICAgICAgICAgICA6IGdhdGVicmFpZC1vMC1hY2NlcHRhbmNlIDEuMC4wCmludGVycHJldGVyICAgICAgICAgICAgICAgICAgIDogL3Vzci9iaW4vcHl0aG9uMwpuZXR3b3JrIHJlYWRzIHBlcmZvcm1lZCAgICAgICA6IDAKY2FzZXMgZGVjbGFyZWQgICAgICAgICAgICAgICAgOiAxMgpjYXNlcyBtZWV0aW5nIHJlcXVpcmVkIG91dGNvbWU6IDEyCmNsYXNzZXMgcmVwb3J0ZWQgdW5leGVyY2lzZWQgIDogMApjYXNlcyBmYWlsaW5nICAgICAgICAgICAgICAgICA6IDAKaW5kdWNlZCBjbGFzc2VzIGNhcnJ5aW5nIHVuZGVjaWRhYmxlIDogMTIgLyAxMgoKQUNDRVBUQU5DRSBDTEVBTjogZXZlcnkgZGVjbGFyZWQgY2FzZSBtZXQgaXRzIHJlcXVpcmVkIG91dGNvbWUKb3V0ICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9hY2NlcHRhbmNlL2luZHVjZWQuanNvbgo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "case              clause                          required           observed           verdict\nI-P0-1-auth       P0-1 auth_failure               undecidable        undecidable        PASS\nI-P0-1-perm       P0-1 permission_failure         undecidable        undecidable        PASS\nI-P0-1-rate       P0-1 rate_limited               undecidable        undecidable        PASS\nI-P0-1-net        P0-1 network_error              undecidable        undecidable        PASS\nI-P0-1-server     P0-1 server_error               undecidable        undecidable        PASS\nI-P0-1-parse      P0-1 parse_error                undecidable        undecidable        PASS\nI-P0-1-endpoint   P0-1 unexpected_endpoint        undecidable        undecidable        PASS\nI-P0-3-cap        P0-3 page cap                   undecidable        undecidable        PASS\nI-P0-4-state      P0-4 unknown issue state        undecidable        undecidable        PASS\nI-P0-4-workflow   P0-4 unknown workflow           undecidable        undecidable        PASS\nI-P0-4-crosscheck P0-4 cross-check mismatch       undecidable        undecidable        PASS\nI-P0-4-soft       P0-4 soft dependency not parsed undecidable        undecidable        PASS\n\nmode                          : induced-failures\nharness                       : gatebraid-o0-acceptance 1.0.0\ninterpreter                   : /usr/bin/python3\nnetwork reads performed       : 0\ncases declared                : 12\ncases meeting required outcome: 12\nclasses reported unexercised  : 0\ncases failing                 : 0\ninduced classes carrying undecidable : 12 / 12\n\nACCEPTANCE CLEAN: every declared case met its required outcome\nout                           : docs/evidence/gatebraid/P2-S4/acceptance/induced.json\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T12:54:09.653917Z",
+  "ended_at": "2026-08-24T12:54:15.500199Z",
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/acceptance/induced.json",
+      "sha256": "d5fbc568ca07de4dc07f22be2ee5b312469b572d5e62feffd7a340b8eb751608",
+      "byte_length": 4572
+    }
+  ],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

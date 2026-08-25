@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-closure-b-commits",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g3/closure-precheck.py",
+      "--range",
+      "df666070ead7fa21bc72b6c99d2644923b37e787..e29756c33d93c3432918c53b2e45e51235521c35"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2147,
+      "sha256": "714008296a3f7482b936a948d6656359cc21bb23c87e9a2e5ad34a8e3a3cb111",
+      "data": "Y2hlY2sgICAgICAgICAgOiBHYXRlIDMgY2xvc3VyZSBwcmVjb25kaXRpb24gKGIpLCBrZXl3b3JkIGhhbGYKc2NvcGUgICAgICAgICAgOiBldmVyeSBjb21taXQgbWVzc2FnZSBpbiBkZjY2NjA3MGVhZDdmYTIxYmM3MmI2Yzk5ZDI2NDQ5MjNiMzdlNzg3Li5lMjk3NTZjMzNkOTNjMzQzMjkxOGM1M2IyZTQ1ZTUxMjM1NTIxYzM1ICgxNyBjb21taXRzKQpwYXR0ZXJuICAgICAgICA6IGEgY2xvc2luZyBrZXl3b3JkIElNTUVESUFURUxZIFBSRUNFRElORyBhbiBpc3N1ZSByZWZlcmVuY2UKa2V5d29yZHMgICAgICAgOiBjbG9zZS9jbG9zZXMvY2xvc2VkLCBmaXgvZml4ZXMvZml4ZWQsIHJlc29sdmUvcmVzb2x2ZXMvcmVzb2x2ZWQKcmVmZXJlbmNlIGZvcm1zOiAjbiB8IG93bmVyL3JlcG8jbiB8IGh0dHBzOi8vZ2l0aHViLmNvbS9vd25lci9yZXBvL2lzc3Vlcy9uCgpQUk9ISUJJVEVEIFBBVFRFUk4gbWF0Y2hlcyAgIDogMAoKYmFyZSBrZXl3b3JkIHRva2VucyAgICAgICAgICA6IDE4ICAoTk9UIHByb2hpYml0ZWQ7IHByaW50ZWQgc28gdGhlIGNvdW50IGFib3ZlIHN0YXRlcyB3aGF0IGl0IHNlYXJjaGVkKQogICAnZml4JyAgICAgICAgZTI5NzU2YzMzZDkzYzM0MzI5MThjNTNiMmU0NWU1MTIzNTUyMWMzNSBmaXgobTMpOiBQMi1TNCBHYXRlIDMgaW5zdHJ1bWVudHMgZW1pdCBleHBsaWMKICAgJ2ZpeGVkJyAgICAgIGhpcyB0aW1lIGluc2lkZSB0aGlzIFNsaWNlJ3MgT1dOIGdhdGUgaW5zdHJ1bWVudCwgYW5kIGl0IGlzIGZpeGVkIGJ5IHRoZSBkb2N0cmluZSB0aGUgU2xpY2Ugc2hpcHMuICBjbG9zdQogICAnY2xvc2UnICAgICAgZCBpdCBpcyBpbnNpZGUgcmVmcy9oZWFkcy8uICBDbG9zdXJlIHByZWNvbmRpdGlvbiAoYSk6IEF1dG8tY2xvc2UgaXNzdWUgaXMgRElTQUJMRUQsIHVwZGF0ZWRBdCAyMDI2LTA3LTMwCiAgICdjbG9zZXMnICAgICBBdCAyMDI2LTA3LTMwVDIxOjQ1OjU3Wi4gT2YgdGhlIGZpdmUgZW5hYmxlZCBidWlsdC1pbnMgbm9uZSBjbG9zZXMgYW4gaXNzdWU7IHRoZSBQdWxsLXJlcXVlc3QtbWVyZ2VkIHRvIFMKICAgJ2Nsb3NlJyAgICAgIGNsb3NlcyBhbiBpc3N1ZTsgdGhlIFB1bGwtcmVxdWVzdC1tZXJnZWQgdG8gU3RhdHVzLURvbmUgdG8gY2xvc2UgY2hhaW4gaXMgYnJva2VuIGF0IGV4YWN0bHkgdGhhdCBkaXNhYmxlCiAgICdjbG9zZWQnICAgICBucyBiZXNpZGUgdGhlIHplcm8gc28gdGhlIGNvdW50IHN0YXRlcyB3aGF0IGl0IHNlYXJjaGVkIC0tICdjbG9zZWQgYnkgbWVhc3VyZW1lbnQnLCAnZml4dHVyZXMnLCAnZml4KG0zKToKICAgJ2ZpeCcgICAgICAgIGNvdW50IHN0YXRlcyB3aGF0IGl0IHNlYXJjaGVkIC0tICdjbG9zZWQgYnkgbWVhc3VyZW1lbnQnLCAnZml4dHVyZXMnLCAnZml4KG0zKTonIGFyZSBhbGwgcHJlc2VudCBhbmQgbm9uCiAgICdmaXgnICAgICAgICBzIHdoYXQgaXQgc2VhcmNoZWQgLS0gJ2Nsb3NlZCBieSBtZWFzdXJlbWVudCcsICdmaXh0dXJlcycsICdmaXgobTMpOicgYXJlIGFsbCBwcmVzZW50IGFuZCBub25lIGlzIHByb2hpYmkKICAgJ2Nsb3NlZCcgICAgIDEsIFI0IFBBU1Mgd2l0aCBGLTAyIGFuZCBGLTAzLCBSNSBQQVNTLiBTdXBwbGVtZW50YXJ5OiBSMy1RIGNsb3NlZCBieSBtZWFzdXJlbWVudCAtLSB0aGUgcmV2aWV3ZXIgbWF0ZXJpYQogICAnY2xvc2UnICAgICAgdG8gdGhlIGJhdGNoLWZyb3plbiB2YWx1ZSwgY2xvc2luZyB0aGUgZ2FwIGEgd3JpdGVyIGNhbm5vdCBjbG9zZSBmb3IgaXRzZWxmLiBSNC1CIGNvbmZpcm1lZCAxMi8xMiB3aXRoIHQKICAgJ2ZpeCcgICAgICAgIG5vIHJhbmdlIHJvdywgcGVyIHRoZSBncmFudDogbmV3IHJvdyBWMTkgc2hvd3Mgc2NoZW1hLyBhbmQgZml4dHVyZXMvIGFyZSB0aGUgc2FtZSBUUkVFIE9CSkVDVFMgYXQgdGhlIHBsCiAgICdmaXgnICAgICAgICBiYXNlbGluZSBhbmQgYXQgdGhlIGZpbmdlcnByaW50IGNvbW1pdCAtLSBzY2hlbWEgYWZiYWFiNGYsIGZpeHR1cmVzIDgwMjM2NmJlLCBpZGVudGljYWwgYXQgYm90aCAtLSBjb21wbwogICBbLi4uIHNob3duIDEyIG9mIDE4XQoKQ0xPU1VSRSBQUkVDT05ESVRJT04gKGIpIEhPTERTOiBubyBjbG9zaW5nIGtleXdvcmQgaW1tZWRpYXRlbHkgcHJlY2VkZXMgYW4gaXNzdWUgcmVmZXJlbmNlIGluIHRoZSBzY29wZSBhYm92ZQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "check          : Gate 3 closure precondition (b), keyword half\nscope          : every commit message in df666070ead7fa21bc72b6c99d2644923b37e787..e29756c33d93c3432918c53b2e45e51235521c35 (17 commits)\npattern        : a closing keyword IMMEDIATELY PRECEDING an issue reference\nkeywords       : close/closes/closed, fix/fixes/fixed, resolve/resolves/resolved\nreference forms: #n | owner/repo#n | https://github.com/owner/repo/issues/n\n\nPROHIBITED PATTERN matches   : 0\n\nbare keyword tokens          : 18  (NOT prohibited; printed so the count above states what it searched)\n   'fix'        e29756c33d93c3432918c53b2e45e51235521c35 fix(m3): P2-S4 Gate 3 instruments emit explic\n   'fixed'      his time inside this Slice's OWN gate instrument, and it is fixed by the doctrine the Slice ships.  closu\n   'close'      d it is inside refs/heads/.  Closure precondition (a): Auto-close issue is DISABLED, updatedAt 2026-07-30\n   'closes'     At 2026-07-30T21:45:57Z. Of the five enabled built-ins none closes an issue; the Pull-request-merged to S\n   'close'      closes an issue; the Pull-request-merged to Status-Done to close chain is broken at exactly that disable\n   'closed'     ns beside the zero so the count states what it searched -- 'closed by measurement', 'fixtures', 'fix(m3):\n   'fix'        count states what it searched -- 'closed by measurement', 'fixtures', 'fix(m3):' are all present and non\n   'fix'        s what it searched -- 'closed by measurement', 'fixtures', 'fix(m3):' are all present and none is prohibi\n   'closed'     1, R4 PASS with F-02 and F-03, R5 PASS. Supplementary: R3-Q closed by measurement -- the reviewer materia\n   'close'      to the batch-frozen value, closing the gap a writer cannot close for itself. R4-B confirmed 12/12 with t\n   'fix'        no range row, per the grant: new row V19 shows schema/ and fixtures/ are the same TREE OBJECTS at the pl\n   'fix'        baseline and at the fingerprint commit -- schema afbaab4f, fixtures 802366be, identical at both -- compo\n   [... shown 12 of 18]\n\nCLOSURE PRECONDITION (b) HOLDS: no closing keyword immediately precedes an issue reference in the scope above\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T20:08:11.206134Z",
+  "ended_at": "2026-08-25T20:08:11.347598Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

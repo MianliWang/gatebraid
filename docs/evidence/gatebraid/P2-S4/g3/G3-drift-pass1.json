@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-drift",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g3/drift-check.py",
+      "f797297005d35d150799af300ecc22daef35dac9",
+      "50d08de65158faf23f1ae86aeebcde39e929c359",
+      "4b16273efdaaefe0bc2f6538cf7da3fd1d53a68d"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1746,
+      "sha256": "b592f308330e2105867a258e61616a598ccdf33f2a41d88d47315e90a1a49352",
+      "data": "dHJlZV9zaGEgKGFzIHJldmlld2VkKSAgICAgICAgOiBmNzk3Mjk3MDA1ZDM1ZDE1MDc5OWFmMzAwZWNjMjJkYWVmMzVkYWM5DQphY3RpdmVfYnJhbmNoX2hlYWQgICAgICAgICAgICA6IDUwZDA4ZGU2NTE1OGZhZjIzZjFhZTg2YWVlYmNkZTM5ZTkyOWMzNTkNCmhlYWQgYXQgZHJpZnQtY2hlY2sgdGltZSAgICAgIDogNGIxNjI3M2VmZGFhZWZlMGJjMmY2NTM4Y2Y3ZGEzZmQxZDUzYTY4ZA0KZXZpZGVuY2UgcHJlZml4ICAgICAgICAgICAgICAgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC8NCg0KQSAgZ2l0IGRpZmYgLS1uYW1lLW9ubHkgPHRyZWVfc2hhPiA8aGVhZD4NCiAgICAgcGF0aHMgY2hhbmdlZCAgICAgICAgICAgICAgOiAzMA0KICAgICBvdXRzaWRlIHRoZSBldmlkZW5jZSBkaXIgICA6IDANCkIgIGV2ZXJ5IGNvbW1pdCBpbiA8YWN0aXZlX2JyYW5jaF9oZWFkPi4uPGhlYWQ+DQogICAgIGNvbW1pdHMgZXhhbWluZWQgICAgICAgICAgIDogNg0KICAgICAgICBiMzY3MWZjOTljMThkNTZiYjg3YjY1ODc2YTU0N2JmZDE2NzFkNjNhICBjaGFuZ2VkPTggICBvdXRzaWRlPTANCiAgICAgICAgMDk2NDk3OWNjNThhNjcyNmExZTRjNDBkZWJjNGUwZTg4N2FkM2QwZCAgY2hhbmdlZD01ICAgb3V0c2lkZT0wDQogICAgICAgIDNhMGY0YWM5NmZhOGY0NTcyNDQzODIwNzIwMDMzZjZmMWM5Mjk2NTcgIGNoYW5nZWQ9MTMgIG91dHNpZGU9MA0KICAgICAgICAzMmZiNTgzZjdjMWRhMjIxZjA5ZjhlODNjNzk1ZWI2ZWQxZDA2YTc1ICBjaGFuZ2VkPTYgICBvdXRzaWRlPTANCiAgICAgICAgYWEzYTkwNWU2ZTE4ZDNjMGQzYWVjMGE4MzA3YmM1NWRiZTRjZjM2MiAgY2hhbmdlZD0yICAgb3V0c2lkZT0wDQogICAgICAgIDRiMTYyNzNlZmRhYWVmZTBiYzJmNjUzOGNmN2RhM2ZkMWQ1M2E2OGQgIGNoYW5nZWQ9OCAgIG91dHNpZGU9MA0KQyAgZ2l0IHN0YXR1cyAtLXBvcmNlbGFpbg0KICAgICBlbnRyaWVzICAgICAgICAgICAgICAgICAgICA6IDENCiAgICAgICAgPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvZzMvDQpEICBnaXQgZm9yLWVhY2gtcmVmDQogICAgIHJlZnMgdG90YWwgICAgICAgICAgICAgICAgIDogMTcNCiAgICAgb3V0c2lkZSB0aGUgdGhyZWUgd2F0Y2hlZCBuYW1lc3BhY2VzIDogMQ0KICAgICAgICByZWZzL2NvZGV4L3R1cm4tZGlmZnMvY2hlY2twb2ludHMvNjU2ODczNGRiNjQyOWUwODYwY2YwOTU0YjE5YWZmZmFhZGI5M2M5OTYwZDY2NmVmYjIzZDEwMThmMTUyYmUzNy83ZjhkODAyYzExODA0MmQyMDM4MmExNmEyNTBlYTFjNWZiMGJkODdlZmQ2ZTJhMmVlMzIyMTU1OGFkZTljOGYzLzE3ODU0ODk5MDA5MzEvYzBkYTQwMDUtMWZmNi00MzRhLWIxYTUtOWFkMWEyYWYxYjBlDQogICAgIHdhdGNoZWQgbmFtZXNwYWNlcyAgICAgICAgIDogcmVmcy9oZWFkcy8sIHJlZnMvcmVtb3Rlcy8sIHJlZnMvdGFncy8NCiAgICAgRElTUE9TSVRJT046IGFueSByZWYgYWJvdmUgaXMgUkVQT1JURUQsIE5PVCBBRE9QVEVEIChmcmljdGlvbiAjMTAzKS4NCiAgICAgVGhpcyBTbGljZSBpbnRyb2R1Y2VkIG5vbmUgb2YgdGhlbTogaXQgY3JlYXRlZCBleGFjdGx5IG9uZSByZWYsDQogICAgIHJlZnMvaGVhZHMvc2xpY2UvUDItUzQsIHdoaWNoIGlzIGluc2lkZSByZWZzL2hlYWRzLy4NCg0KY2hlY2tzIGZhaWxlZCAgICAgICAgICAgICAgICAgOiAxIChDKQ0KRFJJRlQgRk9VTkQ6IHJvdXRlIGJhY2sgdG8gTmVlZHMgUmV2aWV3OyBubyBwdWJsaWNhdGlvbg0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "tree_sha (as reviewed)        : f797297005d35d150799af300ecc22daef35dac9\r\nactive_branch_head            : 50d08de65158faf23f1ae86aeebcde39e929c359\r\nhead at drift-check time      : 4b16273efdaaefe0bc2f6538cf7da3fd1d53a68d\r\nevidence prefix               : docs/evidence/gatebraid/P2-S4/\r\n\r\nA  git diff --name-only <tree_sha> <head>\r\n     paths changed              : 30\r\n     outside the evidence dir   : 0\r\nB  every commit in <active_branch_head>..<head>\r\n     commits examined           : 6\r\n        b3671fc99c18d56bb87b65876a547bfd1671d63a  changed=8   outside=0\r\n        0964979cc58a6726a1e4c40debc4e0e887ad3d0d  changed=5   outside=0\r\n        3a0f4ac96fa8f4572443820720033f6f1c929657  changed=13  outside=0\r\n        32fb583f7c1da221f09f8e83c795eb6ed1d06a75  changed=6   outside=0\r\n        aa3a905e6e18d3c0d3aec0a8307bc55dbe4cf362  changed=2   outside=0\r\n        4b16273efdaaefe0bc2f6538cf7da3fd1d53a68d  changed=8   outside=0\r\nC  git status --porcelain\r\n     entries                    : 1\r\n        ?? docs/evidence/gatebraid/P2-S4/g3/\r\nD  git for-each-ref\r\n     refs total                 : 17\r\n     outside the three watched namespaces : 1\r\n        refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e\r\n     watched namespaces         : refs/heads/, refs/remotes/, refs/tags/\r\n     DISPOSITION: any ref above is REPORTED, NOT ADOPTED (friction #103).\r\n     This Slice introduced none of them: it created exactly one ref,\r\n     refs/heads/slice/P2-S4, which is inside refs/heads/.\r\n\r\nchecks failed                 : 1 (C)\r\nDRIFT FOUND: route back to Needs Review; no publication\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T20:01:21.546146Z",
+  "ended_at": "2026-08-25T20:01:23.183890Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

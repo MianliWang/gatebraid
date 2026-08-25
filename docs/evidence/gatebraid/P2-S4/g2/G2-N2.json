@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-N2",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g2/negative-criterion-N2.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1399,
+      "sha256": "c260e05552077459f2f872bbc772805f49e65b1d6e086313a5ca369f38c2f197",
+      "data": "Y3JpdGVyaW9uICAgICAgOiBOMiAtIG5vIGZhaWwtb3BlbiBvbiBhIHZlcmRpY3QtcmVsZXZhbnQgcGF0aA0KcGF0dGVybiBwcm94aWVkOiBhIGZhaWx1cmUgc2lsZW50bHkgYmVjb21pbmcgYSBkZWZhdWx0LCBlbXB0eSBvciBhYnNlbnQgdmFsdWUNCmVycnMgdG93YXJkICAgIDogRkFMU0UgUE9TSVRJVkUgKGEgbWlzc2VkIGZhaWwtb3BlbiBpcyB0aGUgZGVmZWN0IGl0c2VsZikNCnNjb3BlICAgICAgICAgIDogYW4gZXhwbGljaXQgcGF0aCBzZXQsIDIgZmlsZShzKQ0KICAgYmluL2dhdGVicmFpZC1zbmFwc2hvdC5weQ0KICAgYmluL2dhdGVicmFpZC1mcm9udGllci5weQ0Kc2hhcGVzIHNlYXJjaGVkOg0KICAgTjJhICBiYXJlIGBleGNlcHQ6YCAvIGBleGNlcHQgRXhjZXB0aW9uOmAgd2l0aCBubyByZS1yYWlzZSBhbmQgbm8gZmFpbC1jbG9zZWQgYXNzaWdubWVudA0KICAgTjJiICBhIGByZXR1cm5jb2RlYCByZWFkIHRoYXQgaXMgbm90IGNvbXBhcmVkIGFuZCBub3QgY2FycmllZCBpbnRvIGV4aXRfY29kZQ0KICAgTjJjICBgLmdldChgIHdpdGggYSBub24tTm9uZSBkZWZhdWx0IG9uIGEgdmVyZGljdC1yZWxldmFudCBmaWVsZA0KdmVyZGljdC1yZWxldmFudCBmaWVsZHMgOiBzdGF0dXMsIGNvbXBsZXRlLCBleGl0X2NvZGUsIGlzc3VlX3N0YXRlLCB2ZXJkaWN0LCB3b3JrZmxvdywgY3Jvc3NfY2hlY2ssIHBhcnNlX3N0YXR1cywgc2xpY2VfbWV0YWRhdGFfcHJlc2VudCwgYmxvY2tlZF9ieSwgYmxvY2tpbmcsIHNvdXJjZXMsIGl0ZW1zDQpOT1Qgc2VhcmNoZWQgYnkgdGhpcyBwcm94eSAoZmFsc2UtbmVnYXRpdmUgY2hhbm5lbHMsIFJldmlldyAxIEYtMDIpOg0KICAgdGhlIGBYIG9yIDxlbXB0eS1saXRlcmFsPmAgaWRpb20gLS0gMzIgb3ItZXhwcmVzc2lvbnMgaW4gYmluL2dhdGVicmFpZC1zbmFwc2hvdC5weSBieSBBU1QgY291bnQsIDMgaW4gYmluL2dhdGVicmFpZC1mcm9udGllci5weS4NCiAgIFJldmlldyAxIGFkanVkaWNhdGVkIGFsbCAzMiBpbmRlcGVuZGVudGx5IGFuZCB0aGUgcHJvcGVydHkgaG9sZHM7DQogICBOMiBpcyBOT1Qgd2hhdCBlc3RhYmxpc2hlcyB0aGF0LCBhbmQgYSB6ZXJvIGhlcmUgaXMgbm90IGV2aWRlbmNlIGFib3V0IHRoYXQgaWRpb20uDQogICBOMmEncyBmYWlsX2Nsb3NlZCB0ZXN0IGlzIGEgc3Vic3RyaW5nIHNlYXJjaCBmb3IgInJhaXNlIiwgd2hpY2ggYSBjb21tZW50IG9yDQogICBzdHJpbmcgbGl0ZXJhbCBjb3VsZCBzYXRpc2Z5IC0tIGEgaGFuZGxlciBtZXJlbHkgbWVudGlvbmluZyB0aGUgd29yZCBpcyBjcmVkaXRlZC4NCg0KbWF0Y2hlcyAgICAgICAgOiAwDQoNCk4yIEhPTERTOiBubyBmYWlsLW9wZW4gc2hhcGUgZm91bmQgb24gYW55IHZlcmRpY3QtcmVsZXZhbnQgcGF0aCBpbiB0aGUgc2NvcGUgYWJvdmUNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "criterion      : N2 - no fail-open on a verdict-relevant path\r\npattern proxied: a failure silently becoming a default, empty or absent value\r\nerrs toward    : FALSE POSITIVE (a missed fail-open is the defect itself)\r\nscope          : an explicit path set, 2 file(s)\r\n   bin/gatebraid-snapshot.py\r\n   bin/gatebraid-frontier.py\r\nshapes searched:\r\n   N2a  bare `except:` / `except Exception:` with no re-raise and no fail-closed assignment\r\n   N2b  a `returncode` read that is not compared and not carried into exit_code\r\n   N2c  `.get(` with a non-None default on a verdict-relevant field\r\nverdict-relevant fields : status, complete, exit_code, issue_state, verdict, workflow, cross_check, parse_status, slice_metadata_present, blocked_by, blocking, sources, items\r\nNOT searched by this proxy (false-negative channels, Review 1 F-02):\r\n   the `X or <empty-literal>` idiom -- 32 or-expressions in bin/gatebraid-snapshot.py by AST count, 3 in bin/gatebraid-frontier.py.\r\n   Review 1 adjudicated all 32 independently and the property holds;\r\n   N2 is NOT what establishes that, and a zero here is not evidence about that idiom.\r\n   N2a's fail_closed test is a substring search for \"raise\", which a comment or\r\n   string literal could satisfy -- a handler merely mentioning the word is credited.\r\n\r\nmatches        : 0\r\n\r\nN2 HOLDS: no fail-open shape found on any verdict-relevant path in the scope above\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T03:53:15.325775Z",
+  "ended_at": "2026-08-25T03:53:15.383788Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

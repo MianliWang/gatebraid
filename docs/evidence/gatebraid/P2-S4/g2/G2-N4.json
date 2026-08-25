@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-N4",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g2/negative-criterion-N4.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1373,
+      "sha256": "470c0067815067a9f6cad8a7ecd6565cde98749514d8dd7db1ece98aeba6aac4",
+      "data": "Y3JpdGVyaW9uICAgICAgOiBONCAtIG5vIHZlcmRpY3Qgd2l0aG91dCB2YWxpZGF0aW9uDQpwYXR0ZXJuIHByb3hpZWQ6IGEgdmVyZGljdCBlbWl0dGVkIGZvciBhIGRvY3VtZW50IHRoYXQgd2FzIG5ldmVyIHZhbGlkYXRlZCBhZ2FpbnN0IGdhdGVicmFpZC9zbmFwc2hvdEAxDQplcnJzIHRvd2FyZCAgICA6IEZBTFNFIFBPU0lUSVZFIChhIHJlbmFtZSBvciBhIHNwbGl0IG9mIHZhbGlkYXRlKCkgdHJpcHMgdGhlIHN0cnVjdHVyYWwgaGFsZikNCnNjb3BlICAgICAgICAgIDoNCiAgIGJpbi9nYXRlYnJhaWQtZnJvbnRpZXIucHkgICAgICAgICAgICAgICAgIChONGEsIHN0cnVjdHVyYWwpDQogICBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS9zcDEwLXNuYXBzaG90LW1pc3Npbmctc2NoZW1hLWtleS5qc29uIChONGIsIGJlaGF2aW91cmFsKQ0KDQpONGEgbWVhc3VyZWQ6DQogICBWYWxpZGF0ZWRTbmFwc2hvdCBjb25zdHJ1Y3Rpb24gc2l0ZXMgOiAxDQogICAgICBsaW5lIDIzMiAgIGluc2lkZSB2YWxpZGF0ZSgpDQogICBjb25zdHJ1Y3RvciByZWZ1c2VzIGEgd3JvbmcgdG9rZW4gICAgOiBUcnVlDQogICBjb25zdW1lKCkgdGFrZXMgdGhlIHZhbGlkYXRlZCBvYmplY3QgOiBUcnVlDQogICBOT1QgZXN0YWJsaXNoZWQgYnkgTjRhICAgICAgICAgICAgICAgOiB0aGF0IHRoZSB0eXBlIGNhbm5vdCBiZSBmb3JnZWQuIF9WQUxJREFUSU9OX1RPS0VOIGlzIGEgcmVhY2hhYmxlIG1vZHVsZSBhdHRyaWJ1dGUgYW5kIGNvbnN1bWUoKSBoYXMgbm8gaXNpbnN0YW5jZSBndWFyZCwgc28gYSBjYWxsZXIgaG9sZGluZyB0aGUgbW9kdWxlIGNhbiBjb25zdHJ1Y3Qgb25lIChSZXZpZXcgMSwgRi0wMykuDQoNCk40YiBtZWFzdXJlZCBvbiBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS9zcDEwLXNuYXBzaG90LW1pc3Npbmctc2NoZW1hLWtleS5qc29uOg0KICAgZXhpdCBzdGF0dXMgICAgICAgICAgICAgICAgICAgICAgICAgIDogMSAoYSByZWZ1c2FsIGlzIDEpDQogICByZXBvcnQgZmlsZSB3cml0dGVuICAgICAgICAgICAgICAgICAgOiBGYWxzZQ0KICAgYnl0ZXMgcmVhY2hpbmcgc3Rkb3V0ICAgICAgICAgICAgICAgIDogMA0KDQptYXRjaGVzICAgICAgICA6IDANCg0KTjQgSE9MRFM6IG9uZSBjb25zdHJ1Y3Rpb24gc2l0ZSwgaW5zaWRlIHZhbGlkYXRlKCksIGd1YXJkZWQgYnkgYSB0b2tlbiBzbyBhbiBhY2NpZGVudGFsIHNlY29uZCBzaXRlIGZhaWxzIGxvdWRseSAtLSBzdHJvbmcgYWdhaW5zdCByZWZhY3RvciBkcmlmdCwgTk9UIHByb29mIGFnYWluc3QgYSBkZXRlcm1pbmVkIGNhbGxlciBpbiB0aGUgc2FtZSBtb2R1bGUgLS0gYW5kIHRoZSBjb3JwdXMgZml4dHVyZSB0aGUgcGxhbiBuYW1lcyBwcm9kdWNlcyBubyB2ZXJkaWN0DQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "criterion      : N4 - no verdict without validation\r\npattern proxied: a verdict emitted for a document that was never validated against gatebraid/snapshot@1\r\nerrs toward    : FALSE POSITIVE (a rename or a split of validate() trips the structural half)\r\nscope          :\r\n   bin/gatebraid-frontier.py                 (N4a, structural)\r\n   fixtures/state-pipeline/sp10-snapshot-missing-schema-key.json (N4b, behavioural)\r\n\r\nN4a measured:\r\n   ValidatedSnapshot construction sites : 1\r\n      line 232   inside validate()\r\n   constructor refuses a wrong token    : True\r\n   consume() takes the validated object : True\r\n   NOT established by N4a               : that the type cannot be forged. _VALIDATION_TOKEN is a reachable module attribute and consume() has no isinstance guard, so a caller holding the module can construct one (Review 1, F-03).\r\n\r\nN4b measured on fixtures/state-pipeline/sp10-snapshot-missing-schema-key.json:\r\n   exit status                          : 1 (a refusal is 1)\r\n   report file written                  : False\r\n   bytes reaching stdout                : 0\r\n\r\nmatches        : 0\r\n\r\nN4 HOLDS: one construction site, inside validate(), guarded by a token so an accidental second site fails loudly -- strong against refactor drift, NOT proof against a determined caller in the same module -- and the corpus fixture the plan names produces no verdict\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T03:53:15.648919Z",
+  "ended_at": "2026-08-25T03:53:15.804120Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

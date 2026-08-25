@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D3a",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-o0-acceptance.py",
+      "--induced-failures",
+      "--out",
+      "docs/evidence/gatebraid/P2-S4/acceptance/induced.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1775,
+      "sha256": "6576d208ced8bddee5ecd3eb9c7ccdda3bbaff5e423f292975f51f97973365a1",
+      "data": "Y2FzZSAgICAgICAgICAgICAgY2xhdXNlICAgICAgICAgICAgICAgICAgICAgICAgICByZXF1aXJlZCAgICAgICAgICAgb2JzZXJ2ZWQgICAgICAgICAgIHZlcmRpY3QNCkktUDAtMS1hdXRoICAgICAgIFAwLTEgYXV0aF9mYWlsdXJlICAgICAgICAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICBQQVNTDQpJLVAwLTEtcGVybSAgICAgICBQMC0xIHBlcm1pc3Npb25fZmFpbHVyZSAgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgUEFTUw0KSS1QMC0xLXJhdGUgICAgICAgUDAtMSByYXRlX2xpbWl0ZWQgICAgICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MNCkktUDAtMS1uZXQgICAgICAgIFAwLTEgbmV0d29ya19lcnJvciAgICAgICAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICBQQVNTDQpJLVAwLTEtc2VydmVyICAgICBQMC0xIHNlcnZlcl9lcnJvciAgICAgICAgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgUEFTUw0KSS1QMC0xLXBhcnNlICAgICAgUDAtMSBwYXJzZV9lcnJvciAgICAgICAgICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MNCkktUDAtMS1lbmRwb2ludCAgIFAwLTEgdW5leHBlY3RlZF9lbmRwb2ludCAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICBQQVNTDQpJLVAwLTMtY2FwICAgICAgICBQMC0zIHBhZ2UgY2FwICAgICAgICAgICAgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgUEFTUw0KSS1QMC00LXN0YXRlICAgICAgUDAtNCB1bmtub3duIGlzc3VlIHN0YXRlICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MNCkktUDAtNC13b3JrZmxvdyAgIFAwLTQgdW5rbm93biB3b3JrZmxvdyAgICAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIHVuZGVjaWRhYmxlICAgICAgICBQQVNTDQpJLVAwLTQtY3Jvc3NjaGVjayBQMC00IGNyb3NzLWNoZWNrIG1pc21hdGNoICAgICAgIHVuZGVjaWRhYmxlICAgICAgICB1bmRlY2lkYWJsZSAgICAgICAgUEFTUw0KSS1QMC00LXNvZnQgICAgICAgUDAtNCBzb2Z0IGRlcGVuZGVuY3kgbm90IHBhcnNlZCB1bmRlY2lkYWJsZSAgICAgICAgdW5kZWNpZGFibGUgICAgICAgIFBBU1MNCg0KbW9kZSAgICAgICAgICAgICAgICAgICAgICAgICAgOiBpbmR1Y2VkLWZhaWx1cmVzDQpoYXJuZXNzICAgICAgICAgICAgICAgICAgICAgICA6IGdhdGVicmFpZC1vMC1hY2NlcHRhbmNlIDEuMC4wDQppbnRlcnByZXRlciAgICAgICAgICAgICAgICAgICA6IEM6XFB5dGhvbjMxMlxweXRob24uZXhlDQpuZXR3b3JrIHJlYWRzIHBlcmZvcm1lZCAgICAgICA6IDANCmNhc2VzIGRlY2xhcmVkICAgICAgICAgICAgICAgIDogMTINCmNhc2VzIG1lZXRpbmcgcmVxdWlyZWQgb3V0Y29tZTogMTINCmNsYXNzZXMgcmVwb3J0ZWQgdW5leGVyY2lzZWQgIDogMA0KY2FzZXMgZmFpbGluZyAgICAgICAgICAgICAgICAgOiAwDQppbmR1Y2VkIGNsYXNzZXMgY2FycnlpbmcgdW5kZWNpZGFibGUgOiAxMiAvIDEyDQoNCkFDQ0VQVEFOQ0UgQ0xFQU46IGV2ZXJ5IGRlY2xhcmVkIGNhc2UgbWV0IGl0cyByZXF1aXJlZCBvdXRjb21lDQpvdXQgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0L2FjY2VwdGFuY2UvaW5kdWNlZC5qc29uDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "case              clause                          required           observed           verdict\r\nI-P0-1-auth       P0-1 auth_failure               undecidable        undecidable        PASS\r\nI-P0-1-perm       P0-1 permission_failure         undecidable        undecidable        PASS\r\nI-P0-1-rate       P0-1 rate_limited               undecidable        undecidable        PASS\r\nI-P0-1-net        P0-1 network_error              undecidable        undecidable        PASS\r\nI-P0-1-server     P0-1 server_error               undecidable        undecidable        PASS\r\nI-P0-1-parse      P0-1 parse_error                undecidable        undecidable        PASS\r\nI-P0-1-endpoint   P0-1 unexpected_endpoint        undecidable        undecidable        PASS\r\nI-P0-3-cap        P0-3 page cap                   undecidable        undecidable        PASS\r\nI-P0-4-state      P0-4 unknown issue state        undecidable        undecidable        PASS\r\nI-P0-4-workflow   P0-4 unknown workflow           undecidable        undecidable        PASS\r\nI-P0-4-crosscheck P0-4 cross-check mismatch       undecidable        undecidable        PASS\r\nI-P0-4-soft       P0-4 soft dependency not parsed undecidable        undecidable        PASS\r\n\r\nmode                          : induced-failures\r\nharness                       : gatebraid-o0-acceptance 1.0.0\r\ninterpreter                   : C:\\Python312\\python.exe\r\nnetwork reads performed       : 0\r\ncases declared                : 12\r\ncases meeting required outcome: 12\r\nclasses reported unexercised  : 0\r\ncases failing                 : 0\r\ninduced classes carrying undecidable : 12 / 12\r\n\r\nACCEPTANCE CLEAN: every declared case met its required outcome\r\nout                           : docs/evidence/gatebraid/P2-S4/acceptance/induced.json\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T12:54:16.084146Z",
+  "ended_at": "2026-08-24T12:54:23.384765Z",
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/acceptance/induced.json",
+      "sha256": "d5fbc568ca07de4dc07f22be2ee5b312469b572d5e62feffd7a340b8eb751608",
+      "byte_length": 4572
+    }
+  ],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

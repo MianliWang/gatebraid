@@ -1,0 +1,79 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-formprobe-byte-contract",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "cmd",
+      "C:/",
+      "docs\\evidence\\gatebraid\\P2-S4\\g1\\byteprobe-cp936.cmd"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 112,
+      "sha256": "829cbcda80f239175f4c62f64abfa573a549abbcdc49f7588a0122effca9efc6",
+      "data": "TWljcm9zb2Z0IFdpbmRvd3MgW7Dmsb4gMTAuMC4yNjIwMC45MTY4XQ0KKGMpIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbqGjsaPB9Mv509DIqMD7oaMNCg0KRDpcR2l0aHViIHJlcG9cR2F0ZWJyYWlkPg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "replaced",
+        "decode_error": "'utf-8' codec can't decode byte 0xb0 in position 19: invalid start byte",
+        "text": "Microsoft Windows [�汾 10.0.26200.9168]\r\n(c) Microsoft Corporation����������Ȩ����\r\n\r\nD:\\Github repo\\Gatebraid>"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T09:46:01.779294Z",
+  "ended_at": "2026-08-24T09:46:01.854265Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/g1/byteprobe.py",
+      "sha256": "c21137b1f066b27f90daf8fb4cfa6edeb24339521f3e2137d4e9d03e58de45c2"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/g1/byteprobe-cp936.cmd",
+      "sha256": "cf73326f2119b12df3870f9047a865217c263973158c09ab1593fd6a4b1ec306"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S4/g1/byteprobe-cp936.out",
+      "sha256": "47c21dbedadbbdb8a1ca1a19c50510139693c98c999e98aed1f9e561695b3e0a",
+      "byte_length": 227
+    }
+  ],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "P0-2 / BP-01 measured on this host under a forced cp936 parent console. The text path emits cp936 bytes and is not valid UTF-8; the binary-stdout path emits byte-exact UTF-8. Establishes that the declared D5 byte-contract command tests a real and reproducible failure on this environment."
+}

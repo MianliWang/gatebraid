@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-closure-b-prbody",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g3/closure-precheck.py",
+      "--file",
+      "_handoff/batch-o0/PR-BODY-P2S4.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1366,
+      "sha256": "f17897b5c4688c394b279d4e2cbce94c758e044f4595e92e3f60822ef536778b",
+      "data": "Y2hlY2sgICAgICAgICAgOiBHYXRlIDMgY2xvc3VyZSBwcmVjb25kaXRpb24gKGIpLCBrZXl3b3JkIGhhbGYNCnNjb3BlICAgICAgICAgIDogdGhlIGZpbGUgX2hhbmRvZmYvYmF0Y2gtbzAvUFItQk9EWS1QMlM0Lm1kICgzODgxIGJ5dGVzKQ0KcGF0dGVybiAgICAgICAgOiBhIGNsb3Npbmcga2V5d29yZCBJTU1FRElBVEVMWSBQUkVDRURJTkcgYW4gaXNzdWUgcmVmZXJlbmNlDQprZXl3b3JkcyAgICAgICA6IGNsb3NlL2Nsb3Nlcy9jbG9zZWQsIGZpeC9maXhlcy9maXhlZCwgcmVzb2x2ZS9yZXNvbHZlcy9yZXNvbHZlZA0KcmVmZXJlbmNlIGZvcm1zOiAjbiB8IG93bmVyL3JlcG8jbiB8IGh0dHBzOi8vZ2l0aHViLmNvbS9vd25lci9yZXBvL2lzc3Vlcy9uDQoNClBST0hJQklURUQgUEFUVEVSTiBtYXRjaGVzICAgOiAwDQoNCmJhcmUga2V5d29yZCB0b2tlbnMgICAgICAgICAgOiA2ICAoTk9UIHByb2hpYml0ZWQ7IHByaW50ZWQgc28gdGhlIGNvdW50IGFib3ZlIHN0YXRlcyB3aGF0IGl0IHNlYXJjaGVkKQ0KICAgJ2Nsb3NlZCcgICAgICMjIFNsaWNlIFAyLVM0IKGqIE8wIHNuYXBzaG90L2Zyb250aWVyIGhhcmRlbmluZzogdGhlIGZhaWwtY2xvc2VkIHBhaXIgIFJlZnMgIzE0ICBEZWxpdmVycyBNMy1QTEFOIKHsMiBubw0KICAgJ2Nsb3NlZCcgICAgIGJlY29tZXMgYSBgc291cmNlc1tdYCBlbnRyeSB3aXRoIGEgc3RhdHVzIGZyb20gdGhlIHNjaGVtYSdzIGNsb3NlZCBlbnVtZXJhdGlvbi4gQSByZWFkIHRoYXQgZmFpbHMgd2hpbGUgdA0KICAgJ2Nsb3NlZCcgICAgIGFuIGluY29tcGxldGUgcmVhZCBhbmQgc2F5cyB3aGVyZSBpdCBzdG9wcGVkLiAtICoqUDAtNCoqIKGqIGNsb3NlZCBlbnVtZXJhdGlvbnMsIGJvdGggZGVwZW5kZW5jeSBkaXJlY3Rpbw0KICAgJ2Nsb3NlZCcgICAgIHVuYmxvY2tlZC4gQW4gYEFib3J0ZWRgIHNsaWNlIGlzIG5ldmVyIGBzdGFydGFibGVgLiAgRXZlcnkgY2xvc2VkIGVudW1lcmF0aW9uIGlzICoqcmVhZCBmcm9tIHRoZSBmcm96ZW4NCiAgICdmaXgnICAgICAgICBuZCByZS10eXBpbmcgZWl0aGVyIG1hcmsgaXMgaG93IHRoZXkgZHJpZnQuICBgc2NoZW1hL2AgYW5kIGBmaXh0dXJlcy9gIGFyZSB0aGUgYmF0Y2ggbGFuZSdzLCBmcm96ZW4sIGFuZA0KICAgJ2Nsb3NlZCcgICAgIFIyIKGkIFIzIKGkIFI0IKGkIFI1IGFsbCBQQVNTKiosIHdpdGggdHdvIHN1cHBsZW1lbnRhcnkgaXRlbXMgY2xvc2VkIGJ5IG1lYXN1cmVtZW50LiBUd28gcmVwYWlycyB3ZXJlIHNwZW50DQoNCkNMT1NVUkUgUFJFQ09ORElUSU9OIChiKSBIT0xEUzogbm8gY2xvc2luZyBrZXl3b3JkIGltbWVkaWF0ZWx5IHByZWNlZGVzIGFuIGlzc3VlIHJlZmVyZW5jZSBpbiB0aGUgc2NvcGUgYWJvdmUNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "replaced",
+        "decode_error": "'utf-8' codec can't decode byte 0xa1 in position 547: invalid start byte",
+        "text": "check          : Gate 3 closure precondition (b), keyword half\r\nscope          : the file _handoff/batch-o0/PR-BODY-P2S4.md (3881 bytes)\r\npattern        : a closing keyword IMMEDIATELY PRECEDING an issue reference\r\nkeywords       : close/closes/closed, fix/fixes/fixed, resolve/resolves/resolved\r\nreference forms: #n | owner/repo#n | https://github.com/owner/repo/issues/n\r\n\r\nPROHIBITED PATTERN matches   : 0\r\n\r\nbare keyword tokens          : 6  (NOT prohibited; printed so the count above states what it searched)\r\n   'closed'     ## Slice P2-S4 �� O0 snapshot/frontier hardening: the fail-closed pair  Refs #14  Delivers M3-PLAN ��2 no\r\n   'closed'     becomes a `sources[]` entry with a status from the schema's closed enumeration. A read that fails while t\r\n   'closed'     an incomplete read and says where it stopped. - **P0-4** �� closed enumerations, both dependency directio\r\n   'closed'     unblocked. An `Aborted` slice is never `startable`.  Every closed enumeration is **read from the frozen\r\n   'fix'        nd re-typing either mark is how they drift.  `schema/` and `fixtures/` are the batch lane's, frozen, and\r\n   'closed'     R2 �� R3 �� R4 �� R5 all PASS**, with two supplementary items closed by measurement. Two repairs were spent\r\n\r\nCLOSURE PRECONDITION (b) HOLDS: no closing keyword immediately precedes an issue reference in the scope above\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T20:05:01.244859Z",
+  "ended_at": "2026-08-25T20:05:01.321739Z",
+  "inputs": [
+    {
+      "path": "_handoff/batch-o0/PR-BODY-P2S4.md",
+      "sha256": "a3ece881882327176f02767ae36e6fa818ce23e4d5366d09ea5309e1001a0f79"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

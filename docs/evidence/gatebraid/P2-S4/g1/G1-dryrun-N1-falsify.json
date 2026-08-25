@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-dryrun-N1-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g1/negative-criterion-N1.py",
+      "e5e8ee6b8ac0f2fc0da1c9215b18fe6353986893",
+      "9dd0415a910e4bdafb0abe66a65189d9aff95cb3"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1764,
+      "sha256": "62e2962c4c32e67ee0e1af549df3ac6713fc51e66a48728dbf673aafec0edff0",
+      "data": "cmFuZ2UgICAgICAgICAgOiBlNWU4ZWU2YjhhYzBmMmZjMGRhMWM5MjE1YjE4ZmU2MzUzOTg2ODkzLi45ZGQwNDE1YTkxMGU0YmRhZmIwYWJlNjZhNjUxODlkOWFmZjk1Y2IzDQphbGxvd2VkIHByZWZpeGVzOg0KICAgYmluLw0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzQvDQpjaGFuZ2VkIHBhdGhzICA6IDIxDQppbnNpZGUgYWxsb3dsaXN0OiAwDQpvdXRzaWRlICAgICAgICAgOiAyMQ0KICAgT1VUU0lERSBmaXh0dXJlcy9DT1JQT1JBLmpzb24NCiAgIE9VVFNJREUgZml4dHVyZXMvREVURVJNSU5BQ1ktUkVQT1JULm1kDQogICBPVVRTSURFIGZpeHR1cmVzL3N0YXRlLXBpcGVsaW5lL0VYUEVDVEFUSU9OUy5qc29uDQogICBPVVRTSURFIGZpeHR1cmVzL3N0YXRlLXBpcGVsaW5lL3NwMDEtbm9uLXplcm8tZXhpdC1zd2FsbG93ZWQuanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS9zcDAyLXBlcm1pc3Npb24tcmVhZC1hcy1uby1kZXBlbmRlbmN5Lmpzb24NCiAgIE9VVFNJREUgZml4dHVyZXMvc3RhdGUtcGlwZWxpbmUvc3AwMy1yYXRlLWxpbWl0LW5hbWVkLWFzLXBlcm1pc3Npb24uanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS9zcDA0LXBhcnRpYWwtcmVzdWx0LXJlcG9ydGVkLWNvbXBsZXRlLmpzb24NCiAgIE9VVFNJREUgZml4dHVyZXMvc3RhdGUtcGlwZWxpbmUvc3AwNS1wYXJzZS1mYWlsdXJlLWZsYXR0ZW5lZC10by12ZXJkaWN0Lmpzb24NCiAgIE9VVFNJREUgZml4dHVyZXMvc3RhdGUtcGlwZWxpbmUvc3AwNi1pbmNvbXBsZXRlLXdpdGhvdXQtYm91bmRlZC1mbGFnLmpzb24NCiAgIE9VVFNJREUgZml4dHVyZXMvc3RhdGUtcGlwZWxpbmUvc3AwNy1jb21wbGV0ZW5lc3MtYXNzZXJ0ZWQtd2l0aC1uZXh0LXBhZ2UuanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS9zcDA4LXVua25vd24tc3RhdGUtdHJlYXRlZC11bmJsb2NrZWQuanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS9zcDA5LXZlcmRpY3QtZW1pdHRlZC1mb3Itbm9uLXNsaWNlLWl0ZW0uanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS9zcDEwLXNuYXBzaG90LW1pc3Npbmctc2NoZW1hLWtleS5qc29uDQogICBPVVRTSURFIGZpeHR1cmVzL3N0YXRlLXBpcGVsaW5lL3NwMTEtb25lLWRpcmVjdGlvbi1kZXBlbmRlbmN5LWxvc3MuanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS9zcDEyLXNvZnQtZGVwZW5kZW5jeS1zaWxlbnRseS1pZ25vcmVkLmpzb24NCiAgIE9VVFNJREUgZml4dHVyZXMvc3RhdGUtcGlwZWxpbmUvc3AxMy1hYm9ydGVkLWl0ZW0tcHJlc2VudGVkLWFzLXJlYWR5Lmpzb24NCiAgIE9VVFNJREUgZml4dHVyZXMvc3RhdGUtcGlwZWxpbmUvdmFsaWQtYWJvcnRlZC1pdGVtLW5vdC1zdGFydGFibGUuanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS92YWxpZC1jYW5vbmljYWwtc25hcHNob3QuanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS92YWxpZC1kZWdyYWRlZC1hbGwtdW5kZWNpZGFibGUuanNvbg0KICAgT1VUU0lERSBmaXh0dXJlcy9zdGF0ZS1waXBlbGluZS92YWxpZC1ub24tc2xpY2UtaXRlbS1leGNsdWRlZC5qc29uDQogICBPVVRTSURFIHNjaGVtYS9zbmFwc2hvdC5zY2hlbWEuanNvbg0KDQpOMSBWSU9MQVRFRDogdGhlIGRpZmYgdG91Y2hlcyBhIHBhdGggb3V0c2lkZSB0aGUgZnJvemVuIGFsbG93bGlzdA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "range          : e5e8ee6b8ac0f2fc0da1c9215b18fe6353986893..9dd0415a910e4bdafb0abe66a65189d9aff95cb3\r\nallowed prefixes:\r\n   bin/\r\n   docs/evidence/gatebraid/P2-S4/\r\nchanged paths  : 21\r\ninside allowlist: 0\r\noutside         : 21\r\n   OUTSIDE fixtures/CORPORA.json\r\n   OUTSIDE fixtures/DETERMINACY-REPORT.md\r\n   OUTSIDE fixtures/state-pipeline/EXPECTATIONS.json\r\n   OUTSIDE fixtures/state-pipeline/sp01-non-zero-exit-swallowed.json\r\n   OUTSIDE fixtures/state-pipeline/sp02-permission-read-as-no-dependency.json\r\n   OUTSIDE fixtures/state-pipeline/sp03-rate-limit-named-as-permission.json\r\n   OUTSIDE fixtures/state-pipeline/sp04-partial-result-reported-complete.json\r\n   OUTSIDE fixtures/state-pipeline/sp05-parse-failure-flattened-to-verdict.json\r\n   OUTSIDE fixtures/state-pipeline/sp06-incomplete-without-bounded-flag.json\r\n   OUTSIDE fixtures/state-pipeline/sp07-completeness-asserted-with-next-page.json\r\n   OUTSIDE fixtures/state-pipeline/sp08-unknown-state-treated-unblocked.json\r\n   OUTSIDE fixtures/state-pipeline/sp09-verdict-emitted-for-non-slice-item.json\r\n   OUTSIDE fixtures/state-pipeline/sp10-snapshot-missing-schema-key.json\r\n   OUTSIDE fixtures/state-pipeline/sp11-one-direction-dependency-loss.json\r\n   OUTSIDE fixtures/state-pipeline/sp12-soft-dependency-silently-ignored.json\r\n   OUTSIDE fixtures/state-pipeline/sp13-aborted-item-presented-as-ready.json\r\n   OUTSIDE fixtures/state-pipeline/valid-aborted-item-not-startable.json\r\n   OUTSIDE fixtures/state-pipeline/valid-canonical-snapshot.json\r\n   OUTSIDE fixtures/state-pipeline/valid-degraded-all-undecidable.json\r\n   OUTSIDE fixtures/state-pipeline/valid-non-slice-item-excluded.json\r\n   OUTSIDE schema/snapshot.schema.json\r\n\r\nN1 VIOLATED: the diff touches a path outside the frozen allowlist\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T09:46:56.529111Z",
+  "ended_at": "2026-08-24T09:46:56.713203Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Seeded range whose diff is known to contain paths outside the allowlist (the O0-B1 batch range, which touched schema/ and fixtures/). N1 must fire. A criterion that has never fired is not a criterion."
+}

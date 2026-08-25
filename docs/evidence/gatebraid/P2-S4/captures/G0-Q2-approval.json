@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-Q2-approval",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "repos/MianliWang/gatebraid/issues/comments/5390640145",
+      "--jq",
+      "{author: .user.login, url: .html_url, created_at: .created_at, updated_at: .updated_at, association: .author_association}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 200,
+      "sha256": "66a5ad94aaa5558c8501719b382363837fb3bcfa01db43e60623d7722571bea2",
+      "data": "eyJhc3NvY2lhdGlvbiI6Ik9XTkVSIiwiYXV0aG9yIjoiTWlhbmxpV2FuZyIsImNyZWF0ZWRfYXQiOiIyMDI2LTA4LTI0VDA0OjE0OjQ3WiIsInVwZGF0ZWRfYXQiOiIyMDI2LTA4LTI0VDA0OjE0OjQ3WiIsInVybCI6Imh0dHBzOi8vZ2l0aHViLmNvbS9NaWFubGlXYW5nL2dhdGVicmFpZC9pc3N1ZXMvMTQjaXNzdWVjb21tZW50LTUzOTA2NDAxNDUifQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"association\":\"OWNER\",\"author\":\"MianliWang\",\"created_at\":\"2026-08-24T04:14:47Z\",\"updated_at\":\"2026-08-24T04:14:47Z\",\"url\":\"https://github.com/MianliWang/gatebraid/issues/14#issuecomment-5390640145\"}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-24T04:20:32.557628Z",
+  "ended_at": "2026-08-24T04:20:33.201178Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

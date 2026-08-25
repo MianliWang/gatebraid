@@ -1,0 +1,69 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-exit2-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query($item:ID!){ node(id:$item){ ... on ProjectV2Item { content{ ... on Issue { number state labels(first:20){ nodes{ name } } } } fieldValues(first:50){ nodes{ ... on ProjectV2ItemFieldTextValue{ text field{ ... on ProjectV2FieldCommon{ name } } } ... on ProjectV2ItemFieldSingleSelectValue{ name optionId field{ ... on ProjectV2FieldCommon{ name } } } } } } } }",
+      "-F",
+      "item=PVTI_lAHOBRofUs4Beum7zg3ogLM"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1767,
+      "sha256": "fd7bc26f5b777a01e4d2c94f3cba78b0fb36fd08ba8b6db0a14afb071e27bdf5",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiY29udGVudCI6eyJudW1iZXIiOjE0LCJzdGF0ZSI6Ik9QRU4iLCJsYWJlbHMiOnsibm9kZXMiOlt7Im5hbWUiOiJuZWVkcy1odW1hbiJ9XX19LCJmaWVsZFZhbHVlcyI6eyJub2RlcyI6W3t9LHt9LHsidGV4dCI6IlAyLVM0IOKAlCBPMCBzbmFwc2hvdC9mcm9udGllciBoYXJkZW5pbmc6IHRoZSBmYWlsLWNsb3NlZCBwYWlyIiwiZmllbGQiOnsibmFtZSI6IlRpdGxlIn19LHsibmFtZSI6IlRvZG8iLCJvcHRpb25JZCI6ImY3NWFkODQ2IiwiZmllbGQiOnsibmFtZSI6IlN0YXR1cyJ9fSx7Im5hbWUiOiJOZWVkcyBSZWxlYXNlIEFwcHJvdmFsIiwib3B0aW9uSWQiOiJlZTQ4NDE1YiIsImZpZWxkIjp7Im5hbWUiOiJXb3JrZmxvdyJ9fSx7Im5hbWUiOiJHMiBwYXNzZWQiLCJvcHRpb25JZCI6ImJkMjgwZTIxIiwiZmllbGQiOnsibmFtZSI6IkdhdGUifX0seyJuYW1lIjoiUmVsZWFzZSBBcHByb3ZhbCAoRzLihpJHMykiLCJvcHRpb25JZCI6IjE2ODRkNWZkIiwiZmllbGQiOnsibmFtZSI6Ik5leHQgQXBwcm92YWwifX0seyJuYW1lIjoibWl4ZWQtc2VlLXByb3NlIiwib3B0aW9uSWQiOiIxZTQzZWM4NSIsImZpZWxkIjp7Im5hbWUiOiJFbnZpcm9ubWVudCJ9fSx7Im5hbWUiOiJDbGF1ZGUgTGVhZCIsIm9wdGlvbklkIjoiY2U4NTljN2QiLCJmaWVsZCI6eyJuYW1lIjoiRXhlY3V0b3IifX0seyJuYW1lIjoibG93Iiwib3B0aW9uSWQiOiJlMjkxMjQ5YyIsImZpZWxkIjp7Im5hbWUiOiJSaXNrIn19LHsidGV4dCI6IlMyIiwiZmllbGQiOnsibmFtZSI6IlN0YWdlIn19LHsidGV4dCI6IlAyIiwiZmllbGQiOnsibmFtZSI6IlBoYXNlIn19LHsidGV4dCI6IlAyLVM0IiwiZmllbGQiOnsibmFtZSI6IlNsaWNlIn19LHsidGV4dCI6ImRmNjY2MDcwZWFkN2ZhMjFiYzcyYjZjOTlkMjY0NDkyM2IzN2U3ODciLCJmaWVsZCI6eyJuYW1lIjoiQmFzZSBTSEEifX0seyJ0ZXh0IjoiMjAyNi0wOC0yNFQxMzowNjozNVogR2F0ZSAyIGNvbXBsZXRlLCBuZWVkcyByZXZpZXc7IHJlY29yZCBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNC9nYXRlMi5tZCBzaGEyNTYgOTliNGQ3NDNlMWU0YjhhN2E1NDdjNjRjMGY1YzliZGUyZGNjNDI2NzkwNWRmNjMxYWU0ZTNmY2Y0MzMzZjhiNSAoY29tbWl0dGVkKTsgaGFuZG9mZl9maW5nZXJwcmludCBhY3RpdmVfYnJhbmNoX2hlYWQgNTBkMDhkZTY1MTU4ZmFmMjNmMWFlODZhZWViY2RlMzllOTI5YzM1OSB0cmVlIGY3OTcyOTcwMDVkMzVkMTUwNzk5YWYzMDBlY2MyMmRhZWYzNWRhYzksIDEzNyBjaGFuZ2VkIHBhdGhzIGFsbCBpbnNpZGUgdGhlIGZyb3plbiBhbGxvd2xpc3Q7IGJyYW5jaCBzbGljZS9QMi1TNCBMT0NBTCBPTkxZLCBuZXZlciBwdXNoZWQ7IFdyaXRlciBMZWFzZSBSb3VnaEVnb2lzdDpwMnM0LWdhdGUyLWNsYXVkZS1sZWFkOjIwMjYtMDgtMjRUMTI6MjE6NTNaIHN0aWxsIGhlbGQ7IHJlc3VsdCBuZWVkc19hcHByb3ZhbCAtLSB0aGlzIGdhdGUgZG9lcyBub3QgZ3JhZGUgaXRzZWxmOyBSZXZpZXcgMSBydW5zIGluIGEgZnJlc2ggcmVhZC1vbmx5IHdpbmRvdyB1bmRlciBpdHMgb3duIGRpc3BhdGNoLiIsImZpZWxkIjp7Im5hbWUiOiJMYXN0IENoZWNrcG9pbnQifX0seyJ0ZXh0IjoiUm91Z2hFZ29pc3Q6cDJzNC1nYXRlMi1jbGF1ZGUtbGVhZDoyMDI2LTA4LTI0VDEyOjIxOjUzWiIsImZpZWxkIjp7Im5hbWUiOiJXcml0ZXIgTGVhc2UifX0seyJ0ZXh0Ijoic2xpY2UvUDItUzQiLCJmaWVsZCI6eyJuYW1lIjoiQWN0aXZlIEJyYW5jaCJ9fV19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"content\":{\"number\":14,\"state\":\"OPEN\",\"labels\":{\"nodes\":[{\"name\":\"needs-human\"}]}},\"fieldValues\":{\"nodes\":[{},{},{\"text\":\"P2-S4 — O0 snapshot/frontier hardening: the fail-closed pair\",\"field\":{\"name\":\"Title\"}},{\"name\":\"Todo\",\"optionId\":\"f75ad846\",\"field\":{\"name\":\"Status\"}},{\"name\":\"Needs Release Approval\",\"optionId\":\"ee48415b\",\"field\":{\"name\":\"Workflow\"}},{\"name\":\"G2 passed\",\"optionId\":\"bd280e21\",\"field\":{\"name\":\"Gate\"}},{\"name\":\"Release Approval (G2→G3)\",\"optionId\":\"1684d5fd\",\"field\":{\"name\":\"Next Approval\"}},{\"name\":\"mixed-see-prose\",\"optionId\":\"1e43ec85\",\"field\":{\"name\":\"Environment\"}},{\"name\":\"Claude Lead\",\"optionId\":\"ce859c7d\",\"field\":{\"name\":\"Executor\"}},{\"name\":\"low\",\"optionId\":\"e291249c\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S4\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"df666070ead7fa21bc72b6c99d2644923b37e787\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-08-24T13:06:35Z Gate 2 complete, needs review; record docs/evidence/gatebraid/P2-S4/gate2.md sha256 99b4d743e1e4b8a7a547c64c0f5c9bde2dcc4267905df631ae4e3fcf4333f8b5 (committed); handoff_fingerprint active_branch_head 50d08de65158faf23f1ae86aeebcde39e929c359 tree f797297005d35d150799af300ecc22daef35dac9, 137 changed paths all inside the frozen allowlist; branch slice/P2-S4 LOCAL ONLY, never pushed; Writer Lease RoughEgoist:p2s4-gate2-claude-lead:2026-08-24T12:21:53Z still held; result needs_approval -- this gate does not grade itself; Review 1 runs in a fresh read-only window under its own dispatch.\",\"field\":{\"name\":\"Last Checkpoint\"}},{\"text\":\"RoughEgoist:p2s4-gate2-claude-lead:2026-08-24T12:21:53Z\",\"field\":{\"name\":\"Writer Lease\"}},{\"text\":\"slice/P2-S4\",\"field\":{\"name\":\"Active Branch\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T09:50:50.841325Z",
+  "ended_at": "2026-08-25T09:50:51.554996Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
