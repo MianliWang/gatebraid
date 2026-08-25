@@ -203,8 +203,16 @@ ROWS = [
      "write-path guard, re-derivation layer included (NOT a declared test-plan "
      "command; it is what makes the `output_ref` targets evidence rather than "
      "filenames). The count in this row is the WORKING TREE at "
-     "`2026-08-24T13:02:34Z`; see the disclosures for the three instants and "
-     "their three figures", ["G2-captures-validation"], None, False),
+     "the interval `2026-08-24T13:02:34.689Z` to `13:02:38.461Z` — this label "
+     "names the interval's START edge, and the disclosures name its END edge; "
+     "see them for the three instants and their three figures",
+     ["G2-captures-validation"], None, False),
+    ("V19 — the frozen surface by TREE OBJECT, at the plan baseline and at the "
+     "fingerprint commit. Both references are pinned, so this row cannot be "
+     "falsified by a later commit; it is what the D7 disclosure composes with "
+     "V13 in place of the measurement missed at the first named point. A tree "
+     "object is content, so equality here also refuses a write that was later "
+     "reverted", ["G2-frozen-trees"], None, False),
 ]
 for label, cids, limit, tail in ROWS:
     row(label, cids, limit, tail)
@@ -266,7 +274,56 @@ w("- Scope: `docs/evidence/gatebraid/P2-S4/` only. **No `bin/` file changed — 
   "bin/` returning empty and by the repair commit's diff carrying no `bin/` "
   "path. No behavioural change was made to either tool or to either checker; "
   "every edit is to what a record or a checker SAYS about what it measured.")
-w("- `repair_limit` 2: **one spent, one remains.**")
+w("- `repair_limit` 2: one spent at this attempt.")
+w()
+w("### Repair 2")
+w()
+w("- Hypothesis (new): repair 1's own corrections left four prose defects — a "
+  "citation that repair 1 itself falsified by pinning the row it cites, a "
+  "justification stated more strongly than its mechanism supports, an interval "
+  "reported by one unnamed edge in two places, and a newly added row whose "
+  "non-reproduction was not declared.")
+w()
+w("**Novelty measured** (the comparand is the tree at repair 1's tip)")
+row("tree at repair 1, and the `bin/` tree object at the fingerprint commit and "
+    "at repair 1",
+    ["G2-R2-tree-before", "G2-R2-bintree"])
+w("- **The `bin/` row above is the pinned form of this repair record's "
+  "no-`bin/`-byte claim.** Repair 1 rested that claim partly on a "
+  "`git status` row that does not reproduce (F-10); a tree object at two "
+  "pinned commits does reproduce, and it is strictly stronger than comparing "
+  "the six blobs, because it also refuses an addition or a removal. Review 1's "
+  "addendum adopted this comparison as the standard and it is used here.")
+w("- Result: `green`")
+w("- Consult: `none`")
+w("- Scope: `docs/evidence/gatebraid/P2-S4/` only; four prose corrections, no "
+  "behavioural change to any tool or checker, **no `bin/` byte**.")
+w("- **THE REPAIR LEDGER, stated here because the array no longer states it.** "
+  "`repair_limit` is 2. **Repair 1 and repair 2 are both spent. ZERO repairs "
+  "remain and no third is available.** If anything further is found the route "
+  "is a decidable stop — `result: stopped` with the matching `Next Approval` — "
+  "and the state goes to the operator. No remediation past the budget, ever.")
+w("- **Why repair 2 is not an entry in `repair_attempts`, and why that is not a "
+  "reduction of the count.** That array models the gate-2-contract's **D6 "
+  "red-check sequence**; its own `$comment` grounds it in that sequence by "
+  "name — *repair 1 … Codex consult … repair 2 … Human Diagnosis Required* — "
+  "and **neither of this Slice's repairs was an instance of it**: no review "
+  "item was ever red, Review 1 returned R1–R5 all PASS, and both repairs "
+  "corrected prose in a record that already validated. Recording repair 2 "
+  "there trips `allOf[0]`, whose antecedent is `repair_attempts` present and "
+  "`minItems: 2` and no `consult_ref` anywhere — **a bare count, naming no "
+  "result** — and forces `result: human_diagnosis_required`, which is false of "
+  "this gate. The escape of inventing a `consult_ref` is refused in the "
+  "schema's own words: *nothing can force a false `consult_ref`*, and no "
+  "consult occurred. **A reader who sees only the array must not conclude that "
+  "one repair remains: none does.** This is the frozen schema's modelling "
+  "range, disclosed as such and not as a convenience — the same shape as "
+  "F-06's `approvals[]`, which cannot express a Writer Assignment. **This is a "
+  "PROVISIONAL representation** pending the `gatebraid/gate-run@2` revision "
+  "that keys this conditional on the sequence it means rather than on a count, "
+  "carried through the batch lane by ADR beside F-06's missing type; **it is "
+  "not yet normative**, and a later Slice inheriting this record should read it "
+  "as debt recorded, not as a rule established.")
 w()
 w("## Required disclosures")
 w()
@@ -274,12 +331,31 @@ w("- Deviations: **D7 was not run at the first of its three named points.** The 
   "frozen plan requires the frozen surface to be re-measured by D7 *before the "
   "first implementation commit*, after the last, and at Gate 2 exit. It was run "
   "after the last implementation commit and at exit, and NOT before the first "
-  "one; the omission is the executor's. What stands in its place is a stronger "
-  "statement over a wider interval rather than a substitute measurement at the "
-  "missed instant: V13 (N1) shows the whole range `%s..HEAD` touches no path "
-  "outside `bin/` and `docs/evidence/gatebraid/P2-S4/`, so neither `schema/` nor "
-  "`fixtures/` was written at any point in this gate, and V11 shows `digest "
-  "before` equal to `digest after` equal to the batch-frozen value. The schema "
+  "one; the omission is the executor's. **What stands in its place is not a "
+  "substitute measurement at the missed instant but two PINNED facts that "
+  "compose into the property that measurement would have established, neither "
+  "of them naming a reference that can move.** First, `V19`: `schema/` and "
+  "`fixtures/` are the SAME TREE OBJECTS at the plan baseline `%s` and at the "
+  "fingerprint commit `50d08de6…` - `schema` is "
+  "`afbaab4f6dc51d050b8fe7fb7b356667088ce1c9` at both and `fixtures` is "
+  "`802366bed1ce3fe6a156bd5d3b967b071d8d76b2` at both - so neither frozen "
+  "directory was written anywhere inside the span the missed instant sits in, "
+  "in whatever order the commits of that span fell. A tree object is content, "
+  "so this is stronger than a path-set argument: it cannot be satisfied by a "
+  "write that was later reverted. Second, `V13` pinned shows that same span "
+  "carrying 137 paths with none outside `bin/` and "
+  "`docs/evidence/gatebraid/P2-S4/`. **Every commit after the fingerprint "
+  "commit is record-only**, confined to `docs/evidence/gatebraid/P2-S4/`, which "
+  "is why nothing here needs to reach past that commit to stay true. "
+  "*(An earlier revision of this paragraph cited `V13` for a range ending at "
+  "the branch head rather than at a pinned commit. Repair 1 pinned `V13` to "
+  "end at the fingerprint commit, which made "
+  "that citation false about `V13` while its conclusion stayed true; Review 1's "
+  "addendum ruled it F-09, the one correction owed, and this is that "
+  "correction. The superseded sentence is named, not silently replaced.)* "
+  "`V11` shows `digest "
+  "before` equal to `digest after` equal to the batch-frozen value at the two "
+  "points D7 did run. The schema "
   "half was also measured before the first implementation commit incidentally, "
   "by the producer's own startup line naming "
   "`schema/snapshot.schema.json sha256=95ecf38e…`. The timing requirement was "
@@ -323,9 +399,23 @@ w("- Deviations: **D7 was not run at the first of its three named points.** The 
   "its own argument and establishes nothing; the row's only content is *what "
   "the branch head was at that instant*, and pinning would destroy it while "
   "making the row look deterministic. The grant says not to manufacture "
-  "agreement, and that is what manufacturing it would look like. The claim is "
-  "corroborated instead: `G2-fp-tree` derives `f797297005…` from that commit "
-  "and it matches the recorded `tree_sha` · **REPAIR 1, F-03 — an overclaim in "
+  "agreement, and that is what manufacturing it would look like. **Why leaving "
+  "it is sufficient, stated in the corrected form Review 1's addendum ruled "
+  "under C3.** An earlier revision of this clause said the head claim was "
+  "*corroborated* by `G2-fp-tree`; that was a shade too strong and is "
+  "withdrawn. `G2-fp-tree` takes `50d08de6…` as its own argument, so it would "
+  "reproduce identically even if the head claim were wrong — it cannot "
+  "independently confirm that this commit WAS the branch head. It does not "
+  "need to. The row sits **outside the nominated deterministic subset**, so "
+  "ADR-0028 decision 2 is satisfied by its exclusion limb rather than by "
+  "pinning; and everything the fingerprint must SPECIFY for Gate 3's drift "
+  "check is carried by pinned, reproducing rows — that the commit exists on "
+  "this branch (`V12`), that its tree is the recorded `tree_sha` "
+  "(`G2-fp-tree`), and that its changed paths are exactly the 137 of "
+  "`G2-fp-diff`. What is left unpinned is **provenance — how this writer "
+  "arrived at that commit — not specification**, and provenance is inherently "
+  "unreproducible. Decision 2 handles exactly that case by exclusion rather "
+  "than by faking ·**REPAIR 1, F-03 — an overclaim in "
   "this record, corrected.** The N4 structural half was described as making the "
   "validated type UNFORGEABLE. Review 1 measured that false: `_VALIDATION_TOKEN` "
   "is a reachable module attribute, a holder of the module forged a "
@@ -352,14 +442,35 @@ w("- Deviations: **D7 was not run at the first of its three named points.** The 
   "changing what it detects after its gate exited would ship un-reviewed "
   "behaviour · **REPAIR 1, F-05 — one figure, three instants.** The capture "
   "count in `g2/` is **30** committed at the fingerprint commit `50d08de6…`, "
-  "**34** in the working tree when the sweep ran (`2026-08-24T13:02:34Z` to "
-  "`13:02:38Z`, ten seconds before that commit at `13:02:48Z`), and **41** at "
+  "**34** in the working tree while the sweep ran — **a sweep is an INTERVAL, "
+  "not an instant, and both endpoints are given here because naming only one "
+  "made two correct figures read as a contradiction (Review 1 addendum, "
+  "F-08)**: the sweep ran `2026-08-24T13:02:34.689Z` to `13:02:38.461Z` and "
+  "the commit is stamped `13:02:48Z`, so the true distances are **13.31 s from "
+  "its start edge and 9.54 s from its end edge**; the circulating figures "
+  "*fourteen* and *ten* are second-truncated derivations of those two, one per "
+  "edge, and neither was wrong except in failing to say which edge it measured "
+  "from — and **41** at "
   "the tip `0964979c…`; all three are re-derived here and all three are true of "
   "their own instant. A fourth figure, **33**, appears in this Slice's posted "
   "Gate 2 handoff comment `5395615534` and originated with this executor: it "
   "was the standalone sweep run before `G2-D7-exit` and the sweep's own capture "
   "existed. The posted comment is durable and is not edited; the figure is "
   "corrected here. **The ambiguity was the defect, not any figure** · "
+  "**REPAIR 2, F-10 — a row in this record does not reproduce, and that is "
+  "recorded rather than left to be discovered.** `G2-R1-changed`, added by "
+  "repair 1 as its novelty measurement, runs `git status --porcelain "
+  "--untracked-files=all` — the second term in ADR-0028 decision 2's own "
+  "prohibition — and it does NOT reproduce: 525 bytes recorded, 0 live, the "
+  "tree now being clean. **Not a defect, and this record makes no claim that "
+  "it reproduces.** It is outside the nominated deterministic subset, so "
+  "decision 2's exclusion limb applies; a working-tree novelty measurement has "
+  "no truthful pinned form, since pinning it would describe a different thing; "
+  "and the reproducible comparand is supplied beside it — the repair commit's "
+  "own diff, which is what the bounded re-check actually used. Its sibling "
+  "`G2-R1-tree-before`, pinned to `0964979c…^{tree}`, reproduces "
+  "byte-identically. Named here so no later reader mistakes its "
+  "non-reproduction for drift · "
   "**REPAIR 1, F-04 is RECORDED, NOT REPAIRED.** The live `gh` transport stays "
   "committed and unmeasured: covering it needs a test this frozen plan does not "
   "declare, and the boundary is already disclosed above and named in N3's "
@@ -440,6 +551,7 @@ CHECKS = [
     ("harness-selftest-wsl", None, "%s/G2-T3selftest-wsl.json" % CAP),
     ("captures-machine-validated", None,
      "%s/G2-captures-validation.json" % CAP),
+    ("frozen-surface-by-tree-object", None, "%s/G2-frozen-trees.json" % CAP),
     ("allowlist-respected",
      "git diff --name-only %s..50d08de65158faf23f1ae86aeebcde39e929c359"
      % BASE_SHA, "#verification-outputs"),
@@ -466,6 +578,19 @@ w('    hypothesis: "The record\'s reproducibility and the reach of three of its 
   'its false-negative channels, and one capture count was stated without its '
   'instant. Corrections only; no bin/ byte and no checker behaviour changed."')
 w("    result: green")
+w("# REPAIR 2 IS NOT IN THIS ARRAY, AND ITS ABSENCE IS NOT A REDUCTION OF THE")
+w("# COUNT. Two repairs are spent and ZERO remain; no third is available. This")
+w("# array models the gate-2-contract's D6 RED-CHECK sequence -- its own")
+w("# $comment grounds it in the ordered sequence repair 1, then Codex")
+w("# consult, then repair 2, then Human")
+w("# Diagnosis Required' -- and neither of this Slice's repairs was an instance")
+w("# of it: no review item was ever red, Review 1 returned R1-R5 all PASS, and")
+w("# both repairs corrected prose in a record that already validated. Recording")
+w("# repair 2 here would trip allOf[0], whose antecedent is a bare COUNT and")
+w("# which would force result: human_diagnosis_required -- false of this gate.")
+w("# The full ledger is in `notes` and in the Repair record. PROVISIONAL")
+w("# REPRESENTATION, pending the gate-run@2 revision that carries F-06's")
+w("# missing Writer Assignment type; it is not yet normative for a later Slice.")
 w("approvals:")
 w('  - type: "Plan Approval (G1→G2)"')
 w('    comment_url: "https://github.com/MianliWang/gatebraid/issues/14#issuecomment-5394791863"')
@@ -497,7 +622,29 @@ w('notes: "Implementation of the frozen plan in three tasks, each shipping a '
   'belongs to the batch lane and is not this Slice to change; the missing '
   'member is queued for its next revision (Review 1, F-06). Repair 1 of 2 is '
   'spent on record corrections only -- no bin/ byte and no checker behaviour '
-  'changed -- and one repair remains. The frozen schema and corpus were never '
+  'changed. Repair 2 spends the second and last: four prose corrections ruled '
+  'by Review 1 addendum -- F-09, the one FAIL, where repair 1 pinned V13 and '
+  'left the D7 disclosure citing it for a range it no longer covers; the C3 '
+  'justification restated to what the mechanism supports; F-08 naming the '
+  'sweep interval edge at both sites; and F-10 declaring a row that does not '
+  'reproduce. THE REPAIR BUDGET IS NOW EXHAUSTED: repair_limit is 2 and both '
+  'are spent, so any further finding routes to a decidable stop with result '
+  'stopped, not to a third repair. REPAIR 2 IS DELIBERATELY NOT AN ENTRY IN '
+  'repair_attempts AND ITS ABSENCE IS NOT A REDUCTION OF THE COUNT: two '
+  'repairs are spent, ZERO remain, and no third is available. That array '
+  'models the gate-2-contract D6 red-check sequence -- its own $comment '
+  'grounds it in the ordered sequence repair 1, then Codex consult, then repair 2, then Human Diagnosis '
+  'Required -- and neither repair here was an instance of it, since no review '
+  'item was ever red and both corrected prose in a record that already '
+  'validated. Recording repair 2 there trips allOf[0], whose antecedent is a '
+  'bare count naming no result, and forces result human_diagnosis_required, '
+  'which is false of this gate; inventing a consult_ref is refused in the '
+  'schema own words. A reader seeing only the array must not conclude one '
+  'repair remains: none does. PROVISIONAL REPRESENTATION pending the '
+  'gate-run@2 revision that keys that conditional on the sequence it means '
+  'rather than on a count, carried by ADR through the batch lane beside '
+  'F-06 missing Writer Assignment type, and NOT YET NORMATIVE for a later '
+  'Slice. The frozen schema and corpus were never '
   'written: N1 over the whole range touches only bin/ and this Slice evidence '
   'path, and D7 shows the digest unmoved at '
   '66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e. No push, '

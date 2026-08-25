@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-frozen-trees",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "rev-parse",
+      "df666070ead7fa21bc72b6c99d2644923b37e787:schema",
+      "50d08de65158faf23f1ae86aeebcde39e929c359:schema",
+      "df666070ead7fa21bc72b6c99d2644923b37e787:fixtures",
+      "50d08de65158faf23f1ae86aeebcde39e929c359:fixtures"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 164,
+      "sha256": "63ae31ab4e76e002e52dba633c9e5e0e4fde30e1cd413abe815c044b8e856f8b",
+      "data": "YWZiYWFiNGY2ZGM1MWQwNTBiOGZlN2ZiN2IzNTY2NjcwODhjZTFjOQphZmJhYWI0ZjZkYzUxZDA1MGI4ZmU3ZmI3YjM1NjY2NzA4OGNlMWM5CjgwMjM2NmJlZDFjZTNmZTZhMTU2YmQ1ZDNiOTY3YjA3MWQ4ZDc2YjIKODAyMzY2YmVkMWNlM2ZlNmExNTZiZDVkM2I5NjdiMDcxZDhkNzZiMgo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "afbaab4f6dc51d050b8fe7fb7b356667088ce1c9\nafbaab4f6dc51d050b8fe7fb7b356667088ce1c9\n802366bed1ce3fe6a156bd5d3b967b071d8d76b2\n802366bed1ce3fe6a156bd5d3b967b071d8d76b2\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T07:47:45.273980Z",
+  "ended_at": "2026-08-25T07:47:45.331616Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
