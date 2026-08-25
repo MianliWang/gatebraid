@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-closure-a-workflows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query{ user(login:\"MianliWang\"){ projectV2(number:1){ workflows(first:20){ nodes{ name enabled updatedAt } } } } }"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 555,
+      "sha256": "18db579f0f2d52fc31b4929024003d28dd02f067e7a87f7ae8d84997af1c284c",
+      "data": "eyJkYXRhIjp7InVzZXIiOnsicHJvamVjdFYyIjp7IndvcmtmbG93cyI6eyJub2RlcyI6W3sibmFtZSI6IkF1dG8tYWRkIHN1Yi1pc3N1ZXMgdG8gcHJvamVjdCIsImVuYWJsZWQiOnRydWUsInVwZGF0ZWRBdCI6IjIwMjYtMDctMjhUMTk6NDc6MzFaIn0seyJuYW1lIjoiQXV0by1jbG9zZSBpc3N1ZSIsImVuYWJsZWQiOmZhbHNlLCJ1cGRhdGVkQXQiOiIyMDI2LTA3LTMwVDIxOjQ1OjU3WiJ9LHsibmFtZSI6Ikl0ZW0gYWRkZWQgdG8gcHJvamVjdCIsImVuYWJsZWQiOnRydWUsInVwZGF0ZWRBdCI6IjIwMjYtMDctMjhUMTk6NDc6MzFaIn0seyJuYW1lIjoiSXRlbSBjbG9zZWQiLCJlbmFibGVkIjp0cnVlLCJ1cGRhdGVkQXQiOiIyMDI2LTA3LTI4VDE5OjQ3OjMxWiJ9LHsibmFtZSI6IlB1bGwgcmVxdWVzdCBsaW5rZWQgdG8gaXNzdWUiLCJlbmFibGVkIjp0cnVlLCJ1cGRhdGVkQXQiOiIyMDI2LTA3LTI4VDE5OjQ3OjMxWiJ9LHsibmFtZSI6IlB1bGwgcmVxdWVzdCBtZXJnZWQiLCJlbmFibGVkIjp0cnVlLCJ1cGRhdGVkQXQiOiIyMDI2LTA3LTI4VDE5OjQ3OjMxWiJ9XX19fX19",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"user\":{\"projectV2\":{\"workflows\":{\"nodes\":[{\"name\":\"Auto-add sub-issues to project\",\"enabled\":true,\"updatedAt\":\"2026-07-28T19:47:31Z\"},{\"name\":\"Auto-close issue\",\"enabled\":false,\"updatedAt\":\"2026-07-30T21:45:57Z\"},{\"name\":\"Item added to project\",\"enabled\":true,\"updatedAt\":\"2026-07-28T19:47:31Z\"},{\"name\":\"Item closed\",\"enabled\":true,\"updatedAt\":\"2026-07-28T19:47:31Z\"},{\"name\":\"Pull request linked to issue\",\"enabled\":true,\"updatedAt\":\"2026-07-28T19:47:31Z\"},{\"name\":\"Pull request merged\",\"enabled\":true,\"updatedAt\":\"2026-07-28T19:47:31Z\"}]}}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T20:03:30.289561Z",
+  "ended_at": "2026-08-25T20:03:30.867577Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

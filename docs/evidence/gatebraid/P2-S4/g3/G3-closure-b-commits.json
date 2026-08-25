@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-closure-b-commits",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S4/g3/closure-precheck.py",
+      "--range",
+      "df666070ead7fa21bc72b6c99d2644923b37e787..2225381aa6d701521236f6e8832fc7403806bfdf"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1919,
+      "sha256": "2f65708676db5c6cbeaf4ab1dc0c743364d5e9db72d427d2900ec0245999db56",
+      "data": "Y2hlY2sgICAgICAgICAgOiBHYXRlIDMgY2xvc3VyZSBwcmVjb25kaXRpb24gKGIpLCBrZXl3b3JkIGhhbGYNCnNjb3BlICAgICAgICAgIDogZXZlcnkgY29tbWl0IG1lc3NhZ2UgaW4gZGY2NjYwNzBlYWQ3ZmEyMWJjNzJiNmM5OWQyNjQ0OTIzYjM3ZTc4Ny4uMjIyNTM4MWFhNmQ3MDE1MjEyMzZmNmU4ODMyZmM3NDAzODA2YmZkZiAoMTUgY29tbWl0cykNCnBhdHRlcm4gICAgICAgIDogYSBjbG9zaW5nIGtleXdvcmQgSU1NRURJQVRFTFkgUFJFQ0VESU5HIGFuIGlzc3VlIHJlZmVyZW5jZQ0Ka2V5d29yZHMgICAgICAgOiBjbG9zZS9jbG9zZXMvY2xvc2VkLCBmaXgvZml4ZXMvZml4ZWQsIHJlc29sdmUvcmVzb2x2ZXMvcmVzb2x2ZWQNCnJlZmVyZW5jZSBmb3JtczogI24gfCBvd25lci9yZXBvI24gfCBodHRwczovL2dpdGh1Yi5jb20vb3duZXIvcmVwby9pc3N1ZXMvbg0KDQpQUk9ISUJJVEVEIFBBVFRFUk4gbWF0Y2hlcyAgIDogMA0KDQpiYXJlIGtleXdvcmQgdG9rZW5zICAgICAgICAgIDogMTAgIChOT1QgcHJvaGliaXRlZDsgcHJpbnRlZCBzbyB0aGUgY291bnQgYWJvdmUgc3RhdGVzIHdoYXQgaXQgc2VhcmNoZWQpDQogICAnY2xvc2VkJyAgICAgMSwgUjQgUEFTUyB3aXRoIEYtMDIgYW5kIEYtMDMsIFI1IFBBU1MuIFN1cHBsZW1lbnRhcnk6IFIzLVEgY2xvc2VkIGJ5IG1lYXN1cmVtZW50IC0tIHRoZSByZXZpZXdlciBtYXRlcmlhDQogICAnY2xvc2UnICAgICAgdG8gdGhlIGJhdGNoLWZyb3plbiB2YWx1ZSwgY2xvc2luZyB0aGUgZ2FwIGEgd3JpdGVyIGNhbm5vdCBjbG9zZSBmb3IgaXRzZWxmLiBSNC1CIGNvbmZpcm1lZCAxMi8xMiB3aXRoIHQNCiAgICdmaXgnICAgICAgICBubyByYW5nZSByb3csIHBlciB0aGUgZ3JhbnQ6IG5ldyByb3cgVjE5IHNob3dzIHNjaGVtYS8gYW5kIGZpeHR1cmVzLyBhcmUgdGhlIHNhbWUgVFJFRSBPQkpFQ1RTIGF0IHRoZSBwbA0KICAgJ2ZpeCcgICAgICAgIGJhc2VsaW5lIGFuZCBhdCB0aGUgZmluZ2VycHJpbnQgY29tbWl0IC0tIHNjaGVtYSBhZmJhYWI0ZiwgZml4dHVyZXMgODAyMzY2YmUsIGlkZW50aWNhbCBhdCBib3RoIC0tIGNvbXBvDQogICAnY2xvc2VkJyAgICAgNzAsIDEzNyBjaGFuZ2VkIHBhdGhzLCBhbGwgaW5zaWRlIHRoZSBmcm96ZW4gYWxsb3dsaXN0LiAgRGlzY2xvc2VkIHJhdGhlciB0aGFuIHNtb290aGVkOiBENyB3YXMgbm90IHJ1biBhDQogICAnZml4JyAgICAgICAgLS0tQ09NTUlULUVORC0tLSAxZGE0M2Q4NDQxZWQzZWJkMDVhYmE0NTc4NjJiYTYyMzQ0Y2U1OTNiIGZpeChtMyk6IGEgcmVwbGF5IHBhZ2UgdGhhdCBuYW1lcyBubyBleGl0IHN0YQ0KICAgJ2ZpeCcgICAgICAgIHRhdGUgZXhpdF9jb2RlOiAwIGV4cGxpY2l0bHkgdGhyb3VnaCBhIG5hbWVkIGhlbHBlciwgc28gdGhlIGZpeHR1cmUgc2F5cyBzdWNjZXNzIGFuZCB0aGUgdG9vbCBuZXZlciBpbmZlcg0KICAgJ2ZpeCcgICAgICAgIG9uZyB2ZXJkaWN0LiBUaGUgc2VsZnRlc3QgZmFsc2lmaWVzIGJvdGggaGFsdmVzOiB0aGUgZnJvemVuIGZpeHR1cmUgc3AxMC1zbmFwc2hvdC1taXNzaW5nLXNjaGVtYS1rZXkuanNvbg0KICAgJ2Nsb3NlZCcgICAgIGNvbWVzIGEgc291cmNlc1tdIGVudHJ5IGNhcnJ5aW5nIGEgc3RhdHVzIGZyb20gdGhlIHNjaGVtYSdzIGNsb3NlZCBlbnVtZXJhdGlvbjsgdGhlIHNldmVuIGZhaWx1cmUgY2xhc3Nlcw0KICAgJ2Nsb3NlZCcgICAgIGVyIHJlYWRpbmcgb25seSB0aGUgZXhpdCBzdGF0dXMgY2Fubm90IGNvbmZ1c2UgdGhlbS4gIEV2ZXJ5IGNsb3NlZCBlbnVtZXJhdGlvbiBpcyBSRUFEIGZyb20gdGhlIGZyb3plbiBzYw0KDQpDTE9TVVJFIFBSRUNPTkRJVElPTiAoYikgSE9MRFM6IG5vIGNsb3Npbmcga2V5d29yZCBpbW1lZGlhdGVseSBwcmVjZWRlcyBhbiBpc3N1ZSByZWZlcmVuY2UgaW4gdGhlIHNjb3BlIGFib3ZlDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "check          : Gate 3 closure precondition (b), keyword half\r\nscope          : every commit message in df666070ead7fa21bc72b6c99d2644923b37e787..2225381aa6d701521236f6e8832fc7403806bfdf (15 commits)\r\npattern        : a closing keyword IMMEDIATELY PRECEDING an issue reference\r\nkeywords       : close/closes/closed, fix/fixes/fixed, resolve/resolves/resolved\r\nreference forms: #n | owner/repo#n | https://github.com/owner/repo/issues/n\r\n\r\nPROHIBITED PATTERN matches   : 0\r\n\r\nbare keyword tokens          : 10  (NOT prohibited; printed so the count above states what it searched)\r\n   'closed'     1, R4 PASS with F-02 and F-03, R5 PASS. Supplementary: R3-Q closed by measurement -- the reviewer materia\r\n   'close'      to the batch-frozen value, closing the gap a writer cannot close for itself. R4-B confirmed 12/12 with t\r\n   'fix'        no range row, per the grant: new row V19 shows schema/ and fixtures/ are the same TREE OBJECTS at the pl\r\n   'fix'        baseline and at the fingerprint commit -- schema afbaab4f, fixtures 802366be, identical at both -- compo\r\n   'closed'     70, 137 changed paths, all inside the frozen allowlist.  Disclosed rather than smoothed: D7 was not run a\r\n   'fix'        ---COMMIT-END--- 1da43d8441ed3ebd05aba457862ba62344ce593b fix(m3): a replay page that names no exit sta\r\n   'fix'        tate exit_code: 0 explicitly through a named helper, so the fixture says success and the tool never infer\r\n   'fix'        ong verdict. The selftest falsifies both halves: the frozen fixture sp10-snapshot-missing-schema-key.json\r\n   'closed'     comes a sources[] entry carrying a status from the schema's closed enumeration; the seven failure classes\r\n   'closed'     er reading only the exit status cannot confuse them.  Every closed enumeration is READ from the frozen sc\r\n\r\nCLOSURE PRECONDITION (b) HOLDS: no closing keyword immediately precedes an issue reference in the scope above\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-25T20:03:29.492796Z",
+  "ended_at": "2026-08-25T20:03:29.763864Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
