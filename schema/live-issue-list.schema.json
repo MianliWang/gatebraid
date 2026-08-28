@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/live-issue-list@1",
+  "title": "GitHub bulk issue list, as `gh api repos/{owner}/{repo}/issues` emits it (gatebraid/live-issue-list@1)",
+  "description": "A LIVE SURFACE, not a Gatebraid document: bytes GitHub produces, frozen so the state-reading toolchain can be tested against the shape it will actually meet. Introduced at M3 batch O1-B1 under ADR-0033's namespace rule and the operator's Route-A ruling. THE ROOT IS AN ARRAY, and that single fact is the frozen seed of the P2-S5 Gate 0 failure: `bin/gatebraid-snapshot.py` served three of its four sources from this endpoint and required an object of each, so all three failed closed with the read-outcome sentinel 65 and the snapshot came back degraded. The corpus keeps this body as a valid case against THIS schema and as a mutation against the item-list envelope, so the same bytes prove both that the shape is understood and that mistaking it is caught. WHAT THIS SCHEMA CANNOT SAY, said here instead: the measured body carried five elements, every one of them `state: open`, and the four CLOSED issues that the same Slice's dependency read returns were absent from it entirely. That absence is a property of the endpoint, not of the document, so no schema keyword expresses it; it is carried as a behavioural assertion for the repair Slice, and it is the evidence that disqualifies this endpoint as a source of issue states. The element shape is duplicated from `gatebraid/live-issue@1` rather than referenced across files, because every committed sibling schema uses internal `$defs` only and fixtures/run-corpus.py supplies a base URI for self-resolution rather than a multi-schema registry. `format` and `patternProperties` are deliberately absent, for the reasons the sibling schemas record.",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/issue"
+  },
+  "$defs": {
+    "issue": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "number",
+        "state"
+      ],
+      "description": "One issue as the bulk surface emits it. Open vocabulary, closed state enumeration — the same two pins `gatebraid/live-issue@1` sets, for the same reasons. The bulk element was measured to carry `closed_by` and to LACK `repository`; the per-issue dependency element is the mirror image. Neither key is pinned here: `closed_by` is not load-bearing, and `repository`'s absence is what `gatebraid/live-dependency-list@1` uses as its discriminator rather than something this schema forbids.",
+      "properties": {
+        "number": {
+          "type": "integer",
+          "description": "The issue number within its repository."
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "open",
+            "closed"
+          ],
+          "description": "CLOSED enumeration. Only `open` was measured on this surface, and that is exactly the finding the corpus preserves; `closed` is admitted because the value is lawful for an issue and the enumeration describes the vocabulary, not this one capture's contents."
+        }
+      }
+    }
+  }
+}

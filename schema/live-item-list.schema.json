@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/live-item-list@1",
+  "title": "GitHub Projects item-list envelope, as `gh project item-list --format json` emits it (gatebraid/live-item-list@1)",
+  "description": "A LIVE SURFACE, not a Gatebraid document: this schema describes bytes GitHub produces, frozen so the state-reading toolchain can be tested against the shape it will actually meet. Introduced at M3 batch O1-B1 under ADR-0033's namespace rule and the operator's Route-A ruling, after the P2-S5 Gate 0 stop measured `bin/gatebraid-snapshot.py` parsing this envelope as though it were the replay transcript's page shape — reading `nodes` and `hasNextPage`, which this envelope does not carry — and extracting zero rows while reporting the source complete. THE ENVELOPE IS CLOSED AND THE ELEMENT IS OPEN, and the asymmetry is the whole design. The envelope is `additionalProperties: false` over exactly `items` and `totalCount`, because those two are what the surface was measured to emit and a third key appearing is a change a consumer must be made to notice. The element is `additionalProperties: true` because its keys are Project FIELDS and the surface emits a field key ONLY WHEN THAT FIELD IS POPULATED — measured across the fifteen elements of the frozen capture, whose key counts are 2x6, 2x7, 1x14, 1x15 and 9x17. THERE IS NO PAGINATION KEY OF ANY KIND — no `hasNextPage`, no `pageInfo`, no cursor, no `next` — measured twice, on a full read and on a `--limit 2` read. Completeness is therefore ARITHMETIC, `len(items)` against `totalCount`, and it is not expressible here: a short read is schema-valid and its wrongness is the consumer's to detect. That assertion is carried as a behavioural one for the repair Slice, not smuggled into this file. `format` is deliberately absent, as in every sibling schema, because fixtures/run-corpus.py builds no FormatChecker; `patternProperties` is deliberately absent because fixtures/run-corpus.py's `additionalProperties` accounting reproduces jsonschema's find_additional_properties WITHOUT its patternProperties term and would over-count against a schema that used one.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "items",
+    "totalCount"
+  ],
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "The rows this page carries. May be shorter than `totalCount`; see the description's note on arithmetic completeness.",
+      "items": { "$ref": "#/$defs/item" }
+    },
+    "totalCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The project's total item count, not this page's length. The only signal the surface gives that a read was short, and the reason the envelope requires it: without it, completeness is unverifiable and a consumer cannot fail closed."
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id"
+      ],
+      "description": "One Project row. REQUIRED IS DELIBERATELY JUST `id`, and the reasoning is recorded rather than left to be inferred. Six keys were present on all fifteen measured elements — `content`, `id`, `repository`, `stage`, `status`, `title` — but presence in the measurement is not a structural guarantee. `stage` and `status` are Project FIELDS, and this surface's measured rule is that a field key appears only when populated: their presence here is a property of this project's current data, and requiring them would freeze a data accident into a contract. `repository` is absent for a draft item, which carries no repository at all. `content` and `title` were measured only on issue-linked items; no draft or redacted item was captured, so the guarantee is unmeasured. `id` alone is the row's own identity, is not a Project field, and addresses the row — an item without it could not be referenced. The spec's binding instruction on this point is `when in doubt require less`, because absence is the consumer's fail-closed job and not the schema's. TYPES ARE PINNED WHERE MEASURED even for optional keys, which is where this schema does its real work: a key that appears must have the measured type, so a field arriving as a number where a string was measured is caught whether or not the key is required. SPACE-BEARING PROPERTY NAMES ARE BYTE-EXACT — `base SHA`, `next Approval`, `last Checkpoint`, `active Branch` — copied from the measured bytes and never retyped, the same discipline the Project field values themselves are under.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The Project item's own node id."
+        },
+        "content": {
+          "type": "object",
+          "description": "The linked issue, pull request or draft. The only measured non-string value on this element."
+        },
+        "repository": { "type": "string" },
+        "title": { "type": "string" },
+        "status": { "type": "string" },
+        "stage": { "type": "string" },
+        "phase": { "type": "string" },
+        "slice": { "type": "string" },
+        "workflow": { "type": "string" },
+        "gate": { "type": "string" },
+        "next Approval": { "type": "string" },
+        "environment": { "type": "string" },
+        "executor": { "type": "string" },
+        "risk": { "type": "string" },
+        "base SHA": { "type": "string" },
+        "active Branch": { "type": "string" },
+        "last Checkpoint": { "type": "string" }
+      }
+    }
+  }
+}
