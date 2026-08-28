@@ -321,7 +321,7 @@ on the pre-batch tree before any file was written. **At this batch's freeze,
 measured on its final tree, the digest was**
 
 ```
-66051715f76cf52d881aa143d9267f932407dbf5b9c4e6be9f81395ec641ef8e
+73c5e059091982ac8cda43d9f59902f3934444b742e7a383ad9422448cd5fdfc
 ```
 
 with `conditions failed: 0` and `seed-reachable surface UNMODIFIED: True`, from

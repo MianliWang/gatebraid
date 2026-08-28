@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/live-issue@1",
+  "title": "GitHub single-issue object, as `gh api repos/{owner}/{repo}/issues/{n}` emits it (gatebraid/live-issue@1)",
+  "description": "A LIVE SURFACE, not a Gatebraid document: bytes GitHub produces, frozen so the state-reading toolchain can be tested against the shape it will actually meet. Introduced at M3 batch O1-B1 under ADR-0033's namespace rule and the operator's Route-A ruling. THE ROOT IS OPEN ON PURPOSE — `additionalProperties: true` — because the thirty-three-key vocabulary measured here is GitHub's and GitHub may grow it; a schema that closed it would fail on the provider's next release rather than on any defect of ours. What this schema pins is the two members a startability read cannot proceed without: `number`, which says which issue this is, and `state`, whose enumeration is CLOSED to the two values measured. The closed enumeration is the load-bearing part. An unrecognised state must not be absorbed into `open` — that is the P0-4 class the snapshot schema names in its own words, and the reason a startability read that cannot see a CLOSED issue is worthless: the four blockers of the Slice this corpus was captured from are all closed, and a source that reports only open issues cannot see any of them. `format` is deliberately absent, as in every sibling schema, because fixtures/run-corpus.py builds no FormatChecker; `patternProperties` is deliberately absent because fixtures/run-corpus.py's `additionalProperties` accounting would over-count against a schema that used one.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "number",
+    "state"
+  ],
+  "properties": {
+    "number": {
+      "type": "integer",
+      "description": "The issue number within its repository. Measured as an integer on every captured element; never a string."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "open",
+        "closed"
+      ],
+      "description": "CLOSED enumeration, and closed deliberately. Both members were measured — `open` on the bulk and single-issue reads, `closed` on all four dependency elements. A third value arriving is a change the consumer must be made to notice rather than one it may quietly treat as `open`."
+    }
+  }
+}
