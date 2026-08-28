@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "LIVE-item-list-limit2",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "project",
+      "item-list",
+      "1",
+      "--owner",
+      "MianliWang",
+      "--format",
+      "json",
+      "--limit",
+      "2"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3011,
+      "sha256": "310160a3893a96342ac0ae671e0fd8e537f363116ec193c5d4da45aa51fd861f",
+      "data": "eyJpdGVtcyI6W3siY29udGVudCI6eyJib2R5IjoiIyBTdGFnZSBTMSDigJQgQ29udHJvbC1wbGFuZSB2YWxpZGF0aW9uXG5cblZhbGlkYXRlcyB0aGUgR2F0ZWJyYWlkIENsYXNzaWMgY29udHJvbCBwbGFuZSBlbmQgdG8gZW5kIG9uIHRoZSBzY3JhdGNoXG5yZXBvc2l0b3J5OiB0aGUgU3RhZ2UvUGhhc2UvU2xpY2UgaGllcmFyY2h5LCB0aGUgdHdvIGRlcGVuZGVuY3kgZW5jb2RpbmdzIG9mXG5BRFItMDAwNywgYW5kIHRoZSBQcm9qZWN0IGZpZWxkIGNvbnRyYWN0IG9mIHNwZWMgwqcx4oCTwqczLiBUaGlzIFN0YWdlIGRlbGl2ZXJzXG5ldmlkZW5jZSB0aGF0IHRoZSBjb250cm9sIHBsYW5lIGJlaGF2ZXMgYXMgc3BlY2lmaWVkIGJlZm9yZSBhbnkgYnVzaW5lc3Mgd29ya1xuaXMgYWRtaXR0ZWQgdG8gaXQuXG5cbiMjIFNjb3BlXG5cbi0gQSBmb3VyLVNsaWNlIHNhbXBsZSBoaWVyYXJjaHkgY2FycnlpbmcgYm90aCBkZXBlbmRlbmN5IGVuY29kaW5ncy5cbi0gQSByZWFkLW9ubHkgdmVyaWZpY2F0aW9uIHBhc3MgcHJvdmluZyBtZXRhZGF0YSBhbmQgbmF0aXZlIGVkZ2VzIGFncmVlIHdpdGhcbiAgQURSLTAwMDcuXG5cbiMjIFBoYXNlc1xuXG48IS0tIE1haW50YWluZWQgYXMgc3ViLWlzc3VlczsgbGlzdCBoZXJlIGlzIGluZm9ybWF0aW9uYWwgYW5kIG1heSBsYWcuIC0tPlxuLSBQMSDigJQgU2FtcGxlIGhpZXJhcmNoeSBhbmQgZGVwZW5kZW5jeSBlbmNvZGluZyAoc3ViLWlzc3VlKVxuXG4jIyBnYXRlYnJhaWQtbWV0YWRhdGFcblxuYGBgeWFtbFxuc2NoZW1hOiBnYXRlYnJhaWQvc3RhZ2VAMVxuc3RhZ2VfaWQ6IFMxXG50aXRsZTogXCJDb250cm9sLXBsYW5lIHZhbGlkYXRpb25cIlxub2JqZWN0aXZlOiBcIlByb3ZlIHRoZSBHYXRlYnJhaWQgQ2xhc3NpYyBjb250cm9sIHBsYW5lIGJlaGF2ZXMgYXMgc3BlY2lmaWVkIGJlZm9yZSBhbnkgYnVzaW5lc3Mgd29yayBlbnRlcnMgaXQuXCJcbnByb2plY3RzOiBbXCJNaWFubGlXYW5nL2dhdGVicmFpZC1zY3JhdGNoXCJdXG5gYGBcbiIsIm51bWJlciI6MiwicmVwb3NpdG9yeSI6Ik1pYW5saVdhbmcvZ2F0ZWJyYWlkIiwidGl0bGUiOiJTdGFnZSBTMSDigJQgQ29udHJvbC1wbGFuZSB2YWxpZGF0aW9uIiwidHlwZSI6Iklzc3VlIiwidXJsIjoiaHR0cHM6Ly9naXRodWIuY29tL01pYW5saVdhbmcvZ2F0ZWJyYWlkL2lzc3Vlcy8yIn0sImlkIjoiUFZUSV9sQUhPQlJvZlVzNEJldW03emcwb2FmVSIsInJlcG9zaXRvcnkiOiJodHRwczovL2dpdGh1Yi5jb20vTWlhbmxpV2FuZy9nYXRlYnJhaWQiLCJzdGFnZSI6IlMxIiwic3RhdHVzIjoiVG9kbyIsInRpdGxlIjoiU3RhZ2UgUzEg4oCUIENvbnRyb2wtcGxhbmUgdmFsaWRhdGlvbiJ9LHsiY29udGVudCI6eyJib2R5IjoiIyBQaGFzZSBQMSDigJQgU2FtcGxlIGhpZXJhcmNoeSBhbmQgZGVwZW5kZW5jeSBlbmNvZGluZ1xuXG5CdWlsZHMgdGhlIGZvdXItU2xpY2Ugc2FtcGxlIGhpZXJhcmNoeSBpbiB0aGUgc2NyYXRjaCByZXBvc2l0b3J5IGFuZCBlbmNvZGVzXG50aGUgdHdvIEFEUi0wMDA3IGRlcGVuZGVuY3kgZm9ybXMgYWNyb3NzIGl0OiBtZXRhZGF0YS1vbmx5IGVkZ2VzIGZvciBHYXRlIDFcbmFuZCBHYXRlIDIgcHJlZGVjZXNzb3JzLCBhbmQgbWV0YWRhdGEgcGx1cyBhIG5hdGl2ZSBibG9ja2VkLWJ5IGVkZ2UgZm9yIHRoZVxuc2luZ2xlIEdhdGUgMyBwcmVkZWNlc3Nvci4gVGhlIFBoYXNlIGV4aXN0cyBzbyB0aGUgc29mdCBhbmQgaGFyZCBlbmNvZGluZ3MgY2FuXG5iZSBvYnNlcnZlZCBkaXZlcmdpbmcgb24gdGhlIHNhbWUgZ3JhcGguXG5cbiMjIFNsaWNlc1xuXG48IS0tIE1haW50YWluZWQgYXMgc3ViLWlzc3VlczsgbGlzdCBoZXJlIGlzIGluZm9ybWF0aW9uYWwgYW5kIG1heSBsYWcuIC0tPlxuLSBQMS1TMSDigJQgRGVmaW5lIHRoZSBzaGFyZWQgaW50ZXJmYWNlIChzdWItaXNzdWUsIGluIE1pYW5saVdhbmcvZ2F0ZWJyYWlkLXNjcmF0Y2gpXG4tIFAxLVMyIOKAlCBCdWlsZCBvbiB0aGUgaW50ZXJmYWNlIEEgZml4ZXMgYXQgR2F0ZSAxIChzdWItaXNzdWUsIGluIE1pYW5saVdhbmcvZ2F0ZWJyYWlkLXNjcmF0Y2gpXG4tIFAxLVMzIOKAlCBDb25zdW1lIEEncyByZWxlYXNlZCBvdXRwdXQgKHN1Yi1pc3N1ZSwgaW4gTWlhbmxpV2FuZy9nYXRlYnJhaWQtc2NyYXRjaClcbi0gUDEtUzQg4oCUIEludGVncmF0ZSBCIGFuZCBDIChzdWItaXNzdWUsIGluIE1pYW5saVdhbmcvZ2F0ZWJyYWlkLXNjcmF0Y2gpXG4tIFAxLVM1IOKAlCBDb25zdW1lIEEncyByZWxlYXNlZCBvdXRwdXQgKHN1Yi1pc3N1ZSwgaW4gTWlhbmxpV2FuZy9nYXRlYnJhaWQtc2NyYXRjaCkg4oCUIHN1Y2Nlc3NvciB0byB0aGUgYWJvcnRlZCBQMS1TM1xuXG4jIyBnYXRlYnJhaWQtbWV0YWRhdGFcblxuYGBgeWFtbFxuc2NoZW1hOiBnYXRlYnJhaWQvcGhhc2VAMVxucGhhc2VfaWQ6IFAxXG5zdGFnZTogUzFcbnRpdGxlOiBcIlNhbXBsZSBoaWVyYXJjaHkgYW5kIGRlcGVuZGVuY3kgZW5jb2RpbmdcIlxub2JqZWN0aXZlOiBcIkVuY29kZSBib3RoIEFEUi0wMDA3IGRlcGVuZGVuY3kgZm9ybXMgYWNyb3NzIGZvdXIgc2FtcGxlIFNsaWNlcyBhbmQgdmVyaWZ5IHRoZXkgZGl2ZXJnZSBhcyBzcGVjaWZpZWQuXCJcbmBgYFxuXG4iLCJudW1iZXIiOjMsInJlcG9zaXRvcnkiOiJNaWFubGlXYW5nL2dhdGVicmFpZCIsInRpdGxlIjoiUGhhc2UgUDEg4oCUIFNhbXBsZSBoaWVyYXJjaHkgYW5kIGRlcGVuZGVuY3kgZW5jb2RpbmciLCJ0eXBlIjoiSXNzdWUiLCJ1cmwiOiJodHRwczovL2dpdGh1Yi5jb20vTWlhbmxpV2FuZy9nYXRlYnJhaWQvaXNzdWVzLzMifSwiaWQiOiJQVlRJX2xBSE9CUm9mVXM0QmV1bTd6ZzBvYWhNIiwicGhhc2UiOiJQMSIsInJlcG9zaXRvcnkiOiJodHRwczovL2dpdGh1Yi5jb20vTWlhbmxpV2FuZy9nYXRlYnJhaWQiLCJzdGFnZSI6IlMxIiwic3RhdHVzIjoiVG9kbyIsInRpdGxlIjoiUGhhc2UgUDEg4oCUIFNhbXBsZSBoaWVyYXJjaHkgYW5kIGRlcGVuZGVuY3kgZW5jb2RpbmcifV0sInRvdGFsQ291bnQiOjE1fQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"items\":[{\"content\":{\"body\":\"# Stage S1 — Control-plane validation\\n\\nValidates the Gatebraid Classic control plane end to end on the scratch\\nrepository: the Stage/Phase/Slice hierarchy, the two dependency encodings of\\nADR-0007, and the Project field contract of spec §1–§3. This Stage delivers\\nevidence that the control plane behaves as specified before any business work\\nis admitted to it.\\n\\n## Scope\\n\\n- A four-Slice sample hierarchy carrying both dependency encodings.\\n- A read-only verification pass proving metadata and native edges agree with\\n  ADR-0007.\\n\\n## Phases\\n\\n<!-- Maintained as sub-issues; list here is informational and may lag. -->\\n- P1 — Sample hierarchy and dependency encoding (sub-issue)\\n\\n## gatebraid-metadata\\n\\n```yaml\\nschema: gatebraid/stage@1\\nstage_id: S1\\ntitle: \\\"Control-plane validation\\\"\\nobjective: \\\"Prove the Gatebraid Classic control plane behaves as specified before any business work enters it.\\\"\\nprojects: [\\\"MianliWang/gatebraid-scratch\\\"]\\n```\\n\",\"number\":2,\"repository\":\"MianliWang/gatebraid\",\"title\":\"Stage S1 — Control-plane validation\",\"type\":\"Issue\",\"url\":\"https://github.com/MianliWang/gatebraid/issues/2\"},\"id\":\"PVTI_lAHOBRofUs4Beum7zg0oafU\",\"repository\":\"https://github.com/MianliWang/gatebraid\",\"stage\":\"S1\",\"status\":\"Todo\",\"title\":\"Stage S1 — Control-plane validation\"},{\"content\":{\"body\":\"# Phase P1 — Sample hierarchy and dependency encoding\\n\\nBuilds the four-Slice sample hierarchy in the scratch repository and encodes\\nthe two ADR-0007 dependency forms across it: metadata-only edges for Gate 1\\nand Gate 2 predecessors, and metadata plus a native blocked-by edge for the\\nsingle Gate 3 predecessor. The Phase exists so the soft and hard encodings can\\nbe observed diverging on the same graph.\\n\\n## Slices\\n\\n<!-- Maintained as sub-issues; list here is informational and may lag. -->\\n- P1-S1 — Define the shared interface (sub-issue, in MianliWang/gatebraid-scratch)\\n- P1-S2 — Build on the interface A fixes at Gate 1 (sub-issue, in MianliWang/gatebraid-scratch)\\n- P1-S3 — Consume A's released output (sub-issue, in MianliWang/gatebraid-scratch)\\n- P1-S4 — Integrate B and C (sub-issue, in MianliWang/gatebraid-scratch)\\n- P1-S5 — Consume A's released output (sub-issue, in MianliWang/gatebraid-scratch) — successor to the aborted P1-S3\\n\\n## gatebraid-metadata\\n\\n```yaml\\nschema: gatebraid/phase@1\\nphase_id: P1\\nstage: S1\\ntitle: \\\"Sample hierarchy and dependency encoding\\\"\\nobjective: \\\"Encode both ADR-0007 dependency forms across four sample Slices and verify they diverge as specified.\\\"\\n```\\n\\n\",\"number\":3,\"repository\":\"MianliWang/gatebraid\",\"title\":\"Phase P1 — Sample hierarchy and dependency encoding\",\"type\":\"Issue\",\"url\":\"https://github.com/MianliWang/gatebraid/issues/3\"},\"id\":\"PVTI_lAHOBRofUs4Beum7zg0oahM\",\"phase\":\"P1\",\"repository\":\"https://github.com/MianliWang/gatebraid\",\"stage\":\"S1\",\"status\":\"Todo\",\"title\":\"Phase P1 — Sample hierarchy and dependency encoding\"}],\"totalCount\":15}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-27T10:56:10.677940Z",
+  "ended_at": "2026-08-27T10:56:12.027753Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

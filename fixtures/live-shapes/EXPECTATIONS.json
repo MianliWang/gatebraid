@@ -1,0 +1,158 @@
+{
+  "corpus": "live-shapes",
+  "corpus_version": "v1.3",
+  "frozen_by": "Frozen at M3 batch O1-B1 by the operator's REVISED Batch Approval on MianliWang/gatebraid#17, comment id 5448556399, which supersedes comment 5445982845; the freeze commit SHA is recorded in that batch's report. This corpus reads v1.3 because it is a THIRD, separate freeze: v1.1 covers the five corpora frozen at or before N1E, and v1.2 the state-pipeline freeze at O0's start. THE ASYMMETRY IS THE ESTABLISHED ONE AND IS DISCLOSED RATHER THAN RESOLVED, for the same reason state-pipeline recorded at v1.2: moving every corpus's version together would touch six EXPECTATIONS.json files outside the five-path set this batch's approval fixes, which that approval makes a STOP rather than a judgment call. `corpus_version` is descriptive metadata that fixtures/run-corpus.py neither reads nor compares across corpora, so the asymmetry costs no assertion; it is carried to the batch's independent review for ruling, exactly as its predecessor was.",
+  "description": "The four LIVE control-plane surfaces, frozen from measured captures so the state-reading toolchain can be tested against the shapes it will actually meet. WHY THIS CORPUS EXISTS: the P2-S5 Gate 0 startability read stopped with gatebraid-snapshot exit 3, three of four sources `unexpected_endpoint`, and a frontier report carrying no verdict at all - because the live transport read one bulk endpoint for three sources and parsed every page with the REPLAY transcript's shape (`nodes`, `hasNextPage`), which no live body carries. Both defects are shape defects, and nothing in the tree recorded the real shapes. THIS CORPUS ASSERTS DOCUMENT SHAPE ONLY. The corpus runner asserts exactly one thing - a document is valid or invalid against a JSON Schema - and the behavioural half of this batch's findings is therefore NOT here: B-1 (a short read must be incomplete), B-2 (a bulk body offered as a dependency answer must end undecidable), B-3 (an absent field must map to UNKNOWN) and B-4 (the repaired issue_states source must observe CLOSED issues) are bound to the repair Slice's Acceptance by the Batch Approval's clause 6, so that they cannot silently drop. Writing them here as hollow cases would report CORPUS CLEAN while asserting nothing, which ADR-0031's own reasoning calls worse than an empty corpus because it looks like coverage. THE SEVEN PROVENANCE RECORDS under provenance/ are the sealed gatebraid/evidence-capture@1 captures the bodies came from; build-cases.py re-derives every case file from them and verifies each body against its record's own stdout sha256 and byte_length, so the corpus cannot hold a body its provenance does not vouch for. THREE CASES SHARE ONE FILE: LS-04, LS-M1 and LS-M4 all name ls04-issue-list-bulk.json, unchanged, and differ only in the schema they are declared against - the same bytes being lawful as an issue list and unlawful as an item-list envelope or a dependency list IS the assertion, and separate copies would weaken it. Every locus below was MEASURED by importing fixtures/run-corpus.py's own loader and observe(), never predicted; the spec's stated ground for each mutation was asserted against what actually fired, and a mismatch was made to stop the build rather than be re-recorded.",
+  "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator; schemas additionally loader-validated under CPython 3.12.3 / jsonschema 4.10.3 on WSL",
+  "cases": [
+    {
+      "id": "LS-01",
+      "fixture": "ls01-item-list-full.json",
+      "schema": "schema/live-item-list.schema.json",
+      "expect": "valid",
+      "class": "item-list envelope, complete read",
+      "source": "C-3, the full `gh project item-list --format json` read: len(items) == totalCount == 15. The canonical positive control for the envelope.",
+      "expect_errors": []
+    },
+    {
+      "id": "LS-02",
+      "fixture": "ls02-item-list-short-read.json",
+      "schema": "schema/live-item-list.schema.json",
+      "expect": "valid",
+      "class": "item-list envelope, short read - schema-valid by design",
+      "source": "C-4, the same call with --limit 2: len(items) = 2 against totalCount = 15. VALID here deliberately. The surface carries no pagination key of any kind, so a short read is lawful JSON and its wrongness is arithmetic; the assertion that a consumer must treat it as incomplete is behavioural and is carried to the repair Slice as B-1, not smuggled into this schema.",
+      "expect_errors": []
+    },
+    {
+      "id": "LS-03",
+      "fixture": "ls03-issue-object.json",
+      "schema": "schema/live-issue.schema.json",
+      "expect": "valid",
+      "class": "single-issue object",
+      "source": "C-2, `gh api repos/{owner}/{repo}/issues/17`: the 33-key object. Pins `number` and `state` and leaves the rest of GitHub's vocabulary open.",
+      "expect_errors": []
+    },
+    {
+      "id": "LS-04",
+      "fixture": "ls04-issue-list-bulk.json",
+      "schema": "schema/live-issue-list.schema.json",
+      "expect": "valid",
+      "class": "bulk issue list, the endpoint the broken transport read",
+      "source": "C-1, `gh api repos/{owner}/{repo}/issues`: a JSON array of 5 elements, every one `state: open`. LAWFUL AS AN ISSUE LIST, which is the first half of the point; LS-M1 and LS-M4 declare these same bytes against the two schemas they are not.",
+      "expect_errors": []
+    },
+    {
+      "id": "LS-05",
+      "fixture": "ls05-dependency-list-four-edges.json",
+      "schema": "schema/live-dependency-list.schema.json",
+      "expect": "valid",
+      "class": "per-issue dependency list, four closed edges",
+      "source": "C-5, `.../issues/17/dependencies/blocked_by`: 4 elements, numbers [8, 10, 12, 14], every one `state: closed` and carrying `repository`. The four blockers that the bulk endpoint of LS-04 cannot see at all.",
+      "expect_errors": []
+    },
+    {
+      "id": "LS-06",
+      "fixture": "ls06-dependency-list-empty.json",
+      "schema": "schema/live-dependency-list.schema.json",
+      "expect": "valid",
+      "class": "per-issue dependency list, empty - a lawful zero-edge answer",
+      "source": "C-6, `.../issues/17/dependencies/blocking`: a two-byte body, `[]`. VALID, and the reason it is here: an empty list is an answer, not a failed read, and a consumer that cannot tell those apart fails open.",
+      "expect_errors": []
+    },
+    {
+      "id": "LS-07",
+      "fixture": "ls07-dependency-list-one-edge.json",
+      "schema": "schema/live-dependency-list.schema.json",
+      "expect": "valid",
+      "class": "per-issue dependency list, one open edge",
+      "source": "C-7, `.../issues/14/dependencies/blocking`: 1 element, number 17, `state: open`, carrying `repository`. The non-empty blocking direction, and the other half of the two-direction pair with LS-05.",
+      "expect_errors": []
+    },
+    {
+      "id": "LS-M1",
+      "fixture": "ls04-issue-list-bulk.json",
+      "schema": "schema/live-item-list.schema.json",
+      "expect": "invalid",
+      "class": "root type: a list where the envelope object is required",
+      "source": "SEED-SPEC-O1B1-v2 section 3. The C-1 body UNCHANGED, declared against the item-list envelope. This is the P2-S5 Gate 0 failure class frozen as a seed: bin/gatebraid-snapshot.py served three sources from this endpoint and required an object of each, and all three failed closed with the read-outcome sentinel 65. Same bytes as LS-04, which is lawful; only the declared schema differs.",
+      "expect_errors": [
+        {
+          "keyword": "type",
+          "path": "(root)",
+          "schema_path": "type"
+        }
+      ]
+    },
+    {
+      "id": "LS-M2",
+      "fixture": "lsm2-item-list-totalcount-deleted.json",
+      "schema": "schema/live-item-list.schema.json",
+      "expect": "invalid",
+      "class": "required at root: completeness unverifiable without the count",
+      "source": "SEED-SPEC-O1B1-v2 section 3. C-3's body with `totalCount` deleted and nothing else changed, asserted by build-cases.py. Without the count, len(items) can be compared against nothing, so a short read is indistinguishable from a whole one - the envelope requires it for exactly that reason.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "(root)",
+          "schema_path": "required",
+          "property": "totalCount"
+        }
+      ]
+    },
+    {
+      "id": "LS-M3",
+      "fixture": "lsm3-item-list-workflow-retyped.json",
+      "schema": "schema/live-item-list.schema.json",
+      "expect": "invalid",
+      "class": "type at an element's `workflow`: a pinned optional key of the wrong type",
+      "source": "SEED-SPEC-O1B1-v2 section 3. C-3's body with the first element carrying `workflow` having that value retyped to a number, and nothing else changed, asserted by build-cases.py. `workflow` is OPTIONAL in the element - the surface emits a field key only when populated - so this case is what proves the schema still pins the TYPE of a key it does not require. The companion behavioural assertion, that an ABSENT `workflow` maps to UNKNOWN rather than to a healthy default, is carried to the repair Slice as B-3.",
+      "expect_errors": [
+        {
+          "keyword": "type",
+          "path": "items/2/workflow",
+          "schema_path": "properties/items/items/properties/workflow/type"
+        }
+      ]
+    },
+    {
+      "id": "LS-M4",
+      "fixture": "ls04-issue-list-bulk.json",
+      "schema": "schema/live-dependency-list.schema.json",
+      "expect": "invalid",
+      "class": "required `repository` on every element: a bulk body offered as a dependency answer",
+      "source": "SEED-SPEC-O1B1-v2 section 3. The C-1 body UNCHANGED, declared against the per-issue dependency schema. `repository` is the measured discriminator: present on all five captured dependency elements, absent from all six captured bulk and single-issue elements. The document half of the cross-check; the behavioural half, that such a body must end `undecidable` and never `startable`, is carried to the repair Slice as B-2.",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "0",
+          "schema_path": "items/required",
+          "property": "repository"
+        },
+        {
+          "keyword": "required",
+          "path": "1",
+          "schema_path": "items/required",
+          "property": "repository"
+        },
+        {
+          "keyword": "required",
+          "path": "2",
+          "schema_path": "items/required",
+          "property": "repository"
+        },
+        {
+          "keyword": "required",
+          "path": "3",
+          "schema_path": "items/required",
+          "property": "repository"
+        },
+        {
+          "keyword": "required",
+          "path": "4",
+          "schema_path": "items/required",
+          "property": "repository"
+        }
+      ]
+    }
+  ]
+}
