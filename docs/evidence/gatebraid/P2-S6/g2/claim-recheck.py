@@ -138,6 +138,70 @@ claim("C14", "E4's excluded HEAD row still carries its original recorded value",
       ("$ git rev-parse HEAD\n%s" % FP_COMMIT) in text,
       "unchanged")
 
+# ---- claims the EXIT-completion edit adds --------------------------------
+REPORTS = {
+    "REVIEW-P2S6-G2.md":
+        ("76ef86a1293755f99351236e0e86301082067ade6ce7ef47db1108bf479225de", 46091),
+    "REVIEW-P2S6-G2-REREVIEW.md":
+        ("47bd2eb9956197e81cb1f4ad13efb3561e6449e9361dbf6b6bb2ff183ae6fda4", 19909),
+    "REVIEW-P2S6-G2-FINAL.md":
+        ("2cf44ec8656d568573d3aa342185ac5ac4725b62e4af229a1538b7686d94bb68", 20795),
+}
+
+# 15 - every cited report pin matches the file it names, and the record cites it.
+import hashlib as _h
+_bad = []
+for _name, (_want, _size) in REPORTS.items():
+    _fp = os.path.join("_handoff", "batch-p2s6", _name)
+    if not os.path.isfile(_fp):
+        _bad.append(_name + ":absent")
+        continue
+    _raw = open(_fp, "rb").read()
+    if _h.sha256(_raw).hexdigest() != _want or len(_raw) != _size:
+        _bad.append(_name + ":file-mismatch")
+    if _want not in text:
+        _bad.append(_name + ":pin-not-cited")
+claim("C15", "every cited review-report pin matches the file it names",
+      not _bad, "problems=%s" % _bad)
+
+# 16 - those reports are on the ignored lane and are NOT in the tree.
+_rc, _out = git("check-ignore", "-v", "_handoff/batch-p2s6/REVIEW-P2S6-G2-FINAL.md")
+_rc2, _listing = git("status", "--porcelain", "--untracked-files=all")
+claim("C16", "the cited reports are ignored and absent from the porcelain listing",
+      _rc == 0 and "REVIEW-P2S6" not in _listing,
+      "check-ignore=%d in-listing=%s" % (_rc, "REVIEW-P2S6" in _listing))
+
+# 17 - review-five-items is pass, and Review 3 reads pass on all five.
+_r3 = text.split("### Review 3")[-1] if "### Review 3" in text else ""
+_five = len(re.findall(r"^\| R[1-5][^|]*\| \*\*pass\*\* \|", _r3, re.M))
+_rfi = re.search(r"name: review-five-items.*?result: (\w+)", MB, re.S)
+claim("C17", "review-five-items is pass and Review 3 reads pass on all five items",
+      _rfi is not None and _rfi.group(1) == "pass" and _five == 5,
+      "check=%s review3_pass_rows=%d" % (_rfi.group(1) if _rfi else None, _five))
+
+# 18 - every review block names its head as a pinned SHA, never HEAD.
+_blocks = re.findall(r"^### Review \d[^\n]*\n(.*?)(?=^### |^## )", text, re.S | re.M)
+_heads = ["44906edc4d49cc090673a2220d3b66246b187bca",
+          "8d4fa4188c8fecc552448e1fff152e133abb3229",
+          "73e489f1976f4b360858b27e4ef1fdaf5501b8f7"]
+_ok18 = (len(_blocks) == 3
+         and all(_h2 in _b for _h2, _b in zip(_heads, _blocks))
+         and not any(re.search(r"at head `?HEAD", _b) for _b in _blocks))
+claim("C18", "each review block names its head as a pinned SHA, never HEAD",
+      _ok18, "blocks=%d" % len(_blocks))
+
+# 19 - the head Review 3 examined is a real commit and an ancestor of the tip.
+_rc, _out = git("rev-parse", "73e489f1976f4b360858b27e4ef1fdaf5501b8f7^{commit}")
+_rc2, _ = git("merge-base", "--is-ancestor",
+              "73e489f1976f4b360858b27e4ef1fdaf5501b8f7", "HEAD")
+claim("C19", "the head Review 3 examined is a real commit and an ancestor of the tip",
+      _rc == 0 and _out == "73e489f1976f4b360858b27e4ef1fdaf5501b8f7" and _rc2 == 0,
+      "peel=%d ancestor=%d" % (_rc, _rc2))
+
+# 20 - result records a gate still awaiting its human door.
+claim("C20", "result records needs_approval, the human Release Approval still owed",
+      re.search(r"^result: needs_approval$", MB, re.M) is not None, "as written")
+
 width = max(len(r[1]) for r in rows)
 print("%-5s %-*s %-8s %s" % ("id", width, "claim", "verdict", "measured"))
 failed = 0

@@ -274,16 +274,51 @@ bin/gatebraid-snapshot.py
 
 ### Review 1
 
+Independent read-only reviewer, `Executor = Claude Read-Only Team`, at head
+`44906edc4d49cc090673a2220d3b66246b187bca`. Report `REVIEW-P2S6-G2.md`, sha256
+`76ef86a1293755f99351236e0e86301082067ade6ce7ef47db1108bf479225de`, 46,091 B.
+
 | Item | Verdict | Evidence |
 |---|---|---|
-| R1 allowlist confinement | | |
-| R2 test-plan coverage | | |
-| R3 evidence is rows that reproduce | | |
-| R4 negative criterion | | |
-| R5 no prohibited action | | |
+| R1 allowlist confinement | **pass** | Report section 2. `git diff --name-only 3d47f8be..44906edc` 94 paths, 0 outside the frozen write_domains; per-commit 1 + 1 + 92, all named; `--name-status` over the evidence commit is 92 A with no M or D. |
+| R2 test-plan coverage | **pass** | Report section 3. All 9 Acceptance checkboxes map to declared commands D1 through D8, item by item; 21 new live conditions verified by emitted-row count, 37 pre-existing intact; the zero-network claim proven structurally; the B-3 seed substitution ruled sound. |
+| R3 evidence is rows that reproduce | **fail** | Report section 4. Nine deterministic rows reproduce byte-identically; two do not and neither is disclosed as excluded (F-01, F-02). Routed to Repair Required; see the Repair record. |
+| R4 negative criterion | **pass** | Report section 5. D7 re-run exit 0 all five hold; D8 re-run exit 1 all five fire, byte-identical to its capture at 1,606 B; each of N1 through N5 states the pattern it proxies for, its scope, and the direction in which it errs. |
+| R5 no prohibited action | **pass** | Report section 6. No remote row for the branch, no pull request, no dependency change, zero active hooks, exactly one lease, clean reflog, closed-set residue 0. |
 
-- Reviewer write disclosure: 
-- Rules given to the reviewer: 
+- Reviewer write disclosure: `none` to tracked content. The reviewer wrote its own report on the ignored `_handoff/` lane and scratch files outside every repository, both named in its report section 9.
+- Rules given to the reviewer: the spec section 4 conduct rules verbatim, the gate-2 contract's Review clause, ADR-0026's content classes and ADR-0028's decision 2, and the read-only mandate it attests to in its report section 0.
+
+### Review 2 - re-check after repair 1
+
+Same reviewer role, at head `8d4fa4188c8fecc552448e1fff152e133abb3229`. Report
+`REVIEW-P2S6-G2-REREVIEW.md`, sha256
+`47bd2eb9956197e81cb1f4ad13efb3561e6449e9361dbf6b6bb2ff183ae6fda4`, 19,909 B.
+
+| Item | Verdict | Evidence |
+|---|---|---|
+| R3 evidence is rows that reproduce | **fail** | Report sections 1 and 5. F-01, F-02 and F-03 each verified repaired and the reproduction limb passes completely - all fifteen nominated rows re-run and byte-identical, including the previously failing V7. Two NEW textual findings: G-01, a disclosure contradicting the metadata on a machine-checkable field, and G-02, a row label false about its own content; G-03 minor. Routed to the repair sequence's Codex consult and repair 2. |
+
+- Reviewer write disclosure: `none` to tracked content; report on the ignored lane and out-of-repository scratch, named in its report section 7.
+- Rules given to the reviewer: as Review 1.
+
+### Review 3 - final re-check after repair 2
+
+Same reviewer role, at head `73e489f1976f4b360858b27e4ef1fdaf5501b8f7` - the
+commit repair 2 produced, named as a SHA because recording this review
+necessarily creates a later commit. Report `REVIEW-P2S6-G2-FINAL.md`, sha256
+`2cf44ec8656d568573d3aa342185ac5ac4725b62e4af229a1538b7686d94bb68`, 20,795 B.
+
+| Item | Verdict | Evidence |
+|---|---|---|
+| R1 allowlist confinement | **pass** | Report section 6. The repair-2 commit carries 12 paths, all under this Slice's evidence directory, 0 outside write_domains; the whole branch 103 paths, 0 outside; both `bin/` blobs unchanged BY OBJECT ID at the final head. |
+| R2 test-plan coverage | **pass** | Carried from Review 1 section 3; no declared command and no Acceptance mapping changed at either repair, both of which were record-scope only. |
+| R3 evidence is rows that reproduce | **pass** | Report sections 1 through 4. G-01, G-02 and G-03 each verified fixed; the class instrument run and falsified twice; the deterministic subset re-run at the final head; validator and closed-set sweep falsified first, then run. |
+| R4 negative criterion | **pass** | Carried from Review 1 section 5; neither repair touched `bin/`, and N1 through N5 re-run green at the final head. |
+| R5 no prohibited action | **pass** | Report section 10. No remote row for the branch, no pull request, no tag, no merge, no dependency change, no disabled hook, one lease, nothing pushed. |
+
+- Reviewer write disclosure: `none` to tracked content. Report on the ignored `_handoff/` lane, confirmed by `git check-ignore -v` and absent from `git status --porcelain --untracked-files=all`; fourteen scratch files outside every repository, each named in its report section 9, which the gate-2 contract leaves unconstrained and requires named when relied on.
+- Rules given to the reviewer: as Review 1.
 
 ## Repair record
 
@@ -339,6 +374,10 @@ $ git rev-parse 8d4fa4188c8fecc552448e1fff152e133abb3229^{tree}
 - Deviations: REPAIR 1 changed NOT ONE `bin/` BYTE, and no `schema/` or `fixtures/` byte. The repair scope ruled by the operator is the record alone. The negative-criteria instrument was RE-RUN, never edited; its hash is unchanged and is cited above. No Project field was written, no label touched, nothing pushed.
 - Deviations: F-04 is RECORDED, NOT REPAIRED, by operator ruling: it is follow-up-Slice material and no code changes in this Slice. The finding: a dependency answer that is a JSON OBJECT on a source whose expected kind is a list, returned with exit 0, is read as healthy and can reach `startable`, because `classify`'s kind guard rejects only a non-dict payload while `LIVE_EXPECTED_KIND` expects a list, and `build_items` then treats the source as read. The Acceptance's actual criterion B-2 - a bulk issue LIST offered as a dependency answer - is correctly fail-closed and is what LB-2 tests. Two statements in this Slice are overstated by it and travel to that Slice with the fix: the `_normalise` comment saying a wrong-kind body `fails the source closed`, and the frozen plan's `rejected as the wrong surface rather than parsed`. Both are true of the list case and false of the dict-on-list-source case.
 - Deviations: F-05 is RECORDED, NOT REPAIRED, by the same ruling. LB-3's `undecidable` leg is inert in the frozen harness because every Slice row is already undecidable before the mutation, so the condition does not isolate the property it names. Its `workflow == UNKNOWN` leg does discriminate and does pass. No in-Slice strengthening was made; strengthening a test after its gate's review would ship un-reviewed behaviour.
+- Deviations: the three review reports are cited BY SHA256 PIN AND BYTE SIZE, and they are NOT committed to this tree. They live on the ignored `_handoff/` lane, which `git check-ignore` confirms and which `git status --untracked-files=all` therefore does not show; the reviewer disclosed writing them there. The pin identifies each report exactly and is checkable by anyone holding it, and this record makes NO claim that the repository carries them. Stated rather than left for a later reader to discover that a citation resolves to nothing in the tree.
+- Deviations: each review block names the head the reviewer examined AS A PINNED SHA - 44906edc... for Review 1, 8d4fa418... for Review 2, 73e489f1... for Review 3 - and never as HEAD. Recording a review necessarily creates a commit after it, so a row naming HEAD here would be false the moment it was written. This is ADR-0028 decision 2 applied to the review record, the same treatment the repairs established for E4 and V7.
+- Deviations: the reviewer recorded four findings at the final re-check, NONE of them a failure of any review item, and none is changed by this record. H-01 is a conflict between two committed authorities over where an in-sequence consult is recorded - the gate-run schemas against templates/consult.md - and is queued for its own ADR; this record follows the schema and the friction entry by carrying `consult_ref` on the repair attempt. H-02, H-03 and H-04 are minor or informational and are recorded here as received. Nothing about them was for this gate to resolve.
+- Deviations: g2/claim-recheck.py was EXTENDED IN PLACE at the exit completion, from 14 claims to 20, which the exit relay sanctions explicitly. Both of its captures were therefore RE-RUN against the extended bytes, so no capture in this record cites a version of the instrument that no longer exists - the hazard a closed gate's pinned instrument would otherwise carry. All 20 claims measure TRUE, and the six added at this edit were falsified individually before being trusted.
 - Environment: Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; shell Git Bash MINGW64 with Git for Windows 2.51.0.windows.1 whose system configuration carries core.autocrlf=true; every gh call pins GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid and uses endpoints with no leading slash; every Python invocation carries -B with PYTHONDONTWRITEBYTECODE=1, set inside the wsl command for the WSL half; Windows interpreter C:/Python312/python.exe with CPython 3.12.2, PyYAML 6.0.2, jsonschema 4.23.0; WSL /usr/bin/python3 with CPython 3.12.3. The selftest writes its seeds to a temporary directory OUTSIDE every repository (tempfile.mkdtemp), which gate-2-contract permits explicitly and which this row names. environment=mixed-see-prose: the tool runs on the Windows host and the WSL half is evidence.
 
 ## gatebraid-metadata
@@ -416,11 +455,11 @@ checks:
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-closed-set-sweep.json"
   - name: repair2-claim-recheck
-    command: "g2/claim-recheck.py (every prose claim this repair touches or creates, re-measured)"
+    command: "g2/claim-recheck.py (every prose claim repair 2 and the exit completion touch or create, 20 in all, re-measured)"
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-R2-claim-recheck.json"
   - name: repair2-claim-recheck-falsified
-    command: "g2/claim-recheck.py against a record seeded with four independent defects; it must fire on each"
+    command: "g2/claim-recheck.py against a record seeded with independent defects across both claim families; it must fire on each"
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-R2-claim-recheck-falsify.json"
   - name: gate2-record-machine-validated
@@ -428,8 +467,8 @@ checks:
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-record-validation.json"
   - name: review-five-items
-    command: "R1-R5, by an independent read-only reviewer; NOT run by the implementing session"
-    result: not_run
+    command: "R1-R5, by an independent read-only reviewer across three reviews; NOT run by the implementing session"
+    result: pass
     output_ref: "#review-record"
 handoff_fingerprint:
   active_branch_head: "5386ce382bac5b4bc1c76a38bcbe86717adf9c1c"
