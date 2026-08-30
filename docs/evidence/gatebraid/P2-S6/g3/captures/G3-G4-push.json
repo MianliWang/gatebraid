@@ -1,0 +1,64 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-G4-push",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "push",
+      "-u",
+      "origin",
+      "slice/P2-S6"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 59,
+      "sha256": "1d6d09bddb9fbdc05ea6c6aa21943440c30a44060f77592fd1837a8cccf1d5bf",
+      "data": "YnJhbmNoICdzbGljZS9QMi1TNicgc2V0IHVwIHRvIHRyYWNrICdvcmlnaW4vc2xpY2UvUDItUzYnLgo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "branch 'slice/P2-S6' set up to track 'origin/slice/P2-S6'.\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 22,
+      "sha256": "47e930bfa8547af0e275fdc8f30ee4b5eded740e9615307434258197298b0ea5",
+      "data": "RXZlcnl0aGluZyB1cC10by1kYXRlCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "Everything up-to-date\n"
+      }
+    }
+  },
+  "started_at": "2026-08-30T14:23:11.127270Z",
+  "ended_at": "2026-08-30T14:23:12.339645Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
