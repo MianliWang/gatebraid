@@ -1,0 +1,39 @@
+{
+ "consumer": {
+  "name": "gatebraid-frontier",
+  "version": "1.0.0"
+ },
+ "degraded_sources": [
+  {
+   "complete": false,
+   "source_id": "issue_states",
+   "status": "unexpected_endpoint"
+  },
+  {
+   "complete": false,
+   "source_id": "dep_blocked_by",
+   "status": "unexpected_endpoint"
+  },
+  {
+   "complete": false,
+   "source_id": "dep_blocking",
+   "status": "unexpected_endpoint"
+  }
+ ],
+ "excluded": [],
+ "report": "gatebraid/frontier-report@1",
+ "snapshot": {
+  "generated_at": "2026-08-29T07:34:37Z",
+  "schema_sha256": "95ecf38e927a18e58cace007607caa016d188893c2d92ea3ea748c46453419d6",
+  "snapshot_version": 1,
+  "validated_against": "D:\\Github repo\\Gatebraid\\schema\\snapshot.schema.json"
+ },
+ "snapshot_degraded": true,
+ "summary": {
+  "blocked": 0,
+  "excluded": 0,
+  "startable": 0,
+  "undecidable": 0
+ },
+ "verdicts": []
+}

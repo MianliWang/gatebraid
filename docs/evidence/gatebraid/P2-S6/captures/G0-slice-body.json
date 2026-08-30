@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-slice-body",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "issue",
+      "view",
+      "19",
+      "--repo",
+      "MianliWang/gatebraid",
+      "--json",
+      "body",
+      "--jq",
+      ".body"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 5067,
+      "sha256": "7c197a106a1e180c88dbb50f7a90b733aa33047fbf7da35e50bafea4753dec27",
+      "data": "IyBQMi1TNiDigJQgc25hcHNob3QgbGl2ZS10cmFuc3BvcnQgcmVwYWlyOiBwZXItc291cmNlIGVuZHBvaW50cywgbGl2ZS1zaGFwZSBwYXJzaW5nLCBmYWlsLWNsb3NlZCBwcmVzZXJ2ZWQKCiMjIEdvYWwKClJlcGFpciB0aGUgbGl2ZSBoYWxmIG9mIGBiaW4vZ2F0ZWJyYWlkLXNuYXBzaG90LnB5YCDigJQgdGhlIHR3byBkZWZlY3RzCnRoZSBQMi1TNSBHYXRlIDAgc3RvcCBkaWFnbm9zZWQgYnl0ZS1leGFjdGx5IGFnYWluc3QgdGhlIHNvdXJjZSB0aGF0CnJhbjogKipELUEqKiwgdGhlIGxpdmUgdHJhbnNwb3J0IHNlcnZlcyBgaXNzdWVfc3RhdGVzYCwKYGRlcF9ibG9ja2VkX2J5YCBhbmQgYGRlcF9ibG9ja2luZ2AgZnJvbSBvbmUgYnVsayBlbmRwb2ludCB3aG9zZQpyZXNwb25zZSBzaGFwZSBjYW4gbmV2ZXIgc2F0aXNmeSB0aGUgY2xhc3NpZmllciwgd2l0aCBgcGFnZV9pbmRleGAKc3RydWN0dXJhbGx5IHVudXNlZDsgKipELUIqKiwgdGhlIHBhZ2UgcGFyc2VyIHJlYWRzIHRoZQpyZXBsYXktdHJhbnNjcmlwdCBrZXkgc2hhcGUgYW5kIHNpbGVudGx5IGV4dHJhY3RzIHplcm8gcm93cyBmcm9tIGxpdmUKcGFnZXMuIEFmdGVyIHRoaXMgU2xpY2UgdGhlIHBhaXIgcmVhZHMgdGhlIHJlYWwgY29udHJvbCBwbGFuZSwgYW5kCmBQMi1TNWAncyBHYXRlIDAgY2FuIHJlLXJ1biBvbiB0aGUgb3BlcmF0b3IncyB3b3JkLiBUaGUgZmFpbC1jbG9zZWQKZGlyZWN0aW9uIGlzIHByZXNlcnZlZCBldmVyeXdoZXJlOiBhbiBvdXRjb21lIG5vYm9keSBhbnRpY2lwYXRlZApkZWdyYWRlcyB0aGUgc25hcHNob3QsIG5ldmVyIHBhc3NlcyB0aHJvdWdoIGl0LiBTY29wZSBpcyB0aGUgc25hcHNob3QKcGFpciBhbG9uZSDigJQgYGJpbi9nYXRlYnJhaWQtc25hcHNob3QucHlgIGFuZApgYmluL2dhdGVicmFpZC1zbmFwc2hvdC1zZWxmdGVzdC5weWA7IG9uZSBTbGljZSwgb25lIHRvb2wuCgojIyBDb250ZXh0CgotIFdoeSBub3c6IGBQMi1TNWAgKGAjMTdgKSBpcyBwYXJrZWQgb24gaXRzIEdhdGUgMCBzdG9wIOKAlCB0aGUKICBzdGFydGFiaWxpdHkgYXV0aG9yaXR5IGNhbm5vdCByZWFkIHRoZSBsaXZlIGNvbnRyb2wgcGxhbmUuIEJhdGNoCiAgTzEtQjEgKGFwcHJvdmFsIGA1NDQ4NTU2Mzk5YCwgUFIgYCMxOGAsIG1lcmdlZCBieSB0aGUgb3BlcmF0b3IpCiAgZnJvemUgdGhlIGdyb3VuZCB0aGlzIHJlcGFpciBidWlsZHMgb246IHRoZSBmb3VyCiAgYGdhdGVicmFpZC9saXZlLSpAMWAgc2NoZW1hcywgdGhlIGBsaXZlLXNoYXBlc2AgY29ycHVzIGF0IGRpZ2VzdAogIGA3M2M1ZTA1OeKApmAgKHNldmVuIGxpdmUgdHJhbnNjcmlwdHMgYXMgcHJvdmVuYW5jZSwgc2V2ZW4gdmFsaWQKICBjYXNlcywgZm91ciBtdXRhdGlvbnMpLCBhbmQgQURSLTAwMzMuCi0gU3RhcnRhYmlsaXR5IGZvciBUSElTIFNsaWNlIHRyYXZlbHMgdGhlIG9wZXJhdG9yJ3MgcnVsZWQgZXhjZXB0aW9uCiAgKEQtMiwgMjAyNi0wOC0yNyk6IGl0cyBHYXRlIDAgcnVucyB0aGUgYnJva2VuIHBhaXIsIGFuZCB0aGUKICByZXByb2R1Y2VkIGRldGVybWluaXN0aWMgZmFpbHVyZSDigJQgbm90IGEgYHN0YXJ0YWJsZWAgdmVyZGljdCDigJQgaXMKICB0aGUgc3RhcnRhYmlsaXR5IGV2aWRlbmNlLCBmb3IgdGhpcyBTbGljZSBvbmx5LCBydWxlZCBleHBsaWNpdGx5IGluCiAgaXRzIEdhdGUgMCBvcGVuaW5nIGNvbW1lbnQuIFRoZSBwYWNrZXQgbWVjaGFuaXNtIHJlbWFpbnMgZGVhZC4KLSBUaGUgYmVoYXZpb3VyYWwgYWNjZXB0YW5jZSBjcml0ZXJpYSBiZWxvdyBhcmUgU0VFRC1TUEVDLU8xQjEtdjIKICDCpzQncyBCLTEuLkItNCwgY2FycmllZCBoZXJlIHZlcmJhdGltIHVuZGVyIHRoZSBPMS1CMSBCYXRjaAogIEFwcHJvdmFsJ3MgY2xhdXNlIHRoYXQgdGhleSBjYW5ub3Qgc2lsZW50bHkgZHJvcC4KLSBSZWxhdGVkOiBQaGFzZSBQMiBgIzdgIMK3IFAyLVM1IGAjMTdgIMK3IFAyLVM0IGAjMTRgIMK3IFBSIGAjMThgIMK3CiAgQURSLTAwMzMgwrcgTTMtUExBTiDCpzIgTzAgKFAwLTHigKZQMC00KSBhbmQgTzEgwrcgU0VFRC1TUEVDLU8xQjEtdjIuCgojIyBBY2NlcHRhbmNlCgotIFsgXSBFdmVyeSBPMS1CMSB0cmFuc2NyaXB0IHBhcnNlcyB0byB0aGUgdHJ1ZSBpdGVtIHNldDogTFMtMDEuLjA3J3MKICAgICAgYm9kaWVzIHlpZWxkIHRoZWlyIG1lYXN1cmVkIGVudmVsb3BlcyBhbmQgY291bnRzICgxNS8xNSBpdGVtcwogICAgICB3aXRoIHBlci1pdGVtIG9wdGlvbmFsIGtleXMgcmVhZCBieXRlLWV4YWN0bHksIHNwYWNlLWJlYXJpbmcKICAgICAgbmFtZXMgaW5jbHVkZWQ7IHBlci1pc3N1ZSBvYmplY3RzOyBkZXBlbmRlbmN5IGVkZ2Ugc2V0cwogICAgICBgWzgsIDEwLCAxMiwgMTRdYCAvIGBbXWAgLyBgWzE3XWApLgotIFsgXSAqKkItMToqKiBhbiBpdGVtLWxpc3QgcmVhZCB3aGVyZSBgbGVuKGl0ZW1zKSA8IHRvdGFsQ291bnRgCiAgICAgIChzZWVkOiB0aGUgZnJvemVuIEMtNCBib2R5KSB5aWVsZHMgaW5jb21wbGV0ZS9ib3VuZGVkIOKAlAogICAgICBgY29tcGxldGU6IHRydWVgIGlzIHRoZSBzZWVkZWQgd3Jvbmcgb3V0Y29tZS4KLSBbIF0gKipCLTI6KiogYSBidWxrLWxpc3QgYm9keSBvZmZlcmVkIGFzIGEgcGVyLWlzc3VlIGRlcGVuZGVuY3kKICAgICAgYW5zd2VyIChzZWVkOiB0aGUgZnJvemVuIEMtMSBib2R5KSBlbmRzIGB1bmRlY2lkYWJsZWAgdmlhIHRoZQogICAgICB0d28tZGlyZWN0aW9uIGNyb3NzLWNoZWNrIOKAlCBuZXZlciBgc3RhcnRhYmxlYC4KLSBbIF0gKipCLTM6KiogYW4gZWxlbWVudCB3aXRoIGB3b3JrZmxvd2AgYWJzZW50IChzZWVkOiBDLTMncyBmcm96ZW4KICAgICAgNi1rZXkgZWxlbWVudCkgbWFwcyB0byBVTktOT1dOLCBoZW5jZSBgdW5kZWNpZGFibGVgIOKAlCBuZXZlciBhCiAgICAgIEtleUVycm9yLCBuZXZlciBhIGRlZmF1bHQgdG93YXJkIGhlYWx0aHkuCi0gWyBdICoqQi00OioqIHRoZSByZXBhaXJlZCBgaXNzdWVfc3RhdGVzYCBzb3VyY2Ugb2JzZXJ2ZXMgQ0xPU0VECiAgICAgIGlzc3VlczsgQy0xIChvcGVuLW9ubHksIHRoZSBmb3VyIGJsb2NrZXJzIGFic2VudCkgYmVzaWRlIEMtNQogICAgICAodGhlIHNhbWUgYmxvY2tlcnMgcHJlc2VudCBhbmQgY2xvc2VkKSBpcyB0aGUgZnJvemVuIGV2aWRlbmNlCiAgICAgIHRoYXQgZGlzcXVhbGlmaWVzIHRoZSBidWxrIGVuZHBvaW50LgotIFsgXSBFYWNoIG9mIEItMS4uQi00IGlzIHNob3duIGJ5IHNlZWRlZCBydW5zIHdpdGggc3VtbWFyaWVzIGVtaXR0ZWQKICAgICAgYnkgdGhlIGluc3RydW1lbnRzIHRoZW1zZWx2ZXMg4oCUIG5ldmVyIGJ5IG5hcnJhdGlvbi4KLSBbIF0gVGhlIGZvdXIgYGxpdmUtc2hhcGVzYCBtdXRhdGlvbnMgc3RheSBraWxsZWQgYW5kIHRoZSBlbnRpcmUKICAgICAgZnJvemVuIGNvcnB1cyBwYXNzZXMgdW5jaGFuZ2VkOyB0aGUgZnJvemVuIGRpZ2VzdCBgNzNjNWUwNTnigKZgCiAgICAgIGlzIHVubW92ZWQgYnkgdGhpcyBTbGljZSAoc2hvd24gYnkgbWVhc3VyZW1lbnQpLgotIFsgXSBgYmluL2dhdGVicmFpZC1zbmFwc2hvdC1zZWxmdGVzdC5weWAgaXMgZXh0ZW5kZWQgdG8gZXhlcmNpc2UKICAgICAgdGhlIGxpdmUgc2hhcGVzIHZpYSB0aGUgTzEtQjEgdHJhbnNjcmlwdHMsIGNoZWNrZXIgZmFsc2lmaWVkCiAgICAgIGJlZm9yZSB0cnVzdDsgdGhlIGxpdmUgdHJhbnNwb3J0J3MgYXJndiBjb25zdHJ1Y3Rpb24gYW5kCiAgICAgIGNsYXNzaWZpY2F0aW9uIGFyZSBjb3ZlcmVkIGJ5IGRlY2xhcmVkIGNvbW1hbmRzIOKAlCB0aGUgRi0wNCBkZWJ0CiAgICAgIHBhaWQgYXQgdGhlIGxldmVsIHRoZSBmcm96ZW4gYm9kaWVzIGFsbG93LgotIFsgXSBBIGNhcHR1cmVkIGxpdmUgc21va2UgcmVhZCBhZ2FpbnN0IHRoZSByZWFsIGNvbnRyb2wgcGxhbmUKICAgICAgcmV0dXJucyBhIGhlYWx0aHkgc25hcHNob3Qg4oCUIGV2ZXJ5IHNvdXJjZSBgb2tgIGFuZCBjb21wbGV0ZSDigJQKICAgICAgd2hvc2UgYGl0ZW1zYCBpbmNsdWRlIGBQMi1TNWAsIGFuZCB0aGUgZnJvbnRpZXIgY29uc3VtZXMgaXQKICAgICAgd2l0aCBleGl0IDA7IGNhcHR1cmVkIHdpdGggYGJpbi9nYXRlYnJhaWQtY2FwdHVyZS5weWAsIG5vdAogICAgICBuYXJyYXRlZC4KCiMjIE5vbi1nb2FscwoKTm8gZWRpdCB0byBhbnkgdG9vbCBidXQgdGhlIHNuYXBzaG90IHBhaXIg4oCUIGBiaW4vZ2F0ZWJyYWlkLWNhcHR1cmUqYCwKYGJpbi9nYXRlYnJhaWQtdmFsaWRhdGUqYCwgYGJpbi9nYXRlYnJhaWQtZnJvbnRpZXIqYCBhbmQKYGJpbi9nYXRlYnJhaWQtbzAtYWNjZXB0YW5jZSpgIGFyZSB1bnRvdWNoZWQgKHRoZSBmcm9udGllcgppZGVudGl0eS1rZXkgY2hhbmdlIGlzIGl0cyBvd24gbGF0ZXIgU2xpY2UgcGVyIEFEUi0wMDMzOyB0aGUgdmFsaWRhdGUKc3RyZWFtLXNjb3BlIHJlcGFpciBsaWtld2lzZSkuIE5vIGBzY2hlbWEvYCBvciBgZml4dHVyZXMvYCB3cml0ZSDigJQKYm90aCBmcm96ZW4sIGNvbnN1bWVkIG9ubHkuIE5vIGBnYXRlLXJ1bkAyYCByZXZpc2lvbi4gTm8gZWRpdCB0byBhbnkKbWVyZ2VkIGhpc3RvcmljYWwgcmVjb3JkLiBObyBlZGl0IHRvIGBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS8qKmAK4oCUIHRoZSByZXRhaW5lZCBmYWlsdXJlIGlzIGV2aWRlbmNlLiBObyBjbG9zdXJlIG9mLCBvciBnYXRlIGFjdGlvbiBvbiwKYCMxN2AuCgojIyBHYXRlIGV2aWRlbmNlCgo8IS0tIEZpbGxlZCBhcyBnYXRlcyBjb21wbGV0ZTogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvIC0tPgoKIyMgZ2F0ZWJyYWlkLW1ldGFkYXRhCgpgYGB5YW1sCnNjaGVtYTogZ2F0ZWJyYWlkL3NsaWNlQDEKc2xpY2VfaWQ6IFAyLVM2CnN0YWdlOiBTMgpwaGFzZTogUDIKd29ya2Zsb3dfcHJvZmlsZTogY2xhc3NpYwplbnZpcm9ubWVudDogbWl4ZWQtc2VlLXByb3NlCnJpc2s6IGxvdwpkZXBlbmRzX29uOiBbXQp3cml0ZV9kb21haW5zOgogIC0gYmluLwogIC0gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvCnJlc291cmNlX2xvY2tzOiBbXQpyZXBhaXJfbGltaXQ6IDIKY29uc3VsdF9maXJzdDogZmFsc2UKcGFyYWxsZWxfbW9kZTogc2FmZS1zaW5nbGUtd3JpdGVyCmBgYAoK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "# P2-S6 — snapshot live-transport repair: per-source endpoints, live-shape parsing, fail-closed preserved\n\n## Goal\n\nRepair the live half of `bin/gatebraid-snapshot.py` — the two defects\nthe P2-S5 Gate 0 stop diagnosed byte-exactly against the source that\nran: **D-A**, the live transport serves `issue_states`,\n`dep_blocked_by` and `dep_blocking` from one bulk endpoint whose\nresponse shape can never satisfy the classifier, with `page_index`\nstructurally unused; **D-B**, the page parser reads the\nreplay-transcript key shape and silently extracts zero rows from live\npages. After this Slice the pair reads the real control plane, and\n`P2-S5`'s Gate 0 can re-run on the operator's word. The fail-closed\ndirection is preserved everywhere: an outcome nobody anticipated\ndegrades the snapshot, never passes through it. Scope is the snapshot\npair alone — `bin/gatebraid-snapshot.py` and\n`bin/gatebraid-snapshot-selftest.py`; one Slice, one tool.\n\n## Context\n\n- Why now: `P2-S5` (`#17`) is parked on its Gate 0 stop — the\n  startability authority cannot read the live control plane. Batch\n  O1-B1 (approval `5448556399`, PR `#18`, merged by the operator)\n  froze the ground this repair builds on: the four\n  `gatebraid/live-*@1` schemas, the `live-shapes` corpus at digest\n  `73c5e059…` (seven live transcripts as provenance, seven valid\n  cases, four mutations), and ADR-0033.\n- Startability for THIS Slice travels the operator's ruled exception\n  (D-2, 2026-08-27): its Gate 0 runs the broken pair, and the\n  reproduced deterministic failure — not a `startable` verdict — is\n  the startability evidence, for this Slice only, ruled explicitly in\n  its Gate 0 opening comment. The packet mechanism remains dead.\n- The behavioural acceptance criteria below are SEED-SPEC-O1B1-v2\n  §4's B-1..B-4, carried here verbatim under the O1-B1 Batch\n  Approval's clause that they cannot silently drop.\n- Related: Phase P2 `#7` · P2-S5 `#17` · P2-S4 `#14` · PR `#18` ·\n  ADR-0033 · M3-PLAN §2 O0 (P0-1…P0-4) and O1 · SEED-SPEC-O1B1-v2.\n\n## Acceptance\n\n- [ ] Every O1-B1 transcript parses to the true item set: LS-01..07's\n      bodies yield their measured envelopes and counts (15/15 items\n      with per-item optional keys read byte-exactly, space-bearing\n      names included; per-issue objects; dependency edge sets\n      `[8, 10, 12, 14]` / `[]` / `[17]`).\n- [ ] **B-1:** an item-list read where `len(items) < totalCount`\n      (seed: the frozen C-4 body) yields incomplete/bounded —\n      `complete: true` is the seeded wrong outcome.\n- [ ] **B-2:** a bulk-list body offered as a per-issue dependency\n      answer (seed: the frozen C-1 body) ends `undecidable` via the\n      two-direction cross-check — never `startable`.\n- [ ] **B-3:** an element with `workflow` absent (seed: C-3's frozen\n      6-key element) maps to UNKNOWN, hence `undecidable` — never a\n      KeyError, never a default toward healthy.\n- [ ] **B-4:** the repaired `issue_states` source observes CLOSED\n      issues; C-1 (open-only, the four blockers absent) beside C-5\n      (the same blockers present and closed) is the frozen evidence\n      that disqualifies the bulk endpoint.\n- [ ] Each of B-1..B-4 is shown by seeded runs with summaries emitted\n      by the instruments themselves — never by narration.\n- [ ] The four `live-shapes` mutations stay killed and the entire\n      frozen corpus passes unchanged; the frozen digest `73c5e059…`\n      is unmoved by this Slice (shown by measurement).\n- [ ] `bin/gatebraid-snapshot-selftest.py` is extended to exercise\n      the live shapes via the O1-B1 transcripts, checker falsified\n      before trust; the live transport's argv construction and\n      classification are covered by declared commands — the F-04 debt\n      paid at the level the frozen bodies allow.\n- [ ] A captured live smoke read against the real control plane\n      returns a healthy snapshot — every source `ok` and complete —\n      whose `items` include `P2-S5`, and the frontier consumes it\n      with exit 0; captured with `bin/gatebraid-capture.py`, not\n      narrated.\n\n## Non-goals\n\nNo edit to any tool but the snapshot pair — `bin/gatebraid-capture*`,\n`bin/gatebraid-validate*`, `bin/gatebraid-frontier*` and\n`bin/gatebraid-o0-acceptance*` are untouched (the frontier\nidentity-key change is its own later Slice per ADR-0033; the validate\nstream-scope repair likewise). No `schema/` or `fixtures/` write —\nboth frozen, consumed only. No `gate-run@2` revision. No edit to any\nmerged historical record. No edit to `docs/evidence/gatebraid/P2-S5/**`\n— the retained failure is evidence. No closure of, or gate action on,\n`#17`.\n\n## Gate evidence\n\n<!-- Filled as gates complete: docs/evidence/gatebraid/P2-S6/ -->\n\n## gatebraid-metadata\n\n```yaml\nschema: gatebraid/slice@1\nslice_id: P2-S6\nstage: S2\nphase: P2\nworkflow_profile: classic\nenvironment: mixed-see-prose\nrisk: low\ndepends_on: []\nwrite_domains:\n  - bin/\n  - docs/evidence/gatebraid/P2-S6/\nresource_locks: []\nrepair_limit: 2\nconsult_first: false\nparallel_mode: safe-single-writer\n```\n\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-29T07:34:11.868719Z",
+  "ended_at": "2026-08-29T07:34:12.384196Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

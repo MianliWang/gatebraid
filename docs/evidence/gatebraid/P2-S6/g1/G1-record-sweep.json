@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-record-sweep",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S6/g1/checks-g1-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S6/gate1.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 832,
+      "sha256": "6880e1849ee043b51f76efebedeaaa203d60cf13c9f0c27fecb230109473a04b",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTUgZmlsZXN5c3RlbSBvciBVUkwgcGF0aCBzZWdtZW50ICAgICAgICAgICAgICAgICAgICAgICAgICAxNDANCiAgRTYgc2NoZW1hLWlkIG5hbWVzcGFjZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxDQogIEU3IEpTT04gcG9pbnRlciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNw0KICBFOCBwcm9zZSBzbGFzaCBiZXR3ZWVuIG9yZGluYXJ5IHdvcmRzIChuYW1lZCwgbm90IG1hdGNoZWQpIDENCiAgSTEgdGhlIHN1YmplY3QgaXNzdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxDQogIEkzIG1lbnRpb24tY2xhc3MgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMg0KDQo9PT0gZXZlcnkgUkVQT1NJVE9SWSBpZGVudGl0eSBuYW1lZCBhbnl3aGVyZSA9PT0NCg0KPT09IG1lbnRpb24tY2xhc3MgY2hlY2s6IGEgbWVudGlvbiBtdXN0IG5ldmVyIGFwcGVhciBpbiBhbiBJTlZPQ0FUSU9OID09PQ0KICAjMTcgICAgIHNlZW4gaW4gcmF3ICAgICAgICAgICAgICAgICAgICAgICAgICB0YXJnZXRlZCBieSBhIHF1ZXJ5OiBGYWxzZQ0KICBtZW50aW9uLWNsYXNzIGlzc3VlcyB0YXJnZXRlZCBieSBhIHF1ZXJ5OiAwICgwIHJlcXVpcmVkKQ0KDQpkb21haW4gICAgICA6IDEgZG9jdW1lbnRzICgwIG9mIHRoaXMgc3dlZXAncyBvd24gcmVwb3J0cyBleGNsdWRlZCkNClVORVhQTEFJTkVEIFJFU0lEVUU6IDANCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E5 filesystem or URL path segment                          140\r\n  E6 schema-id namespace                                     1\r\n  E7 JSON pointer                                            7\r\n  E8 prose slash between ordinary words (named, not matched) 1\r\n  I1 the subject issue                                       1\r\n  I3 mention-class                                           2\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  #17     seen in raw                          targeted by a query: False\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 0\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-29T08:40:42.184476Z",
+  "ended_at": "2026-08-29T08:40:42.300721Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g1/checks-g1-closed-set-sweep.py",
+      "sha256": "7796bc3ce1f56ba22541ab8f1aa85c2622c189f5d586a678e1169ab9cd619d9b"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/gate1.md",
+      "sha256": "47b5bc56c350d71829909aec881f51e5e215dad9dcf59c2ff1e4128ca38fc6b3"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

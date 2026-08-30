@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D7-negative",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S6/g1/negative-criteria.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 673,
+      "sha256": "c6e19e70a11bbde2b1f46e7927e2b98e7f21b6ccbd2467f7756f5ebb018e2a62",
+      "data": "Y2hhbmdlZC1wYXRoIHNvdXJjZSA6IGdpdA0KYmFzZSAgICAgICAgICAgICAgICA6IDNkNDdmOGJlMGI5Yzk5OWJmODBlMzU2ZjJiMWMxY2Y4OGUyZTVkZDgNCmNoYW5nZWQgcGF0aHMgICAgICAgOiAyDQogICBiaW4vZ2F0ZWJyYWlkLXNuYXBzaG90LXNlbGZ0ZXN0LnB5DQogICBiaW4vZ2F0ZWJyYWlkLXNuYXBzaG90LnB5DQphbGxvd2xpc3QgICAgICAgICAgIDogYmluLywgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvDQpjb2RlIHN1cmZhY2UgICAgICAgIDogYmluL2dhdGVicmFpZC1zbmFwc2hvdC5weSwgYmluL2dhdGVicmFpZC1zbmFwc2hvdC1zZWxmdGVzdC5weQ0KDQpOMSBldmVyeSBjaGFuZ2VkIHBhdGggaW5zaWRlIHRoZSBhbGxvd2xpc3QgICAgICAgIDogaG9sZHMNCk4yIHVuZGVyIGJpbi8sIG9ubHkgdGhlIHNuYXBzaG90IHBhaXIgaXMgdG91Y2hlZCAgOiBob2xkcw0KTjMgbm8gZnJvemVuIGlucHV0IGlzIHdyaXR0ZW4gICAgICAgICAgICAgICAgICAgICA6IGhvbGRzDQpONCBubyBydW50aW1lIGRlcGVuZGVuY3ksIG5vIEhUVFAgY2xpZW50ICAgICAgICAgIDogaG9sZHMNCk41IGBva2AgYW5kIGBjb21wbGV0ZTogVHJ1ZWAgZWFjaCBzZXQgaW4gb25lIHBsYWNlOiBob2xkcw0KDQpORUdBVElWRSBDUklURVJJQSBIT0xEOiBOMSwgTjIsIE4zLCBONCwgTjUNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "changed-path source : git\r\nbase                : 3d47f8be0b9c999bf80e356f2b1c1cf88e2e5dd8\r\nchanged paths       : 2\r\n   bin/gatebraid-snapshot-selftest.py\r\n   bin/gatebraid-snapshot.py\r\nallowlist           : bin/, docs/evidence/gatebraid/P2-S6/\r\ncode surface        : bin/gatebraid-snapshot.py, bin/gatebraid-snapshot-selftest.py\r\n\r\nN1 every changed path inside the allowlist        : holds\r\nN2 under bin/, only the snapshot pair is touched  : holds\r\nN3 no frozen input is written                     : holds\r\nN4 no runtime dependency, no HTTP client          : holds\r\nN5 `ok` and `complete: True` each set in one place: holds\r\n\r\nNEGATIVE CRITERIA HOLD: N1, N2, N3, N4, N5\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-30T03:09:29.594748Z",
+  "ended_at": "2026-08-30T03:09:29.786192Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g1/negative-criteria.py",
+      "sha256": "72a4fc5bd8b14c9873f0c75e04f1413019f78c604e79c8bc89be57ef04fe97a9"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

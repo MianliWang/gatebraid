@@ -1,0 +1,80 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-live-smoke-frontier",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-frontier.py",
+      "docs/evidence/gatebraid/P2-S6/g2/captures/g2-snapshot.json",
+      "--out",
+      "docs/evidence/gatebraid/P2-S6/g2/captures/g2-frontier-report.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 434,
+      "sha256": "d81948b514c6beddb7020f228cda0b33063d533ffffdbe7ccae90e7804f6d6fc",
+      "data": "Y29uc3VtZXIgICAgICAgICAgICAgICAgICAgICAgOiBnYXRlYnJhaWQtZnJvbnRpZXIgMS4wLjANCnZhbGlkYXRlZCBhZ2FpbnN0ICAgICAgICAgICAgIDogRDpcR2l0aHViIHJlcG9cR2F0ZWJyYWlkXHNjaGVtYVxzbmFwc2hvdC5zY2hlbWEuanNvbiBzaGEyNTY9OTVlY2YzOGU5MjdhMThlNThjYWNlMDA3NjA3Y2FhMDE2ZDE4ODg5M2MyZDkyZWEzZWE3NDhjNDY0NTM0MTlkNg0KaXRlbXMgZXhjbHVkZWQgKG5vIHZlcmRpY3QpICAgOiA0DQpzdGFydGFibGUgICAgICAgICAgICAgICAgICAgICA6IDgNCmJsb2NrZWQgICAgICAgICAgICAgICAgICAgICAgIDogNA0KdW5kZWNpZGFibGUgICAgICAgICAgICAgICAgICAgOiAwDQpGUk9OVElFUiBPSzogdGhlIHNuYXBzaG90IHZhbGlkYXRlZCBhbmQgZXZlcnkgdmVyZGljdCB3YXMgcmUtZGVyaXZlZCBmcm9tIGl0DQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "consumer                      : gatebraid-frontier 1.0.0\r\nvalidated against             : D:\\Github repo\\Gatebraid\\schema\\snapshot.schema.json sha256=95ecf38e927a18e58cace007607caa016d188893c2d92ea3ea748c46453419d6\r\nitems excluded (no verdict)   : 4\r\nstartable                     : 8\r\nblocked                       : 4\r\nundecidable                   : 0\r\nFRONTIER OK: the snapshot validated and every verdict was re-derived from it\r\n"
+      }
+    }
+  },
+  "started_at": "2026-08-30T03:09:14.386507Z",
+  "ended_at": "2026-08-30T03:09:14.702873Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-frontier.py",
+      "sha256": "283075b86b9ef6ecedd6d0efb8f3f26960c7cc1b4a5466299d7c59d44ff786de"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g2/captures/g2-snapshot.json",
+      "sha256": "7a520572ee6e146da988f8e13f910b06dfca170c699026c9c2c3e2253cf6b3c0"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g2/captures/g2-frontier-report.json",
+      "sha256": "a31cc13554d5ec9606dcb99b14e1a5f52c8e365418e98a71241a06fef3783c20",
+      "byte_length": 5089
+    }
+  ],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
