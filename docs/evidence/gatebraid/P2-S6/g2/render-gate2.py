@@ -150,6 +150,20 @@ DISCLOSURES = [
     "Deviations: no repair sequence ran. Every declared command was green on its first run at this gate, so "
     "`repair_attempts` is empty and `repair_limit` is unspent. No Codex consult was needed or made.",
 
+    "Deviations: THE NOMINATED DETERMINISTIC SUBSET of this record, stated explicitly because ADR-0028 decision 2 admits exactly two lawful treatments for a mutable reference - pin it, or exclude it and SAY SO. IN the subset, and reproducing byte-identically: E1, E2, E3, E4's first command, E4b, V1 through V6, V7 (pinned at repair 1), V7b read as a record of its own instant, V8, V9, and the novelty row of repair 1. OUTSIDE the subset, by the exclusion limb: E4's second command, `git rev-parse HEAD`, and the committed capture G2-fp-head.json that carries the same command. Its recorded value 5386ce382bac5b4bc1c76a38bcbe86717adf9c1c was the branch head at the implementation-complete commit and is true of that instant; it now returns the record-only commit that followed. It has NO truthful pinned form - rewriting it as `git rev-parse 5386ce38...` would echo its own argument and establish nothing - so exclusion is the treatment, exactly as P2-S4's merged record reasoned. What the row carries is PROVENANCE, how this writer arrived at that commit, not specification; everything the fingerprint must SPECIFY is carried by rows that do reproduce: E4b names the commit as a SHA, V9 derives its tree and its changed-path set from pinned arguments.",
+
+    "Deviations: REPAIR 1, F-02 - what was pinned, and the one line that changed. Row V7 recorded the negative-criteria instrument run with an unpinned base, so its changed-path set was read against the WORKING TREE and moved when this Slice's 92 record-only files were committed: 673 bytes and 2 changed paths recorded, 6,622 bytes and 94 live. The row is now the same instrument - byte-identical, sha256 72a4fc5bd8b14c9873f0c75e04f1413019f78c604e79c8bc89be57ef04fe97a9 across every run at both gates, NOT edited - invoked with --base <base>..<fingerprint-commit>. The pinned stdout is 715 bytes against the unpinned 673, and the difference is EXACTLY 42 bytes on one line: the two dots and the forty hex characters of the pinned end-point, echoed by the command as its own argument. Every other line is identical, including all five verdicts and both changed paths, and two consecutive pinned runs are byte-identical to each other. The unpinned run is RETAINED beside it as V7b rather than deleted: it is a true record of its own instant, and removing it would hide the defect this repair fixes.",
+
+    "Deviations: REPAIR 1, F-03 - the Repair record's form. It carried two sentences of prose in none of ADR-0026's content classes. It is now a `### Repair 1` block of the template's shape, carrying this attempt. The fact those sentences asserted - that no repair had been attempted - was true when written and is superseded by this attempt rather than deleted as wrong.",
+
+    "Deviations: REPAIR 1, the ADR-0027 novelty measurement and the one boundary it has. The tree at the previous failed state is 4f2a6130bd2dd93f63380ffa220dd09c43ee153f, measured by a command PINNED to commit 44906edc4d49cc090673a2220d3b66246b187bca so the row reproduces. This repair's own tree cannot appear inside the file the repair commits - a record cannot contain the hash of the commit that contains it - so it is measured after the commit and carried in _handoff/batch-p2s6/G2-REPAIR1-REPORT-M3-P2S6.md. The trees necessarily differ, because this file's own bytes changed; an unchanged tree would not be a repair, and the report is where that comparison is shown rather than asserted here.",
+
+    "Deviations: REPAIR 1 changed NOT ONE `bin/` BYTE, and no `schema/` or `fixtures/` byte. The repair scope ruled by the operator is the record alone. The negative-criteria instrument was RE-RUN, never edited; its hash is unchanged and is cited above. No Project field was written, no label touched, nothing pushed.",
+
+    "Deviations: F-04 is RECORDED, NOT REPAIRED, by operator ruling: it is follow-up-Slice material and no code changes in this Slice. The finding: a dependency answer that is a JSON OBJECT on a source whose expected kind is a list, returned with exit 0, is read as healthy and can reach `startable`, because `classify`'s kind guard rejects only a non-dict payload while `LIVE_EXPECTED_KIND` expects a list, and `build_items` then treats the source as read. The Acceptance's actual criterion B-2 - a bulk issue LIST offered as a dependency answer - is correctly fail-closed and is what LB-2 tests. Two statements in this Slice are overstated by it and travel to that Slice with the fix: the `_normalise` comment saying a wrong-kind body `fails the source closed`, and the frozen plan's `rejected as the wrong surface rather than parsed`. Both are true of the list case and false of the dict-on-list-source case.",
+
+    "Deviations: F-05 is RECORDED, NOT REPAIRED, by the same ruling. LB-3's `undecidable` leg is inert in the frozen harness because every Slice row is already undecidable before the mutation, so the condition does not isolate the property it names. Its `workflow == UNKNOWN` leg does discriminate and does pass. No in-Slice strengthening was made; strengthening a test after its gate's review would ship un-reviewed behaviour.",
+
     "Environment: Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; shell Git Bash MINGW64 "
     "with Git for Windows 2.51.0.windows.1 whose system configuration carries core.autocrlf=true; every gh "
     "call pins GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid and uses endpoints with no leading slash; every "
@@ -212,9 +226,9 @@ checks:
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-live-smoke-frontier.json"
   - name: D7-negative-criteria-hold
-    command: "g1/negative-criteria.py (real diff against the frozen base)"
+    command: "g1/negative-criteria.py --base 3d47f8be0b9c999bf80e356f2b1c1cf88e2e5dd8..5386ce382bac5b4bc1c76a38bcbe86717adf9c1c (pinned at repair 1; instrument unmodified)"
     result: pass
-    output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-D7-negative.json"
+    output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-D7-negative-pinned.json"
   - name: D8-negative-criteria-falsified
     command: "g1/negative-criteria.py --changed-from SEED --code-surface-dir g1/falsification (all five must fire)"
     result: pass
@@ -246,7 +260,10 @@ handoff_fingerprint:
     - bin/gatebraid-snapshot-selftest.py
     - bin/gatebraid-snapshot.py
 consults: []
-repair_attempts: []
+repair_attempts:
+  - number: 1
+    hypothesis: "the record lacks ADR-0028 decision 2's treatment for head-mutable rows and carries an unpinned diff base, so two rows inside R3's deterministic subset do not reproduce and the record says nothing about it"
+    result: green
 approvals:
   - type: "Plan Approval (G1\u2192G2)"
     comment_url: "https://github.com/MianliWang/gatebraid/issues/19#issuecomment-5466316139"
@@ -269,8 +286,15 @@ row("E3 - baseline re-read: Y measured, and the changed-path set X..Y",
     ["G2-E3-baseline-Y", "G2-E3-baseline-delta"])
 w("- baseline: `unchanged`")
 w()
-row("E4 - Active Branch created from Y; the Base SHA field set to Y (read back in E2)",
+row("E4 - Active Branch created from Y; the Base SHA field set to Y (read back in E2). "
+    "The second command names HEAD and is OUTSIDE THE NOMINATED DETERMINISTIC SUBSET: "
+    "its recorded value is what the branch head was at the implementation-complete "
+    "commit, true at its time and not reproducible later by construction - see the "
+    "deterministic-subset disclosure",
     ["G2-E4-branch", "G2-fp-head"])
+row("E4b - the same commit named as a SHA rather than reached through HEAD, so the "
+    "identity the row asserts is reproducible on its own",
+    ["G2-R1-failed-state-head"])
 
 w("## Verification outputs")
 w()
@@ -285,7 +309,12 @@ row("V5 D5 - live smoke read: the snapshot, healthy on all four sources",
     ["G2-live-smoke-snapshot"], limit=16, head=2)
 row("V6 D6 - live smoke read: the frontier consumes it, exit 0",
     ["G2-live-smoke-frontier"], limit=12, head=2)
-row("V7 D7 - the five negative criteria hold against the real diff", ["G2-D7-negative"])
+row("V7 D7 - the five negative criteria hold, PINNED to base..fingerprint so the row "
+    "reproduces (repair 1, F-02; the instrument is unmodified, sha256 72a4fc5b...)",
+    ["G2-D7-negative-pinned"])
+row("V7b D7 - the original unpinned run, retained: same instrument, same five verdicts, "
+    "a working-tree comparand that has since moved",
+    ["G2-D7-negative"])
 row("V8 D8 - the same five, falsified against a seeded input: all five fire",
     ["G2-D8-negative-falsify"], limit=22, head=10)
 row("V9 - handoff fingerprint: the tree and the changed-path set at the implementation-complete commit",
@@ -309,8 +338,16 @@ w()
 
 w("## Repair record")
 w()
-w("- No repair attempt was made: every declared command was green on its first")
-w("  run at this gate. `repair_limit` is unspent and `repair_attempts` is empty.")
+w("### Repair 1")
+w()
+w("- Hypothesis (new): the record lacks ADR-0028 decision 2's treatment for "
+  "head-mutable rows and carries an unpinned diff base, so two rows inside R3's "
+  "deterministic subset do not reproduce and the record says nothing about it.")
+w()
+row("Novelty measured - the tree at the previous failed state, pinned to that commit",
+    ["G2-R1-tree-before", "G2-R1-failed-state-head"])
+w("- Result: `green`")
+w("- Consult: `none`")
 w()
 
 w("## Required disclosures")
