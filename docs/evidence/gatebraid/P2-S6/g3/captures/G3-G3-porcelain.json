@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-G3-porcelain",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain",
+      "--untracked-files=all",
+      "--",
+      ".",
+      ":(exclude)docs/evidence/gatebraid/P2-S6/"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2825,
+      "sha256": "ce9aba22ff11f9d24e5247ced35959ad7f972ddd8b391d34d2567379a01d0b1f",
+      "data": "Pz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtYmFzZWxpbmUtbWFpbi5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNhcHR1cmVzLXZhbGlkYXRpb24tcGFzczEuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1jYXB0dXJlcy12YWxpZGF0aW9uLXBhc3MyLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtY2FwdHVyZXMtdmFsaWRhdGlvbi5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNsb3NlZC1zZXQtc3dlZXAtZmFsc2lmeS1wYXNzMS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNsb3NlZC1zZXQtc3dlZXAtZmFsc2lmeS5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNsb3NlZC1zZXQtc3dlZXAtcGFzczEuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1jbG9zZWQtc2V0LXN3ZWVwLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtZW52LWZpZWxkLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtZnJvbnRpZXItcnVuLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtaGVhZC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWhvc3QtcHJvYmUuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1wb3JjZWxhaW4tYmFzZWxpbmUuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1wb3JjZWxhaW4tZnVsbC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLXJlY29yZC1zd2VlcC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLXJlY29yZC12YWxpZGF0aW9uLXBhc3MyLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtcmVjb3JkLXZhbGlkYXRpb24tcmVqZWN0ZWQtcGFzczEuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1yZWNvcmQtdmFsaWRhdGlvbi5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLXJlZi1uYW1lc3BhY2UuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1yZW1vdGUuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1yZW5kZXItcmVjb3JkLXBhc3MxLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtcmVuZGVyLXJlY29yZC1wYXNzMi5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLXJlbmRlci1yZWNvcmQuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1zbGljZS1ib2R5Lmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtc2xpY2UtbWV0YWRhdGEtbG9hZGVyLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtc2xpY2UtbWV0YWRhdGEtc2VsZnRlc3QuanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1zbGljZS1tZXRhZGF0YS12YWxpZGF0aW9uLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtc25hcHNob3QtcnVuLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtdG9vbHMtY2xhdWRlLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtdG9vbHMtY29kZXguanNvbgo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC10b29scy1naC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLXRvb2xzLWdpdC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLXRvb2xzLXB5dGhvbi13aW5kb3dzLmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtdG9vbHMtcHl0aG9uLXdzbC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL2cwLWZyb250aWVyLXJlcG9ydC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL2cwLXNuYXBzaG90Lmpzb24KPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvc2xpY2UtYm9keS0xNy5tZAo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jaGVja3MtZzAtY2xvc2VkLXNldC1zd2VlcC5weQo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jaGVja3MtZzAtc2xpY2UtbWV0YWRhdGEucHkKPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2hlY2tzLWcwLXZlcmlmeS1jYXB0dXJlcy5weQo/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9mYWxzaWZpY2F0aW9uL1NFRUQtb3V0LW9mLXNldC5qc29uCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2dhdGUwLm1kCj8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L3JlbmRlci1nYXRlMC5weQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "?? docs/evidence/gatebraid/P2-S5/captures/G0-baseline-main.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation-pass1.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation-pass2.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-falsify-pass1.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-falsify.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-pass1.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-env-field.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-frontier-run.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-head.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-host-probe.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-porcelain-baseline.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-porcelain-full.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-record-sweep.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-record-validation-pass2.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-record-validation-rejected-pass1.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-record-validation.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-ref-namespace.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-remote.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-render-record-pass1.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-render-record-pass2.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-render-record.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-slice-body.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-slice-metadata-loader.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-slice-metadata-selftest.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-slice-metadata-validation.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-snapshot-run.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-tools-claude.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-tools-codex.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-tools-gh.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-tools-git.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-tools-python-windows.json\n?? docs/evidence/gatebraid/P2-S5/captures/G0-tools-python-wsl.json\n?? docs/evidence/gatebraid/P2-S5/captures/g0-frontier-report.json\n?? docs/evidence/gatebraid/P2-S5/captures/g0-snapshot.json\n?? docs/evidence/gatebraid/P2-S5/captures/slice-body-17.md\n?? docs/evidence/gatebraid/P2-S5/checks-g0-closed-set-sweep.py\n?? docs/evidence/gatebraid/P2-S5/checks-g0-slice-metadata.py\n?? docs/evidence/gatebraid/P2-S5/checks-g0-verify-captures.py\n?? docs/evidence/gatebraid/P2-S5/falsification/SEED-out-of-set.json\n?? docs/evidence/gatebraid/P2-S5/gate0.md\n?? docs/evidence/gatebraid/P2-S5/render-gate0.py\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-30T14:23:50.668873Z",
+  "ended_at": "2026-08-30T14:23:50.734326Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Drift predicate over the baseline EXCLUDING this gate's own write domain, the Gate 0 and Gate 2 precedent; the unfiltered view is recorded beside it"
+}

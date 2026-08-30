@@ -211,12 +211,49 @@ class ReplayTransport(object):
             transport_error=page.get("transport_error"))
 
 
+# The live surface each source actually answers with, measured and frozen at
+# batch O1-B1 (`fixtures/live-shapes/`). The item-list endpoint answers an
+# OBJECT envelope; a per-issue read answers an OBJECT; a per-issue dependency
+# read answers an ARRAY. A body of the wrong JSON kind is NOT parsed - it is
+# handed to the classifier unchanged, which types it `unexpected_endpoint` and
+# fails the source closed. That is what keeps a bulk issue list offered as a
+# dependency answer out of every verdict.
+LIVE_EXPECTED_KIND = {
+    "project_items": dict,
+    "issue_states": dict,
+    "dep_blocked_by": list,
+    "dep_blocking": list,
+}
+
+# The live surface spells issue state in lower case; the frozen schema's
+# enumeration is upper case. The map is EXPLICIT and one-directional: a value
+# that is not one of these two passes through unchanged and `closed()` turns it
+# into `UNKNOWN`. Upper-casing whatever arrived would coerce an unrecognised
+# value toward a member, which is the one direction this tool must never move.
+LIVE_ISSUE_STATE = {"open": "OPEN", "closed": "CLOSED"}
+
+
+def issue_key(repo, number):
+    """The internal issue identity, `owner/repo#number`, as the payload contract uses."""
+    return "%s#%s" % (repo, number)
+
+
 class LiveTransport(object):
     """Read the live control plane through the authenticated `gh` CLI.
 
     No HTTP client is constructed here and no credential is handled: `gh` holds
     the authentication, as the project's hard rules require.  `GH_CONFIG_DIR` is
     inherited from the environment and is never set by this file.
+
+    P2-S6 repaired two shape defects here.  D-A: the three issue-backed sources
+    were served from ONE bulk `repos/{repo}/issues` call, whose body can never
+    satisfy the classifier and whose open-only default cannot see a CLOSED
+    blocker at all; they are now PER-ISSUE reads fanned out over the issue set
+    discovered from `project_items`.  D-B: every page was parsed with the REPLAY
+    transcript's key shape (`nodes`, `hasNextPage`), which no live body carries,
+    so a live read yielded zero rows while reporting itself complete; each live
+    body is now normalised onto the internal payload contract, and a body of the
+    wrong kind is refused rather than parsed.
     """
 
     kind = "live"
@@ -225,6 +262,24 @@ class LiveTransport(object):
         self.owner = owner
         self.project_number = project_number
         self.repo = repo
+        # (repo, number) pairs, seeded from project_items before the three
+        # dependent sources are read. Empty until then, deliberately: a
+        # dependent source must never invent a fan-out set it was not given.
+        self._fanout = []
+
+    def set_fanout(self, pairs):
+        self._fanout = list(pairs)
+
+    def read_count(self, source_id):
+        """Reads this source needs: one for the item list, one per issue for the rest.
+
+        A finite count is what distinguishes a bounded fan-out from an
+        open-ended connection: `--page-cap` guards the latter and must not
+        mistake the former for it.
+        """
+        if source_id == "project_items":
+            return 1
+        return len(self._fanout)
 
     def _run(self, argv):
         try:
@@ -237,11 +292,157 @@ class LiveTransport(object):
                           stdout=proc.stdout.decode("utf-8", "replace"),
                           stderr=proc.stderr.decode("utf-8", "replace"))
 
-    def read(self, source_id, page_index):
+    def argv_for(self, source_id, index):
+        """The exact argv one read uses. Separate from `_run` so a test can assert it."""
         if source_id == "project_items":
-            return self._run(["gh", "project", "item-list", str(self.project_number),
-                              "--owner", self.owner, "--format", "json"])
-        return self._run(["gh", "api", "repos/%s/issues" % self.repo])
+            return ["gh", "project", "item-list", str(self.project_number),
+                    "--owner", self.owner, "--format", "json"]
+        if index >= len(self._fanout):
+            return None
+        repo, number = self._fanout[index]
+        if source_id == "issue_states":
+            return ["gh", "api", "repos/%s/issues/%s" % (repo, number)]
+        if source_id == "dep_blocked_by":
+            return ["gh", "api",
+                    "repos/%s/issues/%s/dependencies/blocked_by" % (repo, number)]
+        if source_id == "dep_blocking":
+            return ["gh", "api",
+                    "repos/%s/issues/%s/dependencies/blocking" % (repo, number)]
+        return None
+
+    def read(self, source_id, index):
+        argv = self.argv_for(source_id, index)
+        if argv is None:
+            return ReadResult(
+                exit_code=EX_DATAERR,
+                transport_error="no live endpoint for source %r at index %d "
+                                "(the fan-out holds %d issue(s))"
+                                % (source_id, index, len(self._fanout)))
+        result = self._run(argv)
+        if result.transport_error or result.exit_code != 0:
+            return result
+        return self._normalise(source_id, index, result)
+
+    def _normalise(self, source_id, index, result):
+        """Map one live body onto the internal payload contract.
+
+        Returns the result UNCHANGED when the body is not the kind this source's
+        surface was measured to answer, so the classifier sees the raw shape and
+        fails the source closed. Only a body of the expected kind is rewritten,
+        and the rewrite is a translation, never a repair.
+        """
+        try:
+            body = json.loads(result.stdout)
+        except ValueError:
+            return result                      # classifier reports parse_error
+        if not isinstance(body, LIVE_EXPECTED_KIND[source_id]):
+            return result                      # classifier reports the wrong kind
+
+        more = (index + 1) < self.read_count(source_id)
+        if source_id == "project_items":
+            page = self._page_project_items(body)
+        elif source_id == "issue_states":
+            page = self._page_issue_state(index, body)
+        else:
+            page = self._page_dependencies(index, body)
+        if page is None:
+            return result                      # shape refused; fail closed
+        page["hasNextPage"] = more
+        return ReadResult(exit_code=result.exit_code,
+                          stdout=json.dumps(page, ensure_ascii=False),
+                          stderr=result.stderr,
+                          http_status=result.http_status,
+                          rate_limit_remaining=result.rate_limit_remaining)
+
+    def _page_project_items(self, body):
+        """`{items, totalCount}` to internal `nodes`, with the arithmetic short-read flag.
+
+        The envelope carries NO pagination key of any kind - measured twice on
+        the frozen corpus - so completeness is arithmetic and nothing else:
+        fewer items than the count the surface itself declares is an INCOMPLETE
+        read, and saying so is B-1.
+        """
+        if "items" not in body or "totalCount" not in body:
+            return None
+        items = body.get("items")
+        total = body.get("totalCount")
+        if not isinstance(items, list) or not isinstance(total, int):
+            return None
+        nodes = []
+        for el in items:
+            if not isinstance(el, dict):
+                return None
+            nodes.append(self._node(el))
+        page = {"nodes": nodes}
+        if len(items) < total:
+            # Not a schema addition: `connection_truncated` is already a member
+            # of the frozen bounded-reason enumeration and is exactly this.
+            page["_short_read"] = {"observed": len(items), "declared": total}
+        return page
+
+    def _node(self, el):
+        """One item-list element to one internal node.
+
+        Element keys are Project FIELD names as the surface emits them, and the
+        surface emits a key ONLY WHEN THE FIELD IS POPULATED - so every optional
+        key is read by presence, never by a default. Four of the fifteen
+        measured elements carry no `workflow` at all: container rows deliberately
+        carry no Workflow, and an absent key must reach `UNKNOWN` through
+        `closed()` rather than raise or be defaulted toward a healthy value.
+        """
+        content = el.get("content") or {}
+        repo = content.get("repository") or ""
+        number = content.get("number")
+        node = {
+            "item_id": el.get("id") or "",
+            "issue": issue_key(repo, number) if repo and number is not None else "",
+        }
+        slice_id = el.get("slice")
+        present = isinstance(slice_id, str) and slice_id.strip() != ""
+        node["slice_metadata_present"] = present
+        if present:
+            node["slice_id"] = slice_id
+            if "workflow" in el:
+                node["workflow_raw"] = el.get("workflow")
+        else:
+            node["excluded_reason"] = ("the Project row carries no Slice field; "
+                                       "container rows are not Slices")
+        # The live surface carries no soft-dependency field at all. Declaring
+        # none is a measurement, not an omission.
+        node["soft_dependencies_declared"] = False
+        return node
+
+    def _page_issue_state(self, index, body):
+        if "number" not in body or "state" not in body:
+            return None
+        repo, number = self._fanout[index]
+        if body.get("number") != number:
+            return None            # the answer is about a different issue
+        raw = body.get("state")
+        return {"states": {issue_key(repo, number): LIVE_ISSUE_STATE.get(raw, raw)}}
+
+    def _page_dependencies(self, index, body):
+        """A per-issue dependency answer: a list whose elements carry `repository`.
+
+        The bulk issue list has the same JSON kind and carries no `repository` on
+        any element, so offering it here is refused rather than parsed - which is
+        what keeps B-2 out of `startable`.
+        """
+        repo, number = self._fanout[index]
+        edges = []
+        for el in body:
+            if not isinstance(el, dict):
+                return None
+            if "repository" not in el or "number" not in el or "state" not in el:
+                return None
+            rf = el.get("repository")
+            full = rf.get("full_name") if isinstance(rf, dict) else None
+            if not full:
+                return None
+            raw = el.get("state")
+            edges.append({"issue": issue_key(full, el.get("number")),
+                          "state": LIVE_ISSUE_STATE.get(raw, raw)})
+        return {"edges": {issue_key(repo, number): edges}}
 
 
 # ------------------------------------------------------------ classification
@@ -342,6 +543,17 @@ def read_source(transport, source_id, statuses, page_cap):
     observed = 0
     page_index = 0
     result = None
+    short = None
+
+    # A transport that knows how many reads a source needs DECLARES it, and a
+    # declared count is a bounded fan-out rather than an open-ended connection:
+    # the live item list is one read, and each issue-backed source is one read
+    # per issue. `--page-cap` guards an open-ended connection and must not
+    # mistake a fan-out for one. The replay transport declares nothing and keeps
+    # the original `hasNextPage` loop unchanged, which is why every pre-existing
+    # seeded condition still travels exactly the path it did before.
+    counter = getattr(transport, "read_count", None)
+    declared = counter(source_id) if counter is not None else None
 
     while True:
         result = transport.read(source_id, page_index)
@@ -375,9 +587,23 @@ def read_source(transport, source_id, statuses, page_cap):
             return entry, None
 
         payload = json.loads(result.stdout)
+        if "_short_read" in payload:
+            # The item-list envelope carries no pagination key of any kind, so a
+            # read shorter than the count the surface itself declares is the
+            # ONLY evidence of incompleteness there is. Carried out of the
+            # transport rather than re-derived here, and never dropped.
+            short = payload.pop("_short_read")
         pages.append(payload)
         observed += len(payload.get("nodes") or [])
         page_index += 1
+        if declared is not None:
+            # Exactly the declared number of reads, and at least one: a source
+            # whose fan-out set is empty still performs its one read, which
+            # fails closed and says why, rather than reporting a source that
+            # never ran as complete.
+            if page_index >= max(declared, 1):
+                break
+            continue
         if not bool(payload.get("hasNextPage")):
             break
         if page_index >= page_cap:
@@ -405,6 +631,22 @@ def read_source(transport, source_id, statuses, page_cap):
         "complete": True,
         "exit_code": 0,
     }
+    if short is not None:
+        # `connection_truncated` is already a member of the frozen bounded
+        # reason enumeration and is exactly this case; no schema change is
+        # needed or made. The source read cleanly and is NOT whole, and saying
+        # both at once is what B-1 requires.
+        entry["complete"] = False
+        entry["bounded"] = {
+            "reason": "connection_truncated",
+            "cap": page_cap,
+            "observed": short.get("observed", observed),
+            "has_next_page": True,
+        }
+        entry["failure_detail"] = (
+            "the surface declared %s item(s) and delivered %s; a short read is "
+            "incomplete and the envelope carries no pagination key to continue "
+            "from" % (short.get("declared"), short.get("observed")))
     if result.http_status is not None:
         entry["http_status"] = result.http_status
     if result.rate_limit_remaining is not None:
@@ -553,6 +795,25 @@ def self_sha256():
         return None
 
 
+def fanout_from(payload):
+    """The `(repo, number)` pairs the three issue-backed sources fan out over.
+
+    Taken from the item-list payload that was ACTUALLY READ, in document order.
+    A row whose issue identity is unusable is skipped rather than guessed at.
+    """
+    pairs = []
+    for row in ((payload or {}).get("nodes") or []):
+        key = row.get("issue") or ""
+        repo, sep, number = key.rpartition("#")
+        if not sep or not repo:
+            continue
+        try:
+            pairs.append((repo, int(number)))
+        except ValueError:
+            continue
+    return pairs
+
+
 def build_document(transport, schema, enums, page_cap, generated_at):
     sources = []
     payloads = {}
@@ -561,6 +822,15 @@ def build_document(transport, schema, enums, page_cap, generated_at):
         sources.append(entry)
         if payload is not None:
             payloads[source_id] = payload
+        if source_id == "project_items":
+            # The issue-backed sources are per-issue reads and the issue set
+            # comes from the item list. Seeded here from the payload that was
+            # actually read: when the item list did not yield one, the fan-out
+            # stays EMPTY and each dependent source fails closed saying so,
+            # rather than inventing a set it was never given.
+            seed = getattr(transport, "set_fanout", None)
+            if seed is not None:
+                seed(fanout_from(payload))
 
     degraded = any(source_is_degraded(s) for s in sources)
     doc = {

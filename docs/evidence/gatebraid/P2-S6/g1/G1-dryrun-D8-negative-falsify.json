@@ -1,0 +1,75 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-dryrun-D8-negative-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S6/g1/negative-criteria.py",
+      "--changed-from",
+      "docs/evidence/gatebraid/P2-S6/g1/SEED-negative-criteria.txt",
+      "--code-surface-dir",
+      "docs/evidence/gatebraid/P2-S6/g1/falsification"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1606,
+      "sha256": "34f17863f992cb35b06e7db52486329d84cdd44f8641a6091fae61e3e5784a9c",
+      "data": "Y2hhbmdlZC1wYXRoIHNvdXJjZSA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM2L2cxL1NFRUQtbmVnYXRpdmUtY3JpdGVyaWEudHh0DQpiYXNlICAgICAgICAgICAgICAgIDogM2Q0N2Y4YmUwYjljOTk5YmY4MGUzNTZmMmIxYzFjZjg4ZTJlNWRkOA0KY2hhbmdlZCBwYXRocyAgICAgICA6IDYNCiAgIGJpbi9nYXRlYnJhaWQtc25hcHNob3QucHkNCiAgIGJpbi9nYXRlYnJhaWQtZnJvbnRpZXIucHkNCiAgIHNjaGVtYS9zbmFwc2hvdC5zY2hlbWEuanNvbg0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZ2F0ZTAubWQNCiAgIFJFQURNRS5tZA0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvZ2F0ZTEubWQNCmFsbG93bGlzdCAgICAgICAgICAgOiBiaW4vLCBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNi8NCmNvZGUgc3VyZmFjZSAgICAgICAgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNi9nMS9mYWxzaWZpY2F0aW9uXGdhdGVicmFpZC1zbmFwc2hvdC5weSwgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvZzEvZmFsc2lmaWNhdGlvblxnYXRlYnJhaWQtc25hcHNob3Qtc2VsZnRlc3QucHkNCg0KTjEgZXZlcnkgY2hhbmdlZCBwYXRoIGluc2lkZSB0aGUgYWxsb3dsaXN0ICAgICAgICA6IEZJUkVEDQogICAgICBvdXRzaWRlOiBzY2hlbWEvc25hcHNob3Quc2NoZW1hLmpzb24NCiAgICAgIG91dHNpZGU6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2dhdGUwLm1kDQogICAgICBvdXRzaWRlOiBSRUFETUUubWQNCk4yIHVuZGVyIGJpbi8sIG9ubHkgdGhlIHNuYXBzaG90IHBhaXIgaXMgdG91Y2hlZCAgOiBGSVJFRA0KICAgICAgbm90IGluIHRoZSBjb2RlIHN1cmZhY2U6IGJpbi9nYXRlYnJhaWQtZnJvbnRpZXIucHkNCk4zIG5vIGZyb3plbiBpbnB1dCBpcyB3cml0dGVuICAgICAgICAgICAgICAgICAgICAgOiBGSVJFRA0KICAgICAgZnJvemVuOiBzY2hlbWEvc25hcHNob3Quc2NoZW1hLmpzb24NCiAgICAgIGZyb3plbjogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZ2F0ZTAubWQNCk40IG5vIHJ1bnRpbWUgZGVwZW5kZW5jeSwgbm8gSFRUUCBjbGllbnQgICAgICAgICAgOiBGSVJFRA0KICAgICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvZzEvZmFsc2lmaWNhdGlvblxnYXRlYnJhaWQtc25hcHNob3QucHk6IHJlcXVlc3RzIChuZXR3b3JrIGNsaWVudCBtb2R1bGUpDQpONSBgb2tgIGFuZCBgY29tcGxldGU6IFRydWVgIGVhY2ggc2V0IGluIG9uZSBwbGFjZTogRklSRUQNCiAgICAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM2L2cxL2ZhbHNpZmljYXRpb25cZ2F0ZWJyYWlkLXNuYXBzaG90LnB5OjEyICJjb21wbGV0ZSI6IFRydWUgb3V0c2lkZSByZWFkX3NvdXJjZSgpLCBpbiBzbmVha3lfaGVhbHRoeV9wYXRoDQogICAgICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNi9nMS9mYWxzaWZpY2F0aW9uXGdhdGVicmFpZC1zbmFwc2hvdC5weToxMiBtZW1iZXIoJ29rJykgb3V0c2lkZSBjbGFzc2lmeSgpLCBpbiBzbmVha3lfaGVhbHRoeV9wYXRoDQoNCk5FR0FUSVZFIENSSVRFUklBIEZJUkVEOiBOMSwgTjIsIE4zLCBONCwgTjUNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "changed-path source : docs/evidence/gatebraid/P2-S6/g1/SEED-negative-criteria.txt\r\nbase                : 3d47f8be0b9c999bf80e356f2b1c1cf88e2e5dd8\r\nchanged paths       : 6\r\n   bin/gatebraid-snapshot.py\r\n   bin/gatebraid-frontier.py\r\n   schema/snapshot.schema.json\r\n   docs/evidence/gatebraid/P2-S5/gate0.md\r\n   README.md\r\n   docs/evidence/gatebraid/P2-S6/gate1.md\r\nallowlist           : bin/, docs/evidence/gatebraid/P2-S6/\r\ncode surface        : docs/evidence/gatebraid/P2-S6/g1/falsification\\gatebraid-snapshot.py, docs/evidence/gatebraid/P2-S6/g1/falsification\\gatebraid-snapshot-selftest.py\r\n\r\nN1 every changed path inside the allowlist        : FIRED\r\n      outside: schema/snapshot.schema.json\r\n      outside: docs/evidence/gatebraid/P2-S5/gate0.md\r\n      outside: README.md\r\nN2 under bin/, only the snapshot pair is touched  : FIRED\r\n      not in the code surface: bin/gatebraid-frontier.py\r\nN3 no frozen input is written                     : FIRED\r\n      frozen: schema/snapshot.schema.json\r\n      frozen: docs/evidence/gatebraid/P2-S5/gate0.md\r\nN4 no runtime dependency, no HTTP client          : FIRED\r\n      docs/evidence/gatebraid/P2-S6/g1/falsification\\gatebraid-snapshot.py: requests (network client module)\r\nN5 `ok` and `complete: True` each set in one place: FIRED\r\n      docs/evidence/gatebraid/P2-S6/g1/falsification\\gatebraid-snapshot.py:12 \"complete\": True outside read_source(), in sneaky_healthy_path\r\n      docs/evidence/gatebraid/P2-S6/g1/falsification\\gatebraid-snapshot.py:12 member('ok') outside classify(), in sneaky_healthy_path\r\n\r\nNEGATIVE CRITERIA FIRED: N1, N2, N3, N4, N5\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-29T08:30:08.000255Z",
+  "ended_at": "2026-08-29T08:30:08.074573Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g1/negative-criteria.py",
+      "sha256": "72a4fc5bd8b14c9873f0c75e04f1413019f78c604e79c8bc89be57ef04fe97a9"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g1/SEED-negative-criteria.txt",
+      "sha256": "25002ac893b275526d75f5b17c138b58c63288a10afe28b7744492e7780571d0"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E1-approval",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "repos/MianliWang/gatebraid/issues/comments/5466316139",
+      "--jq",
+      "{author: .user.login, url: .html_url, created_at: .created_at}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 142,
+      "sha256": "1c5a2280c78da3dc2d22c34745a88429a2558d940327f66d81fb267369f87b82",
+      "data": "eyJhdXRob3IiOiJNaWFubGlXYW5nIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDgtMzBUMDI6NDg6MTNaIiwidXJsIjoiaHR0cHM6Ly9naXRodWIuY29tL01pYW5saVdhbmcvZ2F0ZWJyYWlkL2lzc3Vlcy8xOSNpc3N1ZWNvbW1lbnQtNTQ2NjMxNjEzOSJ9Cg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"author\":\"MianliWang\",\"created_at\":\"2026-08-30T02:48:13Z\",\"url\":\"https://github.com/MianliWang/gatebraid/issues/19#issuecomment-5466316139\"}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-30T03:10:47.117814Z",
+  "ended_at": "2026-08-30T03:10:47.666619Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

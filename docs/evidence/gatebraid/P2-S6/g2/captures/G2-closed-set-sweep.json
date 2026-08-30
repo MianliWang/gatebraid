@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-closed-set-sweep",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S6/g2/checks-g2-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S6/g2/captures"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1250,
+      "sha256": "5f7f24281cdb7557f3188f84fe15fabbdbbbda90c9b9e6cbd0f2657a8864b088",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAyOQ0KDQo9PT0gY2FuZGlkYXRlIGNsYXNzaWZpY2F0aW9uIChldmVyeSBydWxlIGFwcGxpZWQgZXhwbGljaXRseSkgPT09DQogIEUxIHBlcm1pdHRlZCByZXBvc2l0b3J5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNTANCiAgRTEwIEpTT04gcG9pbnRlciBvciBzY2hlbWEtcGF0aCBmcmFnbWVudCAobmFtZWQsIG5vdCBtYXRjaGVkKSAzNw0KICBFMyBBUEktcGF0aCBmcmFnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDENCiAgRTQgZ2l0IHJlZiBuYW1lc3BhY2UsIG5vdCBhIHJlcG9zaXRvcnkgICAgICAgICAgICAgICAgICAgICAxDQogIEU1IGZpbGVzeXN0ZW0gb3IgVVJMIHBhdGggc2VnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgMTYwDQogIEU2IHNjaGVtYS1pZCBuYW1lc3BhY2UgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMw0KICBFNyBKU09OIHBvaW50ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDUzDQogIEU4IHByb3NlIHNsYXNoIGJldHdlZW4gb3JkaW5hcnkgd29yZHMgKG5hbWVkLCBub3QgbWF0Y2hlZCkgMQ0KICBFOSB0aGlzIFNsaWNlJ3Mgb3duIGdpdCBicmFuY2ggcmVmIChuYW1lZCwgbm90IG1hdGNoZWQpICAgIDINCiAgSTAgZnJpY3Rpb24gY2l0YXRpb24sIG5vdCBhbiBpc3N1ZSByZWZlcmVuY2UgICAgICAgICAgICAgICAzDQogIE4yIHRoaXMgU2xpY2UncyBvd24gUHJvamVjdCBpdGVtICAgICAgICAgICAgICAgICAgICAgICAgICAgMw0KICBONCBpdGVtIGlkIG9mIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAgICAgIDMwDQoNCj09PSBldmVyeSBSRVBPU0lUT1JZIGlkZW50aXR5IG5hbWVkIGFueXdoZXJlID09PQ0KICBNaWFubGlXYW5nL2dhdGVicmFpZCAgICAgICAgICAgeDMxICAgUEVSTUlUVEVEDQogIE1pYW5saVdhbmcvZ2F0ZWJyYWlkLXNjcmF0Y2ggICB4MTkgICBQRVJNSVRURUQNCg0KPT09IG1lbnRpb24tY2xhc3MgY2hlY2s6IGEgbWVudGlvbiBtdXN0IG5ldmVyIGFwcGVhciBpbiBhbiBJTlZPQ0FUSU9OID09PQ0KICBtZW50aW9uLWNsYXNzIGlzc3VlcyB0YXJnZXRlZCBieSBhIHF1ZXJ5OiAwICgwIHJlcXVpcmVkKQ0KDQpkb21haW4gICAgICA6IDI5IGRvY3VtZW50cyAoMCBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiAwDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 29\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    50\r\n  E10 JSON pointer or schema-path fragment (named, not matched) 37\r\n  E3 API-path fragment                                       1\r\n  E4 git ref namespace, not a repository                     1\r\n  E5 filesystem or URL path segment                          160\r\n  E6 schema-id namespace                                     3\r\n  E7 JSON pointer                                            53\r\n  E8 prose slash between ordinary words (named, not matched) 1\r\n  E9 this Slice's own git branch ref (named, not matched)    2\r\n  I0 friction citation, not an issue reference               3\r\n  N2 this Slice's own Project item                           3\r\n  N4 item id of the permitted Project                        30\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x31   PERMITTED\r\n  MianliWang/gatebraid-scratch   x19   PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 29 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 0\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-30T10:26:20.125950Z",
+  "ended_at": "2026-08-30T10:26:20.208386Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g2/checks-g2-closed-set-sweep.py",
+      "sha256": "39d1263074ae16192bccdf0c2c50088f09181ce4ff432c4a034166f6e3614b4a"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

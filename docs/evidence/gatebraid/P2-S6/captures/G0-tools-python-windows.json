@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-tools-python-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "-c",
+      "import sys,yaml,jsonschema;print('CPython',sys.version.split()[0]);print('PyYAML',yaml.__version__);print('jsonschema',jsonschema.__version__);print('exe',sys.executable)"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 78,
+      "sha256": "f74d2a680c5bbfd577b35196e69e5e14818b2f29b7e55d6e09b7009d411f046c",
+      "data": "Q1B5dGhvbiAzLjEyLjINClB5WUFNTCA2LjAuMg0KanNvbnNjaGVtYSA0LjIzLjANCmV4ZSBDOlxQeXRob24zMTJccHl0aG9uLmV4ZQ0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "CPython 3.12.2\r\nPyYAML 6.0.2\r\njsonschema 4.23.0\r\nexe C:\\Python312\\python.exe\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 188,
+      "sha256": "eb82a1b693e55d3e79b7d1cee33399075764f48ae2ebcac7d6c71c83afb98b3b",
+      "data": "PHN0cmluZz46MTogRGVwcmVjYXRpb25XYXJuaW5nOiBBY2Nlc3NpbmcganNvbnNjaGVtYS5fX3ZlcnNpb25fXyBpcyBkZXByZWNhdGVkIGFuZCB3aWxsIGJlIHJlbW92ZWQgaW4gYSBmdXR1cmUgcmVsZWFzZS4gVXNlIGltcG9ydGxpYi5tZXRhZGF0YSBkaXJlY3RseSB0byBxdWVyeSBmb3IganNvbnNjaGVtYSdzIHZlcnNpb24uDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "<string>:1: DeprecationWarning: Accessing jsonschema.__version__ is deprecated and will be removed in a future release. Use importlib.metadata directly to query for jsonschema's version.\r\n"
+      }
+    }
+  },
+  "started_at": "2026-08-29T07:33:35.735693Z",
+  "ended_at": "2026-08-29T07:33:36.082293Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

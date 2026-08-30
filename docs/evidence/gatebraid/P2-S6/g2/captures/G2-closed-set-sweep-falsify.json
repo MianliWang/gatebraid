@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-closed-set-sweep-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S6/g2/checks-g2-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S6/falsification"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 640,
+      "sha256": "e0d9d63b84170ba594d9eae96ee31d81fef3382640d88027c2e9ccb75ef0aead",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgVU5FWFBMQUlORUQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxDQoNCj09PSBldmVyeSBSRVBPU0lUT1JZIGlkZW50aXR5IG5hbWVkIGFueXdoZXJlID09PQ0KDQo9PT0gbWVudGlvbi1jbGFzcyBjaGVjazogYSBtZW50aW9uIG11c3QgbmV2ZXIgYXBwZWFyIGluIGFuIElOVk9DQVRJT04gPT09DQogIG1lbnRpb24tY2xhc3MgaXNzdWVzIHRhcmdldGVkIGJ5IGEgcXVlcnk6IDAgKDAgcmVxdWlyZWQpDQoNCmRvbWFpbiAgICAgIDogMSBkb2N1bWVudHMgKDAgb2YgdGhpcyBzd2VlcCdzIG93biByZXBvcnRzIGV4Y2x1ZGVkKQ0KVU5FWFBMQUlORUQgUkVTSURVRTogMw0KICAgIFNFRUQtb3V0LW9mLXNldC5qc29uICAgICAgICAgICAgICAgICAgICAgICAgIHN0ZG91dCAgICAgICByZXBvDQogICAgU0VFRC1vdXQtb2Ytc2V0Lmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgc3Rkb3V0ICAgICAgIG5vZGUNCiAgICBTRUVELW91dC1vZi1zZXQuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICBzdGRvdXQgICAgICAgaXNzdWUNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  UNEXPLAINED                                                1\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 3\r\n    SEED-out-of-set.json                         stdout       repo\r\n    SEED-out-of-set.json                         stdout       node\r\n    SEED-out-of-set.json                         stdout       issue\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-30T03:16:04.682352Z",
+  "ended_at": "2026-08-30T03:16:04.755685Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g2/checks-g2-closed-set-sweep.py",
+      "sha256": "39d1263074ae16192bccdf0c2c50088f09181ce4ff432c4a034166f6e3614b4a"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

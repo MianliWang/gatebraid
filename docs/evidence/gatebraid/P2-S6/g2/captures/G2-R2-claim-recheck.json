@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R2-claim-recheck",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S6/g2/claim-recheck.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2432,
+      "sha256": "fb6a4c3aaea85f75ee91fdc0d6bbe50872426a59bc48d8e758a8478f12df050a",
+      "data": "aWQgICAgY2xhaW0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2ZXJkaWN0ICBtZWFzdXJlZA0KQzEgICAgRTRiOiB0aGUgZXZpZGVuY2UgU0hBIHJlc29sdmVzIGFuZCBwZWVscyB0byBhIGNvbW1pdCAgICAgICAgICAgICAgICAgICBUUlVFICAgICBleGl0PTAgb3V0PTQ0OTA2ZWRjNGQ0OQ0KQzIgICAgRTRiJ3MgcmVjb3JkZWQgY29tbWFuZCBpcyB0aGUgcGVlbCBmb3JtLCBub3QgdGhlIGVjaG9pbmcgZm9ybSAgICAgICAgICBUUlVFICAgICBwZWVsIHByZXNlbnQsIGJhcmUgYWJzZW50DQpDMyAgICB0aGUgZXhjbHVzaW9uIGxpbWIgc3RpbGwgbmFtZXMgZXhhY3RseSB0d28gcm93cyAoVjdiLCBFNCdzIEhFQUQgcm93KSAgIFRSVUUgICAgIFRXTz1UcnVlDQpDNCAgICBWOSdzIHBpbm5lZCBhcmd1bWVudCBpcyB0aGUgbWV0YWRhdGEgYWN0aXZlX2JyYW5jaF9oZWFkICAgICAgICAgICAgICAgIFRSVUUgICAgIG1ldGFkYXRhPTUzODZjZTM4MmJhYw0KQzUgICAgVjkgZGVyaXZlcyB0aGUgZmluZ2VycHJpbnQgdHJlZSBhbmQgaXQgZXF1YWxzIG1ldGFkYXRhIHRyZWVfc2hhICAgICAgICBUUlVFICAgICBkZXJpdmVkPTNmODhjYzExZmQxMSBtZXRhPTNmODhjYzExZmQxMQ0KQzYgICAgVjkgZGVyaXZlcyB0aGUgZmluZ2VycHJpbnQgY2hhbmdlZC1wYXRoIHNldCBhbmQgaXQgZXF1YWxzIG1ldGFkYXRhICAgICBUUlVFICAgICBbJ2Jpbi9nYXRlYnJhaWQtc25hcHNob3Qtc2VsZnRlc3QucHknLCAnYmluL2dhdGVicmFpZC1zbmFwc2hvdC5weSddIHZzIFsnYmluL2dhdGVicmFpZC1zbmFwc2hvdC1zZWxmdGVzdC5weScsICdiaW4vZ2F0ZWJyYWlkLXNuYXBzaG90LnB5J10NCkM3ICAgIHJlcGFpciAxIG5vdmVsdHk6IHRoZSBwaW5uZWQgdHJlZSByZXNvbHZlcyB0byB0aGUgcmVjb3JkZWQgdmFsdWUgICAgICAgVFJVRSAgICAgdHJlZT00ZjJhNjEzMGJkMmQgaW4gcmVjb3JkPVRydWUNCkM4ICAgIHJlcGFpciAxIG5vdmVsdHk6IHRoZSBzZWNvbmQgY29tbWFuZCBwZWVscyBhbmQgcmVzb2x2ZXMgdGhlIG9iamVjdCAgICAgVFJVRSAgICAgZXhpdD0wDQpDOSAgICBSZXBhaXIgYmxvY2tzIGFuZCBtZXRhZGF0YSByZXBhaXJfYXR0ZW1wdHMgYWdyZWUsIGNvbnN1bHRfcmVmIHByZXNlbnQgIFRSVUUgICAgIGJsb2Nrcz0yIG1ldGE9MiByZWY9VHJ1ZQ0KQzEwICAgbm8gcmVzaWR1YWwgYXNzZXJ0aW9uIHRoYXQgbm8gcmVwYWlyIG9yIGNvbnN1bHQgb2NjdXJyZWQgICAgICAgICAgICAgICBUUlVFICAgICBtYXRjaGVzPVtdDQpDMTEgICB0aGUgZXZpZGVuY2UgU0hBIGlzIG5vd2hlcmUgY2FsbGVkIHRoZSBmaW5nZXJwcmludCBjb21taXQgICAgICAgICAgICAgIFRSVUUgICAgIGxpbmVzPVtdDQpDMTIgICByZXBhaXIgMidzIGh5cG90aGVzaXMgYXBwZWFycyBpbiB0aGUgbWV0YWRhdGEgYXMgd2VsbCBhcyB0aGUgYmxvY2sgICAgIFRSVUUgICAgIG1ldGE9VHJ1ZQ0KQzEzICAgdGhlIGNvbnN1bHQgcmVxdWVzdCBhbmQgaXRzIHZlcmJhdGltIHJlc3BvbnNlIGV4aXN0IGFuZCBhcmUgZGVjbGFyZWQgICBUUlVFICAgICBkZWNsYXJlZCBpbiBldmlkZW5jZV9maWxlcw0KQzE0ICAgRTQncyBleGNsdWRlZCBIRUFEIHJvdyBzdGlsbCBjYXJyaWVzIGl0cyBvcmlnaW5hbCByZWNvcmRlZCB2YWx1ZSAgICAgICBUUlVFICAgICB1bmNoYW5nZWQNCkMxNSAgIGV2ZXJ5IGNpdGVkIHJldmlldy1yZXBvcnQgcGluIG1hdGNoZXMgdGhlIGZpbGUgaXQgbmFtZXMgICAgICAgICAgICAgICAgVFJVRSAgICAgcHJvYmxlbXM9W10NCkMxNiAgIHRoZSBjaXRlZCByZXBvcnRzIGFyZSBpZ25vcmVkIGFuZCBhYnNlbnQgZnJvbSB0aGUgcG9yY2VsYWluIGxpc3RpbmcgICAgVFJVRSAgICAgY2hlY2staWdub3JlPTAgaW4tbGlzdGluZz1GYWxzZQ0KQzE3ICAgcmV2aWV3LWZpdmUtaXRlbXMgaXMgcGFzcyBhbmQgUmV2aWV3IDMgcmVhZHMgcGFzcyBvbiBhbGwgZml2ZSBpdGVtcyAgICBUUlVFICAgICBjaGVjaz1wYXNzIHJldmlldzNfcGFzc19yb3dzPTUNCkMxOCAgIGVhY2ggcmV2aWV3IGJsb2NrIG5hbWVzIGl0cyBoZWFkIGFzIGEgcGlubmVkIFNIQSwgbmV2ZXIgSEVBRCAgICAgICAgICAgVFJVRSAgICAgYmxvY2tzPTMNCkMxOSAgIHRoZSBoZWFkIFJldmlldyAzIGV4YW1pbmVkIGlzIGEgcmVhbCBjb21taXQgYW5kIGFuIGFuY2VzdG9yIG9mIHRoZSB0aXAgVFJVRSAgICAgcGVlbD0wIGFuY2VzdG9yPTANCkMyMCAgIHJlc3VsdCByZWNvcmRzIG5lZWRzX2FwcHJvdmFsLCB0aGUgaHVtYW4gUmVsZWFzZSBBcHByb3ZhbCBzdGlsbCBvd2VkICAgVFJVRSAgICAgYXMgd3JpdHRlbg0KDQpjbGFpbXMgcmUtbWVhc3VyZWQgICAgICAgICAgIDogMjANCmNsYWltcyBtZWFzdXJlZCBGQUxTRSAgICAgICAgOiAwDQpDTEFJTSBSRUNIRUNLIENMRUFODQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "id    claim                                                                  verdict  measured\r\nC1    E4b: the evidence SHA resolves and peels to a commit                   TRUE     exit=0 out=44906edc4d49\r\nC2    E4b's recorded command is the peel form, not the echoing form          TRUE     peel present, bare absent\r\nC3    the exclusion limb still names exactly two rows (V7b, E4's HEAD row)   TRUE     TWO=True\r\nC4    V9's pinned argument is the metadata active_branch_head                TRUE     metadata=5386ce382bac\r\nC5    V9 derives the fingerprint tree and it equals metadata tree_sha        TRUE     derived=3f88cc11fd11 meta=3f88cc11fd11\r\nC6    V9 derives the fingerprint changed-path set and it equals metadata     TRUE     ['bin/gatebraid-snapshot-selftest.py', 'bin/gatebraid-snapshot.py'] vs ['bin/gatebraid-snapshot-selftest.py', 'bin/gatebraid-snapshot.py']\r\nC7    repair 1 novelty: the pinned tree resolves to the recorded value       TRUE     tree=4f2a6130bd2d in record=True\r\nC8    repair 1 novelty: the second command peels and resolves the object     TRUE     exit=0\r\nC9    Repair blocks and metadata repair_attempts agree, consult_ref present  TRUE     blocks=2 meta=2 ref=True\r\nC10   no residual assertion that no repair or consult occurred               TRUE     matches=[]\r\nC11   the evidence SHA is nowhere called the fingerprint commit              TRUE     lines=[]\r\nC12   repair 2's hypothesis appears in the metadata as well as the block     TRUE     meta=True\r\nC13   the consult request and its verbatim response exist and are declared   TRUE     declared in evidence_files\r\nC14   E4's excluded HEAD row still carries its original recorded value       TRUE     unchanged\r\nC15   every cited review-report pin matches the file it names                TRUE     problems=[]\r\nC16   the cited reports are ignored and absent from the porcelain listing    TRUE     check-ignore=0 in-listing=False\r\nC17   review-five-items is pass and Review 3 reads pass on all five items    TRUE     check=pass review3_pass_rows=5\r\nC18   each review block names its head as a pinned SHA, never HEAD           TRUE     blocks=3\r\nC19   the head Review 3 examined is a real commit and an ancestor of the tip TRUE     peel=0 ancestor=0\r\nC20   result records needs_approval, the human Release Approval still owed   TRUE     as written\r\n\r\nclaims re-measured           : 20\r\nclaims measured FALSE        : 0\r\nCLAIM RECHECK CLEAN\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-30T10:26:17.140703Z",
+  "ended_at": "2026-08-30T10:26:17.720255Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g2/claim-recheck.py",
+      "sha256": "43d508d02b395cc1020e93cf2aff165cde5bafc0727abffbb4955c3ab883b153"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/gate2.md",
+      "sha256": "77243ba7a5bd6aeaf54b7481a7cf1c43e95eb27ed99cec55d8b56e136417df3b"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
