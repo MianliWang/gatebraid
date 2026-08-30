@@ -1,6 +1,6 @@
 {
   "schema": "gatebraid/evidence-capture@1",
-  "capture_id": "G2-R1-failed-state-head",
+  "capture_id": "G2-R2-tree-before",
   "generator": {
     "name": "gatebraid-capture",
     "version": "1.0.0",
@@ -11,7 +11,7 @@
     "argv": [
       "git",
       "rev-parse",
-      "44906edc4d49cc090673a2220d3b66246b187bca^{commit}"
+      "8d4fa4188c8fecc552448e1fff152e133abb3229^{tree}"
     ],
     "cwd": {
       "path": "D:\\Github repo\\Gatebraid",
@@ -23,12 +23,12 @@
     "stdout": {
       "encoding": "base64",
       "byte_length": 41,
-      "sha256": "01d14e2e0f275082501a59a1afba0bad1d4ca3e7a7a26508b4802fa0c192083f",
-      "data": "NDQ5MDZlZGM0ZDQ5Y2MwOTA2NzNhMjIyMGQzYjY2MjQ2YjE4N2JjYQo=",
+      "sha256": "76928f083fd24411029d78562b0d7dd967b4f95b1c0265c902b2d894eba5e718",
+      "data": "NGJhOWUzMzE3MDYyMWRhZDA0M2VmNzY3ZWY5NzY0ZjJiMDdkMmNiOAo=",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "44906edc4d49cc090673a2220d3b66246b187bca\n"
+        "text": "4ba9e33170621dad043ef767ef9764f2b07d2cb8\n"
       }
     },
     "stderr": {
@@ -43,8 +43,8 @@
       }
     }
   },
-  "started_at": "2026-08-30T09:07:38.099977Z",
-  "ended_at": "2026-08-30T09:07:38.156243Z",
+  "started_at": "2026-08-30T09:08:04.248482Z",
+  "ended_at": "2026-08-30T09:08:04.339888Z",
   "inputs": [],
   "outputs": [],
   "platform": {
@@ -59,5 +59,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Repair 2, G-03: the peel form resolves the object; the bare form echoed its argument and would have printed identically for a SHA that does not exist"
+  "notes": "Repair 2, ADR-0027 novelty: the tree at the repair 1 state, pinned to that commit"
 }

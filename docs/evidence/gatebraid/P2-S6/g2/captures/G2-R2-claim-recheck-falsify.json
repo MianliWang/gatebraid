@@ -1,0 +1,69 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R2-claim-recheck-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S6/g2/claim-recheck.py",
+      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/b8137b4a-c1e1-40cc-a414-c35fc6d904d6/scratchpad/claimfalsify/gate2-seeded.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1851,
+      "sha256": "55733f2d8df77c7e3c5ea21a9d877cc8273430852134c063578efd4da2d7eddc",
+      "data": "aWQgICAgY2xhaW0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZlcmRpY3QgIG1lYXN1cmVkDQpDMSAgICBFNGI6IHRoZSBldmlkZW5jZSBTSEEgcmVzb2x2ZXMgYW5kIHBlZWxzIHRvIGEgY29tbWl0ICAgICAgICAgICAgICAgICAgVFJVRSAgICAgZXhpdD0wIG91dD00NDkwNmVkYzRkNDkNCkMyICAgIEU0YidzIHJlY29yZGVkIGNvbW1hbmQgaXMgdGhlIHBlZWwgZm9ybSwgbm90IHRoZSBlY2hvaW5nIGZvcm0gICAgICAgICBGQUxTRSAgICBwZWVsIHByZXNlbnQsIGJhcmUgYWJzZW50DQpDMyAgICB0aGUgZXhjbHVzaW9uIGxpbWIgc3RpbGwgbmFtZXMgZXhhY3RseSB0d28gcm93cyAoVjdiLCBFNCdzIEhFQUQgcm93KSAgRkFMU0UgICAgVFdPPUZhbHNlDQpDNCAgICBWOSdzIHBpbm5lZCBhcmd1bWVudCBpcyB0aGUgbWV0YWRhdGEgYWN0aXZlX2JyYW5jaF9oZWFkICAgICAgICAgICAgICAgVFJVRSAgICAgbWV0YWRhdGE9NTM4NmNlMzgyYmFjDQpDNSAgICBWOSBkZXJpdmVzIHRoZSBmaW5nZXJwcmludCB0cmVlIGFuZCBpdCBlcXVhbHMgbWV0YWRhdGEgdHJlZV9zaGEgICAgICAgVFJVRSAgICAgZGVyaXZlZD0zZjg4Y2MxMWZkMTEgbWV0YT0zZjg4Y2MxMWZkMTENCkM2ICAgIFY5IGRlcml2ZXMgdGhlIGZpbmdlcnByaW50IGNoYW5nZWQtcGF0aCBzZXQgYW5kIGl0IGVxdWFscyBtZXRhZGF0YSAgICBUUlVFICAgICBbJ2Jpbi9nYXRlYnJhaWQtc25hcHNob3Qtc2VsZnRlc3QucHknLCAnYmluL2dhdGVicmFpZC1zbmFwc2hvdC5weSddIHZzIFsnYmluL2dhdGVicmFpZC1zbmFwc2hvdC1zZWxmdGVzdC5weScsICdiaW4vZ2F0ZWJyYWlkLXNuYXBzaG90LnB5J10NCkM3ICAgIHJlcGFpciAxIG5vdmVsdHk6IHRoZSBwaW5uZWQgdHJlZSByZXNvbHZlcyB0byB0aGUgcmVjb3JkZWQgdmFsdWUgICAgICBUUlVFICAgICB0cmVlPTRmMmE2MTMwYmQyZCBpbiByZWNvcmQ9VHJ1ZQ0KQzggICAgcmVwYWlyIDEgbm92ZWx0eTogdGhlIHNlY29uZCBjb21tYW5kIHBlZWxzIGFuZCByZXNvbHZlcyB0aGUgb2JqZWN0ICAgIFRSVUUgICAgIGV4aXQ9MA0KQzkgICAgUmVwYWlyIGJsb2NrcyBhbmQgbWV0YWRhdGEgcmVwYWlyX2F0dGVtcHRzIGFncmVlLCBjb25zdWx0X3JlZiBwcmVzZW50IEZBTFNFICAgIGJsb2Nrcz0yIG1ldGE9MiByZWY9RmFsc2UNCkMxMCAgIG5vIHJlc2lkdWFsIGFzc2VydGlvbiB0aGF0IG5vIHJlcGFpciBvciBjb25zdWx0IG9jY3VycmVkICAgICAgICAgICAgICBGQUxTRSAgICBtYXRjaGVzPVsnbm8gcmVwYWlyIHNlcXVlbmNlIHJhbicsICdObyBDb2RleCBjb25zdWx0IHdhcyBuZWVkZWQgb3IgbWFkZSddDQpDMTEgICB0aGUgZXZpZGVuY2UgU0hBIGlzIG5vd2hlcmUgY2FsbGVkIHRoZSBmaW5nZXJwcmludCBjb21taXQgICAgICAgICAgICAgVFJVRSAgICAgbGluZXM9W10NCkMxMiAgIHJlcGFpciAyJ3MgaHlwb3RoZXNpcyBhcHBlYXJzIGluIHRoZSBtZXRhZGF0YSBhcyB3ZWxsIGFzIHRoZSBibG9jayAgICBUUlVFICAgICBtZXRhPVRydWUNCkMxMyAgIHRoZSBjb25zdWx0IHJlcXVlc3QgYW5kIGl0cyB2ZXJiYXRpbSByZXNwb25zZSBleGlzdCBhbmQgYXJlIGRlY2xhcmVkICBUUlVFICAgICBkZWNsYXJlZCBpbiBldmlkZW5jZV9maWxlcw0KQzE0ICAgRTQncyBleGNsdWRlZCBIRUFEIHJvdyBzdGlsbCBjYXJyaWVzIGl0cyBvcmlnaW5hbCByZWNvcmRlZCB2YWx1ZSAgICAgIFRSVUUgICAgIHVuY2hhbmdlZA0KDQpjbGFpbXMgcmUtbWVhc3VyZWQgICAgICAgICAgIDogMTQNCmNsYWltcyBtZWFzdXJlZCBGQUxTRSAgICAgICAgOiA0DQpDTEFJTSBSRUNIRUNLIE5PVCBDTEVBTg0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "id    claim                                                                 verdict  measured\r\nC1    E4b: the evidence SHA resolves and peels to a commit                  TRUE     exit=0 out=44906edc4d49\r\nC2    E4b's recorded command is the peel form, not the echoing form         FALSE    peel present, bare absent\r\nC3    the exclusion limb still names exactly two rows (V7b, E4's HEAD row)  FALSE    TWO=False\r\nC4    V9's pinned argument is the metadata active_branch_head               TRUE     metadata=5386ce382bac\r\nC5    V9 derives the fingerprint tree and it equals metadata tree_sha       TRUE     derived=3f88cc11fd11 meta=3f88cc11fd11\r\nC6    V9 derives the fingerprint changed-path set and it equals metadata    TRUE     ['bin/gatebraid-snapshot-selftest.py', 'bin/gatebraid-snapshot.py'] vs ['bin/gatebraid-snapshot-selftest.py', 'bin/gatebraid-snapshot.py']\r\nC7    repair 1 novelty: the pinned tree resolves to the recorded value      TRUE     tree=4f2a6130bd2d in record=True\r\nC8    repair 1 novelty: the second command peels and resolves the object    TRUE     exit=0\r\nC9    Repair blocks and metadata repair_attempts agree, consult_ref present FALSE    blocks=2 meta=2 ref=False\r\nC10   no residual assertion that no repair or consult occurred              FALSE    matches=['no repair sequence ran', 'No Codex consult was needed or made']\r\nC11   the evidence SHA is nowhere called the fingerprint commit             TRUE     lines=[]\r\nC12   repair 2's hypothesis appears in the metadata as well as the block    TRUE     meta=True\r\nC13   the consult request and its verbatim response exist and are declared  TRUE     declared in evidence_files\r\nC14   E4's excluded HEAD row still carries its original recorded value      TRUE     unchanged\r\n\r\nclaims re-measured           : 14\r\nclaims measured FALSE        : 4\r\nCLAIM RECHECK NOT CLEAN\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-30T09:10:13.330962Z",
+  "ended_at": "2026-08-30T09:10:13.717331Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S6/g2/claim-recheck.py",
+      "sha256": "0e86de3947b9482ff011dc1cf1e149d268d53b7c79df01d464d5fa9d1788c08d"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The same checker pointed at a record seeded with four independent defects; it must fire on each"
+}

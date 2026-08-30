@@ -41,9 +41,9 @@ $ git rev-parse HEAD
 (exit 0)
 ```
 
-**E4b - the same commit named as a SHA rather than reached through HEAD, so the identity the row asserts is reproducible on its own**
+**E4b - the EVIDENCE commit pinned as a SHA and verified as an existing commit by a peel that resolves the object. It is NOT the fingerprint commit and carries no claim about it**
 ```
-$ git rev-parse 44906edc4d49cc090673a2220d3b66246b187bca
+$ git rev-parse 44906edc4d49cc090673a2220d3b66246b187bca^{commit}
 44906edc4d49cc090673a2220d3b66246b187bca
 (exit 0)
 ```
@@ -291,18 +291,32 @@ bin/gatebraid-snapshot.py
 
 - Hypothesis (new): the record lacks ADR-0028 decision 2's treatment for head-mutable rows and carries an unpinned diff base, so two rows inside R3's deterministic subset do not reproduce and the record says nothing about it.
 
-**Novelty measured - the tree at the previous failed state, pinned to that commit**
+**Novelty measured - the tree at the previous failed state, pinned to that commit; the second command peels the same commit and so resolves the object rather than echoing its argument**
 ```
 $ git rev-parse 44906edc4d49cc090673a2220d3b66246b187bca^{tree}
 4f2a6130bd2dd93f63380ffa220dd09c43ee153f
 (exit 0)
-$ git rev-parse 44906edc4d49cc090673a2220d3b66246b187bca
+$ git rev-parse 44906edc4d49cc090673a2220d3b66246b187bca^{commit}
 44906edc4d49cc090673a2220d3b66246b187bca
 (exit 0)
 ```
 
 - Result: `green`
 - Consult: `none`
+
+### Repair 2
+
+- Hypothesis (new): the failing class is a statement the file makes about itself going false, so the remedy is to remove the self-referential claims rather than restate them - delete the stale disclosure outright, name in E4b the commit it actually carries, and replace its echoing command with a peel that resolves the object.
+
+**Novelty measured - the tree at the repair 1 state, pinned to that commit**
+```
+$ git rev-parse 8d4fa4188c8fecc552448e1fff152e133abb3229^{tree}
+4ba9e33170621dad043ef767ef9764f2b07d2cb8
+(exit 0)
+```
+
+- Result: `green`
+- Consult: `CONSULT-19-01` (in sequence; ACCEPT)
 
 ## Required disclosures
 
@@ -318,8 +332,7 @@ $ git rev-parse 44906edc4d49cc090673a2220d3b66246b187bca
 - Deviations: P2-S5 reads `blocked` in the live smoke read, not `startable`, because `#19` - this Slice - is open and blocks it. That is the setup batch's operational unblock edge working exactly as intended and is not a defect. The Acceptance asks that `items` include P2-S5 and that the frontier consume the snapshot with exit 0; both hold, and the verdict's reason is carried verbatim in the frontier report.
 - Deviations: the handoff fingerprint is measured at the last IMPLEMENTATION commit, before this record and the rest of this Slice's evidence are committed, which is what the fingerprint's definition requires and what makes it Gate 3's comparand. Every commit after it is record-only and confined to docs/evidence/gatebraid/P2-S6/, which is inside the frozen allowlist.
 - Deviations: this Slice's Gate 0 and Gate 1 evidence was uncommitted working material until this gate. It is committed here under the lease, per the recorded procedure those gates' records state. The retained P2-S5 evidence is NOT committed and NOT touched - it is outside the allowlist and negative criterion N3 fires on it, as its falsification run shows.
-- Deviations: no repair sequence ran. Every declared command was green on its first run at this gate, so `repair_attempts` is empty and `repair_limit` is unspent. No Codex consult was needed or made.
-- Deviations: THE NOMINATED DETERMINISTIC SUBSET of this record, stated explicitly because ADR-0028 decision 2 admits exactly two lawful treatments for a mutable reference - pin it, or exclude it and SAY SO. IN the subset, and reproducing byte-identically: E1, E2, E3, E4's first command, E4b, V1 through V6, V7 (pinned at repair 1), V8, V9, and the novelty row of repair 1. OUTSIDE the subset, by the exclusion limb, TWO rows. First, V7b, the retained unpinned run: its instrument reads the WORKING TREE, so it recorded 2 changed paths at its instant and returns more after every later commit - it is kept as a true record of that instant and this record makes NO claim that it reproduces. Second, E4's second command, `git rev-parse HEAD`, and the committed capture G2-fp-head.json that carries the same command. Its recorded value 5386ce382bac5b4bc1c76a38bcbe86717adf9c1c was the branch head at the implementation-complete commit and is true of that instant; it now returns the record-only commit that followed. It has NO truthful pinned form - rewriting it as `git rev-parse 5386ce38...` would echo its own argument and establish nothing - so exclusion is the treatment, exactly as P2-S4's merged record reasoned. What the row carries is PROVENANCE, how this writer arrived at that commit, not specification; everything the fingerprint must SPECIFY is carried by rows that do reproduce: E4b names the commit as a SHA, V9 derives its tree and its changed-path set from pinned arguments.
+- Deviations: THE NOMINATED DETERMINISTIC SUBSET of this record, stated explicitly because ADR-0028 decision 2 admits exactly two lawful treatments for a mutable reference - pin it, or exclude it and SAY SO. IN the subset, and reproducing byte-identically: E1, E2, E3, E4's first command, E4b, V1 through V6, V7 (pinned at repair 1), V8, V9, and the novelty row of repair 1. OUTSIDE the subset, by the exclusion limb, TWO rows. First, V7b, the retained unpinned run: its instrument reads the WORKING TREE, so it recorded 2 changed paths at its instant and returns more after every later commit - it is kept as a true record of that instant and this record makes NO claim that it reproduces. Second, E4's second command, `git rev-parse HEAD`, and the committed capture G2-fp-head.json that carries the same command. Its recorded value 5386ce382bac5b4bc1c76a38bcbe86717adf9c1c was the branch head at the implementation-complete commit and is true of that instant; it now returns the record-only commit that followed. It has NO truthful pinned form - rewriting it as `git rev-parse 5386ce38...` would echo its own argument and establish nothing - so exclusion is the treatment, exactly as P2-S4's merged record reasoned. What the row carries is PROVENANCE, how this writer arrived at that commit, not specification; everything the fingerprint must SPECIFY is carried by V9: its pinned commit argument IS the active_branch_head this record's metadata carries, and its two commands derive that commit's tree and its changed-path set from that argument.
 - Deviations: REPAIR 1, F-02 - what was pinned, and the one line that changed. Row V7 recorded the negative-criteria instrument run with an unpinned base, so its changed-path set was read against the WORKING TREE and moved when this Slice's 92 record-only files were committed: 673 bytes and 2 changed paths recorded, 6,622 bytes and 94 live. The row is now the same instrument - byte-identical, sha256 72a4fc5bd8b14c9873f0c75e04f1413019f78c604e79c8bc89be57ef04fe97a9 across every run at both gates, NOT edited - invoked with --base <base>..<fingerprint-commit>. The pinned stdout is 715 bytes against the unpinned 673, and the difference is EXACTLY 42 bytes on one line: the two dots and the forty hex characters of the pinned end-point, echoed by the command as its own argument. Every other line is identical, including all five verdicts and both changed paths, and two consecutive pinned runs are byte-identical to each other. The unpinned run is RETAINED beside it as V7b rather than deleted: it is a true record of its own instant, and removing it would hide the defect this repair fixes.
 - Deviations: REPAIR 1, F-03 - the Repair record's form. It carried two sentences of prose in none of ADR-0026's content classes. It is now a `### Repair 1` block of the template's shape, carrying this attempt. The fact those sentences asserted - that no repair had been attempted - was true when written and is superseded by this attempt rather than deleted as wrong.
 - Deviations: REPAIR 1, the ADR-0027 novelty measurement and the one boundary it has. The tree at the previous failed state is 4f2a6130bd2dd93f63380ffa220dd09c43ee153f, measured by a command PINNED to commit 44906edc4d49cc090673a2220d3b66246b187bca so the row reproduces. This repair's own tree cannot appear inside the file the repair commits - a record cannot contain the hash of the commit that contains it - so it is measured after the commit and carried in _handoff/batch-p2s6/G2-REPAIR1-REPORT-M3-P2S6.md. The trees necessarily differ, because this file's own bytes changed; an unchanged tree would not be a repair, and the report is where that comparison is shown rather than asserted here.
@@ -402,6 +415,14 @@ checks:
     command: "g2/checks-g2-closed-set-sweep.py docs/evidence/gatebraid/P2-S6/g2/captures"
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-closed-set-sweep.json"
+  - name: repair2-claim-recheck
+    command: "g2/claim-recheck.py (every prose claim this repair touches or creates, re-measured)"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-R2-claim-recheck.json"
+  - name: repair2-claim-recheck-falsified
+    command: "g2/claim-recheck.py against a record seeded with four independent defects; it must fire on each"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S6/g2/captures/G2-R2-claim-recheck-falsify.json"
   - name: gate2-record-machine-validated
     command: "bin/gatebraid-validate.py --record docs/evidence/gatebraid/P2-S6/gate2.md"
     result: pass
@@ -421,6 +442,10 @@ repair_attempts:
   - number: 1
     hypothesis: "the record lacks ADR-0028 decision 2's treatment for head-mutable rows and carries an unpinned diff base, so two rows inside R3's deterministic subset do not reproduce and the record says nothing about it"
     result: green
+  - number: 2
+    hypothesis: "the failing class is a statement the file makes about itself going false, so the remedy removes the self-referential claims rather than restating them"
+    result: green
+    consult_ref: CONSULT-19-01
 approvals:
   - type: "Plan Approval (G1→G2)"
     comment_url: "https://github.com/MianliWang/gatebraid/issues/19#issuecomment-5466316139"
@@ -429,5 +454,7 @@ plan_hash: "4435c71eaf08bf0605815e5960c8093c4698babf99ae8a7030d05ebe445671d0"
 allowlist_hash: "8938efcce4b8b863b14f7a503c808d7c2c67d2975aad180fd153fd45cc6da291"
 evidence_files:
   - docs/evidence/gatebraid/P2-S6/gate2.md
+  - docs/evidence/gatebraid/P2-S6/CONSULT-19-01.md
+  - docs/evidence/gatebraid/P2-S6/CONSULT-19-01-response.json
 notes: "Implementation of the frozen plan's T1, T2 and T3. The plan and allowlist are UNCHANGED - no correct-course, no re-freeze - so both hashes carry their Gate 1 values. The two defects are repaired in the two layers the plan named, and the classifier, the assembly and the whole replay transport are untouched: every pre-existing selftest condition stays green, which is the regression evidence the plan nominated. The Plan Approval was targeted BY COMMENT ID, never by matching words or hashes, because Gate 1's own handoff comment carries both hashes and the phrase `Plan Approval` and an id-anchored fetch cannot read the gate's own exit as consent. Review verdicts are absent by design and belong to an independent reviewer."
 ```
