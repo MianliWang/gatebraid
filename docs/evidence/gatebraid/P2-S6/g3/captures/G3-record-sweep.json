@@ -24,12 +24,12 @@
     "stdout": {
       "encoding": "base64",
       "byte_length": 999,
-      "sha256": "36c093a7a0280331f418955ca3c23fd0ebab795c8e0c5644634903ba19ea0c64",
-      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTEgcGVybWl0dGVkIHJlcG9zaXRvcnkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAzDQogIEUzIEFQSS1wYXRoIGZyYWdtZW50ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNA0KICBFNCBnaXQgcmVmIG5hbWVzcGFjZSwgbm90IGEgcmVwb3NpdG9yeSAgICAgICAgICAgICAgICAgICAgIDE2DQogIEU1IGZpbGVzeXN0ZW0gb3IgVVJMIHBhdGggc2VnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgNzcNCiAgRTYgc2NoZW1hLWlkIG5hbWVzcGFjZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxDQogIEU4IHByb3NlIHNsYXNoIGJldHdlZW4gb3JkaW5hcnkgd29yZHMgKG5hbWVkLCBub3QgbWF0Y2hlZCkgMQ0KICBFOSB0aGlzIFNsaWNlJ3Mgb3duIGdpdCBicmFuY2ggcmVmIChuYW1lZCwgbm90IG1hdGNoZWQpICAgIDUNCiAgSTEgdGhlIHN1YmplY3QgaXNzdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAyDQogIE4xIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMQ0KDQo9PT0gZXZlcnkgUkVQT1NJVE9SWSBpZGVudGl0eSBuYW1lZCBhbnl3aGVyZSA9PT0NCiAgTWlhbmxpV2FuZy9nYXRlYnJhaWQgICAgICAgICAgIHgzICAgIFBFUk1JVFRFRA0KDQo9PT0gbWVudGlvbi1jbGFzcyBjaGVjazogYSBtZW50aW9uIG11c3QgbmV2ZXIgYXBwZWFyIGluIGFuIElOVk9DQVRJT04gPT09DQogIG1lbnRpb24tY2xhc3MgaXNzdWVzIHRhcmdldGVkIGJ5IGEgcXVlcnk6IDAgKDAgcmVxdWlyZWQpDQoNCmRvbWFpbiAgICAgIDogMSBkb2N1bWVudHMgKDAgb2YgdGhpcyBzd2VlcCdzIG93biByZXBvcnRzIGV4Y2x1ZGVkKQ0KVU5FWFBMQUlORUQgUkVTSURVRTogMA0K",
+      "sha256": "fedd3c2605e6f0bcfa64987d674491c790e0a7b466e4da992c6985d970b0c8ca",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTEgcGVybWl0dGVkIHJlcG9zaXRvcnkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA0DQogIEUzIEFQSS1wYXRoIGZyYWdtZW50ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNA0KICBFNCBnaXQgcmVmIG5hbWVzcGFjZSwgbm90IGEgcmVwb3NpdG9yeSAgICAgICAgICAgICAgICAgICAgIDE2DQogIEU1IGZpbGVzeXN0ZW0gb3IgVVJMIHBhdGggc2VnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgNzgNCiAgRTYgc2NoZW1hLWlkIG5hbWVzcGFjZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxDQogIEU4IHByb3NlIHNsYXNoIGJldHdlZW4gb3JkaW5hcnkgd29yZHMgKG5hbWVkLCBub3QgbWF0Y2hlZCkgMQ0KICBFOSB0aGlzIFNsaWNlJ3Mgb3duIGdpdCBicmFuY2ggcmVmIChuYW1lZCwgbm90IG1hdGNoZWQpICAgIDUNCiAgSTEgdGhlIHN1YmplY3QgaXNzdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAyDQogIE4xIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMQ0KDQo9PT0gZXZlcnkgUkVQT1NJVE9SWSBpZGVudGl0eSBuYW1lZCBhbnl3aGVyZSA9PT0NCiAgTWlhbmxpV2FuZy9nYXRlYnJhaWQgICAgICAgICAgIHg0ICAgIFBFUk1JVFRFRA0KDQo9PT0gbWVudGlvbi1jbGFzcyBjaGVjazogYSBtZW50aW9uIG11c3QgbmV2ZXIgYXBwZWFyIGluIGFuIElOVk9DQVRJT04gPT09DQogIG1lbnRpb24tY2xhc3MgaXNzdWVzIHRhcmdldGVkIGJ5IGEgcXVlcnk6IDAgKDAgcmVxdWlyZWQpDQoNCmRvbWFpbiAgICAgIDogMSBkb2N1bWVudHMgKDAgb2YgdGhpcyBzd2VlcCdzIG93biByZXBvcnRzIGV4Y2x1ZGVkKQ0KVU5FWFBMQUlORUQgUkVTSURVRTogMA0K",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    3\r\n  E3 API-path fragment                                       4\r\n  E4 git ref namespace, not a repository                     16\r\n  E5 filesystem or URL path segment                          77\r\n  E6 schema-id namespace                                     1\r\n  E8 prose slash between ordinary words (named, not matched) 1\r\n  E9 this Slice's own git branch ref (named, not matched)    5\r\n  I1 the subject issue                                       2\r\n  N1 the permitted Project                                   1\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x3    PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 0\r\n"
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    4\r\n  E3 API-path fragment                                       4\r\n  E4 git ref namespace, not a repository                     16\r\n  E5 filesystem or URL path segment                          78\r\n  E6 schema-id namespace                                     1\r\n  E8 prose slash between ordinary words (named, not matched) 1\r\n  E9 this Slice's own git branch ref (named, not matched)    5\r\n  I1 the subject issue                                       2\r\n  N1 the permitted Project                                   1\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x4    PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 0\r\n"
       }
     },
     "stderr": {
@@ -44,8 +44,8 @@
       }
     }
   },
-  "started_at": "2026-08-30T14:26:22.594055Z",
-  "ended_at": "2026-08-30T14:26:22.670493Z",
+  "started_at": "2026-08-30T14:27:42.068709Z",
+  "ended_at": "2026-08-30T14:27:42.144543Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S6/g3/checks-g3-closed-set-sweep.py",
@@ -53,7 +53,7 @@
     },
     {
       "path": "docs/evidence/gatebraid/P2-S6/gate3.md",
-      "sha256": "69e67b87369409f02ccaa9da1746372a71c09126bb2cb2b4a3989953e4b86bfe"
+      "sha256": "279a403b38f35c84571ba89149c296a0cfc11a73460a339140a9a5afd557312f"
     }
   ],
   "outputs": [],

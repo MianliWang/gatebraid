@@ -111,6 +111,8 @@ DISCLOSURES = [
     "request carries and a check run only before that push would not have covered the commit this record "
     "itself is. Both runs are recorded.",
 
+    "Deviations: row G6 measures the pull request as it stood after this file's FIRST push, and this file's own second commit necessarily moves the head once more - a record cannot contain the aftermath of the commit that carries it. The boundary is stated rather than chased: what G6 establishes is that closure precondition (b) holds over every commit message the pull request carries INCLUDING this record's, which is the property the contract asks for. The check re-run against the truly final head is carried in _handoff/batch-p2s6/G3-PUBLICATION-REPORT-M3-P2S6.md, and the operator sees it before the merge.",
+
     "Deviations: this record carries NO merge SHA and NO closure timestamp, and asserts nothing about the "
     "merge. It is written and committed BEFORE the merge by the contract's normative order, so that it "
     "reaches the base branch through the pull request like every other change. The merge is the operator's "
@@ -162,7 +164,7 @@ checks:
     result: pass
     output_ref: "#publication-records"
   - name: closure-precondition-pull-request-final-state
-    command: "the same two checks re-run against the pull request AFTER gate3.md was pushed"
+    command: "gh pr view 20 (headRefOid moved, closingIssuesReferences still empty) and the scan re-run over all 8 commit messages, AFTER gate3.md's first push"
     result: pass
     output_ref: "#publication-records"
   - name: closing-keyword-scan-falsified
@@ -221,6 +223,9 @@ row("G4 - publication: push, read back, and the pull request as opened",
     ["G3-G4-push", "G3-G4-lsremote", "G3-G4-pr"])
 row("G5 - CI status: no workflow exists in this repository, and no check ran on the published head",
     ["G3-G5-ci-workflows", "G3-G5-ci-checkruns"])
+row("G6 - the pull request after gate3.md's first push: the head moved, and closure "
+    "precondition (b) re-run against that state over all 8 commit messages",
+    ["G3-G4-pr-final", "G3-G2b-final-scan"], limit=22, head=10)
 
 w("- Pull request: https://github.com/MianliWang/gatebraid/pull/20 - referenced, not duplicated")
 w()

@@ -196,6 +196,34 @@ $ GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid gh api repos/MianliWang/gatebraid/c
 (exit 0)
 ```
 
+**G6 - the pull request after gate3.md's first push: the head moved, and closure precondition (b) re-run against that state over all 8 commit messages**
+```
+$ GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid gh pr view 20 --repo MianliWang/gatebraid --json number,url,state,headRefOid,closingIssuesReferences
+{"closingIssuesReferences":[],"headRefOid":"43a7c96a9975e9861ce02e9ec9a600fe56082544","number":20,"state":"OPEN","url":"https://github.com/MianliWang/gatebraid/pull/20"}
+(exit 0)
+$ GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S6/g3/closing-keyword-scan.py --pr 20 --base 3d47f8be0b9c999bf80e356f2b1c1cf88e2e5dd8
+keyword pattern    : (?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s*:?\s+(?:#\d+|[A-Za-z0-9._-]+/[A-Za-z0-9._-]+#\d+|https?://github\.com/\S+/issues/\d+)
+scope              : the pull-request body and every commit message in 3d47f8be0b9c..HEAD
+
+PR body (pr#20)
+   pattern matches : 0  
+   bare tokens     : 1  (a conventional-commit prefix references nothing and is not prohibited)
+
+commit messages the pull request carries: 8
+   254981f1a6fb  pattern=0  bare=3   fix(snapshot): the live transport reads per-sour
+   5386ce382bac  pattern=0  bare=2   test(snapshot): the selftest exercises the live 
+   44906edc4d49  pattern=0  bare=0   docs(p2-s6): the Slice's Gate 0, Gate 1 and Gate
+   d1e9dd950d37  pattern=0  bare=2   docs(p2-s6): repair 1 of the R3 fail - decision 
+   8d4fa4188c8f  pattern=0  bare=1   docs(p2-s6): repair 1, correction - V7b is exclu
+   73e489f1976f  pattern=0  bare=2   docs(p2-s6): repair 2 - remove the self-referent
+   bd40ed39e243  pattern=0  bare=2   docs(p2-s6): the Gate 2 review record - R1 throu
+   43a7c96a9975  pattern=0  bare=2   docs(p2-s6): gate3.md - the publication record, 
+
+total pattern matches: 0
+CLOSING-KEYWORD SCAN: CLEAN - no closing keyword precedes any issue reference
+(exit 0)
+```
+
 - Pull request: https://github.com/MianliWang/gatebraid/pull/20 - referenced, not duplicated
 
 ## Required disclosures
@@ -206,6 +234,7 @@ $ GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid gh api repos/MianliWang/gatebraid/c
 - Deviations: the ref namespace carries one ref outside refs/heads, refs/remotes and refs/tags - a Codex turn-diff checkpoint pointing at a tree object. It is REPORTED and NOT ADOPTED, and it is NOT slice-introduced: the same ref is recorded in the retained P2-S5 Gate 0 evidence and in this Slice's own Gate 0 record, both of which predate this branch. No write of any kind was made into that namespace.
 - Deviations: closure precondition (b) is checked as a PATTERN, never as a bare token, and the scan prints its matches beside its count. Twelve bare keyword tokens occur across the seven commit messages - every one a conventional-commit `fix(scope):` prefix or ordinary prose, which the contract names explicitly as not prohibited because it references nothing. Zero of them precede an issue reference. The scan was FALSIFIED before it was trusted: pointed at a seeded body carrying both `Closes #19` and `fixes owner/repo#17`, it fires on both and exits 1.
 - Deviations: closure precondition (b) is recorded TWICE - once at the pull request's creation and once against its FINAL state after `gate3.md` was pushed, because pushing a commit changes what the pull request carries and a check run only before that push would not have covered the commit this record itself is. Both runs are recorded.
+- Deviations: row G6 measures the pull request as it stood after this file's FIRST push, and this file's own second commit necessarily moves the head once more - a record cannot contain the aftermath of the commit that carries it. The boundary is stated rather than chased: what G6 establishes is that closure precondition (b) holds over every commit message the pull request carries INCLUDING this record's, which is the property the contract asks for. The check re-run against the truly final head is carried in _handoff/batch-p2s6/G3-PUBLICATION-REPORT-M3-P2S6.md, and the operator sees it before the merge.
 - Deviations: this record carries NO merge SHA and NO closure timestamp, and asserts nothing about the merge. It is written and committed BEFORE the merge by the contract's normative order, so that it reaches the base branch through the pull request like every other change. The merge is the operator's own browser action under the approval's term 4; the authoritative Gate 3 record is the composite of this file, the pull request's merge event, the issue's closure event and the Project's Workflow.
 - Deviations: the branch was pushed and the pull request opened, which are this gate's authorised publication actions. Nothing was merged, no branch was deleted, no tag was created, and no force-push was made or is available. `Next Approval` deliberately still reads the Release Approval option: the contract returns it to the bare option at Exit, after the merge, and this record is written before that.
 - Environment: Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; shell Git Bash MINGW64 with Git for Windows 2.51.0.windows.1 whose system configuration carries core.autocrlf=true; every gh call pins GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid and uses endpoints with no leading slash; every Python invocation carries -B with PYTHONDONTWRITEBYTECODE=1; Windows interpreter C:/Python312/python.exe with CPython 3.12.2, PyYAML 6.0.2, jsonschema 4.23.0. environment=mixed-see-prose: this gate ran wholly on the Windows host.
@@ -245,7 +274,7 @@ checks:
     result: pass
     output_ref: "#publication-records"
   - name: closure-precondition-pull-request-final-state
-    command: "the same two checks re-run against the pull request AFTER gate3.md was pushed"
+    command: "gh pr view 20 (headRefOid moved, closingIssuesReferences still empty) and the scan re-run over all 8 commit messages, AFTER gate3.md's first push"
     result: pass
     output_ref: "#publication-records"
   - name: closing-keyword-scan-falsified
