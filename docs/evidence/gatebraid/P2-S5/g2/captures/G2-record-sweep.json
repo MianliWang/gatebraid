@@ -26,13 +26,13 @@
   "streams": {
     "stdout": {
       "encoding": "base64",
-      "byte_length": 1114,
-      "sha256": "cf1ac767cbd6a8bd5770515178c55808abc473b884ed68f7df05ef0949cc35c1",
-      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTEgcGVybWl0dGVkIHJlcG9zaXRvcnkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA1DQogIEUzIEFQSS1wYXRoIGZyYWdtZW50ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMw0KICBFNSBmaWxlc3lzdGVtIG9yIFVSTCBwYXRoIHNlZ21lbnQgICAgICAgICAgICAgICAgICAgICAgICAgIDM1OQ0KICBFNiBzY2hlbWEtaWQgbmFtZXNwYWNlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDMNCiAgRTcgSlNPTiBwb2ludGVyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxMw0KICBFOCBwcm9zZSBzbGFzaCBiZXR3ZWVuIG9yZGluYXJ5IHdvcmRzIChuYW1lZCwgbm90IG1hdGNoZWQpIDcNCiAgSTAgZnJpY3Rpb24gY2l0YXRpb24sIG5vdCBhbiBpc3N1ZSByZWZlcmVuY2UgICAgICAgICAgICAgICAxDQogIE4xIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNA0KICBOMiB0aGUgUDItUzUgaXRlbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDkNCiAgTjMgZmllbGQgaWQgb2YgdGhlIHBlcm1pdHRlZCBQcm9qZWN0ICAgICAgICAgICAgICAgICAgICAgICA0DQoNCj09PSBldmVyeSBSRVBPU0lUT1JZIGlkZW50aXR5IG5hbWVkIGFueXdoZXJlID09PQ0KICBNaWFubGlXYW5nL2dhdGVicmFpZCAgICAgICAgICAgeDIgICAgUEVSTUlUVEVEDQogIE1pYW5saVdhbmcvZ2F0ZWJyYWlkLXNjcmF0Y2ggICB4MyAgICBQRVJNSVRURUQNCg0KPT09IG1lbnRpb24tY2xhc3MgY2hlY2s6IGEgbWVudGlvbiBtdXN0IG5ldmVyIGFwcGVhciBpbiBhbiBJTlZPQ0FUSU9OID09PQ0KICBtZW50aW9uLWNsYXNzIGlzc3VlcyB0YXJnZXRlZCBieSBhIHF1ZXJ5OiAwICgwIHJlcXVpcmVkKQ0KDQpkb21haW4gICAgICA6IDEgZG9jdW1lbnRzICgwIG9mIHRoaXMgc3dlZXAncyBvd24gcmVwb3J0cyBleGNsdWRlZCkNClVORVhQTEFJTkVEIFJFU0lEVUU6IDANCg==",
+      "byte_length": 1178,
+      "sha256": "3c8284b6d5f61894326ec4fbd1bde199df0b855ef0cac3830c29bd5b6b4c3543",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTEgcGVybWl0dGVkIHJlcG9zaXRvcnkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAzDQogIEUzIEFQSS1wYXRoIGZyYWdtZW50ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMw0KICBFNCBnaXQgcmVmIG5hbWVzcGFjZSwgbm90IGEgcmVwb3NpdG9yeSAgICAgICAgICAgICAgICAgICAgIDINCiAgRTUgZmlsZXN5c3RlbSBvciBVUkwgcGF0aCBzZWdtZW50ICAgICAgICAgICAgICAgICAgICAgICAgICA0MTcNCiAgRTYgc2NoZW1hLWlkIG5hbWVzcGFjZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA2DQogIEU3IEpTT04gcG9pbnRlciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTINCiAgRTggcHJvc2Ugc2xhc2ggYmV0d2VlbiBvcmRpbmFyeSB3b3JkcyAobmFtZWQsIG5vdCBtYXRjaGVkKSA2DQogIEkwIGZyaWN0aW9uIGNpdGF0aW9uLCBub3QgYW4gaXNzdWUgcmVmZXJlbmNlICAgICAgICAgICAgICAgNw0KICBOMSB0aGUgcGVybWl0dGVkIFByb2plY3QgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDQNCiAgTjIgdGhlIFAyLVM1IGl0ZW0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA5DQogIE4zIGZpZWxkIGlkIG9mIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAgICAgNA0KDQo9PT0gZXZlcnkgUkVQT1NJVE9SWSBpZGVudGl0eSBuYW1lZCBhbnl3aGVyZSA9PT0NCiAgTWlhbmxpV2FuZy9nYXRlYnJhaWQgICAgICAgICAgIHgxICAgIFBFUk1JVFRFRA0KICBNaWFubGlXYW5nL2dhdGVicmFpZC1zY3JhdGNoICAgeDIgICAgUEVSTUlUVEVEDQoNCj09PSBtZW50aW9uLWNsYXNzIGNoZWNrOiBhIG1lbnRpb24gbXVzdCBuZXZlciBhcHBlYXIgaW4gYW4gSU5WT0NBVElPTiA9PT0NCiAgbWVudGlvbi1jbGFzcyBpc3N1ZXMgdGFyZ2V0ZWQgYnkgYSBxdWVyeTogMCAoMCByZXF1aXJlZCkNCg0KZG9tYWluICAgICAgOiAxIGRvY3VtZW50cyAoMCBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiAwDQo=",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    5\r\n  E3 API-path fragment                                       3\r\n  E5 filesystem or URL path segment                          359\r\n  E6 schema-id namespace                                     3\r\n  E7 JSON pointer                                            13\r\n  E8 prose slash between ordinary words (named, not matched) 7\r\n  I0 friction citation, not an issue reference               1\r\n  N1 the permitted Project                                   4\r\n  N2 the P2-S5 item                                          9\r\n  N3 field id of the permitted Project                       4\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x2    PERMITTED\r\n  MianliWang/gatebraid-scratch   x3    PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 0\r\n"
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    3\r\n  E3 API-path fragment                                       3\r\n  E4 git ref namespace, not a repository                     2\r\n  E5 filesystem or URL path segment                          417\r\n  E6 schema-id namespace                                     6\r\n  E7 JSON pointer                                            12\r\n  E8 prose slash between ordinary words (named, not matched) 6\r\n  I0 friction citation, not an issue reference               7\r\n  N1 the permitted Project                                   4\r\n  N2 the P2-S5 item                                          9\r\n  N3 field id of the permitted Project                       4\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x1    PERMITTED\r\n  MianliWang/gatebraid-scratch   x2    PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 0\r\n"
       }
     },
     "stderr": {
@@ -47,8 +47,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T03:26:18.613738Z",
-  "ended_at": "2026-09-02T03:26:18.704871Z",
+  "started_at": "2026-09-02T07:29:32.275985Z",
+  "ended_at": "2026-09-02T07:29:32.355826Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "The closed-set sweep over this gate's FINAL record bytes."
+  "notes": "The closed-set sweep over the repaired record's FINAL bytes."
 }

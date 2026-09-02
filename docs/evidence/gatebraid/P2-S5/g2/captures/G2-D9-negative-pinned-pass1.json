@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D9-negative-pinned",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py",
+      "--base",
+      "cbd065893b37f20713ae35b8d2673bf26fe4d2ad..629e287faab01a84935a93a2dc265d369a6a5c33"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1850,
+      "sha256": "a6be5ecc8d94be351209f3b8eb2934909139ac99989fbc7ce27d305980404d3b",
+      "data": "Y2hhbmdlZC1wYXRoIHNvdXJjZSA6IGdpdA0KYmFzZSAgICAgICAgICAgICAgICA6IGNiZDA2NTg5M2IzN2YyMDcxM2FlMzViOGQyNjczYmYyNmZlNGQyYWQuLjYyOWUyODdmYWFiMDFhODQ5MzVhOTNhMmRjMjY1ZDM2OWE2YTVjMzMNCmNoYW5nZWQgcGF0aHMgICAgICAgOiAxOTcNCiAgIGJpbi9nYXRlYnJhaWQtcmVhZHktc2VsZnRlc3QucHkNCiAgIGJpbi9nYXRlYnJhaWQtcmVhZHkucHkNCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWJhc2VsaW5lLW1haW4uanNvbg0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtY2FwdHVyZXMtdmFsaWRhdGlvbi1wYXNzMS5qc29uDQogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1jYXB0dXJlcy12YWxpZGF0aW9uLXBhc3MyLmpzb24NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNhcHR1cmVzLXZhbGlkYXRpb24uanNvbg0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtY2xvc2VkLXNldC1zd2VlcC1mYWxzaWZ5LXBhc3MxLmpzb24NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNsb3NlZC1zZXQtc3dlZXAtZmFsc2lmeS5qc29uDQogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1jbG9zZWQtc2V0LXN3ZWVwLXBhc3MxLmpzb24NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNsb3NlZC1zZXQtc3dlZXAuanNvbg0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtZW52LWZpZWxkLmpzb24NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWZyb250aWVyLXJ1bi5qc29uDQogICBbLi4uIDE4NSBtb3JlOyB0aGUgZnVsbCBzZXQgaXMgdGhlIHNjb3BlLCBub3QgdGhpcyBsaXN0aW5nXQ0KYWxsb3dsaXN0ICAgICAgICAgICA6IGJpbi8sIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1Lw0KY29kZSBzdXJmYWNlICAgICAgICA6IGJpbi9nYXRlYnJhaWQtcmVhZHkucHksIGJpbi9nYXRlYnJhaWQtcmVhZHktc2VsZnRlc3QucHkNCnRyYW5zaXRpdmUgdGFyZ2V0ICAgOiBiaW4vZ2F0ZWJyYWlkLXNuYXBzaG90LnB5DQpjb25zdW1lciAgICAgICAgICAgIDogYmluL2dhdGVicmFpZC1mcm9udGllci5weQ0KZnJvemVuIHJvb3QgICAgICAgICA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1DQoNCk4xIGV2ZXJ5IGNoYW5nZWQgcGF0aCBpbnNpZGUgdGhlIGFsbG93bGlzdCAgICAgICAgIDogaG9sZHMNCk4yIHVuZGVyIGJpbi8sIG9ubHkgdGhlIHJlYWR5IHBhaXIgaXMgdG91Y2hlZCAgICAgIDogaG9sZHMNCk4zIG5vIGZyb3plbiBpbnB1dCBpcyB3cml0dGVuICAgICAgICAgICAgICAgICAgICAgIDogaG9sZHMNCk40IG5vIHJ1bnRpbWUgZGVwZW5kZW5jeSwgbm8gSFRUUCBjbGllbnQgICAgICAgICAgIDogaG9sZHMNCk41IG5vIGNvbnRyb2wtcGxhbmUgbXV0YXRpb24sIG5vIGZpbGUgd3JpdHRlbiAgICAgIDogaG9sZHMNCk42IHJlYWR5J3MgY29kZXMgc2l0IG91dHNpZGUgYm90aCBjb21wb3NlZCBzcGFjZXMgIDogaG9sZHMNCiAgICAgIGNvbnN1bWVyIGRlY2xhcmVkIGNvZGUgc3BhY2UsIHJlYWQgZnJvbSBpdHMgZG9jc3RyaW5nOiAwLCAxLCAyLCAzDQogICAgICBwcm9kdWNlciBkZWNsYXJlZCBjb2RlIHNwYWNlLCByZWFkIGZyb20gaXRzIGRvY3N0cmluZzogMCwgMSwgMiwgMw0KDQpORUdBVElWRSBDUklURVJJQSBIT0xEOiBOMSwgTjIsIE4zLCBONCwgTjUsIE42DQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "changed-path source : git\r\nbase                : cbd065893b37f20713ae35b8d2673bf26fe4d2ad..629e287faab01a84935a93a2dc265d369a6a5c33\r\nchanged paths       : 197\r\n   bin/gatebraid-ready-selftest.py\r\n   bin/gatebraid-ready.py\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-baseline-main.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation-pass1.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation-pass2.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-falsify-pass1.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-falsify.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-pass1.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-env-field.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-frontier-run.json\r\n   [... 185 more; the full set is the scope, not this listing]\r\nallowlist           : bin/, docs/evidence/gatebraid/P2-S5/\r\ncode surface        : bin/gatebraid-ready.py, bin/gatebraid-ready-selftest.py\r\ntransitive target   : bin/gatebraid-snapshot.py\r\nconsumer            : bin/gatebraid-frontier.py\r\nfrozen root         : docs/evidence/gatebraid/P2-S5\r\n\r\nN1 every changed path inside the allowlist         : holds\r\nN2 under bin/, only the ready pair is touched      : holds\r\nN3 no frozen input is written                      : holds\r\nN4 no runtime dependency, no HTTP client           : holds\r\nN5 no control-plane mutation, no file written      : holds\r\nN6 ready's codes sit outside both composed spaces  : holds\r\n      consumer declared code space, read from its docstring: 0, 1, 2, 3\r\n      producer declared code space, read from its docstring: 0, 1, 2, 3\r\n\r\nNEGATIVE CRITERIA HOLD: N1, N2, N3, N4, N5, N6\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:15:48.374136Z",
+  "ended_at": "2026-09-02T03:15:48.638068Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py",
+      "sha256": "5c39068cdea67cbe786df26be3504b59cc1a2b0f6e39be537733e0110122e6ea"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "D9 PINNED to base..fingerprint so the diff half of the changed-path set reproduces. The untracked half is working-tree-relative and can only SHRINK as this Slice's own files are committed; every path it can contain is inside the allowlist by construction, so the six verdicts are stable under that shrinkage even though the listing is not. This is the P2-S6 F-02 defect avoided rather than repeated."
+}

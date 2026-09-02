@@ -47,12 +47,12 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:27:36.398234Z",
-  "ended_at": "2026-09-02T07:27:36.477400Z",
+  "started_at": "2026-09-02T03:14:39.563718Z",
+  "ended_at": "2026-09-02T03:14:39.648489Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
-      "sha256": "e99b236d27cea0b79e9da29cd82f557c39efebeda3ce6ae82d8f70ec300781f0"
+      "sha256": "1cd62cff80db51b92a0b16fb89d85f99c8ca2a809c5c28d12c518aa4a6d9a5aa"
     }
   ],
   "outputs": [],
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Falsification 1 of 2, re-run before the sweep is trusted again: the SAME instrument over the two retained seeds. The repository, node and issue limbs must all still fire."
+  "notes": "Falsification 1 of 2: the SAME g2 instrument over the two retained seeds. The repository, node and issue limbs must all still fire, so the added domain facts blunted no limb that already worked."
 }

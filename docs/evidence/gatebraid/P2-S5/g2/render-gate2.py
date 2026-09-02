@@ -16,13 +16,17 @@ import base64, json, os, sys
 
 G = "docs/evidence/gatebraid/P2-S5/g2"
 CAPS = os.path.join(G, "captures")
+# F-05: CAPS is a filesystem path built with the host separator. Every path
+# this renderer DISPLAYS is a committed path and must be spelled as git
+# spells it, so display uses this constant and never CAPS.
+CAPS_DISPLAY = G + "/captures"
 OUT = os.path.join(G, "gate2.md")
 STARTED = "2026-09-02T02:52:00Z"
 ENDED = sys.argv[1]
 
 BASE = "cbd065893b37f20713ae35b8d2673bf26fe4d2ad"
-FP_HEAD = "629e287faab01a84935a93a2dc265d369a6a5c33"
-FP_TREE = "cda51687a326d41c2b98d6b2ae49a48526bd366e"
+FP_HEAD = "5b586029344eb6df4a964c34baa1eb12e2916f6d"
+FP_TREE = "f696944947a342b6163bf4ad7d9137674830a2f7"
 
 L = []
 
@@ -52,6 +56,70 @@ def stream_text(d, name):
     return base64.b64decode(s["data"]).decode("utf-8", "replace")
 
 
+def rendered_lines(d):
+    """The lines a capture contributes to a record row, by ONE stated rule.
+
+    F-04. Carriage returns are removed from each decoded stream; stdout keeps
+    its content without a trailing blank; stderr, when it carries anything, is
+    appended after exactly one newline, also without a trailing blank; the
+    result is split on newlines.
+
+    The rule exists because the first form used splitlines() over the raw
+    concatenation, and splitlines() treats a lone carriage return as a line
+    break. One capture's stderr carries CRCRLF endings, so its 18 lines were
+    counted as 36 and its elision total was reported higher than the output
+    actually has. The count and the rendered block now come from the SAME
+    rule, so the number a row prints is the number of lines it shows.
+    """
+    out = stream_text(d, "stdout").replace(chr(13), "")
+    err = stream_text(d, "stderr").replace(chr(13), "")
+    combined = out.rstrip("\n")
+    if err.strip():
+        combined = combined + "\n" + err.rstrip("\n")
+    return combined.split("\n") if combined else []
+
+
+def sweep_residue_facts():
+    """Every residue figure this record states, DERIVED FROM THE SWEEP'S CAPTURE.
+
+    F-03. The earlier record wrote a figure in prose and its own cited row
+    contradicted it. A quantified claim exists only as a row (ADR-0026
+    decision 2), so every number below is read out of the row instead of
+    asserted beside it - the total, the split by kind, and how many sit inside
+    superseded -pass captures the gate retained deliberately.
+
+    The sweep prints one indented line per residue as
+    `<file> <where> <kind>`, after a line giving the total.
+    """
+    d = cap("G2-closed-set-sweep")
+    lines = stream_text(d, "stdout").splitlines()
+    total = None
+    rows = []
+    seen_total = False
+    for line in lines:
+        if line.startswith("UNEXPLAINED RESIDUE:"):
+            total = int(line.split(":")[1].strip())
+            seen_total = True
+            continue
+        if seen_total and line.startswith("    ") and line.strip():
+            parts = line.split()
+            if len(parts) >= 3:
+                rows.append((parts[0], parts[-1]))
+    if total is None:
+        raise SystemExit("STRUCTURE: the sweep capture states no residue count")
+    if len(rows) != total:
+        raise SystemExit("STRUCTURE: the sweep capture lists %d residue rows for "
+                         "a stated total of %d" % (len(rows), total))
+    issue = sum(1 for f, k in rows if k == "issue")
+    in_pass = sum(1 for f, k in rows if "-pass" in f)
+    return {
+        "residue": "%d" % total,
+        "residue_issue": "%d" % issue,
+        "residue_other": "%d" % (total - issue),
+        "residue_in_pass": "%d" % in_pass,
+    }
+
+
 def row(label, cids, limit=None, head=None):
     w("**%s**" % label)
     w("```")
@@ -62,10 +130,7 @@ def row(label, cids, limit=None, head=None):
             continue
         d = cap(cid)
         w("$ " + argv_line(d))
-        text = stream_text(d, "stdout")
-        err = stream_text(d, "stderr")
-        combined = text + (("\n" + err) if err.strip() else "")
-        lines = combined.splitlines()
+        lines = rendered_lines(d)
         total = len(lines)
         if limit is not None and total > limit:
             keep = lines[:head] if head else []
@@ -73,7 +138,7 @@ def row(label, cids, limit=None, head=None):
             for l in keep:
                 w(l)
             w("[... shown %d of %d lines; full output: %s/%s.json]"
-              % (limit, total, CAPS, cid))
+              % (limit, total, CAPS_DISPLAY, cid))
             for l in tail:
                 w(l)
         else:
@@ -85,158 +150,153 @@ def row(label, cids, limit=None, head=None):
 
 
 DISCLOSURES = [
-    "Deviations: the handoff fingerprint is measured at the last IMPLEMENTATION commit, "
-    "629e287faab01a84935a93a2dc265d369a6a5c33, before this record and the rest of this gate's "
-    "evidence are committed. That is what the fingerprint's definition requires and what makes it "
-    "Gate 3's comparand. Every commit after it is record-only and confined to "
+    "Deviations (review finding F-01, operator disposition REMOVE): the delivered tool declared two "
+    "flags beyond the frozen scope and both are gone. The frozen sentence names `--strict` and "
+    "`--snapshot-command`; the tool also declared `--consumer` and `--version`. Measured against the "
+    "M2 record at the pinned commit with every document digest re-derived first: `--consumer` 0 "
+    "occurrences, and all 21 hits of `--version` are `gh --version` or `python --version` probes that "
+    "never refer to the deliverable. `--version` printed non-JSON to stdout and exited 0, breaking "
+    "both clauses of the frozen sentence at once and making itself indistinguishable by exit status "
+    "from a verdict. Removed with them: the `VERSION` constant and the `consumer_path` parameter, "
+    "which existed only to serve them. `--help` is KEPT because it IS grounded in the frozen record "
+    "as test-plan command 1 of all three M2 attempts, and with it the zero-exit branch of the "
+    "SystemExit guard that lets it through.",
+
+    "Deviations (review finding F-01, and a residual the consult raised that this gate does NOT "
+    "repair): `--help` still writes usage text to stdout and exits 0, so the module docstring's "
+    "sentence `Stdout is always exactly one JSON document or nothing` remains literally overbroad on "
+    "that one path. The consult recommended narrowing the docstring. This gate declines, and the "
+    "reason is scope, not disagreement: the operator's repair-2 instruction says `no other bin/ byte "
+    "changes unless a selftest condition referenced a removed flag`, and the reviewer measured zero "
+    "such conditions. The residual is disclosed here instead of edited around, and it is unchanged "
+    "from before this repair rather than introduced by it.",
+
+    "Deviations (review finding F-02, R3 ground 1): V9 is no longer nominated into the "
+    "byte-reproducible subset. The instrument's changed-path set is the tracked diff UNION the "
+    "untracked set read at execution time; `--base A..B` pins the tracked half only, so the row "
+    "cannot reproduce in bytes. What the row asserts is the six verdicts, and those held in the "
+    "retained run and hold now. The earlier record placed it in the wrong bucket while its own "
+    "neighbouring sentence said why it could not belong there; the nomination was the defect, not "
+    "the measurement.",
+
+    "Deviations (review finding F-02, and the consult's answer to question 6): the earlier wording "
+    "said the untracked half `can only SHRINK` and that every path it can contain is inside the "
+    "allowlist `by construction`. Both were unsafe: a later untracked file can appear anywhere and "
+    "can move both the listing and the verdicts. The claim is now bounded to what was measured - in "
+    "the retained run all six criteria held, and each future run is evaluated on its own current "
+    "untracked set.",
+
+    "Deviations (review finding F-03, R3 ground 2, and operator ruling F-08 ACCEPTED): every residue "
+    "figure in this bullet is READ FROM THE CITED ROW, not asserted beside it, which is what the "
+    "earlier prose got wrong when it said ONE against a row that measured more. The sweep over this "
+    "gate's captures reports %(residue)s residue occurrences. %(residue_issue)s of them are the "
+    "friction-shaped citation printed by the FROZEN corpus runner inside a case label - a friction "
+    "reference written without the word the FRICTION regex requires. The other %(residue_other)s are "
+    "benign shape collisions: an N-of-N ratio and two path fragments. %(residue_in_pass)s of the "
+    "%(residue)s sit inside superseded -pass captures this gate retained deliberately rather than "
+    "deleted. NONE is a repository identity, and the hard-rule limb is independently verified true by "
+    "the reviewer: exactly two repository identities, both permitted, and no mention-class issue "
+    "targeted by any query. Under ruling F-08 the check stays typed `fail` with the count corrected "
+    "and the diagnosis stated, because admitting the remainder would need a rule change the Plan "
+    "Approval forbids.",
+
+    "Deviations (review finding F-04): the elision totals are produced by ONE stated rule, given in "
+    "the renderer's `rendered_lines` docstring. Carriage returns are removed from each decoded "
+    "stream, stdout keeps its content without a trailing blank, stderr when present is appended "
+    "after exactly one newline, and the result is split on newlines. The earlier form used "
+    "`splitlines()` over the raw concatenation, which treats a lone carriage return as a line break; "
+    "one capture's stderr carries CRCRLF endings, so its lines were counted twice and one elision "
+    "total was inflated. The count and the rendered block now come from the same rule.",
+
+    "Deviations (review finding F-05): every elision names the committed path with forward slashes. "
+    "The earlier spelling carried the host separator because the renderer displayed the same "
+    "constant it used to open files; display now uses a separate forward-slash constant and the "
+    "filesystem constant is never printed.",
+
+    "Deviations (review finding F-06, ADR-0026 class (c)): every bullet in this section cites the "
+    "finding, ruling or friction entry it rests on. The earlier record left most of them "
+    "uncited.",
+
+    "Deviations (gate-2-contract repair sequence, and friction #94): repair 2 was preceded by the "
+    "Codex consult the unified sequence places before it. CONSULT-17-01 and its verbatim response "
+    "are committed beside this record; the consult ran read-only and hermetically with `-C` pointed "
+    "at a disposable full copy of this repository made outside every governed repository and deleted "
+    "after capture. The verdict is PARTIAL and its reasons are in the Repair record. Recorded as "
+    "`repair_attempts[1].consult_ref` because it is an in-sequence consult, never in top-level "
+    "`consults[]`.",
+
+    "Deviations (friction #103, and its correction): the precaution against the CLI writing a "
+    "checkpoint ref into a governed repository was verified rather than assumed. The governed "
+    "repository carries exactly one `refs/codex` ref; its leaf file is dated more than a month "
+    "before this consult and its object is the same tree this Slice's entry report recorded as "
+    "pre-existing. No ref was written by this consult.",
+
+    "Deviations (ADR-0011 section 2, as amended by ADR-0016): the handoff fingerprint is re-measured "
+    "at the NEW implementation-complete commit, the repair-2 commit that restored the frozen tool "
+    "surface. Every commit after it is record-only and confined to "
     "docs/evidence/gatebraid/P2-S5/g2/, which is inside the frozen allowlist.",
 
-    "Deviations: REPAIR 1, and what it did and did not touch. The FIRST run of the declared D9 "
-    "command at this gate returned exit 1: negative criterion N3's content limb fired, reporting 62 "
-    "files where 43 were expected. The cause was not a changed retained record - both pinned gate0.md "
-    "hashes were unchanged throughout and the digest re-derives - but the Gate 1 MECHANISATION of "
-    "the limb, whose exclusion set is hard-coded to `g0r` and `g1`, the two per-gate subdirectories "
-    "that existed when it was written. The frozen plan states the property as `the file count of "
-    "docs/evidence/gatebraid/P2-S5/ with the re-run and THIS GATE'S OWN SUBDIRECTORIES excluded "
-    "must be forty-three`; at Gate 2 that is three names, not two. The Gate 1 file was NOT edited - "
-    "Gate 1's captures pin it and it rides on byte-identical - and the failing run is retained at "
-    "docs/evidence/gatebraid/P2-S5/g2/captures/G2-R-n3-g1-instrument-fired.json. The repair is a g2 "
-    "copy differing in exactly one line. It LOOSENS NOTHING: the expected count is still 43, the "
-    "expected digest still 83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f, both "
-    "pinned gate0.md hashes unchanged, and the exclusion set is an explicit tuple of names rather than a "
-    "pattern. It was falsified against the Gate 1 seeds before it was trusted, and all six criteria "
-    "fired.",
+    "Deviations (ADR-0028 decision 2): THE NOMINATED DETERMINISTIC SUBSET of this record. IN the "
+    "subset, and required to reproduce byte-identically: E1's three rows, E3, E4b, V0, V0F, V1, V2, "
+    "V3, V4, V6, V7, V8, V10, and the two repair novelty rows. OUTSIDE the subset, by the exclusion "
+    "limb, and named here rather than left to be discovered: V5, the live composition, whose report "
+    "is re-derived from the control plane at each run; V9 and V9b, for F-02's reason; V12 and its "
+    "two falsification runs, whose domain is the captures directory as it stood when they ran and "
+    "which grows as this gate writes the captures that follow them; E2 and E4, whose recorded values "
+    "include a lease timestamp and a branch head that later commits move; and V11's second half, "
+    "which validates this record and therefore reads bytes that this render produced.",
 
-    "Deviations: whether repair 1 counts toward the Slice's `evidence-only repairs = 0` acceptance "
-    "item is stated rather than assumed, because the classification is arguable and the record "
-    "should let a reader decide. Its subject is neither the deliverable nor this record's prose - "
-    "the two things the M2 measurement chain's evidence-only repairs were - but a CHECK "
-    "INSTRUMENT'S DOMAIN CONSTANT. This writer's reading is that it is not an evidence-only repair "
-    "under that definition. The reviewer and the operator may read it otherwise; everything needed "
-    "to reclassify it is in the Repair record and in the retained failing run.",
+    "Deviations (ADR-0027 section 1): repair 1 remains as recorded - a Gate 1 check instrument's "
+    "exclusion set, not the deliverable and not this record's prose - and repair 2 is the last "
+    "attempt the sequence allows. Both carry a novelty row comparing the tree against the tree at "
+    "the previous failed state, measured before the result is graded.",
 
-    "Deviations: the D9 row is recorded TWICE and the reason is the defect P2-S6's own repair 1 "
-    "found. The instrument's changed-path set is the tracked diff UNION the untracked set. Run "
-    "unpinned it reads the working tree, so it moves after every later commit and does not "
-    "reproduce. V9 is therefore the run PINNED to base..fingerprint, which is the row that "
-    "reproduces; V9b is the live unpinned run, retained beside it as a true record of its own "
-    "instant. The untracked half is working-tree-relative even when pinned and can only SHRINK as "
-    "this Slice's own files are committed; every path it can contain is inside the allowlist by "
-    "construction, so the six verdicts are stable under that shrinkage even though the listing is "
-    "not.",
+    "Deviations (review finding F-07, left standing on the reviewer's own reasoning and the "
+    "operator's instruction): the disclosures that narrate this record's own authoring history - the "
+    "rejected first render, the corrected assertion, the corrected split rule - remain. The reviewer "
+    "records a real gap in ADR-0026, which forbids revision narrative without providing a sanctioned "
+    "home for a pre-submission correction the executor is simultaneously required to be honest "
+    "about, and declines to fail anything over it. It is queued for an ADR clarification rather than "
+    "repaired here.",
 
-    "Deviations: THE NOMINATED DETERMINISTIC SUBSET of this record. IN the subset, and required to "
-    "reproduce byte-identically: E1's three rows, E3, E4b, V0, V0F, V1, V2, V3, V4, V6, V7, V8, V9 "
-    "(pinned), V10, and the repair's novelty row. OUTSIDE the "
-    "subset, by ADR-0028 decision 2's exclusion limb, and named here rather than left to be "
-    "discovered: V5, the live composition, whose report is re-derived from the control plane at "
-    "each run and whose `workflow` value for this Slice changes as this very gate writes fields; "
-    "V9b, the unpinned criteria run, for the reason above; V12 and its two falsification runs, whose domain is the captures directory AS IT STOOD when they ran and which grows as this gate writes the captures that follow them; E2 and E4, whose recorded values include "
-    "a lease timestamp and a branch head that later commits move; and V11's second half, which "
-    "validates this record and therefore reads bytes that this render produced.",
+    "Deviations (friction #15, and P1-S3's second dry-run): the composer's argument-splitting rule "
+    "was settled by measurement during authoring. The producer command must be split by POSIX rules "
+    "on every platform; with `posix=False` the quotes stay attached, the stub arrives wrapped, the "
+    "child emits ZERO BYTES, and the decode guard appears to pass while testing nothing. The default "
+    "producer command is written with forward slashes because POSIX rules treat a backslash as an "
+    "escape.",
 
-    "Deviations: two of this gate's declared commands name paths that a read-only gate could not "
-    "have created, and both now run against artefacts that exist. D5 writes its capture into "
-    "docs/evidence/gatebraid/P2-S5/g2/captures/, the directory the frozen plan names. D11's second "
-    "half validates docs/evidence/gatebraid/P2-S5/g2/gate2.md, so it runs AFTER this record is "
-    "authored and its outcome enters the record as the record's own last row - which is why that "
-    "row is outside the deterministic subset.",
+    "Deviations (ADR-0028 decision 3, the IN-03 class): this record does not echo the near-miss "
+    "tokens its falsification seed carries. The seed is retained beside the sweep instrument and the "
+    "tokens live there, not here; an earlier render quoted three of them into this file and the "
+    "record's own sweep caught it.",
 
-    "Deviations: the closed-set sweep's g2 copy carries domain facts under ruling 2 of the Plan "
-    "Approval, and ONE RESIDUE IS LEFT DELIBERATELY UNEXPLAINED. The hard-rule limb is satisfied "
-    "and shown: exactly two repository identities anywhere in the domain, MianliWang/gatebraid and "
-    "MianliWang/gatebraid-scratch, both PERMITTED, nothing outside the set, and no mention-class "
-    "issue targeted by any query. The remaining token is an issue-shaped citation printed by the "
-    "FROZEN corpus runner inside a case label, which is a friction reference written without the "
-    "word `friction` that the FRICTION regex requires. No existing explicit set fits it honestly: "
-    "the mention class means `issues of the permitted repository this Slice's evidence names`, "
-    "which it is not, and putting it there would assert something false and weaken a live check. "
-    "Admitting it would need a new classification branch, which is a rule change the approval "
-    "forbids. It stays residue and is disclosed here. THE SWEEP OVER THIS RECORD ITSELF returns "
-    "UNEXPLAINED RESIDUE 0 at exit 0: every candidate token in these bytes is explained by an "
-    "explicit rule, and the four residues an earlier render carried were removed AT SOURCE rather "
-    "than by widening anything - a bare relative path in a row's own echo label written out in "
-    "full, a host temporary path moved inside this gate's evidence directory, and three near-miss "
-    "tokens this record had been quoting into itself, which is the IN-03 class and was the record "
-    "sweep catching a defect in its own file.",
+    "Deviations (ADR-0026 decision 1, and the reviewer's F-04 observation): four unreferenced "
+    "probe-stderr files under this Slice's two dryrun-out directories carry CRLF in the working copy "
+    "and are stored LF under the tree's text attribute. No pin covers them and no capture names "
+    "them.",
 
-    "Deviations: the sweep copy was falsified in TWO runs before any weight was put on it, which is "
-    "the approval's stated condition. The two retained seeds still fire the repository, node and "
-    "issue limbs, so the added facts blunted no limb that already worked. A new seed carries, for "
-    "every fact the copy adds, a token shaped like it but OUTSIDE it by one appended or "
-    "substituted character, and all fifteen of those tokens remained residue. The seed is retained at docs/evidence/gatebraid/P2-S5/g2/falsification/SEED-near-miss-new-classes.json and the tokens are NOT echoed here: a checker does not quote what it forbids into a record (ADR-0028 decision 3, the IN-03 class), and this disclosure quoting three of them is a defect the record sweep caught in this very file. A fact that admitted its own near-miss would be a blindfold rather than a domain fact.",
+    "Deviations (gate-2-contract Prohibited, scratch clause): scratch paths outside every repository "
+    "were relied on and are named. Every commit message passed through a file in the session "
+    "scratchpad outside this repository, never as a shell argument; the consult's disposable "
+    "repository copy lived there and was deleted; the approval-fidelity row writes and removes one "
+    "file inside this gate's own evidence directory.",
 
-    "Deviations: the composer's argument-splitting rule was settled by MEASUREMENT during "
-    "authoring, and it is recorded because it is the exact failure this scope was first frozen "
-    "around. The producer command must be split by POSIX rules on every platform. With posix=False "
-    "- the tempting choice on Windows - shlex leaves the quotes attached to the token, the stub "
-    "arrives at the child as a program whose first character is a quote, the child emits ZERO "
-    "BYTES, and the decode guard appears to pass while testing nothing. That is friction #15's "
-    "shape and precisely what P1-S3's second dry-run caught before this scope was frozen. It was "
-    "caught here the same way, by running rather than reading. The default producer command is "
-    "written with forward slashes because POSIX rules treat a backslash as an escape.",
+    "Deviations (ADR-0026 class (b), and friction #96): the record's FINAL bytes are validated and "
+    "swept by runs cited by output_ref and not inlined, because a document that quoted its own "
+    "verification would change the bytes that verification read.",
 
-    "Deviations: THIS RECORD'S FIRST RENDER WAS REJECTED BY ITS OWN MACHINE VALIDATION, and the "
-    "correction is recorded rather than quietly folded in. The metadata's `approvals[0].type` was "
-    "written with an ASCII arrow, `Plan Approval (G1->G2)`, and the frozen schema's enum requires "
-    "the label carrying U+2192 RIGHTWARDS ARROW. D11's validation half returned `verdict: rejected` "
-    "with one structural finding at `approvals/0/type`, and that failing run is retained at "
-    "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D11-wsl-toolchain-pass1.json. The renderer now "
-    "RESOLVES the label from the schema's own enum by prefix rather than writing it at all, which "
-    "is the standing never-re-type rule applied to a record field instead of to a control-plane "
-    "write. This is recorded as an AUTHORING correction and not as a repair attempt: it was caught "
-    "by this writer's own pre-submission validation, before the record was committed and before any "
-    "reviewer saw it, which is the discipline ADR-0028 mandates rather than a round trip it "
-    "measures. A reviewer who reads it otherwise has the failing capture and this disclosure to "
-    "reclassify from.",
-
-    "Deviations: the selftest's S06c assertion was corrected during authoring, and the correction "
-    "was to the ASSERTION and never to the composer. Its first writing matched the phrase `not "
-    "valid UTF-8` in lower case against a refusal the composer writes in capitals, so a correct "
-    "guard was reported failing. The row now matches case-insensitively and on three substantive "
-    "tokens - the byte, its position, and the refusal phrase. The composer's message was not "
-    "changed to suit a check.",
-
-    "Deviations: two files under docs/evidence/gatebraid/P2-S5/g1/dryrun-out/ and two under "
-    "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/ carry CRLF in the working copy and are stored LF "
-    "under the tree's `* text=auto eol=lf` attribute. They are unreferenced probe stderr, named by "
-    "no capture and covered by no pin. The four pinned measurements are byte-identical either way, "
-    "before and after the evidence commit.",
-
-    "Deviations: this gate took the Writer Lease and held it throughout; no second writer of any "
-    "kind ran. Nothing was pushed, no pull request was opened, no merge was performed, no "
-    "dependency was installed, no hook or check was disabled, and no git reset, clean or checkout "
-    "was run against baseline state. The one checkout performed was `git checkout slice/P2-S5` "
-    "onto the branch this gate created from Y, which is the Entry step the contract names.",
-
-    "Deviations: scratch paths outside every repository were relied on and are named here, as the "
-    "Prohibited clause requires. Every commit message was passed through a file under the session "
-    "scratchpad outside this repository, never as a shell argument. The approval-fidelity row "
-    "writes and removes one file, and it writes it INSIDE this gate's own evidence directory "
-    "rather than outside the repository: its first form used a host temporary path whose leading "
-    "segment the closed-set sweep has no class for, and the record sweep caught that in this very "
-    "file. The superseded capture is retained at "
-    "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-approval-fidelity-pass1.json.",
-
-    "Deviations: the record's FINAL bytes are validated by a run cited by output_ref and not "
-    "inlined as a row, because a document that quoted its own verification would change the bytes "
-    "that verification read. V11's second half validated this record at its own instant on the WSL "
-    "half and returned accepted; the Windows-half run against the final bytes is "
-    "docs/evidence/gatebraid/P2-S5/g2/captures/G2-record-validation.json, and the sweep over those "
-    "same final bytes is G2-record-sweep.json in the same directory. Both are captured, both are "
-    "named in checks, and neither is inlined.",
-
-    "Environment: Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; Git for "
-    "Windows 2.51.0.windows.1 whose SYSTEM configuration carries core.autocrlf=true, verified in "
-    "this window, and the same binary resolves for a Windows-Python subprocess; every gh call pins "
-    "GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid and uses endpoints with no leading slash; every "
-    "Python invocation carries -B with PYTHONDONTWRITEBYTECODE=1, set inside the wsl command for "
-    "the WSL half; Windows interpreter C:/Python312/python.exe with CPython 3.12.2, PyYAML 6.0.2, "
-    "jsonschema 4.23.0; WSL /usr/bin/python3 with CPython 3.12.3, jsonschema 4.10.3, whose captures "
-    "stamp platform.os `wsl`. The `python` on PATH is the MSYS 3.14.3 build and carries neither, "
-    "which is why no declared command names it and why delta D-3 exists. Captures are argv-form "
-    "unless the row declares shell semantics, in which case the shell, pipefail and the exit-code "
-    "source are all recorded. environment=mixed-see-prose.",
+    "Environment (friction #89): Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; "
+    "Git for Windows 2.51.0.windows.1 whose SYSTEM configuration carries core.autocrlf=true; every "
+    "gh call pins GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid and uses endpoints with no leading "
+    "slash; every Python invocation carries -B with PYTHONDONTWRITEBYTECODE=1, set inside the wsl "
+    "command for the WSL half; Windows interpreter C:/Python312/python.exe with CPython 3.12.2, "
+    "PyYAML 6.0.2, jsonschema 4.23.0; WSL /usr/bin/python3 with CPython 3.12.3, jsonschema 4.10.3, "
+    "whose captures stamp platform.os `wsl`; the Codex CLI is codex-cli 0.144.6, invoked "
+    "`--ephemeral --sandbox read-only --ignore-user-config`. The `python` on PATH is the MSYS 3.14.3 "
+    "build and carries neither library, which is why no declared command names it and why delta D-3 "
+    "exists. Captures are argv-form unless the row declares shell semantics, in which case the "
+    "shell, pipefail and the exit-code source are all recorded. environment=mixed-see-prose.",
 ]
 
 METADATA = """schema: gatebraid/gate-run@2
@@ -335,9 +395,13 @@ checks:
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep-falsify-near-miss.json"
   - name: closed-set-sweep-explains-every-candidate
-    command: "the same run; one residue remains, an issue-shaped friction citation inside a frozen corpus case label, disclosed and not admitted by a rule change"
+    command: "the same run; the residue count is the cited capture's own figure, diagnosed by class in the disclosures - one friction-shaped citation printed by the frozen corpus runner, the remainder benign shape collisions, none a repository identity. Typed fail under operator ruling F-08: admitting the remainder would need a rule change the Plan Approval forbids"
     result: fail
     output_ref: "docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep.json"
+  - name: frozen-tool-surface-restored
+    command: "bin/gatebraid-ready.py --help declares only --strict and --snapshot-command; --version and --consumer are usage errors with exit 12 and empty stdout"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S5/g2/captures/G2-R2-surface.json"
   - name: gate2-record-machine-validated
     command: "bin/gatebraid-validate.py --record docs/evidence/gatebraid/P2-S5/g2/gate2.md --report-id cov-P2-S5-g2-gate2.md"
     result: pass
@@ -356,6 +420,10 @@ repair_attempts:
   - number: 1
     hypothesis: "N3's content limb fired on a retained record that did not change; the Gate 1 mechanisation hard-codes the two per-gate subdirectories that existed when it was written, and the frozen plan says `this gate's own subdirectories`, which at Gate 2 is three"
     result: green
+  - number: 2
+    hypothesis: "The independent review's R3 FAIL and its HIGH finding share one cause - a claim the record or the tool makes that its own measurement contradicts - so the repair restores the frozen two-flag surface and re-derives every contradicted figure from the row that measures it, rather than restating it in prose"
+    result: green
+    consult_ref: CONSULT-17-01
 approvals:
   - type: "%(approval_type)s"
     comment_url: "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5503291709"
@@ -364,6 +432,8 @@ plan_hash: "b2cd75f6a49bb056fd16bc3d2f4cfd5cf98ae8515b5761908add2ed5405cc424"
 allowlist_hash: "4110b3021bdfc2fcda1f5f90528db01eb87b554177e2176ccfba46ccd6ca3750"
 evidence_files:
   - docs/evidence/gatebraid/P2-S5/g2/gate2.md
+  - docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01.md
+  - docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01-response.json
 notes: "The fourth gatebraid-ready attempt on the M2 slice-C frozen scope, built on the M3 stack. The deliverable is the ready pair alone; it composes the landed producer and consumer and modifies neither. The four ratified deltas are implemented as the approval states them, and D-4 - the producer's status is interpreted against its own declared space rather than tested against zero - is the one that keeps a degraded-but-emitted document from being discarded. Twenty selftest conditions each emit their own summary row; S09 carries IN-01, the class the frozen corpus does not hold, and S10 parses the producer's docstring so the D-4 partition cannot drift from its source unnoticed. One repair was taken and it changed a check instrument's domain constant, not the deliverable and not this record's prose. One check is typed fail and is disclosed in full: the sweep's explanation limb leaves a single residue that no existing explicit set fits honestly. The review is NOT this session's: R1 through R5 belong to an independent reviewer dispatched after adjudication, and Gate = G2 passed is not set here."
 """
 
@@ -438,9 +508,9 @@ def main():
         ["G2-D7-decode-guard"])
     row("V8 D8 - a decodable but malformed document returns the consumer's OWN refusal code",
         ["G2-D8-consumer-refusal"])
-    row("V9 D9 - the six negative criteria hold, PINNED to base..fingerprint so the row reproduces",
+    row("V9 D9 - the six negative criteria hold. Pinned to base..fingerprint, which pins the TRACKED half only; this row is EXCLUDED from the deterministic subset and what it asserts is the six verdicts",
         ["G2-D9-negative-pinned"], limit=22, head=6)
-    row("V9b - the live unpinned run, retained as a true record of its own instant and OUTSIDE the deterministic subset",
+    row("V9b - the live unpinned run, retained beside it as a true record of its own instant, likewise excluded",
         ["G2-D9-negative"], limit=16, head=2)
     row("V10 D10 - the six negative criteria falsified: all six fire on their substantive limbs",
         ["G2-D10-negative-falsify"], limit=24, head=6)
@@ -493,11 +563,44 @@ def main():
     w("- Consult: `none` - the sequence stopped at repair 1 because the check "
       "returned green; no consult was reached and none was run.")
     w()
+    w("### Repair 2")
+    w()
+    w("- Hypothesis (new): the independent review's R3 FAIL and its HIGH finding "
+      "share one cause - a claim the record or the tool makes that its own "
+      "measurement contradicts - so the repair restores the frozen two-flag "
+      "surface and re-derives every contradicted figure from the row that "
+      "measures it, rather than restating it in prose.")
+    w()
+    row("Novelty measured - the tree moved from the reviewed failing state, so "
+        "the attempt is a repair and not a consumed one (ADR-0027 section 1)",
+        ["G2-R2-novelty"])
+    row("The frozen tool surface, restored and verified (F-01)", ["G2-R2-surface"])
+    row("The consult's metadata validated against gatebraid/consult@1 before the "
+        "id was relied on, loader named", ["G2-R2-consult-metadata-validation"])
+    row("The friction #103 precaution, verified rather than assumed: no ref was "
+        "written by the consult", ["G2-R2-consult-ref-hygiene"])
+    row("The Gate 1 instrument's own run at this gate, retained - the finding "
+        "repair 1 answered", ["G2-R-n3-g1-instrument-fired"], limit=14, head=4)
+    w("- Result: `green`")
+    w("- Consult: `CONSULT-17-01` (in sequence - also on "
+      "`repair_attempts[1].consult_ref`; friction #94). Verdict **PARTIAL**, "
+      "independently verified before application: every claim in the response "
+      "was re-measured against the tree before any byte changed. Accepted in "
+      "full on the completeness of the F-01 removal, on excluding V9 rather "
+      "than modifying the frozen Gate 1 instrument, on the elision-line rule, "
+      "on the twelve-item post-repair claim set, and on the three further "
+      "statements the V9 fix had to change. Declined on one point, for scope "
+      "and not disagreement: the consult recommended narrowing the module "
+      "docstring's stdout sentence to exempt `--help`, and the operator's "
+      "repair-2 instruction permits no other `bin/` byte change; the residual "
+      "is disclosed instead.")
+    w()
 
     w("## Required disclosures")
     w()
+    facts = sweep_residue_facts()
     for d in DISCLOSURES:
-        w("- " + d)
+        w("- " + (d % facts if "%(" in d else d))
     w("- Reviewer write disclosure: `not applicable - no review has run`")
     w()
     w("## gatebraid-metadata")

@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R2-consult-metadata-validation",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "-c",
+      "\nimport io,re,sys,json,yaml\nfrom jsonschema import Draft202012Validator, FormatChecker\nimport jsonschema, platform\nbody=io.open('docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01.md',encoding='utf-8').read()\nm=re.search(r'^```yaml\\s*\\n(.*?)^```\\s*$', body, re.M|re.S)\ndoc=yaml.safe_load(m.group(1))\nschema=json.load(io.open('schema/consult.schema.json',encoding='utf-8'))\nv=Draft202012Validator(schema, format_checker=FormatChecker())\nerrs=sorted(v.iter_errors(doc), key=lambda e: list(e.path))\nprint('loader: %s %s - PyYAML %s - jsonschema %s (format_checker enabled)' % (sys.executable, platform.python_version(), yaml.__version__, jsonschema.__version__))\nprint('schema: gatebraid/consult@1')\nprint('consult_id: %s   slice_id: %s   trigger: %s' % (doc['consult_id'], doc.get('slice_id'), doc['trigger']))\nprint('result: %s' % ('VALID' if not errs else 'INVALID'))\nfor e in errs[:8]: print('   ', list(e.path), e.message[:180])\nsys.exit(1 if errs else 0)\n"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 216,
+      "sha256": "fe5f67bf41b92beb495326c6484e388dfcf23248c342e23c7d0388dbfa0ae4a4",
+      "data": "bG9hZGVyOiBDOlxQeXRob24zMTJccHl0aG9uLmV4ZSAzLjEyLjIgLSBQeVlBTUwgNi4wLjIgLSBqc29uc2NoZW1hIDQuMjMuMCAoZm9ybWF0X2NoZWNrZXIgZW5hYmxlZCkNCnNjaGVtYTogZ2F0ZWJyYWlkL2NvbnN1bHRAMQ0KY29uc3VsdF9pZDogQ09OU1VMVC0xNy0wMSAgIHNsaWNlX2lkOiBQMi1TNSAgIHRyaWdnZXI6IHJlcGFpci1zZXF1ZW5jZQ0KcmVzdWx0OiBWQUxJRA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "loader: C:\\Python312\\python.exe 3.12.2 - PyYAML 6.0.2 - jsonschema 4.23.0 (format_checker enabled)\r\nschema: gatebraid/consult@1\r\nconsult_id: CONSULT-17-01   slice_id: P2-S5   trigger: repair-sequence\r\nresult: VALID\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 189,
+      "sha256": "26eee71d39a37fd896a70081a1238c538a7882a8a67e3da9fc26f12d09985f16",
+      "data": "PHN0cmluZz46MTE6IERlcHJlY2F0aW9uV2FybmluZzogQWNjZXNzaW5nIGpzb25zY2hlbWEuX192ZXJzaW9uX18gaXMgZGVwcmVjYXRlZCBhbmQgd2lsbCBiZSByZW1vdmVkIGluIGEgZnV0dXJlIHJlbGVhc2UuIFVzZSBpbXBvcnRsaWIubWV0YWRhdGEgZGlyZWN0bHkgdG8gcXVlcnkgZm9yIGpzb25zY2hlbWEncyB2ZXJzaW9uLg0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "<string>:11: DeprecationWarning: Accessing jsonschema.__version__ is deprecated and will be removed in a future release. Use importlib.metadata directly to query for jsonschema's version.\r\n"
+      }
+    }
+  },
+  "started_at": "2026-09-02T07:11:43.137895Z",
+  "ended_at": "2026-09-02T07:11:43.644502Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01.md",
+      "sha256": "65ea789a1d1168c0d3e254a8cce6e7146f3db2285ae2062b9973ec8e5a3d9731"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The consult's metadata block validated against gatebraid/consult@1 with the real validator BEFORE the id is relied on (friction #93), loader named (friction #55). The schema's root conditional binds the id form to the trigger's scope."
+}

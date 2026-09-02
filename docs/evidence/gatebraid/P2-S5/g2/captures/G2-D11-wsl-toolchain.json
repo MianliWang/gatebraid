@@ -25,12 +25,12 @@
     "stdout": {
       "encoding": "base64",
       "byte_length": 553,
-      "sha256": "f2444d843165bca0f6ac526ad60604a37a4e06e07f27b054db5999502c154104",
-      "data": "V1JPVEUgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzIvY2FwdHVyZXMvRzItd3NsLXJlYWR5LXNlbGZ0ZXN0Lmpzb24KICBieXRlcz0xMTg3OCBzaGEyNTY9ZWU2ODk3ODU1MDc0M2RlYTVmMDkzYzgyMzY1ODhkNWIyOTY0ZmUzMDJmZWIyYTg2YTA1YWZkNWM5OWU4NTY5NCBjcmxmPTAgbG9uZV9jcj0wCnRhcmdldCAgICAgICAgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMi9nYXRlMi5tZAppbnRlcmZhY2UgICAgIDogZ2F0ZWJyYWlkL2dhdGUtcnVuQDIKbG9hZGVyICAgICAgICA6IENQeXRob24gMy4xMi4zICgvdXNyL2Jpbi9weXRob24zKSwganNvbnNjaGVtYSA0LjEwLjMsIERyYWZ0MjAyMDEyVmFsaWRhdG9yCnN0cnVjdHVyYWwgICAgOiAwIGVycm9yIGxvY3VzL2xvY2kKcHJvcGVydGllcyAgICA6IDcgcm93cwogICBzdHJ1Y3R1cmFsICAgICAgIDEKICAgc2VtYW50aWMgICAgICAgICA2CiAgIHJlcGxheWVkICAgICAgICAgMAogICBjYXB0dXJlLXRydXN0ZWQgIDAKZmluZGluZ3MgICAgICA6IDAKdmVyZGljdCAgICAgICA6IGFjY2VwdGVkCg==",
+      "sha256": "67e4f9cb8059738402501e7d9b7f825914d665ceab8022874484e078d73e687f",
+      "data": "V1JPVEUgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzIvY2FwdHVyZXMvRzItd3NsLXJlYWR5LXNlbGZ0ZXN0Lmpzb24KICBieXRlcz0xMTg3OCBzaGEyNTY9N2E4MTZkZTA3MWU1NGUxMmVhZmM3MTQ0YWQ2ZTIzNjI1ZjRlYzhlM2QyOWRiMmQzZDgzMWM0NTQwNzc4NmNmNSBjcmxmPTAgbG9uZV9jcj0wCnRhcmdldCAgICAgICAgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMi9nYXRlMi5tZAppbnRlcmZhY2UgICAgIDogZ2F0ZWJyYWlkL2dhdGUtcnVuQDIKbG9hZGVyICAgICAgICA6IENQeXRob24gMy4xMi4zICgvdXNyL2Jpbi9weXRob24zKSwganNvbnNjaGVtYSA0LjEwLjMsIERyYWZ0MjAyMDEyVmFsaWRhdG9yCnN0cnVjdHVyYWwgICAgOiAwIGVycm9yIGxvY3VzL2xvY2kKcHJvcGVydGllcyAgICA6IDcgcm93cwogICBzdHJ1Y3R1cmFsICAgICAgIDEKICAgc2VtYW50aWMgICAgICAgICA2CiAgIHJlcGxheWVkICAgICAgICAgMAogICBjYXB0dXJlLXRydXN0ZWQgIDAKZmluZGluZ3MgICAgICA6IDAKdmVyZGljdCAgICAgICA6IGFjY2VwdGVkCg==",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "WROTE docs/evidence/gatebraid/P2-S5/g2/captures/G2-wsl-ready-selftest.json\n  bytes=11878 sha256=ee68978550743dea5f093c8236588d5b2964fe302feb2a86a05afd5c99e85694 crlf=0 lone_cr=0\ntarget        : docs/evidence/gatebraid/P2-S5/g2/gate2.md\ninterface     : gatebraid/gate-run@2\nloader        : CPython 3.12.3 (/usr/bin/python3), jsonschema 4.10.3, Draft202012Validator\nstructural    : 0 error locus/loci\nproperties    : 7 rows\n   structural       1\n   semantic         6\n   replayed         0\n   capture-trusted  0\nfindings      : 0\nverdict       : accepted\n"
+        "text": "WROTE docs/evidence/gatebraid/P2-S5/g2/captures/G2-wsl-ready-selftest.json\n  bytes=11878 sha256=7a816de071e54e12eafc7144ad6e23625f4ec8e3d29db2d3d831c45407786cf5 crlf=0 lone_cr=0\ntarget        : docs/evidence/gatebraid/P2-S5/g2/gate2.md\ninterface     : gatebraid/gate-run@2\nloader        : CPython 3.12.3 (/usr/bin/python3), jsonschema 4.10.3, Draft202012Validator\nstructural    : 0 error locus/loci\nproperties    : 7 rows\n   structural       1\n   semantic         6\n   replayed         0\n   capture-trusted  0\nfindings      : 0\nverdict       : accepted\n"
       }
     },
     "stderr": {
@@ -45,8 +45,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T03:22:42.918057Z",
-  "ended_at": "2026-09-02T03:22:46.541225Z",
+  "started_at": "2026-09-02T07:29:07.626945Z",
+  "ended_at": "2026-09-02T07:29:11.044053Z",
   "inputs": [],
   "outputs": [],
   "platform": {
@@ -61,5 +61,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D11: both halves of the evidence toolchain on the WSL half. The generation half writes a capture stamping platform.os wsl; the validation half validates THIS record with --report-id passed explicitly, which is why it runs after the record is authored and why its outcome is the record's own last row."
+  "notes": "D11 re-run after repair 2, last as the plan declares: both halves of the evidence toolchain on the WSL half. The generation half writes a capture stamping platform.os wsl against the REPAIRED tool; the validation half validates THIS record with --report-id passed explicitly."
 }

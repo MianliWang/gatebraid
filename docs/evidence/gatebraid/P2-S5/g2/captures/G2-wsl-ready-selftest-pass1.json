@@ -1,6 +1,6 @@
 {
   "schema": "gatebraid/evidence-capture@1",
-  "capture_id": "G2-D4-selftest-wsl",
+  "capture_id": "G2-wsl-ready-selftest",
   "generator": {
     "name": "gatebraid-capture",
     "version": "1.0.0",
@@ -9,14 +9,12 @@
   "invocation": {
     "form": "argv",
     "argv": [
-      "wsl.exe",
-      "-e",
-      "bash",
-      "-lc",
-      "cd '/mnt/d/Github repo/Gatebraid' && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-ready-selftest.py"
+      "python3",
+      "-B",
+      "bin/gatebraid-ready-selftest.py"
     ],
     "cwd": {
-      "path": "D:\\Github repo\\Gatebraid",
+      "path": "/mnt/d/Github repo/Gatebraid",
       "resolution": "absolute-verified"
     }
   },
@@ -45,14 +43,14 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:21:29.352646Z",
-  "ended_at": "2026-09-02T07:21:32.362651Z",
+  "started_at": "2026-09-02T03:22:43.953839Z",
+  "ended_at": "2026-09-02T03:22:46.211317Z",
   "inputs": [],
   "outputs": [],
   "platform": {
-    "os": "windows",
-    "os_release": "Windows-11-10.0.26200-SP0",
-    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+    "os": "wsl",
+    "os_release": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "interpreter": "CPython 3.12.3 (/usr/bin/python3)"
   },
   "self_assertions": {
     "zero_lone_cr": {
@@ -60,6 +58,5 @@
       "count": 0
     },
     "binary_mode_write": true
-  },
-  "notes": "D4 re-run against the REPAIRED tool, WSL half."
+  }
 }

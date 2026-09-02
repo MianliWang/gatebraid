@@ -47,8 +47,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:22:49.555971Z",
-  "ended_at": "2026-09-02T07:22:49.971213Z",
+  "started_at": "2026-09-02T03:11:49.761067Z",
+  "ended_at": "2026-09-02T03:11:50.258480Z",
   "inputs": [
     {
       "path": "fixtures/run-corpus.py",
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D2 re-run after repair 2: the whole frozen corpus. The bytes-platform and instruments corpora are the historical ready-failure classes of the M2 measurement chain, catalogued in CORPUS-v1-PLAN.md section 3."
+  "notes": "D2: the whole frozen corpus. The bytes-platform and instruments corpora are the historical ready-failure classes of the M2 measurement chain, catalogued in CORPUS-v1-PLAN.md section 3; each is shown killed by the runner's own summary row naming the locus."
 }

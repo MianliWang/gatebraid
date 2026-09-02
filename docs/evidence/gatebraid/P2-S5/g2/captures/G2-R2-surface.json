@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R2-surface",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"declared option surface:\"; PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B bin/gatebraid-ready.py --help | sed -n \"1,2p\" | sed \"s/^/   /\"; echo; echo \"add_argument declarations in the source:\"; grep -o -- \"\\\"--[a-z-]*\\\"\" bin/gatebraid-ready.py | sort -u | sed \"s/^/   /\"; echo; for f in --version --consumer; do PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B bin/gatebraid-ready.py $f > docs/evidence/gatebraid/P2-S5/g2/dryrun-out/rm.out 2>/dev/null; st=$?; echo \"$f -> exit $st, stdout $(wc -c < docs/evidence/gatebraid/P2-S5/g2/dryrun-out/rm.out) bytes\"; done; rm -f docs/evidence/gatebraid/P2-S5/g2/dryrun-out/rm.out; echo; echo \"residual references to the removed flags in the source: $(grep -c -- \"VERSION\\|args.consumer\\|consumer_path\" bin/gatebraid-ready.py || true)\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 311,
+      "sha256": "08c9dee1ac4bd6637b382408ba2f81183a0a3d08c624e3b0111622caf6fe4b87",
+      "data": "ZGVjbGFyZWQgb3B0aW9uIHN1cmZhY2U6CiAgIHVzYWdlOiBnYXRlYnJhaWQtcmVhZHkgWy1oXSBbLS1zdHJpY3RdIFstLXNuYXBzaG90LWNvbW1hbmQgQ01EXQogICAKCmFkZF9hcmd1bWVudCBkZWNsYXJhdGlvbnMgaW4gdGhlIHNvdXJjZToKICAgIi0tc25hcHNob3QtY29tbWFuZCIKICAgIi0tc3RyaWN0IgoKLS12ZXJzaW9uIC0+IGV4aXQgMTIsIHN0ZG91dCAwIGJ5dGVzCi0tY29uc3VtZXIgLT4gZXhpdCAxMiwgc3Rkb3V0IDAgYnl0ZXMKCnJlc2lkdWFsIHJlZmVyZW5jZXMgdG8gdGhlIHJlbW92ZWQgZmxhZ3MgaW4gdGhlIHNvdXJjZTogMAo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "declared option surface:\n   usage: gatebraid-ready [-h] [--strict] [--snapshot-command CMD]\n   \n\nadd_argument declarations in the source:\n   \"--snapshot-command\"\n   \"--strict\"\n\n--version -> exit 12, stdout 0 bytes\n--consumer -> exit 12, stdout 0 bytes\n\nresidual references to the removed flags in the source: 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T07:26:55.321906Z",
+  "ended_at": "2026-09-02T07:26:56.480989Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "F-01 verified after removal: the declared option surface is the frozen two flags plus argparse help, and each removed flag is now a usage error with this tool's own code 12 and empty stdout."
+}

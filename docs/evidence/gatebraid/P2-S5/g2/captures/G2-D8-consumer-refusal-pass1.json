@@ -48,12 +48,12 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:22:15.687150Z",
-  "ended_at": "2026-09-02T07:22:15.945967Z",
+  "started_at": "2026-09-02T03:10:51.904278Z",
+  "ended_at": "2026-09-02T03:10:52.133523Z",
   "inputs": [
     {
       "path": "bin/gatebraid-ready.py",
-      "sha256": "def3bd3ef7a77b561c5b9c7b43b0b05fec8f5005e5870b3a8b373bc43ec241f3"
+      "sha256": "5fd1f551dc68a76fa0a90da0460280ef87bd0f18d3d4251d46a0b1dbdd2d2c17"
     }
   ],
   "outputs": [],
@@ -69,5 +69,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D8 re-run against the REPAIRED tool: the consumer's own refusal code passed through. Expect exit 1."
+  "notes": "D8: a decodable but malformed document; the consumer's own refusal code passed through unchanged. Expect exit 1."
 }

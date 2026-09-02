@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R2-consult-ref-hygiene",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"codex refs in the governed repository:\"; git for-each-ref --format=\"   %(refname) -> %(objecttype) %(objectname)\" | grep -i codex; echo; echo \"leaf ref file timestamp (UTC date today: $(date -u +%Y-%m-%d)):\"; find .git/refs/codex -type f -printf \"   %TY-%Tm-%Td %TH:%TM  %p\\n\"; echo; echo \"count of codex refs: $(git for-each-ref --format=%(refname) | grep -ci codex)\"; echo \"total refs         : $(git for-each-ref --format=%(refname) | wc -l)\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 127,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 547,
+      "sha256": "155e2a22164f99c5fd0e25d298e636ecc44200a5f19cc99dfdcba10e533db48b",
+      "data": "L3Vzci9iaW4vYmFzaDogLWM6IGxpbmUgMTogc3ludGF4IGVycm9yIG5lYXIgdW5leHBlY3RlZCB0b2tlbiBgKCcKL3Vzci9iaW4vYmFzaDogLWM6IGxpbmUgMTogYGVjaG8gImNvZGV4IHJlZnMgaW4gdGhlIGdvdmVybmVkIHJlcG9zaXRvcnk6IjsgZ2l0IGZvci1lYWNoLXJlZiAtLWZvcm1hdD0iICAgJShyZWZuYW1lKSAtPiAlKG9iamVjdHR5cGUpICUob2JqZWN0bmFtZSkiIHwgZ3JlcCAtaSBjb2RleDsgZWNobzsgZWNobyAibGVhZiByZWYgZmlsZSB0aW1lc3RhbXAgKFVUQyBkYXRlIHRvZGF5OiAkKGRhdGUgLXUgKyVZLSVtLSVkKSk6IjsgZmluZCAuZ2l0L3JlZnMvY29kZXggLXR5cGUgZiAtcHJpbnRmICIgICAlVFktJVRtLSVUZCAlVEg6JVRNICAlcFxuIjsgZWNobzsgZWNobyAiY291bnQgb2YgY29kZXggcmVmczogJChnaXQgZm9yLWVhY2gtcmVmIC0tZm9ybWF0PSUocmVmbmFtZSkgfCBncmVwIC1jaSBjb2RleCkiOyBlY2hvICJ0b3RhbCByZWZzICAgICAgICAgOiAkKGdpdCBmb3ItZWFjaC1yZWYgLS1mb3JtYXQ9JShyZWZuYW1lKSB8IHdjIC1sKSInCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "/usr/bin/bash: -c: line 1: syntax error near unexpected token `('\n/usr/bin/bash: -c: line 1: `echo \"codex refs in the governed repository:\"; git for-each-ref --format=\"   %(refname) -> %(objecttype) %(objectname)\" | grep -i codex; echo; echo \"leaf ref file timestamp (UTC date today: $(date -u +%Y-%m-%d)):\"; find .git/refs/codex -type f -printf \"   %TY-%Tm-%Td %TH:%TM  %p\\n\"; echo; echo \"count of codex refs: $(git for-each-ref --format=%(refname) | grep -ci codex)\"; echo \"total refs         : $(git for-each-ref --format=%(refname) | wc -l)\"'\n"
+      }
+    }
+  },
+  "started_at": "2026-09-02T07:18:05.410080Z",
+  "ended_at": "2026-09-02T07:18:05.536546Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Friction #103 precaution, verified rather than assumed. The consult ran with -C pointing at a disposable full copy outside every governed repository. The governed repository carries exactly one refs/codex ref; its leaf file is dated 2026-07-31 and its object is the same tree this Slice's entry report recorded as pre-existing on 2026-08-30. No ref was written by this consult."
+}

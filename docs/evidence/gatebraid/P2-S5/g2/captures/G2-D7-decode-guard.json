@@ -48,12 +48,12 @@
       }
     }
   },
-  "started_at": "2026-09-02T03:10:51.481860Z",
-  "ended_at": "2026-09-02T03:10:51.647735Z",
+  "started_at": "2026-09-02T07:22:15.246176Z",
+  "ended_at": "2026-09-02T07:22:15.409641Z",
   "inputs": [
     {
       "path": "bin/gatebraid-ready.py",
-      "sha256": "5fd1f551dc68a76fa0a90da0460280ef87bd0f18d3d4251d46a0b1dbdd2d2c17"
+      "sha256": "def3bd3ef7a77b561c5b9c7b43b0b05fec8f5005e5870b3a8b373bc43ec241f3"
     }
   ],
   "outputs": [],
@@ -69,5 +69,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D7: the decode guard, on the same two bytes the M2 producer emitted. Expect exit 11 and empty stdout."
+  "notes": "D7 re-run against the REPAIRED tool: the decode guard on the same two bytes the M2 producer emitted. Expect exit 11 and empty stdout."
 }

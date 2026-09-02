@@ -1,6 +1,6 @@
 {
   "schema": "gatebraid/evidence-capture@1",
-  "capture_id": "G2-D8-consumer-refusal",
+  "capture_id": "G2-D6-producer-failure",
   "generator": {
     "name": "gatebraid-capture",
     "version": "1.0.0",
@@ -13,7 +13,7 @@
       "-B",
       "bin/gatebraid-ready.py",
       "--snapshot-command",
-      "C:/Python312/python.exe -c \"import sys;sys.stdout.buffer.write(chr(123).encode()+chr(125).encode())\""
+      "C:/Python312/python.exe -B bin/gatebraid-snapshot.py --replay docs/evidence/gatebraid/P2-S5/g1/dryrun-out/no-such-transcript.json"
     ],
     "cwd": {
       "path": "D:\\Github repo\\Gatebraid",
@@ -23,7 +23,7 @@
       "PYTHONDONTWRITEBYTECODE": "1"
     }
   },
-  "exit_code": 1,
+  "exit_code": 10,
   "streams": {
     "stdout": {
       "encoding": "base64",
@@ -38,22 +38,22 @@
     },
     "stderr": {
       "encoding": "base64",
-      "byte_length": 220,
-      "sha256": "5696829bba3a5ca5eae694f96e08ca131ce09f1e0096d24f278d1ec103e5b7ed",
-      "data": "U05BUFNIT1QgUkVGVVNFRDogdGhlIGRvY3VtZW50IGRvZXMgbm90IHNheSB3aGF0IGl0IGlzOiBgc2NoZW1hYCBpcyBhYnNlbnQsIHNvIGl0IGNhbm5vdCBiZSBjb25zdW1lZCBhcyBpZiBjdXJyZW50DQ0KdmVyZGljdHMgZW1pdHRlZCAgICAgICAgICAgICA6IDAgKG5vIHZlcmRpY3QgaXMgZW1pdHRlZCBmb3IgYSBkb2N1bWVudCB0aGlzIHRvb2wgY291bGQgbm90IHZhbGlkYXRlKQ0NCg==",
+      "byte_length": 218,
+      "sha256": "b47eb4077606f915017415a5c4a53778fb2cb32b74eb4c81ec488789be1c467b",
+      "data": "VVNBR0U6IG5vIHRyYW5zY3JpcHQgYXQgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZHJ5cnVuLW91dC9uby1zdWNoLXRyYW5zY3JpcHQuanNvbg0NClBST0RVQ0VSIFJFUE9SVEVEIE5PIERPQ1VNRU5UOiBleGl0IDIgKGRlY2xhcmVkIHN0YXR1cyBtZWFuaW5nIG5vIGRvY3VtZW50KTsgbm90aGluZyBpcyBlbWl0dGVkIGFuZCBubyB2ZXJkaWN0IGlzIGludmVudGVkDQo=",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "SNAPSHOT REFUSED: the document does not say what it is: `schema` is absent, so it cannot be consumed as if current\r\r\nverdicts emitted             : 0 (no verdict is emitted for a document this tool could not validate)\r\r\n"
+        "text": "USAGE: no transcript at docs/evidence/gatebraid/P2-S5/g1/dryrun-out/no-such-transcript.json\r\r\nPRODUCER REPORTED NO DOCUMENT: exit 2 (declared status meaning no document); nothing is emitted and no verdict is invented\r\n"
       }
     }
   },
-  "started_at": "2026-09-02T07:22:15.687150Z",
-  "ended_at": "2026-09-02T07:22:15.945967Z",
+  "started_at": "2026-09-02T03:10:51.018681Z",
+  "ended_at": "2026-09-02T03:10:51.208786Z",
   "inputs": [
     {
       "path": "bin/gatebraid-ready.py",
-      "sha256": "def3bd3ef7a77b561c5b9c7b43b0b05fec8f5005e5870b3a8b373bc43ec241f3"
+      "sha256": "5fd1f551dc68a76fa0a90da0460280ef87bd0f18d3d4251d46a0b1dbdd2d2c17"
     }
   ],
   "outputs": [],
@@ -69,5 +69,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D8 re-run against the REPAIRED tool: the consumer's own refusal code passed through. Expect exit 1."
+  "notes": "D6: a producer status that genuinely means NO DOCUMENT, against the real producer. Expect exit 10."
 }

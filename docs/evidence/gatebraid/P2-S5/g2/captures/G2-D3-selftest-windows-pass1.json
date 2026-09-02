@@ -46,8 +46,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:21:25.624428Z",
-  "ended_at": "2026-09-02T07:21:29.058449Z",
+  "started_at": "2026-09-02T03:10:01.353731Z",
+  "ended_at": "2026-09-02T03:10:04.852282Z",
   "inputs": [
     {
       "path": "bin/gatebraid-ready-selftest.py",
@@ -55,7 +55,7 @@
     },
     {
       "path": "bin/gatebraid-ready.py",
-      "sha256": "def3bd3ef7a77b561c5b9c7b43b0b05fec8f5005e5870b3a8b373bc43ec241f3"
+      "sha256": "5fd1f551dc68a76fa0a90da0460280ef87bd0f18d3d4251d46a0b1dbdd2d2c17"
     }
   ],
   "outputs": [],
@@ -71,5 +71,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D3 re-run against the REPAIRED tool, Windows half. Twenty seeded conditions, each emitting its own summary row."
+  "notes": "D3: the ready selftest on the Windows half. Twenty seeded conditions, each emitting its own summary row."
 }

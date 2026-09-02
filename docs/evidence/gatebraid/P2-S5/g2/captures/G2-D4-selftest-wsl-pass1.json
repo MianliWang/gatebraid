@@ -45,8 +45,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:21:29.352646Z",
-  "ended_at": "2026-09-02T07:21:32.362651Z",
+  "started_at": "2026-09-02T03:10:05.162753Z",
+  "ended_at": "2026-09-02T03:10:08.392662Z",
   "inputs": [],
   "outputs": [],
   "platform": {
@@ -61,5 +61,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D4 re-run against the REPAIRED tool, WSL half."
+  "notes": "D4: the same selftest on the WSL half of the declared environment."
 }

@@ -52,8 +52,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:22:36.579494Z",
-  "ended_at": "2026-09-02T07:22:36.696112Z",
+  "started_at": "2026-09-02T03:09:32.768901Z",
+  "ended_at": "2026-09-02T03:09:32.879837Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py",
@@ -77,5 +77,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D10 re-run: all six criteria must fire on their substantive limbs against the Gate 1 seeds."
+  "notes": "D10: the SAME g2 instrument pointed at the Gate 1 seeds. All six must fire on their substantive limbs, or the copy has been shown nothing."
 }

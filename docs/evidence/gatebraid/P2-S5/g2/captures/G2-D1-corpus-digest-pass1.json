@@ -46,8 +46,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:21:08.541532Z",
-  "ended_at": "2026-09-02T07:24:59.856241Z",
+  "started_at": "2026-09-02T03:09:42.810645Z",
+  "ended_at": "2026-09-02T03:13:53.334664Z",
   "inputs": [
     {
       "path": "fixtures/runner-selftest.py",
@@ -67,5 +67,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D1 re-run after repair 2: the frozen corpus digest is unmoved."
+  "notes": "D1: the frozen corpus digest is unmoved by this Slice, measured rather than argued."
 }

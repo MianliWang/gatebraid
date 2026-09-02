@@ -49,8 +49,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:21:21.359472Z",
-  "ended_at": "2026-09-02T07:21:25.297191Z",
+  "started_at": "2026-09-02T03:09:56.984868Z",
+  "ended_at": "2026-09-02T03:10:01.022423Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g1/scope-pin.py",
@@ -70,5 +70,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D0F re-run after repair 2: the same instrument at the pinned commit's parent must report SCOPE PIN STALE."
+  "notes": "D0F re-run at Gate 2: the same instrument at the pinned commit's parent must report SCOPE PIN STALE."
 }

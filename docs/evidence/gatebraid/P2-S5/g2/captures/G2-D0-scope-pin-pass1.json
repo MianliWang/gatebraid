@@ -47,8 +47,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:21:16.900945Z",
-  "ended_at": "2026-09-02T07:21:21.061038Z",
+  "started_at": "2026-09-02T03:09:52.636356Z",
+  "ended_at": "2026-09-02T03:09:56.675216Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g1/scope-pin.py",
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "D0 re-run after repair 2: the frozen scope still re-derives at the pinned commit."
+  "notes": "D0 re-run at Gate 2: the frozen scope still re-derives at the pinned commit. This is what would detect the historical record having moved under the plan."
 }

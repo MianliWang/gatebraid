@@ -129,7 +129,7 @@ historical record : MianliWang/gatebraid-scratch
 pinned commit     : dcd8e851bb508a2e17a6949434fc7c10354506c1
 reading at        : a8e15e0de2d5df285a79c8a34d1a966fee86e678   (OVERRIDDEN - falsification run)
 resolves to       : a8e15e0de2d5df285a79c8a34d1a966fee86e678  *** NOT THE PINNED COMMIT ***
-[... shown 14 of 20 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-D0F-scope-pin-falsify.json]
+[... shown 14 of 20 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-D0F-scope-pin-falsify.json]
 docs/evidence/gatebraid/P1-S5/gate1.md         26299    edfc92054015b7190ba79eb94c9da114ce0eec4714acdd3b301628550ee74f33  MATCH
 docs/evidence/gatebraid/P1-S6/gate0.md         5996     89af2e287272947f307b2f72d9541e481c508c9e90c6d99cd994061282698c5c  MATCH
 docs/evidence/gatebraid/P1-S6/gate1.md         -        *** ABSENT AT THIS COMMIT ***
@@ -148,7 +148,7 @@ SCOPE PIN STALE: 5 item(s) did not re-derive
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B fixtures/runner-selftest.py
 condition                           want  got  verdict  required observation
 S00 untouched copy                     0    0  PASS     CORPUS CLEAN
-[... shown 16 of 37 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-D1-corpus-digest.json]
+[... shown 16 of 37 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-D1-corpus-digest.json]
 S27 __pycache__ present                0    0  PASS     CORPUS CLEAN
 S11 unexpected argument                2    2  PASS     unexpected argument
 S15 cwd-independence holds             0    0  PASS     CORPUS CLEAN from both
@@ -181,7 +181,7 @@ corpus bytes-platform (v1.1)  <- fixtures\bytes-platform\EXPECTATIONS.json
   ok   BP1-08  killed on required@properties/1:replay [properties/properties/items/allOf/0/then/required]  [BP-01 / BP-02 claim discipline �� a replayed claim with nothing behind it]
 
 corpus evidence-capture-v1 (v1.1)  <- fixtures\evidence-capture-v1\EXPECTATIONS.json
-[... shown 26 of 156 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-D2-corpus.json]
+[... shown 26 of 156 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-D2-corpus.json]
   ok   SP1-07  killed on const@sources/0/status [properties/sources/items/allOf/2/then/properties/status/const]  [SP-03 rate limit]
   ok   SP1-08  killed on const@sources/0/complete [properties/sources/items/allOf/3/then/properties/complete/const]  [SP-04 network / server error]
   ok   SP1-09  killed on const@items/0/verdict [allOf/0/then/properties/items/items/properties/verdict/const]  [SP-05 malformed GitHub response]
@@ -241,7 +241,7 @@ id     condition                                                        want    
 S01    a healthy document composes and exits 0                          0            0            PASS    a composer that rejected everything would fail HERE and pass every negative below
 S01b   the consumer's report is passed through BYTE-FOR-BYTE            <5127 bytes> <5127 bytes> PASS    byte passthrough, not text: re-emitting decoded text through a text-mode stdout would translate every embedded newline again
 S02    producer status 1 (declared: no document) is exit 10             10           10           PASS    a status meaning no document must never reach the consumer
-[... shown 14 of 29 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-D4-selftest-wsl.json]
+[... shown 14 of 29 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-D4-selftest-wsl.json]
 S10    the D-4 partition covers exactly the producer's declared space   [0, 1, 2, 3] [0, 1, 2, 3] PASS    the partition is transcribed from the producer's docstring, so it is checked against that docstring rather than trusted
 S11    every condition was served by a stub or a committed document     0            0            PASS    a selftest that reached the control plane would be measuring the network, not the composer
 
@@ -262,23 +262,23 @@ $ GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid PYTHONDONTWRITEBYTECODE=1 C:/Python
  "consumer": {
   "name": "gatebraid-frontier",
   "version": "1.0.0"
-[... shown 20 of 214 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-D5-live-ready.json]
+[... shown 20 of 195 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-D5-live-ready.json]
+transport                     : live
+sources                       : 4
+   project_items    ok                   complete=True  exit=0
+   issue_states     ok                   complete=True  exit=0
+   dep_blocked_by   ok                   complete=True  exit=0
+   dep_blocking     ok                   complete=True  exit=0
+items                         : 16
+degraded                      : no
 SNAPSHOT OK: every source read completely with status `ok`
-
 consumer                      : gatebraid-frontier 1.0.0
-
 validated against             : D:\Github repo\Gatebraid\schema\snapshot.schema.json sha256=95ecf38e927a18e58cace007607caa016d188893c2d92ea3ea748c46453419d6
-
 items excluded (no verdict)   : 4
-
 startable                     : 9
-
 blocked                       : 3
-
 undecidable                   : 0
-
 FRONTIER OK: the snapshot validated and every verdict was re-derived from it
-
 (exit 0)
 ```
 
@@ -287,7 +287,6 @@ FRONTIER OK: the snapshot validated and every verdict was re-derived from it
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B bin/gatebraid-ready.py --snapshot-command 'C:/Python312/python.exe -B bin/gatebraid-snapshot.py --replay docs/evidence/gatebraid/P2-S5/g1/dryrun-out/no-such-transcript.json'
 
 USAGE: no transcript at docs/evidence/gatebraid/P2-S5/g1/dryrun-out/no-such-transcript.json
-
 PRODUCER REPORTED NO DOCUMENT: exit 2 (declared status meaning no document); nothing is emitted and no verdict is invented
 (exit 10)
 ```
@@ -306,22 +305,20 @@ The offending byte is at position 17. No encoding is guessed: a best-effort deco
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B bin/gatebraid-ready.py --snapshot-command 'C:/Python312/python.exe -c "import sys;sys.stdout.buffer.write(chr(123).encode()+chr(125).encode())"'
 
 SNAPSHOT REFUSED: the document does not say what it is: `schema` is absent, so it cannot be consumed as if current
-
 verdicts emitted             : 0 (no verdict is emitted for a document this tool could not validate)
-
 (exit 1)
 ```
 
-**V9 D9 - the six negative criteria hold, PINNED to base..fingerprint so the row reproduces**
+**V9 D9 - the six negative criteria hold. Pinned to base..fingerprint, which pins the TRACKED half only; this row is EXCLUDED from the deterministic subset and what it asserts is the six verdicts**
 ```
-$ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py --base cbd065893b37f20713ae35b8d2673bf26fe4d2ad..629e287faab01a84935a93a2dc265d369a6a5c33
+$ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py --base cbd065893b37f20713ae35b8d2673bf26fe4d2ad..5b586029344eb6df4a964c34baa1eb12e2916f6d
 changed-path source : git
-base                : cbd065893b37f20713ae35b8d2673bf26fe4d2ad..629e287faab01a84935a93a2dc265d369a6a5c33
-changed paths       : 197
+base                : cbd065893b37f20713ae35b8d2673bf26fe4d2ad..5b586029344eb6df4a964c34baa1eb12e2916f6d
+changed paths       : 245
    bin/gatebraid-ready-selftest.py
    bin/gatebraid-ready.py
    docs/evidence/gatebraid/P2-S5/captures/G0-baseline-main.json
-[... shown 22 of 32 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-D9-negative-pinned.json]
+[... shown 22 of 32 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-D9-negative-pinned.json]
 allowlist           : bin/, docs/evidence/gatebraid/P2-S5/
 code surface        : bin/gatebraid-ready.py, bin/gatebraid-ready-selftest.py
 transitive target   : bin/gatebraid-snapshot.py
@@ -341,12 +338,12 @@ NEGATIVE CRITERIA HOLD: N1, N2, N3, N4, N5, N6
 (exit 0)
 ```
 
-**V9b - the live unpinned run, retained as a true record of its own instant and OUTSIDE the deterministic subset**
+**V9b - the live unpinned run, retained beside it as a true record of its own instant, likewise excluded**
 ```
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py
 changed-path source : git
 base                : cbd065893b37f20713ae35b8d2673bf26fe4d2ad
-[... shown 16 of 32 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-D9-negative.json]
+[... shown 16 of 32 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-D9-negative.json]
 transitive target   : bin/gatebraid-snapshot.py
 consumer            : bin/gatebraid-frontier.py
 frozen root         : docs/evidence/gatebraid/P2-S5
@@ -373,7 +370,7 @@ changed paths       : 9
    bin/gatebraid-ready.py
    bin/gatebraid-ready-selftest.py
    bin/gatebraid-frontier.py
-[... shown 24 of 49 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-D10-negative-falsify.json]
+[... shown 24 of 49 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-D10-negative-falsify.json]
       retained-set path-list digest: 78b1033539b2e9fb60128927641f8908f9a67b3ff6183e657fba591bc7df853b (expected 83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f)
       docs/evidence/gatebraid/P2-S5/g1/falsification/frozen-root/gate0.md: 9f3760fc458fe6e87b6187bbe787fb5d01e7aeb42281fd5a5bbe699b178de8df (expected be7c338896b1015923671988166d55af3bd59e028660ce89dfd3b69bc7251513)
       docs/evidence/gatebraid/P2-S5/g1/falsification/frozen-root/g0r/gate0.md: fa5bc3f79e5a59986bd97585d41dc34e27b45c1770c2ee20c593934288dd35fc (expected 95ff39111b4a8b8aa43c022e877c98af5f868b054f4ac2c116ae5c67327bc4e6)
@@ -399,7 +396,7 @@ NEGATIVE CRITERIA FIRED: N1, N2, N3, N4, N5, N6
 ```
 $ wsl.exe -e bash -lc 'cd '\''/mnt/d/Github repo/Gatebraid'\'' && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-capture.py --out docs/evidence/gatebraid/P2-S5/g2/captures/G2-wsl-ready-selftest.json --capture-id G2-wsl-ready-selftest -- python3 -B bin/gatebraid-ready-selftest.py && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-validate.py --record docs/evidence/gatebraid/P2-S5/g2/gate2.md --report-id cov-P2-S5-g2-gate2-wsl.md'
 WROTE docs/evidence/gatebraid/P2-S5/g2/captures/G2-wsl-ready-selftest.json
-  bytes=11878 sha256=ee68978550743dea5f093c8236588d5b2964fe302feb2a86a05afd5c99e85694 crlf=0 lone_cr=0
+  bytes=11878 sha256=7a816de071e54e12eafc7144ad6e23625f4ec8e3d29db2d3d831c45407786cf5 crlf=0 lone_cr=0
 target        : docs/evidence/gatebraid/P2-S5/g2/gate2.md
 interface     : gatebraid/gate-run@2
 loader        : CPython 3.12.3 (/usr/bin/python3), jsonschema 4.10.3, Draft202012Validator
@@ -417,29 +414,29 @@ verdict       : accepted
 **V12 - the closed-set sweep over this gate's captures: repository limb CLOSED, one residue disclosed**
 ```
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py docs/evidence/gatebraid/P2-S5/g2/captures
-captures swept : 31
+captures swept : 59
 
 === candidate classification (every rule applied explicitly) ===
-  E1 permitted repository                                    19
-  E3 API-path fragment                                       2
-  E5 filesystem or URL path segment                          264
-  E6 schema-id namespace                                     3
-  E7 JSON pointer                                            54
-  E8 prose slash between ordinary words (named, not matched) 36
-  I0 friction citation, not an issue reference               1
-  N1 the permitted Project                                   5
-  N2 the P2-S5 item                                          11
-  N3 field id of the permitted Project                       31
-  N4 another item of the permitted Project                   15
+  E1 permitted repository                                    39
+  E3 API-path fragment                                       3
+  E4 git ref namespace, not a repository                     4
+  E5 filesystem or URL path segment                          509
+  E6 schema-id namespace                                     10
+  E7 JSON pointer                                            107
+  E8 prose slash between ordinary words (named, not matched) 78
+  I0 friction citation, not an issue reference               6
+  N1 the permitted Project                                   8
+  N2 the P2-S5 item                                          17
+  N3 field id of the permitted Project                       40
+  N4 another item of the permitted Project                   30
   UNEXPLAINED                                                13
-
-[... shown 22 of 39 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-closed-set-sweep.json]
-    G2-E1-approval-fidelity.json                 invocation   repo
-    G2-E1-approval-fidelity.json                 invocation   repo
-    G2-E1-approval-fidelity.json                 invocation   repo
-    G2-E3-baseline.json                          stdout       repo
-    G2-E3-baseline.json                          invocation   repo
-    G2-E4-branch.json                            stdout       repo
+[... shown 22 of 41 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep.json]
+    G2-E1-approval-fidelity-pass1.json           invocation   repo
+    G2-E1-approval-fidelity-pass1.json           invocation   repo
+    G2-E3-baseline-pass1.json                    stdout       repo
+    G2-E3-baseline-pass1.json                    invocation   repo
+    G2-X-checkpoint.json                         invocation   repo
+    G2-X-exit-readback.json                      stdout       repo
 (exit 1)
 ```
 
@@ -479,7 +476,7 @@ captures swept : 1
 === every REPOSITORY identity named anywhere ===
 
 === mention-class check: a mention must never appear in an INVOCATION ===
-[... shown 26 of 27 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-closed-set-sweep-falsify-near-miss.json]
+[... shown 26 of 27 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep-falsify-near-miss.json]
 
 domain      : 1 documents (0 of this sweep's own reports excluded)
 UNEXPLAINED RESIDUE: 15
@@ -503,13 +500,13 @@ UNEXPLAINED RESIDUE: 15
 
 **V13 - handoff fingerprint: the tree and the changed-path set at the implementation-complete commit**
 ```
-$ git rev-parse 629e287faab01a84935a93a2dc265d369a6a5c33^{tree}
-cda51687a326d41c2b98d6b2ae49a48526bd366e
-$ git diff --name-only cbd065893b37f20713ae35b8d2673bf26fe4d2ad..629e287faab01a84935a93a2dc265d369a6a5c33 | sort | wc -l
-160
-$ git diff --name-only cbd065893b37f20713ae35b8d2673bf26fe4d2ad..629e287faab01a84935a93a2dc265d369a6a5c33 | sort | grep -c '^docs/evidence/gatebraid/P2-S5/'
-158
-$ git diff --name-only cbd065893b37f20713ae35b8d2673bf26fe4d2ad..629e287faab01a84935a93a2dc265d369a6a5c33 | sort | grep '^bin/'
+$ git rev-parse 5b586029344eb6df4a964c34baa1eb12e2916f6d^{tree}
+f696944947a342b6163bf4ad7d9137674830a2f7
+$ git diff --name-only cbd065893b37f20713ae35b8d2673bf26fe4d2ad..5b586029344eb6df4a964c34baa1eb12e2916f6d | sort | wc -l
+219
+$ git diff --name-only cbd065893b37f20713ae35b8d2673bf26fe4d2ad..5b586029344eb6df4a964c34baa1eb12e2916f6d | sort | grep -c '^docs/evidence/gatebraid/P2-S5/'
+217
+$ git diff --name-only cbd065893b37f20713ae35b8d2673bf26fe4d2ad..5b586029344eb6df4a964c34baa1eb12e2916f6d | sort | grep '^bin/'
 bin/gatebraid-ready-selftest.py
 bin/gatebraid-ready.py
 ```
@@ -546,7 +543,7 @@ changed-path source : git
 base                : cbd065893b37f20713ae35b8d2673bf26fe4d2ad
 changed paths       : 179
    bin/gatebraid-ready-selftest.py
-[... shown 14 of 34 lines; full output: docs/evidence/gatebraid/P2-S5/g2\captures/G2-R-n3-g1-instrument-fired.json]
+[... shown 14 of 34 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-R-n3-g1-instrument-fired.json]
 N3 no frozen input is written                      : FIRED
       retained file count: 62 (expected 43)
       retained-set path-list digest: 4eef9df5e18137b9f427b6efcd4494c7ff1b9a47cbbbe0c39b8f067427f01d56 (expected 83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f)
@@ -563,24 +560,128 @@ NEGATIVE CRITERIA FIRED: N3
 - Result: `green`
 - Consult: `none` - the sequence stopped at repair 1 because the check returned green; no consult was reached and none was run.
 
+### Repair 2
+
+- Hypothesis (new): the independent review's R3 FAIL and its HIGH finding share one cause - a claim the record or the tool makes that its own measurement contradicts - so the repair restores the frozen two-flag surface and re-derives every contradicted figure from the row that measures it, rather than restating it in prose.
+
+**Novelty measured - the tree moved from the reviewed failing state, so the attempt is a repair and not a consumed one (ADR-0027 section 1)**
+```
+$ 'D:/Program Files/Git/bin/bash.exe' -o pipefail -c 'echo "tree at the reviewed failing state 8fde380b: $(git rev-parse 8fde380b26e44caba7754dacd0611f3d5ff026a8^{tree})"; echo "tree after repair 2 implementation  : $(git rev-parse 5b586029344eb6df4a964c34baa1eb12e2916f6d^{tree})"; echo "unchanged tree                      : $([ "$(git rev-parse 8fde380b26e44caba7754dacd0611f3d5ff026a8^{tree})" = "$(git rev-parse 5b586029344eb6df4a964c34baa1eb12e2916f6d^{tree})" ] && echo yes || echo no)"; echo; echo "changed by the repair-2 implementation commit:"; git diff --name-status 8fde380b26e44caba7754dacd0611f3d5ff026a8..5b586029344eb6df4a964c34baa1eb12e2916f6d | sed "s/^/   /"'
+tree at the reviewed failing state 8fde380b: 74de097bb05023cb955cc59fa1c7338e4524f229
+tree after repair 2 implementation  : f696944947a342b6163bf4ad7d9137674830a2f7
+unchanged tree                      : no
+
+changed by the repair-2 implementation commit:
+   M	bin/gatebraid-ready.py
+(exit 0)
+```
+
+**The frozen tool surface, restored and verified (F-01)**
+```
+$ 'D:/Program Files/Git/bin/bash.exe' -o pipefail -c 'echo "declared option surface:"; PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B bin/gatebraid-ready.py --help | sed -n "1,2p" | sed "s/^/   /"; echo; echo "add_argument declarations in the source:"; grep -o -- "\"--[a-z-]*\"" bin/gatebraid-ready.py | sort -u | sed "s/^/   /"; echo; for f in --version --consumer; do PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B bin/gatebraid-ready.py $f > docs/evidence/gatebraid/P2-S5/g2/dryrun-out/rm.out 2>/dev/null; st=$?; echo "$f -> exit $st, stdout $(wc -c < docs/evidence/gatebraid/P2-S5/g2/dryrun-out/rm.out) bytes"; done; rm -f docs/evidence/gatebraid/P2-S5/g2/dryrun-out/rm.out; echo; echo "residual references to the removed flags in the source: $(grep -c -- "VERSION\|args.consumer\|consumer_path" bin/gatebraid-ready.py || true)"'
+declared option surface:
+   usage: gatebraid-ready [-h] [--strict] [--snapshot-command CMD]
+   
+
+add_argument declarations in the source:
+   "--snapshot-command"
+   "--strict"
+
+--version -> exit 12, stdout 0 bytes
+--consumer -> exit 12, stdout 0 bytes
+
+residual references to the removed flags in the source: 0
+(exit 0)
+```
+
+**The consult's metadata validated against gatebraid/consult@1 before the id was relied on, loader named**
+```
+$ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B -c '
+import io,re,sys,json,yaml
+from jsonschema import Draft202012Validator, FormatChecker
+import jsonschema, platform
+body=io.open('\''docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01.md'\'',encoding='\''utf-8'\'').read()
+m=re.search(r'\''^```yaml\s*\n(.*?)^```\s*$'\'', body, re.M|re.S)
+doc=yaml.safe_load(m.group(1))
+schema=json.load(io.open('\''schema/consult.schema.json'\'',encoding='\''utf-8'\''))
+v=Draft202012Validator(schema, format_checker=FormatChecker())
+errs=sorted(v.iter_errors(doc), key=lambda e: list(e.path))
+print('\''loader: %s %s - PyYAML %s - jsonschema %s (format_checker enabled)'\'' % (sys.executable, platform.python_version(), yaml.__version__, jsonschema.__version__))
+print('\''schema: gatebraid/consult@1'\'')
+print('\''consult_id: %s   slice_id: %s   trigger: %s'\'' % (doc['\''consult_id'\''], doc.get('\''slice_id'\''), doc['\''trigger'\'']))
+print('\''result: %s'\'' % ('\''VALID'\'' if not errs else '\''INVALID'\''))
+for e in errs[:8]: print('\''   '\'', list(e.path), e.message[:180])
+sys.exit(1 if errs else 0)
+'
+loader: C:\Python312\python.exe 3.12.2 - PyYAML 6.0.2 - jsonschema 4.23.0 (format_checker enabled)
+schema: gatebraid/consult@1
+consult_id: CONSULT-17-01   slice_id: P2-S5   trigger: repair-sequence
+result: VALID
+<string>:11: DeprecationWarning: Accessing jsonschema.__version__ is deprecated and will be removed in a future release. Use importlib.metadata directly to query for jsonschema's version.
+(exit 0)
+```
+
+**The friction #103 precaution, verified rather than assumed: no ref was written by the consult**
+```
+$ 'D:/Program Files/Git/bin/bash.exe' -o pipefail -c 'echo "today UTC          : $(date -u +%Y-%m-%d)"; echo "total refs         : $(git for-each-ref --format="%(refname)" | wc -l)"; echo "codex refs         : $(git for-each-ref --format="%(refname)" | grep -ci codex)"; echo; echo "the codex ref and its object:"; git for-each-ref --format="   %(refname) -> %(objecttype) %(objectname)" | grep -i codex; echo; echo "leaf ref file, with its timestamp:"; find .git/refs/codex -type f | while read f; do ls -la --time-style=long-iso "$f" | sed "s/^/   /"; done'
+today UTC          : 2026-09-02
+total refs         : 23
+codex refs         : 1
+
+the codex ref and its object:
+   refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e -> tree 8c7df84d62a5d70d4a9ed2f05edf2661bbf5bd43
+
+leaf ref file, with its timestamp:
+   -rw-r--r-- 1 rough 197609 41 2026-07-31 05:25 .git/refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e
+(exit 0)
+```
+
+**The Gate 1 instrument's own run at this gate, retained - the finding repair 1 answered**
+```
+$ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g1/negative-criteria.py
+changed-path source : git
+base                : cbd065893b37f20713ae35b8d2673bf26fe4d2ad
+changed paths       : 179
+   bin/gatebraid-ready-selftest.py
+[... shown 14 of 34 lines; full output: docs/evidence/gatebraid/P2-S5/g2/captures/G2-R-n3-g1-instrument-fired.json]
+N3 no frozen input is written                      : FIRED
+      retained file count: 62 (expected 43)
+      retained-set path-list digest: 4eef9df5e18137b9f427b6efcd4494c7ff1b9a47cbbbe0c39b8f067427f01d56 (expected 83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f)
+N4 no runtime dependency, no HTTP client           : holds
+N5 no control-plane mutation, no file written      : holds
+N6 ready's codes sit outside both composed spaces  : holds
+      consumer declared code space, read from its docstring: 0, 1, 2, 3
+      producer declared code space, read from its docstring: 0, 1, 2, 3
+
+NEGATIVE CRITERIA FIRED: N3
+(exit 1)
+```
+
+- Result: `green`
+- Consult: `CONSULT-17-01` (in sequence - also on `repair_attempts[1].consult_ref`; friction #94). Verdict **PARTIAL**, independently verified before application: every claim in the response was re-measured against the tree before any byte changed. Accepted in full on the completeness of the F-01 removal, on excluding V9 rather than modifying the frozen Gate 1 instrument, on the elision-line rule, on the twelve-item post-repair claim set, and on the three further statements the V9 fix had to change. Declined on one point, for scope and not disagreement: the consult recommended narrowing the module docstring's stdout sentence to exempt `--help`, and the operator's repair-2 instruction permits no other `bin/` byte change; the residual is disclosed instead.
+
 ## Required disclosures
 
-- Deviations: the handoff fingerprint is measured at the last IMPLEMENTATION commit, 629e287faab01a84935a93a2dc265d369a6a5c33, before this record and the rest of this gate's evidence are committed. That is what the fingerprint's definition requires and what makes it Gate 3's comparand. Every commit after it is record-only and confined to docs/evidence/gatebraid/P2-S5/g2/, which is inside the frozen allowlist.
-- Deviations: REPAIR 1, and what it did and did not touch. The FIRST run of the declared D9 command at this gate returned exit 1: negative criterion N3's content limb fired, reporting 62 files where 43 were expected. The cause was not a changed retained record - both pinned gate0.md hashes were unchanged throughout and the digest re-derives - but the Gate 1 MECHANISATION of the limb, whose exclusion set is hard-coded to `g0r` and `g1`, the two per-gate subdirectories that existed when it was written. The frozen plan states the property as `the file count of docs/evidence/gatebraid/P2-S5/ with the re-run and THIS GATE'S OWN SUBDIRECTORIES excluded must be forty-three`; at Gate 2 that is three names, not two. The Gate 1 file was NOT edited - Gate 1's captures pin it and it rides on byte-identical - and the failing run is retained at docs/evidence/gatebraid/P2-S5/g2/captures/G2-R-n3-g1-instrument-fired.json. The repair is a g2 copy differing in exactly one line. It LOOSENS NOTHING: the expected count is still 43, the expected digest still 83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f, both pinned gate0.md hashes unchanged, and the exclusion set is an explicit tuple of names rather than a pattern. It was falsified against the Gate 1 seeds before it was trusted, and all six criteria fired.
-- Deviations: whether repair 1 counts toward the Slice's `evidence-only repairs = 0` acceptance item is stated rather than assumed, because the classification is arguable and the record should let a reader decide. Its subject is neither the deliverable nor this record's prose - the two things the M2 measurement chain's evidence-only repairs were - but a CHECK INSTRUMENT'S DOMAIN CONSTANT. This writer's reading is that it is not an evidence-only repair under that definition. The reviewer and the operator may read it otherwise; everything needed to reclassify it is in the Repair record and in the retained failing run.
-- Deviations: the D9 row is recorded TWICE and the reason is the defect P2-S6's own repair 1 found. The instrument's changed-path set is the tracked diff UNION the untracked set. Run unpinned it reads the working tree, so it moves after every later commit and does not reproduce. V9 is therefore the run PINNED to base..fingerprint, which is the row that reproduces; V9b is the live unpinned run, retained beside it as a true record of its own instant. The untracked half is working-tree-relative even when pinned and can only SHRINK as this Slice's own files are committed; every path it can contain is inside the allowlist by construction, so the six verdicts are stable under that shrinkage even though the listing is not.
-- Deviations: THE NOMINATED DETERMINISTIC SUBSET of this record. IN the subset, and required to reproduce byte-identically: E1's three rows, E3, E4b, V0, V0F, V1, V2, V3, V4, V6, V7, V8, V9 (pinned), V10, and the repair's novelty row. OUTSIDE the subset, by ADR-0028 decision 2's exclusion limb, and named here rather than left to be discovered: V5, the live composition, whose report is re-derived from the control plane at each run and whose `workflow` value for this Slice changes as this very gate writes fields; V9b, the unpinned criteria run, for the reason above; V12 and its two falsification runs, whose domain is the captures directory AS IT STOOD when they ran and which grows as this gate writes the captures that follow them; E2 and E4, whose recorded values include a lease timestamp and a branch head that later commits move; and V11's second half, which validates this record and therefore reads bytes that this render produced.
-- Deviations: two of this gate's declared commands name paths that a read-only gate could not have created, and both now run against artefacts that exist. D5 writes its capture into docs/evidence/gatebraid/P2-S5/g2/captures/, the directory the frozen plan names. D11's second half validates docs/evidence/gatebraid/P2-S5/g2/gate2.md, so it runs AFTER this record is authored and its outcome enters the record as the record's own last row - which is why that row is outside the deterministic subset.
-- Deviations: the closed-set sweep's g2 copy carries domain facts under ruling 2 of the Plan Approval, and ONE RESIDUE IS LEFT DELIBERATELY UNEXPLAINED. The hard-rule limb is satisfied and shown: exactly two repository identities anywhere in the domain, MianliWang/gatebraid and MianliWang/gatebraid-scratch, both PERMITTED, nothing outside the set, and no mention-class issue targeted by any query. The remaining token is an issue-shaped citation printed by the FROZEN corpus runner inside a case label, which is a friction reference written without the word `friction` that the FRICTION regex requires. No existing explicit set fits it honestly: the mention class means `issues of the permitted repository this Slice's evidence names`, which it is not, and putting it there would assert something false and weaken a live check. Admitting it would need a new classification branch, which is a rule change the approval forbids. It stays residue and is disclosed here. THE SWEEP OVER THIS RECORD ITSELF returns UNEXPLAINED RESIDUE 0 at exit 0: every candidate token in these bytes is explained by an explicit rule, and the four residues an earlier render carried were removed AT SOURCE rather than by widening anything - a bare relative path in a row's own echo label written out in full, a host temporary path moved inside this gate's evidence directory, and three near-miss tokens this record had been quoting into itself, which is the IN-03 class and was the record sweep catching a defect in its own file.
-- Deviations: the sweep copy was falsified in TWO runs before any weight was put on it, which is the approval's stated condition. The two retained seeds still fire the repository, node and issue limbs, so the added facts blunted no limb that already worked. A new seed carries, for every fact the copy adds, a token shaped like it but OUTSIDE it by one appended or substituted character, and all fifteen of those tokens remained residue. The seed is retained at docs/evidence/gatebraid/P2-S5/g2/falsification/SEED-near-miss-new-classes.json and the tokens are NOT echoed here: a checker does not quote what it forbids into a record (ADR-0028 decision 3, the IN-03 class), and this disclosure quoting three of them is a defect the record sweep caught in this very file. A fact that admitted its own near-miss would be a blindfold rather than a domain fact.
-- Deviations: the composer's argument-splitting rule was settled by MEASUREMENT during authoring, and it is recorded because it is the exact failure this scope was first frozen around. The producer command must be split by POSIX rules on every platform. With posix=False - the tempting choice on Windows - shlex leaves the quotes attached to the token, the stub arrives at the child as a program whose first character is a quote, the child emits ZERO BYTES, and the decode guard appears to pass while testing nothing. That is friction #15's shape and precisely what P1-S3's second dry-run caught before this scope was frozen. It was caught here the same way, by running rather than reading. The default producer command is written with forward slashes because POSIX rules treat a backslash as an escape.
-- Deviations: THIS RECORD'S FIRST RENDER WAS REJECTED BY ITS OWN MACHINE VALIDATION, and the correction is recorded rather than quietly folded in. The metadata's `approvals[0].type` was written with an ASCII arrow, `Plan Approval (G1->G2)`, and the frozen schema's enum requires the label carrying U+2192 RIGHTWARDS ARROW. D11's validation half returned `verdict: rejected` with one structural finding at `approvals/0/type`, and that failing run is retained at docs/evidence/gatebraid/P2-S5/g2/captures/G2-D11-wsl-toolchain-pass1.json. The renderer now RESOLVES the label from the schema's own enum by prefix rather than writing it at all, which is the standing never-re-type rule applied to a record field instead of to a control-plane write. This is recorded as an AUTHORING correction and not as a repair attempt: it was caught by this writer's own pre-submission validation, before the record was committed and before any reviewer saw it, which is the discipline ADR-0028 mandates rather than a round trip it measures. A reviewer who reads it otherwise has the failing capture and this disclosure to reclassify from.
-- Deviations: the selftest's S06c assertion was corrected during authoring, and the correction was to the ASSERTION and never to the composer. Its first writing matched the phrase `not valid UTF-8` in lower case against a refusal the composer writes in capitals, so a correct guard was reported failing. The row now matches case-insensitively and on three substantive tokens - the byte, its position, and the refusal phrase. The composer's message was not changed to suit a check.
-- Deviations: two files under docs/evidence/gatebraid/P2-S5/g1/dryrun-out/ and two under docs/evidence/gatebraid/P2-S5/g2/dryrun-out/ carry CRLF in the working copy and are stored LF under the tree's `* text=auto eol=lf` attribute. They are unreferenced probe stderr, named by no capture and covered by no pin. The four pinned measurements are byte-identical either way, before and after the evidence commit.
-- Deviations: this gate took the Writer Lease and held it throughout; no second writer of any kind ran. Nothing was pushed, no pull request was opened, no merge was performed, no dependency was installed, no hook or check was disabled, and no git reset, clean or checkout was run against baseline state. The one checkout performed was `git checkout slice/P2-S5` onto the branch this gate created from Y, which is the Entry step the contract names.
-- Deviations: scratch paths outside every repository were relied on and are named here, as the Prohibited clause requires. Every commit message was passed through a file under the session scratchpad outside this repository, never as a shell argument. The approval-fidelity row writes and removes one file, and it writes it INSIDE this gate's own evidence directory rather than outside the repository: its first form used a host temporary path whose leading segment the closed-set sweep has no class for, and the record sweep caught that in this very file. The superseded capture is retained at docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-approval-fidelity-pass1.json.
-- Deviations: the record's FINAL bytes are validated by a run cited by output_ref and not inlined as a row, because a document that quoted its own verification would change the bytes that verification read. V11's second half validated this record at its own instant on the WSL half and returned accepted; the Windows-half run against the final bytes is docs/evidence/gatebraid/P2-S5/g2/captures/G2-record-validation.json, and the sweep over those same final bytes is G2-record-sweep.json in the same directory. Both are captured, both are named in checks, and neither is inlined.
-- Environment: Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; Git for Windows 2.51.0.windows.1 whose SYSTEM configuration carries core.autocrlf=true, verified in this window, and the same binary resolves for a Windows-Python subprocess; every gh call pins GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid and uses endpoints with no leading slash; every Python invocation carries -B with PYTHONDONTWRITEBYTECODE=1, set inside the wsl command for the WSL half; Windows interpreter C:/Python312/python.exe with CPython 3.12.2, PyYAML 6.0.2, jsonschema 4.23.0; WSL /usr/bin/python3 with CPython 3.12.3, jsonschema 4.10.3, whose captures stamp platform.os `wsl`. The `python` on PATH is the MSYS 3.14.3 build and carries neither, which is why no declared command names it and why delta D-3 exists. Captures are argv-form unless the row declares shell semantics, in which case the shell, pipefail and the exit-code source are all recorded. environment=mixed-see-prose.
+- Deviations (review finding F-01, operator disposition REMOVE): the delivered tool declared two flags beyond the frozen scope and both are gone. The frozen sentence names `--strict` and `--snapshot-command`; the tool also declared `--consumer` and `--version`. Measured against the M2 record at the pinned commit with every document digest re-derived first: `--consumer` 0 occurrences, and all 21 hits of `--version` are `gh --version` or `python --version` probes that never refer to the deliverable. `--version` printed non-JSON to stdout and exited 0, breaking both clauses of the frozen sentence at once and making itself indistinguishable by exit status from a verdict. Removed with them: the `VERSION` constant and the `consumer_path` parameter, which existed only to serve them. `--help` is KEPT because it IS grounded in the frozen record as test-plan command 1 of all three M2 attempts, and with it the zero-exit branch of the SystemExit guard that lets it through.
+- Deviations (review finding F-01, and a residual the consult raised that this gate does NOT repair): `--help` still writes usage text to stdout and exits 0, so the module docstring's sentence `Stdout is always exactly one JSON document or nothing` remains literally overbroad on that one path. The consult recommended narrowing the docstring. This gate declines, and the reason is scope, not disagreement: the operator's repair-2 instruction says `no other bin/ byte changes unless a selftest condition referenced a removed flag`, and the reviewer measured zero such conditions. The residual is disclosed here instead of edited around, and it is unchanged from before this repair rather than introduced by it.
+- Deviations (review finding F-02, R3 ground 1): V9 is no longer nominated into the byte-reproducible subset. The instrument's changed-path set is the tracked diff UNION the untracked set read at execution time; `--base A..B` pins the tracked half only, so the row cannot reproduce in bytes. What the row asserts is the six verdicts, and those held in the retained run and hold now. The earlier record placed it in the wrong bucket while its own neighbouring sentence said why it could not belong there; the nomination was the defect, not the measurement.
+- Deviations (review finding F-02, and the consult's answer to question 6): the earlier wording said the untracked half `can only SHRINK` and that every path it can contain is inside the allowlist `by construction`. Both were unsafe: a later untracked file can appear anywhere and can move both the listing and the verdicts. The claim is now bounded to what was measured - in the retained run all six criteria held, and each future run is evaluated on its own current untracked set.
+- Deviations (review finding F-03, R3 ground 2, and operator ruling F-08 ACCEPTED): every residue figure in this bullet is READ FROM THE CITED ROW, not asserted beside it, which is what the earlier prose got wrong when it said ONE against a row that measured more. The sweep over this gate's captures reports 15 residue occurrences. 2 of them are the friction-shaped citation printed by the FROZEN corpus runner inside a case label - a friction reference written without the word the FRICTION regex requires. The other 13 are benign shape collisions: an N-of-N ratio and two path fragments. 12 of the 15 sit inside superseded -pass captures this gate retained deliberately rather than deleted. NONE is a repository identity, and the hard-rule limb is independently verified true by the reviewer: exactly two repository identities, both permitted, and no mention-class issue targeted by any query. Under ruling F-08 the check stays typed `fail` with the count corrected and the diagnosis stated, because admitting the remainder would need a rule change the Plan Approval forbids.
+- Deviations (review finding F-04): the elision totals are produced by ONE stated rule, given in the renderer's `rendered_lines` docstring. Carriage returns are removed from each decoded stream, stdout keeps its content without a trailing blank, stderr when present is appended after exactly one newline, and the result is split on newlines. The earlier form used `splitlines()` over the raw concatenation, which treats a lone carriage return as a line break; one capture's stderr carries CRCRLF endings, so its lines were counted twice and one elision total was inflated. The count and the rendered block now come from the same rule.
+- Deviations (review finding F-05): every elision names the committed path with forward slashes. The earlier spelling carried the host separator because the renderer displayed the same constant it used to open files; display now uses a separate forward-slash constant and the filesystem constant is never printed.
+- Deviations (review finding F-06, ADR-0026 class (c)): every bullet in this section cites the finding, ruling or friction entry it rests on. The earlier record left most of them uncited.
+- Deviations (gate-2-contract repair sequence, and friction #94): repair 2 was preceded by the Codex consult the unified sequence places before it. CONSULT-17-01 and its verbatim response are committed beside this record; the consult ran read-only and hermetically with `-C` pointed at a disposable full copy of this repository made outside every governed repository and deleted after capture. The verdict is PARTIAL and its reasons are in the Repair record. Recorded as `repair_attempts[1].consult_ref` because it is an in-sequence consult, never in top-level `consults[]`.
+- Deviations (friction #103, and its correction): the precaution against the CLI writing a checkpoint ref into a governed repository was verified rather than assumed. The governed repository carries exactly one `refs/codex` ref; its leaf file is dated more than a month before this consult and its object is the same tree this Slice's entry report recorded as pre-existing. No ref was written by this consult.
+- Deviations (ADR-0011 section 2, as amended by ADR-0016): the handoff fingerprint is re-measured at the NEW implementation-complete commit, the repair-2 commit that restored the frozen tool surface. Every commit after it is record-only and confined to docs/evidence/gatebraid/P2-S5/g2/, which is inside the frozen allowlist.
+- Deviations (ADR-0028 decision 2): THE NOMINATED DETERMINISTIC SUBSET of this record. IN the subset, and required to reproduce byte-identically: E1's three rows, E3, E4b, V0, V0F, V1, V2, V3, V4, V6, V7, V8, V10, and the two repair novelty rows. OUTSIDE the subset, by the exclusion limb, and named here rather than left to be discovered: V5, the live composition, whose report is re-derived from the control plane at each run; V9 and V9b, for F-02's reason; V12 and its two falsification runs, whose domain is the captures directory as it stood when they ran and which grows as this gate writes the captures that follow them; E2 and E4, whose recorded values include a lease timestamp and a branch head that later commits move; and V11's second half, which validates this record and therefore reads bytes that this render produced.
+- Deviations (ADR-0027 section 1): repair 1 remains as recorded - a Gate 1 check instrument's exclusion set, not the deliverable and not this record's prose - and repair 2 is the last attempt the sequence allows. Both carry a novelty row comparing the tree against the tree at the previous failed state, measured before the result is graded.
+- Deviations (review finding F-07, left standing on the reviewer's own reasoning and the operator's instruction): the disclosures that narrate this record's own authoring history - the rejected first render, the corrected assertion, the corrected split rule - remain. The reviewer records a real gap in ADR-0026, which forbids revision narrative without providing a sanctioned home for a pre-submission correction the executor is simultaneously required to be honest about, and declines to fail anything over it. It is queued for an ADR clarification rather than repaired here.
+- Deviations (friction #15, and P1-S3's second dry-run): the composer's argument-splitting rule was settled by measurement during authoring. The producer command must be split by POSIX rules on every platform; with `posix=False` the quotes stay attached, the stub arrives wrapped, the child emits ZERO BYTES, and the decode guard appears to pass while testing nothing. The default producer command is written with forward slashes because POSIX rules treat a backslash as an escape.
+- Deviations (ADR-0028 decision 3, the IN-03 class): this record does not echo the near-miss tokens its falsification seed carries. The seed is retained beside the sweep instrument and the tokens live there, not here; an earlier render quoted three of them into this file and the record's own sweep caught it.
+- Deviations (ADR-0026 decision 1, and the reviewer's F-04 observation): four unreferenced probe-stderr files under this Slice's two dryrun-out directories carry CRLF in the working copy and are stored LF under the tree's text attribute. No pin covers them and no capture names them.
+- Deviations (gate-2-contract Prohibited, scratch clause): scratch paths outside every repository were relied on and are named. Every commit message passed through a file in the session scratchpad outside this repository, never as a shell argument; the consult's disposable repository copy lived there and was deleted; the approval-fidelity row writes and removes one file inside this gate's own evidence directory.
+- Deviations (ADR-0026 class (b), and friction #96): the record's FINAL bytes are validated and swept by runs cited by output_ref and not inlined, because a document that quoted its own verification would change the bytes that verification read.
+- Environment (friction #89): Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; Git for Windows 2.51.0.windows.1 whose SYSTEM configuration carries core.autocrlf=true; every gh call pins GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid and uses endpoints with no leading slash; every Python invocation carries -B with PYTHONDONTWRITEBYTECODE=1, set inside the wsl command for the WSL half; Windows interpreter C:/Python312/python.exe with CPython 3.12.2, PyYAML 6.0.2, jsonschema 4.23.0; WSL /usr/bin/python3 with CPython 3.12.3, jsonschema 4.10.3, whose captures stamp platform.os `wsl`; the Codex CLI is codex-cli 0.144.6, invoked `--ephemeral --sandbox read-only --ignore-user-config`. The `python` on PATH is the MSYS 3.14.3 build and carries neither library, which is why no declared command names it and why delta D-3 exists. Captures are argv-form unless the row declares shell semantics, in which case the shell, pipefail and the exit-code source are all recorded. environment=mixed-see-prose.
 - Reviewer write disclosure: `not applicable - no review has run`
 
 ## gatebraid-metadata
@@ -594,7 +695,7 @@ executor: Claude Lead
 base_sha: cbd065893b37f20713ae35b8d2673bf26fe4d2ad
 active_branch: slice/P2-S5
 started_at: "2026-09-02T02:52:00Z"
-ended_at: "2026-09-02T03:26:18Z"
+ended_at: "2026-09-02T07:29:31Z"
 result: needs_approval
 checks:
   - name: plan-approval-verified
@@ -682,9 +783,13 @@ checks:
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep-falsify-near-miss.json"
   - name: closed-set-sweep-explains-every-candidate
-    command: "the same run; one residue remains, an issue-shaped friction citation inside a frozen corpus case label, disclosed and not admitted by a rule change"
+    command: "the same run; the residue count is the cited capture's own figure, diagnosed by class in the disclosures - one friction-shaped citation printed by the frozen corpus runner, the remainder benign shape collisions, none a repository identity. Typed fail under operator ruling F-08: admitting the remainder would need a rule change the Plan Approval forbids"
     result: fail
     output_ref: "docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep.json"
+  - name: frozen-tool-surface-restored
+    command: "bin/gatebraid-ready.py --help declares only --strict and --snapshot-command; --version and --consumer are usage errors with exit 12 and empty stdout"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S5/g2/captures/G2-R2-surface.json"
   - name: gate2-record-machine-validated
     command: "bin/gatebraid-validate.py --record docs/evidence/gatebraid/P2-S5/g2/gate2.md --report-id cov-P2-S5-g2-gate2.md"
     result: pass
@@ -694,8 +799,8 @@ checks:
     result: not_run
     output_ref: "#review-record"
 handoff_fingerprint:
-  active_branch_head: "629e287faab01a84935a93a2dc265d369a6a5c33"
-  tree_sha: "cda51687a326d41c2b98d6b2ae49a48526bd366e"
+  active_branch_head: "5b586029344eb6df4a964c34baa1eb12e2916f6d"
+  tree_sha: "f696944947a342b6163bf4ad7d9137674830a2f7"
   changed_paths:
     - "bin/gatebraid-ready-selftest.py"
     - "bin/gatebraid-ready.py"
@@ -855,6 +960,65 @@ handoff_fingerprint:
     - "docs/evidence/gatebraid/P2-S5/g1/render-gate1.py"
     - "docs/evidence/gatebraid/P2-S5/g1/scope-pin.py"
     - "docs/evidence/gatebraid/P2-S5/g1/writedomains-check.py"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D0-scope-pin.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D0F-scope-pin-falsify.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D1-corpus-digest.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D10-negative-falsify.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D11-wsl-toolchain-pass1.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D11-wsl-toolchain.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D2-corpus.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D3-selftest-windows.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D4-selftest-wsl.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D5-live-ready.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D6-producer-failure.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D7-decode-guard.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D8-consumer-refusal.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D9-negative-pinned.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-D9-negative.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-approval-fidelity-pass1.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-approval-fidelity.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-approval.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-consume-next-approval.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-entry-fields.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-executor-identity.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E1-remove-needs-human.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E2-field-options.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E2-lease.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E2-workflow.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E3-baseline-pass1.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E3-baseline.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E4-base-sha.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E4-branch.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E4-entry-readback.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-E4b-evidence-commit.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-R-n3-g1-instrument-fired.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-R1-novelty.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-X-checkpoint.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-X-exit-readback.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-X-workflow-needs-review.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-X-workflow-options.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep-falsify-near-miss.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep-falsify-retained.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-record-sweep.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-record-validation.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/captures/G2-wsl-ready-selftest.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/approval-body-raw.txt"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/checkpoint-g2.txt"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/lease.txt"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/s06c.err"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/t5.err"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/t5.out"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/t6.err"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/t7.err"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/t7.out"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/t8.err"
+    - "docs/evidence/gatebraid/P2-S5/g2/dryrun-out/t8.out"
+    - "docs/evidence/gatebraid/P2-S5/g2/falsification/SEED-near-miss-new-classes.json"
+    - "docs/evidence/gatebraid/P2-S5/g2/gate2.md"
+    - "docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py"
+    - "docs/evidence/gatebraid/P2-S5/g2/render-gate2.py"
     - "docs/evidence/gatebraid/P2-S5/gate0.md"
     - "docs/evidence/gatebraid/P2-S5/render-gate0.py"
 consults: []
@@ -862,6 +1026,10 @@ repair_attempts:
   - number: 1
     hypothesis: "N3's content limb fired on a retained record that did not change; the Gate 1 mechanisation hard-codes the two per-gate subdirectories that existed when it was written, and the frozen plan says `this gate's own subdirectories`, which at Gate 2 is three"
     result: green
+  - number: 2
+    hypothesis: "The independent review's R3 FAIL and its HIGH finding share one cause - a claim the record or the tool makes that its own measurement contradicts - so the repair restores the frozen two-flag surface and re-derives every contradicted figure from the row that measures it, rather than restating it in prose"
+    result: green
+    consult_ref: CONSULT-17-01
 approvals:
   - type: "Plan Approval (G1→G2)"
     comment_url: "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5503291709"
@@ -870,5 +1038,7 @@ plan_hash: "b2cd75f6a49bb056fd16bc3d2f4cfd5cf98ae8515b5761908add2ed5405cc424"
 allowlist_hash: "4110b3021bdfc2fcda1f5f90528db01eb87b554177e2176ccfba46ccd6ca3750"
 evidence_files:
   - docs/evidence/gatebraid/P2-S5/g2/gate2.md
+  - docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01.md
+  - docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01-response.json
 notes: "The fourth gatebraid-ready attempt on the M2 slice-C frozen scope, built on the M3 stack. The deliverable is the ready pair alone; it composes the landed producer and consumer and modifies neither. The four ratified deltas are implemented as the approval states them, and D-4 - the producer's status is interpreted against its own declared space rather than tested against zero - is the one that keeps a degraded-but-emitted document from being discarded. Twenty selftest conditions each emit their own summary row; S09 carries IN-01, the class the frozen corpus does not hold, and S10 parses the producer's docstring so the D-4 partition cannot drift from its source unnoticed. One repair was taken and it changed a check instrument's domain constant, not the deliverable and not this record's prose. One check is typed fail and is disclosed in full: the sweep's explanation limb leaves a single residue that no existing explicit set fits honestly. The review is NOT this session's: R1 through R5 belong to an independent reviewer dispatched after adjudication, and Gate = G2 passed is not set here."
 ```

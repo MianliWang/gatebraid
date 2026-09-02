@@ -50,8 +50,8 @@
       }
     }
   },
-  "started_at": "2026-09-02T07:29:31.596941Z",
-  "ended_at": "2026-09-02T07:29:32.020357Z",
+  "started_at": "2026-09-02T03:26:19.009470Z",
+  "ended_at": "2026-09-02T03:26:19.424445Z",
   "inputs": [
     {
       "path": "bin/gatebraid-validate.py",
@@ -59,7 +59,7 @@
     },
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/gate2.md",
-      "sha256": "519b02726700f5a8f5c20e41200f888a6040ec72b7a9e152857b657f3a8470de"
+      "sha256": "552f2ef45a0f76d835724f3ffd3bb027fee8ed9bbb42a4141e36bd59ac8799af"
     }
   ],
   "outputs": [],
@@ -75,5 +75,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Machine validation of the repaired record's FINAL bytes on the Windows half, with --report-id passed EXPLICITLY."
+  "notes": "Machine validation of this gate's FINAL record bytes, with --report-id passed EXPLICITLY."
 }
