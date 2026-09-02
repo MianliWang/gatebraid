@@ -66,8 +66,6 @@ import argparse
 import subprocess
 import sys
 
-VERSION = "1.0.0"
-
 # This program's OWN exit codes.  Every one sits outside both composed tools'
 # declared spaces; N6 is the check, and it reads those spaces from the tools.
 EXIT_PRODUCER_FAILED = 10
@@ -141,14 +139,14 @@ def run_producer(command):
     return proc.returncode, proc.stdout, proc.stderr
 
 
-def run_consumer(document_bytes, consumer_path):
+def run_consumer(document_bytes):
     """Feed the document to the consumer on stdin and return (status, out, err).
 
     The consumer reads `-` as stdin and decodes UTF-8 explicitly itself, so the
     byte contract holds on both sides of this boundary.
     """
     proc = subprocess.run(
-        [sys.executable, "-B", consumer_path, "-"],
+        [sys.executable, "-B", CONSUMER_PATH, "-"],
         input=document_bytes, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return proc.returncode, proc.stdout, proc.stderr
 
@@ -174,11 +172,6 @@ def main(argv=None):
         help="the producer to run (default: this interpreter against %s). It "
              "exists so the producer-failure and decode-guard paths can be RUN "
              "rather than asserted." % PRODUCER_PATH)
-    ap.add_argument(
-        "--consumer", metavar="PATH", default=CONSUMER_PATH,
-        help="the consumer to feed (default: %s)" % CONSUMER_PATH)
-    ap.add_argument("--version", action="version",
-                    version="gatebraid-ready %s" % VERSION)
 
     try:
         args = ap.parse_args(argv)
@@ -233,7 +226,7 @@ def main(argv=None):
         return EXIT_PRODUCER_UNDECODABLE
 
     try:
-        consumer_status, out, err = run_consumer(document, args.consumer)
+        consumer_status, out, err = run_consumer(document)
     except OSError as exc:
         sys.stderr.write("USAGE: the consumer could not be run: %s\n" % exc)
         return EXIT_USAGE
