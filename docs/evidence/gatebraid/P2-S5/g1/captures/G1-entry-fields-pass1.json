@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-entry-fields",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query{node(id:\"PVTI_lAHOBRofUs4Beum7zg4E8qs\"){... on ProjectV2Item{fieldValues(first:50){nodes{... on ProjectV2ItemFieldSingleSelectValue{optionId name field{... on ProjectV2FieldCommon{name}}} ... on ProjectV2ItemFieldTextValue{text field{... on ProjectV2FieldCommon{name}}}}}}}}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1909,
+      "sha256": "606288675f55dd5ae8eedbf150a6fb4132f2e7d29fd7eb7f7a4378c2a3e2eef0",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiZmllbGRWYWx1ZXMiOnsibm9kZXMiOlt7fSx7InRleHQiOiJQMi1TNSDigJQgTzEgZ2F0ZWJyYWlkLXJlYWR5OiB0aGUgZm91cnRoIGF0dGVtcHQgb24gdGhlIGZyb3plbiBzY29wZSIsImZpZWxkIjp7Im5hbWUiOiJUaXRsZSJ9fSx7Im9wdGlvbklkIjoiZjc1YWQ4NDYiLCJuYW1lIjoiVG9kbyIsImZpZWxkIjp7Im5hbWUiOiJTdGF0dXMifX0seyJvcHRpb25JZCI6ImY2YjU3MTUzIiwibmFtZSI6IkdhdGUgMSDigJQgUGxhbm5pbmciLCJmaWVsZCI6eyJuYW1lIjoiV29ya2Zsb3cifX0seyJvcHRpb25JZCI6IjY5MjIwMDNhIiwibmFtZSI6IkcwIHBhc3NlZCIsImZpZWxkIjp7Im5hbWUiOiJHYXRlIn19LHsib3B0aW9uSWQiOiI0NTBlZTEzMCIsIm5hbWUiOiLigJQiLCJmaWVsZCI6eyJuYW1lIjoiTmV4dCBBcHByb3ZhbCJ9fSx7Im9wdGlvbklkIjoiMWU0M2VjODUiLCJuYW1lIjoibWl4ZWQtc2VlLXByb3NlIiwiZmllbGQiOnsibmFtZSI6IkVudmlyb25tZW50In19LHsib3B0aW9uSWQiOiJjZTg1OWM3ZCIsIm5hbWUiOiJDbGF1ZGUgTGVhZCIsImZpZWxkIjp7Im5hbWUiOiJFeGVjdXRvciJ9fSx7Im9wdGlvbklkIjoiZTI5MTI0OWMiLCJuYW1lIjoibG93IiwiZmllbGQiOnsibmFtZSI6IlJpc2sifX0seyJ0ZXh0IjoiUzIiLCJmaWVsZCI6eyJuYW1lIjoiU3RhZ2UifX0seyJ0ZXh0IjoiUDIiLCJmaWVsZCI6eyJuYW1lIjoiUGhhc2UifX0seyJ0ZXh0IjoiUDItUzUiLCJmaWVsZCI6eyJuYW1lIjoiU2xpY2UifX0seyJ0ZXh0IjoiN2ZmMWY4NDg2NjFhYWMyMGIzOTIxYWU0N2ZlMTQwMzk0YTVkMjU4NyIsImZpZWxkIjp7Im5hbWUiOiJCYXNlIFNIQSJ9fSx7InRleHQiOiIyMDI2LTA5LTAxVDIwOjM5OjM1WiBQMi1TNSBHQVRFIDAgUkUtUlVOIFBBU1NFRCBvbiBhIEhFQUxUSFkgcmVhZDsgUnVsaW5nIDEgcmV0aXJlZCBELTIuIHNuYXBzaG90IGV4aXQgMCwgNC80IHNvdXJjZXMgb2srY29tcGxldGUsIDE2IGl0ZW1zLCBub3QgZGVncmFkZWQ7IGZyb250aWVyIGV4aXQgMCwgc25hcHNob3RfZGVncmFkZWQgZmFsc2UsIFAyLVM1IHZlcmRpY3Qgc3RhcnRhYmxlIFJFLURFUklWRUQ7IGJsb2NrZWRfYnkgOC8xMC8xMi8xNC8xOSBhbGwgQ0xPU0VELCBjcm9zc19jaGVjayBjb25zaXN0ZW50LiBBY3Rpb25zIDEtNiBwYXNzLiBiYXNlX3NoYSBjYmQwNjU4OSB1bnRvdWNoZWQgYXQgRzA7IHRyYWNrZWQgWkVSTzsgcmV0YWluZWQgZGlnZXN0IDgzYjNhMjczIEVRVUFMLCBnMHIgZXhjbHVkZWQuIE9wZW5pbmcgY29tbWVudCA1NDcyOTczNDY2IE1pYW5saVdhbmcgdmVyaWZpZWQuIEdhdGUgNjkyMjAwM2E7IFdvcmtmbG93IGY2YjU3MTUzOyBOZXh0IEFwcHJvdmFsIDQ1MGVlMTMwIHVuY2hhbmdlZDsgcmVhZCBiYWNrIE1BVENILiBFdmlkZW5jZSBVTkNPTU1JVFRFRCBhdCBQMi1TNS9nMHIvOyBnYXRlMC5tZCA5NWZmMzkxMSBBQ0NFUFRFRCAwIGZpbmRpbmdzLCAtLXJlcG9ydC1pZCBleHBsaWNpdDsgcmVjb3JkIHN3ZWVwIHJlc2lkdWUgMC4gUkVUQUlORUQgcmVjb3JkIGJlN2MzMzg4IFVOVE9VQ0hFRC4gU1RPUFBFRCBPTkNFIG9uIHVuZXh0ZW5kZWQgc3dlZXAgcmVzaWR1ZTsgUnVsaW5ncyBBK0IgMjAyNi0wOC0zMSBnYXZlIDMgZG9tYWluIGZhY3RzLCBnMHIgY29weSBvbmx5LCBubyBydWxlIGNoYW5nZWQ7IE40IGZhbHNpZmllZCBvdXQtb2YtbmFtZXNwYWNlLiBjYXB0dXJlLXNldCBmYWlsID0ga25vd24gcGxhY2Vob2xkZXIgZGVmZWN0LCBhcyBtZXJnZWQgUDItUzYuIDVhIEFEUi0wMDMzLCA1YiBib2R5IDQtdnMtNSBlZGdlcyBkaXNjbG9zZWQuIGhhbmRvZmYgNTUwMDExNDc1Ni4gTm8gbGVhc2UvY29tbWl0L3B1c2guIEdBVEUgMSBOT1QgT1BFTkVELiIsImZpZWxkIjp7Im5hbWUiOiJMYXN0IENoZWNrcG9pbnQifX1dfX19fQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S5 — O1 gatebraid-ready: the fourth attempt on the frozen scope\",\"field\":{\"name\":\"Title\"}},{\"optionId\":\"f75ad846\",\"name\":\"Todo\",\"field\":{\"name\":\"Status\"}},{\"optionId\":\"f6b57153\",\"name\":\"Gate 1 — Planning\",\"field\":{\"name\":\"Workflow\"}},{\"optionId\":\"6922003a\",\"name\":\"G0 passed\",\"field\":{\"name\":\"Gate\"}},{\"optionId\":\"450ee130\",\"name\":\"—\",\"field\":{\"name\":\"Next Approval\"}},{\"optionId\":\"1e43ec85\",\"name\":\"mixed-see-prose\",\"field\":{\"name\":\"Environment\"}},{\"optionId\":\"ce859c7d\",\"name\":\"Claude Lead\",\"field\":{\"name\":\"Executor\"}},{\"optionId\":\"e291249c\",\"name\":\"low\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S5\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"7ff1f848661aac20b3921ae47fe140394a5d2587\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-09-01T20:39:35Z P2-S5 GATE 0 RE-RUN PASSED on a HEALTHY read; Ruling 1 retired D-2. snapshot exit 0, 4/4 sources ok+complete, 16 items, not degraded; frontier exit 0, snapshot_degraded false, P2-S5 verdict startable RE-DERIVED; blocked_by 8/10/12/14/19 all CLOSED, cross_check consistent. Actions 1-6 pass. base_sha cbd06589 untouched at G0; tracked ZERO; retained digest 83b3a273 EQUAL, g0r excluded. Opening comment 5472973466 MianliWang verified. Gate 6922003a; Workflow f6b57153; Next Approval 450ee130 unchanged; read back MATCH. Evidence UNCOMMITTED at P2-S5/g0r/; gate0.md 95ff3911 ACCEPTED 0 findings, --report-id explicit; record sweep residue 0. RETAINED record be7c3388 UNTOUCHED. STOPPED ONCE on unextended sweep residue; Rulings A+B 2026-08-31 gave 3 domain facts, g0r copy only, no rule changed; N4 falsified out-of-namespace. capture-set fail = known placeholder defect, as merged P2-S6. 5a ADR-0033, 5b body 4-vs-5 edges disclosed. handoff 5500114756. No lease/commit/push. GATE 1 NOT OPENED.\",\"field\":{\"name\":\"Last Checkpoint\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T21:41:04.180848Z",
+  "ended_at": "2026-09-01T21:41:04.882013Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 1 Entry: the Gate/Workflow/Next Approval single-select values and their option ids, read by node key. The O0 snapshot document carries workflow but no Gate, so the contract Entry condition Gate = G0 passed cannot be established from O0 outputs alone; this is the recorded by-key read the Gate 0 Exit used for its own read-backs, not an improvised query."
+}

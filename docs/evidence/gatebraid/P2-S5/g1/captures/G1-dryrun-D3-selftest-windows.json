@@ -1,0 +1,66 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-dryrun-D3-selftest-windows",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-ready-selftest.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 2,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 142,
+      "sha256": "b6e9321c04313f941192683818012ae3e813ea8f6d04aa700d17f4b97513176f",
+      "data": "QzovUHl0aG9uMzEyL3B5dGhvbi5leGU6IGNhbid0IG9wZW4gZmlsZSAnRDpcXEdpdGh1YiByZXBvXFxHYXRlYnJhaWRcXGJpblxcZ2F0ZWJyYWlkLXJlYWR5LXNlbGZ0ZXN0LnB5JzogW0Vycm5vIDJdIE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "C:/Python312/python.exe: can't open file 'D:\\\\Github repo\\\\Gatebraid\\\\bin\\\\gatebraid-ready-selftest.py': [Errno 2] No such file or directory\r\n"
+      }
+    }
+  },
+  "started_at": "2026-09-01T21:57:01.962326Z",
+  "ended_at": "2026-09-01T21:57:02.017709Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "D3 RUN AS DECLARED on the Windows half. The deliverable does not exist at Gate 1, which is read-only, so the interpreter names exactly the absent file and nothing else is wrong. The companion probe rows exercise every part of the composition except the program under test."
+}

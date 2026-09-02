@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0R-closed-set-sweep-falsify-n4",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g0r/checks-g0r-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S5/g0r/falsification/SEED-out-of-namespace-item.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 635,
+      "sha256": "b34b3174d81d5701ebac3ea2f329abba047cb54fc9925d804a8ff56e858dda64",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgTjIgdGhlIFAyLVM1IGl0ZW0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxDQogIE40IGFub3RoZXIgaXRlbSBvZiB0aGUgcGVybWl0dGVkIFByb2plY3QgICAgICAgICAgICAgICAgICAgMQ0KDQo9PT0gZXZlcnkgUkVQT1NJVE9SWSBpZGVudGl0eSBuYW1lZCBhbnl3aGVyZSA9PT0NCg0KPT09IG1lbnRpb24tY2xhc3MgY2hlY2s6IGEgbWVudGlvbiBtdXN0IG5ldmVyIGFwcGVhciBpbiBhbiBJTlZPQ0FUSU9OID09PQ0KICBtZW50aW9uLWNsYXNzIGlzc3VlcyB0YXJnZXRlZCBieSBhIHF1ZXJ5OiAwICgwIHJlcXVpcmVkKQ0KDQpkb21haW4gICAgICA6IDEgZG9jdW1lbnRzICgwIG9mIHRoaXMgc3dlZXAncyBvd24gcmVwb3J0cyBleGNsdWRlZCkNClVORVhQTEFJTkVEIFJFU0lEVUU6IDINCiAgICBTRUVELW91dC1vZi1uYW1lc3BhY2UtaXRlbS5qc29uICAgICAgICAgICAgICBzdGRvdXQgICAgICAgbm9kZQ0KICAgIFNFRUQtb3V0LW9mLW5hbWVzcGFjZS1pdGVtLmpzb24gICAgICAgICAgICAgIHN0ZG91dCAgICAgICBub2RlDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  N2 the P2-S5 item                                          1\r\n  N4 another item of the permitted Project                   1\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 2\r\n    SEED-out-of-namespace-item.json              stdout       node\r\n    SEED-out-of-namespace-item.json              stdout       node\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T20:29:21.181157Z",
+  "ended_at": "2026-09-01T20:29:21.247602Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g0r/checks-g0r-closed-set-sweep.py",
+      "sha256": "d2b501555a223e5d69720fed3cf8640e56233d2f4d81549a87ca02788ad3bff1"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g0r/falsification/SEED-out-of-namespace-item.json",
+      "sha256": "cd84c5e9ebcaf3221a95a246812cef988aedd5e8d5198c2d40f1d992840b30a8"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Falsification 2, Ruling A's condition: N4 against an OUT-OF-NAMESPACE seed. Four item ids -- the subject item, a real sibling of the permitted Project, a different Project's namespace, and a near-miss differing only in the namespace's last character. An honest N4 admits the first two and leaves the last two as residue. A class that admitted all four would be a blindfold."
+}

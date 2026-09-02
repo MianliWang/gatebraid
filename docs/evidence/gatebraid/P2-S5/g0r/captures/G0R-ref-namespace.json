@@ -1,0 +1,63 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0R-ref-namespace",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "git",
+      "for-each-ref",
+      "--format=%(refname) %(objecttype) %(objectname)"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1854,
+      "sha256": "78f4f7a67b1af22e0a8bfeb012b0870b5f7b74fe693ce576a9f4fe45bf3e081d",
+      "data": "cmVmcy9jb2RleC90dXJuLWRpZmZzL2NoZWNrcG9pbnRzLzY1Njg3MzRkYjY0MjllMDg2MGNmMDk1NGIxOWFmZmZhYWRiOTNjOTk2MGQ2NjZlZmIyM2QxMDE4ZjE1MmJlMzcvN2Y4ZDgwMmMxMTgwNDJkMjAzODJhMTZhMjUwZWExYzVmYjBiZDg3ZWZkNmUyYTJlZTMyMjE1NThhZGU5YzhmMy8xNzg1NDg5OTAwOTMxL2MwZGE0MDA1LTFmZjYtNDM0YS1iMWE1LTlhZDFhMmFmMWIwZSB0cmVlIDhjN2RmODRkNjJhNWQ3MGQ0YTllZDJmMDVlZGYyNjYxYmJmNWJkNDMKcmVmcy9oZWFkcy9iYXRjaC9vMC1iMSBjb21taXQgOWRkMDQxNWE5MTBlNGJkYWZiMGFiZTY2YTY1MTg5ZDlhZmY5NWNiMwpyZWZzL2hlYWRzL2JhdGNoL28xLWIxIGNvbW1pdCAwMWYxZmY0M2E5ZjRjYmZlNDNjNjczMDM1YWMzYTZhZjliNjVmOGEwCnJlZnMvaGVhZHMvbTEtY29udHJvbC1wbGFuZSBjb21taXQgODIzNTAyYjRmNWViYTllOGM2MGM2MDU2ODE2ODE3OTgwYmZlYTY4NQpyZWZzL2hlYWRzL20zL24wLXJhdGlmaWNhdGlvbiBjb21taXQgNGZmM2Y3YjFmNDlmNjg1M2I1ODRmMjU1YTYxY2I2Yjk5Nzk3YWNiNApyZWZzL2hlYWRzL21haW4gY29tbWl0IGNiZDA2NTg5M2IzN2YyMDcxM2FlMzViOGQyNjczYmYyNmZlNGQyYWQKcmVmcy9oZWFkcy9zbGljZS9QMi1TMSBjb21taXQgZjQxODYzNDIwMzc4NzBjMzNjNTBiYjViNjRhMzE0MzBiNDYyYWMzZQpyZWZzL2hlYWRzL3NsaWNlL1AyLVMyIGNvbW1pdCA4YzcxMGNhMDUwNmUzMDA2NTM3NzlkNDMyZmQ3ZTU2YWU1OGM0MjEyCnJlZnMvaGVhZHMvc2xpY2UvUDItUzMgY29tbWl0IDk3NTY3NTc5NjQ0ZTc0YmI5NTVkNWU2NDJiYTJjOTZlMzNjOTkzMTYKcmVmcy9oZWFkcy9zbGljZS9QMi1TNCBjb21taXQgZDQ1MDIwYzQ1NTU0OWYyNDRiZTljODUzM2RlMDdkOTRhMTY4Y2NlMgpyZWZzL2hlYWRzL3NsaWNlL1AyLVM2IGNvbW1pdCBhOGYzNDUwN2I4NjI4ODE5ZDM5OTUxMzdjNjAxMzFiNzhlNzE1MDYzCnJlZnMvcmVtb3Rlcy9vcmlnaW4vSEVBRCBjb21taXQgY2JkMDY1ODkzYjM3ZjIwNzEzYWUzNWI4ZDI2NzNiZjI2ZmU0ZDJhZApyZWZzL3JlbW90ZXMvb3JpZ2luL2JhdGNoL28wLWIxIGNvbW1pdCA5ZGQwNDE1YTkxMGU0YmRhZmIwYWJlNjZhNjUxODlkOWFmZjk1Y2IzCnJlZnMvcmVtb3Rlcy9vcmlnaW4vYmF0Y2gvbzEtYjEgY29tbWl0IDAxZjFmZjQzYTlmNGNiZmU0M2M2NzMwMzVhYzNhNmFmOWI2NWY4YTAKcmVmcy9yZW1vdGVzL29yaWdpbi9tMS1jb250cm9sLXBsYW5lIGNvbW1pdCA4MjM1MDJiNGY1ZWJhOWU4YzYwYzYwNTY4MTY4MTc5ODBiZmVhNjg1CnJlZnMvcmVtb3Rlcy9vcmlnaW4vbTMvbjAtcmF0aWZpY2F0aW9uIGNvbW1pdCA0ZmYzZjdiMWY0OWY2ODUzYjU4NGYyNTVhNjFjYjZiOTk3OTdhY2I0CnJlZnMvcmVtb3Rlcy9vcmlnaW4vbWFpbiBjb21taXQgY2JkMDY1ODkzYjM3ZjIwNzEzYWUzNWI4ZDI2NzNiZjI2ZmU0ZDJhZApyZWZzL3JlbW90ZXMvb3JpZ2luL3NsaWNlL1AyLVMxIGNvbW1pdCBmNDE4NjM0MjAzNzg3MGMzM2M1MGJiNWI2NGEzMTQzMGI0NjJhYzNlCnJlZnMvcmVtb3Rlcy9vcmlnaW4vc2xpY2UvUDItUzIgY29tbWl0IDhjNzEwY2EwNTA2ZTMwMDY1Mzc3OWQ0MzJmZDdlNTZhZTU4YzQyMTIKcmVmcy9yZW1vdGVzL29yaWdpbi9zbGljZS9QMi1TMyBjb21taXQgOTc1Njc1Nzk2NDRlNzRiYjk1NWQ1ZTY0MmJhMmM5NmUzM2M5OTMxNgpyZWZzL3JlbW90ZXMvb3JpZ2luL3NsaWNlL1AyLVM0IGNvbW1pdCBkNDUwMjBjNDU1NTQ5ZjI0NGJlOWM4NTMzZGUwN2Q5NGExNjhjY2UyCnJlZnMvcmVtb3Rlcy9vcmlnaW4vc2xpY2UvUDItUzYgY29tbWl0IGE4ZjM0NTA3Yjg2Mjg4MTlkMzk5NTEzN2M2MDEzMWI3OGU3MTUwNjMK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e tree 8c7df84d62a5d70d4a9ed2f05edf2661bbf5bd43\nrefs/heads/batch/o0-b1 commit 9dd0415a910e4bdafb0abe66a65189d9aff95cb3\nrefs/heads/batch/o1-b1 commit 01f1ff43a9f4cbfe43c673035ac3a6af9b65f8a0\nrefs/heads/m1-control-plane commit 823502b4f5eba9e8c60c6056816817980bfea685\nrefs/heads/m3/n0-ratification commit 4ff3f7b1f49f6853b584f255a61cb6b99797acb4\nrefs/heads/main commit cbd065893b37f20713ae35b8d2673bf26fe4d2ad\nrefs/heads/slice/P2-S1 commit f4186342037870c33c50bb5b64a31430b462ac3e\nrefs/heads/slice/P2-S2 commit 8c710ca0506e300653779d432fd7e56ae58c4212\nrefs/heads/slice/P2-S3 commit 97567579644e74bb955d5e642ba2c96e33c99316\nrefs/heads/slice/P2-S4 commit d45020c455549f244be9c8533de07d94a168cce2\nrefs/heads/slice/P2-S6 commit a8f34507b8628819d3995137c60131b78e715063\nrefs/remotes/origin/HEAD commit cbd065893b37f20713ae35b8d2673bf26fe4d2ad\nrefs/remotes/origin/batch/o0-b1 commit 9dd0415a910e4bdafb0abe66a65189d9aff95cb3\nrefs/remotes/origin/batch/o1-b1 commit 01f1ff43a9f4cbfe43c673035ac3a6af9b65f8a0\nrefs/remotes/origin/m1-control-plane commit 823502b4f5eba9e8c60c6056816817980bfea685\nrefs/remotes/origin/m3/n0-ratification commit 4ff3f7b1f49f6853b584f255a61cb6b99797acb4\nrefs/remotes/origin/main commit cbd065893b37f20713ae35b8d2673bf26fe4d2ad\nrefs/remotes/origin/slice/P2-S1 commit f4186342037870c33c50bb5b64a31430b462ac3e\nrefs/remotes/origin/slice/P2-S2 commit 8c710ca0506e300653779d432fd7e56ae58c4212\nrefs/remotes/origin/slice/P2-S3 commit 97567579644e74bb955d5e642ba2c96e33c99316\nrefs/remotes/origin/slice/P2-S4 commit d45020c455549f244be9c8533de07d94a168cce2\nrefs/remotes/origin/slice/P2-S6 commit a8f34507b8628819d3995137c60131b78e715063\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-31T02:43:46.711407Z",
+  "ended_at": "2026-08-31T02:43:46.820781Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Action 1: unrestricted ref-namespace enumeration; any ref outside refs/heads, refs/remotes, refs/tags is reported, not adopted (friction #103)."
+}

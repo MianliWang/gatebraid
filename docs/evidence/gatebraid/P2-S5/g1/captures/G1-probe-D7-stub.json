@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-probe-D7-stub",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-c",
+      "import sys;q=chr(34);s='{'+q+'name'+q+': '+q+'Gate 0 '+chr(0x2014)+' Verifying'+q+'}';sys.stdout.buffer.write(s.encode('cp936'))"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 31,
+      "sha256": "fd5067f54aa0474994d5cb7429ad5fbf3af4b3e47df8e6350085bf19b2198969",
+      "data": "eyJuYW1lIjogIkdhdGUgMCChqiBWZXJpZnlpbmcifQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "replaced",
+        "decode_error": "'utf-8' codec can't decode byte 0xa1 in position 17: invalid start byte",
+        "text": "{\"name\": \"Gate 0 �� Verifying\"}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:00:08.885946Z",
+  "ended_at": "2026-09-01T22:00:08.941340Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Companion probe for D7: the cp936 stub alone. The capture records its raw bytes, so the two bytes the M2 producer emitted are in evidence rather than asserted. Every quote and the em dash are built with chr(); a literal em dash through nested quoting yields a zero-byte stub and the guard then appears to pass while testing nothing."
+}

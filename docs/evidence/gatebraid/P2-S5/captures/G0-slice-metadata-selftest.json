@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-slice-metadata-selftest",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/checks-g0-slice-metadata.py",
+      "--schema",
+      "schema/slice.schema.json",
+      "--selftest"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1393,
+      "sha256": "a7ec46f1b00548175137c9e942e8bbf2e02a6ec336ac7195a29b75281a23d3c2",
+      "data": "c2VsZnRlc3QgcGFzcyAgcG9zaXRpdmUtY29udHJvbCBhY2NlcHRlZA0Kc2VsZnRlc3QgcGFzcyAgTTEgd3Jvbmcgc2NoZW1hIGNvbnN0IHJlamVjdGVkIC0+IHNjaGVtYTogJ2dhdGVicmFpZC9zbGljZUAxJyB3YXMgZXhwZWN0ZWQNCnNlbGZ0ZXN0IHBhc3MgIE0yIHNsaWNlX2lkIG9mZi1wYXR0ZXJuIHJlamVjdGVkIC0+IHNsaWNlX2lkOiAnUDJTNCcgZG9lcyBub3QgbWF0Y2ggJ15QWzAtOV0rLVNbMC05XSskJw0Kc2VsZnRlc3QgcGFzcyAgTTMgcmVxdWlyZWQga2V5IHJlbW92ZWQgcmVqZWN0ZWQgLT4gPHJvb3Q+OiAncmlzaycgaXMgYSByZXF1aXJlZCBwcm9wZXJ0eQ0Kc2VsZnRlc3QgcGFzcyAgTTQgdW5kZWNsYXJlZCBwcm9wZXJ0eSByZWplY3RlZCAtPiA8cm9vdD46IEFkZGl0aW9uYWwgcHJvcGVydGllcyBhcmUgbm90IGFsbG93ZWQgKCdvd25lcicgd2FzIHVuZXhwZWN0ZWQpDQpzZWxmdGVzdCBwYXNzICBNNSBlbnZpcm9ubWVudCBvZmYtZW51bSByZWplY3RlZCAtPiBlbnZpcm9ubWVudDogJ2xpbnV4JyBpcyBub3Qgb25lIG9mIFsnd3NsJywgJ3dpbmRvd3MnLCAnbWFjb3MtYXV0aG9yaXR5JywgJ21peGVkLXNlZS1wcm9zZSddDQpzZWxmdGVzdCBwYXNzICBNNiByZXBhaXJfbGltaXQgYWJvdmUgbWF4IHJlamVjdGVkIC0+IHJlcGFpcl9saW1pdDogMyBpcyBncmVhdGVyIHRoYW4gdGhlIG1heGltdW0gb2YgMg0Kc2VsZnRlc3QgcGFzcyAgTTcgd29ya2Zsb3dfcHJvZmlsZSByZW5hbWVkIHJlamVjdGVkIC0+IHdvcmtmbG93X3Byb2ZpbGU6ICdjbGFzc2ljJyB3YXMgZXhwZWN0ZWQNCnNlbGZ0ZXN0IHBhc3MgIE04IHBhcmFsbGVsX21vZGUgb2ZmLWVudW0gcmVqZWN0ZWQgLT4gcGFyYWxsZWxfbW9kZTogJ2lzb2xhdGVkJyBpcyBub3Qgb25lIG9mIFsnc2FmZS1zaW5nbGUtd3JpdGVyJywgJ2lzb2xhdGVkLXdyaXRlJ10NCnNlbGZ0ZXN0IHBhc3MgIE05IHN0YWdlIG9mZi1wYXR0ZXJuIHJlamVjdGVkIC0+IHN0YWdlOiAnMicgZG9lcyBub3QgbWF0Y2ggJ15TWzAtOV0rJCcNCnNlbGZ0ZXN0IHBhc3MgIE0xMCB3cml0ZV9kb21haW5zIGVtcHR5IHN0cmluZyByZWplY3RlZCAtPiB3cml0ZV9kb21haW5zLzA6ICcnIHNob3VsZCBiZSBub24tZW1wdHkNCnNlbGZ0ZXN0IHBhc3MgIFgxIGhlYWRpbmcgYWJzZW50IGVycm9yZWQgLT4gbm8gJyMjIGdhdGVicmFpZC1tZXRhZGF0YScgaGVhZGluZw0Kc2VsZnRlc3QgcGFzcyAgWDIgZmVuY2UgYWJzZW50IGVycm9yZWQgLT4gbm8gZmVuY2VkIHlhbWwgYmxvY2sgdW5kZXIgdGhlIGhlYWRpbmcNCnNlbGZ0ZXN0IHBhc3MgIFgzIGJsb2NrIGlzIGEgbGlzdCBub3QgYSBtYXBwaW5nIHlhbWwtZXJyb3JlZCAtPiBQYXJzZXJFcnJvcg0KU0VMRlRFU1QgUEFTUyAtIGNoZWNrZXIgbWF5IGJlIHRydXN0ZWQNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "selftest pass  positive-control accepted\r\nselftest pass  M1 wrong schema const rejected -> schema: 'gatebraid/slice@1' was expected\r\nselftest pass  M2 slice_id off-pattern rejected -> slice_id: 'P2S4' does not match '^P[0-9]+-S[0-9]+$'\r\nselftest pass  M3 required key removed rejected -> <root>: 'risk' is a required property\r\nselftest pass  M4 undeclared property rejected -> <root>: Additional properties are not allowed ('owner' was unexpected)\r\nselftest pass  M5 environment off-enum rejected -> environment: 'linux' is not one of ['wsl', 'windows', 'macos-authority', 'mixed-see-prose']\r\nselftest pass  M6 repair_limit above max rejected -> repair_limit: 3 is greater than the maximum of 2\r\nselftest pass  M7 workflow_profile renamed rejected -> workflow_profile: 'classic' was expected\r\nselftest pass  M8 parallel_mode off-enum rejected -> parallel_mode: 'isolated' is not one of ['safe-single-writer', 'isolated-write']\r\nselftest pass  M9 stage off-pattern rejected -> stage: '2' does not match '^S[0-9]+$'\r\nselftest pass  M10 write_domains empty string rejected -> write_domains/0: '' should be non-empty\r\nselftest pass  X1 heading absent errored -> no '## gatebraid-metadata' heading\r\nselftest pass  X2 fence absent errored -> no fenced yaml block under the heading\r\nselftest pass  X3 block is a list not a mapping yaml-errored -> ParserError\r\nSELFTEST PASS - checker may be trusted\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-26T19:42:11.122311Z",
+  "ended_at": "2026-08-26T19:42:11.623794Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/checks-g0-slice-metadata.py",
+      "sha256": "a37850cfd3c94caebeb380d5a41aee1fdc7cbba0a10d7989055878e610779419"
+    },
+    {
+      "path": "schema/slice.schema.json",
+      "sha256": "6e645655ff286d7101a26a5739697d5d19c240b016767b6d5f1f64e5fc99cd34"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

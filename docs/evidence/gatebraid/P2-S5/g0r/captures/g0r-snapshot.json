@@ -1,0 +1,412 @@
+{
+ "generated_at": "2026-08-31T02:46:12Z",
+ "generator": {
+  "name": "gatebraid-snapshot",
+  "source_sha256": "d064e512af603ccda4d8a3f6c3c2b281fa7b0e0932d23e8d5e22cead0ac97d4c",
+  "version": "1.0.0"
+ },
+ "items": [
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "excluded_reason": "the Project row carries no Slice field; container rows are not Slices",
+   "issue": "MianliWang/gatebraid#2",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oafU",
+   "slice_metadata_present": false,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   }
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "excluded_reason": "the Project row carries no Slice field; container rows are not Slices",
+   "issue": "MianliWang/gatebraid#3",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahM",
+   "slice_metadata_present": false,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   }
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [
+     {
+      "issue": "MianliWang/gatebraid-scratch#4",
+      "state": "OPEN"
+     },
+     {
+      "issue": "MianliWang/gatebraid-scratch#14",
+      "state": "OPEN"
+     },
+     {
+      "issue": "MianliWang/gatebraid-scratch#15",
+      "state": "OPEN"
+     }
+    ],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid-scratch#2",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahY",
+   "slice_id": "P1-S1",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid-scratch#3",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahc",
+   "slice_id": "P1-S2",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [
+     {
+      "issue": "MianliWang/gatebraid-scratch#2",
+      "state": "CLOSED"
+     }
+    ],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid-scratch#4",
+   "issue_state": "OPEN",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahg",
+   "slice_id": "P1-S3",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "blocked",
+   "workflow": "Aborted"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid-scratch#5",
+   "issue_state": "OPEN",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahk",
+   "slice_id": "P1-S4",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Backlog"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [
+     {
+      "issue": "MianliWang/gatebraid-scratch#2",
+      "state": "CLOSED"
+     }
+    ],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid-scratch#14",
+   "issue_state": "OPEN",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg1wWEI",
+   "slice_id": "P1-S5",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "blocked",
+   "workflow": "Aborted"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [
+     {
+      "issue": "MianliWang/gatebraid-scratch#2",
+      "state": "CLOSED"
+     }
+    ],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid-scratch#15",
+   "issue_state": "OPEN",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg14FYg",
+   "slice_id": "P1-S6",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "blocked",
+   "workflow": "Aborted"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "excluded_reason": "the Project row carries no Slice field; container rows are not Slices",
+   "issue": "MianliWang/gatebraid#6",
+   "issue_state": "OPEN",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3Dr2w",
+   "slice_metadata_present": false,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   }
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "excluded_reason": "the Project row carries no Slice field; container rows are not Slices",
+   "issue": "MianliWang/gatebraid#7",
+   "issue_state": "OPEN",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3Dr30",
+   "slice_metadata_present": false,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   }
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [
+     {
+      "issue": "MianliWang/gatebraid#17",
+      "state": "OPEN"
+     }
+    ],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid#8",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3Dr5A",
+   "slice_id": "P2-S1",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [
+     {
+      "issue": "MianliWang/gatebraid#17",
+      "state": "OPEN"
+     }
+    ],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid#10",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3ZWpw",
+   "slice_id": "P2-S2",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [
+     {
+      "issue": "MianliWang/gatebraid#17",
+      "state": "OPEN"
+     }
+    ],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid#12",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3i6M0",
+   "slice_id": "P2-S3",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [
+     {
+      "issue": "MianliWang/gatebraid#17",
+      "state": "OPEN"
+     }
+    ],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid#14",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3ogLM",
+   "slice_id": "P2-S4",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [
+     {
+      "issue": "MianliWang/gatebraid#8",
+      "state": "CLOSED"
+     },
+     {
+      "issue": "MianliWang/gatebraid#10",
+      "state": "CLOSED"
+     },
+     {
+      "issue": "MianliWang/gatebraid#12",
+      "state": "CLOSED"
+     },
+     {
+      "issue": "MianliWang/gatebraid#14",
+      "state": "CLOSED"
+     },
+     {
+      "issue": "MianliWang/gatebraid#19",
+      "state": "CLOSED"
+     }
+    ],
+    "blocking": [],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid#17",
+   "issue_state": "OPEN",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg4E8qs",
+   "slice_id": "P2-S5",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Gate 0 — Verifying"
+  },
+  {
+   "dependencies": {
+    "blocked_by": [],
+    "blocking": [
+     {
+      "issue": "MianliWang/gatebraid#17",
+      "state": "OPEN"
+     }
+    ],
+    "cross_check": "consistent"
+   },
+   "issue": "MianliWang/gatebraid#19",
+   "issue_state": "CLOSED",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg4gxqQ",
+   "slice_id": "P2-S6",
+   "slice_metadata_present": true,
+   "soft_dependencies": {
+    "declared": false,
+    "entries": [],
+    "parse_status": "parsed"
+   },
+   "verdict": "startable",
+   "workflow": "Done"
+  }
+ ],
+ "schema": "gatebraid/snapshot@1",
+ "snapshot_version": 1,
+ "sources": [
+  {
+   "complete": true,
+   "exit_code": 0,
+   "query": "live:project_items",
+   "source_id": "project_items",
+   "status": "ok"
+  },
+  {
+   "complete": true,
+   "exit_code": 0,
+   "query": "live:issue_states",
+   "source_id": "issue_states",
+   "status": "ok"
+  },
+  {
+   "complete": true,
+   "exit_code": 0,
+   "query": "live:dep_blocked_by",
+   "source_id": "dep_blocked_by",
+   "status": "ok"
+  },
+  {
+   "complete": true,
+   "exit_code": 0,
+   "query": "live:dep_blocking",
+   "source_id": "dep_blocking",
+   "status": "ok"
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-probe-D6-producer-failure",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-snapshot.py",
+      "--project",
+      "999"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 3,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1825,
+      "sha256": "9eb49f3ce846b8f027fc4b03a6300fb4432047694a8becbe9b1b74b7aad6aa8b",
+      "data": "ewogImdlbmVyYXRlZF9hdCI6ICIyMDI2LTAxLTAxVDAwOjAwOjAwWiIsCiAiZ2VuZXJhdG9yIjogewogICJuYW1lIjogImdhdGVicmFpZC1zbmFwc2hvdCIsCiAgInNvdXJjZV9zaGEyNTYiOiAiZDA2NGU1MTJhZjYwM2NjZGE0ZDhhM2Y2YzNjMmIyODFmYTdiMGUwOTMyZDIzZThkNWUyMmNlYWQwYWM5N2Q0YyIsCiAgInZlcnNpb24iOiAiMS4wLjAiCiB9LAogIml0ZW1zIjogW10sCiAic2NoZW1hIjogImdhdGVicmFpZC9zbmFwc2hvdEAxIiwKICJzbmFwc2hvdF92ZXJzaW9uIjogMSwKICJzb3VyY2VzIjogWwogIHsKICAgImJvdW5kZWQiOiB7CiAgICAiY2FwIjogMTAsCiAgICAiaGFzX25leHRfcGFnZSI6IHRydWUsCiAgICAib2JzZXJ2ZWQiOiAwLAogICAgInJlYXNvbiI6ICJxdWVyeV9mYWlsZWQiCiAgIH0sCiAgICJjb21wbGV0ZSI6IGZhbHNlLAogICAiZXhpdF9jb2RlIjogMSwKICAgImZhaWx1cmVfZGV0YWlsIjogInRoZSByZWFkIGV4aXRlZCAxIHJlcG9ydGluZyBhIG5ldHdvcmsgZmFpbHVyZSIsCiAgICJxdWVyeSI6ICJsaXZlOnByb2plY3RfaXRlbXMiLAogICAic291cmNlX2lkIjogInByb2plY3RfaXRlbXMiLAogICAic3RhdHVzIjogIm5ldHdvcmtfZXJyb3IiCiAgfSwKICB7CiAgICJib3VuZGVkIjogewogICAgImNhcCI6IDEwLAogICAgImhhc19uZXh0X3BhZ2UiOiB0cnVlLAogICAgIm9ic2VydmVkIjogMCwKICAgICJyZWFzb24iOiAicXVlcnlfZmFpbGVkIgogICB9LAogICAiY29tcGxldGUiOiBmYWxzZSwKICAgImV4aXRfY29kZSI6IDY1LAogICAiZmFpbHVyZV9kZXRhaWwiOiAidGhlIHJlYWQgY291bGQgbm90IGJlIHBlcmZvcm1lZDogbm8gbGl2ZSBlbmRwb2ludCBmb3Igc291cmNlICdpc3N1ZV9zdGF0ZXMnIGF0IGluZGV4IDAgKHRoZSBmYW4tb3V0IGhvbGRzIDAgaXNzdWUocykpIiwKICAgInF1ZXJ5IjogImxpdmU6aXNzdWVfc3RhdGVzIiwKICAgInNvdXJjZV9pZCI6ICJpc3N1ZV9zdGF0ZXMiLAogICAic3RhdHVzIjogIm5ldHdvcmtfZXJyb3IiCiAgfSwKICB7CiAgICJib3VuZGVkIjogewogICAgImNhcCI6IDEwLAogICAgImhhc19uZXh0X3BhZ2UiOiB0cnVlLAogICAgIm9ic2VydmVkIjogMCwKICAgICJyZWFzb24iOiAicXVlcnlfZmFpbGVkIgogICB9LAogICAiY29tcGxldGUiOiBmYWxzZSwKICAgImV4aXRfY29kZSI6IDY1LAogICAiZmFpbHVyZV9kZXRhaWwiOiAidGhlIHJlYWQgY291bGQgbm90IGJlIHBlcmZvcm1lZDogbm8gbGl2ZSBlbmRwb2ludCBmb3Igc291cmNlICdkZXBfYmxvY2tlZF9ieScgYXQgaW5kZXggMCAodGhlIGZhbi1vdXQgaG9sZHMgMCBpc3N1ZShzKSkiLAogICAicXVlcnkiOiAibGl2ZTpkZXBfYmxvY2tlZF9ieSIsCiAgICJzb3VyY2VfaWQiOiAiZGVwX2Jsb2NrZWRfYnkiLAogICAic3RhdHVzIjogIm5ldHdvcmtfZXJyb3IiCiAgfSwKICB7CiAgICJib3VuZGVkIjogewogICAgImNhcCI6IDEwLAogICAgImhhc19uZXh0X3BhZ2UiOiB0cnVlLAogICAgIm9ic2VydmVkIjogMCwKICAgICJyZWFzb24iOiAicXVlcnlfZmFpbGVkIgogICB9LAogICAiY29tcGxldGUiOiBmYWxzZSwKICAgImV4aXRfY29kZSI6IDY1LAogICAiZmFpbHVyZV9kZXRhaWwiOiAidGhlIHJlYWQgY291bGQgbm90IGJlIHBlcmZvcm1lZDogbm8gbGl2ZSBlbmRwb2ludCBmb3Igc291cmNlICdkZXBfYmxvY2tpbmcnIGF0IGluZGV4IDAgKHRoZSBmYW4tb3V0IGhvbGRzIDAgaXNzdWUocykpIiwKICAgInF1ZXJ5IjogImxpdmU6ZGVwX2Jsb2NraW5nIiwKICAgInNvdXJjZV9pZCI6ICJkZXBfYmxvY2tpbmciLAogICAic3RhdHVzIjogIm5ldHdvcmtfZXJyb3IiCiAgfQogXQp9Cg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\n \"generated_at\": \"2026-01-01T00:00:00Z\",\n \"generator\": {\n  \"name\": \"gatebraid-snapshot\",\n  \"source_sha256\": \"d064e512af603ccda4d8a3f6c3c2b281fa7b0e0932d23e8d5e22cead0ac97d4c\",\n  \"version\": \"1.0.0\"\n },\n \"items\": [],\n \"schema\": \"gatebraid/snapshot@1\",\n \"snapshot_version\": 1,\n \"sources\": [\n  {\n   \"bounded\": {\n    \"cap\": 10,\n    \"has_next_page\": true,\n    \"observed\": 0,\n    \"reason\": \"query_failed\"\n   },\n   \"complete\": false,\n   \"exit_code\": 1,\n   \"failure_detail\": \"the read exited 1 reporting a network failure\",\n   \"query\": \"live:project_items\",\n   \"source_id\": \"project_items\",\n   \"status\": \"network_error\"\n  },\n  {\n   \"bounded\": {\n    \"cap\": 10,\n    \"has_next_page\": true,\n    \"observed\": 0,\n    \"reason\": \"query_failed\"\n   },\n   \"complete\": false,\n   \"exit_code\": 65,\n   \"failure_detail\": \"the read could not be performed: no live endpoint for source 'issue_states' at index 0 (the fan-out holds 0 issue(s))\",\n   \"query\": \"live:issue_states\",\n   \"source_id\": \"issue_states\",\n   \"status\": \"network_error\"\n  },\n  {\n   \"bounded\": {\n    \"cap\": 10,\n    \"has_next_page\": true,\n    \"observed\": 0,\n    \"reason\": \"query_failed\"\n   },\n   \"complete\": false,\n   \"exit_code\": 65,\n   \"failure_detail\": \"the read could not be performed: no live endpoint for source 'dep_blocked_by' at index 0 (the fan-out holds 0 issue(s))\",\n   \"query\": \"live:dep_blocked_by\",\n   \"source_id\": \"dep_blocked_by\",\n   \"status\": \"network_error\"\n  },\n  {\n   \"bounded\": {\n    \"cap\": 10,\n    \"has_next_page\": true,\n    \"observed\": 0,\n    \"reason\": \"query_failed\"\n   },\n   \"complete\": false,\n   \"exit_code\": 65,\n   \"failure_detail\": \"the read could not be performed: no live endpoint for source 'dep_blocking' at index 0 (the fan-out holds 0 issue(s))\",\n   \"query\": \"live:dep_blocking\",\n   \"source_id\": \"dep_blocking\",\n   \"status\": \"network_error\"\n  }\n ]\n}\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 774,
+      "sha256": "10df5bb5d048bef73ea8743509363f298d183b30a38d9465490359f62390537a",
+      "data": "Z2VuZXJhdG9yICAgICAgICAgICAgICAgICAgICAgOiBnYXRlYnJhaWQtc25hcHNob3QgMS4wLjANCnNjaGVtYSAgICAgICAgICAgICAgICAgICAgICAgIDogRDpcR2l0aHViIHJlcG9cR2F0ZWJyYWlkXHNjaGVtYVxzbmFwc2hvdC5zY2hlbWEuanNvbiBzaGEyNTY9OTVlY2YzOGU5MjdhMThlNThjYWNlMDA3NjA3Y2FhMDE2ZDE4ODg5M2MyZDkyZWEzZWE3NDhjNDY0NTM0MTlkNg0KdHJhbnNwb3J0ICAgICAgICAgICAgICAgICAgICAgOiBsaXZlDQpzb3VyY2VzICAgICAgICAgICAgICAgICAgICAgICA6IDQNCiAgIHByb2plY3RfaXRlbXMgICAgbmV0d29ya19lcnJvciAgICAgICAgY29tcGxldGU9RmFsc2UgZXhpdD0xICBib3VuZGVkDQogICBpc3N1ZV9zdGF0ZXMgICAgIG5ldHdvcmtfZXJyb3IgICAgICAgIGNvbXBsZXRlPUZhbHNlIGV4aXQ9NjUgIGJvdW5kZWQNCiAgIGRlcF9ibG9ja2VkX2J5ICAgbmV0d29ya19lcnJvciAgICAgICAgY29tcGxldGU9RmFsc2UgZXhpdD02NSAgYm91bmRlZA0KICAgZGVwX2Jsb2NraW5nICAgICBuZXR3b3JrX2Vycm9yICAgICAgICBjb21wbGV0ZT1GYWxzZSBleGl0PTY1ICBib3VuZGVkDQppdGVtcyAgICAgICAgICAgICAgICAgICAgICAgICA6IDANCmRlZ3JhZGVkICAgICAgICAgICAgICAgICAgICAgIDogeWVzDQpTTkFQU0hPVCBERUdSQURFRDogZXZlcnkgaXRlbSBjYXJyaWVzIHZlcmRpY3QgYHVuZGVjaWRhYmxlYDsgZXhpdCBzdGF0dXMgMyBzbyBubyBjYWxsZXIgcmVhZHMgdGhpcyBhcyBhIGhlYWx0aHkgcmVhZA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "generator                     : gatebraid-snapshot 1.0.0\r\nschema                        : D:\\Github repo\\Gatebraid\\schema\\snapshot.schema.json sha256=95ecf38e927a18e58cace007607caa016d188893c2d92ea3ea748c46453419d6\r\ntransport                     : live\r\nsources                       : 4\r\n   project_items    network_error        complete=False exit=1  bounded\r\n   issue_states     network_error        complete=False exit=65  bounded\r\n   dep_blocked_by   network_error        complete=False exit=65  bounded\r\n   dep_blocking     network_error        complete=False exit=65  bounded\r\nitems                         : 0\r\ndegraded                      : yes\r\nSNAPSHOT DEGRADED: every item carries verdict `undecidable`; exit status 3 so no caller reads this as a healthy read\r\n"
+      }
+    }
+  },
+  "started_at": "2026-09-01T21:57:30.231423Z",
+  "ended_at": "2026-09-01T21:57:31.137782Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-snapshot.py",
+      "sha256": "d064e512af603ccda4d8a3f6c3c2b281fa7b0e0932d23e8d5e22cead0ac97d4c"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Companion probe for D6. The producer failure the composer must surface as exit 10, produced by the REAL producer on this host. Everything in D6 except the program under test."
+}

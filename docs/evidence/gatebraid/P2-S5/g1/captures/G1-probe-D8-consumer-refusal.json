@@ -1,0 +1,78 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-probe-D8-consumer-refusal",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "C:/Python312/python.exe -c \"import sys;sys.stdout.buffer.write(chr(123).encode()+chr(125).encode())\" | C:/Python312/python.exe -B bin/gatebraid-frontier.py -"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 218,
+      "sha256": "1579f88278816910cd599c9f6d897a2cc1009fd2607de04a31ae31536429a2cd",
+      "data": "U05BUFNIT1QgUkVGVVNFRDogdGhlIGRvY3VtZW50IGRvZXMgbm90IHNheSB3aGF0IGl0IGlzOiBgc2NoZW1hYCBpcyBhYnNlbnQsIHNvIGl0IGNhbm5vdCBiZSBjb25zdW1lZCBhcyBpZiBjdXJyZW50DQp2ZXJkaWN0cyBlbWl0dGVkICAgICAgICAgICAgIDogMCAobm8gdmVyZGljdCBpcyBlbWl0dGVkIGZvciBhIGRvY3VtZW50IHRoaXMgdG9vbCBjb3VsZCBub3QgdmFsaWRhdGUpDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "SNAPSHOT REFUSED: the document does not say what it is: `schema` is absent, so it cannot be consumed as if current\r\nverdicts emitted             : 0 (no verdict is emitted for a document this tool could not validate)\r\n"
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:01:32.842551Z",
+  "ended_at": "2026-09-01T22:01:33.148088Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-frontier.py",
+      "sha256": "283075b86b9ef6ecedd6d0efb8f3f26960c7cc1b4a5466299d7c59d44ff786de"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Companion probe for D8: the consumer's own refusal code, produced by the real consumer over a stdin composition. pipefail is declared and the exit-code source named, so the status is interpretable - the IN-01 class the frozen corpus does not hold."
+}

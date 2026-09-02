@@ -1,0 +1,75 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0R-render-record",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g0r/render-gate0.py",
+      "2026-09-01T20:37:05Z"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 50,
+      "sha256": "06819f3b795ae2c02a5a5db9d9920f92b280e327e8c81d5cb7eb4a605c55eaeb",
+      "data": "V1JPVEUgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzByL2dhdGUwLm1kDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "WROTE docs/evidence/gatebraid/P2-S5/g0r/gate0.md\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T20:37:05.741769Z",
+  "ended_at": "2026-09-01T20:37:05.819110Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g0r/render-gate0.py",
+      "sha256": "3dbeb2d111e0b37e4bb830107d432f3da2d4de417b4931a1e2bfcfe53585c0dd"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g0r/gate0.md",
+      "sha256": "95ff39111b4a8b8aa43c022e877c98af5f868b054f4ac2c116ae5c67327bc4e6",
+      "byte_length": 43912
+    }
+  ],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Render the gate record from the captures. ended_at is a MEASURED wall-clock reading passed in on the command line, visible on the invocation line. This is the second rendering: the sweep over the first reported two residues introduced by this record's own prose, and the correction was made in the record rather than in the instrument."
+}

@@ -1,0 +1,62 @@
+{
+ "generated_at": "2026-08-26T19:42:38Z",
+ "generator": {
+  "name": "gatebraid-snapshot",
+  "source_sha256": "e27eaad381518ef76d563a59d616f0f5747eaa97a995a602d9972c5a342ef878",
+  "version": "1.0.0"
+ },
+ "items": [],
+ "schema": "gatebraid/snapshot@1",
+ "snapshot_version": 1,
+ "sources": [
+  {
+   "complete": true,
+   "exit_code": 0,
+   "query": "live:project_items",
+   "source_id": "project_items",
+   "status": "ok"
+  },
+  {
+   "bounded": {
+    "cap": 10,
+    "has_next_page": true,
+    "observed": 0,
+    "reason": "query_failed"
+   },
+   "complete": false,
+   "exit_code": 65,
+   "failure_detail": "the response body is a list where an object was required; the process exited 0 and `exit_code` carries the read-outcome sentinel 65",
+   "query": "live:issue_states",
+   "source_id": "issue_states",
+   "status": "unexpected_endpoint"
+  },
+  {
+   "bounded": {
+    "cap": 10,
+    "has_next_page": true,
+    "observed": 0,
+    "reason": "query_failed"
+   },
+   "complete": false,
+   "exit_code": 65,
+   "failure_detail": "the response body is a list where an object was required; the process exited 0 and `exit_code` carries the read-outcome sentinel 65",
+   "query": "live:dep_blocked_by",
+   "source_id": "dep_blocked_by",
+   "status": "unexpected_endpoint"
+  },
+  {
+   "bounded": {
+    "cap": 10,
+    "has_next_page": true,
+    "observed": 0,
+    "reason": "query_failed"
+   },
+   "complete": false,
+   "exit_code": 65,
+   "failure_detail": "the response body is a list where an object was required; the process exited 0 and `exit_code` carries the read-outcome sentinel 65",
+   "query": "live:dep_blocking",
+   "source_id": "dep_blocking",
+   "status": "unexpected_endpoint"
+  }
+ ]
+}

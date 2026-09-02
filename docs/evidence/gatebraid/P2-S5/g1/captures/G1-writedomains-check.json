@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-writedomains-check",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g1/writedomains-check.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 409,
+      "sha256": "8ef03821b16b595b10dbd71be0ca64d5dbc6cbb88209b3806cd27deb7d78f484",
+      "data": "ZnJvemVuIGFsbG93bGlzdCAgOiBbJ2Jpbi8nLCAnZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvJ10NCmRlY2xhcmVkIG9uIHRoZSBTbGljZSBpc3N1ZTogWydiaW4vJywgJ2RvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1LyddDQplcXVhbCBhcyBzZXF1ZW5jZXM6IFRydWUNCmVxdWFsIGFzIHNldHMgICAgIDogVHJ1ZQ0KDQpQT1NULUNPTkRJVElPTiBBTFJFQURZIEhPTERTOiB0aGUgZGVjbGFyZWQgd3JpdGVfZG9tYWlucyBlcXVhbHMgdGhlIGZyb3plbg0KYWxsb3dsaXN0LiBUaGUgYWdyZWVtZW50IGlzIHJlY29yZGVkIGFzIHRoaXMgdmVyaWZpY2F0aW9uIHJvdyBhbmQgTk8gcmV3cml0ZQ0Kb2YgdGhlIFNsaWNlIGJvZHkgaXMgbWFkZS4gVGhlIHN0ZXAgaXMgcGVyZm9ybWVkLCBub3Qgc2tpcHBlZC4NCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "frozen allowlist  : ['bin/', 'docs/evidence/gatebraid/P2-S5/']\r\ndeclared on the Slice issue: ['bin/', 'docs/evidence/gatebraid/P2-S5/']\r\nequal as sequences: True\r\nequal as sets     : True\r\n\r\nPOST-CONDITION ALREADY HOLDS: the declared write_domains equals the frozen\r\nallowlist. The agreement is recorded as this verification row and NO rewrite\r\nof the Slice body is made. The step is performed, not skipped.\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:03:01.092157Z",
+  "ended_at": "2026-09-01T22:03:01.737471Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g1/writedomains-check.py",
+      "sha256": "4337ae741daf708d6c128943cf9d72b2cc4015222b5e039600999285a18a38e0"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The Gate 1 Exit write_domains post-condition, performed and not skipped."
+}

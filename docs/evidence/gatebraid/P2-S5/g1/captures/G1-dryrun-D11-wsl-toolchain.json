@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-dryrun-D11-wsl-toolchain",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl.exe",
+      "-e",
+      "bash",
+      "-lc",
+      "cd '/mnt/d/Github repo/Gatebraid' && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-capture.py --out docs/evidence/gatebraid/P2-S5/g1/dryrun-out/G2-wsl-ready-selftest.json --capture-id G2-wsl-ready-selftest -- python3 -B bin/gatebraid-ready-selftest.py; echo \"capture-half exit=$?\"; PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-validate.py --record docs/evidence/gatebraid/P2-S5/gate2.md --report-id cov-P2-S5-gate2-wsl.md; echo \"validate-half exit=$?\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 220,
+      "sha256": "3a7066b3206df14335c006b512b9393f4c9c576b708924ca2b04ab91c30fa542",
+      "data": "V1JPVEUgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZHJ5cnVuLW91dC9HMi13c2wtcmVhZHktc2VsZnRlc3QuanNvbgogIGJ5dGVzPTE4MzEgc2hhMjU2PWYyNzIxYjBmOGM0YjY2MzVkOWJlZTZjNTAwYWQwYjA2ZWU0YzI5NTcyOGJmNjdhMWUxMzU3NDY5YzhhMmQzNjUgY3JsZj0wIGxvbmVfY3I9MApjYXB0dXJlLWhhbGYgZXhpdD0wCnZhbGlkYXRlLWhhbGYgZXhpdD0xCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "WROTE docs/evidence/gatebraid/P2-S5/g1/dryrun-out/G2-wsl-ready-selftest.json\n  bytes=1831 sha256=f2721b0f8c4b6635d9bee6c500ad0b06ee4c295728bf67a1e1357469c8a2d365 crlf=0 lone_cr=0\ncapture-half exit=0\nvalidate-half exit=1\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 826,
+      "sha256": "6dff8a6d73bb9d1d3f801ef01fe2aa3fb9ef4168bb2aef6c9ac6d3147e7fc7cc",
+      "data": "VHJhY2ViYWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOgogIEZpbGUgIi9tbnQvZC9HaXRodWIgcmVwby9HYXRlYnJhaWQvYmluL2dhdGVicmFpZC12YWxpZGF0ZS5weSIsIGxpbmUgODk4LCBpbiA8bW9kdWxlPgogICAgc3lzLmV4aXQobWFpbigpKQogICAgICAgICAgICAgXl5eXl5eCiAgRmlsZSAiL21udC9kL0dpdGh1YiByZXBvL0dhdGVicmFpZC9iaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLnB5IiwgbGluZSA4OTIsIGluIG1haW4KICAgIHJldHVybiBtb2RlX3JlY29yZChhcmdzKQogICAgICAgICAgIF5eXl5eXl5eXl5eXl5eXl5eCiAgRmlsZSAiL21udC9kL0dpdGh1YiByZXBvL0dhdGVicmFpZC9iaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLnB5IiwgbGluZSA2OTMsIGluIG1vZGVfcmVjb3JkCiAgICBkb2MsIHJhdywgc2NoZW1hX2lkLCBlcnJvcnMsIHByb3BzLCBmaW5kaW5ncywgbG9hZGVyID0gdmFsaWRhdGVfZG9jdW1lbnQoYXJncy5yZWNvcmQpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eCiAgRmlsZSAiL21udC9kL0dpdGh1YiByZXBvL0dhdGVicmFpZC9iaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLnB5IiwgbGluZSA2NTEsIGluIHZhbGlkYXRlX2RvY3VtZW50CiAgICB3aXRoIG9wZW4ocGF0aCwgInJiIikgYXMgZmg6CiAgICAgICAgIF5eXl5eXl5eXl5eXl5eXl4KRmlsZU5vdEZvdW5kRXJyb3I6IFtFcnJubyAyXSBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5OiAnZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZ2F0ZTIubWQnCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "Traceback (most recent call last):\n  File \"/mnt/d/Github repo/Gatebraid/bin/gatebraid-validate.py\", line 898, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"/mnt/d/Github repo/Gatebraid/bin/gatebraid-validate.py\", line 892, in main\n    return mode_record(args)\n           ^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/Github repo/Gatebraid/bin/gatebraid-validate.py\", line 693, in mode_record\n    doc, raw, schema_id, errors, props, findings, loader = validate_document(args.record)\n                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/d/Github repo/Gatebraid/bin/gatebraid-validate.py\", line 651, in validate_document\n    with open(path, \"rb\") as fh:\n         ^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'docs/evidence/gatebraid/P2-S5/gate2.md'\n"
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:02:35.562346Z",
+  "ended_at": "2026-09-01T22:02:36.812195Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "D11 RUN AS DECLARED, both halves in sequence. Both name artefacts a read-only gate cannot create: the deliverable selftest and this Slice's gate2.md. The companion probe rows carry the same two tools running on the same WSL half against artefacts that do exist."
+}

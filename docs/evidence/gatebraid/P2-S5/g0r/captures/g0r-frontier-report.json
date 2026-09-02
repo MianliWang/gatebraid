@@ -1,0 +1,177 @@
+{
+ "consumer": {
+  "name": "gatebraid-frontier",
+  "version": "1.0.0"
+ },
+ "degraded_sources": [],
+ "excluded": [
+  {
+   "excluded_reason": "the Project row carries no Slice field; container rows are not Slices",
+   "issue": "MianliWang/gatebraid#2",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oafU"
+  },
+  {
+   "excluded_reason": "the Project row carries no Slice field; container rows are not Slices",
+   "issue": "MianliWang/gatebraid#3",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahM"
+  },
+  {
+   "excluded_reason": "the Project row carries no Slice field; container rows are not Slices",
+   "issue": "MianliWang/gatebraid#6",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3Dr2w"
+  },
+  {
+   "excluded_reason": "the Project row carries no Slice field; container rows are not Slices",
+   "issue": "MianliWang/gatebraid#7",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3Dr30"
+  }
+ ],
+ "report": "gatebraid/frontier-report@1",
+ "snapshot": {
+  "generated_at": "2026-08-31T02:46:12Z",
+  "schema_sha256": "95ecf38e927a18e58cace007607caa016d188893c2d92ea3ea748c46453419d6",
+  "snapshot_version": 1,
+  "validated_against": "D:\\Github repo\\Gatebraid\\schema\\snapshot.schema.json"
+ },
+ "snapshot_degraded": false,
+ "summary": {
+  "blocked": 3,
+  "excluded": 4,
+  "startable": 9,
+  "undecidable": 0
+ },
+ "verdicts": [
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid-scratch#2",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahY",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P1-S1",
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid-scratch#3",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahc",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P1-S2",
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "declared_verdict": "blocked",
+   "issue": "MianliWang/gatebraid-scratch#4",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahg",
+   "reasons": [
+    "an Aborted slice is never a candidate (ADR-0025 decision 8), whatever its edges say"
+   ],
+   "slice_id": "P1-S3",
+   "verdict": "blocked",
+   "workflow": "Aborted"
+  },
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid-scratch#5",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg0oahk",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P1-S4",
+   "verdict": "startable",
+   "workflow": "Backlog"
+  },
+  {
+   "declared_verdict": "blocked",
+   "issue": "MianliWang/gatebraid-scratch#14",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg1wWEI",
+   "reasons": [
+    "an Aborted slice is never a candidate (ADR-0025 decision 8), whatever its edges say"
+   ],
+   "slice_id": "P1-S5",
+   "verdict": "blocked",
+   "workflow": "Aborted"
+  },
+  {
+   "declared_verdict": "blocked",
+   "issue": "MianliWang/gatebraid-scratch#15",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg14FYg",
+   "reasons": [
+    "an Aborted slice is never a candidate (ADR-0025 decision 8), whatever its edges say"
+   ],
+   "slice_id": "P1-S6",
+   "verdict": "blocked",
+   "workflow": "Aborted"
+  },
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid#8",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3Dr5A",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P2-S1",
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid#10",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3ZWpw",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P2-S2",
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid#12",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3i6M0",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P2-S3",
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid#14",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg3ogLM",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P2-S4",
+   "verdict": "startable",
+   "workflow": "Done"
+  },
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid#17",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg4E8qs",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P2-S5",
+   "verdict": "startable",
+   "workflow": "Gate 0 — Verifying"
+  },
+  {
+   "declared_verdict": "startable",
+   "issue": "MianliWang/gatebraid#19",
+   "item_id": "PVTI_lAHOBRofUs4Beum7zg4gxqQ",
+   "reasons": [
+    "every dependency is closed, both directions agree, and the sources read completely"
+   ],
+   "slice_id": "P2-S6",
+   "verdict": "startable",
+   "workflow": "Done"
+  }
+ ]
+}
