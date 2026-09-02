@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E3-baseline",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "X=$(grep -m1 \"^base_sha:\" docs/evidence/gatebraid/P2-S5/g0r/gate0.md | awk \"{print \\$2}\"); Y=$(git rev-parse main); echo \"X (from g0r/gate0.md) = $X\"; echo \"Y (measured head)     = $Y\"; echo \"X == Y                : $([ \"$X\" = \"$Y\" ] && echo yes || echo no)\"; echo \"changed paths X..Y    :\"; git diff --name-only \"$X\"..\"$Y\" | sed \"s/^/   /\"; echo \"count                 : $(git diff --name-only \"$X\"..\"$Y\" | wc -l)\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 208,
+      "sha256": "694d59d897d44a04ab8b3fb342f4b181e34a5f9fe442b3f5c7093afdb7d3365f",
+      "data": "WCAoZnJvbSBnMHIvZ2F0ZTAubWQpID0gY2JkMDY1ODkzYjM3ZjIwNzEzYWUzNWI4ZDI2NzNiZjI2ZmU0ZDJhZApZIChtZWFzdXJlZCBoZWFkKSAgICAgPSBjYmQwNjU4OTNiMzdmMjA3MTNhZTM1YjhkMjY3M2JmMjZmZTRkMmFkClggPT0gWSAgICAgICAgICAgICAgICA6IHllcwpjaGFuZ2VkIHBhdGhzIFguLlkgICAgOgpjb3VudCAgICAgICAgICAgICAgICAgOiAwCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "X (from g0r/gate0.md) = cbd065893b37f20713ae35b8d2673bf26fe4d2ad\nY (measured head)     = cbd065893b37f20713ae35b8d2673bf26fe4d2ad\nX == Y                : yes\nchanged paths X..Y    :\ncount                 : 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:17:24.431809Z",
+  "ended_at": "2026-09-02T03:17:25.122581Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "E3: the baseline re-read under the lease. X is the plan baseline read from the re-run record file docs/evidence/gatebraid/P2-S5/g0r/gate0.md, never from memory; Y is the measured head of the base branch. The changed-path set before the ADR-0014 exclusion is printed and its count stated, so a bare zero says what it searched."
+}

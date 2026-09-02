@@ -49,11 +49,12 @@ a rule. No classification rule, no regex and no residue criterion changed;
         reasons, and "g2", this gate's own evidence subdirectory, which is
         exactly the class that copy named "g1" for.
   G2-c. PROSE_PAIRS gains "15/15", "incomplete/bounded" and "Gate-1/Gate-2",
-        transcribed from the same merged copy, and SIXTEEN new entries. Every
+        transcribed from the same merged copy, and EIGHTEEN new entries. Every
         new entry is a pair of DOCUMENT FIELD NAMES joined by a slash, printed
         as an instance or schema locus by the N3 validator, by the corpus
         runner, or by the capture tool's own guard, and quoted into this gate's
-        record. None is a repository identifier. They are EXACT STRINGS, never
+        record, plus this Slice's own branch name, which is owner/repo-shaped
+        and is not a refs/ path. None is a repository identifier. They are EXACT STRINGS, never
         leading-segment rules, and the near-miss seed requires that they do not
         act as prefixes.
   G2-d. The mention class is UNCHANGED from the Gate 1 copy.
@@ -221,6 +222,13 @@ PROSE_PAIRS = {
     "invocation/form",                   # capture record, argv or shell
     "platform/os",                       # capture record, the platform block
     "stop_record/remediation_attempted", # gate-run@2, the stop-record field
+    "locus/loci",                        # the validator's own summary line,
+                                         # "structural : N error locus/loci"
+    # --- the Slice's own branch name. It is owner/repo-shaped and it is not a
+    # --- refs/ path, so REF_NAMESPACE cannot see it; the five prior Slice
+    # --- branches share the convention. Named exactly, so another branch would
+    # --- still be residue.
+    "slice/P2-S5",
 }
 
 

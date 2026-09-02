@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-closed-set-sweep",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S5/g2/captures"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2204,
+      "sha256": "bd50873d967cf922a837633b523a53c6e8d22ed6075b790e4d1be878a267a90b",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAzMQ0KDQo9PT0gY2FuZGlkYXRlIGNsYXNzaWZpY2F0aW9uIChldmVyeSBydWxlIGFwcGxpZWQgZXhwbGljaXRseSkgPT09DQogIEUxIHBlcm1pdHRlZCByZXBvc2l0b3J5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTkNCiAgRTMgQVBJLXBhdGggZnJhZ21lbnQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAyDQogIEU1IGZpbGVzeXN0ZW0gb3IgVVJMIHBhdGggc2VnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgMjY0DQogIEU2IHNjaGVtYS1pZCBuYW1lc3BhY2UgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMw0KICBFNyBKU09OIHBvaW50ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDU0DQogIEU4IHByb3NlIHNsYXNoIGJldHdlZW4gb3JkaW5hcnkgd29yZHMgKG5hbWVkLCBub3QgbWF0Y2hlZCkgMzYNCiAgSTAgZnJpY3Rpb24gY2l0YXRpb24sIG5vdCBhbiBpc3N1ZSByZWZlcmVuY2UgICAgICAgICAgICAgICAxDQogIE4xIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNQ0KICBOMiB0aGUgUDItUzUgaXRlbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDExDQogIE4zIGZpZWxkIGlkIG9mIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAgICAgMzENCiAgTjQgYW5vdGhlciBpdGVtIG9mIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAxNQ0KICBVTkVYUExBSU5FRCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDEzDQoNCj09PSBldmVyeSBSRVBPU0lUT1JZIGlkZW50aXR5IG5hbWVkIGFueXdoZXJlID09PQ0KICBNaWFubGlXYW5nL2dhdGVicmFpZCAgICAgICAgICAgeDExICAgUEVSTUlUVEVEDQogIE1pYW5saVdhbmcvZ2F0ZWJyYWlkLXNjcmF0Y2ggICB4OCAgICBQRVJNSVRURUQNCg0KPT09IG1lbnRpb24tY2xhc3MgY2hlY2s6IGEgbWVudGlvbiBtdXN0IG5ldmVyIGFwcGVhciBpbiBhbiBJTlZPQ0FUSU9OID09PQ0KICBtZW50aW9uLWNsYXNzIGlzc3VlcyB0YXJnZXRlZCBieSBhIHF1ZXJ5OiAwICgwIHJlcXVpcmVkKQ0KDQpkb21haW4gICAgICA6IDMxIGRvY3VtZW50cyAoMiBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiAxNA0KICAgIEcyLUQxMS13c2wtdG9vbGNoYWluLXBhc3MxLmpzb24gICAgICAgICAgICAgIHN0ZG91dCAgICAgICByZXBvDQogICAgRzItRDItY29ycHVzLmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgICAgc3Rkb3V0ICAgICAgIGlzc3VlDQogICAgRzItRTEtYXBwcm92YWwtZmlkZWxpdHkuanNvbiAgICAgICAgICAgICAgICAgaW52b2NhdGlvbiAgIHJlcG8NCiAgICBHMi1FMS1hcHByb3ZhbC1maWRlbGl0eS5qc29uICAgICAgICAgICAgICAgICBpbnZvY2F0aW9uICAgcmVwbw0KICAgIEcyLUUxLWFwcHJvdmFsLWZpZGVsaXR5Lmpzb24gICAgICAgICAgICAgICAgIGludm9jYXRpb24gICByZXBvDQogICAgRzItRTEtYXBwcm92YWwtZmlkZWxpdHkuanNvbiAgICAgICAgICAgICAgICAgaW52b2NhdGlvbiAgIHJlcG8NCiAgICBHMi1FMS1hcHByb3ZhbC1maWRlbGl0eS5qc29uICAgICAgICAgICAgICAgICBpbnZvY2F0aW9uICAgcmVwbw0KICAgIEcyLUUxLWFwcHJvdmFsLWZpZGVsaXR5Lmpzb24gICAgICAgICAgICAgICAgIGludm9jYXRpb24gICByZXBvDQogICAgRzItRTEtYXBwcm92YWwtZmlkZWxpdHkuanNvbiAgICAgICAgICAgICAgICAgaW52b2NhdGlvbiAgIHJlcG8NCiAgICBHMi1FMS1hcHByb3ZhbC1maWRlbGl0eS5qc29uICAgICAgICAgICAgICAgICBpbnZvY2F0aW9uICAgcmVwbw0KICAgIEcyLUUxLWFwcHJvdmFsLWZpZGVsaXR5Lmpzb24gICAgICAgICAgICAgICAgIGludm9jYXRpb24gICByZXBvDQogICAgRzItRTMtYmFzZWxpbmUuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgc3Rkb3V0ICAgICAgIHJlcG8NCiAgICBHMi1FMy1iYXNlbGluZS5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICBpbnZvY2F0aW9uICAgcmVwbw0KICAgIEcyLUU0LWJyYW5jaC5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0ZG91dCAgICAgICByZXBvDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 31\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    19\r\n  E3 API-path fragment                                       2\r\n  E5 filesystem or URL path segment                          264\r\n  E6 schema-id namespace                                     3\r\n  E7 JSON pointer                                            54\r\n  E8 prose slash between ordinary words (named, not matched) 36\r\n  I0 friction citation, not an issue reference               1\r\n  N1 the permitted Project                                   5\r\n  N2 the P2-S5 item                                          11\r\n  N3 field id of the permitted Project                       31\r\n  N4 another item of the permitted Project                   15\r\n  UNEXPLAINED                                                13\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x11   PERMITTED\r\n  MianliWang/gatebraid-scratch   x8    PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 31 documents (2 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 14\r\n    G2-D11-wsl-toolchain-pass1.json              stdout       repo\r\n    G2-D2-corpus.json                            stdout       issue\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E1-approval-fidelity.json                 invocation   repo\r\n    G2-E3-baseline.json                          stdout       repo\r\n    G2-E3-baseline.json                          invocation   repo\r\n    G2-E4-branch.json                            stdout       repo\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:22:31.452646Z",
+  "ended_at": "2026-09-02T03:22:31.545404Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
+      "sha256": "1cd62cff80db51b92a0b16fb89d85f99c8ca2a809c5c28d12c518aa4a6d9a5aa"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The closed-set sweep over this gate's captures, domain named explicitly. Repository limb CLOSED. One residue remains and is disclosed in the record; the instrument was not given a rule change to admit it."
+}

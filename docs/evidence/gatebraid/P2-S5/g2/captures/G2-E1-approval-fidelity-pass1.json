@@ -1,0 +1,79 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E1-approval-fidelity",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "gh api repos/MianliWang/gatebraid/issues/comments/5503291709 --jq .body > \"$TEMP/ap.txt\"; echo \"source file  : $(sha256sum _handoff/prompts/GH-COMMENT-PLAN-APPROVAL-P2S5.md | cut -d\" \" -f1)  $(wc -c < _handoff/prompts/GH-COMMENT-PLAN-APPROVAL-P2S5.md) bytes\"; echo \"fetched body : $(sha256sum \"$TEMP/ap.txt\" | cut -d\" \" -f1)  $(wc -c < \"$TEMP/ap.txt\") bytes\"; if cmp -s _handoff/prompts/GH-COMMENT-PLAN-APPROVAL-P2S5.md \"$TEMP/ap.txt\"; then echo \"verdict      : BYTE-IDENTICAL\"; else echo \"verdict      : DIFFERS\"; fi; echo \"names plan_hash      : $(grep -c b2cd75f6a49bb056fd16bc3d2f4cfd5cf98ae8515b5761908add2ed5405cc424 \"$TEMP/ap.txt\")\"; echo \"names allowlist_hash : $(grep -c 4110b3021bdfc2fcda1f5f90528db01eb87b554177e2176ccfba46ccd6ca3750 \"$TEMP/ap.txt\")\"; echo \"is a handoff block   : $(grep -c \"gatebraid/handoff@1\" \"$TEMP/ap.txt\")\"; echo \"strikethrough        : $(grep -c -- \"~~\" \"$TEMP/ap.txt\")\"; rm -f \"$TEMP/ap.txt\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 314,
+      "sha256": "33cdb90f973873ee532537e07cc6fd0da2f026635611125936185c3e634e0fe4",
+      "data": "c291cmNlIGZpbGUgIDogZmVkNmJjYjljYjNlOGRiY2UwYmVkMDY4MTljZTliMGMyOTA3YWQzMjM0YzNlOGFiNTAxNmM1OTFmMzU4ZTQ2ZCAgNTIyNiBieXRlcwpmZXRjaGVkIGJvZHkgOiBmZWQ2YmNiOWNiM2U4ZGJjZTBiZWQwNjgxOWNlOWIwYzI5MDdhZDMyMzRjM2U4YWI1MDE2YzU5MWYzNThlNDZkICA1MjI2IGJ5dGVzCnZlcmRpY3QgICAgICA6IEJZVEUtSURFTlRJQ0FMCm5hbWVzIHBsYW5faGFzaCAgICAgIDogMQpuYW1lcyBhbGxvd2xpc3RfaGFzaCA6IDEKaXMgYSBoYW5kb2ZmIGJsb2NrICAgOiAwCnN0cmlrZXRocm91Z2ggICAgICAgIDogMAo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "source file  : fed6bcb9cb3e8dbce0bed06819ce9b0c2907ad3234c3e8ab5016c591f358e46d  5226 bytes\nfetched body : fed6bcb9cb3e8dbce0bed06819ce9b0c2907ad3234c3e8ab5016c591f358e46d  5226 bytes\nverdict      : BYTE-IDENTICAL\nnames plan_hash      : 1\nnames allowlist_hash : 1\nis a handoff block   : 0\nstrikethrough        : 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:18:05.276403Z",
+  "ended_at": "2026-09-02T03:18:07.059323Z",
+  "inputs": [
+    {
+      "path": "_handoff/prompts/GH-COMMENT-PLAN-APPROVAL-P2S5.md",
+      "sha256": "fed6bcb9cb3e8dbce0bed06819ce9b0c2907ad3234c3e8ab5016c591f358e46d"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "E1: the door's fidelity check. The comment body fetched BY ID is compared byte-for-byte with the committed source. Gate 1's own handoff comment 5501157052 also carries both hashes and the words Plan Approval; an id-anchored fetch cannot read the gate's exit as consent."
+}
