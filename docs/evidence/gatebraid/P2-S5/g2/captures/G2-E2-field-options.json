@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E2-field-options",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query{node(id:\"PVT_kwHOBRofUs4Beum7\"){... on ProjectV2{fields(first:50){nodes{... on ProjectV2SingleSelectField{id name options{id name}} ... on ProjectV2Field{id name dataType}}}}}}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3889,
+      "sha256": "0a29d65067b1969af6eef47985707ecf055a3ef967e2f0b491b4387040aa8808",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiZmllbGRzIjp7Im5vZGVzIjpbeyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkdwcG8iLCJuYW1lIjoiVGl0bGUiLCJkYXRhVHlwZSI6IlRJVExFIn0seyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkdwcHMiLCJuYW1lIjoiQXNzaWduZWVzIiwiZGF0YVR5cGUiOiJBU1NJR05FRVMifSx7ImlkIjoiUFZUU1NGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHB3IiwibmFtZSI6IlN0YXR1cyIsIm9wdGlvbnMiOlt7ImlkIjoiZjc1YWQ4NDYiLCJuYW1lIjoiVG9kbyJ9LHsiaWQiOiI0N2ZjOWVlNCIsIm5hbWUiOiJJbiBQcm9ncmVzcyJ9LHsiaWQiOiI5ODIzNjY1NyIsIm5hbWUiOiJEb25lIn1dfSx7ImlkIjoiUFZURl9sQUhPQlJvZlVzNEJldW03emhaR3BwMCIsIm5hbWUiOiJMYWJlbHMiLCJkYXRhVHlwZSI6IkxBQkVMUyJ9LHsiaWQiOiJQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHA0IiwibmFtZSI6IkxpbmtlZCBwdWxsIHJlcXVlc3RzIiwiZGF0YVR5cGUiOiJMSU5LRURfUFVMTF9SRVFVRVNUUyJ9LHsiaWQiOiJQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHA4IiwibmFtZSI6Ik1pbGVzdG9uZSIsImRhdGFUeXBlIjoiTUlMRVNUT05FIn0seyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkdwcUEiLCJuYW1lIjoiUmVwb3NpdG9yeSIsImRhdGFUeXBlIjoiUkVQT1NJVE9SWSJ9LHsiaWQiOiJQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHFFIiwibmFtZSI6IlJldmlld2VycyIsImRhdGFUeXBlIjoiUkVWSUVXRVJTIn0seyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkdwcUkiLCJuYW1lIjoiUGFyZW50IGlzc3VlIiwiZGF0YVR5cGUiOiJQQVJFTlRfSVNTVUUifSx7ImlkIjoiUFZURl9sQUhPQlJvZlVzNEJldW03emhaR3BxTSIsIm5hbWUiOiJTdWItaXNzdWVzIHByb2dyZXNzIiwiZGF0YVR5cGUiOiJTVUJfSVNTVUVTX1BST0dSRVNTIn0seyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkdwcVEiLCJuYW1lIjoiQ3JlYXRlZCIsImRhdGFUeXBlIjoiQ1JFQVRFRCJ9LHsiaWQiOiJQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpHcHFVIiwibmFtZSI6IlVwZGF0ZWQiLCJkYXRhVHlwZSI6IlVQREFURUQifSx7ImlkIjoiUFZURl9sQUhPQlJvZlVzNEJldW03emhaR3BxWSIsIm5hbWUiOiJDbG9zZWQiLCJkYXRhVHlwZSI6IkNMT1NFRCJ9LHsiaWQiOiJQVlRTU0ZfbEFIT0JSb2ZVczRCZXVtN3poWkdxdDAiLCJuYW1lIjoiV29ya2Zsb3ciLCJvcHRpb25zIjpbeyJpZCI6ImQ5MjE5MTFjIiwibmFtZSI6IkJhY2tsb2cifSx7ImlkIjoiMDM2YTlmZGMiLCJuYW1lIjoiR2F0ZSAwIOKAlCBWZXJpZnlpbmcifSx7ImlkIjoiZjZiNTcxNTMiLCJuYW1lIjoiR2F0ZSAxIOKAlCBQbGFubmluZyJ9LHsiaWQiOiIyYWQ2YWY4NSIsIm5hbWUiOiJOZWVkcyBQbGFuIEFwcHJvdmFsIn0seyJpZCI6IjQxMzExN2Y5IiwibmFtZSI6IkdhdGUgMiDigJQgSW1wbGVtZW50aW5nIn0seyJpZCI6IjliOGE1YTYyIiwibmFtZSI6Ik5lZWRzIFJldmlldyJ9LHsiaWQiOiI0NjBhNmU1YiIsIm5hbWUiOiJSZXBhaXIgUmVxdWlyZWQifSx7ImlkIjoiMjFiMDZlNjEiLCJuYW1lIjoiQ29kZXggQ29uc3VsdGF0aW9uIn0seyJpZCI6IjJkM2M0OTY2IiwibmFtZSI6Ikh1bWFuIERpYWdub3NpcyBSZXF1aXJlZCJ9LHsiaWQiOiJkMjc0NjczNyIsIm5hbWUiOiJCbG9ja2VkIn0seyJpZCI6ImVlNDg0MTViIiwibmFtZSI6Ik5lZWRzIFJlbGVhc2UgQXBwcm92YWwifSx7ImlkIjoiZmI4MmNmZjAiLCJuYW1lIjoiR2F0ZSAzIOKAlCBSZWxlYXNpbmcifSx7ImlkIjoiNTQ0MDZmZTMiLCJuYW1lIjoiRG9uZSJ9LHsiaWQiOiI5YmI0ODE0NCIsIm5hbWUiOiJBYm9ydGVkIn1dfSx7ImlkIjoiUFZUU1NGX2xBSE9CUm9mVXM0QmV1bTd6aFpKYnhRIiwibmFtZSI6IkdhdGUiLCJvcHRpb25zIjpbeyJpZCI6IjM5Njk2YmI1IiwibmFtZSI6IuKAlCJ9LHsiaWQiOiI2OTIyMDAzYSIsIm5hbWUiOiJHMCBwYXNzZWQifSx7ImlkIjoiMmEyZmYwMGUiLCJuYW1lIjoiRzEgcGFzc2VkIn0seyJpZCI6ImJkMjgwZTIxIiwibmFtZSI6IkcyIHBhc3NlZCJ9LHsiaWQiOiIzMmQ4Y2FjNyIsIm5hbWUiOiJHMyBwYXNzZWQifV19LHsiaWQiOiJQVlRTU0ZfbEFIT0JSb2ZVczRCZXVtN3poWkpjQkkiLCJuYW1lIjoiRXhlY3V0b3IiLCJvcHRpb25zIjpbeyJpZCI6IjAyYmQ1NTM0IiwibmFtZSI6Ikh1bWFuIn0seyJpZCI6ImNlODU5YzdkIiwibmFtZSI6IkNsYXVkZSBMZWFkIn0seyJpZCI6ImY1NDJjM2EzIiwibmFtZSI6IkNsYXVkZSBSZWFkLU9ubHkgVGVhbSJ9LHsiaWQiOiI1ZmU3MWU1NiIsIm5hbWUiOiJDb2RleCBDb25zdWx0YW50In0seyJpZCI6IjAxYzZmODYxIiwibmFtZSI6IkNvd29yayBDb29yZGluYXRvciJ9XX0seyJpZCI6IlBWVFNTRl9sQUhPQlJvZlVzNEJldW03emhaSmNDOCIsIm5hbWUiOiJOZXh0IEFwcHJvdmFsIiwib3B0aW9ucyI6W3siaWQiOiI0NTBlZTEzMCIsIm5hbWUiOiLigJQifSx7ImlkIjoiZTQ1YjlhZTUiLCJuYW1lIjoiUGxhbiBBcHByb3ZhbCAoRzHihpJHMikifSx7ImlkIjoiMTY4NGQ1ZmQiLCJuYW1lIjoiUmVsZWFzZSBBcHByb3ZhbCAoRzLihpJHMykifSx7ImlkIjoiMTcxMDJiZmYiLCJuYW1lIjoiRGlydHkgQmFzZWxpbmUgQWNjZXB0YW5jZSJ9LHsiaWQiOiI2NTEyY2Q0YyIsIm5hbWUiOiJTY29wZSAvIEFsbG93bGlzdCBDaGFuZ2UifSx7ImlkIjoiMDY3YWY4NDUiLCJuYW1lIjoiRW52aXJvbm1lbnQgQ2hhbmdlIn0seyJpZCI6IjUwMmI2MDgwIiwibmFtZSI6IlNlc3Npb24gUGVyc2lzdGVuY2UifSx7ImlkIjoiY2FjZjRmMTYiLCJuYW1lIjoiV29ya3RyZWUgRXhjZXB0aW9uIn0seyJpZCI6IjA3ZTU3MDUyIiwibmFtZSI6Ikh1bWFuIERpYWdub3NpcyJ9XX0seyJpZCI6IlBWVFNTRl9sQUhPQlJvZlVzNEJldW03emhaSmNEMCIsIm5hbWUiOiJFbnZpcm9ubWVudCIsIm9wdGlvbnMiOlt7ImlkIjoiODMzZDZiMTYiLCJuYW1lIjoid3NsIn0seyJpZCI6ImI5YmRkYmIyIiwibmFtZSI6IndpbmRvd3MifSx7ImlkIjoiNzRkNzVmMGUiLCJuYW1lIjoibWFjb3MtYXV0aG9yaXR5In0seyJpZCI6IjFlNDNlYzg1IiwibmFtZSI6Im1peGVkLXNlZS1wcm9zZSJ9XX0seyJpZCI6IlBWVFNTRl9sQUhPQlJvZlVzNEJldW03emhaSmNENCIsIm5hbWUiOiJSaXNrIiwib3B0aW9ucyI6W3siaWQiOiJlMjkxMjQ5YyIsIm5hbWUiOiJsb3cifSx7ImlkIjoiMThjMGE1ZjQiLCJuYW1lIjoibWVkaXVtIn0seyJpZCI6Ijg2OTQ5YTc2IiwibmFtZSI6ImhpZ2gifV19LHsiaWQiOiJQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY0pNIiwibmFtZSI6IlN0YWdlIiwiZGF0YVR5cGUiOiJURVhUIn0seyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjS0UiLCJuYW1lIjoiUGhhc2UiLCJkYXRhVHlwZSI6IlRFWFQifSx7ImlkIjoiUFZURl9sQUhPQlJvZlVzNEJldW03emhaSmNPTSIsIm5hbWUiOiJTbGljZSIsImRhdGFUeXBlIjoiVEVYVCJ9LHsiaWQiOiJQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY1BVIiwibmFtZSI6IkJhc2UgU0hBIiwiZGF0YVR5cGUiOiJURVhUIn0seyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjUU0iLCJuYW1lIjoiQWN0aXZlIEJyYW5jaCIsImRhdGFUeXBlIjoiVEVYVCJ9LHsiaWQiOiJQVlRGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY1FvIiwibmFtZSI6IlBhcmFsbGVsIEdyb3VwIiwiZGF0YVR5cGUiOiJURVhUIn0seyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjU1UiLCJuYW1lIjoiV3JpdGVyIExlYXNlIiwiZGF0YVR5cGUiOiJURVhUIn0seyJpZCI6IlBWVEZfbEFIT0JSb2ZVczRCZXVtN3poWkpjVE0iLCJuYW1lIjoiTGFzdCBDaGVja3BvaW50IiwiZGF0YVR5cGUiOiJURVhUIn1dfX19fQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"fields\":{\"nodes\":[{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGppo\",\"name\":\"Title\",\"dataType\":\"TITLE\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpps\",\"name\":\"Assignees\",\"dataType\":\"ASSIGNEES\"},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZGppw\",\"name\":\"Status\",\"options\":[{\"id\":\"f75ad846\",\"name\":\"Todo\"},{\"id\":\"47fc9ee4\",\"name\":\"In Progress\"},{\"id\":\"98236657\",\"name\":\"Done\"}]},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpp0\",\"name\":\"Labels\",\"dataType\":\"LABELS\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpp4\",\"name\":\"Linked pull requests\",\"dataType\":\"LINKED_PULL_REQUESTS\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpp8\",\"name\":\"Milestone\",\"dataType\":\"MILESTONE\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpqA\",\"name\":\"Repository\",\"dataType\":\"REPOSITORY\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpqE\",\"name\":\"Reviewers\",\"dataType\":\"REVIEWERS\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpqI\",\"name\":\"Parent issue\",\"dataType\":\"PARENT_ISSUE\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpqM\",\"name\":\"Sub-issues progress\",\"dataType\":\"SUB_ISSUES_PROGRESS\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpqQ\",\"name\":\"Created\",\"dataType\":\"CREATED\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpqU\",\"name\":\"Updated\",\"dataType\":\"UPDATED\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZGpqY\",\"name\":\"Closed\",\"dataType\":\"CLOSED\"},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZGqt0\",\"name\":\"Workflow\",\"options\":[{\"id\":\"d921911c\",\"name\":\"Backlog\"},{\"id\":\"036a9fdc\",\"name\":\"Gate 0 — Verifying\"},{\"id\":\"f6b57153\",\"name\":\"Gate 1 — Planning\"},{\"id\":\"2ad6af85\",\"name\":\"Needs Plan Approval\"},{\"id\":\"413117f9\",\"name\":\"Gate 2 — Implementing\"},{\"id\":\"9b8a5a62\",\"name\":\"Needs Review\"},{\"id\":\"460a6e5b\",\"name\":\"Repair Required\"},{\"id\":\"21b06e61\",\"name\":\"Codex Consultation\"},{\"id\":\"2d3c4966\",\"name\":\"Human Diagnosis Required\"},{\"id\":\"d2746737\",\"name\":\"Blocked\"},{\"id\":\"ee48415b\",\"name\":\"Needs Release Approval\"},{\"id\":\"fb82cff0\",\"name\":\"Gate 3 — Releasing\"},{\"id\":\"54406fe3\",\"name\":\"Done\"},{\"id\":\"9bb48144\",\"name\":\"Aborted\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJbxQ\",\"name\":\"Gate\",\"options\":[{\"id\":\"39696bb5\",\"name\":\"—\"},{\"id\":\"6922003a\",\"name\":\"G0 passed\"},{\"id\":\"2a2ff00e\",\"name\":\"G1 passed\"},{\"id\":\"bd280e21\",\"name\":\"G2 passed\"},{\"id\":\"32d8cac7\",\"name\":\"G3 passed\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJcBI\",\"name\":\"Executor\",\"options\":[{\"id\":\"02bd5534\",\"name\":\"Human\"},{\"id\":\"ce859c7d\",\"name\":\"Claude Lead\"},{\"id\":\"f542c3a3\",\"name\":\"Claude Read-Only Team\"},{\"id\":\"5fe71e56\",\"name\":\"Codex Consultant\"},{\"id\":\"01c6f861\",\"name\":\"Cowork Coordinator\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJcC8\",\"name\":\"Next Approval\",\"options\":[{\"id\":\"450ee130\",\"name\":\"—\"},{\"id\":\"e45b9ae5\",\"name\":\"Plan Approval (G1→G2)\"},{\"id\":\"1684d5fd\",\"name\":\"Release Approval (G2→G3)\"},{\"id\":\"17102bff\",\"name\":\"Dirty Baseline Acceptance\"},{\"id\":\"6512cd4c\",\"name\":\"Scope / Allowlist Change\"},{\"id\":\"067af845\",\"name\":\"Environment Change\"},{\"id\":\"502b6080\",\"name\":\"Session Persistence\"},{\"id\":\"cacf4f16\",\"name\":\"Worktree Exception\"},{\"id\":\"07e57052\",\"name\":\"Human Diagnosis\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJcD0\",\"name\":\"Environment\",\"options\":[{\"id\":\"833d6b16\",\"name\":\"wsl\"},{\"id\":\"b9bddbb2\",\"name\":\"windows\"},{\"id\":\"74d75f0e\",\"name\":\"macos-authority\"},{\"id\":\"1e43ec85\",\"name\":\"mixed-see-prose\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJcD4\",\"name\":\"Risk\",\"options\":[{\"id\":\"e291249c\",\"name\":\"low\"},{\"id\":\"18c0a5f4\",\"name\":\"medium\"},{\"id\":\"86949a76\",\"name\":\"high\"}]},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZJcJM\",\"name\":\"Stage\",\"dataType\":\"TEXT\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZJcKE\",\"name\":\"Phase\",\"dataType\":\"TEXT\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZJcOM\",\"name\":\"Slice\",\"dataType\":\"TEXT\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZJcPU\",\"name\":\"Base SHA\",\"dataType\":\"TEXT\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZJcQM\",\"name\":\"Active Branch\",\"dataType\":\"TEXT\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZJcQo\",\"name\":\"Parallel Group\",\"dataType\":\"TEXT\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZJcSU\",\"name\":\"Writer Lease\",\"dataType\":\"TEXT\"},{\"id\":\"PVTF_lAHOBRofUs4Beum7zhZJcTM\",\"name\":\"Last Checkpoint\",\"dataType\":\"TEXT\"}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T02:57:46.330065Z",
+  "ended_at": "2026-09-02T02:57:46.977740Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Entry: the single-select option catalogue read FRESH so every write below resolves by exact label to exactly one id. Labels are never re-typed through this host's console."
+}

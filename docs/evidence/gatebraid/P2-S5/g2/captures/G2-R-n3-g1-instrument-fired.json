@@ -1,0 +1,71 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R-n3-g1-instrument-fired",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g1/negative-criteria.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2013,
+      "sha256": "6d4a82fa9e8144144552323ceb0cff2cd6fe6a840716542507c02b56569380dd",
+      "data": "Y2hhbmdlZC1wYXRoIHNvdXJjZSA6IGdpdA0KYmFzZSAgICAgICAgICAgICAgICA6IGNiZDA2NTg5M2IzN2YyMDcxM2FlMzViOGQyNjczYmYyNmZlNGQyYWQNCmNoYW5nZWQgcGF0aHMgICAgICAgOiAxNzkNCiAgIGJpbi9nYXRlYnJhaWQtcmVhZHktc2VsZnRlc3QucHkNCiAgIGJpbi9nYXRlYnJhaWQtcmVhZHkucHkNCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWJhc2VsaW5lLW1haW4uanNvbg0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtY2FwdHVyZXMtdmFsaWRhdGlvbi1wYXNzMS5qc29uDQogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1jYXB0dXJlcy12YWxpZGF0aW9uLXBhc3MyLmpzb24NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNhcHR1cmVzLXZhbGlkYXRpb24uanNvbg0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtY2xvc2VkLXNldC1zd2VlcC1mYWxzaWZ5LXBhc3MxLmpzb24NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNsb3NlZC1zZXQtc3dlZXAtZmFsc2lmeS5qc29uDQogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9jYXB0dXJlcy9HMC1jbG9zZWQtc2V0LXN3ZWVwLXBhc3MxLmpzb24NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWNsb3NlZC1zZXQtc3dlZXAuanNvbg0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXMvRzAtZW52LWZpZWxkLmpzb24NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2NhcHR1cmVzL0cwLWZyb250aWVyLXJ1bi5qc29uDQogICBbLi4uIDE2NyBtb3JlOyB0aGUgZnVsbCBzZXQgaXMgdGhlIHNjb3BlLCBub3QgdGhpcyBsaXN0aW5nXQ0KYWxsb3dsaXN0ICAgICAgICAgICA6IGJpbi8sIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1Lw0KY29kZSBzdXJmYWNlICAgICAgICA6IGJpbi9nYXRlYnJhaWQtcmVhZHkucHksIGJpbi9nYXRlYnJhaWQtcmVhZHktc2VsZnRlc3QucHkNCnRyYW5zaXRpdmUgdGFyZ2V0ICAgOiBiaW4vZ2F0ZWJyYWlkLXNuYXBzaG90LnB5DQpjb25zdW1lciAgICAgICAgICAgIDogYmluL2dhdGVicmFpZC1mcm9udGllci5weQ0KZnJvemVuIHJvb3QgICAgICAgICA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1DQoNCk4xIGV2ZXJ5IGNoYW5nZWQgcGF0aCBpbnNpZGUgdGhlIGFsbG93bGlzdCAgICAgICAgIDogaG9sZHMNCk4yIHVuZGVyIGJpbi8sIG9ubHkgdGhlIHJlYWR5IHBhaXIgaXMgdG91Y2hlZCAgICAgIDogaG9sZHMNCk4zIG5vIGZyb3plbiBpbnB1dCBpcyB3cml0dGVuICAgICAgICAgICAgICAgICAgICAgIDogRklSRUQNCiAgICAgIHJldGFpbmVkIGZpbGUgY291bnQ6IDYyIChleHBlY3RlZCA0MykNCiAgICAgIHJldGFpbmVkLXNldCBwYXRoLWxpc3QgZGlnZXN0OiA0ZWVmOWRmNWUxODEzN2I5ZjQyN2I2ZWZjZDQ0OTRjN2ZmMWI5YTQ3Y2JiYmUwYzM5YjhmMDY3NDI3ZjAxZDU2IChleHBlY3RlZCA4M2IzYTI3M2E5YmQ3ZGE0ZTllMTE0Njk1MzlhNWVlZTBmMjhiNTNmNWI5MjRjMGU2MTM0YWNkOGJhNDlhNzBmKQ0KTjQgbm8gcnVudGltZSBkZXBlbmRlbmN5LCBubyBIVFRQIGNsaWVudCAgICAgICAgICAgOiBob2xkcw0KTjUgbm8gY29udHJvbC1wbGFuZSBtdXRhdGlvbiwgbm8gZmlsZSB3cml0dGVuICAgICAgOiBob2xkcw0KTjYgcmVhZHkncyBjb2RlcyBzaXQgb3V0c2lkZSBib3RoIGNvbXBvc2VkIHNwYWNlcyAgOiBob2xkcw0KICAgICAgY29uc3VtZXIgZGVjbGFyZWQgY29kZSBzcGFjZSwgcmVhZCBmcm9tIGl0cyBkb2NzdHJpbmc6IDAsIDEsIDIsIDMNCiAgICAgIHByb2R1Y2VyIGRlY2xhcmVkIGNvZGUgc3BhY2UsIHJlYWQgZnJvbSBpdHMgZG9jc3RyaW5nOiAwLCAxLCAyLCAzDQoNCk5FR0FUSVZFIENSSVRFUklBIEZJUkVEOiBOMw0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "changed-path source : git\r\nbase                : cbd065893b37f20713ae35b8d2673bf26fe4d2ad\r\nchanged paths       : 179\r\n   bin/gatebraid-ready-selftest.py\r\n   bin/gatebraid-ready.py\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-baseline-main.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation-pass1.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation-pass2.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-captures-validation.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-falsify-pass1.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-falsify.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep-pass1.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-closed-set-sweep.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-env-field.json\r\n   docs/evidence/gatebraid/P2-S5/captures/G0-frontier-run.json\r\n   [... 167 more; the full set is the scope, not this listing]\r\nallowlist           : bin/, docs/evidence/gatebraid/P2-S5/\r\ncode surface        : bin/gatebraid-ready.py, bin/gatebraid-ready-selftest.py\r\ntransitive target   : bin/gatebraid-snapshot.py\r\nconsumer            : bin/gatebraid-frontier.py\r\nfrozen root         : docs/evidence/gatebraid/P2-S5\r\n\r\nN1 every changed path inside the allowlist         : holds\r\nN2 under bin/, only the ready pair is touched      : holds\r\nN3 no frozen input is written                      : FIRED\r\n      retained file count: 62 (expected 43)\r\n      retained-set path-list digest: 4eef9df5e18137b9f427b6efcd4494c7ff1b9a47cbbbe0c39b8f067427f01d56 (expected 83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f)\r\nN4 no runtime dependency, no HTTP client           : holds\r\nN5 no control-plane mutation, no file written      : holds\r\nN6 ready's codes sit outside both composed spaces  : holds\r\n      consumer declared code space, read from its docstring: 0, 1, 2, 3\r\n      producer declared code space, read from its docstring: 0, 1, 2, 3\r\n\r\nNEGATIVE CRITERIA FIRED: N3\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:08:46.485852Z",
+  "ended_at": "2026-09-02T03:08:46.734730Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g1/negative-criteria.py",
+      "sha256": "5014fec93f73b70d218e9f783b20f3034dd45a207185e1b0b181bb133d773621"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The Gate 1 negative-criteria instrument run at Gate 2. N3's content limb FIRES because its exclusion set is hard-coded to the two subdirectories that existed when it was written; g2/ did not. The frozen plan's own text says 'with the re-run and this gate's own subdirectories excluded'. The property holds; this mechanisation under-applies it. The g1 file is NOT edited - it is pinned by Gate 1's captures and rides on byte-identical."
+}

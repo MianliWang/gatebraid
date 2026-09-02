@@ -1,0 +1,81 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D10-negative-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py",
+      "--changed-from",
+      "docs/evidence/gatebraid/P2-S5/g1/SEED-negative-criteria.txt",
+      "--code-surface-dir",
+      "docs/evidence/gatebraid/P2-S5/g1/falsification",
+      "--frozen-root",
+      "docs/evidence/gatebraid/P2-S5/g1/falsification/frozen-root"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3666,
+      "sha256": "a154c17feadb3596b73b89744cc76acf5d98c3951f7270c600c18026f4224fbc",
+      "data": "Y2hhbmdlZC1wYXRoIHNvdXJjZSA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2cxL1NFRUQtbmVnYXRpdmUtY3JpdGVyaWEudHh0DQpiYXNlICAgICAgICAgICAgICAgIDogY2JkMDY1ODkzYjM3ZjIwNzEzYWUzNWI4ZDI2NzNiZjI2ZmU0ZDJhZA0KY2hhbmdlZCBwYXRocyAgICAgICA6IDkNCiAgIGJpbi9nYXRlYnJhaWQtcmVhZHkucHkNCiAgIGJpbi9nYXRlYnJhaWQtcmVhZHktc2VsZnRlc3QucHkNCiAgIGJpbi9nYXRlYnJhaWQtZnJvbnRpZXIucHkNCiAgIGJpbi9nYXRlYnJhaWQtbzAtYWNjZXB0YW5jZS5weQ0KICAgc2NoZW1hL3NuYXBzaG90LnNjaGVtYS5qc29uDQogICBmaXh0dXJlcy9pbnN0cnVtZW50cy9FWFBFQ1RBVElPTlMuanNvbg0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvZ2F0ZTEubWQNCiAgIFJFQURNRS5tZA0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZ2F0ZTEubWQNCmFsbG93bGlzdCAgICAgICAgICAgOiBiaW4vLCBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS8NCmNvZGUgc3VyZmFjZSAgICAgICAgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMS9mYWxzaWZpY2F0aW9uXGdhdGVicmFpZC1yZWFkeS5weSwgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvblxnYXRlYnJhaWQtcmVhZHktc2VsZnRlc3QucHkNCnRyYW5zaXRpdmUgdGFyZ2V0ICAgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMS9mYWxzaWZpY2F0aW9uXGdhdGVicmFpZC1zbmFwc2hvdC5weQ0KY29uc3VtZXIgICAgICAgICAgICA6IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2cxL2ZhbHNpZmljYXRpb25cZ2F0ZWJyYWlkLWZyb250aWVyLnB5DQpmcm96ZW4gcm9vdCAgICAgICAgIDogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvbi9mcm96ZW4tcm9vdA0KDQpOMSBldmVyeSBjaGFuZ2VkIHBhdGggaW5zaWRlIHRoZSBhbGxvd2xpc3QgICAgICAgICA6IEZJUkVEDQogICAgICBvdXRzaWRlOiBzY2hlbWEvc25hcHNob3Quc2NoZW1hLmpzb24NCiAgICAgIG91dHNpZGU6IGZpeHR1cmVzL2luc3RydW1lbnRzL0VYUEVDVEFUSU9OUy5qc29uDQogICAgICBvdXRzaWRlOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNi9nYXRlMS5tZA0KICAgICAgb3V0c2lkZTogUkVBRE1FLm1kDQpOMiB1bmRlciBiaW4vLCBvbmx5IHRoZSByZWFkeSBwYWlyIGlzIHRvdWNoZWQgICAgICA6IEZJUkVEDQogICAgICBub3QgaW4gdGhlIGNvZGUgc3VyZmFjZTogYmluL2dhdGVicmFpZC1mcm9udGllci5weQ0KICAgICAgbm90IGluIHRoZSBjb2RlIHN1cmZhY2U6IGJpbi9nYXRlYnJhaWQtbzAtYWNjZXB0YW5jZS5weQ0KTjMgbm8gZnJvemVuIGlucHV0IGlzIHdyaXR0ZW4gICAgICAgICAgICAgICAgICAgICAgOiBGSVJFRA0KICAgICAgZnJvemVuIHByZWZpeDogc2NoZW1hL3NuYXBzaG90LnNjaGVtYS5qc29uDQogICAgICBmcm96ZW4gcHJlZml4OiBmaXh0dXJlcy9pbnN0cnVtZW50cy9FWFBFQ1RBVElPTlMuanNvbg0KICAgICAgZnJvemVuIHByZWZpeDogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvZ2F0ZTEubWQNCiAgICAgIHJldGFpbmVkIGZpbGUgY291bnQ6IDEgKGV4cGVjdGVkIDQzKQ0KICAgICAgcmV0YWluZWQtc2V0IHBhdGgtbGlzdCBkaWdlc3Q6IDc4YjEwMzM1MzliMmU5ZmI2MDEyODkyNzY0MWY4OTA4ZjlhNjdiM2ZmNjE4M2U2NTdmYmE1OTFiYzdkZjg1M2IgKGV4cGVjdGVkIDgzYjNhMjczYTliZDdkYTRlOWUxMTQ2OTUzOWE1ZWVlMGYyOGI1M2Y1YjkyNGMwZTYxMzRhY2Q4YmE0OWE3MGYpDQogICAgICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMS9mYWxzaWZpY2F0aW9uL2Zyb3plbi1yb290L2dhdGUwLm1kOiA5ZjM3NjBmYzQ1OGZlNmU4N2I2MTg3YmJlNzg3ZmI1ZDAxZTdhZWI0MjI4MWZkNWE1YmJlNjk5YjE3OGRlOGRmIChleHBlY3RlZCBiZTdjMzM4ODk2YjEwMTU5MjM2NzE5ODgxNjZkNTVhZjNiZDU5ZTAyODY2MGNlODlkZmQzYjY5YmM3MjUxNTEzKQ0KICAgICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvbi9mcm96ZW4tcm9vdC9nMHIvZ2F0ZTAubWQ6IGZhNWJjM2Y3OWU1YTU5OTg2YmQ5NzU4NWQ0MWRjMzRlMjdiNDVjMTc3MGMyZWUyMGM1OTM5MzQyODhkZDM1ZmMgKGV4cGVjdGVkIDk1ZmYzOTExMWI0YThiOGFhNDNjMDIyZTg3N2M5OGFmNWY4NjhiMDU0ZjRhYzJjMTE2YWU1YzY3MzI3YmM0ZTYpDQpONCBubyBydW50aW1lIGRlcGVuZGVuY3ksIG5vIEhUVFAgY2xpZW50ICAgICAgICAgICA6IEZJUkVEDQogICAgICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMS9mYWxzaWZpY2F0aW9uXGdhdGVicmFpZC1yZWFkeS5weTogcmVxdWVzdHMgKG5ldHdvcmsgY2xpZW50IG1vZHVsZSkNCiAgICAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2cxL2ZhbHNpZmljYXRpb25cZ2F0ZWJyYWlkLXJlYWR5LXNlbGZ0ZXN0LnB5OiB1cmxsaWIucmVxdWVzdCAobmV0d29yayBjbGllbnQgbW9kdWxlKQ0KTjUgbm8gY29udHJvbC1wbGFuZSBtdXRhdGlvbiwgbm8gZmlsZSB3cml0dGVuICAgICAgOiBGSVJFRA0KICAgICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvblxnYXRlYnJhaWQtcmVhZHkucHk6MjMgW2ZpbGUtbG9jYWxdIGdyYXBocWwgZG9jdW1lbnQgb3BlbnMgYSBtdXRhdGlvbg0KICAgICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvblxnYXRlYnJhaWQtcmVhZHkucHk6MjggW2ZpbGUtbG9jYWxdIG9wZW4oKSBub3QgcHJvdmFibHkgcmVhZC1vbmx5IChtb2RlICd3JykNCiAgICAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2cxL2ZhbHNpZmljYXRpb25cZ2F0ZWJyYWlkLXNuYXBzaG90LnB5OjIyIFt0cmFuc2l0aXZlXSBncmFwaHFsIGRvY3VtZW50IG9wZW5zIGEgbXV0YXRpb24NCk42IHJlYWR5J3MgY29kZXMgc2l0IG91dHNpZGUgYm90aCBjb21wb3NlZCBzcGFjZXMgIDogRklSRUQNCiAgICAgIGNvbnN1bWVyIGRlY2xhcmVkIGNvZGUgc3BhY2UsIHJlYWQgZnJvbSBpdHMgZG9jc3RyaW5nOiAwLCAxLCAyLCAzDQogICAgICBwcm9kdWNlciBkZWNsYXJlZCBjb2RlIHNwYWNlLCByZWFkIGZyb20gaXRzIGRvY3N0cmluZzogMCwgMSwgMiwgMw0KICAgICAgW2NvbGxpc2lvbl0gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvblxnYXRlYnJhaWQtcmVhZHkucHk6IGV4aXQgMCBpcyBpbnNpZGUgYSBjb21wb3NlZCB0b29sJ3MgZGVjbGFyZWQgc3BhY2UNCiAgICAgIFtjb2xsaXNpb25dIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2cxL2ZhbHNpZmljYXRpb25cZ2F0ZWJyYWlkLXJlYWR5LnB5OiBleGl0IDIgaXMgaW5zaWRlIGEgY29tcG9zZWQgdG9vbCdzIGRlY2xhcmVkIHNwYWNlDQogICAgICBbbWlzc2luZ10gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvblxnYXRlYnJhaWQtcmVhZHkucHk6IHRoZSBmcm96ZW4gc2NvcGUncyBleGl0IDExIGlzIG5vdCBkZWNsYXJlZA0KDQpORUdBVElWRSBDUklURVJJQSBGSVJFRDogTjEsIE4yLCBOMywgTjQsIE41LCBONg0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "changed-path source : docs/evidence/gatebraid/P2-S5/g1/SEED-negative-criteria.txt\r\nbase                : cbd065893b37f20713ae35b8d2673bf26fe4d2ad\r\nchanged paths       : 9\r\n   bin/gatebraid-ready.py\r\n   bin/gatebraid-ready-selftest.py\r\n   bin/gatebraid-frontier.py\r\n   bin/gatebraid-o0-acceptance.py\r\n   schema/snapshot.schema.json\r\n   fixtures/instruments/EXPECTATIONS.json\r\n   docs/evidence/gatebraid/P2-S6/gate1.md\r\n   README.md\r\n   docs/evidence/gatebraid/P2-S5/gate1.md\r\nallowlist           : bin/, docs/evidence/gatebraid/P2-S5/\r\ncode surface        : docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready.py, docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready-selftest.py\r\ntransitive target   : docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-snapshot.py\r\nconsumer            : docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-frontier.py\r\nfrozen root         : docs/evidence/gatebraid/P2-S5/g1/falsification/frozen-root\r\n\r\nN1 every changed path inside the allowlist         : FIRED\r\n      outside: schema/snapshot.schema.json\r\n      outside: fixtures/instruments/EXPECTATIONS.json\r\n      outside: docs/evidence/gatebraid/P2-S6/gate1.md\r\n      outside: README.md\r\nN2 under bin/, only the ready pair is touched      : FIRED\r\n      not in the code surface: bin/gatebraid-frontier.py\r\n      not in the code surface: bin/gatebraid-o0-acceptance.py\r\nN3 no frozen input is written                      : FIRED\r\n      frozen prefix: schema/snapshot.schema.json\r\n      frozen prefix: fixtures/instruments/EXPECTATIONS.json\r\n      frozen prefix: docs/evidence/gatebraid/P2-S6/gate1.md\r\n      retained file count: 1 (expected 43)\r\n      retained-set path-list digest: 78b1033539b2e9fb60128927641f8908f9a67b3ff6183e657fba591bc7df853b (expected 83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f)\r\n      docs/evidence/gatebraid/P2-S5/g1/falsification/frozen-root/gate0.md: 9f3760fc458fe6e87b6187bbe787fb5d01e7aeb42281fd5a5bbe699b178de8df (expected be7c338896b1015923671988166d55af3bd59e028660ce89dfd3b69bc7251513)\r\n      docs/evidence/gatebraid/P2-S5/g1/falsification/frozen-root/g0r/gate0.md: fa5bc3f79e5a59986bd97585d41dc34e27b45c1770c2ee20c593934288dd35fc (expected 95ff39111b4a8b8aa43c022e877c98af5f868b054f4ac2c116ae5c67327bc4e6)\r\nN4 no runtime dependency, no HTTP client           : FIRED\r\n      docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready.py: requests (network client module)\r\n      docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready-selftest.py: urllib.request (network client module)\r\nN5 no control-plane mutation, no file written      : FIRED\r\n      docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready.py:23 [file-local] graphql document opens a mutation\r\n      docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready.py:28 [file-local] open() not provably read-only (mode 'w')\r\n      docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-snapshot.py:22 [transitive] graphql document opens a mutation\r\nN6 ready's codes sit outside both composed spaces  : FIRED\r\n      consumer declared code space, read from its docstring: 0, 1, 2, 3\r\n      producer declared code space, read from its docstring: 0, 1, 2, 3\r\n      [collision] docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready.py: exit 0 is inside a composed tool's declared space\r\n      [collision] docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready.py: exit 2 is inside a composed tool's declared space\r\n      [missing] docs/evidence/gatebraid/P2-S5/g1/falsification\\gatebraid-ready.py: the frozen scope's exit 11 is not declared\r\n\r\nNEGATIVE CRITERIA FIRED: N1, N2, N3, N4, N5, N6\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:09:32.768901Z",
+  "ended_at": "2026-09-02T03:09:32.879837Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py",
+      "sha256": "5c39068cdea67cbe786df26be3504b59cc1a2b0f6e39be537733e0110122e6ea"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g1/SEED-negative-criteria.txt",
+      "sha256": "1ffc293d445b165d0b5426b2e82a0afb60bf37dfc71f8eaa87595a980544825f"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "D10: the SAME g2 instrument pointed at the Gate 1 seeds. All six must fire on their substantive limbs, or the copy has been shown nothing."
+}

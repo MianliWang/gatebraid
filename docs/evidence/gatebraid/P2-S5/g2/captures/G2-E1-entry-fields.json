@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E1-entry-fields",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query{node(id:\"PVTI_lAHOBRofUs4Beum7zg4E8qs\"){... on ProjectV2Item{fieldValues(first:50){nodes{... on ProjectV2ItemFieldSingleSelectValue{optionId name field{... on ProjectV2FieldCommon{name}}} ... on ProjectV2ItemFieldTextValue{text field{... on ProjectV2FieldCommon{name}}}}}}}}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1931,
+      "sha256": "e4dd1292eb7714f1350fc3d66bc15f057168f72ba2a2c454f88bd741e62388a3",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiZmllbGRWYWx1ZXMiOnsibm9kZXMiOlt7fSx7fSx7InRleHQiOiJQMi1TNSDigJQgTzEgZ2F0ZWJyYWlkLXJlYWR5OiB0aGUgZm91cnRoIGF0dGVtcHQgb24gdGhlIGZyb3plbiBzY29wZSIsImZpZWxkIjp7Im5hbWUiOiJUaXRsZSJ9fSx7Im9wdGlvbklkIjoiZjc1YWQ4NDYiLCJuYW1lIjoiVG9kbyIsImZpZWxkIjp7Im5hbWUiOiJTdGF0dXMifX0seyJvcHRpb25JZCI6IjJhZDZhZjg1IiwibmFtZSI6Ik5lZWRzIFBsYW4gQXBwcm92YWwiLCJmaWVsZCI6eyJuYW1lIjoiV29ya2Zsb3cifX0seyJvcHRpb25JZCI6IjJhMmZmMDBlIiwibmFtZSI6IkcxIHBhc3NlZCIsImZpZWxkIjp7Im5hbWUiOiJHYXRlIn19LHsib3B0aW9uSWQiOiJlNDViOWFlNSIsIm5hbWUiOiJQbGFuIEFwcHJvdmFsIChHMeKGkkcyKSIsImZpZWxkIjp7Im5hbWUiOiJOZXh0IEFwcHJvdmFsIn19LHsib3B0aW9uSWQiOiIxZTQzZWM4NSIsIm5hbWUiOiJtaXhlZC1zZWUtcHJvc2UiLCJmaWVsZCI6eyJuYW1lIjoiRW52aXJvbm1lbnQifX0seyJvcHRpb25JZCI6ImNlODU5YzdkIiwibmFtZSI6IkNsYXVkZSBMZWFkIiwiZmllbGQiOnsibmFtZSI6IkV4ZWN1dG9yIn19LHsib3B0aW9uSWQiOiJlMjkxMjQ5YyIsIm5hbWUiOiJsb3ciLCJmaWVsZCI6eyJuYW1lIjoiUmlzayJ9fSx7InRleHQiOiJTMiIsImZpZWxkIjp7Im5hbWUiOiJTdGFnZSJ9fSx7InRleHQiOiJQMiIsImZpZWxkIjp7Im5hbWUiOiJQaGFzZSJ9fSx7InRleHQiOiJQMi1TNSIsImZpZWxkIjp7Im5hbWUiOiJTbGljZSJ9fSx7InRleHQiOiI3ZmYxZjg0ODY2MWFhYzIwYjM5MjFhZTQ3ZmUxNDAzOTRhNWQyNTg3IiwiZmllbGQiOnsibmFtZSI6IkJhc2UgU0hBIn19LHsidGV4dCI6IjIwMjYtMDktMDFUMjI6MjZaIFAyLVM1IEdBVEUgMSBDT01QTEVURTsgcGxhbithbGxvd2xpc3QgRlJPWkVOOyBOZWVkcyBQbGFuIEFwcHJvdmFsLiBTY29wZSBSRUFEIG5vdCByZW1lbWJlcmVkOiA3IGRvY3MgYXQgc2NyYXRjaCBkY2Q4ZTg1MSwgZWFjaCBzaGEyNTYtcGlubmVkLCBwaW4gRkFMU0lGSUVEIHZzIHRoZSBwYXJlbnQgY29tbWl0LiA0IGRlbHRhcyB2cyB0aGUgbGFuZGVkIHBhaXIuIEQtNCBmb3VuZCBCWSB0aGUgZHJ5LXJ1bjogdGhlIHByb2R1Y2VyIHJldHVybnMgZXhpdCAzIHdpdGggYSBERUdSQURFRCBET0NVTUVOVCwgc28gaXRzIHN0YXR1cyBpcyBJTlRFUlBSRVRFRCBub3QgdGVzdGVkIHZzIHplcm87IHRoZSBENiBjb21tYW5kIGNoYW5nZWQgYmVmb3JlIHRoZSBmcmVlemUuIEQxMSBjcml0ZXJpb24gY29ycmVjdGVkOiBjYXB0dXJlIHN0YW1wcyBwbGF0Zm9ybS5vcyB3c2wsIG5vdCBsaW51eC4gcGxhbl9oYXNoIGIyY2Q3NWY2LCBhbGxvd2xpc3RfaGFzaCA0MTEwYjMwMiwgZ2F0ZTEubWQgNzhhM2Y5NGEsIGVhY2ggcmVwcm9kdWNpYmxlLiA3IG9mIDggaGlzdG9yaWNhbCByZWFkeS1mYWlsdXJlIGNsYXNzZXMga2lsbGVkIGF0IEQyOyBJTi0wMSBhYnNlbnQgZnJvbSB0aGUgY29ycHVzIGJ5IGl0cyBvd24ga25vd25fbGltaXRhdGlvbiwgTk9UIGNsYWltZWQuIDYgbmVnYXRpdmUgY3JpdGVyaWEsIGFsbCBmYWxzaWZpZWQgYmVmb3JlIHRydXN0OyBOMyBjYXJyaWVzIGEgQ09OVEVOVCBsaW1iLiAyIHR5cGVkIGZhaWxzLCBkaXNjbG9zZWQ6IHNvdXJjZSBsaW1icyByZXBvcnQgdGhlIGFic2VudCBkZWxpdmVyYWJsZTsgdGhlIHN3ZWVwJ3MgZXhwbGFuYXRpb24gbGltYiBoYXMgcmVzaWR1ZSBhbmQgdGhlIGluc3RydW1lbnQgd2FzIE5PVCBlZGl0ZWQuIFJldGFpbmVkIHJlY29yZCByZS1tZWFzdXJlZCBVTkNIQU5HRUQgODNiM2EyNzMuIE5vIGNvbW1pdCwgcHVzaCwgYnJhbmNoLCBsZWFzZS4gaGFuZG9mZiA1NTAxMTU3MDUyLiBHQVRFIDIgTk9UIE9QRU5FRC4iLCJmaWVsZCI6eyJuYW1lIjoiTGFzdCBDaGVja3BvaW50In19XX19fX0=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"fieldValues\":{\"nodes\":[{},{},{\"text\":\"P2-S5 — O1 gatebraid-ready: the fourth attempt on the frozen scope\",\"field\":{\"name\":\"Title\"}},{\"optionId\":\"f75ad846\",\"name\":\"Todo\",\"field\":{\"name\":\"Status\"}},{\"optionId\":\"2ad6af85\",\"name\":\"Needs Plan Approval\",\"field\":{\"name\":\"Workflow\"}},{\"optionId\":\"2a2ff00e\",\"name\":\"G1 passed\",\"field\":{\"name\":\"Gate\"}},{\"optionId\":\"e45b9ae5\",\"name\":\"Plan Approval (G1→G2)\",\"field\":{\"name\":\"Next Approval\"}},{\"optionId\":\"1e43ec85\",\"name\":\"mixed-see-prose\",\"field\":{\"name\":\"Environment\"}},{\"optionId\":\"ce859c7d\",\"name\":\"Claude Lead\",\"field\":{\"name\":\"Executor\"}},{\"optionId\":\"e291249c\",\"name\":\"low\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S5\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"7ff1f848661aac20b3921ae47fe140394a5d2587\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-09-01T22:26Z P2-S5 GATE 1 COMPLETE; plan+allowlist FROZEN; Needs Plan Approval. Scope READ not remembered: 7 docs at scratch dcd8e851, each sha256-pinned, pin FALSIFIED vs the parent commit. 4 deltas vs the landed pair. D-4 found BY the dry-run: the producer returns exit 3 with a DEGRADED DOCUMENT, so its status is INTERPRETED not tested vs zero; the D6 command changed before the freeze. D11 criterion corrected: capture stamps platform.os wsl, not linux. plan_hash b2cd75f6, allowlist_hash 4110b302, gate1.md 78a3f94a, each reproducible. 7 of 8 historical ready-failure classes killed at D2; IN-01 absent from the corpus by its own known_limitation, NOT claimed. 6 negative criteria, all falsified before trust; N3 carries a CONTENT limb. 2 typed fails, disclosed: source limbs report the absent deliverable; the sweep's explanation limb has residue and the instrument was NOT edited. Retained record re-measured UNCHANGED 83b3a273. No commit, push, branch, lease. handoff 5501157052. GATE 2 NOT OPENED.\",\"field\":{\"name\":\"Last Checkpoint\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T02:57:23.798729Z",
+  "ended_at": "2026-09-02T02:57:24.502740Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Entry: the field state read fresh by node key before any write, with option ids, plus the labels."
+}
