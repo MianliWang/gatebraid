@@ -47,8 +47,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T08:02:36.678631Z",
-  "ended_at": "2026-09-03T08:02:36.775414Z",
+  "started_at": "2026-09-03T07:02:25.573566Z",
+  "ended_at": "2026-09-03T07:02:25.711789Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Falsification 2 of 2 at the Exit: every near-miss must remain residue."
+  "notes": "Falsification 2 of 2, re-run: every near-miss must remain residue."
 }

@@ -413,8 +413,8 @@ checks:
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S5/g2/captures/G2-record-validation.json"
   - name: review-five-items
-    command: "R1 through R5, by an independent read-only reviewer in a separate session"
-    result: not_run
+    command: "R1 through R5 by an independent read-only reviewer in a separate session; the fourth review, REVIEW-P2S5-G2-FULL-2.md region 1..26,354 sha256 b8aeac80d074a034f112e3f286df617b9a90c618f0404539c0ae27e37e37892b, returned PASS on all five"
+    result: pass
     output_ref: "#review-record"
 handoff_fingerprint:
   active_branch_head: "%(fp_head)s"
@@ -461,6 +461,7 @@ REVIEW_DISCLOSURES = [
     ("Review 1", []),                 # empty list == the reviewer disclosed none
     ("Review 2 - bounded re-check", []),
     ("Review 3 - full re-review", []),
+    ("Review 4 - full re-review 2", []),
 ]
 
 
@@ -729,11 +730,42 @@ def main():
       "entries rather than written as a literal. It is recorded in the Remediation "
       "record below and is not a repair attempt, so `repair_attempts` stays at two.")
     w()
-    w("### Review 4 - the next full re-review")
+    w("### Review 4 - full re-review of R1 through R5, after the second remediation")
     w()
-    w("Not yet run. The second disposition directs ONE FULL re-review of R1 through R5. "
-      "Its five verdicts are recorded here at the Exit, by the reviewer's values, last; "
-      "this record carries no verdict written by its implementer.")
+    w("The same independent reviewer, at head "
+      "`1fce6fb92914e767f5066b311a3fd0bc6cf5c8ef`. Report "
+      "`REVIEW-P2S5-G2-FULL-2.md`, measured region bytes 1..26,354, sha256 "
+      "`b8aeac80d074a034f112e3f286df617b9a90c618f0404539c0ae27e37e37892b`, "
+      "reproduced by the command that report states. Its verdict line reads "
+      "`VERDICTS: R1=PASS R2=PASS R3=PASS R4=PASS R5=PASS`, and its verdict table "
+      "agrees with that line.")
+    w()
+    w("| Item | Verdict | Evidence |")
+    w("|---|---|---|")
+    w("| R1 allowlist confinement | **pass** | all three commits confined to `g2/`; 0 "
+      "paths outside it in `541f6a25..tip`; `bin/` untouched; 265 paths base..tip, 0 "
+      "outside `write_domains`, all additions; porcelain 0; four ride-on pins unmoved. |")
+    w("| R2 test-plan coverage | **pass** | mapping unchanged; F-01's resolution stands - "
+      "the parser declares exactly `--strict` and `--snapshot-command`, the removed flags "
+      "exit 12 with empty stdout, `--help` grounded as test-plan command 1 of all three "
+      "M2 attempts. |")
+    w("| R3 evidence is rows that reproduce | **pass** | H-01 fixed structurally and "
+      "verified end to end; 18 rows re-run in bytes with 0 non-reproducing; classes, "
+      "elisions, citations, exclusions, both remedy sections and both remediation rows "
+      "all check out. |")
+    w("| R4 negative criteria | **pass** | the instrument byte-unchanged; D9 pinned to "
+      "`base..5b586029` exit 0, six holding over 219 paths; D10 exit 1, six firing. |")
+    w("| R5 no prohibited action | **pass** | 0 remote rows; 0 pull requests; 0 "
+      "non-sample hooks; one lease string; reflog clean across all fourteen commits; "
+      "`refs/codex` a single unchanged ref. |")
+    w()
+    w("- Reviewer write disclosure: %s"
+      % per_review_disclosure("Review 4 - full re-review 2"))
+    w("- Rules given to the reviewer: as above, verbatim in its mandate; its report "
+      "states which it was given. Its own report on the ignored path and its named "
+      "scratch files outside every repository are disclosed there, per the second "
+      "disposition's ruling on H-04, and the entry above is the repository-scoped "
+      "answer the contract's clause asks for.")
     w()
 
     w("## Repair record")

@@ -45,8 +45,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T08:02:55.845705Z",
-  "ended_at": "2026-09-03T08:02:57.081387Z",
+  "started_at": "2026-09-03T07:02:43.053865Z",
+  "ended_at": "2026-09-03T07:02:44.426864Z",
   "inputs": [],
   "outputs": [],
   "platform": {
@@ -61,5 +61,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Validation of the Exit record's FINAL bytes, WSL half, --report-id explicit."
+  "notes": "Validation of the remediated record's FINAL bytes, WSL half, --report-id explicit."
 }

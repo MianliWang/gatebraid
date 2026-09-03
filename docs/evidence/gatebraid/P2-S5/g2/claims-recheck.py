@@ -216,6 +216,11 @@ claim("n0", "the record carries exactly one gatebraid-metadata yaml block",
       True, meta is not None)
 mtext = meta.group(1) if meta else ""
 
+# the Review record slice, and whether any block still says it has not run.
+# Hoisted here because n7 needs both, and the later section re-uses these.
+review_record = body[body.index("## Review record"):body.index("## Repair record")]
+pending = "Not yet run" in review_record
+
 notes_m = re.search(r'^notes: "(.*)"\s*$', mtext, re.M | re.S)
 notes = notes_m.group(1) if notes_m else ""
 claim("n1", "notes states TWO repair attempts, matching repair_attempts",
@@ -236,8 +241,31 @@ claim("n5", "every residue figure in notes equals the cited row's",
        re.search(r"(\d+) of the \d+ inside superseded", notes).group(1)))
 claim("n6", "result is needs_approval, the value the gate exits into",
       True, re.search(r"^result: needs_approval\s*$", mtext, re.M) is not None)
-claim("n7", "review-five-items is still not_run: no verdict is written by the "
-      "implementer", True, "result: not_run" in mtext)
+# n7 DERIVES what it actually guards. Its first form asserted `not_run`
+# unconditionally, which was true only before an Exit verdict set existed - the
+# third expectation in this instrument to carry a literal for a state that
+# changes, after n8 and after r8/r9. The property is not that the check reads
+# `not_run`; it is that the check AGREES with the verdicts the Review record
+# carries, so a `pass` can only stand on five recorded passes.
+# The LATEST review block is what review-five-items stands on. Earlier blocks
+# legitimately carry fails - this Slice has three - so a count over the whole
+# section proves nothing.
+_heads = list(re.finditer(r"^### Review (\d+)", review_record, re.M))
+_last = None
+for h in _heads:
+    seg = review_record[h.start():]
+    nxt = re.search(r"^### Review \d+", seg[1:], re.M)
+    seg = seg[:nxt.start() + 1] if nxt else seg
+    if "| R1 allowlist confinement |" in seg:
+        _last = seg
+latest_all_pass = bool(_last) and     len(re.findall(r"\| R[1-5][^|]*\| \*\*pass\*\* \|", _last)) == 5 and     "**fail**" not in _last
+r5i_val = re.search(r"- name: review-five-items.*?result: (\w+)", body, re.S)
+r5i_val = r5i_val.group(1) if r5i_val else None
+claim("n7", "review-five-items agrees with the verdicts the Review record "
+      "carries; a pass stands only on five recorded passes",
+      True,
+      (r5i_val == "not_run" and pending) or
+      (r5i_val == "pass" and not pending and latest_all_pass))
 # n8 DERIVES its expectation. Its first form hard-coded two approvals and went
 # false the moment a second disposition was recorded - the same defect this
 # instrument exists to catch, in the instrument's own expectation. What is
@@ -279,7 +307,6 @@ claim("q2", "the V12 label carries the measured residue figure", True,
 REVIEW_HEAD = re.compile(r"^### Review (\d+)", re.M)
 rr_start = body.index("## Review record")
 rr_end = body.index("## Repair record")
-review_record = body[rr_start:rr_end]
 outside = body[:rr_start] + body[rr_end:]
 
 # a review is RECORDED when its block carries a verdict table row for R1
@@ -328,12 +355,29 @@ dependents = [l.strip() for l in outside.split("\n") if SPEAKS.search(l)]
 claim("r7", "no line outside the Review record asserts that no review has run, "
       "while the Review record records some", [], dependents if recorded else [])
 
-# review-five-items must agree with whether an Exit verdict set exists
+# r8 and r9 DERIVE their expectations. Their first forms asserted "not_run" and
+# the presence of a not-yet-run block, both of which are true only before the
+# Exit - the same stale-expectation defect n8 carried. What is actually required
+# is that the check agree with the record, in either state.
 r5i = re.search(r"- name: review-five-items.*?result: (\w+)", body, re.S)
-claim("r8", "review-five-items agrees with the absence of an Exit verdict set",
-      "not_run", r5i.group(1) if r5i else None)
-claim("r9", "the record states no verdict for a review it also calls not yet run",
-      True, ("Not yet run" in review_record))
+pending = "Not yet run" in review_record
+claim("r8", "review-five-items agrees with whether a review is still pending",
+      "not_run" if pending else "pass", r5i.group(1) if r5i else None)
+
+# r9: no review block both carries a verdict table and calls itself not yet run,
+# in either direction.
+bad_blocks = []
+for k, h in enumerate(heads):
+    seg = review_record[h.start(): heads[k + 1].start() if k + 1 < len(heads)
+                        else len(review_record)]
+    has_table = "| R1 allowlist confinement |" in seg
+    says_pending = "Not yet run" in seg
+    if has_table and says_pending:
+        bad_blocks.append("Review " + h.group(1) + " both")
+    if not has_table and not says_pending:
+        bad_blocks.append("Review " + h.group(1) + " neither")
+claim("r9", "every review block either carries verdicts or says it has not run, "
+      "never both and never neither", [], bad_blocks)
 
 print("%-14s %-62s %-10s %s" % ("claim", "statement", "verdict", "measured"))
 failed = 0

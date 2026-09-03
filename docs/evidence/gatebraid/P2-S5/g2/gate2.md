@@ -414,16 +414,16 @@ verdict       : accepted
 **V12 - the closed-set sweep over this gate's captures: repository limb CLOSED, 15 residue occurrences, diagnosed by class in the disclosures**
 ```
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py docs/evidence/gatebraid/P2-S5/g2/captures
-captures swept : 70
+captures swept : 74
 
 === candidate classification (every rule applied explicitly) ===
-  E1 permitted repository                                    43
+  E1 permitted repository                                    45
   E3 API-path fragment                                       3
   E4 git ref namespace, not a repository                     4
-  E5 filesystem or URL path segment                          560
-  E6 schema-id namespace                                     14
+  E5 filesystem or URL path segment                          573
+  E6 schema-id namespace                                     16
   E7 JSON pointer                                            107
-  E8 prose slash between ordinary words (named, not matched) 82
+  E8 prose slash between ordinary words (named, not matched) 84
   I0 friction citation, not an issue reference               6
   N1 the permitted Project                                   8
   N2 the P2-S5 item                                          17
@@ -572,9 +572,20 @@ Informational findings, none of which fails anything: **H-02** the `Remediation 
 
 Under rule 7 of the first disposition, R3's FAIL returned the Slice to `Human Diagnosis Required` a second time. The operator authored the second disposition this record carries in `approvals[]`: comment `5520728930`, author `MianliWang`, verified byte-equal to its own committed source under the single-trailing-newline tolerance - a DIFFERENT source from the first disposition's, which matches only its own. It directs **remediation followed by ONE FULL re-review** and states in terms that the terminal disposition is NOT directed. The remediation it names is H-01 and nothing else, and it directs that the correction be made STRUCTURAL: the mirror is derived from the per-review entries rather than written as a literal. It is recorded in the Remediation record below and is not a repair attempt, so `repair_attempts` stays at two.
 
-### Review 4 - the next full re-review
+### Review 4 - full re-review of R1 through R5, after the second remediation
 
-Not yet run. The second disposition directs ONE FULL re-review of R1 through R5. Its five verdicts are recorded here at the Exit, by the reviewer's values, last; this record carries no verdict written by its implementer.
+The same independent reviewer, at head `1fce6fb92914e767f5066b311a3fd0bc6cf5c8ef`. Report `REVIEW-P2S5-G2-FULL-2.md`, measured region bytes 1..26,354, sha256 `b8aeac80d074a034f112e3f286df617b9a90c618f0404539c0ae27e37e37892b`, reproduced by the command that report states. Its verdict line reads `VERDICTS: R1=PASS R2=PASS R3=PASS R4=PASS R5=PASS`, and its verdict table agrees with that line.
+
+| Item | Verdict | Evidence |
+|---|---|---|
+| R1 allowlist confinement | **pass** | all three commits confined to `g2/`; 0 paths outside it in `541f6a25..tip`; `bin/` untouched; 265 paths base..tip, 0 outside `write_domains`, all additions; porcelain 0; four ride-on pins unmoved. |
+| R2 test-plan coverage | **pass** | mapping unchanged; F-01's resolution stands - the parser declares exactly `--strict` and `--snapshot-command`, the removed flags exit 12 with empty stdout, `--help` grounded as test-plan command 1 of all three M2 attempts. |
+| R3 evidence is rows that reproduce | **pass** | H-01 fixed structurally and verified end to end; 18 rows re-run in bytes with 0 non-reproducing; classes, elisions, citations, exclusions, both remedy sections and both remediation rows all check out. |
+| R4 negative criteria | **pass** | the instrument byte-unchanged; D9 pinned to `base..5b586029` exit 0, six holding over 219 paths; D10 exit 1, six firing. |
+| R5 no prohibited action | **pass** | 0 remote rows; 0 pull requests; 0 non-sample hooks; one lease string; reflog clean across all fourteen commits; `refs/codex` a single unchanged ref. |
+
+- Reviewer write disclosure: `none`
+- Rules given to the reviewer: as above, verbatim in its mandate; its report states which it was given. Its own report on the ignored path and its named scratch files outside every repository are disclosed there, per the second disposition's ruling on H-04, and the entry above is the repository-scoped answer the contract's clause asks for.
 
 ## Repair record
 
@@ -809,7 +820,7 @@ executor: Claude Lead
 base_sha: cbd065893b37f20713ae35b8d2673bf26fe4d2ad
 active_branch: slice/P2-S5
 started_at: "2026-09-02T02:52:00Z"
-ended_at: "2026-09-03T07:02:41Z"
+ended_at: "2026-09-03T08:02:37Z"
 result: needs_approval
 checks:
   - name: plan-approval-verified
@@ -909,8 +920,8 @@ checks:
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S5/g2/captures/G2-record-validation.json"
   - name: review-five-items
-    command: "R1 through R5, by an independent read-only reviewer in a separate session"
-    result: not_run
+    command: "R1 through R5 by an independent read-only reviewer in a separate session; the fourth review, REVIEW-P2S5-G2-FULL-2.md region 1..26,354 sha256 b8aeac80d074a034f112e3f286df617b9a90c618f0404539c0ae27e37e37892b, returned PASS on all five"
+    result: pass
     output_ref: "#review-record"
 handoff_fingerprint:
   active_branch_head: "5b586029344eb6df4a964c34baa1eb12e2916f6d"
