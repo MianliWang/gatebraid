@@ -47,8 +47,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T01:05:54.844829Z",
-  "ended_at": "2026-09-03T01:05:54.940671Z",
+  "started_at": "2026-09-02T07:27:36.398234Z",
+  "ended_at": "2026-09-02T07:27:36.477400Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Falsification 1 of 2, re-run before the sweep is trusted again: the two retained seeds must still fire the repository, node and issue limbs."
+  "notes": "Falsification 1 of 2, re-run before the sweep is trusted again: the SAME instrument over the two retained seeds. The repository, node and issue limbs must all still fire."
 }

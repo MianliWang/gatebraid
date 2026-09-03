@@ -414,16 +414,16 @@ verdict       : accepted
 **V12 - the closed-set sweep over this gate's captures: repository limb CLOSED, 15 residue occurrences, diagnosed by class in the disclosures**
 ```
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py docs/evidence/gatebraid/P2-S5/g2/captures
-captures swept : 59
+captures swept : 65
 
 === candidate classification (every rule applied explicitly) ===
-  E1 permitted repository                                    39
+  E1 permitted repository                                    41
   E3 API-path fragment                                       3
   E4 git ref namespace, not a repository                     4
-  E5 filesystem or URL path segment                          509
-  E6 schema-id namespace                                     10
+  E5 filesystem or URL path segment                          539
+  E6 schema-id namespace                                     12
   E7 JSON pointer                                            107
-  E8 prose slash between ordinary words (named, not matched) 78
+  E8 prose slash between ordinary words (named, not matched) 80
   I0 friction citation, not an issue reference               6
   N1 the permitted Project                                   8
   N2 the P2-S5 item                                          17
@@ -708,7 +708,18 @@ Directed by the operator's Human Diagnosis disposition, comment `5518637712`. It
 
 **Novelty measured against the tree at the state the bounded re-check reviewed (ADR-0027 section 1), recorded for a remediation rather than for a repair attempt**
 ```
-PENDING FIRST RENDER: G2-RM-novelty
+$ 'D:/Program Files/Git/bin/bash.exe' -o pipefail -c 'echo "tree at the re-checked state 622d79a9 : $(git rev-parse 622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b^{tree})"; echo "tree after the remediation commit    : $(git rev-parse 0a7e2c62349209fc4bbf56b82f576197806ca051^{tree})"; echo "unchanged tree                       : $([ "$(git rev-parse 622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b^{tree})" = "$(git rev-parse 0a7e2c62349209fc4bbf56b82f576197806ca051^{tree})" ] && echo yes || echo no)"; echo; echo "changed by the remediation commit:"; git diff --name-status 622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b..0a7e2c62349209fc4bbf56b82f576197806ca051 | sed "s/^/   /"; echo; echo "bytes outside docs/evidence/gatebraid/P2-S5/g2/ : $(git diff --name-only 622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b..0a7e2c62349209fc4bbf56b82f576197806ca051 | grep -vc "^docs/evidence/gatebraid/P2-S5/g2/")"'
+tree at the re-checked state 622d79a9 : 4ed35acc2a254454e21905c502a61de54be0f2d7
+tree after the remediation commit    : 7bd10149c6e865262c8e639a55e6fd7dab4fa2ea
+unchanged tree                       : no
+
+changed by the remediation commit:
+   M	docs/evidence/gatebraid/P2-S5/g2/claims-recheck.py
+   M	docs/evidence/gatebraid/P2-S5/g2/gate2.md
+   M	docs/evidence/gatebraid/P2-S5/g2/render-gate2.py
+
+bytes outside docs/evidence/gatebraid/P2-S5/g2/ : 0
+(exit 0)
 ```
 
 - Result: `green`
@@ -748,7 +759,7 @@ executor: Claude Lead
 base_sha: cbd065893b37f20713ae35b8d2673bf26fe4d2ad
 active_branch: slice/P2-S5
 started_at: "2026-09-02T02:52:00Z"
-ended_at: "2026-09-03T01:04:52Z"
+ended_at: "2026-09-03T01:06:06Z"
 result: needs_approval
 checks:
   - name: plan-approval-verified

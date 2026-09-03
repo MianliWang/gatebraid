@@ -47,12 +47,16 @@
       }
     }
   },
-  "started_at": "2026-09-03T01:05:55.227566Z",
-  "ended_at": "2026-09-03T01:05:55.331769Z",
+  "started_at": "2026-09-02T07:27:36.769180Z",
+  "ended_at": "2026-09-02T07:27:36.848801Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
       "sha256": "e99b236d27cea0b79e9da29cd82f557c39efebeda3ce6ae82d8f70ec300781f0"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g2/falsification/SEED-near-miss-new-classes.json",
+      "sha256": "8126fa3e34ce23a309746a797eab8dfb35e3f7a67e2e955962dca9d9042c5431"
     }
   ],
   "outputs": [],
@@ -68,5 +72,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Falsification 2 of 2, re-run: every near-miss must remain residue."
+  "notes": "Falsification 2 of 2, re-run: for every domain fact this copy adds, a token shaped like it but outside it. Every one must remain residue."
 }
