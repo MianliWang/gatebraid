@@ -414,16 +414,16 @@ verdict       : accepted
 **V12 - the closed-set sweep over this gate's captures: repository limb CLOSED, 15 residue occurrences, diagnosed by class in the disclosures**
 ```
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py docs/evidence/gatebraid/P2-S5/g2/captures
-captures swept : 65
+captures swept : 70
 
 === candidate classification (every rule applied explicitly) ===
-  E1 permitted repository                                    41
+  E1 permitted repository                                    43
   E3 API-path fragment                                       3
   E4 git ref namespace, not a repository                     4
-  E5 filesystem or URL path segment                          539
-  E6 schema-id namespace                                     12
+  E5 filesystem or URL path segment                          560
+  E6 schema-id namespace                                     14
   E7 JSON pointer                                            107
-  E8 prose slash between ordinary words (named, not matched) 80
+  E8 prose slash between ordinary words (named, not matched) 82
   I0 friction citation, not an issue reference               6
   N1 the permitted Project                                   8
   N2 the P2-S5 item                                          17
@@ -755,7 +755,18 @@ Directed by the operator's SECOND Human Diagnosis disposition, comment `55207289
 
 **Novelty measured against the tree at the state the full re-review reviewed (ADR-0027 section 1)**
 ```
-PENDING FIRST RENDER: G2-RM2-novelty
+$ 'D:/Program Files/Git/bin/bash.exe' -o pipefail -c 'echo "tree at the re-reviewed state 541f6a25 : $(git rev-parse 541f6a25ba11638d845a67a0e6a9cbd670339750^{tree})"; echo "tree after the remediation-2 commit   : $(git rev-parse 1925fa568807ac3577d005c29b40a14a1ac76947^{tree})"; echo "unchanged tree                        : $([ "$(git rev-parse 541f6a25ba11638d845a67a0e6a9cbd670339750^{tree})" = "$(git rev-parse 1925fa568807ac3577d005c29b40a14a1ac76947^{tree})" ] && echo yes || echo no)"; echo; echo "changed by the remediation-2 commit:"; git diff --name-status 541f6a25ba11638d845a67a0e6a9cbd670339750..1925fa568807ac3577d005c29b40a14a1ac76947 | sed "s/^/   /"; echo; echo "paths outside docs/evidence/gatebraid/P2-S5/g2/ : $(git diff --name-only 541f6a25ba11638d845a67a0e6a9cbd670339750..1925fa568807ac3577d005c29b40a14a1ac76947 | grep -vc "^docs/evidence/gatebraid/P2-S5/g2/")"'
+tree at the re-reviewed state 541f6a25 : 6f3d5b82e57e363d81394f0d0ee171ac4994f16a
+tree after the remediation-2 commit   : 4566a4381727c51bf5a1b1ac31b309f2bf76f67d
+unchanged tree                        : no
+
+changed by the remediation-2 commit:
+   M	docs/evidence/gatebraid/P2-S5/g2/claims-recheck.py
+   M	docs/evidence/gatebraid/P2-S5/g2/gate2.md
+   M	docs/evidence/gatebraid/P2-S5/g2/render-gate2.py
+
+paths outside docs/evidence/gatebraid/P2-S5/g2/ : 0
+(exit 0)
 ```
 
 - Result: `green`
@@ -778,7 +789,7 @@ PENDING FIRST RENDER: G2-RM2-novelty
 - Deviations (review finding F-07, left standing on the reviewer's own reasoning and the operator's instruction): the disclosures that narrate this record's own authoring history - the rejected first render, the corrected assertion, the corrected split rule - remain. The reviewer records a real gap in ADR-0026, which forbids revision narrative without providing a sanctioned home for a pre-submission correction the executor is simultaneously required to be honest about, and declines to fail anything over it. It is queued for an ADR clarification rather than repaired here.
 - Deviations (friction #15, and P1-S3's second dry-run): the composer's argument-splitting rule was settled by measurement during authoring. The producer command must be split by POSIX rules on every platform; with `posix=False` the quotes stay attached, the stub arrives wrapped, the child emits ZERO BYTES, and the decode guard appears to pass while testing nothing. The default producer command is written with forward slashes because POSIX rules treat a backslash as an escape.
 - Deviations (ADR-0028 decision 3, the IN-03 class): this record does not echo the near-miss tokens its falsification seed carries. The seed is retained beside the sweep instrument and the tokens live there, not here; an earlier render quoted three of them into this file and the record's own sweep caught it.
-- Deviations (full re-review finding H-01, and the second Human Diagnosis disposition's rule 2): the `Reviewer write disclosure` mirror is DERIVED by the renderer from the per-review entries it renders, and is never a typed literal. It read `not applicable - no review has run` while the Review record recorded two completed reviews, each disclosing `none`; the line was true when written and the first remediation's directed Review-record fill made it false without touching its bytes. The structural form is the fix: one list feeds both the per-review entries and the mirror, so the two cannot disagree, and a review that has not run contributes no entry rather than a sentence about itself.
+- Deviations (full re-review finding H-01, and the second Human Diagnosis disposition's rule 2): the `Reviewer write disclosure` mirror is DERIVED by the renderer from the per-review entries it renders, and is never a typed literal. Its earlier value asserted that none had yet run - the wording is described and not echoed, for the same reason a checker does not quote what it forbids into a record - while the Review record beside it already recorded two completed reviews, each disclosing `none`; the line was true when written and the first remediation's directed Review-record fill made it false without touching its bytes. The structural form is the fix: one list feeds both the per-review entries and the mirror, so the two cannot disagree, and a review that has not run contributes no entry rather than a sentence about itself.
 - Deviations (full re-review finding H-03, recorded for the closeout ledger): the previous remediation report of this window said of G-03 that the class was closed and not just its instance. H-01 was a surviving instance of that class, so the sentence overreached. The instrument's own summary and docstring were correctly bounded; the overreach was in the report's prose about it, and it is recorded rather than quietly dropped.
 - Deviations (full re-review findings H-02 and H-04, ruled by the second disposition): the `Remediation record` heading stays - it is the structural gap already queued with F-07 for the ADR-0026 clarification, since the template offers a directed non-repair remediation no home and filing it under the Repair record would corrupt `repair_attempts`. The per-review disclosure `none` is the repository-scoped answer the contract's clause asks for; the reviewer's own report on the ignored path and its named scratch files are disclosed in that report and are not listed here, so the derived mirror is `none`.
 - Deviations (ADR-0026 decision 1, and the reviewer's F-04 observation): four unreferenced probe-stderr files under this Slice's two dryrun-out directories carry CRLF in the working copy and are stored LF under the tree's text attribute. No pin covers them and no capture names them.
@@ -798,7 +809,7 @@ executor: Claude Lead
 base_sha: cbd065893b37f20713ae35b8d2673bf26fe4d2ad
 active_branch: slice/P2-S5
 started_at: "2026-09-02T02:52:00Z"
-ended_at: "2026-09-03T07:01:11Z"
+ended_at: "2026-09-03T07:02:41Z"
 result: needs_approval
 checks:
   - name: plan-approval-verified

@@ -45,8 +45,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T07:02:43.053865Z",
-  "ended_at": "2026-09-03T07:02:44.426864Z",
+  "started_at": "2026-09-03T01:06:25.711876Z",
+  "ended_at": "2026-09-03T01:06:26.953338Z",
   "inputs": [],
   "outputs": [],
   "platform": {
@@ -61,5 +61,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Validation of the remediated record's FINAL bytes, WSL half, --report-id explicit."
+  "notes": "Machine validation of the remediated record's FINAL bytes on the WSL half, --report-id explicit. The disposition requires both declared halves."
 }

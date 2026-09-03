@@ -50,8 +50,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T07:02:42.122652Z",
-  "ended_at": "2026-09-03T07:02:42.759282Z",
+  "started_at": "2026-09-03T01:06:22.877357Z",
+  "ended_at": "2026-09-03T01:06:25.307780Z",
   "inputs": [
     {
       "path": "bin/gatebraid-validate.py",
@@ -59,7 +59,7 @@
     },
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/gate2.md",
-      "sha256": "1d825a575a7b308abd9f5c62bb5a7bef9d3c9534cbca2da6b8d081930a397131"
+      "sha256": "44bd0c7b448fe1b43f2681a767065b58c96b087db21114fd2a558292883c0a1d"
     }
   ],
   "outputs": [],
@@ -75,5 +75,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Validation of the remediated record's FINAL bytes, Windows half, --report-id explicit."
+  "notes": "Machine validation of the remediated record's FINAL bytes on the Windows half, --report-id explicit."
 }

@@ -47,8 +47,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T07:02:25.573566Z",
-  "ended_at": "2026-09-03T07:02:25.711789Z",
+  "started_at": "2026-09-03T01:05:55.227566Z",
+  "ended_at": "2026-09-03T01:05:55.331769Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
