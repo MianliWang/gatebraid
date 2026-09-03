@@ -1,9 +1,32 @@
-"""Every prose claim repair 2 touches or creates, re-measured against the tree.
+"""Every prose claim this Slice's Gate 2 record makes, re-measured against the tree.
 
 The mandatory lesson of P2-S6's repair 1: the class that fails records is "a
-statement the file makes about itself going false". A repair that corrects five
-such statements is exactly the place a sixth is born, so this instrument
+statement the file makes about itself going false". A repair that corrects such
+statements is exactly the place a fresh one is born, so this instrument
 enumerates the claims and measures each one rather than asserting it.
+
+WHAT ITS BYTES COVER, stated because an earlier form of this file did not say
+so and was wrong by omission. It measures:
+
+  * the deliverable's declared flag surface and the behaviour of the removed
+    flags;
+  * the six composition rows' captured exits;
+  * the record's PROSE - the deterministic-subset nomination, the residue
+    figures, the elision totals and paths, the deviation citations;
+  * the record's METADATA BLOCK - `notes`, `repair_attempts`, `result`,
+    `approvals`, and the fingerprint trio;
+  * every `##`/`###` heading and every bolded row label in the record, checked
+    for a quantity word that its own row contradicts;
+  * the four ride-on pins and the retained-set digest.
+
+The metadata half was ADDED under the operator's Human Diagnosis disposition.
+The earlier form measured 32 claims, printed a universal over "every claim this
+repair touches or creates", and contained no reference to `notes` at all - so a
+`notes` sentence the repair had made false lay outside its domain while the
+instrument asserted completeness over that domain. That is the IN-05 class the
+Slice's own frozen corpus carries, and it is why the defect reached the tip.
+A universal is only as wide as the domain it is actually pointed at, and this
+docstring now names that domain.
 
 It is READ-ONLY: it writes no file and mutates nothing. It runs AFTER the record
 commit, so the file and the repository it measures are the ones a reviewer will
@@ -178,6 +201,51 @@ retained.sort()
 claim("p:digest", "the retained-set path-list digest is unchanged", RETAINED_DIGEST,
       hashlib.sha256(("\n".join(retained) + "\n").encode("utf-8")).hexdigest())
 
+# ---------------------------------------------------------------- metadata
+meta = re.search(r"^```yaml\n(.*?)^```", body, re.M | re.S)
+claim("n0", "the record carries exactly one gatebraid-metadata yaml block",
+      True, meta is not None)
+mtext = meta.group(1) if meta else ""
+
+notes_m = re.search(r'^notes: "(.*)"\s*$', mtext, re.M | re.S)
+notes = notes_m.group(1) if notes_m else ""
+claim("n1", "notes states TWO repair attempts, matching repair_attempts",
+      (2, True),
+      (len(re.findall(r"^  - number: \d+", mtext, re.M)),
+       "TWO repair attempts" in notes))
+claim("n2", "notes does not say a repair touched neither deliverable nor prose",
+      0, len(re.findall(r"not the deliverable and not this record's prose", notes)))
+claim("n3", "notes says attempt 2 changed BOTH the deliverable and the prose",
+      True, "Attempt 2 changed BOTH" in notes)
+claim("n4", "notes carries no `a single residue` claim", 0,
+      len(re.findall(r"a single residue", notes)))
+claim("n5", "every residue figure in notes equals the cited row's",
+      (str(total), str(issue), str(total - issue), str(inpass)),
+      (re.search(r"leaves (\d+) residue occurrences", notes).group(1),
+       re.search(r"- (\d+) friction-shaped", notes).group(1),
+       re.search(r"and (\d+) benign shape collisions", notes).group(1),
+       re.search(r"(\d+) of the \d+ inside superseded", notes).group(1)))
+claim("n6", "result is needs_approval, the value the gate exits into",
+      True, re.search(r"^result: needs_approval\s*$", mtext, re.M) is not None)
+claim("n7", "review-five-items is still not_run: no verdict is written by the "
+      "implementer", True, "result: not_run" in mtext)
+claim("n8", "approvals carries the Plan Approval and the Human Diagnosis "
+      "disposition, both authored by the operator's account",
+      (2, 2),
+      (len(re.findall(r"^  - type:", mtext, re.M)),
+       len(re.findall(r'^    author: "MianliWang"', mtext, re.M))))
+claim("n9", "the recorded fingerprint is the one the metadata and the V13 row "
+      "both name", True, mtext.count(FP_HEAD) >= 1 and mtext.count(FP_TREE) >= 1)
+
+# every heading and bolded row label, checked for a quantity its row denies
+labels = re.findall(r"^\*\*(.+?)\*\*$", body, re.M) + re.findall(r"^#{2,3} (.+)$", body, re.M)
+onecount = [l for l in labels
+            if re.search(r"\bone residue\b|\bsingle residue\b|\bone repair\b", l, re.I)]
+claim("q1", "no heading or row label asserts a residue or repair count its own "
+      "row contradicts", [], onecount)
+claim("q2", "the V12 label carries the measured residue figure", True,
+      any(("V12" in l and (str(total) + " residue occurrences") in l) for l in labels))
+
 print("%-14s %-62s %-10s %s" % ("claim", "statement", "verdict", "measured"))
 failed = 0
 for cid, text, want, got, verdict in rows:
@@ -191,5 +259,5 @@ print("claims FALSE    : %d" % failed)
 if failed:
     print("CLAIM RECHECK FAILED: the record states something its own tree denies")
     sys.exit(1)
-print("CLAIM RECHECK CLEAN: every claim this repair touches or creates holds "
-      "against the committed tree")
+print("CLAIM RECHECK CLEAN: every claim in the domain this instrument's "
+      "docstring names holds against the committed tree")

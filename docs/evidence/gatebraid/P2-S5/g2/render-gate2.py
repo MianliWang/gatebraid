@@ -428,13 +428,16 @@ approvals:
   - type: "%(approval_type)s"
     comment_url: "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5503291709"
     author: "MianliWang"
+  - type: "Human Diagnosis"
+    comment_url: "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5518637712"
+    author: "MianliWang"
 plan_hash: "b2cd75f6a49bb056fd16bc3d2f4cfd5cf98ae8515b5761908add2ed5405cc424"
 allowlist_hash: "4110b3021bdfc2fcda1f5f90528db01eb87b554177e2176ccfba46ccd6ca3750"
 evidence_files:
   - docs/evidence/gatebraid/P2-S5/g2/gate2.md
   - docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01.md
   - docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01-response.json
-notes: "The fourth gatebraid-ready attempt on the M2 slice-C frozen scope, built on the M3 stack. The deliverable is the ready pair alone; it composes the landed producer and consumer and modifies neither. The four ratified deltas are implemented as the approval states them, and D-4 - the producer's status is interpreted against its own declared space rather than tested against zero - is the one that keeps a degraded-but-emitted document from being discarded. Twenty selftest conditions each emit their own summary row; S09 carries IN-01, the class the frozen corpus does not hold, and S10 parses the producer's docstring so the D-4 partition cannot drift from its source unnoticed. One repair was taken and it changed a check instrument's domain constant, not the deliverable and not this record's prose. One check is typed fail and is disclosed in full: the sweep's explanation limb leaves a single residue that no existing explicit set fits honestly. The review is NOT this session's: R1 through R5 belong to an independent reviewer dispatched after adjudication, and Gate = G2 passed is not set here."
+notes: "The fourth gatebraid-ready attempt on the M2 slice-C frozen scope, built on the M3 stack. The deliverable is the ready pair alone; it composes the landed producer and consumer and modifies neither. The four ratified deltas are implemented as the approval states them, and D-4 - the producer's status is interpreted against its own declared space rather than tested against zero - is the one that keeps a degraded-but-emitted document from being discarded. Twenty selftest conditions each emit their own summary row; S09 carries IN-01, the class the frozen corpus does not hold, and S10 parses the producer's docstring so the D-4 partition cannot drift from its source unnoticed. TWO repair attempts were taken and both are listed in repair_attempts. Attempt 1 changed a check instrument's domain constant, touching neither the deliverable nor this record's prose. Attempt 2 changed BOTH: it removed two flags from the deliverable that the frozen scope does not name, and it re-rendered this record. One check is typed fail and is disclosed in full: the sweep's explanation limb leaves %(residue)s residue occurrences - %(residue_issue)s friction-shaped citation(s) printed by the frozen corpus runner and %(residue_other)s benign shape collisions, %(residue_in_pass)s of the %(residue)s inside superseded -pass captures - none a repository identity, and admitting the remainder would need a rule change the Plan Approval forbids. Every figure in this field is derived from the row that measures it, which is what the operator's Human Diagnosis disposition directed after the earlier wording of this field contradicted repair_attempts and the V12 row. The review is NOT this session's: R1 through R5 belong to an independent reviewer, and Gate = G2 passed is not set here."
 """
 
 
@@ -486,6 +489,7 @@ def main():
     row("E4b - the evidence that rides on, measured AFTER its commit",
         ["G2-E4b-evidence-commit"])
 
+    facts = sweep_residue_facts()
     w("## Verification outputs")
     w()
     row("V0 D0 - the frozen scope still re-derives at the pinned commit",
@@ -516,7 +520,8 @@ def main():
         ["G2-D10-negative-falsify"], limit=24, head=6)
     row("V11 D11 - the evidence toolchain on the WSL half, both tools",
         ["G2-D11-wsl-toolchain"], limit=20, head=4)
-    row("V12 - the closed-set sweep over this gate's captures: repository limb CLOSED, one residue disclosed",
+    row("V12 - the closed-set sweep over this gate's captures: repository limb CLOSED, "
+        "%s residue occurrences, diagnosed by class in the disclosures" % facts["residue"],
         ["G2-closed-set-sweep"], limit=22, head=16)
     row("V12a - falsification 1: the two retained seeds still fire the repository, node and issue limbs",
         ["G2-closed-set-sweep-falsify-retained"])
@@ -542,9 +547,88 @@ def main():
 
     w("## Review record")
     w()
-    w("No review has run. R1 through R5 are the independent reviewer's to write, "
-      "last, in a session that did not build this tree; this record carries no "
-      "verdict written by its implementer.")
+    w("### Review 1")
+    w()
+    w("Independent read-only reviewer, `Executor = Claude Read-Only Team`, at head "
+      "`8fde380b26e44caba7754dacd0611f3d5ff026a8`. Report "
+      "`REVIEW-P2S5-G2.md`, measured region bytes 1..46,375, sha256 "
+      "`f9b932e36892a9254512d05a0a79adeba333c79478c11dbef0a91b5a609d3228`.")
+    w()
+    w("| Item | Verdict | Evidence |")
+    w("|---|---|---|")
+    w("| R1 allowlist confinement | **pass** | 160 paths base..fingerprint, 0 outside "
+      "the frozen write_domains, all additions; porcelain 0; the four ride-on pins "
+      "unmoved. |")
+    w("| R2 test-plan coverage | **pass** | every Acceptance item mapped to a declared "
+      "command item by item; the re-captured D-rows reproduce. |")
+    w("| R3 evidence is rows that reproduce | **fail** | two grounds. F-02: V9 was "
+      "nominated into the byte-reproducible subset but cannot reproduce, because the "
+      "instrument unions the tracked diff with the untracked set. F-03: the V12 "
+      "disclosure said ONE residue where its own cited capture measured more. |")
+    w("| R4 negative criterion | **pass** | D9 exit 0 with all six holding; D10 exit 1 "
+      "with all six firing. |")
+    w("| R5 no prohibited action | **pass** | no push, no pull request, no dependency "
+      "change, no disabled hook, one lease. |")
+    w()
+    w("Also raised, outside R3's letter: **F-01 (HIGH)** - the delivered tool declared "
+      "`--consumer` and `--version` beyond the frozen scope, and `--version` put "
+      "non-JSON on stdout at exit 0. **F-04, F-05, F-06 (LOW)** - an inflated elision "
+      "total, elision paths that were not committed-path spellings, and deviation "
+      "bullets without citations. **F-07** the reviewer declined to fail anything over; "
+      "**F-08** typed this record's `fail` check as the operator's to rule.")
+    w()
+    w("- Reviewer write disclosure: `none`")
+    w("- Rules given to the reviewer: the standing hard-rules block and spec section 4, "
+      "verbatim in its mandate; its report states which it was given.")
+    w()
+    w("### Review 2 - bounded re-check after repair 2")
+    w()
+    w("The same independent reviewer, at head "
+      "`622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b`. Report "
+      "`REVIEW-P2S5-G2-RECHECK.md`, measured region bytes 1..28,369, sha256 "
+      "`c11cd5e40024a48f96da33340cafdad16f7c903b5e68799cea10790e9703d152`.")
+    w()
+    w("| Item | Verdict | Evidence |")
+    w("|---|---|---|")
+    w("| R1 allowlist confinement | **pass** | 249 paths base..tip, 0 outside, all "
+      "additions; porcelain 0; the four ride-on pins unmoved. |")
+    w("| R2 test-plan coverage and F-01's resolution | **pass** | the surface is exactly "
+      "the frozen two flags plus `--help`; the removed flags exit 12 with empty stdout; "
+      "`--help` verified grounded as test-plan command 1 of all three M2 attempts. |")
+    w("| R3 evidence is rows that reproduce | **fail** | three findings. **G-01** the "
+      "metadata `notes` field contradicted `repair_attempts` and the V12 row. **G-02** "
+      "the V12 row label understated its own table and capture. **G-03** the claim "
+      "re-check instrument stated a universal over a domain that excluded metadata "
+      "fields - the IN-05 class - which is why G-01 reached the tip. |")
+    w("| R4 negative criteria at the new fingerprint | **pass** | D9 pinned to "
+      "`base..5b586029` exit 0, six holding; D10 exit 1, six firing. |")
+    w("| R5 no prohibited action | **pass** | 0 remote rows, 0 pull requests, 0 "
+      "non-sample hooks, one lease, clean reflog. |")
+    w()
+    w("Verified remedied by that re-check: F-01 removed cleanly, and F-02, F-04, F-05 "
+      "and F-06 each re-measured rather than read.")
+    w()
+    w("- Reviewer write disclosure: `none`")
+    w("- Rules given to the reviewer: as above, verbatim in its mandate.")
+    w()
+    w("### Human Diagnosis disposition")
+    w()
+    w("`repair_limit = 2` was spent with R3 still red, so the gate routed to "
+      "`Human Diagnosis Required` and the operator authored the disposition this "
+      "record carries in `approvals[]`: comment `5518637712`, author `MianliWang`, "
+      "verified byte-equal to its committed source under the single-trailing-newline "
+      "tolerance. It directs **remediation under stated rules followed by ONE FULL "
+      "re-review**, and states in terms that the terminal disposition is NOT directed. "
+      "The remediation it names is G-01, G-02 and G-03 and nothing else; it is recorded "
+      "in the Remediation record below and is not a repair attempt, so "
+      "`repair_attempts` stays at two.")
+    w()
+    w("### Review 3 - the full re-review")
+    w()
+    w("Not yet run. The disposition directs ONE FULL re-review of R1 through R5 by the "
+      "independent reviewer, not a bounded re-check. Its five verdicts are recorded "
+      "here at the Exit, by the reviewer, last; this record carries no verdict written "
+      "by its implementer.")
     w()
 
     w("## Repair record")
@@ -596,9 +680,31 @@ def main():
       "is disclosed instead.")
     w()
 
+    w("## Remediation record")
+    w()
+    w("Directed by the operator's Human Diagnosis disposition, comment `5518637712`. "
+      "It is NOT a repair attempt: `repair_limit` was already spent when the "
+      "disposition was authored, `repair_attempts` stays at two, and the sequence's "
+      "budget is not drawn on again. Record-only - not one byte under `bin/`, in the "
+      "retained record, in `g0r/`, in `g1/`, in `schema/` or in `fixtures/` - and the "
+      "handoff fingerprint is unchanged.")
+    w()
+    w("- What it corrects, exactly the bounded re-check's three surviving findings: "
+      "**G-01** the metadata `notes` field, rewritten so every statement agrees with "
+      "`repair_attempts`, the V12 row and the review history, and every figure in it "
+      "DERIVED from the row that measures it rather than typed beside it; **G-02** the "
+      "V12 row label, which now carries that same derived figure; **G-03** the claim "
+      "re-check instrument, extended to the metadata block, every heading and every "
+      "bolded row label, its docstring now naming the domain its universal ranges over.")
+    w()
+    row("Novelty measured against the tree at the state the bounded re-check "
+        "reviewed (ADR-0027 section 1), recorded for a remediation rather than "
+        "for a repair attempt", ["G2-RM-novelty"])
+    w("- Result: `green`")
+    w()
+
     w("## Required disclosures")
     w()
-    facts = sweep_residue_facts()
     for d in DISCLOSURES:
         w("- " + (d % facts if "%(" in d else d))
     w("- Reviewer write disclosure: `not applicable - no review has run`")
@@ -606,9 +712,11 @@ def main():
     w("## gatebraid-metadata")
     w()
     w("```yaml")
-    w((METADATA % {"started": STARTED, "ended": ENDED, "fp_head": FP_HEAD,
-                   "fp_tree": FP_TREE, "paths": paths,
-                   "approval_type": approval_type()}).rstrip())
+    md = {"started": STARTED, "ended": ENDED, "fp_head": FP_HEAD,
+          "fp_tree": FP_TREE, "paths": paths,
+          "approval_type": approval_type()}
+    md.update(facts)
+    w((METADATA % md).rstrip())
     w("```")
 
     open(OUT, "w", encoding="utf-8", newline="\n").write("\n".join(L) + "\n")
