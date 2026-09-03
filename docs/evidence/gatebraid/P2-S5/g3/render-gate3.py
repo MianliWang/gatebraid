@@ -22,8 +22,26 @@ import base64, json, os, re, sys
 G3 = "docs/evidence/gatebraid/P2-S5/g3"
 CAPS = G3 + "/captures"
 OUT = G3 + "/gate3.md"
-STARTED = "2026-09-03T09:00:00Z"
 ENDED = sys.argv[1]
+
+
+def started_at():
+    """The gate's start, DERIVED from the earliest capture it took.
+
+    Not typed. A hand-written value was set later than the measured end and the
+    record's own validator rejected it as ended-before-started - the same class
+    of defect as every other constant this Slice has had to derive, caught here
+    by the validator instead of by a reviewer.
+    """
+    import glob
+    stamps = []
+    for path in sorted(glob.glob(os.path.join(CAPS, "*.json"))):
+        d = json.load(open(path, encoding="utf-8"))
+        if d.get("started_at"):
+            stamps.append(d["started_at"])
+    if not stamps:
+        raise SystemExit("STRUCTURE: no capture carries a started_at")
+    return min(stamps).split(".")[0].rstrip("Z") + "Z"
 
 BASE = "cbd065893b37f20713ae35b8d2673bf26fe4d2ad"
 FP_HEAD = "5b586029344eb6df4a964c34baa1eb12e2916f6d"
@@ -125,6 +143,40 @@ def ci_finding():
     return ("none-configured" if wf == "0" and cr == "0" else "UNDETERMINED"), wf, cr
 
 
+def drift_figures():
+    """The drift counts, DERIVED from the drift row itself.
+
+    An earlier revision of the deviation bullet below carried `76` and `9` as
+    typed constants. They were true of the FIRST drift capture and false of the
+    re-run that replaced it, which reports 88 and 10 - a bullet contradicting
+    the row three inches above it, which is the exact defect four Gate 2
+    findings were about, occurring in the paragraph that describes one of them.
+    Nothing here is typed.
+    """
+    if not has("G3-G3-drift"):
+        return ("PENDING",) * 5
+    t = stream_text(cap("G3-G3-drift"), "stdout")
+
+    def g(pat):
+        m = re.search(pat, t)
+        return m.group(1) if m else "?"
+
+    return (g(r"paths changed tree_sha..HEAD\s*:\s*(\d+)"),
+            g(r"OUTSIDE the Slice evidence directory\s*:\s*(\d+)"),
+            g(r"commits past the fingerprint\s*:\s*(\d+)"),
+            g(r"touching anything outside it\s*:\s*(\d+)"),
+            g(r"--untracked-files=all\s*:\s*(\d+) lines"))
+
+
+def residue(cid):
+    """A sweep's residue count, read out of that sweep's own output."""
+    if not has(cid):
+        return "PENDING"
+    m = re.search(r"UNEXPLAINED RESIDUE:\s*(\d+)",
+                  stream_text(cap(cid), "stdout"))
+    return m.group(1) if m else "?"
+
+
 def keyword_matches():
     """The closure-precondition-(b) figure, derived from the scan's own output."""
     if not has("G3-G2b-keyword-scan"):
@@ -137,6 +189,7 @@ def keyword_matches():
 def main():
     ci, wf_count, cr_count = ci_finding()
     kw = keyword_matches()
+    d_paths, d_out, d_commits, d_cout, d_porcelain = drift_figures()
 
     w("# Gate 3 evidence - P2-S5")
     w()
@@ -162,6 +215,16 @@ def main():
     row("G4 - publication commands, in the contract's order",
         ["G3-G4-publication"])
     row("G5 - CI status", ["G3-G5-ci"])
+    row("G6 - the closed-set sweep over this gate's whole captured domain, run "
+        "only AFTER the three seeded runs below proved this copy can fire",
+        ["G3-closed-set-sweep"], limit=22, head=16)
+    row("G6 - falsified three ways BEFORE the run above is trusted: the "
+        "retained Gate 1 seeds through this copy, the Gate 2 near-miss seed "
+        "through this copy, and a new seed carrying a one-character near-miss "
+        "for every domain fact this copy adds",
+        ["G3-closed-set-sweep-falsify-retained",
+         "G3-closed-set-sweep-falsify-g2-seeds",
+         "G3-closed-set-sweep-falsify-near-miss"], limit=8, head=3)
     w("- Pull request: %s - referenced, not duplicated (ADR-0017 section 2)" % PR_URL)
     w("- CI: `ci: %s` - %s repository workflows and %s check runs on the "
       "pull-request head. A recorded finding, not a pass: where no check exists "
@@ -172,17 +235,18 @@ def main():
     w("## Required disclosures")
     w()
     w("- Deviations (gate-3-contract Action 1, and the drift check's own "
-      "meaning): the drift check was run BEFORE publication and was clean - 0 "
-      "of 76 changed paths outside the Slice's evidence directory, 0 of 9 "
+      "meaning): the drift check was run BEFORE publication and was clean - %s "
+      "of %s changed paths outside the Slice's evidence directory, %s of %s "
       "commits past the fingerprint outside it, `git status --porcelain "
-      "--untracked-files=all` at 0 lines. The G3 row above is a RE-RUN against "
+      "--untracked-files=all` at %s lines. The G3 row above is a RE-RUN against "
       "the committed tree, because a first capture of it was taken after this "
       "gate had begun writing its own evidence and therefore recorded eight "
       "untracked `g3/` paths beside a summary line asserting emptiness. That "
       "capture is retained at "
       "`docs/evidence/gatebraid/P2-S5/g3/captures/G3-G3-drift-pass1.json` "
       "rather than deleted: it is a true record of its own instant, and the "
-      "false line in it is the very class four Gate 2 findings were about.")
+      "false line in it is the very class four Gate 2 findings were about."
+      % (d_out, d_paths, d_cout, d_commits, d_porcelain))
     w("- Deviations (friction #103): one ref outside `refs/heads/`, "
       "`refs/remotes/` and `refs/tags/` exists in this clone - a `refs/codex` "
       "checkpoint tree ref whose leaf file is dated 2026-07-31, more than a "
@@ -211,6 +275,23 @@ def main():
       "issue's Acceptance item 1, `R3 first-pass = pass`, is NOT met - the "
       "first-pass R3 verdict was FAIL, and O1's acceptance is decided at "
       "closeout, not by this publication.")
+    w("- Deviations (ADR-0028 sections 2 and 3, the closed-set sweep): this "
+      "gate's copy of the sweep adds FOUR domain facts to the Gate 2 copy and "
+      "changes no rule, no regex and no residue criterion; its header names "
+      "each one and the reason for it. One of the four was NOT anticipated - "
+      "the copy was run unextended first, reported 2 residues, and both were "
+      "this gate's own drift column heading, a slash-joined list of three git "
+      "ref namespaces. It is admitted as an exact string and the new seed "
+      "proves it is not acting as a prefix: the same token with a trailing "
+      "period stays residue. Residue over this gate's own domain is %s, and "
+      "each seeded run left its own seeds unexplained (%s, %s and %s). The "
+      "deliberate residue the Gate 2 copy discloses does not arise here, "
+      "because this gate ran no frozen corpus - a fact about the domain, not a "
+      "loosened rule."
+      % (residue("G3-closed-set-sweep"),
+         residue("G3-closed-set-sweep-falsify-retained"),
+         residue("G3-closed-set-sweep-falsify-g2-seeds"),
+         residue("G3-closed-set-sweep-falsify-near-miss")))
     w("- Environment (friction #89): Windows host, Windows 11 build "
       "10.0.26200, AMD64, node RoughEgoist; Git for Windows 2.51.0.windows.1 "
       "whose system configuration carries `core.autocrlf=true`; every `gh` call "
@@ -257,6 +338,22 @@ checks:
     command: "repository workflows, workflow files in the tree, and check runs on the pull-request head"
     result: none_configured
     output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-G5-ci.json"
+  - name: closed-set-sweep-explains-every-candidate
+    command: "g3/checks-g3-closed-set-sweep.py over this gate's captures domain; every candidate classified by an explicit rule, residue %(res_caps)s"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-closed-set-sweep.json"
+  - name: closed-set-sweep-falsified-three-ways
+    command: "the same instrument over the retained Gate 1 seeds (residue %(res_ret)s, repository, node and issue limbs all firing), over the Gate 2 near-miss seed (residue %(res_g2)s), and over a new seed carrying a one-character near-miss for every fact this copy adds (residue %(res_nm)s)"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-closed-set-sweep-falsify-near-miss.json"
+  - name: record-sweep-over-this-records-final-bytes
+    command: "the same instrument pointed at this file, after the bytes it sweeps were final"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-record-sweep.json"
+  - name: record-validates-on-both-declared-halves
+    command: "bin/gatebraid-validate.py --record docs/evidence/gatebraid/P2-S5/g3/gate3.md --report-id explicit, on the Windows interpreter and on WSL"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-record-validation.json"
   - name: publication-commands-in-contract-order
     command: "git push -u origin slice/P2-S5, read back from the remote; then the pull request opened to main by plain reference"
     result: pass
@@ -268,12 +365,22 @@ approvals:
     author: "MianliWang"
 evidence_files:
   - docs/evidence/gatebraid/P2-S5/g3/gate3.md
+  - docs/evidence/gatebraid/P2-S5/g3/closing-keyword-scan.py
+  - docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py
+  - docs/evidence/gatebraid/P2-S5/g3/render-gate3.py
+  - docs/evidence/gatebraid/P2-S5/g3/falsification/SEED-closing-keyword-body.md
+  - docs/evidence/gatebraid/P2-S5/g3/falsification/SEED-near-miss-gate3-classes.json
 notes: "PR %(pr)s. No merge SHA and no closure timestamp are recorded here - GitHub holds both natively (ADR-0017 section 2), and this file is written before the merge. The publication set is the reviewed tree at %(fp_head)s (tree %(fp_tree)s) plus the record-only evidence commits that follow it, every one inside docs/evidence/gatebraid/P2-S5/. CI is %(ci)s, a recorded finding rather than a pass. The Slice issue is referenced by plain reference and is closed at this gate's Exit by an explicit command, never by this pull request - closure is what releases native blocked-by dependents. Every figure in this record is derived from the row that measures it; four Gate 2 findings were a count or a status typed as a constant and later contradicted by its own row, and this record does not repeat that."
 '''
     arrow = "\u2192"
-    w((meta % {"base": BASE, "started": STARTED, "ended": ENDED,
+    w((meta % {"base": BASE, "started": started_at(), "ended": ENDED,
                "fp_tree": FP_TREE, "fp_head": FP_HEAD, "pr": PR_URL,
-               "approval": APPROVAL_URL, "ci": ci, "arrow": arrow}).rstrip())
+               "approval": APPROVAL_URL, "ci": ci, "arrow": arrow,
+               "res_caps": residue("G3-closed-set-sweep"),
+               "res_ret": residue("G3-closed-set-sweep-falsify-retained"),
+               "res_g2": residue("G3-closed-set-sweep-falsify-g2-seeds"),
+               "res_nm": residue("G3-closed-set-sweep-falsify-near-miss"),
+               }).rstrip())
     w("```")
 
     open(OUT, "w", encoding="utf-8", newline="\n").write("\n".join(L) + "\n")

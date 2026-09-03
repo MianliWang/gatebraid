@@ -31,12 +31,12 @@
     "stdout": {
       "encoding": "base64",
       "byte_length": 135,
-      "sha256": "ee4d7411f3f668340758b9ea029aac90dda2aaec025d06f574f0338b7bb7c5b3",
-      "data": "eyJiYXNlUmVmTmFtZSI6Im1haW4iLCJjbG9zaW5nSXNzdWVzUmVmZXJlbmNlcyI6W10sImhlYWRSZWZPaWQiOiI5OTc2MDY4MzllMTZlN2I1ZDc3MTM1Mjk0MzIwMTQ3NzY5YzQ0MmI0IiwibnVtYmVyIjoyMSwic3RhdGUiOiJPUEVOIn0K",
+      "sha256": "c5b83821e75e3aedff8c15921051fbf4f9ec7556f44f7dc70253794ddf4e6ccb",
+      "data": "eyJiYXNlUmVmTmFtZSI6Im1haW4iLCJjbG9zaW5nSXNzdWVzUmVmZXJlbmNlcyI6W10sImhlYWRSZWZPaWQiOiI4NzVkNTBjODA4ZDU5ZWU0OWZlY2RmNmM4ZDhmNGY4ZTVjODdiNGI3IiwibnVtYmVyIjoyMSwic3RhdGUiOiJPUEVOIn0K",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "{\"baseRefName\":\"main\",\"closingIssuesReferences\":[],\"headRefOid\":\"997606839e16e7b5d77135294320147769c442b4\",\"number\":21,\"state\":\"OPEN\"}\n"
+        "text": "{\"baseRefName\":\"main\",\"closingIssuesReferences\":[],\"headRefOid\":\"875d50c808d59ee49fecdf6c8d8f4f8e5c87b4b7\",\"number\":21,\"state\":\"OPEN\"}\n"
       }
     },
     "stderr": {
@@ -51,8 +51,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T08:50:22.924448Z",
-  "ended_at": "2026-09-03T08:50:23.551135Z",
+  "started_at": "2026-09-03T08:46:23.382267Z",
+  "ended_at": "2026-09-03T08:46:24.785318Z",
   "inputs": [],
   "outputs": [],
   "platform": {
@@ -67,5 +67,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "G2b, first half, re-read against the FINAL pull-request state after the Gate 3 record was pushed."
+  "notes": "G2b, first half: closingIssuesReferences on the pull request."
 }

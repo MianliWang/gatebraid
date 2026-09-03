@@ -1,0 +1,14 @@
+{
+  "seed_id": "SEED-near-miss-gate3-classes",
+  "why": "The Gate 3 sweep copy carries four domain facts the Gate 2 copy did not: the FS_PREFIX segments g3, actions and origin, and the PROSE_PAIRS string heads/remotes. Each is an EXACT string or an EXACT leading segment, never a pattern. This seed carries, for every one of them, a token shaped LIKE it but OUTSIDE it. Every token below must remain UNEXPLAINED RESIDUE. A fact that admitted its own near-miss would be a blindfold rather than a domain fact, and only a near-miss distinguishes the two.",
+  "near_misses_that_must_all_remain_residue": {
+    "fs_prefix_g3": "g3x/Gatebraid",
+    "fs_prefix_actions": "actionsX/workflows",
+    "fs_prefix_origin": "originX/slice",
+    "prose_pair_heads_remotes": "heads/remotes2",
+    "prose_pair_heads_remotes_other_half": "remotes/tags",
+    "issue_extractor_this_gates_own_pull_request": "#21"
+  },
+  "positive_control_the_repository_limb_must_still_fire": "SomeOtherOwner/some-other-repo",
+  "note": "The near-misses differ from the admitted facts by a single character or one appended character. remotes/tags is included for a second reason: the Gate 3 copy's header claims the extractor's lookbehind stops after the first pair, so that this gate's own drift label yields heads/remotes ALONE. If that claim were wrong the label would also have produced remotes/tags, and admitting heads/remotes would have silently left a second token unexplained; seeding remotes/tags where a slash does NOT precede it proves the pair was named and not the pattern. #21 is this gate's own pull request written in the one shape the issue extractor accepts, and it must be residue: the mention class was deliberately not widened for it."
+}
