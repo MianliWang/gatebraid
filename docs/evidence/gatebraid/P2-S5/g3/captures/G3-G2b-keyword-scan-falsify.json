@@ -1,0 +1,80 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-G2b-keyword-scan-falsify",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g3/closing-keyword-scan.py",
+      "--pr",
+      "21",
+      "--base",
+      "cbd065893b37f20713ae35b8d2673bf26fe4d2ad",
+      "--head",
+      "HEAD",
+      "--body-from",
+      "docs/evidence/gatebraid/P2-S5/g3/falsification/SEED-closing-keyword-body.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2141,
+      "sha256": "aacf9fcedb484f9d988be5278d9a1910ad159b483d5ac1e632d5f9a18e53ac4a",
+      "data": "a2V5d29yZCBwYXR0ZXJuICAgIDogKD86Y2xvc2Vbc2RdP3xmaXgoPzplW3NkXSk/fHJlc29sdmVbc2RdPylccyo6P1xzKyg/OiNcZCt8W0EtWmEtejAtOS5fLV0rL1tBLVphLXowLTkuXy1dKyNcZCt8aHR0cHM/Oi8vZ2l0aHViXC5jb20vXFMrL2lzc3Vlcy9cZCspDQpzY29wZSAgICAgICAgICAgICAgOiB0aGUgcHVsbC1yZXF1ZXN0IGJvZHkgYW5kIGV2ZXJ5IGNvbW1pdCBtZXNzYWdlIGluIGNiZDA2NTg5M2IzNy4uSEVBRA0KDQpQUiBib2R5IChmaWxlOmRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2czL2ZhbHNpZmljYXRpb24vU0VFRC1jbG9zaW5nLWtleXdvcmQtYm9keS5tZCkNCiAgIHBhdHRlcm4gbWF0Y2hlcyA6IDMgIFsnQ2xvc2VzICMxNycsICdGaXhlcyBNaWFubGlXYW5nL2dhdGVicmFpZCMxNycsICdyZXNvbHZlcyBodHRwczovL2dpdGh1Yi5jb20vTWlhbmxpV2FuZy9nYXRlYnJhaWQvaXNzdWVzLzE3J10NCiAgIGJhcmUgdG9rZW5zICAgICA6IDUgIChhIGNvbnZlbnRpb25hbC1jb21taXQgcHJlZml4IHJlZmVyZW5jZXMgbm90aGluZyBhbmQgaXMgbm90IHByb2hpYml0ZWQpDQoNCmNvbW1pdCBtZXNzYWdlcyB0aGUgcHVsbCByZXF1ZXN0IGNhcnJpZXM6IDE1DQogICA2M2M2ZWE4Njc4YmIgIHBhdHRlcm49MCAgYmFyZT0xICAgZXZpZGVuY2UocDItczUpOiB0aGUgR2F0ZSAwIHJlY29yZCwgaXRzIHJlLXJ1biwgDQogICA2MjllMjg3ZmFhYjAgIHBhdHRlcm49MCAgYmFyZT0wICAgZmVhdChvMSk6IGdhdGVicmFpZC1yZWFkeSwgdGhlIFJlYWR5IEZyb250aWVyIGNvDQogICBjMDdkMGNiMmJkNjkgIHBhdHRlcm49MCAgYmFyZT00ICAgZXZpZGVuY2UocDItczUpOiBHYXRlIDIgaW5zdHJ1bWVudHMgYW5kIHRoZSBjYXB0DQogICA4YTE5NjNhMzUwMDUgIHBhdHRlcm49MCAgYmFyZT0xICAgZXZpZGVuY2UocDItczUpOiB0aGUgR2F0ZSAyIHJlY29yZCwgYW5kIHRoZSBjYXB0DQogICA4ZmRlMzgwYjI2ZTQgIHBhdHRlcm49MCAgYmFyZT0xICAgZXZpZGVuY2UocDItczUpOiB0aGUgR2F0ZSAyIGV4aXQgY2FwdHVyZXMNCiAgIDViNTg2MDI5MzQ0ZSAgcGF0dGVybj0wICBiYXJlPTEgICBmaXgobzEpOiByZXN0b3JlIHRoZSBmcm96ZW4gdG9vbCBzdXJmYWNlIC0gcmVtb3YNCiAgIDhiNzAzMmIyOWEyMyAgcGF0dGVybj0wICBiYXJlPTEgICBldmlkZW5jZShwMi1zNSk6IHJlcGFpciAyIHJlY29yZCAtIHRoZSBjb25zdWx0LCANCiAgIDYyMmQ3OWE5ZjJmMiAgcGF0dGVybj0wICBiYXJlPTAgICBldmlkZW5jZShwMi1zNSk6IHRoZSByZXBhaXItMiBjbGFpbSByZS1jaGVjaywgbWUNCiAgIDBhN2UyYzYyMzQ5MiAgcGF0dGVybj0wICBiYXJlPTIgICBldmlkZW5jZShwMi1zNSk6IHJlbWVkaWF0aW9uIHVuZGVyIHRoZSBIdW1hbiBEaWENCiAgIDQzMjY2NjQwZTgwYyAgcGF0dGVybj0wICBiYXJlPTIgICBldmlkZW5jZShwMi1zNSk6IHRoZSByZW1lZGlhdGVkIHJlY29yZCwgd2l0aCBpdHMNCiAgIDU0MWY2YTI1YmExMSAgcGF0dGVybj0wICBiYXJlPTEgICBldmlkZW5jZShwMi1zNSk6IHRoZSBleHRlbmRlZCBjbGFpbSByZS1jaGVjaywgcnUNCiAgIDE5MjVmYTU2ODgwNyAgcGF0dGVybj0wICBiYXJlPTIgICBldmlkZW5jZShwMi1zNSk6IHNlY29uZCByZW1lZGlhdGlvbiAtIHRoZSByZXZpZXcNCiAgIGY1YjQyZDhhNzE5ZCAgcGF0dGVybj0wICBiYXJlPTEgICBldmlkZW5jZShwMi1zNSk6IHRoZSByZW1lZGlhdGVkIHJlY29yZCwgaXRzIG5vdmUNCiAgIDFmY2U2ZmI5MjkxNCAgcGF0dGVybj0wICBiYXJlPTAgICBldmlkZW5jZShwMi1zNSk6IHRoZSBleHRlbmRlZCBjbGFpbSByZS1jaGVjaywgYW4NCiAgIDg3NWQ1MGM4MDhkNSAgcGF0dGVybj0wICBiYXJlPTMgICBldmlkZW5jZShwMi1zNSk6IHRoZSBFeGl0IHJlY29yZCAtIHRoZSBmdWxsIHJlLXINCg0KdG90YWwgcGF0dGVybiBtYXRjaGVzOiAzDQogICBib2R5ICAnQ2xvc2VzICMxNycNCiAgIGJvZHkgICdGaXhlcyBNaWFubGlXYW5nL2dhdGVicmFpZCMxNycNCiAgIGJvZHkgICdyZXNvbHZlcyBodHRwczovL2dpdGh1Yi5jb20vTWlhbmxpV2FuZy9nYXRlYnJhaWQvaXNzdWVzLzE3Jw0KQ0xPU0lORy1LRVlXT1JEIFNDQU46IEZPVU5EIC0gY2xvc3VyZSBwcmVjb25kaXRpb24gKGIpIEZBSUxTDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "keyword pattern    : (?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\\s*:?\\s+(?:#\\d+|[A-Za-z0-9._-]+/[A-Za-z0-9._-]+#\\d+|https?://github\\.com/\\S+/issues/\\d+)\r\nscope              : the pull-request body and every commit message in cbd065893b37..HEAD\r\n\r\nPR body (file:docs/evidence/gatebraid/P2-S5/g3/falsification/SEED-closing-keyword-body.md)\r\n   pattern matches : 3  ['Closes #17', 'Fixes MianliWang/gatebraid#17', 'resolves https://github.com/MianliWang/gatebraid/issues/17']\r\n   bare tokens     : 5  (a conventional-commit prefix references nothing and is not prohibited)\r\n\r\ncommit messages the pull request carries: 15\r\n   63c6ea8678bb  pattern=0  bare=1   evidence(p2-s5): the Gate 0 record, its re-run, \r\n   629e287faab0  pattern=0  bare=0   feat(o1): gatebraid-ready, the Ready Frontier co\r\n   c07d0cb2bd69  pattern=0  bare=4   evidence(p2-s5): Gate 2 instruments and the capt\r\n   8a1963a35005  pattern=0  bare=1   evidence(p2-s5): the Gate 2 record, and the capt\r\n   8fde380b26e4  pattern=0  bare=1   evidence(p2-s5): the Gate 2 exit captures\r\n   5b586029344e  pattern=0  bare=1   fix(o1): restore the frozen tool surface - remov\r\n   8b7032b29a23  pattern=0  bare=1   evidence(p2-s5): repair 2 record - the consult, \r\n   622d79a9f2f2  pattern=0  bare=0   evidence(p2-s5): the repair-2 claim re-check, me\r\n   0a7e2c623492  pattern=0  bare=2   evidence(p2-s5): remediation under the Human Dia\r\n   43266640e80c  pattern=0  bare=2   evidence(p2-s5): the remediated record, with its\r\n   541f6a25ba11  pattern=0  bare=1   evidence(p2-s5): the extended claim re-check, ru\r\n   1925fa568807  pattern=0  bare=2   evidence(p2-s5): second remediation - the review\r\n   f5b42d8a719d  pattern=0  bare=1   evidence(p2-s5): the remediated record, its nove\r\n   1fce6fb92914  pattern=0  bare=0   evidence(p2-s5): the extended claim re-check, an\r\n   875d50c808d5  pattern=0  bare=3   evidence(p2-s5): the Exit record - the full re-r\r\n\r\ntotal pattern matches: 3\r\n   body  'Closes #17'\r\n   body  'Fixes MianliWang/gatebraid#17'\r\n   body  'resolves https://github.com/MianliWang/gatebraid/issues/17'\r\nCLOSING-KEYWORD SCAN: FOUND - closure precondition (b) FAILS\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-03T08:46:25.608960Z",
+  "ended_at": "2026-09-03T08:46:28.205734Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g3/closing-keyword-scan.py",
+      "sha256": "d5944fe3dd7d049621f689d24a536d2cd4d4fbcd5010d060f4ea0077a4e73481"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "G2b falsification, run BEFORE the clean run is trusted: the SAME instrument pointed at a seeded body carrying all three lawful reference shapes. It must fire on each, and must NOT match the conventional-commit near-miss."
+}
