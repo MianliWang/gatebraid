@@ -47,8 +47,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T09:08:18.333396Z",
-  "ended_at": "2026-09-03T09:08:18.432650Z",
+  "started_at": "2026-09-03T09:07:19.954359Z",
+  "ended_at": "2026-09-03T09:07:20.077167Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py",
@@ -56,7 +56,7 @@
     },
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/gate3.md",
-      "sha256": "d808caa18b05176ce3c121f313486aa4b6312a456e183fdd63adac04783ebe5e"
+      "sha256": "d65f41135fe116ca010c89b68b3c1093850821e5a1ad649000c182d35ae6df7a"
     }
   ],
   "outputs": [],

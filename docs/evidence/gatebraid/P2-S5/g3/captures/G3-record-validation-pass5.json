@@ -50,8 +50,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T09:08:18.733248Z",
-  "ended_at": "2026-09-03T09:08:19.270533Z",
+  "started_at": "2026-09-03T09:05:23.458592Z",
+  "ended_at": "2026-09-03T09:05:24.016557Z",
   "inputs": [
     {
       "path": "bin/gatebraid-validate.py",
@@ -59,7 +59,7 @@
     },
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/gate3.md",
-      "sha256": "d808caa18b05176ce3c121f313486aa4b6312a456e183fdd63adac04783ebe5e"
+      "sha256": "fa1d658250072edeffc4eadf7b011fb90b6256a3ea72118658f141d41ba7dce4"
     }
   ],
   "outputs": [],
@@ -75,5 +75,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Validation of the Gate 3 record's final bytes, Windows half, --report-id explicit. Superseded passes are retained; -pass1 REJECTED the record for ended-before-started while started_at was still a typed constant."
+  "notes": "Validation of the Gate 3 record's final bytes, Windows half, --report-id explicit. Four superseded passes are retained: -pass1 REJECTED the record for ended-before-started while started_at was still a typed constant, and -pass2 through -pass4 accepted earlier byte-states."
 }

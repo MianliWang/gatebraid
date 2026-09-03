@@ -177,6 +177,36 @@ def residue(cid):
     return m.group(1) if m else "?"
 
 
+def captures_after_the_sweep():
+    """Which captures the captures sweep could not have seen, DERIVED.
+
+    A sweep over a directory it is itself writing into cannot cover the
+    captures written after it. That boundary is real and is not waved through.
+
+    What is returned is NOT a count and NOT a list, and that is deliberate. A
+    count would be true at the instant it was rendered and false one capture
+    later - the defect this whole Slice has been about - and worse, rendering it
+    would change this file's bytes and so invalidate the very validation
+    captures it was counting. What is returned instead is the STRUCTURAL claim,
+    which is stable under re-running: every capture that postdates the sweep is
+    a `G3-record-*` capture, that being the record validator on each declared
+    half and the sweep pointed at this record's own bytes. Re-running those
+    three does not make the sentence false, so the record converges. Any
+    capture that postdates the sweep and is NOT one of them is returned by name,
+    because that would be a real gap and not a boundary.
+    """
+    import glob
+    if not has("G3-closed-set-sweep"):
+        return "PENDING", []
+    t0 = cap("G3-closed-set-sweep")["started_at"]
+    later = []
+    for path in sorted(glob.glob(os.path.join(CAPS, "*.json"))):
+        d = json.load(open(path, encoding="utf-8"))
+        if d.get("started_at", "") > t0:
+            later.append(os.path.basename(path)[:-5])
+    return t0, [c for c in later if not c.startswith("G3-record-")]
+
+
 def keyword_matches():
     """The closure-precondition-(b) figure, derived from the scan's own output."""
     if not has("G3-G2b-keyword-scan"):
@@ -190,6 +220,7 @@ def main():
     ci, wf_count, cr_count = ci_finding()
     kw = keyword_matches()
     d_paths, d_out, d_commits, d_cout, d_porcelain = drift_figures()
+    _sweep_t0, later = captures_after_the_sweep()
 
     w("# Gate 3 evidence - P2-S5")
     w()
@@ -211,6 +242,11 @@ def main():
         "the pull-request body and every commit message the pull request "
         "carries, run against the FINAL pull-request state",
         ["G3-G2b-keyword-scan"], limit=16, head=8)
+    row("G2b - closure precondition (b), the TAIL: the pattern applied to the "
+        "message of the commit that carries this record, which the scan above "
+        "cannot see because it runs before that commit exists. The pattern is "
+        "read out of the scan's own output rather than retyped",
+        ["G3-G2b-message-check"])
     row("G3 - drift check against the Gate 2 fingerprint", ["G3-G3-drift"])
     row("G4 - publication commands, in the contract's order",
         ["G3-G4-publication"])
@@ -256,6 +292,29 @@ def main():
     w("- Deviations (ADR-0011 section 7, ADR-0019 section 1): `ci: %s`. Neither "
       "Gatebraid repository carries a workflow, so no check ran and none could. "
       "The figures above are read from the row that measures them." % ci)
+    w("- Deviations (closure precondition (b), its own boundary): the scan "
+      "covers the pull-request body and every commit message the pull request "
+      "carried WHEN IT RAN, which cannot include the commit that carries this "
+      "record. That tail is not waved through. Every Gate 3 commit message is "
+      "written deliberately free of any issue or pull-request reference in any "
+      "shape, and the message of the final one is measured before it is used, "
+      "by the scanner's own pattern read out of the scanner's own output. The "
+      "two measurements together cover the complete published set, and nothing "
+      "is committed after them.")
+    w("- Deviations (the captures sweep's own boundary): the sweep runs over "
+      "the directory it also writes into, so it cannot cover captures created "
+      "after it. It is re-run as late as the ordering allows, and the captures "
+      "that still postdate it are exactly the `G3-record-*` ones: the record "
+      "validator on each declared half, and the sweep pointed at this record's "
+      "own bytes. Each is an instrument's output over files already inside the "
+      "swept domain, and the record-sweep row above covers this file itself. "
+      "%s This sentence states the STRUCTURE rather than a count on purpose: a "
+      "count would be true when rendered and false one capture later, and "
+      "re-rendering it would invalidate the very validations it counted."
+      % ("The renderer verifies that claim at render time and found no other."
+         if not later else
+         "THE RENDERER FOUND A CAPTURE THAT BREAKS THAT CLAIM, which is a gap "
+         "and not a boundary: " + ", ".join("`%s`" % c for c in later) + "."))
     w("- Deviations (ADR-0017 section 2): this record carries the pull request "
       "by URL and records NO merge SHA and NO closure timestamp. Both are held "
       "natively, and the authoritative Gate 3 record is the composite of this "
@@ -334,6 +393,10 @@ checks:
     command: "the same instrument over a seeded body: it must fire on each lawful reference shape and must not match a conventional-commit prefix"
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2b-keyword-scan-falsify.json"
+  - name: closure-precondition-pull-request-tail
+    command: "the scanner's own printed pattern, read out of its capture and not retyped, applied to the message of the commit that carries this record - the one commit the scan cannot cover because it runs first"
+    result: pass
+    output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2b-message-check.json"
   - name: ci-status
     command: "repository workflows, workflow files in the tree, and check runs on the pull-request head"
     result: none_configured
@@ -370,6 +433,7 @@ evidence_files:
   - docs/evidence/gatebraid/P2-S5/g3/render-gate3.py
   - docs/evidence/gatebraid/P2-S5/g3/falsification/SEED-closing-keyword-body.md
   - docs/evidence/gatebraid/P2-S5/g3/falsification/SEED-near-miss-gate3-classes.json
+  - docs/evidence/gatebraid/P2-S5/g3/falsification/SEED-closing-keyword-body.md
 notes: "PR %(pr)s. No merge SHA and no closure timestamp are recorded here - GitHub holds both natively (ADR-0017 section 2), and this file is written before the merge. The publication set is the reviewed tree at %(fp_head)s (tree %(fp_tree)s) plus the record-only evidence commits that follow it, every one inside docs/evidence/gatebraid/P2-S5/. CI is %(ci)s, a recorded finding rather than a pass. The Slice issue is referenced by plain reference and is closed at this gate's Exit by an explicit command, never by this pull request - closure is what releases native blocked-by dependents. Every figure in this record is derived from the row that measures it; four Gate 2 findings were a count or a status typed as a constant and later contradicted by its own row, and this record does not repeat that."
 '''
     arrow = "\u2192"

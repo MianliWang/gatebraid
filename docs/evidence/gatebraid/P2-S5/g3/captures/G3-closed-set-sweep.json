@@ -22,17 +22,17 @@
       "PYTHONDONTWRITEBYTECODE": "1"
     }
   },
-  "exit_code": 0,
+  "exit_code": 1,
   "streams": {
     "stdout": {
       "encoding": "base64",
-      "byte_length": 1001,
-      "sha256": "68a16db5225d41172b7bb7fe8139224fb8b7c2198bb969b8652d7c9db0e3b798",
-      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxNQ0KDQo9PT0gY2FuZGlkYXRlIGNsYXNzaWZpY2F0aW9uIChldmVyeSBydWxlIGFwcGxpZWQgZXhwbGljaXRseSkgPT09DQogIEUxIHBlcm1pdHRlZCByZXBvc2l0b3J5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNg0KICBFMyBBUEktcGF0aCBmcmFnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDMNCiAgRTQgZ2l0IHJlZiBuYW1lc3BhY2UsIG5vdCBhIHJlcG9zaXRvcnkgICAgICAgICAgICAgICAgICAgICA4DQogIEU1IGZpbGVzeXN0ZW0gb3IgVVJMIHBhdGggc2VnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgNDINCiAgRTYgc2NoZW1hLWlkIG5hbWVzcGFjZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA0DQogIEU4IHByb3NlIHNsYXNoIGJldHdlZW4gb3JkaW5hcnkgd29yZHMgKG5hbWVkLCBub3QgbWF0Y2hlZCkgMTANCiAgSTAgZnJpY3Rpb24gY2l0YXRpb24sIG5vdCBhbiBpc3N1ZSByZWZlcmVuY2UgICAgICAgICAgICAgICA0DQogIEkxIHRoZSBzdWJqZWN0IGlzc3VlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMg0KICBOMSB0aGUgcGVybWl0dGVkIFByb2plY3QgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDENCg0KPT09IGV2ZXJ5IFJFUE9TSVRPUlkgaWRlbnRpdHkgbmFtZWQgYW55d2hlcmUgPT09DQogIE1pYW5saVdhbmcvZ2F0ZWJyYWlkICAgICAgICAgICB4NiAgICBQRVJNSVRURUQNCg0KPT09IG1lbnRpb24tY2xhc3MgY2hlY2s6IGEgbWVudGlvbiBtdXN0IG5ldmVyIGFwcGVhciBpbiBhbiBJTlZPQ0FUSU9OID09PQ0KICBtZW50aW9uLWNsYXNzIGlzc3VlcyB0YXJnZXRlZCBieSBhIHF1ZXJ5OiAwICgwIHJlcXVpcmVkKQ0KDQpkb21haW4gICAgICA6IDE1IGRvY3VtZW50cyAoMiBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiAwDQo=",
+      "byte_length": 1271,
+      "sha256": "eac6930bffd4c1036f2b881aa25f568346547eab5d35e97f48784b6e94b5d7d1",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAzMQ0KDQo9PT0gY2FuZGlkYXRlIGNsYXNzaWZpY2F0aW9uIChldmVyeSBydWxlIGFwcGxpZWQgZXhwbGljaXRseSkgPT09DQogIEUxIHBlcm1pdHRlZCByZXBvc2l0b3J5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTANCiAgRTMgQVBJLXBhdGggZnJhZ21lbnQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAzDQogIEU0IGdpdCByZWYgbmFtZXNwYWNlLCBub3QgYSByZXBvc2l0b3J5ICAgICAgICAgICAgICAgICAgICAgOA0KICBFNSBmaWxlc3lzdGVtIG9yIFVSTCBwYXRoIHNlZ21lbnQgICAgICAgICAgICAgICAgICAgICAgICAgIDg1DQogIEU2IHNjaGVtYS1pZCBuYW1lc3BhY2UgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTINCiAgRTggcHJvc2Ugc2xhc2ggYmV0d2VlbiBvcmRpbmFyeSB3b3JkcyAobmFtZWQsIG5vdCBtYXRjaGVkKSAxOA0KICBJMCBmcmljdGlvbiBjaXRhdGlvbiwgbm90IGFuIGlzc3VlIHJlZmVyZW5jZSAgICAgICAgICAgICAgIDQNCiAgSTEgdGhlIHN1YmplY3QgaXNzdWUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAyDQogIE4xIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMQ0KICBVTkVYUExBSU5FRCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDMNCg0KPT09IGV2ZXJ5IFJFUE9TSVRPUlkgaWRlbnRpdHkgbmFtZWQgYW55d2hlcmUgPT09DQogIE1pYW5saVdhbmcvZ2F0ZWJyYWlkICAgICAgICAgICB4MTAgICBQRVJNSVRURUQNCg0KPT09IG1lbnRpb24tY2xhc3MgY2hlY2s6IGEgbWVudGlvbiBtdXN0IG5ldmVyIGFwcGVhciBpbiBhbiBJTlZPQ0FUSU9OID09PQ0KICBtZW50aW9uLWNsYXNzIGlzc3VlcyB0YXJnZXRlZCBieSBhIHF1ZXJ5OiAwICgwIHJlcXVpcmVkKQ0KDQpkb21haW4gICAgICA6IDMxIGRvY3VtZW50cyAoNiBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiAzDQogICAgRzMtRzJiLW1lc3NhZ2UtY2hlY2stcGFzczEuanNvbiAgICAgICAgICAgICAgc3Rkb3V0ICAgICAgIHJlcG8NCiAgICBHMy1HMmItbWVzc2FnZS1jaGVjay1wYXNzMS5qc29uICAgICAgICAgICAgICBpbnZvY2F0aW9uICAgcmVwbw0KICAgIEczLUcyYi1tZXNzYWdlLWNoZWNrLXBhc3MyLmpzb24gICAgICAgICAgICAgIG5vdGVzICAgICAgICByZXBvDQo=",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "captures swept : 15\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    6\r\n  E3 API-path fragment                                       3\r\n  E4 git ref namespace, not a repository                     8\r\n  E5 filesystem or URL path segment                          42\r\n  E6 schema-id namespace                                     4\r\n  E8 prose slash between ordinary words (named, not matched) 10\r\n  I0 friction citation, not an issue reference               4\r\n  I1 the subject issue                                       2\r\n  N1 the permitted Project                                   1\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x6    PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 15 documents (2 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 0\r\n"
+        "text": "captures swept : 31\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    10\r\n  E3 API-path fragment                                       3\r\n  E4 git ref namespace, not a repository                     8\r\n  E5 filesystem or URL path segment                          85\r\n  E6 schema-id namespace                                     12\r\n  E8 prose slash between ordinary words (named, not matched) 18\r\n  I0 friction citation, not an issue reference               4\r\n  I1 the subject issue                                       2\r\n  N1 the permitted Project                                   1\r\n  UNEXPLAINED                                                3\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x10   PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 31 documents (6 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 3\r\n    G3-G2b-message-check-pass1.json              stdout       repo\r\n    G3-G2b-message-check-pass1.json              invocation   repo\r\n    G3-G2b-message-check-pass2.json              notes        repo\r\n"
       }
     },
     "stderr": {
@@ -47,12 +47,12 @@
       }
     }
   },
-  "started_at": "2026-09-03T08:56:39.724192Z",
-  "ended_at": "2026-09-03T08:56:39.830734Z",
+  "started_at": "2026-09-03T09:08:17.130439Z",
+  "ended_at": "2026-09-03T09:08:17.232644Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py",
-      "sha256": "6a949760d84ea48063c96011a704a33905d0021256fcff63994e08cda21af112"
+      "sha256": "201dc52b63b9c97665e8b341eec4c5668228400154eaa5b86bfe2b2d4a181ae8"
     }
   ],
   "outputs": [],
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "The closed-set sweep over this gate's own captures, run only after the two seeded runs proved the instrument can fire."
+  "notes": "The closed-set sweep over this gate's whole captured domain, run only after the three seeded runs proved this copy can fire, and re-run here as late as the ordering allows so the domain includes the closure-tail capture. Earlier runs over narrower domains are retained. The sweep excludes its own reports, which is what lets it be re-run over a directory it writes into."
 }
