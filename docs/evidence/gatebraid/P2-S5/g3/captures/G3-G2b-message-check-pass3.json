@@ -29,12 +29,12 @@
     "stdout": {
       "encoding": "base64",
       "byte_length": 700,
-      "sha256": "f9ad31cddace620eccf6ba28064d887876b67b8ab31adb9fbc6dfc4ea75d6bb2",
-      "data": "cGF0dGVybiwgUkVBRCBGUk9NIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2czL2NhcHR1cmVzL0czLUcyYi1rZXl3b3JkLXNjYW4uanNvbiBhbmQgbm90IHJldHlwZWQ6DQogICAoPzpjbG9zZVtzZF0/fGZpeCg/OmVbc2RdKT98cmVzb2x2ZVtzZF0/KVxzKjo/XHMrKD86I1xkK3xbQS1aYS16MC05Ll8tXSsvW0EtWmEtejAtOS5fLV0rI1xkK3xodHRwcz86Ly9naXRodWJcLmNvbS9cUysvaXNzdWVzL1xkKykNCg0KbWVzc2FnZSBtZWFzdXJlZCAgICA6IEM6L1VzZXJzL3JvdWdoL0FwcERhdGEvTG9jYWwvVGVtcC9jbGF1ZGUvZC0tR2l0aHViLXJlcG8tR2F0ZWJyYWlkLzNkMzg1NThkLTBhNGYtNGM3YS1hZWUwLTk2ZGFiOTBjMzY5Mi9zY3JhdGNocGFkL3BlbmRpbmctbWVzc2FnZS50eHQgKDIwNDIgYnl0ZXMpDQogICBwYXR0ZXJuIG1hdGNoZXMgIDogMA0KICAgYmFyZSB0b2tlbnMgICAgICA6IDMgIChhIGtleXdvcmQgcmVmZXJlbmNpbmcgbm90aGluZyBpcyBub3QgcHJvaGliaXRlZCkNCiAgIGhhc2ggcmVmZXJlbmNlcyAgOiAwDQogICByZWZlcmVuY2UgVVJMcyAgIDogMA0KDQpNRVNTQUdFIENIRUNLOiBDTEVBTiAtIG5vIGNsb3Npbmcga2V5d29yZCBwcmVjZWRlcyBhbnkgcmVmZXJlbmNlLCBhbmQgdGhlDQptZXNzYWdlIGNhcnJpZXMgbm8gcmVmZXJlbmNlIG9mIGFueSBzaGFwZSBmb3Igb25lIHRvIHByZWNlZGUNCg==",
+      "sha256": "1be3ad333f4b6a7c1e4a548aab9fbdf18c17b35360cb6971db339aec3cb242f2",
+      "data": "cGF0dGVybiwgUkVBRCBGUk9NIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2czL2NhcHR1cmVzL0czLUcyYi1rZXl3b3JkLXNjYW4uanNvbiBhbmQgbm90IHJldHlwZWQ6DQogICAoPzpjbG9zZVtzZF0/fGZpeCg/OmVbc2RdKT98cmVzb2x2ZVtzZF0/KVxzKjo/XHMrKD86I1xkK3xbQS1aYS16MC05Ll8tXSsvW0EtWmEtejAtOS5fLV0rI1xkK3xodHRwcz86Ly9naXRodWJcLmNvbS9cUysvaXNzdWVzL1xkKykNCg0KbWVzc2FnZSBtZWFzdXJlZCAgICA6IEM6L1VzZXJzL3JvdWdoL0FwcERhdGEvTG9jYWwvVGVtcC9jbGF1ZGUvZC0tR2l0aHViLXJlcG8tR2F0ZWJyYWlkLzNkMzg1NThkLTBhNGYtNGM3YS1hZWUwLTk2ZGFiOTBjMzY5Mi9zY3JhdGNocGFkL3BlbmRpbmctbWVzc2FnZS50eHQgKDE5NjkgYnl0ZXMpDQogICBwYXR0ZXJuIG1hdGNoZXMgIDogMA0KICAgYmFyZSB0b2tlbnMgICAgICA6IDIgIChhIGtleXdvcmQgcmVmZXJlbmNpbmcgbm90aGluZyBpcyBub3QgcHJvaGliaXRlZCkNCiAgIGhhc2ggcmVmZXJlbmNlcyAgOiAwDQogICByZWZlcmVuY2UgVVJMcyAgIDogMA0KDQpNRVNTQUdFIENIRUNLOiBDTEVBTiAtIG5vIGNsb3Npbmcga2V5d29yZCBwcmVjZWRlcyBhbnkgcmVmZXJlbmNlLCBhbmQgdGhlDQptZXNzYWdlIGNhcnJpZXMgbm8gcmVmZXJlbmNlIG9mIGFueSBzaGFwZSBmb3Igb25lIHRvIHByZWNlZGUNCg==",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "pattern, READ FROM docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2b-keyword-scan.json and not retyped:\r\n   (?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\\s*:?\\s+(?:#\\d+|[A-Za-z0-9._-]+/[A-Za-z0-9._-]+#\\d+|https?://github\\.com/\\S+/issues/\\d+)\r\n\r\nmessage measured    : C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/3d38558d-0a4f-4c7a-aee0-96dab90c3692/scratchpad/pending-message.txt (2042 bytes)\r\n   pattern matches  : 0\r\n   bare tokens      : 3  (a keyword referencing nothing is not prohibited)\r\n   hash references  : 0\r\n   reference URLs   : 0\r\n\r\nMESSAGE CHECK: CLEAN - no closing keyword precedes any reference, and the\r\nmessage carries no reference of any shape for one to precede\r\n"
+        "text": "pattern, READ FROM docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2b-keyword-scan.json and not retyped:\r\n   (?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\\s*:?\\s+(?:#\\d+|[A-Za-z0-9._-]+/[A-Za-z0-9._-]+#\\d+|https?://github\\.com/\\S+/issues/\\d+)\r\n\r\nmessage measured    : C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/3d38558d-0a4f-4c7a-aee0-96dab90c3692/scratchpad/pending-message.txt (1969 bytes)\r\n   pattern matches  : 0\r\n   bare tokens      : 2  (a keyword referencing nothing is not prohibited)\r\n   hash references  : 0\r\n   reference URLs   : 0\r\n\r\nMESSAGE CHECK: CLEAN - no closing keyword precedes any reference, and the\r\nmessage carries no reference of any shape for one to precede\r\n"
       }
     },
     "stderr": {
@@ -49,8 +49,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T09:14:11.923872Z",
-  "ended_at": "2026-09-03T09:14:12.010851Z",
+  "started_at": "2026-09-03T09:08:16.604142Z",
+  "ended_at": "2026-09-03T09:08:16.696904Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2b-keyword-scan.json",
@@ -70,5 +70,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "The tail of closure precondition (b). The scan runs before the commit that carries this record exists, so that one message is measured here. The pattern is NOT retyped - it is read out of the scan capture's own first output line, so a pattern that was wrong there would be wrong identically here. Earlier passes are retained; the record diagnoses the residue two of them leave."
+  "notes": "The tail of closure precondition (b): the scan runs before the commit that carries this record exists, so that one message is measured here. The pattern is NOT retyped - it is read out of the scan capture's own first output line, so a pattern that was wrong there would be wrong identically here and could not silently pass a message the scan would have caught. Two runs are retained: -pass1's own output carried a column label reading issue-slash-PR, which the record sweep correctly classified as an unexplained owner-slash-repo-shaped token, and the label was reworded rather than the sweep widened; -pass2 measured an earlier draft of the same message."
 }

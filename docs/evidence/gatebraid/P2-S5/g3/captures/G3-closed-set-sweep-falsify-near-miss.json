@@ -26,13 +26,13 @@
   "streams": {
     "stdout": {
       "encoding": "base64",
-      "byte_length": 1319,
-      "sha256": "93e19ddd72926a36282a135f7cc65e449fd7cfd4ae794a6e44ef45049dd4ee3b",
-      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTggcHJvc2Ugc2xhc2ggYmV0d2VlbiBvcmRpbmFyeSB3b3JkcyAobmFtZWQsIG5vdCBtYXRjaGVkKSAyDQogIFVORVhQTEFJTkVEICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTANCg0KPT09IGV2ZXJ5IFJFUE9TSVRPUlkgaWRlbnRpdHkgbmFtZWQgYW55d2hlcmUgPT09DQoNCj09PSBtZW50aW9uLWNsYXNzIGNoZWNrOiBhIG1lbnRpb24gbXVzdCBuZXZlciBhcHBlYXIgaW4gYW4gSU5WT0NBVElPTiA9PT0NCiAgbWVudGlvbi1jbGFzcyBpc3N1ZXMgdGFyZ2V0ZWQgYnkgYSBxdWVyeTogMCAoMCByZXF1aXJlZCkNCg0KZG9tYWluICAgICAgOiAxIGRvY3VtZW50cyAoMCBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiAxMg0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1nYXRlMy1jbGFzc2VzLmpzb24gICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1nYXRlMy1jbGFzc2VzLmpzb24gICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1nYXRlMy1jbGFzc2VzLmpzb24gICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIGlzc3VlDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIGlzc3VlDQo=",
+      "byte_length": 1455,
+      "sha256": "61405a0b9576f6d2e7adf78eba2e51df462a4f26848d29dca2fda1a414504bf6",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTggcHJvc2Ugc2xhc2ggYmV0d2VlbiBvcmRpbmFyeSB3b3JkcyAobmFtZWQsIG5vdCBtYXRjaGVkKSAzDQogIFVORVhQTEFJTkVEICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTINCg0KPT09IGV2ZXJ5IFJFUE9TSVRPUlkgaWRlbnRpdHkgbmFtZWQgYW55d2hlcmUgPT09DQoNCj09PSBtZW50aW9uLWNsYXNzIGNoZWNrOiBhIG1lbnRpb24gbXVzdCBuZXZlciBhcHBlYXIgaW4gYW4gSU5WT0NBVElPTiA9PT0NCiAgbWVudGlvbi1jbGFzcyBpc3N1ZXMgdGFyZ2V0ZWQgYnkgYSBxdWVyeTogMCAoMCByZXF1aXJlZCkNCg0KZG9tYWluICAgICAgOiAxIGRvY3VtZW50cyAoMCBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiAxNA0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1nYXRlMy1jbGFzc2VzLmpzb24gICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1nYXRlMy1jbGFzc2VzLmpzb24gICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1nYXRlMy1jbGFzc2VzLmpzb24gICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtZ2F0ZTMtY2xhc3Nlcy5qc29uICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1nYXRlMy1jbGFzc2VzLmpzb24gICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICBpc3N1ZQ0KICAgIFNFRUQtbmVhci1taXNzLWdhdGUzLWNsYXNzZXMuanNvbiAgICAgICAgICAgIGRvY3VtZW50ICAgICBpc3N1ZQ0K",
       "rendered": {
         "decode_codec": "utf-8",
         "decode_result": "ok",
-        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E8 prose slash between ordinary words (named, not matched) 2\r\n  UNEXPLAINED                                                10\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 12\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     issue\r\n    SEED-near-miss-gate3-classes.json            document     issue\r\n"
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E8 prose slash between ordinary words (named, not matched) 3\r\n  UNEXPLAINED                                                12\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 14\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     repo\r\n    SEED-near-miss-gate3-classes.json            document     issue\r\n    SEED-near-miss-gate3-classes.json            document     issue\r\n"
       }
     },
     "stderr": {
@@ -47,12 +47,12 @@
       }
     }
   },
-  "started_at": "2026-09-03T08:56:39.321114Z",
-  "ended_at": "2026-09-03T08:56:39.417610Z",
+  "started_at": "2026-09-03T09:10:52.778400Z",
+  "ended_at": "2026-09-03T09:10:52.871142Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py",
-      "sha256": "6a949760d84ea48063c96011a704a33905d0021256fcff63994e08cda21af112"
+      "sha256": "9b6d620a50a80984128595b1b950189fe7dd897ac0e866ea3c4fa0fae8f9510e"
     }
   ],
   "outputs": [],
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Falsification before trust: the SAME instrument, not a copy of it, pointed at a seeded domain. It must exit 1."
+  "notes": "Re-falsification after the sweep copy admitted owner/repo: the same instrument pointed at a seeded domain. It must still exit 1. The earlier run against the copy before that entry is retained."
 }

@@ -50,8 +50,8 @@
       }
     }
   },
-  "started_at": "2026-09-03T09:14:14.141085Z",
-  "ended_at": "2026-09-03T09:14:14.541484Z",
+  "started_at": "2026-09-03T09:11:21.011669Z",
+  "ended_at": "2026-09-03T09:11:21.471287Z",
   "inputs": [
     {
       "path": "bin/gatebraid-validate.py",
@@ -59,7 +59,7 @@
     },
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/gate3.md",
-      "sha256": "b33dccf0f07e311b5154e31304e093f0f5af1af2bfa23f77265276febb985894"
+      "sha256": "3f3b8ad487c1c6519ed5f217fe43b56cccc5ec470c7ff958b9763ba5da859ca1"
     }
   ],
   "outputs": [],

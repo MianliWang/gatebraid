@@ -105,9 +105,9 @@ print('\''message carries no reference of any shape for one to precede'\'')
 pattern, READ FROM docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2b-keyword-scan.json and not retyped:
    (?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s*:?\s+(?:#\d+|[A-Za-z0-9._-]+/[A-Za-z0-9._-]+#\d+|https?://github\.com/\S+/issues/\d+)
 
-message measured    : C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/3d38558d-0a4f-4c7a-aee0-96dab90c3692/scratchpad/pending-message.txt (1969 bytes)
+message measured    : C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/3d38558d-0a4f-4c7a-aee0-96dab90c3692/scratchpad/pending-message.txt (2042 bytes)
    pattern matches  : 0
-   bare tokens      : 2  (a keyword referencing nothing is not prohibited)
+   bare tokens      : 3  (a keyword referencing nothing is not prohibited)
    hash references  : 0
    reference URLs   : 0
 
@@ -167,25 +167,25 @@ gh pr checks 21:
 **G6 - the closed-set sweep over this gate's whole captured domain, run only AFTER the three seeded runs below proved this copy can fire**
 ```
 $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py docs/evidence/gatebraid/P2-S5/g3/captures
-captures swept : 31
+captures swept : 38
 
 === candidate classification (every rule applied explicitly) ===
-  E1 permitted repository                                    10
+  E1 permitted repository                                    12
   E3 API-path fragment                                       3
   E4 git ref namespace, not a repository                     8
-  E5 filesystem or URL path segment                          85
-  E6 schema-id namespace                                     12
-  E8 prose slash between ordinary words (named, not matched) 18
+  E5 filesystem or URL path segment                          105
+  E6 schema-id namespace                                     16
+  E8 prose slash between ordinary words (named, not matched) 22
   I0 friction citation, not an issue reference               4
   I1 the subject issue                                       2
   N1 the permitted Project                                   1
   UNEXPLAINED                                                3
 
 === every REPOSITORY identity named anywhere ===
-  MianliWang/gatebraid           x10   PERMITTED
+  MianliWang/gatebraid           x12   PERMITTED
 [... shown 22 of 25 lines; full output: docs/evidence/gatebraid/P2-S5/g3/captures/G3-closed-set-sweep.json]
 
-domain      : 31 documents (6 of this sweep's own reports excluded)
+domain      : 38 documents (11 of this sweep's own reports excluded)
 UNEXPLAINED RESIDUE: 3
     G3-G2b-message-check-pass1.json              stdout       repo
     G3-G2b-message-check-pass1.json              invocation   repo
@@ -221,7 +221,7 @@ $ PYTHONDONTWRITEBYTECODE=1 C:/Python312/python.exe -B docs/evidence/gatebraid/P
 captures swept : 1
 
 === candidate classification (every rule applied explicitly) ===
-[... shown 8 of 25 lines; full output: docs/evidence/gatebraid/P2-S5/g3/captures/G3-closed-set-sweep-falsify-near-miss.json]
+[... shown 8 of 27 lines; full output: docs/evidence/gatebraid/P2-S5/g3/captures/G3-closed-set-sweep-falsify-near-miss.json]
     SEED-near-miss-gate3-classes.json            document     repo
     SEED-near-miss-gate3-classes.json            document     repo
     SEED-near-miss-gate3-classes.json            document     repo
@@ -243,7 +243,7 @@ captures swept : 1
 - Deviations (ADR-0017 section 2): this record carries the pull request by URL and records NO merge SHA and NO closure timestamp. Both are held natively, and the authoritative Gate 3 record is the composite of this file, the merge event, the issue's closure event and the Project's `Workflow` field. A file written before the merge cannot attest to it (friction #56).
 - Deviations (Release Approval terms 1 and 4): the merge is the operator's own browser action and no machine account performs it; the branch is retained after the merge, never deleted. This gate stops after pushing this record and holds.
 - Deviations (Release Approval rulings 1 through 6, carried unchanged): F-08 leaves the Gate 2 sweep check typed `fail` with its residue diagnosed by class; F-07 and H-02 are queued together for the ADR-0026 clarification; the `--help` frozen-scope tension goes to closeout with the `bin/` docstring unedited; J-01's one-line subset-nomination wording and the `consults[]` recording gap are closeout items; and the Slice issue's Acceptance item 1, `R3 first-pass = pass`, is NOT met - the first-pass R3 verdict was FAIL, and O1's acceptance is decided at closeout, not by this publication.
-- Deviations (ADR-0028 sections 2 and 3, the closed-set sweep): this gate's copy of the sweep adds FOUR domain facts to the Gate 2 copy and changes no rule, no regex and no residue criterion; its header names each one and the reason for it. One of the four was NOT anticipated - the copy was run unextended first, reported 2 residues, and both were this gate's own drift column heading, a slash-joined list of three git ref namespaces. It is admitted as an exact string and the new seed proves it is not acting as a prefix: the same token with a trailing period stays residue. Residue over this gate's own domain is 3, and each seeded run left its own seeds unexplained (5, 15 and 12). The deliberate residue the Gate 2 copy discloses does not arise here, because this gate ran no frozen corpus - a fact about the domain, not a loosened rule.
+- Deviations (ADR-0028 sections 2 and 3, the closed-set sweep): this gate's copy of the sweep adds 5 allowlist entries to the Gate 2 copy - 3 to the filesystem-segment set and 2 to the prose-pair set - removes 0, and additionally moves only its own default captures directory and its own self-exclusion prefix. It changes no rule, no regex and no residue criterion; its header names each entry and the reason for it, and these counts are computed by diffing the two files' allowlists rather than typed beside them, because the sentence said FOUR for one revision and went false the moment a fifth was admitted mid-gate. One entry was NOT anticipated - the copy was run unextended first, reported 2 residues, and both were this gate's own drift column heading, a slash-joined list of three git ref namespaces. It is admitted as an exact string and the new seed proves it is not acting as a prefix: the same token with a trailing period stays residue. Residue over this gate's own captures domain is 3, and the check above is typed from that number rather than beside it - for one pushed revision it was typed `pass` while the sweep it cites exited 1, and the fix was to derive the verdict from the capture. The residue that remains is entirely inside RETAINED SUPERSEDED captures - failing or replaced passes, kept because each is a true record of its instant - at these loci, printed by file, stream and kind and never by token: `G3-G2b-message-check-pass1.json stdout repo`; `G3-G2b-message-check-pass1.json invocation repo`; `G3-G2b-message-check-pass2.json notes repo`. Two shapes account for all of them. One is a column label that the live run of that check no longer prints, because the LABEL was reworded the moment this sweep caught it; the other is a hyphenated compound inside the very capture note that records the rewording, whose trailing hyphenated word carries it past the admitted exact string. Neither is admitted. Admitting the first would weaken the sweep for exactly the string it correctly caught, in order to tidy away the evidence that it worked; admitting the second would need a leading-segment rule, and this copy's whole method is exact strings. They stay residue under standing ruling F-08. No residue is a repository identity. Each seeded run left its own seeds unexplained (5, 15 and 14). The deliberate residue the Gate 2 copy discloses is a different one and does not arise here, because this gate ran no frozen corpus - a fact about the domain, not a loosened rule.
 - Environment (friction #89): Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; Git for Windows 2.51.0.windows.1 whose system configuration carries `core.autocrlf=true`; every `gh` call pins `GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid` and uses endpoints with no leading slash; every Python invocation carries `-B` with `PYTHONDONTWRITEBYTECODE=1`; Windows interpreter `C:/Python312/python.exe`, CPython 3.12.2, PyYAML 6.0.2, jsonschema 4.23.0; WSL `/usr/bin/python3`, CPython 3.12.3, jsonschema 4.10.3. Captures are argv-form unless the row declares shell semantics, in which case the shell, pipefail and the exit-code source are all recorded.
 
 ## gatebraid-metadata
@@ -257,7 +257,7 @@ executor: Claude Lead
 base_sha: cbd065893b37f20713ae35b8d2673bf26fe4d2ad
 active_branch: slice/P2-S5
 started_at: "2026-09-03T08:46:17Z"
-ended_at: "2026-09-03T09:08:17Z"
+ended_at: "2026-09-03T09:14:12Z"
 result: passed
 checks:
   - name: staged-set-matches-gate2-handoff
@@ -286,10 +286,10 @@ checks:
     output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-G5-ci.json"
   - name: closed-set-sweep-explains-every-candidate
     command: "g3/checks-g3-closed-set-sweep.py over this gate's captures domain; every candidate classified by an explicit rule, residue 3"
-    result: pass
+    result: fail
     output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-closed-set-sweep.json"
   - name: closed-set-sweep-falsified-three-ways
-    command: "the same instrument over the retained Gate 1 seeds (residue 5, repository, node and issue limbs all firing), over the Gate 2 near-miss seed (residue 15), and over a new seed carrying a one-character near-miss for every fact this copy adds (residue 12)"
+    command: "the same instrument over the retained Gate 1 seeds (residue 5, repository, node and issue limbs all firing), over the Gate 2 near-miss seed (residue 15), and over a new seed carrying a one-character near-miss for every fact this copy adds (residue 14)"
     result: pass
     output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-closed-set-sweep-falsify-near-miss.json"
   - name: record-sweep-over-this-records-final-bytes

@@ -207,6 +207,74 @@ def captures_after_the_sweep():
     return t0, [c for c in later if not c.startswith("G3-record-")]
 
 
+def sweep_domain_facts():
+    """How many domain facts this gate's sweep copy adds, DERIVED by diffing.
+
+    The prose here said FOUR for one revision and then went false the moment a
+    fifth was admitted mid-gate - a count typed beside the thing it counts,
+    which is the defect this record is largely about. It is now computed by
+    reading the two allowlist literals out of BOTH sweep files and taking the
+    difference, so admitting or dropping an entry moves the sentence with it.
+
+    Only the two allowlists are diffed. The other two differences - the default
+    captures directory and the self-exclusion prefix - are not allowlist entries
+    and are counted separately in the sentence that uses this.
+    """
+    def sets(path):
+        text = open(path, encoding="utf-8").read()
+        out = {}
+        for name in ("FS_PREFIX", "PROSE_PAIRS"):
+            start = text.index(name + " = {") + len(name) + 4
+            depth, i = 1, start
+            while True:
+                if text[i] == "{":
+                    depth += 1
+                elif text[i] == "}":
+                    depth -= 1
+                    if depth == 0:
+                        break
+                i += 1
+            body = text[start:i]
+            body = re.sub(r"#[^\n]*", "", body)
+            out[name] = set(re.findall(r'"([^"]*)"', body))
+        return out
+
+    g2 = sets("docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py")
+    g3 = sets("docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py")
+    added = {k: sorted(g3[k] - g2[k]) for k in g3}
+    removed = {k: sorted(g2[k] - g3[k]) for k in g3}
+    return added, removed
+
+
+def residue_loci(cid):
+    """Where a sweep's residue is, DERIVED from the sweep's own report lines.
+
+    The sweep prints residue by file, stream and kind and never echoes the
+    token (ADR-0028 section 3), so quoting these lines carries no forbidden
+    string into this record. The diagnosis beside them is prose, but the loci
+    are not: an added or removed residue moves this list with it.
+    """
+    if not has(cid):
+        return []
+    text = stream_text(cap(cid), "stdout")
+    tail = text.split("UNEXPLAINED RESIDUE:")[-1].split("\n")[1:]
+    return [" ".join(l.split()) for l in tail if l.strip()]
+
+
+def sweep_verdict(cid):
+    """`pass` or `fail` for a sweep check, DERIVED from that sweep's own exit.
+
+    This was typed `pass` for one revision, and it was pushed that way while the
+    sweep it described exited 1 with residue 3 - a record contradicting the row
+    it cites, in a record whose whole subject is that class of defect. It is now
+    read from the capture: a sweep with residue is a check that failed, and the
+    prose beside it diagnoses the residue rather than hiding it.
+    """
+    if not has(cid):
+        return "not_run"
+    return "pass" if cap(cid)["exit_code"] == 0 else "fail"
+
+
 def keyword_matches():
     """The closure-precondition-(b) figure, derived from the scan's own output."""
     if not has("G3-G2b-keyword-scan"):
@@ -221,6 +289,10 @@ def main():
     kw = keyword_matches()
     d_paths, d_out, d_commits, d_cout, d_porcelain = drift_figures()
     _sweep_t0, later = captures_after_the_sweep()
+    _added, _removed = sweep_domain_facts()
+    n_fs = len(_added["FS_PREFIX"])
+    n_pp = len(_added["PROSE_PAIRS"])
+    n_removed = len(_removed["FS_PREFIX"]) + len(_removed["PROSE_PAIRS"])
 
     w("# Gate 3 evidence - P2-S5")
     w()
@@ -335,19 +407,45 @@ def main():
       "first-pass R3 verdict was FAIL, and O1's acceptance is decided at "
       "closeout, not by this publication.")
     w("- Deviations (ADR-0028 sections 2 and 3, the closed-set sweep): this "
-      "gate's copy of the sweep adds FOUR domain facts to the Gate 2 copy and "
-      "changes no rule, no regex and no residue criterion; its header names "
-      "each one and the reason for it. One of the four was NOT anticipated - "
+      "gate's copy of the sweep adds %d allowlist %s to the Gate 2 copy - %d to "
+      "the filesystem-segment set and %d to the prose-pair set - removes %d, "
+      "and additionally moves only its own default captures directory and its "
+      "own self-exclusion prefix. It changes no rule, no regex and no residue "
+      "criterion; its header names each entry and the reason for it, and these "
+      "counts are computed by diffing the two files' allowlists rather than "
+      "typed beside them, because the sentence said FOUR for one revision and "
+      "went false the moment a fifth was admitted mid-gate. One entry was NOT "
+      "anticipated - "
       "the copy was run unextended first, reported 2 residues, and both were "
       "this gate's own drift column heading, a slash-joined list of three git "
       "ref namespaces. It is admitted as an exact string and the new seed "
       "proves it is not acting as a prefix: the same token with a trailing "
-      "period stays residue. Residue over this gate's own domain is %s, and "
-      "each seeded run left its own seeds unexplained (%s, %s and %s). The "
-      "deliberate residue the Gate 2 copy discloses does not arise here, "
-      "because this gate ran no frozen corpus - a fact about the domain, not a "
-      "loosened rule."
-      % (residue("G3-closed-set-sweep"),
+      "period stays residue. Residue over this gate's own captures domain is "
+      "%s, and the check above is typed from that number rather than beside it "
+      "- for one pushed revision it was typed `pass` while the sweep it cites "
+      "exited 1, and the fix was to derive the verdict from the capture. The "
+      "residue that remains is entirely inside RETAINED SUPERSEDED captures - "
+      "failing or replaced passes, kept because each is a true record of its "
+      "instant - at these loci, printed by file, stream and kind and never by "
+      "token: %s. Two shapes account for all of them. One is a column label "
+      "that the live run of that check no longer prints, because the LABEL was "
+      "reworded the moment this sweep caught it; the other is a hyphenated "
+      "compound inside the very capture note that records the rewording, whose "
+      "trailing hyphenated word carries it past the admitted exact string. "
+      "Neither is admitted. Admitting the first would weaken the sweep for "
+      "exactly the string it correctly caught, in order to tidy away the "
+      "evidence that it worked; admitting the second would need a leading-"
+      "segment rule, and this copy's whole method is exact strings. They stay "
+      "residue under standing ruling F-08. No residue is a repository "
+      "identity. Each seeded run left its own "
+      "seeds unexplained (%s, %s and %s). The deliberate residue the Gate 2 "
+      "copy discloses is a different one and does not arise here, because this "
+      "gate ran no frozen corpus - a fact about the domain, not a loosened "
+      "rule."
+      % (n_fs + n_pp, "entry" if n_fs + n_pp == 1 else "entries", n_fs, n_pp,
+         n_removed,
+         residue("G3-closed-set-sweep"),
+         "; ".join("`%s`" % l for l in residue_loci("G3-closed-set-sweep")),
          residue("G3-closed-set-sweep-falsify-retained"),
          residue("G3-closed-set-sweep-falsify-g2-seeds"),
          residue("G3-closed-set-sweep-falsify-near-miss")))
@@ -403,7 +501,7 @@ checks:
     output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-G5-ci.json"
   - name: closed-set-sweep-explains-every-candidate
     command: "g3/checks-g3-closed-set-sweep.py over this gate's captures domain; every candidate classified by an explicit rule, residue %(res_caps)s"
-    result: pass
+    result: %(res_caps_verdict)s
     output_ref: "docs/evidence/gatebraid/P2-S5/g3/captures/G3-closed-set-sweep.json"
   - name: closed-set-sweep-falsified-three-ways
     command: "the same instrument over the retained Gate 1 seeds (residue %(res_ret)s, repository, node and issue limbs all firing), over the Gate 2 near-miss seed (residue %(res_g2)s), and over a new seed carrying a one-character near-miss for every fact this copy adds (residue %(res_nm)s)"
@@ -444,6 +542,7 @@ notes: "PR %(pr)s. No merge SHA and no closure timestamp are recorded here - Git
                "res_ret": residue("G3-closed-set-sweep-falsify-retained"),
                "res_g2": residue("G3-closed-set-sweep-falsify-g2-seeds"),
                "res_nm": residue("G3-closed-set-sweep-falsify-near-miss"),
+               "res_caps_verdict": sweep_verdict("G3-closed-set-sweep"),
                }).rstrip())
     w("```")
 

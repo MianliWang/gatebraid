@@ -47,16 +47,16 @@
       }
     }
   },
-  "started_at": "2026-09-03T09:14:13.722469Z",
-  "ended_at": "2026-09-03T09:14:13.854458Z",
+  "started_at": "2026-09-03T09:08:18.333396Z",
+  "ended_at": "2026-09-03T09:08:18.432650Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py",
-      "sha256": "9b6d620a50a80984128595b1b950189fe7dd897ac0e866ea3c4fa0fae8f9510e"
+      "sha256": "201dc52b63b9c97665e8b341eec4c5668228400154eaa5b86bfe2b2d4a181ae8"
     },
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/gate3.md",
-      "sha256": "b33dccf0f07e311b5154e31304e093f0f5af1af2bfa23f77265276febb985894"
+      "sha256": "d808caa18b05176ce3c121f313486aa4b6312a456e183fdd63adac04783ebe5e"
     }
   ],
   "outputs": [],
@@ -72,5 +72,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "The closed-set sweep pointed at this record's own final bytes."
+  "notes": "The closed-set sweep pointed at this record's own final bytes. Superseded passes are retained; pass 4 returned residue 2, both a column label in this gate's own message-check row, and the label was reworded rather than the sweep widened."
 }

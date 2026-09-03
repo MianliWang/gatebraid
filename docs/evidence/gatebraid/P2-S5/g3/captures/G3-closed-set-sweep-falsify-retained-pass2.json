@@ -47,12 +47,12 @@
       }
     }
   },
-  "started_at": "2026-09-03T09:10:51.655560Z",
-  "ended_at": "2026-09-03T09:10:51.758107Z",
+  "started_at": "2026-09-03T08:57:27.634175Z",
+  "ended_at": "2026-09-03T08:57:27.722981Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py",
-      "sha256": "9b6d620a50a80984128595b1b950189fe7dd897ac0e866ea3c4fa0fae8f9510e"
+      "sha256": "6a949760d84ea48063c96011a704a33905d0021256fcff63994e08cda21af112"
     }
   ],
   "outputs": [],
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Re-falsification after the sweep copy admitted owner/repo: the same instrument pointed at a seeded domain. It must still exit 1. The earlier run against the copy before that entry is retained."
+  "notes": "Falsification 1 of 3, the RETAINED seeds: the same instrument pointed at the Gate 1 falsification domain, which carries the out-of-set repository seed and the out-of-namespace Project item seed. It must exit 1 with the repository and node limbs firing. A first run under this capture id sweptthe Gate 2 seed directory instead - a true run of a real domain under a name that described a different one - and is retained as -pass1 rather than deleted."
 }

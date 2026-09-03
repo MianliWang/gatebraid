@@ -47,12 +47,12 @@
       }
     }
   },
-  "started_at": "2026-09-03T09:10:52.247515Z",
-  "ended_at": "2026-09-03T09:10:52.345605Z",
+  "started_at": "2026-09-03T08:57:28.048848Z",
+  "ended_at": "2026-09-03T08:57:28.144490Z",
   "inputs": [
     {
       "path": "docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py",
-      "sha256": "9b6d620a50a80984128595b1b950189fe7dd897ac0e866ea3c4fa0fae8f9510e"
+      "sha256": "6a949760d84ea48063c96011a704a33905d0021256fcff63994e08cda21af112"
     }
   ],
   "outputs": [],
@@ -68,5 +68,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Re-falsification after the sweep copy admitted owner/repo: the same instrument pointed at a seeded domain. It must still exit 1. The earlier run against the copy before that entry is retained."
+  "notes": "Falsification 2 of 3: the Gate 2 near-miss seed, re-run through THIS copy, so that the fourteen exact-string facts the Gate 2 copy added are shown still exact here and not widened into prefixes by anything this copy changed."
 }

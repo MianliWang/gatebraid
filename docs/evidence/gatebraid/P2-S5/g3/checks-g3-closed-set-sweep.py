@@ -49,11 +49,25 @@ byte-identical to the Gate 2 copy.
         merged P2-S6 Gate 3 copy together with its own stated reasons, and
         "g3", this gate's own evidence subdirectory - exactly the class that
         copy named "g1" and "g2" for.
-  G3-c. PROSE_PAIRS gains ONE entry, "heads/remotes", and it was found by
-        running this copy unextended first: that run reported two residues, both
-        in the drift row, and both are the same slash-joined column heading this
-        gate wrote for itself. It is an EXACT STRING, never a leading-segment
-        rule, and the near-miss seed requires that it does not act as a prefix.
+  G3-c. PROSE_PAIRS gains TWO entries. "owner/repo" is TRANSCRIBED VERBATIM
+        from the merged P2-S6 Gate 3 copy together with its own stated reason:
+        it is the literal placeholder pair, written in prose that states the
+        closing-keyword pattern this gate searches for. The second,
+        "heads/remotes", was found by running this copy unextended first: that
+        run reported two residues, both in the drift row, and both are the same
+        slash-joined column heading this gate wrote for itself. Both are EXACT
+        STRINGS, never leading-segment rules, and the near-miss seed requires
+        that neither acts as a prefix.
+
+        ONE CANDIDATE OF THIS SHAPE IS DELIBERATELY NOT ADMITTED, and the
+        residue this copy leaves is exactly it. A retained superseded capture -
+        a failing pass, kept because it is a true record of its instant -
+        carries a column label of the same shape that a later run of the same
+        check no longer prints, because the LABEL was reworded when this sweep
+        caught it. Admitting it now would weaken the sweep for precisely the
+        string it correctly caught, in order to tidy away the evidence that it
+        worked. It stays residue, the gate record types that check `fail` under
+        standing ruling F-08, and the record diagnoses the residue by class.
   G3-d. The mention class is UNCHANGED from the Gate 2 copy. This gate's own
         pull request is named throughout its evidence, but as a URL and as
         `pr#21`, and the issue extractor's lookbehind admits neither - so no
@@ -178,6 +192,10 @@ PROSE_PAIRS = {
     "incomplete/bounded", # two ordinary words, slashed, in the same body
     "Gate-1/Gate-2",      # prose in a frozen corpus case name, printed by the
                           # corpus runner and quoted into this gate's record
+    # --- TRANSCRIBED VERBATIM from the merged P2-S6 Gate 3 copy, together
+    # --- with its own stated reason.
+    "owner/repo",         # the literal placeholder pair, in prose stating the
+                          # closing-keyword pattern this gate searches for
     # --- NEW IN THE GATE 3 COPY, with its stated reason. An exact string.
     "heads/remotes",      # this gate's drift row prints the label "refs outside
                           # heads/remotes/tags": three git ref NAMESPACE names
