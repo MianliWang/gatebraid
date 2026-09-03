@@ -1,0 +1,67 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-captures-validation",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/checks-g0-verify-captures.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3736,
+      "sha256": "3ce86391520e623cf39f26bfb9aad87a72dddc257dd15d55290cfcff4958f0a6",
+      "data": "RzAtYmFzZWxpbmUtbWFpbi5qc29uICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLWNhcHR1cmVzLXZhbGlkYXRpb24tcGFzczEuanNvbiAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC1jYXB0dXJlcy12YWxpZGF0aW9uLXBhc3MyLmpzb24gICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtY2FwdHVyZXMtdmFsaWRhdGlvbi5qc29uICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLWNsb3NlZC1zZXQtc3dlZXAtZmFsc2lmeS1wYXNzMS5qc29uIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC1jbG9zZWQtc2V0LXN3ZWVwLWZhbHNpZnkuanNvbiAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtY2xvc2VkLXNldC1zd2VlcC1wYXNzMS5qc29uICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLWNsb3NlZC1zZXQtc3dlZXAuanNvbiAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC1lbnYtZmllbGQuanNvbiAgICAgICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtZnJvbnRpZXItcnVuLmpzb24gICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLWhlYWQuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC1ob3N0LXByb2JlLmpzb24gICAgICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtcG9yY2VsYWluLWJhc2VsaW5lLmpzb24gICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLXBvcmNlbGFpbi1mdWxsLmpzb24gICAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC1yZWNvcmQtc3dlZXAuanNvbiAgICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtcmVjb3JkLXZhbGlkYXRpb24tcGFzczIuanNvbiAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLXJlY29yZC12YWxpZGF0aW9uLXJlamVjdGVkLXBhc3MxLmpzb24gZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLXJlY29yZC12YWxpZGF0aW9uLmpzb24gICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC1yZWYtbmFtZXNwYWNlLmpzb24gICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtcmVtb3RlLmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLXJlbmRlci1yZWNvcmQtcGFzczEuanNvbiAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC1yZW5kZXItcmVjb3JkLXBhc3MyLmpzb24gICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtcmVuZGVyLXJlY29yZC5qc29uICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLXNsaWNlLWJvZHkuanNvbiAgICAgICAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTEgIFJFSkVDVEVEDQpHMC1zbGljZS1tZXRhZGF0YS1sb2FkZXIuanNvbiAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtc2xpY2UtbWV0YWRhdGEtc2VsZnRlc3QuanNvbiAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MSAgUkVKRUNURUQNCkcwLXNsaWNlLW1ldGFkYXRhLXZhbGlkYXRpb24uanNvbiAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC1zbmFwc2hvdC1ydW4uanNvbiAgICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtdG9vbHMtY2xhdWRlLmpzb24gICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLXRvb2xzLWNvZGV4Lmpzb24gICAgICAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC10b29scy1naC5qc29uICAgICAgICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzAtdG9vbHMtZ2l0Lmpzb24gICAgICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwLXRvb2xzLXB5dGhvbi13aW5kb3dzLmpzb24gICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMC10b29scy1weXRob24td3NsLmpzb24gICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KZzAtZnJvbnRpZXItcmVwb3J0Lmpzb24gICAgICAgICAgICAgICAgdmFsaWRhdGUgICAgICAgICAgICAgICAgIEwxPTAgTDI9MiAgTk9ULUNPVkVSRUQNCmcwLXNuYXBzaG90Lmpzb24gICAgICAgICAgICAgICAgICAgICAgIHZhbGlkYXRlICAgICAgICAgICAgICAgICBMMT0wIEwyPTIgIE5PVC1DT1ZFUkVEDQoNCmRvY3VtZW50cyBjaGVja2VkICAgICAgICA6IDM2DQphY2NlcHRlZCBieSBib3RoIGxheWVycyAgOiAzMg0KcmVqZWN0ZWQgICAgICAgICAgICAgICAgIDogMg0KaW50ZXJmYWNlIG5vdCBjb3ZlcmVkICAgIDogMg0KICAgTk9ULUNPVkVSRUQgZzAtZnJvbnRpZXItcmVwb3J0Lmpzb24gICAgICAgIFNUUlVDVFVSRTogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXNcZzAtZnJvbnRpZXItcmVwb3J0Lmpzb24gZGVjbGFyZXMgbm8gYHNjaA0KICAgTk9ULUNPVkVSRUQgZzAtc25hcHNob3QuanNvbiAgICAgICAgICAgICAgIFNUUlVDVFVSRTogZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvY2FwdHVyZXNcZzAtc25hcHNob3QuanNvbiBkZWNsYXJlcyB1bmtub3duIGludGVyZg0KICAgUkVKRUNURUQgRzAtc2xpY2UtYm9keS5qc29uDQogICAgICBsYXllcjEgZXhpdD0wIGJ5dGVzPTExNTUyIGNybGY9MCBsb25lX2NyPTANCiAgICAgIGxheWVyMiBleGl0PTEgdmVyZGljdCAgICAgICA6IHJlamVjdGVkDQogICBSRUpFQ1RFRCBHMC1zbGljZS1tZXRhZGF0YS1zZWxmdGVzdC5qc29uDQogICAgICBsYXllcjEgZXhpdD0wIGJ5dGVzPTUyMjQgY3JsZj0wIGxvbmVfY3I9MA0KICAgICAgbGF5ZXIyIGV4aXQ9MSB2ZXJkaWN0ICAgICAgIDogcmVqZWN0ZWQNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "G0-baseline-main.json                  guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-captures-validation-pass1.json      guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-captures-validation-pass2.json      guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-captures-validation.json            guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-closed-set-sweep-falsify-pass1.json guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-closed-set-sweep-falsify.json       guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-closed-set-sweep-pass1.json         guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-closed-set-sweep.json               guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-env-field.json                      guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-frontier-run.json                   guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-head.json                           guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-host-probe.json                     guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-porcelain-baseline.json             guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-porcelain-full.json                 guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-record-sweep.json                   guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-record-validation-pass2.json        guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-record-validation-rejected-pass1.json guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-record-validation.json              guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-ref-namespace.json                  guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-remote.json                         guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-render-record-pass1.json            guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-render-record-pass2.json            guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-render-record.json                  guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-slice-body.json                     guard+rederive,validate  L1=0 L2=1  REJECTED\r\nG0-slice-metadata-loader.json          guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-slice-metadata-selftest.json        guard+rederive,validate  L1=0 L2=1  REJECTED\r\nG0-slice-metadata-validation.json      guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-snapshot-run.json                   guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-tools-claude.json                   guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-tools-codex.json                    guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-tools-gh.json                       guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-tools-git.json                      guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-tools-python-windows.json           guard+rederive,validate  L1=0 L2=0  accepted\r\nG0-tools-python-wsl.json               guard+rederive,validate  L1=0 L2=0  accepted\r\ng0-frontier-report.json                validate                 L1=0 L2=2  NOT-COVERED\r\ng0-snapshot.json                       validate                 L1=0 L2=2  NOT-COVERED\r\n\r\ndocuments checked        : 36\r\naccepted by both layers  : 32\r\nrejected                 : 2\r\ninterface not covered    : 2\r\n   NOT-COVERED g0-frontier-report.json        STRUCTURE: docs/evidence/gatebraid/P2-S5/captures\\g0-frontier-report.json declares no `sch\r\n   NOT-COVERED g0-snapshot.json               STRUCTURE: docs/evidence/gatebraid/P2-S5/captures\\g0-snapshot.json declares unknown interf\r\n   REJECTED G0-slice-body.json\r\n      layer1 exit=0 bytes=11552 crlf=0 lone_cr=0\r\n      layer2 exit=1 verdict       : rejected\r\n   REJECTED G0-slice-metadata-selftest.json\r\n      layer1 exit=0 bytes=5224 crlf=0 lone_cr=0\r\n      layer2 exit=1 verdict       : rejected\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-26T20:00:59.678236Z",
+  "ended_at": "2026-08-26T20:01:21.643689Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/checks-g0-verify-captures.py",
+      "sha256": "6da4169097f627b486d649cc60d14c6d4f10c1dfa9e0887f4394880d19845735"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

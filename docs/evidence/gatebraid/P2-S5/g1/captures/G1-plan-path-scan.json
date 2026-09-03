@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-plan-path-scan",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g1/plan-path-scan.py",
+      "docs/evidence/gatebraid/P2-S5/g1/gate1.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2470,
+      "sha256": "278ebc18407cee86bb3c1ef1fb39506ab403474e38f9d7ff39a92ff9b5eb8e4b",
+      "data": "YWxsb3dsaXN0IHByZWZpeGVzIDogYmluLywgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvDQpwYXRocyBuYW1lZCBpbiBwbGFuOiAzNg0KDQpXUklURSB0YXJnZXRzLCBlYWNoIHJlcXVpcmVkIHRvIGJlIGluc2lkZSB0aGUgYWxsb3dsaXN0Og0KICAgYmluLyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgYmluLyoqICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgYmluL2dhdGVicmFpZC1yZWFkeS1zZWxmdGVzdC5weSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgYmluL2dhdGVicmFpZC1yZWFkeS5weSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzByLyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvU0VFRC1uZWdhdGl2ZS1jcml0ZXJpYS50eHQgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZHJ5cnVuLW91dC9uby1zdWNoLXRyYW5zY3JpcHQuanNvbiAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZmFsc2lmaWNhdGlvbi9mcm96ZW4tcm9vdCAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvbmVnYXRpdmUtY3JpdGVyaWEucHkgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvc2NvcGUtcGluLnB5ICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzIvICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzIvY2FwdHVyZXMvRzItbGl2ZS1yZWFkeS5qc29uICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzIvY2FwdHVyZXMvRzItd3NsLXJlYWR5LXNlbGZ0ZXN0Lmpzb24gICBpbnNpZGU9VHJ1ZQ0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzIvZ2F0ZTIubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnNpZGU9VHJ1ZQ0KDQpSRUFELU9OTFkgaW5wdXRzLCBuYW1lZCBvbiBwdXJwb3NlIGFuZCB3cml0dGVuIGJ5IG5vIHRhc2sgaW4gdGhpcyBwbGFuOg0KICAgYmluL2dhdGVicmFpZC1jYXB0dXJlLnB5DQogICBiaW4vZ2F0ZWJyYWlkLWZyb250aWVyLnB5DQogICBiaW4vZ2F0ZWJyYWlkLXNuYXBzaG90LnB5DQogICBiaW4vZ2F0ZWJyYWlkLXZhbGlkYXRlLnB5DQogICBmaXh0dXJlcy9ydW4tY29ycHVzLnB5DQogICBmaXh0dXJlcy9ydW5uZXItc2VsZnRlc3QucHkNCg0KRVhDTFVERUQgTEFORVMgdGhlIHBsYW4gbmFtZXMgaW4gb3JkZXIgdG8gZGlzY2xhaW0gdGhlbToNCiAgIGFkci8NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVMxLw0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzIvDQogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TMy8NCiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM0Lw0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzByL2dhdGUwLm1kDQogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nYXRlMC5tZA0KICAgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzYvDQogICBmaXh0dXJlcy8NCiAgIHByb2plY3RzLw0KICAgcHJvdG9jb2xzLw0KICAgc2NoZW1hLw0KICAgdGVtcGxhdGVzLw0KDQpQUk9TRSB0b2tlbnMgdGhhdCBhcmUgbm90IHJlcG9zaXRvcnkgcGF0aHM6DQoNCk5FSVRIRVIgYSBwZXJtaXR0ZWQgcmVhZC1vbmx5IGlucHV0IG5vciBpbnNpZGUgdGhlIGFsbG93bGlzdDogMA0KDQpJVEVNIEhPTERTOiBldmVyeSB3cml0ZSB0YXJnZXQgbmFtZWQgaW4gdGhlIHBsYW4gaXMgaW5zaWRlIHRoZSBhbGxvd2xpc3QNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "allowlist prefixes : bin/, docs/evidence/gatebraid/P2-S5/\r\npaths named in plan: 36\r\n\r\nWRITE targets, each required to be inside the allowlist:\r\n   bin/                                                                   inside=True\r\n   bin/**                                                                 inside=True\r\n   bin/gatebraid-ready-selftest.py                                        inside=True\r\n   bin/gatebraid-ready.py                                                 inside=True\r\n   docs/evidence/gatebraid/P2-S5/                                         inside=True\r\n   docs/evidence/gatebraid/P2-S5/g0r/                                     inside=True\r\n   docs/evidence/gatebraid/P2-S5/g1/                                      inside=True\r\n   docs/evidence/gatebraid/P2-S5/g1/SEED-negative-criteria.txt            inside=True\r\n   docs/evidence/gatebraid/P2-S5/g1/dryrun-out/no-such-transcript.json    inside=True\r\n   docs/evidence/gatebraid/P2-S5/g1/falsification                         inside=True\r\n   docs/evidence/gatebraid/P2-S5/g1/falsification/frozen-root             inside=True\r\n   docs/evidence/gatebraid/P2-S5/g1/negative-criteria.py                  inside=True\r\n   docs/evidence/gatebraid/P2-S5/g1/scope-pin.py                          inside=True\r\n   docs/evidence/gatebraid/P2-S5/g2/                                      inside=True\r\n   docs/evidence/gatebraid/P2-S5/g2/captures/G2-live-ready.json           inside=True\r\n   docs/evidence/gatebraid/P2-S5/g2/captures/G2-wsl-ready-selftest.json   inside=True\r\n   docs/evidence/gatebraid/P2-S5/g2/gate2.md                              inside=True\r\n\r\nREAD-ONLY inputs, named on purpose and written by no task in this plan:\r\n   bin/gatebraid-capture.py\r\n   bin/gatebraid-frontier.py\r\n   bin/gatebraid-snapshot.py\r\n   bin/gatebraid-validate.py\r\n   fixtures/run-corpus.py\r\n   fixtures/runner-selftest.py\r\n\r\nEXCLUDED LANES the plan names in order to disclaim them:\r\n   adr/\r\n   docs/evidence/gatebraid/P2-S1/\r\n   docs/evidence/gatebraid/P2-S2/\r\n   docs/evidence/gatebraid/P2-S3/\r\n   docs/evidence/gatebraid/P2-S4/\r\n   docs/evidence/gatebraid/P2-S5/g0r/gate0.md\r\n   docs/evidence/gatebraid/P2-S5/gate0.md\r\n   docs/evidence/gatebraid/P2-S6/\r\n   fixtures/\r\n   projects/\r\n   protocols/\r\n   schema/\r\n   templates/\r\n\r\nPROSE tokens that are not repository paths:\r\n\r\nNEITHER a permitted read-only input nor inside the allowlist: 0\r\n\r\nITEM HOLDS: every write target named in the plan is inside the allowlist\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:12:13.389623Z",
+  "ended_at": "2026-09-01T22:12:13.455094Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g1/plan-path-scan.py",
+      "sha256": "67838007f8777975ab424f4935a64ac528158cea708d8fe963d06a5ccb579a3e"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Exit-checklist item: no path outside the allowlist appears as a write anywhere in the plan, mechanised rather than read."
+}

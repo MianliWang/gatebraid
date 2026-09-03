@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E4-entry-readback",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query{node(id:\"PVTI_lAHOBRofUs4Beum7zg4E8qs\"){... on ProjectV2Item{fieldValues(first:50){nodes{... on ProjectV2ItemFieldSingleSelectValue{optionId name field{... on ProjectV2FieldCommon{name}}} ... on ProjectV2ItemFieldTextValue{text field{... on ProjectV2FieldCommon{name}}}}}}}}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1996,
+      "sha256": "c535d92fee21242e5188ae33152508fa82c4374f1ba155008e17ec0ef3711572",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiZmllbGRWYWx1ZXMiOnsibm9kZXMiOlt7fSx7InRleHQiOiJQMi1TNSDigJQgTzEgZ2F0ZWJyYWlkLXJlYWR5OiB0aGUgZm91cnRoIGF0dGVtcHQgb24gdGhlIGZyb3plbiBzY29wZSIsImZpZWxkIjp7Im5hbWUiOiJUaXRsZSJ9fSx7Im9wdGlvbklkIjoiZjc1YWQ4NDYiLCJuYW1lIjoiVG9kbyIsImZpZWxkIjp7Im5hbWUiOiJTdGF0dXMifX0seyJvcHRpb25JZCI6IjQxMzExN2Y5IiwibmFtZSI6IkdhdGUgMiDigJQgSW1wbGVtZW50aW5nIiwiZmllbGQiOnsibmFtZSI6IldvcmtmbG93In19LHsib3B0aW9uSWQiOiIyYTJmZjAwZSIsIm5hbWUiOiJHMSBwYXNzZWQiLCJmaWVsZCI6eyJuYW1lIjoiR2F0ZSJ9fSx7Im9wdGlvbklkIjoiNDUwZWUxMzAiLCJuYW1lIjoi4oCUIiwiZmllbGQiOnsibmFtZSI6Ik5leHQgQXBwcm92YWwifX0seyJvcHRpb25JZCI6IjFlNDNlYzg1IiwibmFtZSI6Im1peGVkLXNlZS1wcm9zZSIsImZpZWxkIjp7Im5hbWUiOiJFbnZpcm9ubWVudCJ9fSx7Im9wdGlvbklkIjoiY2U4NTljN2QiLCJuYW1lIjoiQ2xhdWRlIExlYWQiLCJmaWVsZCI6eyJuYW1lIjoiRXhlY3V0b3IifX0seyJvcHRpb25JZCI6ImUyOTEyNDljIiwibmFtZSI6ImxvdyIsImZpZWxkIjp7Im5hbWUiOiJSaXNrIn19LHsidGV4dCI6IlMyIiwiZmllbGQiOnsibmFtZSI6IlN0YWdlIn19LHsidGV4dCI6IlAyIiwiZmllbGQiOnsibmFtZSI6IlBoYXNlIn19LHsidGV4dCI6IlAyLVM1IiwiZmllbGQiOnsibmFtZSI6IlNsaWNlIn19LHsidGV4dCI6ImNiZDA2NTg5M2IzN2YyMDcxM2FlMzViOGQyNjczYmYyNmZlNGQyYWQiLCJmaWVsZCI6eyJuYW1lIjoiQmFzZSBTSEEifX0seyJ0ZXh0IjoiMjAyNi0wOS0wMVQyMjoyNlogUDItUzUgR0FURSAxIENPTVBMRVRFOyBwbGFuK2FsbG93bGlzdCBGUk9aRU47IE5lZWRzIFBsYW4gQXBwcm92YWwuIFNjb3BlIFJFQUQgbm90IHJlbWVtYmVyZWQ6IDcgZG9jcyBhdCBzY3JhdGNoIGRjZDhlODUxLCBlYWNoIHNoYTI1Ni1waW5uZWQsIHBpbiBGQUxTSUZJRUQgdnMgdGhlIHBhcmVudCBjb21taXQuIDQgZGVsdGFzIHZzIHRoZSBsYW5kZWQgcGFpci4gRC00IGZvdW5kIEJZIHRoZSBkcnktcnVuOiB0aGUgcHJvZHVjZXIgcmV0dXJucyBleGl0IDMgd2l0aCBhIERFR1JBREVEIERPQ1VNRU5ULCBzbyBpdHMgc3RhdHVzIGlzIElOVEVSUFJFVEVEIG5vdCB0ZXN0ZWQgdnMgemVybzsgdGhlIEQ2IGNvbW1hbmQgY2hhbmdlZCBiZWZvcmUgdGhlIGZyZWV6ZS4gRDExIGNyaXRlcmlvbiBjb3JyZWN0ZWQ6IGNhcHR1cmUgc3RhbXBzIHBsYXRmb3JtLm9zIHdzbCwgbm90IGxpbnV4LiBwbGFuX2hhc2ggYjJjZDc1ZjYsIGFsbG93bGlzdF9oYXNoIDQxMTBiMzAyLCBnYXRlMS5tZCA3OGEzZjk0YSwgZWFjaCByZXByb2R1Y2libGUuIDcgb2YgOCBoaXN0b3JpY2FsIHJlYWR5LWZhaWx1cmUgY2xhc3NlcyBraWxsZWQgYXQgRDI7IElOLTAxIGFic2VudCBmcm9tIHRoZSBjb3JwdXMgYnkgaXRzIG93biBrbm93bl9saW1pdGF0aW9uLCBOT1QgY2xhaW1lZC4gNiBuZWdhdGl2ZSBjcml0ZXJpYSwgYWxsIGZhbHNpZmllZCBiZWZvcmUgdHJ1c3Q7IE4zIGNhcnJpZXMgYSBDT05URU5UIGxpbWIuIDIgdHlwZWQgZmFpbHMsIGRpc2Nsb3NlZDogc291cmNlIGxpbWJzIHJlcG9ydCB0aGUgYWJzZW50IGRlbGl2ZXJhYmxlOyB0aGUgc3dlZXAncyBleHBsYW5hdGlvbiBsaW1iIGhhcyByZXNpZHVlIGFuZCB0aGUgaW5zdHJ1bWVudCB3YXMgTk9UIGVkaXRlZC4gUmV0YWluZWQgcmVjb3JkIHJlLW1lYXN1cmVkIFVOQ0hBTkdFRCA4M2IzYTI3My4gTm8gY29tbWl0LCBwdXNoLCBicmFuY2gsIGxlYXNlLiBoYW5kb2ZmIDU1MDExNTcwNTIuIEdBVEUgMiBOT1QgT1BFTkVELiIsImZpZWxkIjp7Im5hbWUiOiJMYXN0IENoZWNrcG9pbnQifX0seyJ0ZXh0IjoiUm91Z2hFZ29pc3Q6cDJzNS1nMjoyMDI2LTA5LTAyVDAyOjU4OjEwWiIsImZpZWxkIjp7Im5hbWUiOiJXcml0ZXIgTGVhc2UifX1dfX19fQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"fieldValues\":{\"nodes\":[{},{\"text\":\"P2-S5 — O1 gatebraid-ready: the fourth attempt on the frozen scope\",\"field\":{\"name\":\"Title\"}},{\"optionId\":\"f75ad846\",\"name\":\"Todo\",\"field\":{\"name\":\"Status\"}},{\"optionId\":\"413117f9\",\"name\":\"Gate 2 — Implementing\",\"field\":{\"name\":\"Workflow\"}},{\"optionId\":\"2a2ff00e\",\"name\":\"G1 passed\",\"field\":{\"name\":\"Gate\"}},{\"optionId\":\"450ee130\",\"name\":\"—\",\"field\":{\"name\":\"Next Approval\"}},{\"optionId\":\"1e43ec85\",\"name\":\"mixed-see-prose\",\"field\":{\"name\":\"Environment\"}},{\"optionId\":\"ce859c7d\",\"name\":\"Claude Lead\",\"field\":{\"name\":\"Executor\"}},{\"optionId\":\"e291249c\",\"name\":\"low\",\"field\":{\"name\":\"Risk\"}},{\"text\":\"S2\",\"field\":{\"name\":\"Stage\"}},{\"text\":\"P2\",\"field\":{\"name\":\"Phase\"}},{\"text\":\"P2-S5\",\"field\":{\"name\":\"Slice\"}},{\"text\":\"cbd065893b37f20713ae35b8d2673bf26fe4d2ad\",\"field\":{\"name\":\"Base SHA\"}},{\"text\":\"2026-09-01T22:26Z P2-S5 GATE 1 COMPLETE; plan+allowlist FROZEN; Needs Plan Approval. Scope READ not remembered: 7 docs at scratch dcd8e851, each sha256-pinned, pin FALSIFIED vs the parent commit. 4 deltas vs the landed pair. D-4 found BY the dry-run: the producer returns exit 3 with a DEGRADED DOCUMENT, so its status is INTERPRETED not tested vs zero; the D6 command changed before the freeze. D11 criterion corrected: capture stamps platform.os wsl, not linux. plan_hash b2cd75f6, allowlist_hash 4110b302, gate1.md 78a3f94a, each reproducible. 7 of 8 historical ready-failure classes killed at D2; IN-01 absent from the corpus by its own known_limitation, NOT claimed. 6 negative criteria, all falsified before trust; N3 carries a CONTENT limb. 2 typed fails, disclosed: source limbs report the absent deliverable; the sweep's explanation limb has residue and the instrument was NOT edited. Retained record re-measured UNCHANGED 83b3a273. No commit, push, branch, lease. handoff 5501157052. GATE 2 NOT OPENED.\",\"field\":{\"name\":\"Last Checkpoint\"}},{\"text\":\"RoughEgoist:p2s5-g2:2026-09-02T02:58:10Z\",\"field\":{\"name\":\"Writer Lease\"}}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T02:58:42.346790Z",
+  "ended_at": "2026-09-02T02:58:42.956586Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Entry read-back: every field and the label re-read fresh from the live control plane after the entry writes."
+}

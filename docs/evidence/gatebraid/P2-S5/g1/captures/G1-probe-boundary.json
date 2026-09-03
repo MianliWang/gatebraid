@@ -1,0 +1,76 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-probe-boundary",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g1/probe-producer-boundary.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1274,
+      "sha256": "15858418396e82d01e91aa9d1d097ca725cf9b6b2f3f6704907c151e1706e3fd",
+      "data": "cHJvYmU6IHRoZSBUMSBwcm9kdWNlciBib3VuZGFyeSwgd2l0aG91dCB0aGUgcHJvZ3JhbSB1bmRlciB0ZXN0DQpwcm9kdWNlciAgICAgICAgICAgIDogYmluL2dhdGVicmFpZC1zbmFwc2hvdC5weQ0KaW50ZXJwcmV0ZXIgICAgICAgICA6IEM6XFB5dGhvbjMxMlxweXRob24uZXhlDQoNCi0tLSBSMSByZWFsIHByb2R1Y2VyLCBpbnB1dCBlcnJvciAodGhlIGRlY2xhcmVkIEQ2IHByb2R1Y2VyKQ0KICAgIHByb2R1Y2VyIGV4aXQgc3RhdHVzIDogMg0KICAgIEQtNCByZWFkaW5nICAgICAgICAgIDogbm8gZG9jdW1lbnQgZXhpc3RzOyB0aGUgY29tcG9zZXIgZXhpdHMgMTANCiAgICBzdGRvdXQgYnl0ZXMgY2FwdHVyZWQ6IDANCiAgICBzdHJpY3QgVVRGLTggZGVjb2RlICA6IG9rDQoNCi0tLSBSMiByZWFsIHByb2R1Y2VyLCBkZWdyYWRlZCBsaXZlIHJlYWQgKHRoZSBELTQgY2FzZSkNCiAgICBwcm9kdWNlciBleGl0IHN0YXR1cyA6IDMNCiAgICBELTQgcmVhZGluZyAgICAgICAgICA6IGEgZG9jdW1lbnQgZXhpc3RzOyB0aGUgY29tcG9zZXIgcGFzc2VzIGl0IG9uDQogICAgc3Rkb3V0IGJ5dGVzIGNhcHR1cmVkOiAxODI1DQogICAgZmlyc3QgNDggYnl0ZXMgICAgICAgOiBiJ3tcbiAiZ2VuZXJhdGVkX2F0IjogIjIwMjYtMDEtMDFUMDA6MDA6MDBaIixcbiAiZ2VuJw0KICAgIHN0cmljdCBVVEYtOCBkZWNvZGUgIDogb2sNCg0KLS0tIFIzIGNwOTM2IHN0dWIsIHRoZSBieXRlcyB0aGF0IGJyb2tlIHRoZSBNMiBwaXBlbGluZSAodGhlIGRlY2xhcmVkIEQ3IHByb2R1Y2VyKQ0KICAgIHByb2R1Y2VyIGV4aXQgc3RhdHVzIDogMA0KICAgIEQtNCByZWFkaW5nICAgICAgICAgIDogYSBkb2N1bWVudCBleGlzdHM7IHRoZSBjb21wb3NlciBwYXNzZXMgaXQgb24NCiAgICBzdGRvdXQgYnl0ZXMgY2FwdHVyZWQ6IDMxDQogICAgZmlyc3QgNDggYnl0ZXMgICAgICAgOiBiJ3sibmFtZSI6ICJHYXRlIDAgXHhhMVx4YWEgVmVyaWZ5aW5nIn0nDQogICAgc3RyaWN0IFVURi04IGRlY29kZSAgOiBSRUZVU0VEIC0gJ3V0Zi04JyBjb2RlYyBjYW4ndCBkZWNvZGUgYnl0ZSAweGExIGluIHBvc2l0aW9uIDE3OiBpbnZhbGlkIHN0YXJ0IGJ5dGUNCiAgICB0aGUgY29tcG9zZXIgZXhpdHMgMTEgYW5kIG5ldmVyIGd1ZXNzZXMgYW4gZW5jb2RpbmcNCg0KYm91bmRhcnkgc3RlcHMgbm90IGFzIGRlY2xhcmVkOiAwDQoNClBST0JFIENMRUFOOiBldmVyeSBkZWNsYXJlZCBib3VuZGFyeSBzdGVwIHJhbiBoZXJlIGFuZCBiZWhhdmVkIGFzIHRoZSBwbGFuIGRlY2xhcmVzDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "probe: the T1 producer boundary, without the program under test\r\nproducer            : bin/gatebraid-snapshot.py\r\ninterpreter         : C:\\Python312\\python.exe\r\n\r\n--- R1 real producer, input error (the declared D6 producer)\r\n    producer exit status : 2\r\n    D-4 reading          : no document exists; the composer exits 10\r\n    stdout bytes captured: 0\r\n    strict UTF-8 decode  : ok\r\n\r\n--- R2 real producer, degraded live read (the D-4 case)\r\n    producer exit status : 3\r\n    D-4 reading          : a document exists; the composer passes it on\r\n    stdout bytes captured: 1825\r\n    first 48 bytes       : b'{\\n \"generated_at\": \"2026-01-01T00:00:00Z\",\\n \"gen'\r\n    strict UTF-8 decode  : ok\r\n\r\n--- R3 cp936 stub, the bytes that broke the M2 pipeline (the declared D7 producer)\r\n    producer exit status : 0\r\n    D-4 reading          : a document exists; the composer passes it on\r\n    stdout bytes captured: 31\r\n    first 48 bytes       : b'{\"name\": \"Gate 0 \\xa1\\xaa Verifying\"}'\r\n    strict UTF-8 decode  : REFUSED - 'utf-8' codec can't decode byte 0xa1 in position 17: invalid start byte\r\n    the composer exits 11 and never guesses an encoding\r\n\r\nboundary steps not as declared: 0\r\n\r\nPROBE CLEAN: every declared boundary step ran here and behaved as the plan declares\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:01:10.169335Z",
+  "ended_at": "2026-09-01T22:01:11.404558Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g1/probe-producer-boundary.py",
+      "sha256": "f1626ad78b11cbb264de02693f149d1798c8438d821480bc15eeb396023a81f7"
+    },
+    {
+      "path": "bin/gatebraid-snapshot.py",
+      "sha256": "d064e512af603ccda4d8a3f6c3c2b281fa7b0e0932d23e8d5e22cead0ac97d4c"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The T1 producer boundary measured on this host without the deliverable: subprocess launch, byte capture, D-4 status reading, strict UTF-8 decode. Establishes runnable-as-written by running, not by inspection."
+}

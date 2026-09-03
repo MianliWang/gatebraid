@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0R-env-field",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query{node(id:\"PVTI_lAHOBRofUs4Beum7zg4E8qs\"){... on ProjectV2Item{fieldValues(first:50){nodes{... on ProjectV2ItemFieldSingleSelectValue{optionId name field{... on ProjectV2FieldCommon{name}}}}}}}}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 554,
+      "sha256": "fd9b9b86dc8dd1d6f2830f8d6792b486ccf8b05188cd3770367fa7de99707b4c",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiZmllbGRWYWx1ZXMiOnsibm9kZXMiOlt7fSx7fSx7Im9wdGlvbklkIjoiZjc1YWQ4NDYiLCJuYW1lIjoiVG9kbyIsImZpZWxkIjp7Im5hbWUiOiJTdGF0dXMifX0seyJvcHRpb25JZCI6IjAzNmE5ZmRjIiwibmFtZSI6IkdhdGUgMCDigJQgVmVyaWZ5aW5nIiwiZmllbGQiOnsibmFtZSI6IldvcmtmbG93In19LHsib3B0aW9uSWQiOiIzOTY5NmJiNSIsIm5hbWUiOiLigJQiLCJmaWVsZCI6eyJuYW1lIjoiR2F0ZSJ9fSx7Im9wdGlvbklkIjoiNDUwZWUxMzAiLCJuYW1lIjoi4oCUIiwiZmllbGQiOnsibmFtZSI6Ik5leHQgQXBwcm92YWwifX0seyJvcHRpb25JZCI6IjFlNDNlYzg1IiwibmFtZSI6Im1peGVkLXNlZS1wcm9zZSIsImZpZWxkIjp7Im5hbWUiOiJFbnZpcm9ubWVudCJ9fSx7Im9wdGlvbklkIjoiY2U4NTljN2QiLCJuYW1lIjoiQ2xhdWRlIExlYWQiLCJmaWVsZCI6eyJuYW1lIjoiRXhlY3V0b3IifX0seyJvcHRpb25JZCI6ImUyOTEyNDljIiwibmFtZSI6ImxvdyIsImZpZWxkIjp7Im5hbWUiOiJSaXNrIn19LHt9LHt9LHt9LHt9XX19fX0=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"fieldValues\":{\"nodes\":[{},{},{\"optionId\":\"f75ad846\",\"name\":\"Todo\",\"field\":{\"name\":\"Status\"}},{\"optionId\":\"036a9fdc\",\"name\":\"Gate 0 — Verifying\",\"field\":{\"name\":\"Workflow\"}},{\"optionId\":\"39696bb5\",\"name\":\"—\",\"field\":{\"name\":\"Gate\"}},{\"optionId\":\"450ee130\",\"name\":\"—\",\"field\":{\"name\":\"Next Approval\"}},{\"optionId\":\"1e43ec85\",\"name\":\"mixed-see-prose\",\"field\":{\"name\":\"Environment\"}},{\"optionId\":\"ce859c7d\",\"name\":\"Claude Lead\",\"field\":{\"name\":\"Executor\"}},{\"optionId\":\"e291249c\",\"name\":\"low\",\"field\":{\"name\":\"Risk\"}},{},{},{},{}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-31T02:44:38.854795Z",
+  "ended_at": "2026-08-31T02:44:39.530429Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Action 4: the Project Environment field as it actually stands."
+}

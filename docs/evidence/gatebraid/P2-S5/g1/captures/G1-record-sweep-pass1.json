@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-record-sweep",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g1/checks-g1-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S5/gate1.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3440,
+      "sha256": "d700aac586d7df1e1aae42145c7c17fcc8eea13ac5238836407a90be3a4e0af3",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTEgcGVybWl0dGVkIHJlcG9zaXRvcnkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA4DQogIEU1IGZpbGVzeXN0ZW0gb3IgVVJMIHBhdGggc2VnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgMjI5DQogIEU2IHNjaGVtYS1pZCBuYW1lc3BhY2UgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMg0KICBFNyBKU09OIHBvaW50ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDE1DQogIEkwIGZyaWN0aW9uIGNpdGF0aW9uLCBub3QgYW4gaXNzdWUgcmVmZXJlbmNlICAgICAgICAgICAgICAgMg0KICBOMiB0aGUgUDItUzUgaXRlbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDENCiAgVU5FWFBMQUlORUQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAzNw0KDQo9PT0gZXZlcnkgUkVQT1NJVE9SWSBpZGVudGl0eSBuYW1lZCBhbnl3aGVyZSA9PT0NCiAgTWlhbmxpV2FuZy9nYXRlYnJhaWQgICAgICAgICAgIHgzICAgIFBFUk1JVFRFRA0KICBNaWFubGlXYW5nL2dhdGVicmFpZC1zY3JhdGNoICAgeDUgICAgUEVSTUlUVEVEDQoNCj09PSBtZW50aW9uLWNsYXNzIGNoZWNrOiBhIG1lbnRpb24gbXVzdCBuZXZlciBhcHBlYXIgaW4gYW4gSU5WT0NBVElPTiA9PT0NCiAgbWVudGlvbi1jbGFzcyBpc3N1ZXMgdGFyZ2V0ZWQgYnkgYSBxdWVyeTogMCAoMCByZXF1aXJlZCkNCg0KZG9tYWluICAgICAgOiAxIGRvY3VtZW50cyAoMCBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiAzNw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTEubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCiAgICBnYXRlMS5tZCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYXcgICAgICAgICAgcmVwbw0KICAgIGdhdGUxLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    8\r\n  E5 filesystem or URL path segment                          229\r\n  E6 schema-id namespace                                     2\r\n  E7 JSON pointer                                            15\r\n  I0 friction citation, not an issue reference               2\r\n  N2 the P2-S5 item                                          1\r\n  UNEXPLAINED                                                37\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x3    PERMITTED\r\n  MianliWang/gatebraid-scratch   x5    PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 37\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n    gate1.md                                     raw          repo\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:10:13.655338Z",
+  "ended_at": "2026-09-01T22:10:13.726687Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g1/checks-g1-closed-set-sweep.py",
+      "sha256": "467790e297c0a89df354455a17a255cdf6fab357b40fd141ebae9a548aef89f8"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The closed-set sweep over this gate's own record. Repository limb CLOSED: exactly the two permitted identities, nothing outside the set. Explanation limb typed fail: fourteen distinct residue tokens, every one identified with its source in the disclosures, and the instrument NOT edited to clear its own finding."
+}

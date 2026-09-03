@@ -1,0 +1,64 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0-tools-python-wsl",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl",
+      "-e",
+      "bash",
+      "-lc",
+      "PYTHONDONTWRITEBYTECODE=1 python3 -B -c \"import sys,importlib.metadata as m;print(\\\"CPython    \\\",sys.version.split()[0]);print(\\\"executable \\\",sys.executable);print(\\\"jsonschema \\\",m.version(\\\"jsonschema\\\"))\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 67,
+      "sha256": "29decdda23dbd8988f1458a5e02edf678a84fcfc657d4f4eac641e1f41f6b3c7",
+      "data": "Q1B5dGhvbiAgICAgMy4xMi4zCmV4ZWN1dGFibGUgIC91c3IvYmluL3B5dGhvbjMKanNvbnNjaGVtYSAgNC4xMC4zCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "CPython     3.12.3\nexecutable  /usr/bin/python3\njsonschema  4.10.3\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-08-26T19:41:02.579597Z",
+  "ended_at": "2026-08-26T19:41:03.785167Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}

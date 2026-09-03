@@ -1,0 +1,30 @@
+{
+ "capture_id": "SEED-closed-set-sweep-falsification",
+ "exit_code": 0,
+ "generator": {
+  "name": "hand-written seed",
+  "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "version": "0"
+ },
+ "invocation": {
+  "argv": [
+   "seed"
+  ],
+  "form": "argv"
+ },
+ "schema": "gatebraid/evidence-capture@1",
+ "streams": {
+  "stderr": {
+   "byte_length": 0,
+   "data": "",
+   "encoding": "base64",
+   "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "stdout": {
+   "byte_length": 56,
+   "data": "WlpaU0VFRE9XTkVSL1paWlNFRURSRVBPClBWVElfWlpaU0VFRE5PVFRIRUlURU0KIzQyNDI0Mgo=",
+   "encoding": "base64",
+   "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "capture_id": "SEED-n4-out-of-namespace-falsification",
+ "exit_code": 0,
+ "generator": {
+  "name": "hand-written seed",
+  "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "version": "0"
+ },
+ "invocation": {
+  "argv": [
+   "seed"
+  ],
+  "form": "argv"
+ },
+ "schema": "gatebraid/evidence-capture@1",
+ "streams": {
+  "stderr": {
+   "byte_length": 0,
+   "data": "",
+   "encoding": "base64",
+   "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "stdout": {
+   "byte_length": 112,
+   "data": "UFZUSV9sQUhPQlJvZlVzNEJldW03emc0RThxcwpQVlRJX2xBSE9CUm9mVXM0QmV1bTd6ZzBvYWZVClBWVElfbEFET0JxWHladzRBYkNkRWZHaApQVlRJX2xBSE9CUm9mVXM0QmV1bTh6ZzRFOHFzCg==",
+   "encoding": "base64",
+   "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+ }
+}

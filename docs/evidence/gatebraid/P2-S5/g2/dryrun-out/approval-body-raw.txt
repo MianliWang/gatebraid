@@ -1,0 +1,96 @@
+# Plan Approval (G1→G2) — P2-S5 (#17)
+
+Granted 2026-09-02. This comment is the recorded human approval the
+gate-1 contract's Exit names — the only door to Gate 2.
+
+**What is approved — the frozen plan, by its binding hashes:**
+
+- `plan_hash`
+  `b2cd75f6a49bb056fd16bc3d2f4cfd5cf98ae8515b5761908add2ed5405cc424`
+  (382 plan lines, 28,364 bytes)
+- `allowlist_hash`
+  `4110b3021bdfc2fcda1f5f90528db01eb87b554177e2176ccfba46ccd6ca3750`
+  (`bin/` + `docs/evidence/gatebraid/P2-S5/`, 36-byte payload —
+  identical to what `#17` already declares; the agreement row stands
+  in place of a rewrite)
+- both recorded with their reproduction commands in
+  `docs/evidence/gatebraid/P2-S5/g1/gate1.md` (sha256
+  `78a3f94a2a8b23efb1e36b231ce8932b1c693fa79dee5f657ae5968d29943c70`,
+  82,938 B; independent validator accepted, 0 findings). Both hashes
+  were additionally recomputed by the coordinator from the evidence
+  file's bytes by the contract's own constructions, in its sandbox,
+  and reproduce exactly; `g1/plan.md` is byte-identical to the hashed
+  section.
+
+**Scope.** Gate 2 may proceed under the frozen plan EXACTLY: the code
+surface is the ready pair alone (`bin/gatebraid-ready.py` and
+`bin/gatebraid-ready-selftest.py`), composing the landed producer and
+consumer and modifying neither; the declared commands D0–D11 are the
+acceptance instruments; the six mechanised negative criteria N1–N6
+are review item R4's basis. The hashes are the binding — any change
+to the plan or the allowlist voids this approval and returns the
+Slice to Gate 1. The Non-goals of `#17` stand throughout: no edit to
+any of the five landed tool pairs, no `schema/` or `fixtures/` write,
+no `gate-run@2` revision, no edit to any merged record.
+
+**The four deltas are ratified as the plan states them.** D-1 (the
+consumer's code space `{0,1,2,3}` read from its own docstring and
+passed through; `10`, `11` outside it; `12` for ready's own usage
+error), D-2 (`--strict` accepted, forwarding nothing, said so in
+`--help`), D-3 (default `--snapshot-command` resolves to
+`sys.executable -B bin/gatebraid-snapshot.py`), and D-4 (a producer
+status meaning a document exists — `0` or `3` — passes the document
+to the consumer; a status meaning no document — `1`, `2`, or anything
+undeclared — is exit `10`). Each applies a frozen rule to the tools as
+measured; none re-decides the scope.
+
+**The Gate 2 evidence layout is ratified as proposed, with one
+clarification.** Each gate keeps its own subdirectory and Gate 2
+writes `docs/evidence/gatebraid/P2-S5/g2/` only. The retained Gate 0
+record (43 files, digest
+`83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f`),
+the re-run subdirectory `g0r/` (`g0r/gate0.md`
+`95ff39111b4a8b8aa43c022e877c98af5f868b054f4ac2c116ae5c67327bc4e6`),
+and — the clarification — this gate's own `g1/` (`g1/gate1.md`
+`78a3f94a…` above) ride onto the Slice branch byte-identical, as
+additions never modifications, their identity verified at Gate 2 by
+N3's content limb and by `g1/gate1.md`'s pin. The Gate 2 baseline
+re-read treats every path under `docs/evidence/gatebraid/P2-S5/` as
+evidence the Slice adds and does not author (ADR-0014), never as
+drift.
+
+**Three rulings on the Gate 1 report.** (1) The first write of the
+record to the wrong path was self-caught by N3's content limb,
+measured, and reversed with the retained set restored to
+`83b3a273…`; accepted as disclosed, no further action; an executor
+ledger candidate at closeout. (2) The closed-set sweep: its hard rule
+— exactly two repository identities, both permitted, no mention-class
+issue targeted by a query — is satisfied and shown; the explanation
+limb's residue, every token identified with its source, is accepted
+as a Gate 1 disclosure. For Gate 2 the sweep may be copied into `g2/`
+carrying the domain facts the residue needs — transcribed verbatim
+with their reasons where the merged P2-S6 copy already names them,
+with fresh stated reasons where new — under the same condition as the
+Gate 0 re-run's Ruling A: falsified before trust with the retained
+seeds AND at least one new seed shaped like each new class but
+outside it, both runs captured; no rule, regex or residue criterion
+changes; the Gate 0 and Gate 1 copies stay untouched. Noted for that
+copy: the `g1/` copy's own header names a `PROSE_PAIRS` addition
+(G1-c) that its bytes do not carry — the record's row is right and
+the copy is pinned by its capture, so it stays as it is; the `g2/`
+copy's header describes only what its bytes carry. (3) The
+validator's uncaught `FileNotFoundError` on an absent `--record` path
+is a landed-tool defect outside this Slice; queued to the validator's
+next governed touch.
+
+**Standing rules unchanged:** `Writer Lease` discipline at Gate 2;
+the plan baseline X is `cbd065893b37f20713ae35b8d2673bf26fe4d2ad`
+(the re-run record's base); the Slice branch `slice/P2-S5` is cut
+from the head Y re-read under the lease and the `Base SHA` field is
+set to Y then, per the gate-2 contract; commits yes, push no; nothing
+merges without the operator's own browser action; approval mode
+Manual.
+
+This approval enters the gate record as
+`approvals[].type = Plan Approval (G1→G2)` with this comment's id
+and URL.

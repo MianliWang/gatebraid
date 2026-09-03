@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-probe-D11-wsl-capture",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl.exe",
+      "-e",
+      "bash",
+      "-lc",
+      "cd '/mnt/d/Github repo/Gatebraid' && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-capture.py --out docs/evidence/gatebraid/P2-S5/g1/dryrun-out/WSL-inner-probe.json --capture-id WSL-inner-probe --notes 'inner capture written by the WSL half' -- python3 -B bin/gatebraid-frontier.py docs/evidence/gatebraid/P2-S5/g1/captures/g1-snapshot.json --out docs/evidence/gatebraid/P2-S5/g1/dryrun-out/wsl-frontier-report.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 173,
+      "sha256": "37967eb14cda04b2af991b173adea812cb74f4e057afe328e7772e1152fed8df",
+      "data": "V1JPVEUgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZHJ5cnVuLW91dC9XU0wtaW5uZXItcHJvYmUuanNvbgogIGJ5dGVzPTI3NTIgc2hhMjU2PTY5NTg0NTc4MmMxMDFjN2ZjODFjYzI5YzE3MjQ3OTZiY2Q1OTY2YjcxMjE0NDkzNDViZTc1MjdmNjUxYjhlMTkgY3JsZj0wIGxvbmVfY3I9MAo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "WROTE docs/evidence/gatebraid/P2-S5/g1/dryrun-out/WSL-inner-probe.json\n  bytes=2752 sha256=695845782c101c7fc81cc29c1724796bcd5966b7121449345be7527f651b8e19 crlf=0 lone_cr=0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:01:57.025986Z",
+  "ended_at": "2026-09-01T22:01:58.383133Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Companion probe for D11, generation half: the N2 capture tool RUN ON WSL, wrapping a real command. The inner capture it writes carries platform.os linux, which is what makes the two-platform claim two reports rather than one presented as covering both (corpus item BP-03)."
+}

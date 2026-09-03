@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D0-scope-pin",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g1/scope-pin.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1668,
+      "sha256": "ec43800ad877b87bd95a36ede6d7e624bed721cf9afcc7b9b5065cbc98a802c8",
+      "data": "aGlzdG9yaWNhbCByZWNvcmQgOiBNaWFubGlXYW5nL2dhdGVicmFpZC1zY3JhdGNoDQpwaW5uZWQgY29tbWl0ICAgICA6IGRjZDhlODUxYmI1MDhhMmUxN2E2OTQ5NDM0ZmM3YzEwMzU0NTA2YzENCnJlYWRpbmcgYXQgICAgICAgIDogZGNkOGU4NTFiYjUwOGEyZTE3YTY5NDk0MzRmYzdjMTAzNTQ1MDZjMQ0KcmVzb2x2ZXMgdG8gICAgICAgOiBkY2Q4ZTg1MWJiNTA4YTJlMTdhNjk0OTQzNGZjN2MxMDM1NDUwNmMxICBNQVRDSA0KDQpkb2N1bWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJ5dGVzICAgIHNoYTI1NiByZS1kZXJpdmVkDQpSRUFETUUubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDk4NCAgICAgIGUwYTViMjY4OWYwZTlmMDhmNjgwMDc3YzVjZDI5ZjlhMWYwZjIzMGM3ODI2MGMzOWIxMDU0MmNkZjY5MGM3MzAgIE1BVENIDQpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMS1TMy9nYXRlMC5tZCAgICAgICAgIDkwMDAgICAgIGNjNzgzMTkyZTY4OGU2NzdhMThkNDlmZWJlZGMxY2ZiMTE3NGM4ZTg3NTA1NjA2MjI4NGQ3YjdkNGUyNDJmODEgIE1BVENIDQpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMS1TMy9nYXRlMS5tZCAgICAgICAgIDI0NTc2ICAgIDA5NjY3NTliZTllMWIwNWZlYTMxMDk2NWU2YWMzNjExMjI0NDE4NWY2NDM0NjQ3YmIzZjFlYzJlZDMyYjIxY2IgIE1BVENIDQpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMS1TNS9nYXRlMC5tZCAgICAgICAgIDE0Mzg3ICAgIGEwZmQ4MTk2MTQ3NDRmYWY5MzE3Zjg0ZjRiNjUzMmUyNDlmZTMyYzNkMzUzMDdkYWJkMjgxNjBjZDM1NmQxNDUgIE1BVENIDQpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMS1TNS9nYXRlMS5tZCAgICAgICAgIDI2Mjk5ICAgIGVkZmM5MjA1NDAxNWI3MTkwYmE3OWViOTRjOWRhMTE0Y2UwZWVjNDcxNGFjZGQzYjMwMTYyODU1MGVlNzRmMzMgIE1BVENIDQpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMS1TNi9nYXRlMC5tZCAgICAgICAgIDU5OTYgICAgIDg5YWYyZTI4NzI3Mjk0N2YzMDdiMmY3MmQ5NTQxZTQ4MWM1MDhjOWU5MGM2ZDk5Y2Q5OTQwNjEyODI2OThjNWMgIE1BVENIDQpkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMS1TNi9nYXRlMS5tZCAgICAgICAgIDE5MzcxICAgIGIxOTAyOTliY2NhYTkwNjU0OGQ0NDQ3N2VjYTE4ZTU1NzljYmI0ODBlNDE5MmM1MmZiYTVmODAxYmQ3MTkyMGYgIE1BVENIDQoNCnNjb3BlIGFzc2VydGlvbnMsIGVhY2ggcmVxdWlyZWQgaW4gQUxMIFRIUkVFIGF0dGVtcHRzOg0KICAgYmluL2dhdGVicmFpZC1yZWFkeS5weSAgIGluIDMgb2YgMyAgb2sgICAgIHRoZSBvbmUgZmlsZSB0aGUgc2NvcGUgZGVsaXZlcnMNCiAgIC0tc25hcHNob3QtY29tbWFuZCAgICAgICBpbiAzIG9mIDMgIG9rICAgICB0aGUgZmxhZyB3aG9zZSBzdGF0ZWQgcmVhc29uIGlzIHRoYXQgdGhlIGd1YXJkIHBhdGhzIG11c3QgYmUgcnVubmFibGUsIG5vdCBtZXJlbHkgYXNzZXJ0ZWQNCiAgIC0tc3RyaWN0ICAgICAgICAgICAgICAgICBpbiAzIG9mIDMgIG9rICAgICB0aGUgZmxhZyB0aGUgTTIgY29uc3VtZXIgYWNjZXB0ZWQNCg0KU0NPUEUgUElOIEhPTERTOiB0aGUgY29tbWl0IHJlc29sdmVzIGFuZCBldmVyeSBkb2N1bWVudCByZS1kZXJpdmVzIHRvIHRoZSBmcm96ZW4gaGFzaA0K",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "historical record : MianliWang/gatebraid-scratch\r\npinned commit     : dcd8e851bb508a2e17a6949434fc7c10354506c1\r\nreading at        : dcd8e851bb508a2e17a6949434fc7c10354506c1\r\nresolves to       : dcd8e851bb508a2e17a6949434fc7c10354506c1  MATCH\r\n\r\ndocument                                       bytes    sha256 re-derived\r\nREADME.md                                      984      e0a5b2689f0e9f08f680077c5cd29f9a1f0f230c78260c39b10542cdf690c730  MATCH\r\ndocs/evidence/gatebraid/P1-S3/gate0.md         9000     cc783192e688e677a18d49febedc1cfb1174c8e875056062284d7b7d4e242f81  MATCH\r\ndocs/evidence/gatebraid/P1-S3/gate1.md         24576    0966759be9e1b05fea310965e6ac36112244185f6434647bb3f1ec2ed32b21cb  MATCH\r\ndocs/evidence/gatebraid/P1-S5/gate0.md         14387    a0fd819614744faf9317f84f4b6532e249fe32c3d35307dabd28160cd356d145  MATCH\r\ndocs/evidence/gatebraid/P1-S5/gate1.md         26299    edfc92054015b7190ba79eb94c9da114ce0eec4714acdd3b301628550ee74f33  MATCH\r\ndocs/evidence/gatebraid/P1-S6/gate0.md         5996     89af2e287272947f307b2f72d9541e481c508c9e90c6d99cd994061282698c5c  MATCH\r\ndocs/evidence/gatebraid/P1-S6/gate1.md         19371    b190299bccaa906548d44477eca18e5579cbb480e4192c52fba5f801bd71920f  MATCH\r\n\r\nscope assertions, each required in ALL THREE attempts:\r\n   bin/gatebraid-ready.py   in 3 of 3  ok     the one file the scope delivers\r\n   --snapshot-command       in 3 of 3  ok     the flag whose stated reason is that the guard paths must be runnable, not merely asserted\r\n   --strict                 in 3 of 3  ok     the flag the M2 consumer accepted\r\n\r\nSCOPE PIN HOLDS: the commit resolves and every document re-derives to the frozen hash\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T07:21:16.900945Z",
+  "ended_at": "2026-09-02T07:21:21.061038Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g1/scope-pin.py",
+      "sha256": "acd41c9483f7c876627254be7f323db743fa96de4a95e6c40705c0769941d3be"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "D0 re-run after repair 2: the frozen scope still re-derives at the pinned commit."
+}

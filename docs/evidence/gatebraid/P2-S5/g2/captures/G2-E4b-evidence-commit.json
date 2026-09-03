@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E4b-evidence-commit",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"retained-set path-list digest:\"; find docs/evidence/gatebraid/P2-S5 -type f -not -path \"*/g0r/*\" -not -path \"*/g1/*\" -not -path \"*/g2/*\" | sort | tr -d \"\\r\" | sha256sum; echo \"retained file count: $(find docs/evidence/gatebraid/P2-S5 -type f -not -path \"*/g0r/*\" -not -path \"*/g1/*\" -not -path \"*/g2/*\" | wc -l)\"; echo; echo \"the three pinned records:\"; sha256sum docs/evidence/gatebraid/P2-S5/gate0.md docs/evidence/gatebraid/P2-S5/g0r/gate0.md docs/evidence/gatebraid/P2-S5/g1/gate1.md; echo; echo \"the evidence commit, additions only:\"; git diff --name-status cbd065893b37f20713ae35b8d2673bf26fe4d2ad..63c6ea8678bb04bf0ab238ddc62f2e22be08a410 | awk \"{print \\$1}\" | sort | uniq -c; echo \"paths outside docs/evidence/gatebraid/P2-S5/: $(git diff --name-only cbd065893b37f20713ae35b8d2673bf26fe4d2ad..63c6ea8678bb04bf0ab238ddc62f2e22be08a410 | grep -vc \"^docs/evidence/gatebraid/P2-S5/\")\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 568,
+      "sha256": "adec4e7cddf95ecc6a66990ef2ed612710085a90352dc07f91244af33c14205b",
+      "data": "cmV0YWluZWQtc2V0IHBhdGgtbGlzdCBkaWdlc3Q6CjgzYjNhMjczYTliZDdkYTRlOWUxMTQ2OTUzOWE1ZWVlMGYyOGI1M2Y1YjkyNGMwZTYxMzRhY2Q4YmE0OWE3MGYgKi0KcmV0YWluZWQgZmlsZSBjb3VudDogNDMKCnRoZSB0aHJlZSBwaW5uZWQgcmVjb3JkczoKYmU3YzMzODg5NmIxMDE1OTIzNjcxOTg4MTY2ZDU1YWYzYmQ1OWUwMjg2NjBjZTg5ZGZkM2I2OWJjNzI1MTUxMyAqZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZ2F0ZTAubWQKOTVmZjM5MTExYjRhOGI4YWE0M2MwMjJlODc3Yzk4YWY1Zjg2OGIwNTRmNGFjMmMxMTZhZTVjNjczMjdiYzRlNiAqZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzByL2dhdGUwLm1kCjc4YTNmOTRhMmE4YjIzZWZiMWUzNmIyMzFjZTg5MzJiMWM2OTNmYTc5ZGVlNWY2NTdhZTU5NjhkMjk5NDNjNzAgKmRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2cxL2dhdGUxLm1kCgp0aGUgZXZpZGVuY2UgY29tbWl0LCBhZGRpdGlvbnMgb25seToKICAgIDE1OCBBCnBhdGhzIG91dHNpZGUgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvOiAwCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "retained-set path-list digest:\n83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f *-\nretained file count: 43\n\nthe three pinned records:\nbe7c338896b1015923671988166d55af3bd59e028660ce89dfd3b69bc7251513 *docs/evidence/gatebraid/P2-S5/gate0.md\n95ff39111b4a8b8aa43c022e877c98af5f868b054f4ac2c116ae5c67327bc4e6 *docs/evidence/gatebraid/P2-S5/g0r/gate0.md\n78a3f94a2a8b23efb1e36b231ce8932b1c693fa79dee5f657ae5968d29943c70 *docs/evidence/gatebraid/P2-S5/g1/gate1.md\n\nthe evidence commit, additions only:\n    158 A\npaths outside docs/evidence/gatebraid/P2-S5/: 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:17:40.409055Z",
+  "ended_at": "2026-09-02T03:17:41.260704Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "E4b: the evidence that rides on, verified AFTER its commit. The retained set is measured with all three per-gate subdirectories excluded, which is the construction of record; the commit is shown to be additions only and confined to the evidence prefix."
+}

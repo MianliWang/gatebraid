@@ -1,0 +1,22 @@
+{
+  "seed_id": "SEED-near-miss-new-classes",
+  "why": "The Gate 2 sweep copy carries domain facts the Gate 1 residue needed. Each is an EXACT string or an EXACT leading segment, never a pattern. This seed carries, for every one of those facts, a token shaped LIKE it but OUTSIDE it. Every token below must remain UNEXPLAINED RESIDUE. A fact that admitted its own near-miss would be a blindfold rather than a domain fact, and only a near-miss distinguishes the two (the Gate 0 re-run's Ruling A condition, applied here).",
+  "near_misses_that_must_all_remain_residue": {
+    "fs_prefix_g2": "g2x/Gatebraid",
+    "fs_prefix_g1": "g1x/Gatebraid",
+    "fs_prefix_repo": "repoX/Gatebraid",
+    "fs_prefix_ndocs": "ndocsX/evidence",
+    "fs_prefix_properties": "propertiesX/items",
+    "prose_pair_streams_stdout": "streams/stdouts",
+    "prose_pair_items_required": "items/requireds",
+    "prose_pair_platform_os": "platform/oss",
+    "prose_pair_invocation_cwd": "invocation/cwds",
+    "prose_pair_findings_multiplicity": "findings/0x2",
+    "prose_pair_generator_pin": "generator/source_sha512",
+    "prose_pair_ratio": "15/151",
+    "prose_pair_incomplete_bounded": "incomplete/bounded2",
+    "prose_pair_gate_range": "Gate-1/Gate-3"
+  },
+  "positive_control_the_repository_limb_must_still_fire": "SomeOtherOwner/some-other-repo",
+  "note": "The near-misses differ from the admitted facts by a single character or one appended character. If the sweep classified any of them, its facts would be acting as prefixes or patterns rather than as the exact strings the copy's header claims."
+}

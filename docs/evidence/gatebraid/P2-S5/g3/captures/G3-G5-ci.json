@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-G5-ci",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"repository workflows : $(gh api repos/MianliWang/gatebraid/actions/workflows --jq .total_count)\"; echo \"workflow files in tree: $(git ls-tree -r --name-only HEAD | grep -c \"^.github/workflows/\" || true)\"; echo \"check runs on the PR head: $(gh api repos/MianliWang/gatebraid/commits/875d50c808d59ee49fecdf6c8d8f4f8e5c87b4b7/check-runs --jq .total_count)\"; echo; echo \"gh pr checks 21:\"; gh pr checks 21 --repo MianliWang/gatebraid 2>&1 | sed \"s/^/   /\" || true"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 148,
+      "sha256": "53fd7ebb8cbc7f23c553458271eabe418693d9dd05f75a47c2d9ec96c9418f25",
+      "data": "cmVwb3NpdG9yeSB3b3JrZmxvd3MgOiAwCndvcmtmbG93IGZpbGVzIGluIHRyZWU6IDAKY2hlY2sgcnVucyBvbiB0aGUgUFIgaGVhZDogMAoKZ2ggcHIgY2hlY2tzIDIxOgogICBubyBjaGVja3MgcmVwb3J0ZWQgb24gdGhlICdzbGljZS9QMi1TNScgYnJhbmNoCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "repository workflows : 0\nworkflow files in tree: 0\ncheck runs on the PR head: 0\n\ngh pr checks 21:\n   no checks reported on the 'slice/P2-S5' branch\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-03T08:46:29.190700Z",
+  "ended_at": "2026-09-03T08:46:34.947066Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "G5: CI status, read three ways. none-configured is a recorded FINDING and not a pass: where no check exists the prohibition on merging with red CI is inert, and the evidence says so rather than implying a check occurred."
+}

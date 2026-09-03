@@ -1,0 +1,81 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-entry-snapshot",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-snapshot.py",
+      "--out",
+      "docs/evidence/gatebraid/P2-S5/g1/captures/g1-snapshot.json",
+      "--generated-at",
+      "2026-09-01T21:39:34Z"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 677,
+      "sha256": "211199c600f1cdccb179f6fc6b2dda60dde9782d54427276fa67a56f8c93247d",
+      "data": "Z2VuZXJhdG9yICAgICAgICAgICAgICAgICAgICAgOiBnYXRlYnJhaWQtc25hcHNob3QgMS4wLjANCnNjaGVtYSAgICAgICAgICAgICAgICAgICAgICAgIDogRDpcR2l0aHViIHJlcG9cR2F0ZWJyYWlkXHNjaGVtYVxzbmFwc2hvdC5zY2hlbWEuanNvbiBzaGEyNTY9OTVlY2YzOGU5MjdhMThlNThjYWNlMDA3NjA3Y2FhMDE2ZDE4ODg5M2MyZDkyZWEzZWE3NDhjNDY0NTM0MTlkNg0KdHJhbnNwb3J0ICAgICAgICAgICAgICAgICAgICAgOiBsaXZlDQpzb3VyY2VzICAgICAgICAgICAgICAgICAgICAgICA6IDQNCiAgIHByb2plY3RfaXRlbXMgICAgb2sgICAgICAgICAgICAgICAgICAgY29tcGxldGU9VHJ1ZSAgZXhpdD0wDQogICBpc3N1ZV9zdGF0ZXMgICAgIG9rICAgICAgICAgICAgICAgICAgIGNvbXBsZXRlPVRydWUgIGV4aXQ9MA0KICAgZGVwX2Jsb2NrZWRfYnkgICBvayAgICAgICAgICAgICAgICAgICBjb21wbGV0ZT1UcnVlICBleGl0PTANCiAgIGRlcF9ibG9ja2luZyAgICAgb2sgICAgICAgICAgICAgICAgICAgY29tcGxldGU9VHJ1ZSAgZXhpdD0wDQppdGVtcyAgICAgICAgICAgICAgICAgICAgICAgICA6IDE2DQpkZWdyYWRlZCAgICAgICAgICAgICAgICAgICAgICA6IG5vDQpTTkFQU0hPVCBPSzogZXZlcnkgc291cmNlIHJlYWQgY29tcGxldGVseSB3aXRoIHN0YXR1cyBgb2tgDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "generator                     : gatebraid-snapshot 1.0.0\r\nschema                        : D:\\Github repo\\Gatebraid\\schema\\snapshot.schema.json sha256=95ecf38e927a18e58cace007607caa016d188893c2d92ea3ea748c46453419d6\r\ntransport                     : live\r\nsources                       : 4\r\n   project_items    ok                   complete=True  exit=0\r\n   issue_states     ok                   complete=True  exit=0\r\n   dep_blocked_by   ok                   complete=True  exit=0\r\n   dep_blocking     ok                   complete=True  exit=0\r\nitems                         : 16\r\ndegraded                      : no\r\nSNAPSHOT OK: every source read completely with status `ok`\r\n"
+      }
+    }
+  },
+  "started_at": "2026-09-01T21:39:34.365499Z",
+  "ended_at": "2026-09-01T21:40:01.203897Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-snapshot.py",
+      "sha256": "d064e512af603ccda4d8a3f6c3c2b281fa7b0e0932d23e8d5e22cead0ac97d4c"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g1/captures/g1-snapshot.json",
+      "sha256": "5f4686c0cfa64359c74880023e355b019c6688ecb8ad04f9a35ff4e08ebc48a3",
+      "byte_length": 9270
+    }
+  ],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Gate 1 entry read. Control-plane state read exclusively through O0 outputs, per the Slice's requirement of record."
+}

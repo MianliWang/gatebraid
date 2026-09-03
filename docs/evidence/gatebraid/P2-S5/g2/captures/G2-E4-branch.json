@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-E4-branch",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "git rev-parse --abbrev-ref HEAD; git rev-parse HEAD; git log --oneline cbd065893b37f20713ae35b8d2673bf26fe4d2ad..HEAD | cat"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 297,
+      "sha256": "917768ac8afa916f904fc68359b7f8b3eb5694b0011df242afd7d94d387c64d3",
+      "data": "c2xpY2UvUDItUzUKYzA3ZDBjYjJiZDY5MjYzNTJjOWUxYWJjOTBjN2Q2NzEyOWIwMGFkNgpjMDdkMGNiIGV2aWRlbmNlKHAyLXM1KTogR2F0ZSAyIGluc3RydW1lbnRzIGFuZCB0aGUgY2FwdHVyZWQgZGVjbGFyZWQgcnVucwo2MjllMjg3IGZlYXQobzEpOiBnYXRlYnJhaWQtcmVhZHksIHRoZSBSZWFkeSBGcm9udGllciBjb21wb3NlciwgYW5kIGl0cyBzZWxmdGVzdAo2M2M2ZWE4IGV2aWRlbmNlKHAyLXM1KTogdGhlIEdhdGUgMCByZWNvcmQsIGl0cyByZS1ydW4sIGFuZCBHYXRlIDEgcmlkZSBvbnRvIHRoZSBicmFuY2gK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "slice/P2-S5\nc07d0cb2bd6926352c9e1abc90c7d67129b00ad6\nc07d0cb evidence(p2-s5): Gate 2 instruments and the captured declared runs\n629e287 feat(o1): gatebraid-ready, the Ready Frontier composer, and its selftest\n63c6ea8 evidence(p2-s5): the Gate 0 record, its re-run, and Gate 1 ride onto the branch\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:17:25.402051Z",
+  "ended_at": "2026-09-02T03:17:25.837437Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "E4: the Active Branch, created from Y."
+}

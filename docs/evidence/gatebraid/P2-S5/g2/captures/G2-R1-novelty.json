@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R1-novelty",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"tree at the previous failed state (629e287f): $(git rev-parse 629e287faab01a84935a93a2dc265d369a6a5c33^{tree})\"; echo \"tree after the repair          (c07d0cb2): $(git rev-parse c07d0cb2bd6926352c9e1abc90c7d67129b00ad6^{tree})\"; echo \"unchanged tree                          : $([ \"$(git rev-parse 629e287faab01a84935a93a2dc265d369a6a5c33^{tree})\" = \"$(git rev-parse c07d0cb2bd6926352c9e1abc90c7d67129b00ad6^{tree})\" ] && echo yes || echo no)\"; echo; echo \"changed by this repair:\"; git diff --name-only 629e287faab01a84935a93a2dc265d369a6a5c33..c07d0cb2bd6926352c9e1abc90c7d67129b00ad6 | grep -E \"negative-criteria|closed-set-sweep\" | sed \"s/^/   /\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 539,
+      "sha256": "ee717abc347301f647b2e5bc9a51ba0e71656d587e478caefafd9b47a8b8f030",
+      "data": "dHJlZSBhdCB0aGUgcHJldmlvdXMgZmFpbGVkIHN0YXRlICg2MjllMjg3Zik6IGNkYTUxNjg3YTMyNmQ0MWMyYjk4ZDZiMmFlNDlhNDg1MjZiZDM2NmUKdHJlZSBhZnRlciB0aGUgcmVwYWlyICAgICAgICAgIChjMDdkMGNiMik6IGIxYzE0NjE4MzYwNWQ5MjdhYTI0ZmIyOTFmYWFjNWU5NjljOTE5ZDIKdW5jaGFuZ2VkIHRyZWUgICAgICAgICAgICAgICAgICAgICAgICAgIDogbm8KCmNoYW5nZWQgYnkgdGhpcyByZXBhaXI6CiAgIGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2cyL2NhcHR1cmVzL0cyLWNsb3NlZC1zZXQtc3dlZXAtZmFsc2lmeS1uZWFyLW1pc3MuanNvbgogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMi9jYXB0dXJlcy9HMi1jbG9zZWQtc2V0LXN3ZWVwLWZhbHNpZnktcmV0YWluZWQuanNvbgogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMi9jaGVja3MtZzItY2xvc2VkLXNldC1zd2VlcC5weQogICBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMi9uZWdhdGl2ZS1jcml0ZXJpYS5weQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "tree at the previous failed state (629e287f): cda51687a326d41c2b98d6b2ae49a48526bd366e\ntree after the repair          (c07d0cb2): b1c146183605d927aa24fb291faac5e969c919d2\nunchanged tree                          : no\n\nchanged by this repair:\n   docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep-falsify-near-miss.json\n   docs/evidence/gatebraid/P2-S5/g2/captures/G2-closed-set-sweep-falsify-retained.json\n   docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py\n   docs/evidence/gatebraid/P2-S5/g2/negative-criteria.py\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:20:33.839081Z",
+  "ended_at": "2026-09-02T03:20:34.551897Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Repair 1 novelty, measured BEFORE the result is graded (ADR-0027 section 1). An unchanged tree is not a repair; this one moved, and the paths it moved by are named."
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-G3-drift",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"\\$ git diff --name-only f696944947a342b6163bf4ad7d9137674830a2f7 HEAD | grep -v ^docs/evidence/gatebraid/P2-S5/\"; git diff --name-only f696944947a342b6163bf4ad7d9137674830a2f7 HEAD | grep -v \"^docs/evidence/gatebraid/P2-S5/\" || echo \"   (no path outside the Slice evidence directory; total changed: $(git diff --name-only f696944947a342b6163bf4ad7d9137674830a2f7 HEAD | wc -l))\"; echo; echo \"\\$ git log --format=%H 5b586029344eb6df4a964c34baa1eb12e2916f6d..HEAD -- :!docs/evidence/gatebraid/P2-S5/\"; git log --format=\"%H\" 5b586029344eb6df4a964c34baa1eb12e2916f6d..HEAD -- \":!docs/evidence/gatebraid/P2-S5/\" | sed \"s/^/   /\"; echo \"   (empty: every commit past the fingerprint touches only the evidence directory; commits counted: $(git rev-list 5b586029344eb6df4a964c34baa1eb12e2916f6d..HEAD | wc -l))\"; echo; echo \"\\$ git status --porcelain --untracked-files=all\"; git status --porcelain --untracked-files=all | sed \"s/^/   /\"; echo \"   (empty: $(git status --porcelain --untracked-files=all | wc -l) lines)\"; echo; echo \"\\$ git for-each-ref --format=%(refname) | grep -vE ^refs/\\(heads\\|remotes\\|tags\\)/\"; git for-each-ref --format=\"%(refname)\" | grep -vE \"^refs/(heads|remotes|tags)/\" | sed \"s/^/   /\"; echo \"   (one pre-existing refs/codex tree ref, leaf file dated 2026-07-31, REPORTED and not adopted per friction #103; not introduced by this Slice)\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1470,
+      "sha256": "38a7520358f76a757ff53194e75ba58aa154fba7f2e70f95c75261f21e3810ad",
+      "data": "JCBnaXQgZGlmZiAtLW5hbWUtb25seSBmNjk2OTQ0OTQ3YTM0MmI2MTYzYmY0YWQ3ZDkxMzc2NzQ4MzBhMmY3IEhFQUQgfCBncmVwIC12IF5kb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS8KICAgKG5vIHBhdGggb3V0c2lkZSB0aGUgU2xpY2UgZXZpZGVuY2UgZGlyZWN0b3J5OyB0b3RhbCBjaGFuZ2VkOiA3NikKCiQgZ2l0IGxvZyAtLWZvcm1hdD0lSCA1YjU4NjAyOTM0NGViNmRmNGE5NjRjMzRiYWExZWIxMmUyOTE2ZjZkLi5IRUFEIC0tIDohZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvCiAgIChlbXB0eTogZXZlcnkgY29tbWl0IHBhc3QgdGhlIGZpbmdlcnByaW50IHRvdWNoZXMgb25seSB0aGUgZXZpZGVuY2UgZGlyZWN0b3J5OyBjb21taXRzIGNvdW50ZWQ6IDkpCgokIGdpdCBzdGF0dXMgLS1wb3JjZWxhaW4gLS11bnRyYWNrZWQtZmlsZXM9YWxsCiAgID8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2czL2NhcHR1cmVzL0czLUcxLWFwcHJvdmFsLmpzb24KICAgPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzMvY2FwdHVyZXMvRzMtRzEtZXhlY3V0b3ItaWRlbnRpdHkuanNvbgogICA/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMy9jYXB0dXJlcy9HMy1HMmEtYXV0b21hdGlvbi5qc29uCiAgID8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2czL2NhcHR1cmVzL0czLUcyYi1rZXl3b3JkLXNjYW4tZmFsc2lmeS5qc29uCiAgID8/IGRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2czL2NhcHR1cmVzL0czLUcyYi1yZWZzLmpzb24KICAgPz8gZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzMvY2FwdHVyZXMvRzMtRzUtY2kuanNvbgogICA/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMy9jbG9zaW5nLWtleXdvcmQtc2Nhbi5weQogICA/PyBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMy9mYWxzaWZpY2F0aW9uL1NFRUQtY2xvc2luZy1rZXl3b3JkLWJvZHkubWQKICAgKGVtcHR5OiA4IGxpbmVzKQoKJCBnaXQgZm9yLWVhY2gtcmVmIC0tZm9ybWF0PSUocmVmbmFtZSkgfCBncmVwIC12RSBecmVmcy9cKGhlYWRzXHxyZW1vdGVzXHx0YWdzXCkvCiAgIHJlZnMvY29kZXgvdHVybi1kaWZmcy9jaGVja3BvaW50cy82NTY4NzM0ZGI2NDI5ZTA4NjBjZjA5NTRiMTlhZmZmYWFkYjkzYzk5NjBkNjY2ZWZiMjNkMTAxOGYxNTJiZTM3LzdmOGQ4MDJjMTE4MDQyZDIwMzgyYTE2YTI1MGVhMWM1ZmIwYmQ4N2VmZDZlMmEyZWUzMjIxNTU4YWRlOWM4ZjMvMTc4NTQ4OTkwMDkzMS9jMGRhNDAwNS0xZmY2LTQzNGEtYjFhNS05YWQxYTJhZjFiMGUKICAgKG9uZSBwcmUtZXhpc3RpbmcgcmVmcy9jb2RleCB0cmVlIHJlZiwgbGVhZiBmaWxlIGRhdGVkIDIwMjYtMDctMzEsIFJFUE9SVEVEIGFuZCBub3QgYWRvcHRlZCBwZXIgZnJpY3Rpb24gIzEwMzsgbm90IGludHJvZHVjZWQgYnkgdGhpcyBTbGljZSkK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "$ git diff --name-only f696944947a342b6163bf4ad7d9137674830a2f7 HEAD | grep -v ^docs/evidence/gatebraid/P2-S5/\n   (no path outside the Slice evidence directory; total changed: 76)\n\n$ git log --format=%H 5b586029344eb6df4a964c34baa1eb12e2916f6d..HEAD -- :!docs/evidence/gatebraid/P2-S5/\n   (empty: every commit past the fingerprint touches only the evidence directory; commits counted: 9)\n\n$ git status --porcelain --untracked-files=all\n   ?? docs/evidence/gatebraid/P2-S5/g3/captures/G3-G1-approval.json\n   ?? docs/evidence/gatebraid/P2-S5/g3/captures/G3-G1-executor-identity.json\n   ?? docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2a-automation.json\n   ?? docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2b-keyword-scan-falsify.json\n   ?? docs/evidence/gatebraid/P2-S5/g3/captures/G3-G2b-refs.json\n   ?? docs/evidence/gatebraid/P2-S5/g3/captures/G3-G5-ci.json\n   ?? docs/evidence/gatebraid/P2-S5/g3/closing-keyword-scan.py\n   ?? docs/evidence/gatebraid/P2-S5/g3/falsification/SEED-closing-keyword-body.md\n   (empty: 8 lines)\n\n$ git for-each-ref --format=%(refname) | grep -vE ^refs/\\(heads\\|remotes\\|tags\\)/\n   refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e\n   (one pre-existing refs/codex tree ref, leaf file dated 2026-07-31, REPORTED and not adopted per friction #103; not introduced by this Slice)\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-03T08:47:01.144020Z",
+  "ended_at": "2026-09-03T08:47:04.796245Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "G3: the drift check against the Gate 2 fingerprint, run BEFORE publication. The question it answers is whether the reviewed work changed since it was reviewed; a gate's own evidence file is the record of the review, not the work, so paths inside the Slice's evidence directory are expected and anything outside it is drift."
+}

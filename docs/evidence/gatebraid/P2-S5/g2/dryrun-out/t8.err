@@ -1,0 +1,2 @@
+SNAPSHOT REFUSED: the document does not say what it is: `schema` is absent, so it cannot be consumed as if current
+verdicts emitted             : 0 (no verdict is emitted for a document this tool could not validate)

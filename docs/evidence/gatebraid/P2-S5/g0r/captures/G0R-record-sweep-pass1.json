@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0R-record-sweep",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g0r/checks-g0r-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S5/g0r/gate0.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1765,
+      "sha256": "a82c95f97c89cec511d555bcd3417b34a75b3b7adde9f7ac196c7a772165f21f",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgRTEgcGVybWl0dGVkIHJlcG9zaXRvcnkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAyNw0KICBFNCBnaXQgcmVmIG5hbWVzcGFjZSwgbm90IGEgcmVwb3NpdG9yeSAgICAgICAgICAgICAgICAgICAgIDIyDQogIEU1IGZpbGVzeXN0ZW0gb3IgVVJMIHBhdGggc2VnbWVudCAgICAgICAgICAgICAgICAgICAgICAgICAgNzUNCiAgRTYgc2NoZW1hLWlkIG5hbWVzcGFjZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA1DQogIEU3IEpTT04gcG9pbnRlciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMQ0KICBFOCBwcm9zZSBzbGFzaCBiZXR3ZWVuIG9yZGluYXJ5IHdvcmRzIChuYW1lZCwgbm90IG1hdGNoZWQpIDENCiAgSTAgZnJpY3Rpb24gY2l0YXRpb24sIG5vdCBhbiBpc3N1ZSByZWZlcmVuY2UgICAgICAgICAgICAgICAyDQogIEkzIG1lbnRpb24tY2xhc3MgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNg0KICBOMiB0aGUgUDItUzUgaXRlbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDINCiAgTjQgYW5vdGhlciBpdGVtIG9mIHRoZSBwZXJtaXR0ZWQgUHJvamVjdCAgICAgICAgICAgICAgICAgICAxNw0KICBVTkVYUExBSU5FRCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDINCg0KPT09IGV2ZXJ5IFJFUE9TSVRPUlkgaWRlbnRpdHkgbmFtZWQgYW55d2hlcmUgPT09DQogIE1pYW5saVdhbmcvZ2F0ZWJyYWlkICAgICAgICAgICB4MTcgICBQRVJNSVRURUQNCiAgTWlhbmxpV2FuZy9nYXRlYnJhaWQtc2NyYXRjaCAgIHgxMCAgIFBFUk1JVFRFRA0KDQo9PT0gbWVudGlvbi1jbGFzcyBjaGVjazogYSBtZW50aW9uIG11c3QgbmV2ZXIgYXBwZWFyIGluIGFuIElOVk9DQVRJT04gPT09DQogICM3ICAgICAgc2VlbiBpbiByYXcgICAgICAgICAgICAgICAgICAgICAgICAgIHRhcmdldGVkIGJ5IGEgcXVlcnk6IEZhbHNlDQogICM4ICAgICAgc2VlbiBpbiByYXcgICAgICAgICAgICAgICAgICAgICAgICAgIHRhcmdldGVkIGJ5IGEgcXVlcnk6IEZhbHNlDQogICMxMCAgICAgc2VlbiBpbiByYXcgICAgICAgICAgICAgICAgICAgICAgICAgIHRhcmdldGVkIGJ5IGEgcXVlcnk6IEZhbHNlDQogICMxMiAgICAgc2VlbiBpbiByYXcgICAgICAgICAgICAgICAgICAgICAgICAgIHRhcmdldGVkIGJ5IGEgcXVlcnk6IEZhbHNlDQogICMxNCAgICAgc2VlbiBpbiByYXcgICAgICAgICAgICAgICAgICAgICAgICAgIHRhcmdldGVkIGJ5IGEgcXVlcnk6IEZhbHNlDQogICMxNiAgICAgc2VlbiBpbiByYXcgICAgICAgICAgICAgICAgICAgICAgICAgIHRhcmdldGVkIGJ5IGEgcXVlcnk6IEZhbHNlDQogIG1lbnRpb24tY2xhc3MgaXNzdWVzIHRhcmdldGVkIGJ5IGEgcXVlcnk6IDAgKDAgcmVxdWlyZWQpDQoNCmRvbWFpbiAgICAgIDogMSBkb2N1bWVudHMgKDAgb2YgdGhpcyBzd2VlcCdzIG93biByZXBvcnRzIGV4Y2x1ZGVkKQ0KVU5FWFBMQUlORUQgUkVTSURVRTogMg0KICAgIGdhdGUwLm1kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhdyAgICAgICAgICByZXBvDQogICAgZ2F0ZTAubWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmF3ICAgICAgICAgIHJlcG8NCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  E1 permitted repository                                    27\r\n  E4 git ref namespace, not a repository                     22\r\n  E5 filesystem or URL path segment                          75\r\n  E6 schema-id namespace                                     5\r\n  E7 JSON pointer                                            1\r\n  E8 prose slash between ordinary words (named, not matched) 1\r\n  I0 friction citation, not an issue reference               2\r\n  I3 mention-class                                           6\r\n  N2 the P2-S5 item                                          2\r\n  N4 another item of the permitted Project                   17\r\n  UNEXPLAINED                                                2\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n  MianliWang/gatebraid           x17   PERMITTED\r\n  MianliWang/gatebraid-scratch   x10   PERMITTED\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  #7      seen in raw                          targeted by a query: False\r\n  #8      seen in raw                          targeted by a query: False\r\n  #10     seen in raw                          targeted by a query: False\r\n  #12     seen in raw                          targeted by a query: False\r\n  #14     seen in raw                          targeted by a query: False\r\n  #16     seen in raw                          targeted by a query: False\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 2\r\n    gate0.md                                     raw          repo\r\n    gate0.md                                     raw          repo\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T20:35:28.244077Z",
+  "ended_at": "2026-09-01T20:35:28.313117Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g0r/checks-g0r-closed-set-sweep.py",
+      "sha256": "d2b501555a223e5d69720fed3cf8640e56233d2f4d81549a87ca02788ad3bff1"
+    },
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g0r/gate0.md",
+      "sha256": "7f5f02e57477539b4c8bfec52abdecb1a012d1849d05ac47379d56afa81776a9"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The sweep over the gate record itself, the document that would be committed; the domain is named explicitly as a single file."
+}

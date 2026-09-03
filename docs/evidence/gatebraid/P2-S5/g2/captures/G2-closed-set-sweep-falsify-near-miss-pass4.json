@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-closed-set-sweep-falsify-near-miss",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S5/g2/falsification"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1457,
+      "sha256": "52aa8c9fb2db2da3478b93345f879b11a4359b7c6d6c2cb0ddce336d5045c564",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAxDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgVU5FWFBMQUlORUQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxNQ0KDQo9PT0gZXZlcnkgUkVQT1NJVE9SWSBpZGVudGl0eSBuYW1lZCBhbnl3aGVyZSA9PT0NCg0KPT09IG1lbnRpb24tY2xhc3MgY2hlY2s6IGEgbWVudGlvbiBtdXN0IG5ldmVyIGFwcGVhciBpbiBhbiBJTlZPQ0FUSU9OID09PQ0KICBtZW50aW9uLWNsYXNzIGlzc3VlcyB0YXJnZXRlZCBieSBhIHF1ZXJ5OiAwICgwIHJlcXVpcmVkKQ0KDQpkb21haW4gICAgICA6IDEgZG9jdW1lbnRzICgwIG9mIHRoaXMgc3dlZXAncyBvd24gcmVwb3J0cyBleGNsdWRlZCkNClVORVhQTEFJTkVEIFJFU0lEVUU6IDE1DQogICAgU0VFRC1uZWFyLW1pc3MtbmV3LWNsYXNzZXMuanNvbiAgICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1uZXctY2xhc3Nlcy5qc29uICAgICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLW5ldy1jbGFzc2VzLmpzb24gICAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtbmV3LWNsYXNzZXMuanNvbiAgICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1uZXctY2xhc3Nlcy5qc29uICAgICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLW5ldy1jbGFzc2VzLmpzb24gICAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtbmV3LWNsYXNzZXMuanNvbiAgICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1uZXctY2xhc3Nlcy5qc29uICAgICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLW5ldy1jbGFzc2VzLmpzb24gICAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtbmV3LWNsYXNzZXMuanNvbiAgICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1uZXctY2xhc3Nlcy5qc29uICAgICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLW5ldy1jbGFzc2VzLmpzb24gICAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQogICAgU0VFRC1uZWFyLW1pc3MtbmV3LWNsYXNzZXMuanNvbiAgICAgICAgICAgICAgZG9jdW1lbnQgICAgIHJlcG8NCiAgICBTRUVELW5lYXItbWlzcy1uZXctY2xhc3Nlcy5qc29uICAgICAgICAgICAgICBkb2N1bWVudCAgICAgcmVwbw0KICAgIFNFRUQtbmVhci1taXNzLW5ldy1jbGFzc2VzLmpzb24gICAgICAgICAgICAgIGRvY3VtZW50ICAgICByZXBvDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 1\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  UNEXPLAINED                                                15\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 1 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 15\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n    SEED-near-miss-new-classes.json              document     repo\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-03T07:02:25.573566Z",
+  "ended_at": "2026-09-03T07:02:25.711789Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py",
+      "sha256": "e99b236d27cea0b79e9da29cd82f557c39efebeda3ce6ae82d8f70ec300781f0"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Falsification 2 of 2, re-run: every near-miss must remain residue."
+}

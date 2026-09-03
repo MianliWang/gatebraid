@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D8-consumer-refusal",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-ready.py",
+      "--snapshot-command",
+      "C:/Python312/python.exe -c \"import sys;sys.stdout.buffer.write(chr(123).encode()+chr(125).encode())\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 220,
+      "sha256": "5696829bba3a5ca5eae694f96e08ca131ce09f1e0096d24f278d1ec103e5b7ed",
+      "data": "U05BUFNIT1QgUkVGVVNFRDogdGhlIGRvY3VtZW50IGRvZXMgbm90IHNheSB3aGF0IGl0IGlzOiBgc2NoZW1hYCBpcyBhYnNlbnQsIHNvIGl0IGNhbm5vdCBiZSBjb25zdW1lZCBhcyBpZiBjdXJyZW50DQ0KdmVyZGljdHMgZW1pdHRlZCAgICAgICAgICAgICA6IDAgKG5vIHZlcmRpY3QgaXMgZW1pdHRlZCBmb3IgYSBkb2N1bWVudCB0aGlzIHRvb2wgY291bGQgbm90IHZhbGlkYXRlKQ0NCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "SNAPSHOT REFUSED: the document does not say what it is: `schema` is absent, so it cannot be consumed as if current\r\r\nverdicts emitted             : 0 (no verdict is emitted for a document this tool could not validate)\r\r\n"
+      }
+    }
+  },
+  "started_at": "2026-09-02T07:22:15.687150Z",
+  "ended_at": "2026-09-02T07:22:15.945967Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-ready.py",
+      "sha256": "def3bd3ef7a77b561c5b9c7b43b0b05fec8f5005e5870b3a8b373bc43ec241f3"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "D8 re-run against the REPAIRED tool: the consumer's own refusal code passed through. Expect exit 1."
+}

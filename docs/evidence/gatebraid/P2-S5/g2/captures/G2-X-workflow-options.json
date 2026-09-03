@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-X-workflow-options",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query{node(id:\"PVT_kwHOBRofUs4Beum7\"){... on ProjectV2{fields(first:50){nodes{... on ProjectV2SingleSelectField{id name options{id name}}}}}}}"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2362,
+      "sha256": "16053958cf199c76ad93f28a9e243ea246a6e8a7420727e0606bbf7f9d966cd7",
+      "data": "eyJkYXRhIjp7Im5vZGUiOnsiZmllbGRzIjp7Im5vZGVzIjpbe30se30seyJpZCI6IlBWVFNTRl9sQUhPQlJvZlVzNEJldW03emhaR3BwdyIsIm5hbWUiOiJTdGF0dXMiLCJvcHRpb25zIjpbeyJpZCI6ImY3NWFkODQ2IiwibmFtZSI6IlRvZG8ifSx7ImlkIjoiNDdmYzllZTQiLCJuYW1lIjoiSW4gUHJvZ3Jlc3MifSx7ImlkIjoiOTgyMzY2NTciLCJuYW1lIjoiRG9uZSJ9XX0se30se30se30se30se30se30se30se30se30se30seyJpZCI6IlBWVFNTRl9sQUhPQlJvZlVzNEJldW03emhaR3F0MCIsIm5hbWUiOiJXb3JrZmxvdyIsIm9wdGlvbnMiOlt7ImlkIjoiZDkyMTkxMWMiLCJuYW1lIjoiQmFja2xvZyJ9LHsiaWQiOiIwMzZhOWZkYyIsIm5hbWUiOiJHYXRlIDAg4oCUIFZlcmlmeWluZyJ9LHsiaWQiOiJmNmI1NzE1MyIsIm5hbWUiOiJHYXRlIDEg4oCUIFBsYW5uaW5nIn0seyJpZCI6IjJhZDZhZjg1IiwibmFtZSI6Ik5lZWRzIFBsYW4gQXBwcm92YWwifSx7ImlkIjoiNDEzMTE3ZjkiLCJuYW1lIjoiR2F0ZSAyIOKAlCBJbXBsZW1lbnRpbmcifSx7ImlkIjoiOWI4YTVhNjIiLCJuYW1lIjoiTmVlZHMgUmV2aWV3In0seyJpZCI6IjQ2MGE2ZTViIiwibmFtZSI6IlJlcGFpciBSZXF1aXJlZCJ9LHsiaWQiOiIyMWIwNmU2MSIsIm5hbWUiOiJDb2RleCBDb25zdWx0YXRpb24ifSx7ImlkIjoiMmQzYzQ5NjYiLCJuYW1lIjoiSHVtYW4gRGlhZ25vc2lzIFJlcXVpcmVkIn0seyJpZCI6ImQyNzQ2NzM3IiwibmFtZSI6IkJsb2NrZWQifSx7ImlkIjoiZWU0ODQxNWIiLCJuYW1lIjoiTmVlZHMgUmVsZWFzZSBBcHByb3ZhbCJ9LHsiaWQiOiJmYjgyY2ZmMCIsIm5hbWUiOiJHYXRlIDMg4oCUIFJlbGVhc2luZyJ9LHsiaWQiOiI1NDQwNmZlMyIsIm5hbWUiOiJEb25lIn0seyJpZCI6IjliYjQ4MTQ0IiwibmFtZSI6IkFib3J0ZWQifV19LHsiaWQiOiJQVlRTU0ZfbEFIT0JSb2ZVczRCZXVtN3poWkpieFEiLCJuYW1lIjoiR2F0ZSIsIm9wdGlvbnMiOlt7ImlkIjoiMzk2OTZiYjUiLCJuYW1lIjoi4oCUIn0seyJpZCI6IjY5MjIwMDNhIiwibmFtZSI6IkcwIHBhc3NlZCJ9LHsiaWQiOiIyYTJmZjAwZSIsIm5hbWUiOiJHMSBwYXNzZWQifSx7ImlkIjoiYmQyODBlMjEiLCJuYW1lIjoiRzIgcGFzc2VkIn0seyJpZCI6IjMyZDhjYWM3IiwibmFtZSI6IkczIHBhc3NlZCJ9XX0seyJpZCI6IlBWVFNTRl9sQUhPQlJvZlVzNEJldW03emhaSmNCSSIsIm5hbWUiOiJFeGVjdXRvciIsIm9wdGlvbnMiOlt7ImlkIjoiMDJiZDU1MzQiLCJuYW1lIjoiSHVtYW4ifSx7ImlkIjoiY2U4NTljN2QiLCJuYW1lIjoiQ2xhdWRlIExlYWQifSx7ImlkIjoiZjU0MmMzYTMiLCJuYW1lIjoiQ2xhdWRlIFJlYWQtT25seSBUZWFtIn0seyJpZCI6IjVmZTcxZTU2IiwibmFtZSI6IkNvZGV4IENvbnN1bHRhbnQifSx7ImlkIjoiMDFjNmY4NjEiLCJuYW1lIjoiQ293b3JrIENvb3JkaW5hdG9yIn1dfSx7ImlkIjoiUFZUU1NGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY0M4IiwibmFtZSI6Ik5leHQgQXBwcm92YWwiLCJvcHRpb25zIjpbeyJpZCI6IjQ1MGVlMTMwIiwibmFtZSI6IuKAlCJ9LHsiaWQiOiJlNDViOWFlNSIsIm5hbWUiOiJQbGFuIEFwcHJvdmFsIChHMeKGkkcyKSJ9LHsiaWQiOiIxNjg0ZDVmZCIsIm5hbWUiOiJSZWxlYXNlIEFwcHJvdmFsIChHMuKGkkczKSJ9LHsiaWQiOiIxNzEwMmJmZiIsIm5hbWUiOiJEaXJ0eSBCYXNlbGluZSBBY2NlcHRhbmNlIn0seyJpZCI6IjY1MTJjZDRjIiwibmFtZSI6IlNjb3BlIC8gQWxsb3dsaXN0IENoYW5nZSJ9LHsiaWQiOiIwNjdhZjg0NSIsIm5hbWUiOiJFbnZpcm9ubWVudCBDaGFuZ2UifSx7ImlkIjoiNTAyYjYwODAiLCJuYW1lIjoiU2Vzc2lvbiBQZXJzaXN0ZW5jZSJ9LHsiaWQiOiJjYWNmNGYxNiIsIm5hbWUiOiJXb3JrdHJlZSBFeGNlcHRpb24ifSx7ImlkIjoiMDdlNTcwNTIiLCJuYW1lIjoiSHVtYW4gRGlhZ25vc2lzIn1dfSx7ImlkIjoiUFZUU1NGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY0QwIiwibmFtZSI6IkVudmlyb25tZW50Iiwib3B0aW9ucyI6W3siaWQiOiI4MzNkNmIxNiIsIm5hbWUiOiJ3c2wifSx7ImlkIjoiYjliZGRiYjIiLCJuYW1lIjoid2luZG93cyJ9LHsiaWQiOiI3NGQ3NWYwZSIsIm5hbWUiOiJtYWNvcy1hdXRob3JpdHkifSx7ImlkIjoiMWU0M2VjODUiLCJuYW1lIjoibWl4ZWQtc2VlLXByb3NlIn1dfSx7ImlkIjoiUFZUU1NGX2xBSE9CUm9mVXM0QmV1bTd6aFpKY0Q0IiwibmFtZSI6IlJpc2siLCJvcHRpb25zIjpbeyJpZCI6ImUyOTEyNDljIiwibmFtZSI6ImxvdyJ9LHsiaWQiOiIxOGMwYTVmNCIsIm5hbWUiOiJtZWRpdW0ifSx7ImlkIjoiODY5NDlhNzYiLCJuYW1lIjoiaGlnaCJ9XX0se30se30se30se30se30se30se30se31dfX19fQ==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "{\"data\":{\"node\":{\"fields\":{\"nodes\":[{},{},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZGppw\",\"name\":\"Status\",\"options\":[{\"id\":\"f75ad846\",\"name\":\"Todo\"},{\"id\":\"47fc9ee4\",\"name\":\"In Progress\"},{\"id\":\"98236657\",\"name\":\"Done\"}]},{},{},{},{},{},{},{},{},{},{},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZGqt0\",\"name\":\"Workflow\",\"options\":[{\"id\":\"d921911c\",\"name\":\"Backlog\"},{\"id\":\"036a9fdc\",\"name\":\"Gate 0 — Verifying\"},{\"id\":\"f6b57153\",\"name\":\"Gate 1 — Planning\"},{\"id\":\"2ad6af85\",\"name\":\"Needs Plan Approval\"},{\"id\":\"413117f9\",\"name\":\"Gate 2 — Implementing\"},{\"id\":\"9b8a5a62\",\"name\":\"Needs Review\"},{\"id\":\"460a6e5b\",\"name\":\"Repair Required\"},{\"id\":\"21b06e61\",\"name\":\"Codex Consultation\"},{\"id\":\"2d3c4966\",\"name\":\"Human Diagnosis Required\"},{\"id\":\"d2746737\",\"name\":\"Blocked\"},{\"id\":\"ee48415b\",\"name\":\"Needs Release Approval\"},{\"id\":\"fb82cff0\",\"name\":\"Gate 3 — Releasing\"},{\"id\":\"54406fe3\",\"name\":\"Done\"},{\"id\":\"9bb48144\",\"name\":\"Aborted\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJbxQ\",\"name\":\"Gate\",\"options\":[{\"id\":\"39696bb5\",\"name\":\"—\"},{\"id\":\"6922003a\",\"name\":\"G0 passed\"},{\"id\":\"2a2ff00e\",\"name\":\"G1 passed\"},{\"id\":\"bd280e21\",\"name\":\"G2 passed\"},{\"id\":\"32d8cac7\",\"name\":\"G3 passed\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJcBI\",\"name\":\"Executor\",\"options\":[{\"id\":\"02bd5534\",\"name\":\"Human\"},{\"id\":\"ce859c7d\",\"name\":\"Claude Lead\"},{\"id\":\"f542c3a3\",\"name\":\"Claude Read-Only Team\"},{\"id\":\"5fe71e56\",\"name\":\"Codex Consultant\"},{\"id\":\"01c6f861\",\"name\":\"Cowork Coordinator\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJcC8\",\"name\":\"Next Approval\",\"options\":[{\"id\":\"450ee130\",\"name\":\"—\"},{\"id\":\"e45b9ae5\",\"name\":\"Plan Approval (G1→G2)\"},{\"id\":\"1684d5fd\",\"name\":\"Release Approval (G2→G3)\"},{\"id\":\"17102bff\",\"name\":\"Dirty Baseline Acceptance\"},{\"id\":\"6512cd4c\",\"name\":\"Scope / Allowlist Change\"},{\"id\":\"067af845\",\"name\":\"Environment Change\"},{\"id\":\"502b6080\",\"name\":\"Session Persistence\"},{\"id\":\"cacf4f16\",\"name\":\"Worktree Exception\"},{\"id\":\"07e57052\",\"name\":\"Human Diagnosis\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJcD0\",\"name\":\"Environment\",\"options\":[{\"id\":\"833d6b16\",\"name\":\"wsl\"},{\"id\":\"b9bddbb2\",\"name\":\"windows\"},{\"id\":\"74d75f0e\",\"name\":\"macos-authority\"},{\"id\":\"1e43ec85\",\"name\":\"mixed-see-prose\"}]},{\"id\":\"PVTSSF_lAHOBRofUs4Beum7zhZJcD4\",\"name\":\"Risk\",\"options\":[{\"id\":\"e291249c\",\"name\":\"low\"},{\"id\":\"18c0a5f4\",\"name\":\"medium\"},{\"id\":\"86949a76\",\"name\":\"high\"}]},{},{},{},{},{},{},{},{}]}}}}"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:26:59.495772Z",
+  "ended_at": "2026-09-02T03:27:00.102931Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Exit: the Workflow option catalogue read FRESH so the write resolves by exact label to exactly one id."
+}

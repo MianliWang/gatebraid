@@ -1,0 +1,2 @@
+PRODUCER OUTPUT IS NOT VALID UTF-8: 'utf-8' codec can't decode byte 0xa1 in position 17: invalid start byte
+The offending byte is at position 17. No encoding is guessed: a best-effort decode would turn this loud failure into corruption inside a state document.

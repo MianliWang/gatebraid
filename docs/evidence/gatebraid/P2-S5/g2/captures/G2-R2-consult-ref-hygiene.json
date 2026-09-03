@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R2-consult-ref-hygiene",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"today UTC          : $(date -u +%Y-%m-%d)\"; echo \"total refs         : $(git for-each-ref --format=\"%(refname)\" | wc -l)\"; echo \"codex refs         : $(git for-each-ref --format=\"%(refname)\" | grep -ci codex)\"; echo; echo \"the codex ref and its object:\"; git for-each-ref --format=\"   %(refname) -> %(objecttype) %(objectname)\" | grep -i codex; echo; echo \"leaf ref file, with its timestamp:\"; find .git/refs/codex -type f | while read f; do ls -la --time-style=long-iso \"$f\" | sed \"s/^/   /\"; done"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 682,
+      "sha256": "21a890f6d021928b54d5c2dcabe0d2f02fa0f56b0009721af49d79c0b19b262b",
+      "data": "dG9kYXkgVVRDICAgICAgICAgIDogMjAyNi0wOS0wMgp0b3RhbCByZWZzICAgICAgICAgOiAyMwpjb2RleCByZWZzICAgICAgICAgOiAxCgp0aGUgY29kZXggcmVmIGFuZCBpdHMgb2JqZWN0OgogICByZWZzL2NvZGV4L3R1cm4tZGlmZnMvY2hlY2twb2ludHMvNjU2ODczNGRiNjQyOWUwODYwY2YwOTU0YjE5YWZmZmFhZGI5M2M5OTYwZDY2NmVmYjIzZDEwMThmMTUyYmUzNy83ZjhkODAyYzExODA0MmQyMDM4MmExNmEyNTBlYTFjNWZiMGJkODdlZmQ2ZTJhMmVlMzIyMTU1OGFkZTljOGYzLzE3ODU0ODk5MDA5MzEvYzBkYTQwMDUtMWZmNi00MzRhLWIxYTUtOWFkMWEyYWYxYjBlIC0+IHRyZWUgOGM3ZGY4NGQ2MmE1ZDcwZDRhOWVkMmYwNWVkZjI2NjFiYmY1YmQ0MwoKbGVhZiByZWYgZmlsZSwgd2l0aCBpdHMgdGltZXN0YW1wOgogICAtcnctci0tci0tIDEgcm91Z2ggMTk3NjA5IDQxIDIwMjYtMDctMzEgMDU6MjUgLmdpdC9yZWZzL2NvZGV4L3R1cm4tZGlmZnMvY2hlY2twb2ludHMvNjU2ODczNGRiNjQyOWUwODYwY2YwOTU0YjE5YWZmZmFhZGI5M2M5OTYwZDY2NmVmYjIzZDEwMThmMTUyYmUzNy83ZjhkODAyYzExODA0MmQyMDM4MmExNmEyNTBlYTFjNWZiMGJkODdlZmQ2ZTJhMmVlMzIyMTU1OGFkZTljOGYzLzE3ODU0ODk5MDA5MzEvYzBkYTQwMDUtMWZmNi00MzRhLWIxYTUtOWFkMWEyYWYxYjBlCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "today UTC          : 2026-09-02\ntotal refs         : 23\ncodex refs         : 1\n\nthe codex ref and its object:\n   refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e -> tree 8c7df84d62a5d70d4a9ed2f05edf2661bbf5bd43\n\nleaf ref file, with its timestamp:\n   -rw-r--r-- 1 rough 197609 41 2026-07-31 05:25 .git/refs/codex/turn-diffs/checkpoints/6568734db6429e0860cf0954b19afffaadb93c9960d666efb23d1018f152be37/7f8d802c118042d20382a16a250ea1c5fb0bd87efd6e2a2ee3221558ade9c8f3/1785489900931/c0da4005-1ff6-434a-b1a5-9ad1a2af1b0e\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T07:18:44.593938Z",
+  "ended_at": "2026-09-02T07:18:45.870513Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Friction #103 precaution, verified rather than assumed. The consult ran with -C pointing at a disposable full copy outside every governed repository, since deleted. The governed repository carries exactly one refs/codex ref; its leaf file is dated 2026-07-31 and its object is the same tree this Slice's entry report recorded as pre-existing on 2026-08-30, so no ref was written by this consult. Two earlier forms of this row left an unquoted git format string for the shell to parse and exited 127; both are retained as -pass1 and -pass2 siblings."
+}

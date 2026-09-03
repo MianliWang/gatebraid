@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-RM-novelty",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"tree at the re-checked state 622d79a9 : $(git rev-parse 622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b^{tree})\"; echo \"tree after the remediation commit    : $(git rev-parse 0a7e2c62349209fc4bbf56b82f576197806ca051^{tree})\"; echo \"unchanged tree                       : $([ \"$(git rev-parse 622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b^{tree})\" = \"$(git rev-parse 0a7e2c62349209fc4bbf56b82f576197806ca051^{tree})\" ] && echo yes || echo no)\"; echo; echo \"changed by the remediation commit:\"; git diff --name-status 622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b..0a7e2c62349209fc4bbf56b82f576197806ca051 | sed \"s/^/   /\"; echo; echo \"bytes outside docs/evidence/gatebraid/P2-S5/g2/ : $(git diff --name-only 622d79a9f2f21b7b2fabe850c8a3ba0bdd8a473b..0a7e2c62349209fc4bbf56b82f576197806ca051 | grep -vc \"^docs/evidence/gatebraid/P2-S5/g2/\")\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 449,
+      "sha256": "d7ca19ab04bc1aac5ffe98d1c3be55ae257e4ffd419b9c97dc98474470ca42f9",
+      "data": "dHJlZSBhdCB0aGUgcmUtY2hlY2tlZCBzdGF0ZSA2MjJkNzlhOSA6IDRlZDM1YWNjMmEyNTQ0NTRlMjE5MDVjNTAyYTYxZGU1NGJlMGYyZDcKdHJlZSBhZnRlciB0aGUgcmVtZWRpYXRpb24gY29tbWl0ICAgIDogN2JkMTAxNDljNmU4NjUyNjJjOGU2MzlhNTVlNmZkN2RhYjRmYTJlYQp1bmNoYW5nZWQgdHJlZSAgICAgICAgICAgICAgICAgICAgICAgOiBubwoKY2hhbmdlZCBieSB0aGUgcmVtZWRpYXRpb24gY29tbWl0OgogICBNCWRvY3MvZXZpZGVuY2UvZ2F0ZWJyYWlkL1AyLVM1L2cyL2NsYWltcy1yZWNoZWNrLnB5CiAgIE0JZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzIvZ2F0ZTIubWQKICAgTQlkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMi9yZW5kZXItZ2F0ZTIucHkKCmJ5dGVzIG91dHNpZGUgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzIvIDogMAo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "tree at the re-checked state 622d79a9 : 4ed35acc2a254454e21905c502a61de54be0f2d7\ntree after the remediation commit    : 7bd10149c6e865262c8e639a55e6fd7dab4fa2ea\nunchanged tree                       : no\n\nchanged by the remediation commit:\n   M\tdocs/evidence/gatebraid/P2-S5/g2/claims-recheck.py\n   M\tdocs/evidence/gatebraid/P2-S5/g2/gate2.md\n   M\tdocs/evidence/gatebraid/P2-S5/g2/render-gate2.py\n\nbytes outside docs/evidence/gatebraid/P2-S5/g2/ : 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-03T01:05:30.861876Z",
+  "ended_at": "2026-09-03T01:05:32.030268Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Remediation novelty (ADR-0027 section 1), measured against the tree at the state the bounded re-check reviewed. Recorded for a remediation and not for a repair attempt: repair_limit was already spent when the disposition was authored, and repair_attempts stays at two."
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-D6-producer-failure",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "bin/gatebraid-ready.py",
+      "--snapshot-command",
+      "C:/Python312/python.exe -B bin/gatebraid-snapshot.py --replay docs/evidence/gatebraid/P2-S5/g1/dryrun-out/no-such-transcript.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 10,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 218,
+      "sha256": "b47eb4077606f915017415a5c4a53778fb2cb32b74eb4c81ec488789be1c467b",
+      "data": "VVNBR0U6IG5vIHRyYW5zY3JpcHQgYXQgZG9jcy9ldmlkZW5jZS9nYXRlYnJhaWQvUDItUzUvZzEvZHJ5cnVuLW91dC9uby1zdWNoLXRyYW5zY3JpcHQuanNvbg0NClBST0RVQ0VSIFJFUE9SVEVEIE5PIERPQ1VNRU5UOiBleGl0IDIgKGRlY2xhcmVkIHN0YXR1cyBtZWFuaW5nIG5vIGRvY3VtZW50KTsgbm90aGluZyBpcyBlbWl0dGVkIGFuZCBubyB2ZXJkaWN0IGlzIGludmVudGVkDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "USAGE: no transcript at docs/evidence/gatebraid/P2-S5/g1/dryrun-out/no-such-transcript.json\r\r\nPRODUCER REPORTED NO DOCUMENT: exit 2 (declared status meaning no document); nothing is emitted and no verdict is invented\r\n"
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:10:51.018681Z",
+  "ended_at": "2026-09-02T03:10:51.208786Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-ready.py",
+      "sha256": "5fd1f551dc68a76fa0a90da0460280ef87bd0f18d3d4251d46a0b1dbdd2d2c17"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "D6: a producer status that genuinely means NO DOCUMENT, against the real producer. Expect exit 10."
+}

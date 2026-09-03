@@ -1,0 +1,76 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-exit-handoff-comment",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "issue",
+      "comment",
+      "17",
+      "--repo",
+      "MianliWang/gatebraid",
+      "--body-file",
+      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/3d38558d-0a4f-4c7a-aee0-96dab90c3692/scratchpad/handoff-g1.md"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 74,
+      "sha256": "2dd1e45c9102fcbd909c8957b92252f4cf4300bea1f349f20e83f6f9e4fa0404",
+      "data": "aHR0cHM6Ly9naXRodWIuY29tL01pYW5saVdhbmcvZ2F0ZWJyYWlkL2lzc3Vlcy8xNyNpc3N1ZWNvbW1lbnQtNTUwMTE1NzA1Mgo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5501157052\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T22:15:19.593713Z",
+  "ended_at": "2026-09-01T22:15:20.810163Z",
+  "inputs": [
+    {
+      "path": "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/3d38558d-0a4f-4c7a-aee0-96dab90c3692/scratchpad/handoff-g1.md",
+      "sha256": "fc5cbb810380ce3866dce926c376e9223c52fe3023d8b3cba6deed2ae4c93e67"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Exit: the durable record. The gatebraid/handoff@1 block was validated locally against schema/handoff.schema.json and read VALID with zero errors BEFORE this post."
+}

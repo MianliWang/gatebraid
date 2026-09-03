@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-R2-novelty",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "shell",
+    "argv": [
+      "D:/Program Files/Git/bin/bash.exe",
+      "-o",
+      "pipefail",
+      "-c",
+      "echo \"tree at the reviewed failing state 8fde380b: $(git rev-parse 8fde380b26e44caba7754dacd0611f3d5ff026a8^{tree})\"; echo \"tree after repair 2 implementation  : $(git rev-parse 5b586029344eb6df4a964c34baa1eb12e2916f6d^{tree})\"; echo \"unchanged tree                      : $([ \"$(git rev-parse 8fde380b26e44caba7754dacd0611f3d5ff026a8^{tree})\" = \"$(git rev-parse 5b586029344eb6df4a964c34baa1eb12e2916f6d^{tree})\" ] && echo yes || echo no)\"; echo; echo \"changed by the repair-2 implementation commit:\"; git diff --name-status 8fde380b26e44caba7754dacd0611f3d5ff026a8..5b586029344eb6df4a964c34baa1eb12e2916f6d | sed \"s/^/   /\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "shell_semantics": {
+      "shell": "D:/Program Files/Git/bin/bash.exe",
+      "pipefail": true,
+      "exit_code_source": "pipeline_last"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 282,
+      "sha256": "65d06fcfd73f761641ebed9c58a1c3803878e249cdea23362a938ae3494d5624",
+      "data": "dHJlZSBhdCB0aGUgcmV2aWV3ZWQgZmFpbGluZyBzdGF0ZSA4ZmRlMzgwYjogNzRkZTA5N2JiMDUwMjNjYjk1NWNjNTlmYTFjNzMzOGU0NTI0ZjIyOQp0cmVlIGFmdGVyIHJlcGFpciAyIGltcGxlbWVudGF0aW9uICA6IGY2OTY5NDQ5NDdhMzQyYjYxNjNiZjRhZDdkOTEzNzY3NDgzMGEyZjcKdW5jaGFuZ2VkIHRyZWUgICAgICAgICAgICAgICAgICAgICAgOiBubwoKY2hhbmdlZCBieSB0aGUgcmVwYWlyLTIgaW1wbGVtZW50YXRpb24gY29tbWl0OgogICBNCWJpbi9nYXRlYnJhaWQtcmVhZHkucHkK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "tree at the reviewed failing state 8fde380b: 74de097bb05023cb955cc59fa1c7338e4524f229\ntree after repair 2 implementation  : f696944947a342b6163bf4ad7d9137674830a2f7\nunchanged tree                      : no\n\nchanged by the repair-2 implementation commit:\n   M\tbin/gatebraid-ready.py\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T07:26:56.744453Z",
+  "ended_at": "2026-09-02T07:26:57.451976Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Repair 2 novelty, measured BEFORE the result is graded (ADR-0027 section 1). The comparand is the tree at the review's failing state, the commit the reviewer reviewed."
+}

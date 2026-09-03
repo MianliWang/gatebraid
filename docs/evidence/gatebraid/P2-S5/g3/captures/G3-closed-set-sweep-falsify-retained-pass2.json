@@ -1,0 +1,72 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-closed-set-sweep-falsify-retained",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py",
+      "docs/evidence/gatebraid/P2-S5/g3/../g1/falsification"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 904,
+      "sha256": "250cf30d76a3f85afa458b85244de77287bfecaa0aa71eb8d0655eccfa72f7c1",
+      "data": "Y2FwdHVyZXMgc3dlcHQgOiAyDQoNCj09PSBjYW5kaWRhdGUgY2xhc3NpZmljYXRpb24gKGV2ZXJ5IHJ1bGUgYXBwbGllZCBleHBsaWNpdGx5KSA9PT0NCiAgTjIgdGhlIFAyLVM1IGl0ZW0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxDQogIE40IGFub3RoZXIgaXRlbSBvZiB0aGUgcGVybWl0dGVkIFByb2plY3QgICAgICAgICAgICAgICAgICAgMQ0KICBVTkVYUExBSU5FRCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDENCg0KPT09IGV2ZXJ5IFJFUE9TSVRPUlkgaWRlbnRpdHkgbmFtZWQgYW55d2hlcmUgPT09DQoNCj09PSBtZW50aW9uLWNsYXNzIGNoZWNrOiBhIG1lbnRpb24gbXVzdCBuZXZlciBhcHBlYXIgaW4gYW4gSU5WT0NBVElPTiA9PT0NCiAgbWVudGlvbi1jbGFzcyBpc3N1ZXMgdGFyZ2V0ZWQgYnkgYSBxdWVyeTogMCAoMCByZXF1aXJlZCkNCg0KZG9tYWluICAgICAgOiAyIGRvY3VtZW50cyAoMCBvZiB0aGlzIHN3ZWVwJ3Mgb3duIHJlcG9ydHMgZXhjbHVkZWQpDQpVTkVYUExBSU5FRCBSRVNJRFVFOiA1DQogICAgU0VFRC1vdXQtb2YtbmFtZXNwYWNlLWl0ZW0uanNvbiAgICAgICAgICAgICAgc3Rkb3V0ICAgICAgIG5vZGUNCiAgICBTRUVELW91dC1vZi1uYW1lc3BhY2UtaXRlbS5qc29uICAgICAgICAgICAgICBzdGRvdXQgICAgICAgbm9kZQ0KICAgIFNFRUQtb3V0LW9mLXNldC5qc29uICAgICAgICAgICAgICAgICAgICAgICAgIHN0ZG91dCAgICAgICByZXBvDQogICAgU0VFRC1vdXQtb2Ytc2V0Lmpzb24gICAgICAgICAgICAgICAgICAgICAgICAgc3Rkb3V0ICAgICAgIG5vZGUNCiAgICBTRUVELW91dC1vZi1zZXQuanNvbiAgICAgICAgICAgICAgICAgICAgICAgICBzdGRvdXQgICAgICAgaXNzdWUNCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "captures swept : 2\r\n\r\n=== candidate classification (every rule applied explicitly) ===\r\n  N2 the P2-S5 item                                          1\r\n  N4 another item of the permitted Project                   1\r\n  UNEXPLAINED                                                1\r\n\r\n=== every REPOSITORY identity named anywhere ===\r\n\r\n=== mention-class check: a mention must never appear in an INVOCATION ===\r\n  mention-class issues targeted by a query: 0 (0 required)\r\n\r\ndomain      : 2 documents (0 of this sweep's own reports excluded)\r\nUNEXPLAINED RESIDUE: 5\r\n    SEED-out-of-namespace-item.json              stdout       node\r\n    SEED-out-of-namespace-item.json              stdout       node\r\n    SEED-out-of-set.json                         stdout       repo\r\n    SEED-out-of-set.json                         stdout       node\r\n    SEED-out-of-set.json                         stdout       issue\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-03T08:57:27.634175Z",
+  "ended_at": "2026-09-03T08:57:27.722981Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g3/checks-g3-closed-set-sweep.py",
+      "sha256": "6a949760d84ea48063c96011a704a33905d0021256fcff63994e08cda21af112"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Falsification 1 of 3, the RETAINED seeds: the same instrument pointed at the Gate 1 falsification domain, which carries the out-of-set repository seed and the out-of-namespace Project item seed. It must exit 1 with the repository and node limbs firing. A first run under this capture id sweptthe Gate 2 seed directory instead - a true run of a real domain under a name that described a different one - and is retained as -pass1 rather than deleted."
+}

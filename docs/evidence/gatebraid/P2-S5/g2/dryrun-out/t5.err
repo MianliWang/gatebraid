@@ -1,0 +1,18 @@
+generator                     : gatebraid-snapshot 1.0.0
+schema                        : D:\Github repo\Gatebraid\schema\snapshot.schema.json sha256=95ecf38e927a18e58cace007607caa016d188893c2d92ea3ea748c46453419d6
+transport                     : live
+sources                       : 4
+   project_items    ok                   complete=True  exit=0
+   issue_states     ok                   complete=True  exit=0
+   dep_blocked_by   ok                   complete=True  exit=0
+   dep_blocking     ok                   complete=True  exit=0
+items                         : 16
+degraded                      : no
+SNAPSHOT OK: every source read completely with status `ok`
+consumer                      : gatebraid-frontier 1.0.0
+validated against             : D:\Github repo\Gatebraid\schema\snapshot.schema.json sha256=95ecf38e927a18e58cace007607caa016d188893c2d92ea3ea748c46453419d6
+items excluded (no verdict)   : 4
+startable                     : 9
+blocked                       : 3
+undecidable                   : 0
+FRONTIER OK: the snapshot validated and every verdict was re-derived from it

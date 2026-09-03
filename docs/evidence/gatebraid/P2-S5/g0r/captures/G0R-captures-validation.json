@@ -1,0 +1,68 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G0R-captures-validation",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "docs/evidence/gatebraid/P2-S5/g0r/checks-g0r-verify-captures.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3194,
+      "sha256": "16f64f8dfad240821333b043ecbe85a914b5e54faffe3bd938b205a0c377eb0f",
+      "data": "RzBSLWJhc2VsaW5lLW1haW4uanNvbiAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwUi1jYXB0dXJlcy12YWxpZGF0aW9uLmpzb24gICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMFItY2xvc2VkLXNldC1zd2VlcC1mYWxzaWZ5LW40Lmpzb24gICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzBSLWNsb3NlZC1zZXQtc3dlZXAtZmFsc2lmeS5qc29uICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwUi1jbG9zZWQtc2V0LXN3ZWVwLXBhc3MxLmpzb24gICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMFItY2xvc2VkLXNldC1zd2VlcC5qc29uICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzBSLWVudi1maWVsZC5qc29uICAgICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwUi1mcm9udGllci1ydW4uanNvbiAgICAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMFItaGVhZC5qc29uICAgICAgICAgICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzBSLWhvc3QtcHJvYmUuanNvbiAgICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwUi1wMnM1LXBhdGhsaXN0LWRpZ2VzdC5qc29uICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMFItcG9yY2VsYWluLWJhc2VsaW5lLmpzb24gICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzBSLXBvcmNlbGFpbi1mdWxsLmpzb24gICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwUi1wb3JjZWxhaW4tdHJhY2tlZC5qc29uICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMFItcmVmLW5hbWVzcGFjZS5qc29uICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzBSLXJlbW90ZS5qc29uICAgICAgICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwUi1zbGljZS1ib2R5Lmpzb24gICAgICAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTEgIFJFSkVDVEVEDQpHMFItc2xpY2UtbWV0YWRhdGEtc2VsZnRlc3QuanNvbiAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0xICBSRUpFQ1RFRA0KRzBSLXNsaWNlLW1ldGFkYXRhLXZhbGlkYXRpb24uanNvbiAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwUi1zbmFwc2hvdC1ydW4uanNvbiAgICAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMFItdG9vbHMtY2xhdWRlLmpzb24gICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzBSLXRvb2xzLWNvZGV4Lmpzb24gICAgICAgICAgICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MCAgYWNjZXB0ZWQNCkcwUi10b29scy1naC5qc29uICAgICAgICAgICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpHMFItdG9vbHMtZ2l0Lmpzb24gICAgICAgICAgICAgICAgICAgICBndWFyZCtyZWRlcml2ZSx2YWxpZGF0ZSAgTDE9MCBMMj0wICBhY2NlcHRlZA0KRzBSLXRvb2xzLXB5dGhvbi13aW5kb3dzLmpzb24gICAgICAgICAgZ3VhcmQrcmVkZXJpdmUsdmFsaWRhdGUgIEwxPTAgTDI9MSAgUkVKRUNURUQNCkcwUi10b29scy1weXRob24td3NsLmpzb24gICAgICAgICAgICAgIGd1YXJkK3JlZGVyaXZlLHZhbGlkYXRlICBMMT0wIEwyPTAgIGFjY2VwdGVkDQpnMHItZnJvbnRpZXItcmVwb3J0Lmpzb24gICAgICAgICAgICAgICB2YWxpZGF0ZSAgICAgICAgICAgICAgICAgTDE9MCBMMj0yICBOT1QtQ09WRVJFRA0KZzByLXNuYXBzaG90Lmpzb24gICAgICAgICAgICAgICAgICAgICAgdmFsaWRhdGUgICAgICAgICAgICAgICAgIEwxPTAgTDI9MiAgTk9ULUNPVkVSRUQNCg0KZG9jdW1lbnRzIGNoZWNrZWQgICAgICAgIDogMjgNCmFjY2VwdGVkIGJ5IGJvdGggbGF5ZXJzICA6IDIzDQpyZWplY3RlZCAgICAgICAgICAgICAgICAgOiAzDQppbnRlcmZhY2Ugbm90IGNvdmVyZWQgICAgOiAyDQogICBOT1QtQ09WRVJFRCBnMHItZnJvbnRpZXItcmVwb3J0Lmpzb24gICAgICAgU1RSVUNUVVJFOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMHIvY2FwdHVyZXNcZzByLWZyb250aWVyLXJlcG9ydC5qc29uIGRlY2xhcmVzIG5vDQogICBOT1QtQ09WRVJFRCBnMHItc25hcHNob3QuanNvbiAgICAgICAgICAgICAgU1RSVUNUVVJFOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMHIvY2FwdHVyZXNcZzByLXNuYXBzaG90Lmpzb24gZGVjbGFyZXMgdW5rbm93biBpDQogICBSRUpFQ1RFRCBHMFItc2xpY2UtYm9keS5qc29uDQogICAgICBsYXllcjEgZXhpdD0wIGJ5dGVzPTExNjIxIGNybGY9MCBsb25lX2NyPTANCiAgICAgIGxheWVyMiBleGl0PTEgdmVyZGljdCAgICAgICA6IHJlamVjdGVkDQogICBSRUpFQ1RFRCBHMFItc2xpY2UtbWV0YWRhdGEtc2VsZnRlc3QuanNvbg0KICAgICAgbGF5ZXIxIGV4aXQ9MCBieXRlcz01NDU5IGNybGY9MCBsb25lX2NyPTANCiAgICAgIGxheWVyMiBleGl0PTEgdmVyZGljdCAgICAgICA6IHJlamVjdGVkDQogICBSRUpFQ1RFRCBHMFItdG9vbHMtcHl0aG9uLXdpbmRvd3MuanNvbg0KICAgICAgbGF5ZXIxIGV4aXQ9MCBieXRlcz0yNDA4IGNybGY9MCBsb25lX2NyPTANCiAgICAgIGxheWVyMiBleGl0PTEgdmVyZGljdCAgICAgICA6IHJlamVjdGVkDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "G0R-baseline-main.json                 guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-captures-validation.json           guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-closed-set-sweep-falsify-n4.json   guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-closed-set-sweep-falsify.json      guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-closed-set-sweep-pass1.json        guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-closed-set-sweep.json              guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-env-field.json                     guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-frontier-run.json                  guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-head.json                          guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-host-probe.json                    guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-p2s5-pathlist-digest.json          guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-porcelain-baseline.json            guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-porcelain-full.json                guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-porcelain-tracked.json             guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-ref-namespace.json                 guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-remote.json                        guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-slice-body.json                    guard+rederive,validate  L1=0 L2=1  REJECTED\r\nG0R-slice-metadata-selftest.json       guard+rederive,validate  L1=0 L2=1  REJECTED\r\nG0R-slice-metadata-validation.json     guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-snapshot-run.json                  guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-tools-claude.json                  guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-tools-codex.json                   guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-tools-gh.json                      guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-tools-git.json                     guard+rederive,validate  L1=0 L2=0  accepted\r\nG0R-tools-python-windows.json          guard+rederive,validate  L1=0 L2=1  REJECTED\r\nG0R-tools-python-wsl.json              guard+rederive,validate  L1=0 L2=0  accepted\r\ng0r-frontier-report.json               validate                 L1=0 L2=2  NOT-COVERED\r\ng0r-snapshot.json                      validate                 L1=0 L2=2  NOT-COVERED\r\n\r\ndocuments checked        : 28\r\naccepted by both layers  : 23\r\nrejected                 : 3\r\ninterface not covered    : 2\r\n   NOT-COVERED g0r-frontier-report.json       STRUCTURE: docs/evidence/gatebraid/P2-S5/g0r/captures\\g0r-frontier-report.json declares no\r\n   NOT-COVERED g0r-snapshot.json              STRUCTURE: docs/evidence/gatebraid/P2-S5/g0r/captures\\g0r-snapshot.json declares unknown i\r\n   REJECTED G0R-slice-body.json\r\n      layer1 exit=0 bytes=11621 crlf=0 lone_cr=0\r\n      layer2 exit=1 verdict       : rejected\r\n   REJECTED G0R-slice-metadata-selftest.json\r\n      layer1 exit=0 bytes=5459 crlf=0 lone_cr=0\r\n      layer2 exit=1 verdict       : rejected\r\n   REJECTED G0R-tools-python-windows.json\r\n      layer1 exit=0 bytes=2408 crlf=0 lone_cr=0\r\n      layer2 exit=1 verdict       : rejected\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-01T20:31:07.000230Z",
+  "ended_at": "2026-09-01T20:31:19.477151Z",
+  "inputs": [
+    {
+      "path": "docs/evidence/gatebraid/P2-S5/g0r/checks-g0r-verify-captures.py",
+      "sha256": "82c4cabff3382a805803640131f9883b0f58f08ee6ecd9d13350b72903f1d2e7"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Every capture checked twice: the capture tool's own guard with re-derivation, and the independent N3 validator. A capture is accepted only if both accept it."
+}

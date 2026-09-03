@@ -1,0 +1,70 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G3-G2a-automation",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "gh",
+      "api",
+      "graphql",
+      "-f",
+      "query=query{node(id:\"PVT_kwHOBRofUs4Beum7\"){... on ProjectV2{workflows(first:30){nodes{name enabled}}}}}",
+      "--jq",
+      ".data.node.workflows.nodes[]|\"\\(if .enabled then \"ENABLED \" else \"disabled\" end)  \\(.name)\""
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 191,
+      "sha256": "22902c737f819244652f807a9ee2c085744da41f9678cfecbee14c37b3cb289d",
+      "data": "RU5BQkxFRCAgIEF1dG8tYWRkIHN1Yi1pc3N1ZXMgdG8gcHJvamVjdApkaXNhYmxlZCAgQXV0by1jbG9zZSBpc3N1ZQpFTkFCTEVEICAgSXRlbSBhZGRlZCB0byBwcm9qZWN0CkVOQUJMRUQgICBJdGVtIGNsb3NlZApFTkFCTEVEICAgUHVsbCByZXF1ZXN0IGxpbmtlZCB0byBpc3N1ZQpFTkFCTEVEICAgUHVsbCByZXF1ZXN0IG1lcmdlZAo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "ENABLED   Auto-add sub-issues to project\ndisabled  Auto-close issue\nENABLED   Item added to project\nENABLED   Item closed\nENABLED   Pull request linked to issue\nENABLED   Pull request merged\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-03T08:46:20.669953Z",
+  "ended_at": "2026-09-03T08:46:22.325551Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "G2a: closure precondition (a). Every built-in Project workflow read with its enabled state; Auto-close issue is the one that closes an issue when Status becomes Done, and it is the only disabled rule."
+}

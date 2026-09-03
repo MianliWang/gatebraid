@@ -1,0 +1,65 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G1-dryrun-D4-selftest-wsl",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "wsl.exe",
+      "-e",
+      "bash",
+      "-lc",
+      "cd '/mnt/d/Github repo/Gatebraid' && PYTHONDONTWRITEBYTECODE=1 python3 -B bin/gatebraid-ready-selftest.py"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 2,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 125,
+      "sha256": "513f267d14ec965d01bbc7a911f0416848a2fcc9fa6e950a06c36f7ae14c704b",
+      "data": "cHl0aG9uMzogY2FuJ3Qgb3BlbiBmaWxlICcvbW50L2QvR2l0aHViIHJlcG8vR2F0ZWJyYWlkL2Jpbi9nYXRlYnJhaWQtcmVhZHktc2VsZnRlc3QucHknOiBbRXJybm8gMl0gTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "python3: can't open file '/mnt/d/Github repo/Gatebraid/bin/gatebraid-ready-selftest.py': [Errno 2] No such file or directory\n"
+      }
+    }
+  },
+  "started_at": "2026-09-01T21:57:02.278665Z",
+  "ended_at": "2026-09-01T21:57:03.345666Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "D4 RUN AS DECLARED on the WSL half, same absence, same reason."
+}

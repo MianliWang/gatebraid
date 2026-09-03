@@ -1,0 +1,62 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "G2-wsl-ready-selftest",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python3",
+      "-B",
+      "bin/gatebraid-ready-selftest.py"
+    ],
+    "cwd": {
+      "path": "/mnt/d/Github repo/Gatebraid",
+      "resolution": "absolute-verified"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 4419,
+      "sha256": "e59588636b8c42f65ea93f4e21c603baa92e05e27e10bf5da640951612bb5994",
+      "data": "aWQgICAgIGNvbmRpdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2FudCAgICAgICAgIGdvdCAgICAgICAgICB2ZXJkaWN0IHJlcXVpcmVkIG9ic2VydmF0aW9uClMwMSAgICBhIGhlYWx0aHkgZG9jdW1lbnQgY29tcG9zZXMgYW5kIGV4aXRzIDAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAwICAgICAgICAgICAgUEFTUyAgICBhIGNvbXBvc2VyIHRoYXQgcmVqZWN0ZWQgZXZlcnl0aGluZyB3b3VsZCBmYWlsIEhFUkUgYW5kIHBhc3MgZXZlcnkgbmVnYXRpdmUgYmVsb3cKUzAxYiAgIHRoZSBjb25zdW1lcidzIHJlcG9ydCBpcyBwYXNzZWQgdGhyb3VnaCBCWVRFLUZPUi1CWVRFICAgICAgICAgICAgPDUxMjcgYnl0ZXM+IDw1MTI3IGJ5dGVzPiBQQVNTICAgIGJ5dGUgcGFzc3Rocm91Z2gsIG5vdCB0ZXh0OiByZS1lbWl0dGluZyBkZWNvZGVkIHRleHQgdGhyb3VnaCBhIHRleHQtbW9kZSBzdGRvdXQgd291bGQgdHJhbnNsYXRlIGV2ZXJ5IGVtYmVkZGVkIG5ld2xpbmUgYWdhaW4KUzAyICAgIHByb2R1Y2VyIHN0YXR1cyAxIChkZWNsYXJlZDogbm8gZG9jdW1lbnQpIGlzIGV4aXQgMTAgICAgICAgICAgICAgMTAgICAgICAgICAgIDEwICAgICAgICAgICBQQVNTICAgIGEgc3RhdHVzIG1lYW5pbmcgbm8gZG9jdW1lbnQgbXVzdCBuZXZlciByZWFjaCB0aGUgY29uc3VtZXIKUzAyYiAgIGFuZCBzdGRvdXQgc3RheXMgZW1wdHkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPDAgYnl0ZXM+ICAgIDwwIGJ5dGVzPiAgICBQQVNTICAgIHN0ZG91dCBjYXJyaWVzIGV4YWN0bHkgb25lIEpTT04gZG9jdW1lbnQgb3Igbm90aGluZwpTMDMgICAgcHJvZHVjZXIgc3RhdHVzIDIgKGRlY2xhcmVkOiBubyBkb2N1bWVudCkgaXMgZXhpdCAxMCAgICAgICAgICAgICAxMCAgICAgICAgICAgMTAgICAgICAgICAgIFBBU1MgICAgYSBzdGF0dXMgbWVhbmluZyBubyBkb2N1bWVudCBtdXN0IG5ldmVyIHJlYWNoIHRoZSBjb25zdW1lcgpTMDNiICAgYW5kIHN0ZG91dCBzdGF5cyBlbXB0eSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8MCBieXRlcz4gICAgPDAgYnl0ZXM+ICAgIFBBU1MgICAgc3Rkb3V0IGNhcnJpZXMgZXhhY3RseSBvbmUgSlNPTiBkb2N1bWVudCBvciBub3RoaW5nClMwNCAgICBwcm9kdWNlciBzdGF0dXMgMyAoZGVjbGFyZWQ6IGVtaXR0ZWQgYW5kIERFR1JBREVEKSBwYXNzZXMgdGhlIGRvIDMgICAgICAgICAgICAzICAgICAgICAgICAgUEFTUyAgICBELTQ6IHJlYWRpbmcgYW55IG5vbi16ZXJvIHN0YXR1cyBhcyBmYWlsdXJlIHdvdWxkIERJU0NBUkQgYSBsYXdmdWwgZG9jdW1lbnQgYW5kIGhpZGUgdGhlIGRlZ3JhZGF0aW9uIGZyb20gdGhlIG9ubHkgdG9vbCB0aGF0IHR5cGVzIGl0ClMwNGIgICBhbmQgdGhlIHJlcG9ydCBpcyBzdGlsbCBvbiBzdGRvdXQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw4NDQgYnl0ZXM+ICA8ODQ0IGJ5dGVzPiAgUEFTUyAgICAtLXN0cmljdCBjaGFuZ2VkIHRoZSBleGl0IGNvZGUgYW5kIG5ldmVyIHRoZSBvdXRwdXQ7IHRoZSBjb25zdW1lciBub3cgYXBwbGllcyB0aGF0IHVuY29uZGl0aW9uYWxseQpTMDUgICAgYW4gdW5kZWNsYXJlZCBwcm9kdWNlciBzdGF0dXMgaXMgZXhpdCAxMCAgICAgICAgICAgICAgICAgICAgICAgICAxMCAgICAgICAgICAgMTAgICAgICAgICAgIFBBU1MgICAgYW4gdW5rbm93biBzdGF0dXMgaXMgdHJlYXRlZCBhcyBuby1kb2N1bWVudCwgbmV2ZXIgYXMgc3VjY2VzcwpTMDYgICAgcHJvZHVjZXIgYnl0ZXMgdGhhdCBhcmUgbm90IHZhbGlkIFVURi04IGFyZSBleGl0IDExICAgICAgICAgICAgICAxMSAgICAgICAgICAgMTEgICAgICAgICAgIFBBU1MgICAgdGhlIHNhbWUgdHdvIGJ5dGVzIHRoYXQgYnJva2UgdGhlIE0yIHBpcGVsaW5lOyBubyBlbmNvZGluZyBpcyBndWVzc2VkClMwNmIgICBhbmQgc3Rkb3V0IHN0YXlzIGVtcHR5ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwwIGJ5dGVzPiAgICA8MCBieXRlcz4gICAgUEFTUyAgICBhIGJlc3QtZWZmb3J0IGRlY29kZSB3b3VsZCB0dXJuIGEgbG91ZCBmYWlsdXJlIGludG8gY29ycnVwdGlvbiBpbnNpZGUgYSBzdGF0ZSBkb2N1bWVudApTMDZjICAgYW5kIHRoZSByZWZ1c2FsIG5hbWVzIHRoZSBvZmZlbmRpbmcgYnl0ZSBhbmQgaXRzIHBvc2l0aW9uICAgICAgICBUcnVlICAgICAgICAgVHJ1ZSAgICAgICAgIFBBU1MgICAgYSBndWFyZCB0aGF0IGZpcmVzIHdpdGhvdXQgbmFtaW5nIHdoYXQgaXQgY2F1Z2h0IGlzIG5vdCBldmlkZW5jZQpTMDcgICAgYSBkZWNvZGFibGUgYnV0IG1hbGZvcm1lZCBkb2N1bWVudCByZXR1cm5zIHRoZSBjb25zdW1lcidzIG93biByZSAxICAgICAgICAgICAgMSAgICAgICAgICAgIFBBU1MgICAgdGhlIGNvbnN1bWVyJ3MgY29kZXMgYXJlIHJldXNlZCByYXRoZXIgdGhhbiByZW51bWJlcmVkIChELTEpClMwN2IgICBhbmQgbm8gdmVyZGljdCBpcyBlbWl0dGVkICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwwIGJ5dGVzPiAgICA8MCBieXRlcz4gICAgUEFTUyAgICBubyB2ZXJkaWN0IGlzIGludmVudGVkIGZvciBhIGRvY3VtZW50IHRoZSBjb25zdW1lciByZWZ1c2VkClMwOCAgICAtLXN0cmljdCBpcyBhY2NlcHRlZCBhbmQgY2hhbmdlcyB0aGUgZXhpdCBzdGF0dXMgbm90IGF0IGFsbCAgICAgIDAgICAgICAgICAgICAwICAgICAgICAgICAgUEFTUyAgICBELTI6IHRoZSBmbGFnIGlzIGtlcHQgc28gYSBjYWxsZXIgd3JpdHRlbiBhZ2FpbnN0IHRoZSBmcm96ZW4gc3VyZmFjZSBzdGlsbCBydW5zOyByZWplY3RpbmcgaXQgd291bGQgYnJlYWsgdGhhdCBzdXJmYWNlClMwOGIgICBhbmQgY2hhbmdlcyB0aGUgb3V0cHV0IG5vdCBhdCBhbGwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw1MTI3IGJ5dGVzPiA8NTEyNyBieXRlcz4gUEFTUyAgICBhIGZsYWcgdGhhdCBzaWxlbnRseSBhbHRlcmVkIHRoZSBkb2N1bWVudCB3b3VsZCBiZSB3b3JzZSB0aGFuIG9uZSB0aGF0IGVycm9yZWQKUzA5ICAgIGEgY29tcG9zaXRpb24gd2hvc2UgRklSU1Qgc3RhZ2UgZmFpbHMgYW5kIHdob3NlIHNlY29uZCB3b3VsZCBzdWMgMTAgICAgICAgICAgIDEwICAgICAgICAgICBQQVNTICAgIElOLTAxLCB0aGUgY2xhc3MgdGhlIGZyb3plbiBjb3JwdXMgZG9lcyBub3QgaG9sZDogdGhlIHN0dWIgZW1pdHMgYSBWQUxJRCBkb2N1bWVudCBhbmQgZXhpdHMgMSwgc28gYSBjb21wb3NlciB0ZXN0aW5nIG9ubHkgdGhlIGRvY3VtZW50IHdvdWxkIHJldHVybiAwClMwOWIgICBhbmQgdGhlIHZhbGlkIGRvY3VtZW50IGlzIG5vdCBmb3J3YXJkZWQgICAgICAgICAgICAgICAgICAgICAgICAgIDwwIGJ5dGVzPiAgICA8MCBieXRlcz4gICAgUEFTUyAgICB0aGUgcHJvZHVjZXIncyBzdGF0dXMgZ292ZXJucywgbm90IHRoZSBzaGFwZSBvZiB3aGF0IGl0IHdyb3RlClMxMCAgICB0aGUgRC00IHBhcnRpdGlvbiBjb3ZlcnMgZXhhY3RseSB0aGUgcHJvZHVjZXIncyBkZWNsYXJlZCBzcGFjZSAgIFswLCAxLCAyLCAzXSBbMCwgMSwgMiwgM10gUEFTUyAgICB0aGUgcGFydGl0aW9uIGlzIHRyYW5zY3JpYmVkIGZyb20gdGhlIHByb2R1Y2VyJ3MgZG9jc3RyaW5nLCBzbyBpdCBpcyBjaGVja2VkIGFnYWluc3QgdGhhdCBkb2NzdHJpbmcgcmF0aGVyIHRoYW4gdHJ1c3RlZApTMTEgICAgZXZlcnkgY29uZGl0aW9uIHdhcyBzZXJ2ZWQgYnkgYSBzdHViIG9yIGEgY29tbWl0dGVkIGRvY3VtZW50ICAgICAwICAgICAgICAgICAgMCAgICAgICAgICAgIFBBU1MgICAgYSBzZWxmdGVzdCB0aGF0IHJlYWNoZWQgdGhlIGNvbnRyb2wgcGxhbmUgd291bGQgYmUgbWVhc3VyaW5nIHRoZSBuZXR3b3JrLCBub3QgdGhlIGNvbXBvc2VyCgp0b29sIHVuZGVyIHRlc3QgICAgICAgICAgICAgICA6IC9tbnQvZC9HaXRodWIgcmVwby9HYXRlYnJhaWQvYmluL2dhdGVicmFpZC1yZWFkeS5weQppbnRlcnByZXRlciAgICAgICAgICAgICAgICAgICA6IC91c3IvYmluL3B5dGhvbjMKZG9jdW1lbnRzIChjb21taXR0ZWQsIGZyb3plbikgOiBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNS9nMS9jYXB0dXJlcy9nMS1zbmFwc2hvdC5qc29uLCBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNi9nMS9kcnlydW4tb3V0L2cyLXNuYXBzaG90Lmpzb24KZmlsZXMgd3JpdHRlbiBieSB0aGlzIHN1aXRlICAgOiAwCm5ldHdvcmsgcmVhZHMgcGVyZm9ybWVkICAgICAgIDogMCAoZXZlcnkgcHJvZHVjZXIgaXMgYSBzdHViKQpjb25kaXRpb25zIGZhaWxlZCAgICAgICAgICAgICA6IDAKU0VMRlRFU1QgQ0xFQU46IGV2ZXJ5IHNlZWRlZCBjb25kaXRpb24gcHJvZHVjZWQgaXRzIHJlcXVpcmVkIG91dGNvbWUK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "id     condition                                                        want         got          verdict required observation\nS01    a healthy document composes and exits 0                          0            0            PASS    a composer that rejected everything would fail HERE and pass every negative below\nS01b   the consumer's report is passed through BYTE-FOR-BYTE            <5127 bytes> <5127 bytes> PASS    byte passthrough, not text: re-emitting decoded text through a text-mode stdout would translate every embedded newline again\nS02    producer status 1 (declared: no document) is exit 10             10           10           PASS    a status meaning no document must never reach the consumer\nS02b   and stdout stays empty                                           <0 bytes>    <0 bytes>    PASS    stdout carries exactly one JSON document or nothing\nS03    producer status 2 (declared: no document) is exit 10             10           10           PASS    a status meaning no document must never reach the consumer\nS03b   and stdout stays empty                                           <0 bytes>    <0 bytes>    PASS    stdout carries exactly one JSON document or nothing\nS04    producer status 3 (declared: emitted and DEGRADED) passes the do 3            3            PASS    D-4: reading any non-zero status as failure would DISCARD a lawful document and hide the degradation from the only tool that types it\nS04b   and the report is still on stdout                                <844 bytes>  <844 bytes>  PASS    --strict changed the exit code and never the output; the consumer now applies that unconditionally\nS05    an undeclared producer status is exit 10                         10           10           PASS    an unknown status is treated as no-document, never as success\nS06    producer bytes that are not valid UTF-8 are exit 11              11           11           PASS    the same two bytes that broke the M2 pipeline; no encoding is guessed\nS06b   and stdout stays empty                                           <0 bytes>    <0 bytes>    PASS    a best-effort decode would turn a loud failure into corruption inside a state document\nS06c   and the refusal names the offending byte and its position        True         True         PASS    a guard that fires without naming what it caught is not evidence\nS07    a decodable but malformed document returns the consumer's own re 1            1            PASS    the consumer's codes are reused rather than renumbered (D-1)\nS07b   and no verdict is emitted                                        <0 bytes>    <0 bytes>    PASS    no verdict is invented for a document the consumer refused\nS08    --strict is accepted and changes the exit status not at all      0            0            PASS    D-2: the flag is kept so a caller written against the frozen surface still runs; rejecting it would break that surface\nS08b   and changes the output not at all                                <5127 bytes> <5127 bytes> PASS    a flag that silently altered the document would be worse than one that errored\nS09    a composition whose FIRST stage fails and whose second would suc 10           10           PASS    IN-01, the class the frozen corpus does not hold: the stub emits a VALID document and exits 1, so a composer testing only the document would return 0\nS09b   and the valid document is not forwarded                          <0 bytes>    <0 bytes>    PASS    the producer's status governs, not the shape of what it wrote\nS10    the D-4 partition covers exactly the producer's declared space   [0, 1, 2, 3] [0, 1, 2, 3] PASS    the partition is transcribed from the producer's docstring, so it is checked against that docstring rather than trusted\nS11    every condition was served by a stub or a committed document     0            0            PASS    a selftest that reached the control plane would be measuring the network, not the composer\n\ntool under test               : /mnt/d/Github repo/Gatebraid/bin/gatebraid-ready.py\ninterpreter                   : /usr/bin/python3\ndocuments (committed, frozen) : docs/evidence/gatebraid/P2-S5/g1/captures/g1-snapshot.json, docs/evidence/gatebraid/P2-S6/g1/dryrun-out/g2-snapshot.json\nfiles written by this suite   : 0\nnetwork reads performed       : 0 (every producer is a stub)\nconditions failed             : 0\nSELFTEST CLEAN: every seeded condition produced its required outcome\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-02T03:22:43.953839Z",
+  "ended_at": "2026-09-02T03:22:46.211317Z",
+  "inputs": [],
+  "outputs": [],
+  "platform": {
+    "os": "wsl",
+    "os_release": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "interpreter": "CPython 3.12.3 (/usr/bin/python3)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
