@@ -551,9 +551,30 @@ Verified remedied by that re-check: F-01 removed cleanly, and F-02, F-04, F-05 a
 
 `repair_limit = 2` was spent with R3 still red, so the gate routed to `Human Diagnosis Required` and the operator authored the disposition this record carries in `approvals[]`: comment `5518637712`, author `MianliWang`, verified byte-equal to its committed source under the single-trailing-newline tolerance. It directs **remediation under stated rules followed by ONE FULL re-review**, and states in terms that the terminal disposition is NOT directed. The remediation it names is G-01, G-02 and G-03 and nothing else; it is recorded in the Remediation record below and is not a repair attempt, so `repair_attempts` stays at two.
 
-### Review 3 - the full re-review
+### Review 3 - full re-review of R1 through R5
 
-Not yet run. The disposition directs ONE FULL re-review of R1 through R5 by the independent reviewer, not a bounded re-check. Its five verdicts are recorded here at the Exit, by the reviewer, last; this record carries no verdict written by its implementer.
+The same independent reviewer, at head `541f6a25ba11638d845a67a0e6a9cbd670339750`, after the first Human Diagnosis remediation. Report `REVIEW-P2S5-G2-FULL.md`, measured region bytes 1..26,320, sha256 `68a0dbc0af3a04fceb53392718d7eb8e1dbb2674d4d94e64e1c3432a36aafd71`. Its verdict line reads `VERDICTS: R1=PASS R2=PASS R3=FAIL R4=PASS R5=PASS`, and its verdict table agrees with that line.
+
+| Item | Verdict | Evidence |
+|---|---|---|
+| R1 allowlist confinement | **pass** | all three remediation commits confined to `g2/`; 0 paths outside it in `622d79a9..tip`; 257 paths base..tip, 0 outside `write_domains`, all additions; porcelain 0; four ride-on pins unmoved; `bin/` untouched. |
+| R2 test-plan coverage | **pass** | mapping unchanged; F-01's resolution stands - the parser declares exactly `--strict` and `--snapshot-command`, the removed flags exit 12 with empty stdout, `--help` grounded as test-plan command 1 of all three M2 attempts. |
+| R3 evidence is rows that reproduce | **fail** | **H-01**: the required `Reviewer write disclosure` stated that no review had run while the Review record in the same file recorded two completed reviews, each disclosing `none`. The line was byte-unchanged from before the first remediation; that remediation's directed Review-record fill is what made it false. |
+| R4 negative criteria | **pass** | the instrument byte-unchanged; D9 pinned to `base..5b586029` exit 0, six holding over 219 paths; D10 exit 1, six firing. |
+| R5 no prohibited action | **pass** | 0 remote rows; 0 pull requests; 0 non-sample hooks; one lease string; reflog clean across all eleven commits; `refs/codex` a single unchanged ref. |
+
+Informational findings, none of which fails anything: **H-02** the `Remediation record` heading the template has no home for, queued with F-07 for the pending ADR-0026 clarification; **H-03** a sentence of the builder's remediation report that overreached in claiming a class closed while an instance of it survived, recorded for the closeout ledger and not a record claim; **H-04** the per-review disclosure `none` compressing a repository-scoped answer, ruled to stand; **H-05** a cross-check the reviewer initially misread and resolved in the record's favour.
+
+- Reviewer write disclosure: `none`
+- Rules given to the reviewer: as above, verbatim in its mandate.
+
+### Second Human Diagnosis disposition
+
+Under rule 7 of the first disposition, R3's FAIL returned the Slice to `Human Diagnosis Required` a second time. The operator authored the second disposition this record carries in `approvals[]`: comment `5520728930`, author `MianliWang`, verified byte-equal to its own committed source under the single-trailing-newline tolerance - a DIFFERENT source from the first disposition's, which matches only its own. It directs **remediation followed by ONE FULL re-review** and states in terms that the terminal disposition is NOT directed. The remediation it names is H-01 and nothing else, and it directs that the correction be made STRUCTURAL: the mirror is derived from the per-review entries rather than written as a literal. It is recorded in the Remediation record below and is not a repair attempt, so `repair_attempts` stays at two.
+
+### Review 4 - the next full re-review
+
+Not yet run. The second disposition directs ONE FULL re-review of R1 through R5. Its five verdicts are recorded here at the Exit, by the reviewer's values, last; this record carries no verdict written by its implementer.
 
 ## Repair record
 
@@ -724,6 +745,21 @@ bytes outside docs/evidence/gatebraid/P2-S5/g2/ : 0
 
 - Result: `green`
 
+### Remediation 2
+
+Directed by the operator's SECOND Human Diagnosis disposition, comment `5520728930`, after the full re-review returned R3 FAIL on H-01. Also not a repair attempt; `repair_attempts` stays at two, and the fingerprint is unchanged.
+
+- What it corrects: **H-01** alone. The `Reviewer write disclosure` line under `Required disclosures` is the template's mirror of the Review record. It was a typed literal - true when first rendered, when no review had run - and the first remediation's directed Review-record fill made it false without touching its bytes. The disposition directs the correction be made STRUCTURAL, and it is: the per-review disclosures are now one list in the renderer, every per-review entry renders from it, and the mirror is DERIVED from the same list - `none` when every recorded review disclosed nothing, otherwise the union of their lists. A mirror that is derived cannot diverge from what it mirrors, and a review that has not run contributes no entry rather than a sentence about itself.
+
+- What the instrument gained, because the instance is not the class: the derivation claim itself; every bullet under `Required disclosures` enumerated and measured; and a WHOLE-RECORD claim - every line outside the Review record that states a review count, a review status, or that a review has or has not run, listed with its measurement against the Review record and `review-five-items`. That last is the general form of H-01, and it is what the earlier extension lacked: it closed the fields it had been shown, not the relation between a section and the sentences elsewhere that depend on it.
+
+**Novelty measured against the tree at the state the full re-review reviewed (ADR-0027 section 1)**
+```
+PENDING FIRST RENDER: G2-RM2-novelty
+```
+
+- Result: `green`
+
 ## Required disclosures
 
 - Deviations (review finding F-01, operator disposition REMOVE): the delivered tool declared two flags beyond the frozen scope and both are gone. The frozen sentence names `--strict` and `--snapshot-command`; the tool also declared `--consumer` and `--version`. Measured against the M2 record at the pinned commit with every document digest re-derived first: `--consumer` 0 occurrences, and all 21 hits of `--version` are `gh --version` or `python --version` probes that never refer to the deliverable. `--version` printed non-JSON to stdout and exited 0, breaking both clauses of the frozen sentence at once and making itself indistinguishable by exit status from a verdict. Removed with them: the `VERSION` constant and the `consumer_path` parameter, which existed only to serve them. `--help` is KEPT because it IS grounded in the frozen record as test-plan command 1 of all three M2 attempts, and with it the zero-exit branch of the SystemExit guard that lets it through.
@@ -742,11 +778,14 @@ bytes outside docs/evidence/gatebraid/P2-S5/g2/ : 0
 - Deviations (review finding F-07, left standing on the reviewer's own reasoning and the operator's instruction): the disclosures that narrate this record's own authoring history - the rejected first render, the corrected assertion, the corrected split rule - remain. The reviewer records a real gap in ADR-0026, which forbids revision narrative without providing a sanctioned home for a pre-submission correction the executor is simultaneously required to be honest about, and declines to fail anything over it. It is queued for an ADR clarification rather than repaired here.
 - Deviations (friction #15, and P1-S3's second dry-run): the composer's argument-splitting rule was settled by measurement during authoring. The producer command must be split by POSIX rules on every platform; with `posix=False` the quotes stay attached, the stub arrives wrapped, the child emits ZERO BYTES, and the decode guard appears to pass while testing nothing. The default producer command is written with forward slashes because POSIX rules treat a backslash as an escape.
 - Deviations (ADR-0028 decision 3, the IN-03 class): this record does not echo the near-miss tokens its falsification seed carries. The seed is retained beside the sweep instrument and the tokens live there, not here; an earlier render quoted three of them into this file and the record's own sweep caught it.
+- Deviations (full re-review finding H-01, and the second Human Diagnosis disposition's rule 2): the `Reviewer write disclosure` mirror is DERIVED by the renderer from the per-review entries it renders, and is never a typed literal. It read `not applicable - no review has run` while the Review record recorded two completed reviews, each disclosing `none`; the line was true when written and the first remediation's directed Review-record fill made it false without touching its bytes. The structural form is the fix: one list feeds both the per-review entries and the mirror, so the two cannot disagree, and a review that has not run contributes no entry rather than a sentence about itself.
+- Deviations (full re-review finding H-03, recorded for the closeout ledger): the previous remediation report of this window said of G-03 that the class was closed and not just its instance. H-01 was a surviving instance of that class, so the sentence overreached. The instrument's own summary and docstring were correctly bounded; the overreach was in the report's prose about it, and it is recorded rather than quietly dropped.
+- Deviations (full re-review findings H-02 and H-04, ruled by the second disposition): the `Remediation record` heading stays - it is the structural gap already queued with F-07 for the ADR-0026 clarification, since the template offers a directed non-repair remediation no home and filing it under the Repair record would corrupt `repair_attempts`. The per-review disclosure `none` is the repository-scoped answer the contract's clause asks for; the reviewer's own report on the ignored path and its named scratch files are disclosed in that report and are not listed here, so the derived mirror is `none`.
 - Deviations (ADR-0026 decision 1, and the reviewer's F-04 observation): four unreferenced probe-stderr files under this Slice's two dryrun-out directories carry CRLF in the working copy and are stored LF under the tree's text attribute. No pin covers them and no capture names them.
 - Deviations (gate-2-contract Prohibited, scratch clause): scratch paths outside every repository were relied on and are named. Every commit message passed through a file in the session scratchpad outside this repository, never as a shell argument; the consult's disposable repository copy lived there and was deleted; the approval-fidelity row writes and removes one file inside this gate's own evidence directory.
 - Deviations (ADR-0026 class (b), and friction #96): the record's FINAL bytes are validated and swept by runs cited by output_ref and not inlined, because a document that quoted its own verification would change the bytes that verification read.
 - Environment (friction #89): Windows host, Windows 11 build 10.0.26200, AMD64, node RoughEgoist; Git for Windows 2.51.0.windows.1 whose SYSTEM configuration carries core.autocrlf=true; every gh call pins GH_CONFIG_DIR=C:/Users/rough/.gh-gatebraid and uses endpoints with no leading slash; every Python invocation carries -B with PYTHONDONTWRITEBYTECODE=1, set inside the wsl command for the WSL half; Windows interpreter C:/Python312/python.exe with CPython 3.12.2, PyYAML 6.0.2, jsonschema 4.23.0; WSL /usr/bin/python3 with CPython 3.12.3, jsonschema 4.10.3, whose captures stamp platform.os `wsl`; the Codex CLI is codex-cli 0.144.6, invoked `--ephemeral --sandbox read-only --ignore-user-config`. The `python` on PATH is the MSYS 3.14.3 build and carries neither library, which is why no declared command names it and why delta D-3 exists. Captures are argv-form unless the row declares shell semantics, in which case the shell, pipefail and the exit-code source are all recorded. environment=mixed-see-prose.
-- Reviewer write disclosure: `not applicable - no review has run`
+- Reviewer write disclosure: `none`
 
 ## gatebraid-metadata
 
@@ -759,7 +798,7 @@ executor: Claude Lead
 base_sha: cbd065893b37f20713ae35b8d2673bf26fe4d2ad
 active_branch: slice/P2-S5
 started_at: "2026-09-02T02:52:00Z"
-ended_at: "2026-09-03T01:06:06Z"
+ended_at: "2026-09-03T07:01:11Z"
 result: needs_approval
 checks:
   - name: plan-approval-verified
@@ -1100,6 +1139,9 @@ approvals:
     author: "MianliWang"
   - type: "Human Diagnosis"
     comment_url: "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5518637712"
+    author: "MianliWang"
+  - type: "Human Diagnosis"
+    comment_url: "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5520728930"
     author: "MianliWang"
 plan_hash: "b2cd75f6a49bb056fd16bc3d2f4cfd5cf98ae8515b5761908add2ed5405cc424"
 allowlist_hash: "4110b3021bdfc2fcda1f5f90528db01eb87b554177e2176ccfba46ccd6ca3750"

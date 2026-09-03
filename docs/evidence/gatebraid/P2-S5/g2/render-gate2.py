@@ -271,6 +271,12 @@ DISCLOSURES = [
     "tokens live there, not here; an earlier render quoted three of them into this file and the "
     "record's own sweep caught it.",
 
+    "Deviations (full re-review finding H-01, and the second Human Diagnosis disposition's rule 2): the `Reviewer write disclosure` mirror is DERIVED by the renderer from the per-review entries it renders, and is never a typed literal. It read `not applicable - no review has run` while the Review record recorded two completed reviews, each disclosing `none`; the line was true when written and the first remediation's directed Review-record fill made it false without touching its bytes. The structural form is the fix: one list feeds both the per-review entries and the mirror, so the two cannot disagree, and a review that has not run contributes no entry rather than a sentence about itself.",
+
+    "Deviations (full re-review finding H-03, recorded for the closeout ledger): the previous remediation report of this window said of G-03 that the class was closed and not just its instance. H-01 was a surviving instance of that class, so the sentence overreached. The instrument's own summary and docstring were correctly bounded; the overreach was in the report's prose about it, and it is recorded rather than quietly dropped.",
+
+    "Deviations (full re-review findings H-02 and H-04, ruled by the second disposition): the `Remediation record` heading stays - it is the structural gap already queued with F-07 for the ADR-0026 clarification, since the template offers a directed non-repair remediation no home and filing it under the Repair record would corrupt `repair_attempts`. The per-review disclosure `none` is the repository-scoped answer the contract's clause asks for; the reviewer's own report on the ignored path and its named scratch files are disclosed in that report and are not listed here, so the derived mirror is `none`.",
+
     "Deviations (ADR-0026 decision 1, and the reviewer's F-04 observation): four unreferenced "
     "probe-stderr files under this Slice's two dryrun-out directories carry CRLF in the working copy "
     "and are stored LF under the tree's text attribute. No pin covers them and no capture names "
@@ -431,6 +437,9 @@ approvals:
   - type: "Human Diagnosis"
     comment_url: "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5518637712"
     author: "MianliWang"
+  - type: "Human Diagnosis"
+    comment_url: "https://github.com/MianliWang/gatebraid/issues/17#issuecomment-5520728930"
+    author: "MianliWang"
 plan_hash: "b2cd75f6a49bb056fd16bc3d2f4cfd5cf98ae8515b5761908add2ed5405cc424"
 allowlist_hash: "4110b3021bdfc2fcda1f5f90528db01eb87b554177e2176ccfba46ccd6ca3750"
 evidence_files:
@@ -439,6 +448,44 @@ evidence_files:
   - docs/evidence/gatebraid/P2-S5/g2/CONSULT-17-01-response.json
 notes: "The fourth gatebraid-ready attempt on the M2 slice-C frozen scope, built on the M3 stack. The deliverable is the ready pair alone; it composes the landed producer and consumer and modifies neither. The four ratified deltas are implemented as the approval states them, and D-4 - the producer's status is interpreted against its own declared space rather than tested against zero - is the one that keeps a degraded-but-emitted document from being discarded. Twenty selftest conditions each emit their own summary row; S09 carries IN-01, the class the frozen corpus does not hold, and S10 parses the producer's docstring so the D-4 partition cannot drift from its source unnoticed. TWO repair attempts were taken and both are listed in repair_attempts. Attempt 1 changed a check instrument's domain constant, touching neither the deliverable nor this record's prose. Attempt 2 changed BOTH: it removed two flags from the deliverable that the frozen scope does not name, and it re-rendered this record. One check is typed fail and is disclosed in full: the sweep's explanation limb leaves %(residue)s residue occurrences - %(residue_issue)s friction-shaped citation(s) printed by the frozen corpus runner and %(residue_other)s benign shape collisions, %(residue_in_pass)s of the %(residue)s inside superseded -pass captures - none a repository identity, and admitting the remainder would need a rule change the Plan Approval forbids. Every figure in this field is derived from the row that measures it, which is what the operator's Human Diagnosis disposition directed after the earlier wording of this field contradicted repair_attempts and the V12 row. The review is NOT this session's: R1 through R5 belong to an independent reviewer, and Gate = G2 passed is not set here."
 """
+
+
+# The reviewer write disclosure of each COMPLETED review, in order. The Review
+# record renders each entry from this list and the `Required disclosures` mirror
+# is DERIVED from it, so the two cannot disagree. H-01 was exactly that
+# disagreement: the mirror was a typed literal, true when written, and the
+# directed Review-record fill made it false twenty lines below itself. A review
+# that has not run contributes no entry here, and the mirror says so by deriving
+# it rather than by asserting it.
+REVIEW_DISCLOSURES = [
+    ("Review 1", []),                 # empty list == the reviewer disclosed none
+    ("Review 2 - bounded re-check", []),
+    ("Review 3 - full re-review", []),
+]
+
+
+def reviewer_write_mirror():
+    """The template's mirror, derived from the entries actually rendered.
+
+    `none` when every recorded review disclosed nothing; otherwise the union of
+    their lists. Never a typed literal, and never a claim about how many reviews
+    have run - the Review record is what states that, and this line mirrors it.
+    """
+    if not REVIEW_DISCLOSURES:
+        return "no review is recorded in the Review record"
+    union = []
+    for _name, paths in REVIEW_DISCLOSURES:
+        for path in paths:
+            if path not in union:
+                union.append(path)
+    return "`none`" if not union else ", ".join("`%s`" % x for x in union)
+
+
+def per_review_disclosure(name):
+    for n, paths in REVIEW_DISCLOSURES:
+        if n == name:
+            return "`none`" if not paths else ", ".join("`%s`" % x for x in paths)
+    raise SystemExit("STRUCTURE: no disclosure entry for %r" % name)
 
 
 def approval_type():
@@ -577,7 +624,7 @@ def main():
       "bullets without citations. **F-07** the reviewer declined to fail anything over; "
       "**F-08** typed this record's `fail` check as the operator's to rule.")
     w()
-    w("- Reviewer write disclosure: `none`")
+    w("- Reviewer write disclosure: %s" % per_review_disclosure("Review 1"))
     w("- Rules given to the reviewer: the standing hard-rules block and spec section 4, "
       "verbatim in its mandate; its report states which it was given.")
     w()
@@ -608,7 +655,8 @@ def main():
     w("Verified remedied by that re-check: F-01 removed cleanly, and F-02, F-04, F-05 "
       "and F-06 each re-measured rather than read.")
     w()
-    w("- Reviewer write disclosure: `none`")
+    w("- Reviewer write disclosure: %s"
+      % per_review_disclosure("Review 2 - bounded re-check"))
     w("- Rules given to the reviewer: as above, verbatim in its mandate.")
     w()
     w("### Human Diagnosis disposition")
@@ -623,12 +671,69 @@ def main():
       "in the Remediation record below and is not a repair attempt, so "
       "`repair_attempts` stays at two.")
     w()
-    w("### Review 3 - the full re-review")
+    w("### Review 3 - full re-review of R1 through R5")
     w()
-    w("Not yet run. The disposition directs ONE FULL re-review of R1 through R5 by the "
-      "independent reviewer, not a bounded re-check. Its five verdicts are recorded "
-      "here at the Exit, by the reviewer, last; this record carries no verdict written "
-      "by its implementer.")
+    w("The same independent reviewer, at head "
+      "`541f6a25ba11638d845a67a0e6a9cbd670339750`, after the first Human Diagnosis "
+      "remediation. Report `REVIEW-P2S5-G2-FULL.md`, measured region bytes 1..26,320, "
+      "sha256 "
+      "`68a0dbc0af3a04fceb53392718d7eb8e1dbb2674d4d94e64e1c3432a36aafd71`. Its verdict "
+      "line reads `VERDICTS: R1=PASS R2=PASS R3=FAIL R4=PASS R5=PASS`, and its verdict "
+      "table agrees with that line.")
+    w()
+    w("| Item | Verdict | Evidence |")
+    w("|---|---|---|")
+    w("| R1 allowlist confinement | **pass** | all three remediation commits confined to "
+      "`g2/`; 0 paths outside it in `622d79a9..tip`; 257 paths base..tip, 0 outside "
+      "`write_domains`, all additions; porcelain 0; four ride-on pins unmoved; `bin/` "
+      "untouched. |")
+    w("| R2 test-plan coverage | **pass** | mapping unchanged; F-01's resolution stands - "
+      "the parser declares exactly `--strict` and `--snapshot-command`, the removed flags "
+      "exit 12 with empty stdout, `--help` grounded as test-plan command 1 of all three "
+      "M2 attempts. |")
+    w("| R3 evidence is rows that reproduce | **fail** | **H-01**: the required "
+      "`Reviewer write disclosure` stated that no review had run while the Review record "
+      "in the same file recorded two completed reviews, each disclosing `none`. The line "
+      "was byte-unchanged from before the first remediation; that remediation's directed "
+      "Review-record fill is what made it false. |")
+    w("| R4 negative criteria | **pass** | the instrument byte-unchanged; D9 pinned to "
+      "`base..5b586029` exit 0, six holding over 219 paths; D10 exit 1, six firing. |")
+    w("| R5 no prohibited action | **pass** | 0 remote rows; 0 pull requests; 0 "
+      "non-sample hooks; one lease string; reflog clean across all eleven commits; "
+      "`refs/codex` a single unchanged ref. |")
+    w()
+    w("Informational findings, none of which fails anything: **H-02** the "
+      "`Remediation record` heading the template has no home for, queued with F-07 for "
+      "the pending ADR-0026 clarification; **H-03** a sentence of the builder's "
+      "remediation report that overreached in claiming a class closed while an instance "
+      "of it survived, recorded for the closeout ledger and not a record claim; **H-04** "
+      "the per-review disclosure `none` compressing a repository-scoped answer, ruled to "
+      "stand; **H-05** a cross-check the reviewer initially misread and resolved in the "
+      "record's favour.")
+    w()
+    w("- Reviewer write disclosure: %s"
+      % per_review_disclosure("Review 3 - full re-review"))
+    w("- Rules given to the reviewer: as above, verbatim in its mandate.")
+    w()
+    w("### Second Human Diagnosis disposition")
+    w()
+    w("Under rule 7 of the first disposition, R3's FAIL returned the Slice to "
+      "`Human Diagnosis Required` a second time. The operator authored the second "
+      "disposition this record carries in `approvals[]`: comment `5520728930`, author "
+      "`MianliWang`, verified byte-equal to its own committed source under the "
+      "single-trailing-newline tolerance - a DIFFERENT source from the first "
+      "disposition's, which matches only its own. It directs **remediation followed by "
+      "ONE FULL re-review** and states in terms that the terminal disposition is NOT "
+      "directed. The remediation it names is H-01 and nothing else, and it directs that "
+      "the correction be made STRUCTURAL: the mirror is derived from the per-review "
+      "entries rather than written as a literal. It is recorded in the Remediation "
+      "record below and is not a repair attempt, so `repair_attempts` stays at two.")
+    w()
+    w("### Review 4 - the next full re-review")
+    w()
+    w("Not yet run. The second disposition directs ONE FULL re-review of R1 through R5. "
+      "Its five verdicts are recorded here at the Exit, by the reviewer's values, last; "
+      "this record carries no verdict written by its implementer.")
     w()
 
     w("## Repair record")
@@ -702,12 +807,43 @@ def main():
         "for a repair attempt", ["G2-RM-novelty"])
     w("- Result: `green`")
     w()
+    w("### Remediation 2")
+    w()
+    w("Directed by the operator's SECOND Human Diagnosis disposition, comment "
+      "`5520728930`, after the full re-review returned R3 FAIL on H-01. Also not a "
+      "repair attempt; `repair_attempts` stays at two, and the fingerprint is "
+      "unchanged.")
+    w()
+    w("- What it corrects: **H-01** alone. The `Reviewer write disclosure` line under "
+      "`Required disclosures` is the template's mirror of the Review record. It was a "
+      "typed literal - true when first rendered, when no review had run - and the first "
+      "remediation's directed Review-record fill made it false without touching its "
+      "bytes. The disposition directs the correction be made STRUCTURAL, and it is: the "
+      "per-review disclosures are now one list in the renderer, every per-review entry "
+      "renders from it, and the mirror is DERIVED from the same list - `none` when every "
+      "recorded review disclosed nothing, otherwise the union of their lists. A mirror "
+      "that is derived cannot diverge from what it mirrors, and a review that has not "
+      "run contributes no entry rather than a sentence about itself.")
+    w()
+    w("- What the instrument gained, because the instance is not the class: the "
+      "derivation claim itself; every bullet under `Required disclosures` enumerated and "
+      "measured; and a WHOLE-RECORD claim - every line outside the Review record that "
+      "states a review count, a review status, or that a review has or has not run, "
+      "listed with its measurement against the Review record and `review-five-items`. "
+      "That last is the general form of H-01, and it is what the earlier extension "
+      "lacked: it closed the fields it had been shown, not the relation between a "
+      "section and the sentences elsewhere that depend on it.")
+    w()
+    row("Novelty measured against the tree at the state the full re-review "
+        "reviewed (ADR-0027 section 1)", ["G2-RM2-novelty"])
+    w("- Result: `green`")
+    w()
 
     w("## Required disclosures")
     w()
     for d in DISCLOSURES:
         w("- " + (d % facts if "%(" in d else d))
-    w("- Reviewer write disclosure: `not applicable - no review has run`")
+    w("- Reviewer write disclosure: %s" % reviewer_write_mirror())
     w()
     w("## gatebraid-metadata")
     w()

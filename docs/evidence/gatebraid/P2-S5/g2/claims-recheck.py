@@ -17,7 +17,14 @@ so and was wrong by omission. It measures:
     `approvals`, and the fingerprint trio;
   * every `##`/`###` heading and every bolded row label in the record, checked
     for a quantity word that its own row contradicts;
-  * the four ride-on pins and the retained-set digest.
+  * the four ride-on pins and the retained-set digest;
+  * the Review record, the reviewer-write mirror DERIVED from its entries,
+    every bullet under `Required disclosures`, and - the general form of
+    H-01 - EVERY LINE OUTSIDE THE REVIEW RECORD that states a review count
+    or a review status, each listed with the measurement it must agree
+    with. H-01 was not a wrong field but a sentence in one section whose
+    truth depended on another section that was edited without it, so what
+    is measured here is that dependency and not just the field.
 
 The metadata half was ADDED under the operator's Human Diagnosis disposition.
 The earlier form measured 32 claims, printed a universal over "every claim this
@@ -53,6 +60,9 @@ PINS = {
         "78a3f94a2a8b23efb1e36b231ce8932b1c693fa79dee5f657ae5968d29943c70",
 }
 RETAINED_DIGEST = "83b3a273a9bd7da4e9e11469539a5eee0f28b53f5b924c0e6134acd8ba49a70f"
+
+CITE = re.compile(r"friction #\d+|ruling|ADR-\d{4}|finding [FGH]-\d\d|Plan Approval|gate-2-contract|P1-S3|disposition")
+_CITE = CITE
 
 rows = []
 
@@ -168,8 +178,7 @@ claim("i2", "every elision path is tracked at HEAD", [], missing)
 
 # (j) every deviation bullet carries a citation
 dev = [l for l in body.split("\n") if l.startswith("- Deviations")]
-CITE = re.compile(r"friction #\d+|ruling|ADR-\d{4}|finding F-\d\d|Plan Approval|"
-                  r"gate-2-contract|P1-S3")
+CITE = _CITE
 uncited = [l[:70] for l in dev if not CITE.search(l)]
 claim("j1", "every deviation bullet cites a finding, ruling or friction entry",
       [], uncited)
@@ -245,6 +254,75 @@ claim("q1", "no heading or row label asserts a residue or repair count its own "
       "row contradicts", [], onecount)
 claim("q2", "the V12 label carries the measured residue figure", True,
       any(("V12" in l and (str(total) + " residue occurrences") in l) for l in labels))
+
+# ------------------------------------------------- the Review record, and the
+# ------------------------------------------------- lines elsewhere that depend
+# ------------------------------------------------- on it (H-01's general form)
+#
+# H-01 was not a wrong field. It was a sentence in one section whose truth
+# depended on another section, edited without it. So the claims below measure
+# the DEPENDENCY, not just the field: every line outside the Review record that
+# says anything about how many reviews have run, or whether any has, is listed
+# here with the measurement it has to agree with.
+
+REVIEW_HEAD = re.compile(r"^### Review (\d+)", re.M)
+rr_start = body.index("## Review record")
+rr_end = body.index("## Repair record")
+review_record = body[rr_start:rr_end]
+outside = body[:rr_start] + body[rr_end:]
+
+# a review is RECORDED when its block carries a verdict table row for R1
+recorded = []
+heads = list(REVIEW_HEAD.finditer(review_record))
+for k, h in enumerate(heads):
+    seg = review_record[h.start(): heads[k + 1].start() if k + 1 < len(heads)
+                        else len(review_record)]
+    if "| R1 allowlist confinement |" in seg:
+        recorded.append(h.group(1))
+
+claim("r1", "the Review record's recorded reviews are the ones with verdict tables",
+      True, len(recorded) >= 1)
+
+# (a) the mirror equals the value DERIVED from the per-review entries present
+per_review = re.findall(r"^- Reviewer write disclosure: (.+)$", review_record, re.M)
+mirror = re.findall(r"^- Reviewer write disclosure: (.+)$", outside, re.M)
+claim("r2", "exactly one reviewer-write mirror sits outside the Review record",
+      1, len(mirror))
+derived = "`none`" if all(v.strip() == "`none`" for v in per_review) and per_review \
+    else "UNION-OF-LISTS"
+claim("r3", "the mirror equals the value derived from the entries present",
+      derived, mirror[0].strip() if mirror else None)
+claim("r4", "every recorded review carries its own disclosure entry",
+      len(recorded), len(per_review))
+
+# (b) every bullet under Required disclosures is enumerated and measured
+rd_start = body.index("## Required disclosures")
+rd_end = body.index("## gatebraid-metadata")
+rd = body[rd_start:rd_end]
+bullets = [l for l in rd.split("\n") if l.startswith("- ")]
+claim("r5", "every Required-disclosures bullet is one line and non-empty",
+      [], [b[:50] for b in bullets if not b.strip() or len(b) < 12])
+uncited_rd = [b[:60] for b in bullets
+              if b.startswith("- Deviations") and not CITE.search(b)]
+claim("r6", "every deviation bullet in that section carries a citation",
+      [], uncited_rd)
+
+# (c) THE WHOLE-RECORD CLAIM. Every line outside the Review record that speaks
+# to review count or review status, listed with the measurement it must match.
+SPEAKS = re.compile(
+    r"no review has run|no review has been|review has not run|"
+    r"not applicable - no review|reviews? have run|reviews? has run|"
+    r"no review is recorded", re.I)
+dependents = [l.strip() for l in outside.split("\n") if SPEAKS.search(l)]
+claim("r7", "no line outside the Review record asserts that no review has run, "
+      "while the Review record records some", [], dependents if recorded else [])
+
+# review-five-items must agree with whether an Exit verdict set exists
+r5i = re.search(r"- name: review-five-items.*?result: (\w+)", body, re.S)
+claim("r8", "review-five-items agrees with the absence of an Exit verdict set",
+      "not_run", r5i.group(1) if r5i else None)
+claim("r9", "the record states no verdict for a review it also calls not yet run",
+      True, ("Not yet run" in review_record))
 
 print("%-14s %-62s %-10s %s" % ("claim", "statement", "verdict", "measured"))
 failed = 0
