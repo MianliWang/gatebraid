@@ -238,11 +238,22 @@ claim("n6", "result is needs_approval, the value the gate exits into",
       True, re.search(r"^result: needs_approval\s*$", mtext, re.M) is not None)
 claim("n7", "review-five-items is still not_run: no verdict is written by the "
       "implementer", True, "result: not_run" in mtext)
-claim("n8", "approvals carries the Plan Approval and the Human Diagnosis "
-      "disposition, both authored by the operator's account",
-      (2, 2),
-      (len(re.findall(r"^  - type:", mtext, re.M)),
-       len(re.findall(r'^    author: "MianliWang"', mtext, re.M))))
+# n8 DERIVES its expectation. Its first form hard-coded two approvals and went
+# false the moment a second disposition was recorded - the same defect this
+# instrument exists to catch, in the instrument's own expectation. What is
+# actually required is that EVERY approval be operator-authored, that exactly
+# one be the Plan Approval, and that the Human Diagnosis entries number the same
+# as the dispositions the Review record records.
+n_types = len(re.findall(r"^  - type:", mtext, re.M))
+n_author = len(re.findall(r'^    author: "MianliWang"', mtext, re.M))
+claim("n8", "every approvals entry is authored by the operator's account",
+      n_types, n_author)
+claim("n8b", "exactly one approvals entry is the Plan Approval",
+      1, len(re.findall(r'^  - type: "Plan Approval', mtext, re.M)))
+n_hd_appr = len(re.findall(r'^  - type: "Human Diagnosis"', mtext, re.M))
+n_hd_rec = len(re.findall(r"^### (?:Second )?Human Diagnosis disposition", body, re.M))
+claim("n8c", "the Human Diagnosis approvals number the dispositions the Review "
+      "record records", n_hd_rec, n_hd_appr)
 claim("n9", "the recorded fingerprint is the one the metadata and the V13 row "
       "both name", True, mtext.count(FP_HEAD) >= 1 and mtext.count(FP_TREE) >= 1)
 
