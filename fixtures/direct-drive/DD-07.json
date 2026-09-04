@@ -1,0 +1,38 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-07",
+  "title": "dispatch text carries the handoff-block schema token",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R05"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-03T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-07-review.md",
+          "sha256": "77380277d8c28c72f1ab80b6cb14121cb690a2dc5e58aee6a67fd655ee62abc4",
+          "bytes": 332,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-07-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n\n{TOKEN}\n"
+    },
+    "token_parts": [
+      "gatebraid/hand",
+      "off@1"
+    ]
+  },
+  "note": "The committed fixture never carries the token itself: the runner joins token_parts and substitutes for {TOKEN} in the file body and recomputes the entry's sha256 and bytes before evaluating. This keeps the token out of every committed file while still falsifying the scan."
+}

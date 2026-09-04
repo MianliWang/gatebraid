@@ -1,0 +1,44 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-13",
+  "title": "evidence kind (gate0) whose only post-run change is under its own evidence directory",
+  "expected": {
+    "decision": "completed",
+    "code": null
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-04T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-13-gate0.md",
+          "sha256": "b5c69e676ba9a14cd09ba1f12efac6a219852a052a054fa45fffce6611e2261f",
+          "bytes": 439,
+          "kind": "gate0",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "evidence",
+          "max_turns": 200,
+          "timeout_seconds": 3600,
+          "slice_id": "P9-S1"
+        }
+      ]
+    },
+    "files": {
+      "DD-13-gate0.md": "# GATE 0 DISPATCH (fixture seed) - evidence kind\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Run the Gate 0\ncontract's actions for Slice P9-S1, write gate0.md under the Slice's own\nevidence directory, commit nothing, and STOP. Repository set:\nMianliWang/gatebraid only (the scratch\nclone's path is stage 2's business; the post-run rule is about paths).\n"
+    },
+    "post_run": {
+      "head_before": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00",
+      "head_after": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00",
+      "porcelain_before": [],
+      "porcelain_after": [
+        "?? docs/evidence/gatebraid/P9-S1/gate0.md",
+        "?? docs/evidence/gatebraid/P9-S1/g0-frontier-report.json"
+      ]
+    }
+  },
+  "note": "The positive case the post-run rule must pass: a Gate 0 Exit writes its evidence file and captures under docs/evidence/gatebraid/<slice_id>/ and commits nothing (the record rides onto the Slice branch under the Gate 2 lease). Both new porcelain lines are under evidence_dir; HEAD is unchanged; decision completed."
+}

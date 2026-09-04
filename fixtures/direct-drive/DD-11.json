@@ -1,0 +1,34 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-11",
+  "title": "dispatch text carries a closing keyword immediately before an issue reference",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R05"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-03T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-11-review.md",
+          "sha256": "3c059992f51ab4589df8d1967ac29642f4be25a38c36ef63122f9f780d79d48b",
+          "bytes": 356,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-11-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n\nThis run {CLOSEWORD} {HASHREF}.\n"
+    }
+  },
+  "note": "The runner substitutes {CLOSEWORD} with the lowercase word that GitHub treats as a closing keyword ending in -es (the six-letter one beginning with c) and {HASHREF} with a hash sign followed by 17, then recomputes sha256 and bytes. The committed fixture never carries the pattern."
+}

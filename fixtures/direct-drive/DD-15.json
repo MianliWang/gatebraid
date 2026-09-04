@@ -1,0 +1,40 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-15",
+  "title": "read-only kind (review) after which HEAD moved",
+  "expected": {
+    "decision": "error",
+    "code": "DD-R08"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-04T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-15-review.md",
+          "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746",
+          "bytes": 323,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-15-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    },
+    "post_run": {
+      "head_before": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00",
+      "head_after": "0badf00d0badf00d0badf00d0badf00d0badf00d",
+      "porcelain_before": [],
+      "porcelain_after": []
+    }
+  },
+  "note": "A read-only kind must leave HEAD and the porcelain list unchanged; here HEAD moved (a commit landed), so the outcome is error with DD-R08 naming the head."
+}
