@@ -1,0 +1,37 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-16",
+  "title": "host stub without the profile file for the entry's class",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R07"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "host": {
+      "profile_present": false
+    },
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-04T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-16-review.md",
+          "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746",
+          "bytes": 323,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-16-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "Fixture mode materialises a profile directory with a stub per class unless host.profile_present is false; with no readonly profile file to hash, DD-R07 refuses the entry before any run. The claude, git, gh and python resolutions are measured on the real host and must pass for this seed to reach DD-R07 on the profile limb."
+}

@@ -3,12 +3,15 @@
 These fixtures precede `bin/gatebraid-dispatch.py` (M3-PLAN §2:
 fixtures-first) and are the contract's §4 decision table made executable.
 Each file is one seed: a manifest, the inbox files it names (inline bodies),
-the STOP and RUNNING states, and the expected decision. The dispatcher's
-print-only mode `--fixture <path>` materialises the seed in a temporary
-inbox, evaluates it, and prints one line: `<id> expected <decision>/<code>
-got <decision>/<code> -> MATCH | MISMATCH`, exit 0 only when every seed
-matches. Stage 0 of the trial (ADR-0034 decision 9) is that exit 0, with each
-seed's run record retained.
+the STOP and RUNNING states, optionally a host stub (`host.profile_present`)
+or declared before/after run states (`post_run`), and the expected decision.
+Fixture mode (`--fixture <path>`, contract §10) materialises the seed in a
+temporary inbox and profile directory, evaluates the contract's §4 against it
+without running anything — and, for a seed with `post_run`, the §2.2 post-run
+rule over the declared states — and prints one line: `<id> expected
+<decision>/<code> got <decision>/<code> -> MATCH | MISMATCH`, exit 0 only
+when every seed matches. Stage 0 of the trial (ADR-0034 decision 9) is that
+exit 0, with each seed's run record retained.
 
 | id | class | expected |
 |---|---|---|
@@ -25,24 +28,28 @@ seed's run record retained.
 | DD-10 | manifest schema key wrong | refuse DD-R01 |
 | DD-11 | closing keyword immediately before an issue reference | refuse DD-R05 |
 | DD-12 | kind outside the enumeration | refuse DD-R03 |
+| DD-13 | evidence kind (`gate0`) whose only change is under its own evidence directory | completed (post-run rule, declared states) |
+| DD-14 | evidence kind (`gate0`) that also changed a path outside its evidence directory | error DD-R08 (declared states) |
+| DD-15 | read-only kind (`review`) after which HEAD moved | error DD-R08 (declared states) |
+| DD-16 | host stub without the profile file | refuse DD-R07 |
 
 Two seeds (DD-07, DD-11) test patterns that must never appear in a committed
 file, so they carry the pattern in parts (`token_parts`, or the substitution
 rule in `note`) and the runner assembles it at evaluation time, recomputing the
-entry's `sha256` and `bytes` afterwards. The committed bytes of every file in
-this directory are LF-only ASCII, and the closed-set seeds name a
-non-existent repository rather than any real one outside the set.
+entry's `sha256` and `bytes` afterwards. The committed bytes of every seed
+file (`DD-*.json`) are LF-only ASCII; this README carries a few code points
+from the contract's permitted set. The closed-set seeds name a non-existent
+repository rather than any real one outside the set.
 
-Two of the contract's nine codes have no seed here, because a fixture cannot
-stage them: `DD-R07` (host tools absent) is a fact about the host, and
-`DD-R08` (a read-only job that wrote) is checked after a run, which
-print-only mode never reaches. Both are demonstrated at stage 1 of the trial
-on host-side seeds run once and retained — a profile path that does not
-exist; a read-only entry directed to create one file, where either the
-profile denies the write or `DD-R08` fires, and the run record states which
-(`protocols/direct-drive-v1.md` §4 says the same). DD-02 is the
-manifest-level half of `DD-R02` — an inbox file no entry names — which §4
-evaluates once per manifest before any entry.
+Every one of the contract's nine codes has a seed. Two cannot be staged as
+inbox state and are seeded differently (contract §10): `DD-R07` (the profile
+file or a host tool absent) by DD-16, whose host stub omits the profile file;
+`DD-R08` (a job that changed what its class forbids) by DD-13, DD-14 and
+DD-15, which declare the heads and porcelain lists before and after a run so
+the post-run rule is evaluated without running anything — DD-13 is the
+positive case an evidence kind must pass, a Gate 0 that wrote only its own
+evidence file. DD-02 is the manifest-level half of `DD-R02` — an inbox file
+no entry names — which §4 evaluates once per manifest before any entry.
 
 Missing on purpose, owed to R-min: seeds for the `write` profile's deny list
 (push from a `gate2` job; a path outside the frozen allowlist). They are

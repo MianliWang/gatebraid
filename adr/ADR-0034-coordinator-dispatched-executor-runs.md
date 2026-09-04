@@ -1,8 +1,11 @@
 # ADR-0034 — Coordinator-dispatched executor runs: the operator stops being the transport
 
 **Status:** Proposed · M3 (drafted 2026-09-03 by the coordinator; corrected
-2026-09-04 on the findings of the first independent read-only review,
-`_handoff/batch-dd1/REVIEW-DD1.md`; ratified only by the operator's
+twice on 2026-09-04 on the findings of the batch's two independent read-only
+reviews — untracked working files under `_handoff/batch-dd1/`, identified by
+their self-measured regions `ab65eea47f4781d2962186ca7125527e5fe901c839a14278ed6892f6e4b71db2`
+and `22b0117257667880e13c743226218a1dff17bcefdf4e79dea8da4004f2d13c0a`, whose
+findings this text now carries; ratified only by the operator's
 Batch Approval for DD1 after an independent read-only review of the
 corrected text) · Product: Gatebraid (ADR-0010)
 **Amends:** ADR-0015's reopening condition *"before any unattended or scheduled
@@ -12,9 +15,15 @@ ADR-0015 decisions 1–4 stand unchanged. ADR-0020's Consequences anticipate a
 in ADR-0003 (single writer), ADR-0004 (Codex read-only), ADR-0020/0024
 (executor identity held in the dedicated store; no agent handles a credential)
 or ADR-0025 (terminal is an operator act, reached only from
-`Human Diagnosis Required`) is changed for any Classic Slice; decision 9
-adds one scratch-only entry route to `Human Diagnosis Required` for the
-trial's stage 3, stated there as a typed exception.
+`Human Diagnosis Required`) is changed for any Slice outside
+`MianliWang/gatebraid-scratch`; decision 9 adds one entry route to
+`Human Diagnosis Required` for the trial's stage 3, confined to trial Slices
+on that repository and stated there as a typed exception — an edge the
+spec's §1 transition list does not carry. The spec's own text is edited in
+the batch that lands stage 3, the batch that authorises the route (as
+ADR-0025 edited spec §1 in the batch that added `9→14`); until then the list
+is unchanged for every Slice, and the edge exists only as this ADR's
+announced exception.
 **Provenance:** `claude/proposal-fewer-relays-chaining-and-direct-drive.md`
 Part B (coordinator workspace, 2026-09-02; the operator's word to draft this
 ADR was given 2026-09-03); the measured relay cost on P2-S5 — fourteen pastes
@@ -56,7 +65,7 @@ a fresh context; the addressing discipline was built for exactly that.
 
 What must not move: the two doors are honoured, not optimised away (ADR-0015
 §2); the executor never writes its own authorisation (§3); no agent handles a
-credential (ADR-0020 §2); one writer per repository (ADR-0003); no scheduled
+credential (ADR-0020 §1); one writer per repository (ADR-0003); no scheduled
 work into hours when nobody is watching (ADR-0015's consequence, kept as a
 prohibition in decision 8); and *Approval mode: Manual* — no Auto, no Skip.
 
@@ -69,7 +78,7 @@ key by ADR-0033; the id admitted, like `gatebraid/dispatch-run@1` and
 `gatebraid/dispatch-fixture@1`, by this ADR plus the operator's Batch Approval
 under ADR-0030) with the file's sha256, its job kind, and its target
 repository. Anything in the inbox that no entry names is refused with the
-manifest, before any entry is evaluated. A
+manifest, at the manifest level, before any entry runs. A
 host-side dispatcher — `bin/gatebraid-dispatch.py`, committed to the control
 repository like every other instrument (ADR-0028, ADR-0032) — validates each
 entry against the manifest and the standing scans, and starts a headless Claude
@@ -84,10 +93,12 @@ its seed before first trusted use (spec §4's rule, M3-PLAN §2's fixtures-first
 
 **2. What the relay becomes.** For every step that is not a door, the
 operator's paste-by-paste relay is replaced by the coordinator's post-hoc audit
-of the run's outputs: the executor's report in `_handoff/outbox/`, the
-dispatcher's run record (`gatebraid/dispatch-run@1`: the dispatch file's
-sha256, the settings profile's sha256, start and end instants, exit status,
-transcript path), and the artefacts the report names — staged through the
+of the run's outputs: the executor's report where the dispatch text directs
+it (today `_handoff/batch-<slice>/`), the dispatcher's run record
+(`gatebraid/dispatch-run@1`: the dispatch file's sha256, the settings
+profile's sha256, the heads and porcelain lists before and after, start and
+end instants, exit status, the captured streams' sha256), and the artefacts
+the report names — staged through the
 device bridge and re-measured in the coordinator's sandbox exactly as today.
 The doors — Plan Approval, Release Approval, Human Diagnosis dispositions — and
 the merge remain operator acts, authored in the browser and verified by fidelity
@@ -110,11 +121,19 @@ test before first trusted use.
 
 **5. Permissions are declared, never bypassed.** A headless run cannot answer a
 permission prompt, so each job kind runs under a declared tool allowlist held
-in the host's Claude Code settings profile for that kind, whose sha256 the run
-record carries: read-only kinds (Gate 0, Gate 1, Review, consult preparation)
-get a read-only tool set; write kinds (Gate 2 under lease, Gate 3) get the
-allowlist R-min defines. A tool the profile does not allow is denied and the
-run stops there — that is the fail-closed behaviour, and it is why the trial
+in the host's Claude Code settings profile for that kind's class, whose sha256
+the run record carries: read-only kinds (Review, consult preparation) get a
+read-only tool set; evidence kinds (Entry, Gate 0, Gate 1) get a set that
+writes only under the Slice's own evidence directory and never commits —
+the Gate 0 and Gate 1 contracts write their evidence file at Exit and the
+record rides onto the Slice branch under the Gate 2 lease; write kinds
+(Gate 2 under lease, Gate 3) get the allowlist R-min defines. The dispatcher
+measures the head and the porcelain list before and after every run and
+records, for a read-only kind, that nothing changed, and for an evidence
+kind, that nothing changed outside `docs/evidence/gatebraid/<slice_id>/` and
+nothing was committed — the exclusion ADR-0014 §1 applies to the baseline
+re-read (the contract's `DD-R08`). A tool the profile does not allow is denied
+and the run stops there — that is the fail-closed behaviour, and it is why the trial
 below is staged. No permission-bypass flag is ever passed; *Approval mode:
 Manual* is unchanged — this ADR changes who starts a run, never who approves
 anything.
@@ -154,14 +173,14 @@ stop.**
 | Stage | What runs | Success criterion | Stop if |
 |---|---|---|---|
 | 0 — dry run | the dispatcher in print-only mode: reads the inbox, validates, prints the command it would run, runs nothing | every fixture in `fixtures/direct-drive/` yields its expected decision; STOP halts it | any seeded refusal fails to fire |
-| 1 — read-only replay | a headless run of a closed Slice's review dispatch (P2-S6's R1–R5) under the read-only profile | the headless report's verdicts equal the recorded review's; zero writes inside the repository; the report's self-measured region reproduces | any write, or a verdict that differs without a stated measured cause |
-| 2 — read-only gates on a scratch Slice | Entry, Gate 0 and Gate 1 on a `gatebraid-scratch` Slice | `plan_hash` and `allowlist_hash` reproduce; every field write read back; the Plan Approval door stops the run | any Gate 2 action without a door |
-| 3 — a write gate under lease | Gate 2 on the same scratch Slice under R-min's declared allowlist | R1–R5 pass by an independent reviewer; the lease is taken by the record and still held when the run stops at `Needs Release Approval`; nothing pushed; afterwards the lease is cleared by the operator's terminal disposition of the scratch Slice (the route below), and the cleared field is read back as the stage's last measurement | any path outside the allowlist; any push |
+| 1 — read-only replay | a headless run of a closed Slice's review dispatch (P2-S6's R1–R5) under the read-only profile; separately, one entry naming a profile that does not exist, refused before any run (the live `DD-R07` seed, whose record the stage's approval binds) | the headless report's verdicts equal the recorded review's; zero writes inside the repository by the replay; the report's self-measured region reproduces; the seed's record shows `DD-R07` | any write by the replay, or a verdict that differs without a stated measured cause |
+| 2 — evidence gates on a scratch Slice | Entry, Gate 0 and Gate 1 on a `gatebraid-scratch` Slice, as `entry`, `gate0` and `gate1` jobs under the `evidence` profile | `plan_hash` and `allowlist_hash` reproduce; every field write read back; each run record shows nothing changed outside the Slice's own evidence directory and nothing committed; the Plan Approval door stops the run | any Gate 2 action without a door; any `DD-R08` |
+| 3 — a write gate under lease | Gate 2 on the same scratch Slice under R-min's declared allowlist | R1–R5 pass by an independent reviewer; the lease is taken by the record and still held when the stage's last dispatched job ends with the Slice at `Needs Release Approval`; nothing pushed; afterwards the lease is cleared by the operator's terminal disposition of the scratch Slice (the route below), and the cleared field is read back as the stage's last measurement | any path outside the allowlist; any push |
 
 Stages 0–1 may run before R-min. Stages 2–3 depend on R-min's permission
 allowlist and follow it, or run as its first live exercise under R-min's own
-approval. Only after stage 3 may a Classic Slice's non-door steps be
-dispatched this way, and the first such Slice is announced as one.
+approval. Only after stage 3 may a Slice outside `gatebraid-scratch` have its non-door
+steps dispatched this way, and the first such Slice is announced as one.
 
 **How stage 3 ends, stated so its success criterion is satisfiable.** Under
 the gate contracts a lease is taken at Gate 2 entry and released at Gate 3
@@ -169,16 +188,19 @@ exit (ADR-0003 §1; `protocols/gate-3-contract.md` exit step 6), and Gate 3
 exit requires the push and merge that stage 3 forbids. The only other release
 on record is terminal disposition (ADR-0025 §3 clears `Writer Lease`),
 reachable only from `Human Diagnosis Required` (ADR-0025 §2), which spec §1's
-transition list enters from repair exhaustion or blocker recurrence — not from
-`Needs Release Approval`. Stage 3 therefore ends by a typed exception,
-confined to trial Slices on `gatebraid-scratch` and pre-authorised by the
-stage's own batch approval: the operator, by a disposition comment on the
-scratch Slice's issue (a door — ADR-0015 §2/§3, ADR-0020 §4), routes it from
+transition list enters from the repair sequence (`8→9`), repair exhaustion,
+or blocker recurrence — not from `Needs Release Approval`. Stage 3 therefore
+ends by a typed exception, confined to trial Slices on
+`MianliWang/gatebraid-scratch` and pre-authorised by the stage's own batch
+approval: the operator, by a disposition comment on the scratch Slice's issue
+(a door — ADR-0015 §2/§3, ADR-0020 §4), routes it from
 `Needs Release Approval` to `Human Diagnosis Required` and then to terminal
 under ADR-0025 §2–§4 exactly as any terminated Slice: branch retained local
 and unpushed, `Writer Lease` cleared, `Workflow` `Aborted`, the issue not
-closed. No Classic Slice may use this route; the transition list for Classic
-Slices is unchanged. The dispatcher plays no part in it.
+closed; the field writes of both transitions are the executor's, under the
+disposition's announced action, as for every disposition on record. No Slice
+outside that repository may use this route; the transition list is unchanged
+for all of them. The dispatcher plays no part in it.
 
 **10. Landing.** This ADR, `protocols/direct-drive-v1.md`, and
 `fixtures/direct-drive/` land together as batch DD1 under M3-PLAN §8's batch
