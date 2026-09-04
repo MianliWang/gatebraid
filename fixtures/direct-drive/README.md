@@ -33,6 +33,17 @@ entry's `sha256` and `bytes` afterwards. The committed bytes of every file in
 this directory are LF-only ASCII, and the closed-set seeds name a
 non-existent repository rather than any real one outside the set.
 
+Two of the contract's nine codes have no seed here, because a fixture cannot
+stage them: `DD-R07` (host tools absent) is a fact about the host, and
+`DD-R08` (a read-only job that wrote) is checked after a run, which
+print-only mode never reaches. Both are demonstrated at stage 1 of the trial
+on host-side seeds run once and retained — a profile path that does not
+exist; a read-only entry directed to create one file, where either the
+profile denies the write or `DD-R08` fires, and the run record states which
+(`protocols/direct-drive-v1.md` §4 says the same). DD-02 is the
+manifest-level half of `DD-R02` — an inbox file no entry names — which §4
+evaluates once per manifest before any entry.
+
 Missing on purpose, owed to R-min: seeds for the `write` profile's deny list
 (push from a `gate2` job; a path outside the frozen allowlist). They are
 written when R-min defines that profile, before stage 3 runs.

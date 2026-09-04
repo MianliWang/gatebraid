@@ -126,7 +126,7 @@ The dispatcher evaluates, in this order, and stops at the first failure:
 |---|---|---|
 | `DD-R00` | `_handoff/inbox/STOP` absent | halt the dispatcher; record `halted` |
 | `DD-R01` | `MANIFEST.json` parses; `schema` equals `gatebraid/dispatch-manifest@1`; every entry has every required key and no unknown key | refuse the whole manifest |
-| `DD-R02` | for the entry: the named file exists; its sha256 and byte count equal the manifest's | refuse the entry |
+| `DD-R02` | first, once per manifest: every file in `_handoff/inbox/` other than `MANIFEST.json`, `STOP` and `RUNNING` is named by exactly one entry (ADR-0034 decision 1: anything not in the manifest is refused); then, for the entry: the named file exists; its sha256 and byte count equal the manifest's | an unlisted file: refuse the whole manifest, naming the file; a mismatch: refuse the entry |
 | `DD-R03` | `kind` is a member of the enumeration; `profile` matches the kind's class | refuse the entry |
 | `DD-R04` | `repository` is in the closed set; `cwd`'s `origin` names it | refuse the entry |
 | `DD-R05` | the dispatch file's bytes pass the standing scans: no `owner/name` identity outside the closed set; no handoff-block schema token; no closing keyword immediately before an issue reference; no CR byte; no non-ASCII code point outside {U+00A7, U+00B7, U+2013, U+2014, U+2026, U+2192} | refuse the entry |
@@ -139,6 +139,16 @@ The dispatcher evaluates, in this order, and stops at the first failure:
 An entry refused is not retried by the dispatcher; the coordinator corrects
 the file or the manifest and re-lists it. A manifest is processed in entry
 order; the coordinator lists at most the entries one session needs.
+
+Two codes have no seed in `fixtures/direct-drive/`, because a fixture cannot
+stage them: `DD-R07` is a fact about the host (a missing profile or
+executable), and `DD-R08` is a check made after a run, which print-only mode
+never reaches. Both are demonstrated at stage 1 of the trial on host-side
+seeds run once and retained: for `DD-R07`, an entry whose profile path does
+not exist; for `DD-R08`, a read-only entry whose dispatch text directs the
+creation of one file inside the repository — either the profile denies the
+write and the run stops there, or the write lands and `DD-R08` fires; the run
+record states which. `fixtures/direct-drive/README.md` says the same.
 
 ## 5. What the dispatcher never does
 
@@ -161,10 +171,10 @@ order; the coordinator lists at most the entries one session needs.
 ## 6. The kill switch, demonstrated
 
 Before first trusted use the operator runs the dispatcher in print-only mode
-over `fixtures/direct-drive/DD-04-stop-present.json` and, separately, creates
-`STOP` while a long-running seeded job is in flight; the run record must show
-`halted` in both cases, and the job's process must be gone. Both records are
-retained as the batch's evidence.
+over `fixtures/direct-drive/DD-04.json` (the STOP-present seed) and,
+separately, creates `STOP` while a long-running seeded job is in flight; the
+run record must show `halted` in both cases, and the job's process must be
+gone. Both records are retained as the batch's evidence.
 
 ## 7. Audit
 
