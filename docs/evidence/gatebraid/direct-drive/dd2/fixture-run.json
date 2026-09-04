@@ -1,0 +1,92 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "DD2-fixture-run",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/msys64/mingw64/bin/python.exe",
+      "-B",
+      "bin/gatebraid-dispatch.py",
+      "--fixture",
+      "fixtures/direct-drive/DD-P1.json",
+      "fixtures/direct-drive/DD-01.json",
+      "fixtures/direct-drive/DD-02.json",
+      "fixtures/direct-drive/DD-03.json",
+      "fixtures/direct-drive/DD-04.json",
+      "fixtures/direct-drive/DD-05.json",
+      "fixtures/direct-drive/DD-06.json",
+      "fixtures/direct-drive/DD-07.json",
+      "fixtures/direct-drive/DD-08.json",
+      "fixtures/direct-drive/DD-09.json",
+      "fixtures/direct-drive/DD-10.json",
+      "fixtures/direct-drive/DD-11.json",
+      "fixtures/direct-drive/DD-12.json",
+      "fixtures/direct-drive/DD-13.json",
+      "fixtures/direct-drive/DD-14.json",
+      "fixtures/direct-drive/DD-15.json",
+      "fixtures/direct-drive/DD-16.json",
+      "fixtures/direct-drive/DD-17.json",
+      "fixtures/direct-drive/DD-18.json"
+    ],
+    "cwd": {
+      "path": "D:/Github repo/Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 2611,
+      "sha256": "bf58b986210c065e8244a83d65d222642a71180c3f35400f2439da770093d736",
+      "data": "REQtUDEgZXhwZWN0ZWQgYWxsb3cvbnVsbCBnb3QgYWxsb3cvbnVsbCAtPiBNQVRDSApyZWZ1c2VkIERELVIwMiBlbnRyeSAxOiB0aGUgZmlsZSdzIHNoYTI1NiBkaWZmZXJzIGZyb20gdGhlIG1hbmlmZXN0CkRELTAxIGV4cGVjdGVkIHJlZnVzZS9ERC1SMDIgZ290IHJlZnVzZS9ERC1SMDIgLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDIgYW4gaW5ib3ggZmlsZSBpcyBuYW1lZCBieSBubyBlbnRyeTogREQtMDItdW5saXN0ZWQubWQKREQtMDIgZXhwZWN0ZWQgcmVmdXNlL0RELVIwMiBnb3QgcmVmdXNlL0RELVIwMiAtPiBNQVRDSApyZWZ1c2VkIERELVIwNSBlbnRyeSAxOiB0aGUgZGlzcGF0Y2ggdGV4dCBuYW1lcyAxIG93bmVyL25hbWUgdG9rZW4ocykgb3V0c2lkZSB0aGUgY2xvc2VkIHNldCwgZmlyc3QgYXQgbGluZSA4IChub3QgcXVvdGVkKQpERC0wMyBleHBlY3RlZCByZWZ1c2UvREQtUjA1IGdvdCByZWZ1c2UvREQtUjA1IC0+IE1BVENICmhhbHRlZCBERC1SMDAgdGhlIFNUT1AgZmlsZSBpcyBwcmVzZW50IGluIHRoZSBpbmJveApERC0wNCBleHBlY3RlZCBoYWx0L0RELVIwMCBnb3QgaGFsdC9ERC1SMDAgLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDMgZW50cnkgMTogcHJvZmlsZSBkb2VzIG5vdCBtYXRjaCB0aGUga2luZCdzIGNsYXNzICh0aGUgY2xhc3MgcmVxdWlyZXMgd3JpdGUpCkRELTA1IGV4cGVjdGVkIHJlZnVzZS9ERC1SMDMgZ290IHJlZnVzZS9ERC1SMDMgLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDYgZW50cnkgMTogYSBqb2IgaXMgcnVubmluZyAodGhlIFJVTk5JTkcgbG9jayBpcyBwcmVzZW50KQpERC0wNiBleHBlY3RlZCByZWZ1c2UvREQtUjA2IGdvdCByZWZ1c2UvREQtUjA2IC0+IE1BVENICnJlZnVzZWQgREQtUjA1IGVudHJ5IDE6IHRoZSBkaXNwYXRjaCB0ZXh0IGNhcnJpZXMgdGhlIGhhbmRvZmYtYmxvY2sgc2NoZW1hIHRva2VuLCAxIG9jY3VycmVuY2UocyksIGZpcnN0IGF0IGxpbmUgOApERC0wNyBleHBlY3RlZCByZWZ1c2UvREQtUjA1IGdvdCByZWZ1c2UvREQtUjA1IC0+IE1BVENICnJlZnVzZWQgREQtUjA0IGVudHJ5IDE6IHRoZSBlbnRyeSdzIHJlcG9zaXRvcnkgaXMgb3V0c2lkZSB0aGUgY2xvc2VkIHNldCAodGhlIGlkZW50aWZpZXIgaXMgbm90IHF1b3RlZCkKREQtMDggZXhwZWN0ZWQgcmVmdXNlL0RELVIwNCBnb3QgcmVmdXNlL0RELVIwNCAtPiBNQVRDSApyZWZ1c2VkIERELVIwNSBlbnRyeSAxOiB0aGUgZGlzcGF0Y2ggdGV4dCBjYXJyaWVzIDEgQ1IgYnl0ZShzKSwgZmlyc3QgYXQgb2Zmc2V0IDMyMzsgY2FycmllcyAxIGNvZGUgcG9pbnQocykgb3V0c2lkZSB0aGUgcGVybWl0dGVkIHNldCwgZmlyc3QgVSswMEQ3IGF0IGxpbmUgOApERC0wOSBleHBlY3RlZCByZWZ1c2UvREQtUjA1IGdvdCByZWZ1c2UvREQtUjA1IC0+IE1BVENICnJlZnVzZWQgREQtUjAxIHRoZSBtYW5pZmVzdCBzY2hlbWEga2V5IGlzIG5vdCBnYXRlYnJhaWQvZGlzcGF0Y2gtbWFuaWZlc3RAMQpERC0xMCBleHBlY3RlZCByZWZ1c2UvREQtUjAxIGdvdCByZWZ1c2UvREQtUjAxIC0+IE1BVENICnJlZnVzZWQgREQtUjA1IGVudHJ5IDE6IHRoZSBkaXNwYXRjaCB0ZXh0IGNhcnJpZXMgYSBjbG9zaW5nIGtleXdvcmQgaW1tZWRpYXRlbHkgYmVmb3JlIGFuIGlzc3VlIHJlZmVyZW5jZSwgMSBtYXRjaChlcyksIGZpcnN0IGF0IGxpbmUgOCAobm90IHF1b3RlZCkKREQtMTEgZXhwZWN0ZWQgcmVmdXNlL0RELVIwNSBnb3QgcmVmdXNlL0RELVIwNSAtPiBNQVRDSApyZWZ1c2VkIERELVIwMyBlbnRyeSAxOiBraW5kIGlzIG91dHNpZGUgdGhlIGVudW1lcmF0aW9uCkRELTEyIGV4cGVjdGVkIHJlZnVzZS9ERC1SMDMgZ290IHJlZnVzZS9ERC1SMDMgLT4gTUFUQ0gKREQtMTMgZXhwZWN0ZWQgY29tcGxldGVkL251bGwgZ290IGNvbXBsZXRlZC9udWxsIC0+IE1BVENICmVycm9yIERELVIwOCBhbiBldmlkZW5jZSBqb2IgY2hhbmdlZCAxIHBhdGgocykgb3V0c2lkZSBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QOS1TMS86IGJpbi9nYXRlYnJhaWQtcmVhZHkucHkKREQtMTQgZXhwZWN0ZWQgZXJyb3IvREQtUjA4IGdvdCBlcnJvci9ERC1SMDggLT4gTUFUQ0gKZXJyb3IgREQtUjA4IEhFQUQgbW92ZWQgZHVyaW5nIGEgcmVhZC1vbmx5IGpvYiAoaGVhZF9iZWZvcmUgIT0gaGVhZF9hZnRlcikKREQtMTUgZXhwZWN0ZWQgZXJyb3IvREQtUjA4IGdvdCBlcnJvci9ERC1SMDggLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDcgZW50cnkgMTogdGhlIHNldHRpbmdzIHByb2ZpbGUgZm9yIHRoZSBlbnRyeSdzIGNsYXNzIGlzIGFic2VudDogcmVhZG9ubHkuc2V0dGluZ3MuanNvbgpERC0xNiBleHBlY3RlZCByZWZ1c2UvREQtUjA3IGdvdCByZWZ1c2UvREQtUjA3IC0+IE1BVENICnJlZnVzZWQgREQtUjAzIGVudHJ5IDE6IHNsaWNlX2lkIGlzIHByZXNlbnQgZm9yIGEgcmVhZC1vbmx5IGtpbmQKREQtMTcgZXhwZWN0ZWQgcmVmdXNlL0RELVIwMyBnb3QgcmVmdXNlL0RELVIwMyAtPiBNQVRDSApyZWZ1c2VkIERELVIwMiBhbiBpbmJveCBmaWxlIGlzIG5hbWVkIGJ5IDIgZW50cmllczogREQtMTgtcmV2aWV3Lm1kCkRELTE4IGV4cGVjdGVkIHJlZnVzZS9ERC1SMDIgZ290IHJlZnVzZS9ERC1SMDIgLT4gTUFUQ0gKZXhpdCAwCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "DD-P1 expected allow/null got allow/null -> MATCH\nrefused DD-R02 entry 1: the file's sha256 differs from the manifest\nDD-01 expected refuse/DD-R02 got refuse/DD-R02 -> MATCH\nrefused DD-R02 an inbox file is named by no entry: DD-02-unlisted.md\nDD-02 expected refuse/DD-R02 got refuse/DD-R02 -> MATCH\nrefused DD-R05 entry 1: the dispatch text names 1 owner/name token(s) outside the closed set, first at line 8 (not quoted)\nDD-03 expected refuse/DD-R05 got refuse/DD-R05 -> MATCH\nhalted DD-R00 the STOP file is present in the inbox\nDD-04 expected halt/DD-R00 got halt/DD-R00 -> MATCH\nrefused DD-R03 entry 1: profile does not match the kind's class (the class requires write)\nDD-05 expected refuse/DD-R03 got refuse/DD-R03 -> MATCH\nrefused DD-R06 entry 1: a job is running (the RUNNING lock is present)\nDD-06 expected refuse/DD-R06 got refuse/DD-R06 -> MATCH\nrefused DD-R05 entry 1: the dispatch text carries the handoff-block schema token, 1 occurrence(s), first at line 8\nDD-07 expected refuse/DD-R05 got refuse/DD-R05 -> MATCH\nrefused DD-R04 entry 1: the entry's repository is outside the closed set (the identifier is not quoted)\nDD-08 expected refuse/DD-R04 got refuse/DD-R04 -> MATCH\nrefused DD-R05 entry 1: the dispatch text carries 1 CR byte(s), first at offset 323; carries 1 code point(s) outside the permitted set, first U+00D7 at line 8\nDD-09 expected refuse/DD-R05 got refuse/DD-R05 -> MATCH\nrefused DD-R01 the manifest schema key is not gatebraid/dispatch-manifest@1\nDD-10 expected refuse/DD-R01 got refuse/DD-R01 -> MATCH\nrefused DD-R05 entry 1: the dispatch text carries a closing keyword immediately before an issue reference, 1 match(es), first at line 8 (not quoted)\nDD-11 expected refuse/DD-R05 got refuse/DD-R05 -> MATCH\nrefused DD-R03 entry 1: kind is outside the enumeration\nDD-12 expected refuse/DD-R03 got refuse/DD-R03 -> MATCH\nDD-13 expected completed/null got completed/null -> MATCH\nerror DD-R08 an evidence job changed 1 path(s) outside docs/evidence/gatebraid/P9-S1/: bin/gatebraid-ready.py\nDD-14 expected error/DD-R08 got error/DD-R08 -> MATCH\nerror DD-R08 HEAD moved during a read-only job (head_before != head_after)\nDD-15 expected error/DD-R08 got error/DD-R08 -> MATCH\nrefused DD-R07 entry 1: the settings profile for the entry's class is absent: readonly.settings.json\nDD-16 expected refuse/DD-R07 got refuse/DD-R07 -> MATCH\nrefused DD-R03 entry 1: slice_id is present for a read-only kind\nDD-17 expected refuse/DD-R03 got refuse/DD-R03 -> MATCH\nrefused DD-R02 an inbox file is named by 2 entries: DD-18-review.md\nDD-18 expected refuse/DD-R02 got refuse/DD-R02 -> MATCH\nexit 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-04T16:29:58.430066Z",
+  "ended_at": "2026-09-04T16:29:59.525139Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-dispatch.py",
+      "sha256": "d8d32d947781e15c16d36c957080f449a01e2b65a7fe140c962fd787ed5b025e"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Fixture mode over all nineteen seeds in id order, after the falsification capture DD2-falsification proved the runner can disagree. Nineteen MATCH lines, exit 0. Nothing is run: contract section 10."
+}
