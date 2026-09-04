@@ -1,8 +1,10 @@
 # Direct drive v1 — the dispatcher contract (`gatebraid-dispatch`)
 
-**Status:** Proposed with ADR-0034 · lands in batch DD1 · Product: Gatebraid
-(ADR-0010); corrected twice on the findings of the batch's two independent
-read-only reviews (2026-09-04). This document is the contract the dispatcher
+**Status:** Frozen with ADR-0034 by the merge of batch DD1
+(`6062a21105e890e614ed7a45f589341943c88d6f`, 2026-09-04) · amended by batch
+DD2 (the third review's M-1 and M-3 clauses; §4's `slice_id` clause; §10's
+`substitutions`, command line and exit statuses; two seeds added) · Product:
+Gatebraid (ADR-0010). This document is the contract the dispatcher
 implements and the fixtures in `fixtures/direct-drive/` test. The fixtures
 precede the tool (M3-PLAN §2); a decision this contract does not name is a
 refusal.
@@ -63,7 +65,7 @@ The executor's own report goes wherever the dispatch text directs (today
 
 - `name`: exactly one path segment matching `^[A-Za-z0-9][A-Za-z0-9._-]{0,127}\.md$`; must exist under `_handoff/inbox/`.
 - `sha256`, `bytes`: the file's whole-file values; both must equal the file as read.
-- `kind`: one of three classes — **read-only kinds** `review`, `consult-prep` (nothing inside the repository changes); **evidence kinds** `entry`, `gate0`, `gate1` (the working tree may change only under the Slice's own evidence directory, `docs/evidence/gatebraid/<slice_id>/`, and nothing is committed — the Gate 0 and Gate 1 contracts write their evidence file at Exit and commit nothing, the record riding onto the Slice branch under the Gate 2 lease, and the Entry paste writes Project fields and at most files under that same directory); **write kinds** `gate2`, `gate3`.
+- `kind`: one of three classes — **read-only kinds** `review`, `consult-prep` (nothing inside the repository changes); **evidence kinds** `entry`, `gate0`, `gate1` (the working tree may change only under the Slice's own evidence directory, `docs/evidence/gatebraid/<slice_id>/`, and nothing is committed — the Gate 0 and Gate 1 contracts write their evidence file at Exit and, as their Exits direct and as M3 practice does, commit nothing (their Prohibited sections permit the commit without requiring it; this profile denies it), the record riding onto the Slice branch under the Gate 2 lease, and the Entry paste writes Project fields and at most files under that same directory); **write kinds** `gate2`, `gate3`.
 - `repository`: exactly `MianliWang/gatebraid` or `MianliWang/gatebraid-scratch`.
 - `cwd`: the clone of that repository; the dispatcher verifies `git -C <cwd> remote get-url origin` names the same repository.
 - `profile`: `readonly` for read-only kinds, `evidence` for evidence kinds, `write` for write kinds; a mismatch is a refusal.
@@ -125,7 +127,7 @@ outcome is `refused` with the code, and the file is
 
 | kind | profile | what the dispatch may direct | what the profile denies |
 |---|---|---|---|
-| `entry`, `gate0`, `gate1` | `evidence` | reads, `gh` reads, Python instruments with `-B`, writing under `_handoff/` and under the Slice's own evidence directory as the gate contract allows | any `git commit`/`push`, any write inside the repository outside the Slice's own evidence directory, any `gh` mutation except the gate's own Exit field writes and handoff comment as the contract names them |
+| `entry`, `gate0`, `gate1` | `evidence` | reads, `gh` reads, Python instruments with `-B`, writing under `_handoff/` and under the Slice's own evidence directory as the gate contract allows | any `git commit`/`push`, any write inside the repository outside the Slice's own evidence directory, any `gh` mutation except the acts the gate's own Exit names: its field writes, its handoff comment, and — for Gate 1 — the `needs-human` label and the one sanctioned rewrite of the Slice issue's metadata block (`protocols/gate-1-contract.md`, Exit) |
 | `review`, `consult-prep` | `readonly` | reads; one report under `_handoff/`; scratch outside every repository | every write inside the repository, every `gh` mutation, any lease |
 | `gate2` | `write` | commits on the Slice branch under the lease, field writes the contract names, no push | push; PR creation; any path outside the frozen allowlist (the contract's R1 is the check; the profile is the floor) |
 | `gate3` | `write` | push of the Slice branch, PR creation, `gate3.md`, then HOLD at the merge door; the Exit after the operator's merge is a second `gate3` entry the coordinator lists once the merge is on record — no job spans a door | merge; branch deletion; any second branch |
@@ -145,7 +147,7 @@ The dispatcher evaluates, in this order, and stops at the first failure:
 | code | check | on failure |
 |---|---|---|
 | `DD-R00` | `_handoff/inbox/STOP` absent | halt the dispatcher; record `halted` |
-| `DD-R01` | `MANIFEST.json` parses; `schema` equals `gatebraid/dispatch-manifest@1`; every entry has every required key and no unknown key | refuse the whole manifest |
+| `DD-R01` | `MANIFEST.json` parses; `schema` equals `gatebraid/dispatch-manifest@1`; every entry has every required key and no key outside the schema (`slice_id` is a schema key; whether it must be present is `DD-R03`'s rule) | refuse the whole manifest |
 | `DD-R02` | first, once per manifest: every file in `_handoff/inbox/` other than `MANIFEST.json`, `STOP` and `RUNNING` is named by exactly one entry (ADR-0034 decision 1: anything not in the manifest is refused); then, for the entry: the named file exists; its sha256 and byte count equal the manifest's | an unlisted file, or a file named by two entries: refuse the whole manifest, naming the file; a mismatch: refuse the entry |
 | `DD-R03` | `kind` is a member of the enumeration; `profile` matches the kind's class; `slice_id` is present exactly when the kind is an evidence or write kind, and matches its pattern | refuse the entry |
 | `DD-R04` | `repository` is in the closed set; `cwd`'s `origin` names it | refuse the entry |
@@ -209,7 +211,7 @@ not the bytes that were sent).
 ## 8. Trial stages
 
 ADR-0034 decision 9 governs; this section names the evidence each stage
-commits: stage 0 — one run record per fixture (seventeen), all in fixture
+commits: stage 0 — one run record per fixture (nineteen), all in fixture
 mode, expected decision matched, nothing run; stage 1 — the replay's run
 record, its report, a byte-level comparison table of its verdicts against the
 recorded review's, and the `DD-R07` host seed's run record (a refusal before
@@ -227,25 +229,54 @@ run record carrying another value is a stop-the-line event at audit (§7), of
 the same shape as the `dispatch_sha256` mismatch. No host file has normative
 authority; this contract and the dispatch text bind.
 
-## 10. Fixture mode and print-only mode (`gatebraid/dispatch-fixture@1`)
+## 10. Fixture mode, print-only mode, and the command line (`gatebraid/dispatch-fixture@1`)
 
-`bin/gatebraid-dispatch.py --fixture <path>` materialises one seed in a
-temporary directory — an inbox with the seed's manifest, its inline files and
-its `STOP`/`RUNNING` state, and a profile directory holding a stub file per
-profile class unless the seed's `host.profile_present` is `false` — evaluates
-§4 from `DD-R00` through `DD-R07` against it with `cwd` and the closed set
-measured on the real host, runs nothing, and prints one line:
-`<id> expected <decision>/<code> got <decision>/<code> -> MATCH | MISMATCH`;
-the exit status is 0 only when every seed given matches. A seed carrying
-`setup.post_run` (`head_before`, `head_after`, `porcelain_before`,
-`porcelain_after`, as the run record would hold them) is evaluated one step
-further: after `DD-R07` passes, the post-run rule of §2.2 is applied to the
-declared states and the decision is `completed` (code null) or `error`
-(`DD-R08`). `--print-only` over the real inbox does the same evaluation
-without `post_run` and prints the command it would have run. A seed's
-`expected.decision` is one of `allow`, `refuse`, `halt`, `completed`,
-`error`; `expected.code` is the §4 code or null. Two seeds (DD-07, DD-11)
-carry a forbidden pattern in parts and are assembled at evaluation, the
-entry's `sha256` and `bytes` recomputed afterwards; fixture mode must do
-that recomputation before `DD-R02`, or both seeds return the wrong code.
+**Fixture mode.** `bin/gatebraid-dispatch.py --fixture <path> [<path> ...]`
+materialises each seed in a temporary directory — an inbox with the seed's
+manifest, its inline files and its `STOP`/`RUNNING` state, and a profile
+directory holding a stub file per profile class unless the seed's
+`host.profile_present` is `false` — evaluates §4 from `DD-R00` through
+`DD-R07` against it with `cwd` and the closed set measured on the real host,
+runs nothing, and prints one line per seed:
+`<id> expected <decision>/<code> got <decision>/<code> -> MATCH | MISMATCH`.
+A seed carrying `setup.post_run` (`head_before`, `head_after`,
+`porcelain_before`, `porcelain_after`, as the run record would hold them) is
+evaluated one step further: after `DD-R07` passes, the post-run rule of §2.2
+is applied to the declared states and the decision is `completed` (code
+null) or `error` (`DD-R08`). A seed may carry `setup.substitutions`: a map
+from a placeholder of the form `{NAME}` to a list of string parts; fixture
+mode joins the parts, replaces every occurrence of the placeholder in every
+inline body, and recomputes each affected entry's `sha256` and `bytes`
+**before** `DD-R02` — this is how DD-07 and DD-11 carry a pattern no
+committed file may hold, and a runner that skips the recomputation returns
+the wrong code for both. A seed's `expected.decision` is one of `allow`,
+`refuse`, `halt`, `completed`, `error`; `expected.code` is the §4 code or
+null. The temporary directory is removed when the seed's line has been
+printed; nothing under `_handoff/` or the repository is touched.
 
+**Print-only mode.** `--print-only --inbox <dir> --profiles <dir> --outbox
+<dir>` evaluates the real inbox exactly as fixture mode evaluates a seed,
+without `post_run`, prints the command each admitted entry would run, and
+writes nothing — not even a run record.
+
+**The run form.** `--inbox <dir> --profiles <dir> --outbox <dir>` is the
+form the operator starts for a trusted run; it is refused before the first
+entry when `STOP` is present and behaves as §4 writes. `--inbox` defaults to
+`_handoff/inbox`, `--outbox` to `_handoff/outbox`, `--profiles` to the path
+the operator provisioned (never a repository path). No flag enables a
+permission bypass, and the tool passes none to the executable it starts.
+
+**Exit status, all modes.** `0`: every seed matched (fixture mode), or every
+admitted entry reached `completed` (run form), or the print-only evaluation
+finished; `1`: any `MISMATCH` (fixture mode), or any refusal, halt, timeout or
+error (run form); `2`: a usage error, an unreadable input, or an I/O failure
+before any evaluation. The status is printed as the last line of output in
+the form `exit <n>` so a transcript states it.
+
+**What the source may not contain.** The dispatcher is one file of Python 3
+standard library (ADR-0028: committed, falsified on its seeds, reused). Its
+source carries no handoff-block schema token (the pattern is assembled from
+parts, as the seeds do), no closing keyword immediately before an issue
+reference (the pattern is a regular expression, not an example), no
+repository identity outside the closed set (the closed-set check is a
+whitelist), no credential, no permission-bypass flag, and no scheduling.

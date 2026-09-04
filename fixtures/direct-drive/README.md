@@ -32,11 +32,14 @@ exit 0, with each seed's run record retained.
 | DD-14 | evidence kind (`gate0`) that also changed a path outside its evidence directory | error DD-R08 (declared states) |
 | DD-15 | read-only kind (`review`) after which HEAD moved | error DD-R08 (declared states) |
 | DD-16 | host stub without the profile file | refuse DD-R07 |
+| DD-17 | read-only kind carrying a `slice_id` it must not have | refuse DD-R03 |
+| DD-18 | one inbox file named by two manifest entries | refuse DD-R02 (manifest) |
 
 Two seeds (DD-07, DD-11) test patterns that must never appear in a committed
-file, so they carry the pattern in parts (`token_parts`, or the substitution
-rule in `note`) and the runner assembles it at evaluation time, recomputing the
-entry's `sha256` and `bytes` afterwards. The committed bytes of every seed
+file, so they carry the pattern in parts under `setup.substitutions` (a
+placeholder mapped to a list of parts); fixture mode joins the parts,
+replaces the placeholder in every inline body, and recomputes the entry's
+`sha256` and `bytes` before `DD-R02` (contract §10). The committed bytes of every seed
 file (`DD-*.json`) are LF-only ASCII; this README carries a few code points
 from the contract's permitted set. The closed-set seeds name a non-existent
 repository rather than any real one outside the set.
