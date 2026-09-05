@@ -32,6 +32,11 @@ THE SCANS OF `DD-R05`, over the dispatch file's decoded bytes, in this order.
           or URL path segment);
         * `repos/...`, an API path fragment;
         * `refs/<lowercase>`, a git ref namespace, `REF_NAMESPACE`;
+        * a leading segment in `BRANCH_HEADS`, a git ref namespace or one of
+          this tree's branch conventions `slice/<id>` and `batch/<id>`: every
+          write kind's dispatch must name its own Slice branch;
+        * a numeric ratio, `NUMERIC_RATIO` = ^[0-9]+/[0-9]+$, the form prose
+          writes a count of passes in;
         * a leading segment in `SCHEMA_NAMESPACE`, a schema id such as this
           contract's own manifest and run schemas;
         * a JSON pointer, `JSON_POINTER` = ^[A-Za-z_][A-Za-z0-9_]*/[0-9]+$;
@@ -40,6 +45,16 @@ THE SCANS OF `DD-R05`, over the dispatch file's decoded bytes, in this order.
         * the literal metasyntax in `METASYNTAX`.
       Anything else is residue and the entry is refused. This is a whitelist
       with named exceptions, not a blacklist.
+
+      A path prefix is the segment the extraction pattern actually yields, not
+      the segment a reader sees: the pattern's character class excludes the
+      space, so a path with a space in it contributes the segment AFTER the
+      space and a space-bearing string can never be a head. The two such
+      entries this whitelist first carried were therefore unreachable, and the
+      two segments that do occur were missing; both are corrected here from the
+      committed instrument named above, lines 155-156 and 161-162, and from the
+      merged P2-S6 copy `docs/evidence/gatebraid/P2-S6/g1/checks-g1-closed-set-sweep.py`,
+      lines 57-60, together with that instrument's own stated reasons.
 
   (b) The handoff-block schema token, held in `HANDOFF_BLOCK_TOKEN` and
       ASSEMBLED FROM PARTS at import time so the token itself is not among
@@ -105,10 +120,14 @@ otherwise.
 MODES (contract section 10). `--fixture <path> [...]` materialises each seed in
 a temporary directory, evaluates `DD-R00`..`DD-R07` against it plus the
 post-run rule over any declared states, runs nothing, and prints one line per
-seed. `--print-only` evaluates a real inbox and prints the command each
-admitted entry would run, writing nothing. The bare run form starts the
-executor. Exit status is `0`, `1` or `2` as section 10 writes, printed as the
-last line in the form `exit <n>`.
+seed; it takes the run form's own path up to the run row, writing every
+refusal's or halt's run record into the temporary directory's own `outbox/`,
+which is removed with the directory, and reporting an exception on that path as
+`got exception/<ExceptionName> -> MISMATCH`. `--print-only` evaluates a real
+inbox and prints the command each admitted entry would run, writing nothing -
+not even a run record. The bare run form starts the executor. Exit status is
+`0`, `1` or `2` as section 10 writes, printed as the last line in the form
+`exit <n>` in every case, usage errors included.
 
 Python 3 standard library only. Run it with `-B`.
 """
@@ -175,13 +194,24 @@ CLOSING_BEFORE_REFERENCE = re.compile(
 REF_NAMESPACE = re.compile(r"^refs/[a-z]+$")
 JSON_POINTER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*/[0-9]+$")
 DOC_CITATION = re.compile(r"^ADR-[0-9]{4}/[0-9]{4}$")
+NUMERIC_RATIO = re.compile(r"^[0-9]+/[0-9]+$")
 METASYNTAX = frozenset(("owner/name", "owner/repo"))
 SCHEMA_NAMESPACE = frozenset(("gatebraid",))
 PATH_PREFIXES = frozenset((
     "adr", "bin", "captures", "consults", "docs", "evidence", "fixtures",
     "projects", "protocols", "schema", "templates", "_handoff",
-    "AppData", "Users", "Program Files", "Github repo", "etc", "lib", "mnt",
-    "npm", "tmp", "usr", "var",
+    "AppData", "Users", "etc", "lib", "mnt", "npm", "tmp", "usr", "var",
+    # Transcribed from the committed instruments named in the docstring,
+    # together with their own stated reasons.
+    "Files",   # "D:/Program Files/Git/..." splits at the space, so the
+               # token is Files/Git: a filesystem segment, never an owner
+    "repo",    # "D:\Github repo\Gatebraid" splits at its space the same
+               # way, giving repo/Gatebraid: the same class as Files/Git
+))
+# A git ref namespace, or this tree's branch conventions. Every gate2 and gate3
+# dispatch names its own Slice branch, and a tracking ref names its remote.
+BRANCH_HEADS = frozenset((
+    "slice", "batch", "origin", "refs", "heads", "remotes", "tags",
 ))
 URL_PREFIXES = frozenset((
     "http:", "https:", "api.github.com", "github.com", "json-schema.org",
@@ -258,6 +288,10 @@ def classify_repo_token(token):
         return "API path fragment"
     if REF_NAMESPACE.match(token):
         return "git ref namespace"
+    if head in BRANCH_HEADS:
+        return "git ref namespace or branch convention"
+    if NUMERIC_RATIO.match(token):
+        return "numeric ratio"
     if head in PATH_PREFIXES or head in URL_PREFIXES:
         return "filesystem or URL path segment"
     if head in SCHEMA_NAMESPACE:
@@ -712,17 +746,38 @@ def materialise_seed(seed, root):
 
 
 def evaluate_seed(seed, host):
-    """Return the Decision fixture mode reaches for one seed."""
+    """Return the Decision fixture mode reaches for one seed.
+
+    Section 10: fixture mode takes the same code path as the run form up to the
+    run row, the records included - every refusal's or halt's run record is
+    written into the temporary directory's own `outbox/`, which goes with the
+    directory. That is what makes a record the run form could not write a seed
+    the suite catches; nothing under `_handoff/` or the repository is touched.
+    """
     root = tempfile.mkdtemp(prefix="gatebraid-dispatch-fixture-")
     try:
         inbox, profiles = materialise_seed(seed, root)
+        outbox = Path(root) / "outbox"
+        started_at = utc_now()
+        manifest_path = inbox / "MANIFEST.json"
+        manifest_sha = (sha256_hex(manifest_path.read_bytes())
+                        if manifest_path.is_file() else None)
         decision, manifest = evaluate_manifest_level(inbox)
         if decision is not None:
+            record = run_record("MANIFEST.json", None, manifest_sha, None,
+                                started_at, utc_now(),
+                                "halted" if decision.decision == "halt" else "refused",
+                                decision.code, {}, host)
+            write_record(outbox, manifest_record_name(manifest, started_at), record)
             return decision
         admitted_entry = None
         for position, entry in enumerate(manifest["entries"], 1):
             decision, _admitted = evaluate_entry(entry, position, inbox, profiles, host)
             if decision.decision != ALLOW:
+                record = run_record(entry["name"], entry, manifest_sha, None,
+                                    utc_now(), utc_now(), "refused", decision.code,
+                                    {}, host)
+                write_record(outbox, "%s.run.json" % entry["name"], record)
                 return decision
             if admitted_entry is None:
                 admitted_entry = entry
@@ -753,7 +808,16 @@ def fixture_mode(paths, host):
             return EXIT_USAGE
         seed_id = seed.get("id") or path.stem
         expected = seed.get("expected") or {}
-        got = evaluate_seed(seed, host)
+        try:
+            got = evaluate_seed(seed, host)
+        except Exception as error:  # section 10: an exception anywhere on that
+            # path is a MISMATCH, named by its class and never a traceback.
+            mismatches += 1
+            say("%s expected %s got exception/%s -> MISMATCH"
+                % (seed_id,
+                   render(expected.get("decision"), expected.get("code")),
+                   error.__class__.__name__))
+            continue
         got.announce()
         matched = (got.decision == expected.get("decision")
                    and (got.code or None) == (expected.get("code") or None))
@@ -853,8 +917,15 @@ def dispatcher_version():
 
 
 def run_record(name, entry, manifest_sha, admitted, started_at, ended_at,
-               outcome, refusal, extras):
-    """Section 2.2's gatebraid/dispatch-run@1."""
+               outcome, refusal, extras, host=None):
+    """Section 2.2's gatebraid/dispatch-run@1.
+
+    Section 9: `claude_version` and `tool_paths` are measured before any check
+    runs and are carried in EVERY record, refusal and halt records included, so
+    they are taken from `host` here rather than from the caller's extras.
+    `profile_path` and `profile_sha256` come from `admitted` and stay null in a
+    record refused before `DD-R07`, which is where the profile is read.
+    """
     entry = entry or {}
     kind = entry.get("kind")
     slice_id = entry.get("slice_id")
@@ -886,12 +957,27 @@ def run_record(name, entry, manifest_sha, admitted, started_at, ended_at,
         "environment": None,
         "stdout_sha256": None,
         "stderr_sha256": None,
-        "claude_version": None,
-        "tool_paths": None,
+        "claude_version": (host or {}).get("claude_version"),
+        "tool_paths": (host or {}).get("paths"),
         "dispatcher_version": dispatcher_version(),
     }
     record.update(extras or {})
     return record
+
+
+def manifest_record_name(manifest, started_at):
+    """Section 2.2's `MANIFEST.<stamp>.run.json`.
+
+    The stamp is the manifest's `written_at` with its colons removed, an ISO
+    8601 instant not being a portable filename. A `written_at` that is absent,
+    empty or not a string is a manifest-shape defect `DD-R01` has just refused,
+    and section 2.2 names the record from the dispatcher's own `started_at`
+    instead, so a refusal is ALWAYS recorded. This derivation never raises.
+    """
+    written_at = (manifest or {}).get("written_at")
+    if not isinstance(written_at, str) or not written_at:
+        written_at = started_at
+    return "MANIFEST.%s.run.json" % written_at.replace(":", "")
 
 
 def write_record(outbox, filename, record):
@@ -917,6 +1003,8 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
 
     head_before = git_head(entry["cwd"])
     porcelain_before = git_porcelain(entry["cwd"])
+    head_after = None
+    porcelain_after = None
     outcome = "completed"
     refusal = None
     exit_status = None
@@ -951,14 +1039,33 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
         head_after = git_head(entry["cwd"])
         porcelain_after = git_porcelain(entry["cwd"])
         if outcome == "completed":
-            verdict = apply_post_run_rule(
-                entry["kind"], entry.get("slice_id"),
-                {"head_before": head_before, "head_after": head_after,
-                 "porcelain_before": porcelain_before or [],
-                 "porcelain_after": porcelain_after or []})
-            if verdict.decision == "error":
-                outcome, refusal = "error", verdict.code
-                verdict.announce()
+            # git returning None is state that was NOT measured, never state
+            # that matched: comparing None with None would pass the post-run
+            # rule vacuously. The record's null fields say what is missing.
+            unmeasured = [name for name, value in (
+                ("head_before", head_before),
+                ("porcelain_before", porcelain_before),
+                ("head_after", head_after),
+                ("porcelain_after", porcelain_after)) if value is None]
+            if unmeasured:
+                outcome, refusal = "error", "DD-R08"
+                say("error DD-R08 git did not report %d state(s) around the run: %s"
+                    % (len(unmeasured), ", ".join(unmeasured)))
+            else:
+                verdict = apply_post_run_rule(
+                    entry["kind"], entry.get("slice_id"),
+                    {"head_before": head_before, "head_after": head_after,
+                     "porcelain_before": porcelain_before,
+                     "porcelain_after": porcelain_after})
+                if verdict.decision == "error":
+                    outcome, refusal = "error", verdict.code
+                    verdict.announce()
+    except Exception as error:  # section 10: a job that may have started
+        # always leaves its record, never a bare traceback; the exception's
+        # class name stands in the record's reason where a code would.
+        outcome, refusal = "error", error.__class__.__name__
+        say("error %s an exception stopped the run row after the job may have "
+            "started" % refusal)
     finally:
         if running.exists():
             running.unlink()
@@ -971,8 +1078,8 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
          "exit_status": exit_status, "command": command,
          "environment": declared_environment(env),
          "stdout_sha256": sha256_hex(stdout_bytes),
-         "stderr_sha256": sha256_hex(stderr_bytes),
-         "claude_version": host["claude_version"], "tool_paths": host["paths"]})
+         "stderr_sha256": sha256_hex(stderr_bytes)},
+        host)
     write_record(outbox, "%s.run.json" % entry["name"], record)
     say("%s outcome %s" % (entry["name"], outcome))
     return outcome
@@ -992,16 +1099,13 @@ def real_inbox_mode(args, host, print_only):
     if decision is not None:
         decision.announce()
         if not print_only:
-            written_at = (manifest or {}).get("written_at") or started_at
             record = run_record("MANIFEST.json", None, manifest_sha, None,
                                 started_at, utc_now(),
                                 "halted" if decision.decision == "halt" else "refused",
-                                decision.code, {})
-            # Section 2.2: the stamp is written_at with its colons removed, an
-            # ISO 8601 instant not being a portable filename. The refusal
+                                decision.code, {}, host)
+            # Section 2.2, through the shared derivation above. The refusal
             # branch below stays as the backstop for every other bad name.
-            stamp = written_at.replace(":", "")
-            filename = "MANIFEST.%s.run.json" % stamp
+            filename = manifest_record_name(manifest, started_at)
             try:
                 write_record(outbox, filename, record)
             except OSError as exc:
@@ -1019,7 +1123,8 @@ def real_inbox_mode(args, host, print_only):
             status = EXIT_REFUSED
             if not print_only:
                 record = run_record(entry["name"], entry, manifest_sha, None,
-                                    utc_now(), utc_now(), "refused", verdict.code, {})
+                                    utc_now(), utc_now(), "refused", verdict.code,
+                                    {}, host)
                 write_record(outbox, "%s.run.json" % entry["name"], record)
             break
         if print_only:
@@ -1057,7 +1162,14 @@ def build_parser():
 
 def main(argv):
     parser = build_parser()
-    args = parser.parse_args(argv)
+    try:
+        args = parser.parse_args(argv)
+    except SystemExit:
+        # Section 10: the status line is printed in EVERY case, usage errors
+        # included, and an unknown flag, a missing argument and --help are all
+        # usage errors there. argparse would otherwise leave the process by
+        # raising past the caller below, and no transcript would state a status.
+        return EXIT_USAGE
     if args.fixture and args.print_only:
         say("fixture mode and print-only mode are exclusive")
         return EXIT_USAGE
