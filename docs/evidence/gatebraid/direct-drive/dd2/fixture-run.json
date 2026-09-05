@@ -67,12 +67,12 @@
       }
     }
   },
-  "started_at": "2026-09-04T16:29:58.430066Z",
-  "ended_at": "2026-09-04T16:29:59.525139Z",
+  "started_at": "2026-09-05T00:42:14.419211Z",
+  "ended_at": "2026-09-05T00:42:15.445205Z",
   "inputs": [
     {
       "path": "bin/gatebraid-dispatch.py",
-      "sha256": "d8d32d947781e15c16d36c957080f449a01e2b65a7fe140c962fd787ed5b025e"
+      "sha256": "7e0e6c7c57cf0fd5eeff49944d6935b5d76796d037c8ba3365237cc07451de92"
     }
   ],
   "outputs": [],
@@ -88,5 +88,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Fixture mode over all nineteen seeds in id order, after the falsification capture DD2-falsification proved the runner can disagree. Nineteen MATCH lines, exit 0. Nothing is run: contract section 10."
+  "notes": "Fixture mode over all nineteen seeds in id order, after the falsification capture DD2-falsification proved the runner can disagree. Nineteen MATCH lines, exit 0. Nothing is run: contract section 10. Re-made for DD2 v2 against the dispatcher that follows contract v2."
 }

@@ -84,11 +84,13 @@ them (contract section 9). The installed executable is Claude Code 2.1.220.
     `error_max_turns`, which is how section 2.2's `timeout` outcome is reached
     for the turn limb; the wall-clock limb is `timeout_seconds`, measured here.
 
-PROFILE FILE CONVENTION. The contract names profiles by class and holds their
-contents to R-min, which has not landed. This dispatcher resolves the settings
-file for a class as `<profiles>/<class>.settings.json` and records its absolute
-path and sha256 in every run record. The convention is declared here because
-the contract does not fix a filename; the reviewer should read it as such.
+PROFILE FILE NAME. Contract section 3 fixes it: one settings file per class,
+named `<class>.settings.json` - `readonly.settings.json`,
+`evidence.settings.json`, `write.settings.json` - under the profiles directory
+the operator provisioned. This dispatcher resolves that name and records the
+file's absolute path and sha256 in every run record. It is the contract's
+rule, not a convention declared here; section 3 adopted it after the build
+window raised it.
 
 WHAT THIS SOURCE DOES NOT CONTAIN (contract section 10): the handoff-block
 schema token in literal form; a closing keyword adjacent to an issue reference;
@@ -995,7 +997,11 @@ def real_inbox_mode(args, host, print_only):
                                 started_at, utc_now(),
                                 "halted" if decision.decision == "halt" else "refused",
                                 decision.code, {})
-            filename = "MANIFEST.%s.run.json" % written_at
+            # Section 2.2: the stamp is written_at with its colons removed, an
+            # ISO 8601 instant not being a portable filename. The refusal
+            # branch below stays as the backstop for every other bad name.
+            stamp = written_at.replace(":", "")
+            filename = "MANIFEST.%s.run.json" % stamp
             try:
                 write_record(outbox, filename, record)
             except OSError as exc:

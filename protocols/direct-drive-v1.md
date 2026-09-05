@@ -3,7 +3,9 @@
 **Status:** Frozen with ADR-0034 by the merge of batch DD1
 (`6062a21105e890e614ed7a45f589341943c88d6f`, 2026-09-04) · amended by batch
 DD2 (the third review's M-1 and M-3 clauses; §4's `slice_id` clause; §10's
-`substitutions`, command line and exit statuses; two seeds added) · Product:
+`substitutions`, command line and exit statuses; two seeds added; the
+whole-manifest record's portable name and the profile file name, found by
+the build window) · Product:
 Gatebraid (ADR-0010). This document is the contract the dispatcher
 implements and the fixtures in `fixtures/direct-drive/` test. The fixtures
 precede the tool (M3-PLAN §2); a decision this contract does not name is a
@@ -121,7 +123,11 @@ happened; the record says so). A whole-manifest refusal (`DD-R01`, or
 `DD-R02`'s manifest-level half) is recorded too: `name` is `MANIFEST.json`,
 `kind`, `slice_id`, `evidence_dir`, the heads and the lists are null, the
 outcome is `refused` with the code, and the file is
-`_handoff/outbox/MANIFEST.<written_at>.run.json`.
+`_handoff/outbox/MANIFEST.<stamp>.run.json`, where `<stamp>` is the
+manifest's `written_at` with its colons removed (`2026-09-03T00:00:00Z` →
+`2026-09-03T000000Z`; an ISO 8601 instant is not a portable filename, and
+the executor host refuses colons). The record's own `written_at` field, when
+present, keeps the original form.
 
 ## 3. Job kinds and profiles
 
@@ -132,8 +138,11 @@ outcome is `refused` with the code, and the file is
 | `gate2` | `write` | commits on the Slice branch under the lease, field writes the contract names, no push | push; PR creation; any path outside the frozen allowlist (the contract's R1 is the check; the profile is the floor) |
 | `gate3` | `write` | push of the Slice branch, PR creation, `gate3.md`, then HOLD at the merge door; the Exit after the operator's merge is a second `gate3` entry the coordinator lists once the merge is on record — no job spans a door | merge; branch deletion; any second branch |
 
-Profiles are Claude Code settings files under the operator's control, named
-by absolute path in the run record and hashed there. R-min defines the exact
+Profiles are Claude Code settings files under the operator's control, one
+per class, named `<class>.settings.json` (`readonly.settings.json`,
+`evidence.settings.json`, `write.settings.json`) under the profiles
+directory the operator provisioned, and named by absolute path in the run
+record and hashed there. R-min defines the exact
 allow and deny lists of all three; until R-min lands, only the `readonly`
 profile exists, so stages 2–3 of the trial follow R-min or run as its first
 live exercise under R-min's own approval (ADR-0034 decision 9 governs the

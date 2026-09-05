@@ -49,12 +49,12 @@
       }
     }
   },
-  "started_at": "2026-09-04T16:29:38.295528Z",
-  "ended_at": "2026-09-04T16:29:38.797436Z",
+  "started_at": "2026-09-05T00:41:56.567099Z",
+  "ended_at": "2026-09-05T00:41:57.144034Z",
   "inputs": [
     {
       "path": "bin/gatebraid-dispatch.py",
-      "sha256": "d8d32d947781e15c16d36c957080f449a01e2b65a7fe140c962fd787ed5b025e"
+      "sha256": "7e0e6c7c57cf0fd5eeff49944d6935b5d76796d037c8ba3365237cc07451de92"
     },
     {
       "path": "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/003e75dc-b4e9-4ddc-8662-905be274cd53/scratchpad/DD-P1-falsify.json",
@@ -74,5 +74,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Falsification before trust (ADR-0028): a temporary copy of fixtures/direct-drive/DD-P1.json whose expected.decision is set to refuse and expected.code to DD-R05. The dispatcher must disagree with the altered expectation and print MISMATCH, exit 1. Run BEFORE the clean fixture-mode run."
+  "notes": "Falsification before trust (ADR-0028): a temporary copy of fixtures/direct-drive/DD-P1.json whose expected.decision is set to refuse and expected.code to DD-R05. The dispatcher must disagree with the altered expectation and print MISMATCH, exit 1. Run BEFORE the clean fixture-mode run. Re-made for DD2 v2 against the dispatcher that follows contract v2 (portable whole-manifest record name; profile file name fixed by section 3)."
 }
