@@ -15,7 +15,7 @@
       "entries": [
         {
           "name": "DD-13-gate0.md",
-          "sha256": "b5c69e676ba9a14cd09ba1f12efac6a219852a052a054fa45fffce6611e2261f",
+          "sha256": "5da03c39068f58ee37e91370e8de98b915eb2bfd76b3a0f0c569230de31d6eeb",
           "bytes": 439,
           "kind": "gate0",
           "repository": "MianliWang/gatebraid",
@@ -28,7 +28,7 @@
       ]
     },
     "files": {
-      "DD-13-gate0.md": "# GATE 0 DISPATCH (fixture seed) - evidence kind\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Run the Gate 0\ncontract's actions for Slice P9-S1, write gate0.md under the Slice's own\nevidence directory, commit nothing, and STOP. Repository set:\nMianliWang/gatebraid only (the scratch\nclone's path is stage 2's business; the post-run rule is about paths).\n"
+      "DD-13-gate0.md": "# GATE 0 DISPATCH (fixture seed) - evidence kind\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Run the Gate 0\ncontract's actions for Slice P9-S1, write gate0.md under the Slice's own\nevidence directory, commit nothing, and STOP. Repository set: MianliWang/gatebraid\nonly (the scratch clone's path is stage 2's business; the post-run rule is\nabout paths).\n"
     },
     "post_run": {
       "head_before": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00",

@@ -28,7 +28,17 @@
     },
     "files": {
       "DD-11-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n\nThis run {CLOSEWORD} {HASHREF}.\n"
+    },
+    "substitutions": {
+      "{CLOSEWORD}": [
+        "clo",
+        "ses"
+      ],
+      "{HASHREF}": [
+        "#",
+        "17"
+      ]
     }
   },
-  "note": "The runner substitutes {CLOSEWORD} with the lowercase word that GitHub treats as a closing keyword ending in -es (the six-letter one beginning with c) and {HASHREF} with a hash sign followed by 17, then recomputes sha256 and bytes. The committed fixture never carries the pattern."
+  "note": "The committed fixture never carries the pattern: fixture mode joins the parts of each substitution ({CLOSEWORD} becomes the six-letter closing keyword beginning with c; {HASHREF} becomes a hash sign followed by 17), replaces both placeholders in the body, and recomputes the entry's sha256 and bytes before DD-R02 (contract section 10)."
 }
