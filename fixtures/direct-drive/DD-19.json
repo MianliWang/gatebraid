@@ -1,0 +1,34 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-19",
+  "title": "manifest written_at is not a string",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R01"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": 20260905,
+      "entries": [
+        {
+          "name": "DD-19-review.md",
+          "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746",
+          "bytes": 323,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-19-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "written_at is a number, a manifest-shape defect refused at DD-R01. The refusal must still be recorded: fixture mode writes the whole-manifest record into its temporary outbox, named from the dispatcher's own started_at because the manifest's written_at is unusable (contract section 2.2 as amended). A dispatcher that derives the stamp from the non-string value raises instead of recording, which fixture mode reports as got exception/... -> MISMATCH. Added in DD2 v3 for the first review's N-1."
+}

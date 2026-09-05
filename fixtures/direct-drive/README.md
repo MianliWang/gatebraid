@@ -11,7 +11,8 @@ without running anything — and, for a seed with `post_run`, the §2.2 post-run
 rule over the declared states — and prints one line: `<id> expected
 <decision>/<code> got <decision>/<code> -> MATCH | MISMATCH`, exit 0 only
 when every seed matches. Stage 0 of the trial (ADR-0034 decision 9) is that
-exit 0, with each seed's run record retained.
+exit 0, captured once as evidence (fixture mode writes no run record outside
+its temporary directory; the capture is the record).
 
 | id | class | expected |
 |---|---|---|
@@ -34,6 +35,9 @@ exit 0, with each seed's run record retained.
 | DD-16 | host stub without the profile file | refuse DD-R07 |
 | DD-17 | read-only kind carrying a `slice_id` it must not have | refuse DD-R03 |
 | DD-18 | one inbox file named by two manifest entries | refuse DD-R02 (manifest) |
+| DD-19 | manifest `written_at` is not a string; the refusal must still be recorded | refuse DD-R01 (manifest; record written) |
+| DD-20 | every residue class a real dispatch needs (paths with spaces, branches, refs, a ratio, a schema id) | allow — the pass-direction falsifier of `DD-R05`'s whitelist |
+| DD-21 | entry value of the wrong type (`kind` is a number) | refuse DD-R01 (manifest) |
 
 Two seeds (DD-07, DD-11) test patterns that must never appear in a committed
 file, so they carry the pattern in parts under `setup.substitutions` (a

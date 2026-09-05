@@ -5,7 +5,9 @@
 DD2 (the third review's M-1 and M-3 clauses; §4's `slice_id` clause; §10's
 `substitutions`, command line and exit statuses; two seeds added; the
 whole-manifest record's portable name and the profile file name, found by
-the build window) · Product:
+the build window; then, on the first review's findings, §4's value-type
+clause, §8's stage-0 evidence, §9's refusal-record clause, §10's print-only
+status and fixture-mode record writing, and three seeds added) · Product:
 Gatebraid (ADR-0010). This document is the contract the dispatcher
 implements and the fixtures in `fixtures/direct-drive/` test. The fixtures
 precede the tool (M3-PLAN §2); a decision this contract does not name is a
@@ -126,8 +128,10 @@ outcome is `refused` with the code, and the file is
 `_handoff/outbox/MANIFEST.<stamp>.run.json`, where `<stamp>` is the
 manifest's `written_at` with its colons removed (`2026-09-03T00:00:00Z` →
 `2026-09-03T000000Z`; an ISO 8601 instant is not a portable filename, and
-the executor host refuses colons). The record's own `written_at` field, when
-present, keeps the original form.
+the executor host refuses colons). A `written_at` that is not a string is a
+manifest-shape defect (`DD-R01`); the record of that refusal is named from
+the dispatcher's own `started_at` instead, so the refusal is always
+recorded.
 
 ## 3. Job kinds and profiles
 
@@ -156,7 +160,7 @@ The dispatcher evaluates, in this order, and stops at the first failure:
 | code | check | on failure |
 |---|---|---|
 | `DD-R00` | `_handoff/inbox/STOP` absent | halt the dispatcher; record `halted` |
-| `DD-R01` | `MANIFEST.json` parses; `schema` equals `gatebraid/dispatch-manifest@1`; every entry has every required key and no key outside the schema (`slice_id` is a schema key; whether it must be present is `DD-R03`'s rule) | refuse the whole manifest |
+| `DD-R01` | `MANIFEST.json` parses; `schema` equals `gatebraid/dispatch-manifest@1`; `written_at` is a non-empty string; every entry has every required key, no key outside the schema (`slice_id` is a schema key; whether it must be present is `DD-R03`'s rule), and every value of the type §2.1 gives it — a value of the wrong type is a manifest-shape defect, refused here, so that the per-entry rows below always read well-typed values | refuse the whole manifest |
 | `DD-R02` | first, once per manifest: every file in `_handoff/inbox/` other than `MANIFEST.json`, `STOP` and `RUNNING` is named by exactly one entry (ADR-0034 decision 1: anything not in the manifest is refused); then, for the entry: the named file exists; its sha256 and byte count equal the manifest's | an unlisted file, or a file named by two entries: refuse the whole manifest, naming the file; a mismatch: refuse the entry |
 | `DD-R03` | `kind` is a member of the enumeration; `profile` matches the kind's class; `slice_id` is present exactly when the kind is an evidence or write kind, and matches its pattern | refuse the entry |
 | `DD-R04` | `repository` is in the closed set; `cwd`'s `origin` names it | refuse the entry |
@@ -220,8 +224,10 @@ not the bytes that were sent).
 ## 8. Trial stages
 
 ADR-0034 decision 9 governs; this section names the evidence each stage
-commits: stage 0 — one run record per fixture (nineteen), all in fixture
-mode, expected decision matched, nothing run; stage 1 — the replay's run
+commits: stage 0 — one evidence capture (`gatebraid/evidence-capture@1`) of
+fixture mode over every seed, every line `MATCH` and `exit 0` (fixture mode
+writes no run record outside its temporary directory, so the capture is the
+record), plus the two records of §6's kill-switch demonstration; stage 1 — the replay's run
 record, its report, a byte-level comparison table of its verdicts against the
 recorded review's, and the `DD-R07` host seed's run record (a refusal before
 any run; the stage's "zero writes" criterion is a property of the replay and
@@ -231,10 +237,13 @@ which carry their run records by `output_ref`.
 ## 9. Host configuration
 
 The dispatcher's host inputs are: the `claude` executable and its version; the
-settings profiles; `git`, `gh`, `python`. Each is recorded in every run record
-(`claude_version`, `tool_paths`, `profile_path`, `profile_sha256`); the batch
-approval for each trial stage pins the profile sha256 values it expects, and a
-run record carrying another value is a stop-the-line event at audit (§7), of
+settings profiles; `git`, `gh`, `python`. `claude_version` and `tool_paths`
+are measured before any check and carried in every run record, refusal
+records included; `profile_path` and `profile_sha256` are carried in every
+record of an entry that reached `DD-R07` (where the profile is read) and are
+null in a record refused before it. The batch approval for each trial stage
+pins the profile sha256 values it expects, and a run record that reached
+`DD-R07` carrying another value is a stop-the-line event at audit (§7), of
 the same shape as the `dispatch_sha256` mismatch. No host file has normative
 authority; this contract and the dispatch text bind.
 
@@ -252,7 +261,13 @@ A seed carrying `setup.post_run` (`head_before`, `head_after`,
 `porcelain_before`, `porcelain_after`, as the run record would hold them) is
 evaluated one step further: after `DD-R07` passes, the post-run rule of §2.2
 is applied to the declared states and the decision is `completed` (code
-null) or `error` (`DD-R08`). A seed may carry `setup.substitutions`: a map
+null) or `error` (`DD-R08`). Fixture mode takes the same code path as the
+run form up to the run row — including writing every refusal's or halt's run
+record (§2.2) into the temporary directory's own `outbox/`, removed with the
+directory — so that a record the run form could not write is a seed the
+suite catches; an exception anywhere on that path is printed as
+`<id> expected <decision>/<code> got exception/<ExceptionName> -> MISMATCH`
+and counts as a mismatch. A seed may carry `setup.substitutions`: a map
 from a placeholder of the form `{NAME}` to a list of string parts; fixture
 mode joins the parts, replaces every occurrence of the placeholder in every
 inline body, and recomputes each affected entry's `sha256` and `bytes`
@@ -277,10 +292,14 @@ permission bypass, and the tool passes none to the executable it starts.
 
 **Exit status, all modes.** `0`: every seed matched (fixture mode), or every
 admitted entry reached `completed` (run form), or the print-only evaluation
-finished; `1`: any `MISMATCH` (fixture mode), or any refusal, halt, timeout or
-error (run form); `2`: a usage error, an unreadable input, or an I/O failure
-before any evaluation. The status is printed as the last line of output in
-the form `exit <n>` so a transcript states it.
+finished with every entry admitted; `1`: any `MISMATCH` (fixture mode), or
+any refusal, halt, timeout or error (run form and print-only mode); `2`: a
+usage error (an unknown flag, a missing argument, `--help`), an unreadable
+input, or an I/O failure before any evaluation. The status is printed as the
+last line of output in the form `exit <n>` in every case, usage errors
+included, so a transcript states it. An exception inside the run row is an
+`error` outcome with a run record and `exit 1`, never a bare traceback: a job
+that may have started always leaves its record.
 
 **What the source may not contain.** The dispatcher is one file of Python 3
 standard library (ADR-0028: committed, falsified on its seeds, reused). Its
