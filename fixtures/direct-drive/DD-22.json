@@ -1,0 +1,36 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-22",
+  "title": "manifest is a JSON array, not an object (a truthy non-object shape)",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R01"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": [
+      {
+        "schema": "gatebraid/dispatch-manifest@1",
+        "written_at": "2026-09-06T00:00:00Z",
+        "entries": [
+          {
+            "name": "DD-22-review.md",
+            "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746",
+            "bytes": 323,
+            "kind": "review",
+            "repository": "MianliWang/gatebraid",
+            "cwd": "D:/Github repo/Gatebraid",
+            "profile": "readonly",
+            "max_turns": 200,
+            "timeout_seconds": 3600
+          }
+        ]
+      }
+    ],
+    "files": {
+      "DD-22-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "MANIFEST.json parses to a non-empty array wrapping what would otherwise be a sound manifest. DD-R01 refuses it as not a JSON object, and section 2.2 says the refusal is recorded under MANIFEST.<stamp>.run.json with the stamp taken from started_at, because a non-object has no written_at to read. Added in DD2 v5 for the second review's P-1: the record namer guarded only a falsy non-object, so a truthy one raised instead of being recorded. The suite now catches the class; a tool that raises here prints got exception/<Name> -> MISMATCH."
+}

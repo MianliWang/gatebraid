@@ -995,7 +995,7 @@ def manifest_record_name(manifest, started_at):
     and section 2.2 names the record from the dispatcher's own `started_at`
     instead, so a refusal is ALWAYS recorded. This derivation never raises.
     """
-    written_at = (manifest or {}).get("written_at")
+    written_at = manifest.get("written_at") if isinstance(manifest, dict) else None
     if not isinstance(written_at, str) or not written_at:
         written_at = started_at
     return "MANIFEST.%s.run.json" % written_at.replace(":", "")

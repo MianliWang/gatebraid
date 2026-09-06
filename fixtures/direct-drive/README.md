@@ -38,6 +38,7 @@ its temporary directory; the capture is the record).
 | DD-19 | manifest `written_at` is not a string; the refusal must still be recorded | refuse DD-R01 (manifest; record written) |
 | DD-20 | every residue class a real dispatch needs (paths with spaces, branches, refs, a ratio, a schema id) | allow — the pass-direction falsifier of `DD-R05`'s whitelist |
 | DD-21 | entry value of the wrong type (`kind` is a number) | refuse DD-R01 (manifest) |
+| DD-22 | manifest is a JSON array, not an object; the refusal must still be recorded | refuse DD-R01 (manifest; record written) |
 
 Two seeds (DD-07, DD-11) test patterns that must never appear in a committed
 file, so they carry the pattern in parts under `setup.substitutions` (a

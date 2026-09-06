@@ -13,7 +13,7 @@
       "-B",
       "bin/gatebraid-dispatch.py",
       "--fixture",
-      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/f13607bd-2220-4b26-88f7-193aefc08e93/scratchpad/DD-P1-falsify.json"
+      "C:/Windows/Temp/gb-dd2v5/DD-P1-falsify.json"
     ],
     "cwd": {
       "path": "D:/Github repo/Gatebraid",
@@ -49,15 +49,15 @@
       }
     }
   },
-  "started_at": "2026-09-06T06:39:03.182401Z",
-  "ended_at": "2026-09-06T06:39:03.763912Z",
+  "started_at": "2026-09-06T14:42:09.237846Z",
+  "ended_at": "2026-09-06T14:42:09.831941Z",
   "inputs": [
     {
       "path": "bin/gatebraid-dispatch.py",
-      "sha256": "df4f68ccea1c32de79daf9e6c97969fa3f611385d6fd6c116d1b0abe329dea59"
+      "sha256": "9cc9074551e94be13537cdd151a810f570381d5efdacfe4ff8e236c061e350a6"
     },
     {
-      "path": "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/f13607bd-2220-4b26-88f7-193aefc08e93/scratchpad/DD-P1-falsify.json",
+      "path": "C:/Windows/Temp/gb-dd2v5/DD-P1-falsify.json",
       "sha256": "b30b500350cf76acf3945bedfabe5e701788a762c4dd32f60189d02b51660911"
     }
   ],
@@ -74,5 +74,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Falsification before trust (ADR-0028): a temporary copy of fixtures/direct-drive/DD-P1.json whose expected.decision is set to refuse and expected.code to DD-R05. The dispatcher must disagree with the altered expectation and print MISMATCH, exit 1. Run BEFORE the clean fixture-mode run. Re-made for DD2 v4 against the dispatcher carrying contract section 2.2's reason key: every run record the tool writes carries reason, and on the section 10 exception path refusal is null with the exception's class name in reason."
+  "notes": "Falsification before trust (ADR-0028): a temporary copy of fixtures/direct-drive/DD-P1.json whose expected.decision is set to refuse and expected.code to DD-R05. The dispatcher must disagree with the altered expectation and print MISMATCH, exit 1. Run BEFORE the clean fixture-mode run. Re-made for DD2 v5 against the dispatcher whose whole-manifest record namer guards a non-object manifest, so a manifest parsing to a truthy non-object is refused as DD-R01 and the refusal is recorded rather than raising."
 }
