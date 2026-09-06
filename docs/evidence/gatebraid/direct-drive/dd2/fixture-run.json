@@ -70,12 +70,12 @@
       }
     }
   },
-  "started_at": "2026-09-05T20:08:50.104805Z",
-  "ended_at": "2026-09-05T20:08:52.991609Z",
+  "started_at": "2026-09-06T06:39:12.999181Z",
+  "ended_at": "2026-09-06T06:39:14.504490Z",
   "inputs": [
     {
       "path": "bin/gatebraid-dispatch.py",
-      "sha256": "3d35626d42986a2a56d4c7501b7783a0700c5c7048b4b27a8d8b8e637851888f"
+      "sha256": "df4f68ccea1c32de79daf9e6c97969fa3f611385d6fd6c116d1b0abe329dea59"
     }
   ],
   "outputs": [],
@@ -91,5 +91,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Fixture mode over all twenty-two seeds in id order, after the falsification capture DD2-falsification proved the runner can disagree. Twenty-two MATCH lines, exit 0. Nothing is run: contract section 10. Re-made for DD2 v3 against the dispatcher corrected on the first independent review's N-1, N-2, N-3, N-5, N-11, N-12; DD-19 exercises the whole-manifest record writer through fixture mode's own temporary outbox and DD-20 is the pass-direction falsifier of the DD-R05 residue whitelist."
+  "notes": "Fixture mode over all twenty-two seeds in id order, after the falsification capture DD2-falsification proved the runner can disagree. Twenty-two MATCH lines, exit 0. Nothing is run: contract section 10. Re-made for DD2 v4 against the dispatcher carrying contract section 2.2's reason key, and over DD-20 reflowed so that no line break precedes a slash-bearing token; DD-19 still exercises the whole-manifest record writer through fixture mode's own temporary outbox and DD-20 is still the pass-direction falsifier of the DD-R05 residue whitelist."
 }

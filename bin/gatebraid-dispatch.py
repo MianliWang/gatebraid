@@ -767,7 +767,7 @@ def evaluate_seed(seed, host):
             record = run_record("MANIFEST.json", None, manifest_sha, None,
                                 started_at, utc_now(),
                                 "halted" if decision.decision == "halt" else "refused",
-                                decision.code, {}, host)
+                                decision.code, {}, host, reason=decision.reason)
             write_record(outbox, manifest_record_name(manifest, started_at), record)
             return decision
         admitted_entry = None
@@ -776,7 +776,7 @@ def evaluate_seed(seed, host):
             if decision.decision != ALLOW:
                 record = run_record(entry["name"], entry, manifest_sha, None,
                                     utc_now(), utc_now(), "refused", decision.code,
-                                    {}, host)
+                                    {}, host, reason=decision.reason)
                 write_record(outbox, "%s.run.json" % entry["name"], record)
                 return decision
             if admitted_entry is None:
@@ -917,7 +917,7 @@ def dispatcher_version():
 
 
 def run_record(name, entry, manifest_sha, admitted, started_at, ended_at,
-               outcome, refusal, extras, host=None):
+               outcome, refusal, extras, host=None, reason=None):
     """Section 2.2's gatebraid/dispatch-run@1.
 
     Section 9: `claude_version` and `tool_paths` are measured before any check
@@ -925,6 +925,26 @@ def run_record(name, entry, manifest_sha, admitted, started_at, ended_at,
     they are taken from `host` here rather than from the caller's extras.
     `profile_path` and `profile_sha256` come from `admitted` and stay null in a
     record refused before `DD-R07`, which is where the profile is read.
+
+    Section 2.2's `reason` is one line or null and is carried by EVERY record:
+    the refusing check's message, or for an `error` the exception's class name
+    or the moved path or head. It stays null for a `completed` run. `refusal`
+    holds a `DD-Rnn` code or null and never a class name, so the two fields
+    keep the annotations section 2.2 gives them.
+
+    What this field is NOT is pre-scanned, and a reader must not copy it
+    onward as though it were. Three classes of message name a value the
+    caller supplied: `DD-R01` joins the manifest's or the entry's own key
+    names, which are read from JSON and constrained by nothing; `DD-R02`'s
+    manifest half names the inbox file, which section 4's table instructs
+    ("naming the file") and which is read from disk and matched against no
+    pattern; `DD-R08`'s evidence limb names the paths a job changed, which is
+    the moved path section 2.2 asks for. Any of those can therefore carry a
+    token the scans of `DD-R05` would themselves refuse. Only the checks that
+    find a repository identity, an owner/name token, a closing keyword or an
+    origin URL are defused at their source (ADR-0028 section 3): those report
+    a count and a first line number and say so, never the value. The section
+    10 exception path carries the class name only, never the exception's text.
     """
     entry = entry or {}
     kind = entry.get("kind")
@@ -952,6 +972,7 @@ def run_record(name, entry, manifest_sha, admitted, started_at, ended_at,
         "ended_at": ended_at,
         "outcome": outcome,
         "refusal": refusal,
+        "reason": reason,
         "exit_status": None,
         "command": None,
         "environment": None,
@@ -1007,6 +1028,7 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
     porcelain_after = None
     outcome = "completed"
     refusal = None
+    reason = None
     exit_status = None
     stdout_bytes = b""
     stderr_bytes = b""
@@ -1024,11 +1046,14 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
                 if (Path(inbox) / "STOP").exists():
                     stop_the_job(process)
                     outcome, refusal = "halted", "DD-R00"
+                    reason = "the STOP file appeared during the run"
                     exit_status = process.poll()
                     break
                 if time.monotonic() > deadline:
                     stop_the_job(process)
                     outcome = "timeout"
+                    reason = ("the run passed its timeout_seconds of %d"
+                              % entry["timeout_seconds"])
                     exit_status = process.poll()
                     break
                 time.sleep(STOP_POLL_SECONDS)
@@ -1049,8 +1074,9 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
                 ("porcelain_after", porcelain_after)) if value is None]
             if unmeasured:
                 outcome, refusal = "error", "DD-R08"
-                say("error DD-R08 git did not report %d state(s) around the run: %s"
-                    % (len(unmeasured), ", ".join(unmeasured)))
+                reason = ("git did not report %d state(s) around the run: %s"
+                          % (len(unmeasured), ", ".join(unmeasured)))
+                say("error DD-R08 " + reason)
             else:
                 verdict = apply_post_run_rule(
                     entry["kind"], entry.get("slice_id"),
@@ -1059,13 +1085,18 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
                      "porcelain_after": porcelain_after})
                 if verdict.decision == "error":
                     outcome, refusal = "error", verdict.code
+                    reason = verdict.reason
                     verdict.announce()
     except Exception as error:  # section 10: a job that may have started
-        # always leaves its record, never a bare traceback; the exception's
-        # class name stands in the record's reason where a code would.
-        outcome, refusal = "error", error.__class__.__name__
+        # always leaves its record, never a bare traceback. Section 2.2 v4:
+        # the class name is the record's `reason`; `refusal` stays null,
+        # because this is not a DD-Rnn refusal and that field admits no other
+        # value. The message is the class name only - never the exception's
+        # text, which could quote what the scans exist to keep out of a record.
+        outcome, refusal = "error", None
+        reason = error.__class__.__name__
         say("error %s an exception stopped the run row after the job may have "
-            "started" % refusal)
+            "started" % reason)
     finally:
         if running.exists():
             running.unlink()
@@ -1079,7 +1110,7 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
          "environment": declared_environment(env),
          "stdout_sha256": sha256_hex(stdout_bytes),
          "stderr_sha256": sha256_hex(stderr_bytes)},
-        host)
+        host, reason=reason)
     write_record(outbox, "%s.run.json" % entry["name"], record)
     say("%s outcome %s" % (entry["name"], outcome))
     return outcome
@@ -1102,7 +1133,7 @@ def real_inbox_mode(args, host, print_only):
             record = run_record("MANIFEST.json", None, manifest_sha, None,
                                 started_at, utc_now(),
                                 "halted" if decision.decision == "halt" else "refused",
-                                decision.code, {}, host)
+                                decision.code, {}, host, reason=decision.reason)
             # Section 2.2, through the shared derivation above. The refusal
             # branch below stays as the backstop for every other bad name.
             filename = manifest_record_name(manifest, started_at)
@@ -1124,7 +1155,7 @@ def real_inbox_mode(args, host, print_only):
             if not print_only:
                 record = run_record(entry["name"], entry, manifest_sha, None,
                                     utc_now(), utc_now(), "refused", verdict.code,
-                                    {}, host)
+                                    {}, host, reason=verdict.reason)
                 write_record(outbox, "%s.run.json" % entry["name"], record)
             break
         if print_only:

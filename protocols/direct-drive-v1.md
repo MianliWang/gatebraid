@@ -7,7 +7,8 @@ DD2 (the third review's M-1 and M-3 clauses; §4's `slice_id` clause; §10's
 whole-manifest record's portable name and the profile file name, found by
 the build window; then, on the first review's findings, §4's value-type
 clause, §8's stage-0 evidence, §9's refusal-record clause, §10's print-only
-status and fixture-mode record writing, and three seeds added) · Product:
+status and fixture-mode record writing, and three seeds added; the run
+record's `reason` key) · Product:
 Gatebraid (ADR-0010). This document is the contract the dispatcher
 implements and the fixtures in `fixtures/direct-drive/` test. The fixtures
 precede the tool (M3-PLAN §2); a decision this contract does not name is a
@@ -99,6 +100,7 @@ The executor's own report goes wherever the dispatch text directs (today
   "ended_at": "<ISO8601 UTC>",
   "outcome": "completed | refused | halted | timeout | error",
   "refusal": "<DD-Rnn or null>",
+  "reason": "<one line, or null: the refusing check's message; for an error, the exception's class name or the moved path or head>",
   "exit_status": 0,
   "command": ["claude", "-p", "...", "--output-format", "json"],
   "environment": {"GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid", "PYTHONDONTWRITEBYTECODE": "1"},
@@ -299,7 +301,9 @@ input, or an I/O failure before any evaluation. The status is printed as the
 last line of output in the form `exit <n>` in every case, usage errors
 included, so a transcript states it. An exception inside the run row is an
 `error` outcome with a run record and `exit 1`, never a bare traceback: a job
-that may have started always leaves its record.
+that may have started always leaves its record; `refusal` stays null for
+an error that is not a `DD-R08`, and `reason` carries the exception's class
+name.
 
 **What the source may not contain.** The dispatcher is one file of Python 3
 standard library (ADR-0028: committed, falsified on its seeds, reused). Its

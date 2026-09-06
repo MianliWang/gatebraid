@@ -13,7 +13,7 @@
       "-B",
       "bin/gatebraid-dispatch.py",
       "--fixture",
-      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/5f2dcf54-91b8-4998-8101-d15b58a34e26/scratchpad/DD-P1-falsify.json"
+      "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/f13607bd-2220-4b26-88f7-193aefc08e93/scratchpad/DD-P1-falsify.json"
     ],
     "cwd": {
       "path": "D:/Github repo/Gatebraid",
@@ -49,15 +49,15 @@
       }
     }
   },
-  "started_at": "2026-09-05T20:08:30.228945Z",
-  "ended_at": "2026-09-05T20:08:31.131212Z",
+  "started_at": "2026-09-06T06:39:03.182401Z",
+  "ended_at": "2026-09-06T06:39:03.763912Z",
   "inputs": [
     {
       "path": "bin/gatebraid-dispatch.py",
-      "sha256": "3d35626d42986a2a56d4c7501b7783a0700c5c7048b4b27a8d8b8e637851888f"
+      "sha256": "df4f68ccea1c32de79daf9e6c97969fa3f611385d6fd6c116d1b0abe329dea59"
     },
     {
-      "path": "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/5f2dcf54-91b8-4998-8101-d15b58a34e26/scratchpad/DD-P1-falsify.json",
+      "path": "C:/Users/rough/AppData/Local/Temp/claude/d--Github-repo-Gatebraid/f13607bd-2220-4b26-88f7-193aefc08e93/scratchpad/DD-P1-falsify.json",
       "sha256": "b30b500350cf76acf3945bedfabe5e701788a762c4dd32f60189d02b51660911"
     }
   ],
@@ -74,5 +74,5 @@
     },
     "binary_mode_write": true
   },
-  "notes": "Falsification before trust (ADR-0028): a temporary copy of fixtures/direct-drive/DD-P1.json whose expected.decision is set to refuse and expected.code to DD-R05. The dispatcher must disagree with the altered expectation and print MISMATCH, exit 1. Run BEFORE the clean fixture-mode run. Re-made for DD2 v3 against the dispatcher corrected on the first independent review's N-1, N-2, N-3, N-5, N-11, N-12 and on contract section 10 v3 (fixture mode writes refusal records into its own temporary outbox)."
+  "notes": "Falsification before trust (ADR-0028): a temporary copy of fixtures/direct-drive/DD-P1.json whose expected.decision is set to refuse and expected.code to DD-R05. The dispatcher must disagree with the altered expectation and print MISMATCH, exit 1. Run BEFORE the clean fixture-mode run. Re-made for DD2 v4 against the dispatcher carrying contract section 2.2's reason key: every run record the tool writes carries reason, and on the section 10 exception path refusal is null with the exception's class name in reason."
 }
