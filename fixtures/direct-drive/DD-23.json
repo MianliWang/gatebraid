@@ -1,0 +1,34 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-23",
+  "title": "manifest written_at is a non-empty string of the wrong shape (slashes where the dashes belong); the refusal must still be recorded, in the outbox",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R01"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026/09/07T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-23-review.md",
+          "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746",
+          "bytes": 323,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-23-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "written_at is a non-empty string, so the DD2 tool admitted it at DD-R01 and then joined it into the record's file name as a path with separators (the third DD2 review's Q-1: the write raised, or with parent segments landed above the outbox). Section 2.1 now fixes the exact shape YYYY-MM-DDThh:mm:ssZ; a string of any other shape is a manifest-shape defect refused at DD-R01, recorded under MANIFEST.<started_at stamp>.run.json in the outbox. Added in the stage-0 batch. Against the DD2 tool this seed is allow/null; against the cured tool it is refuse/DD-R01."
+}

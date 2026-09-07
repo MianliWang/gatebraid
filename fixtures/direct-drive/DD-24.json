@@ -1,0 +1,34 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-24",
+  "title": "dispatch text carrying two ordinary prose pairs joined by a slash (I/O; before/after), which the closed-set scan must admit as exact allowlisted strings",
+  "expected": {
+    "decision": "allow",
+    "code": null
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-07T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-24-review.md",
+          "sha256": "18bf5a63b7ba09d3f78056b4f167db6403f8e49b71a17a9f0396b175f8feec7d",
+          "bytes": 433,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-24-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay, prose pairs\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Compare the porcelain\nbefore/after the run and report any I/O error you meet as a measured fact.\nPerform the R1-R5 review the gate-2 contract defines, write one report under\n_handoff/, and STOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "The second and third DD2 reviews measured (P-4) that the tool's DD-R05 closed-set scan refused ordinary prose pairs such as I/O, so a real dispatch body containing one would refuse. The cure is the committed sweep instruments' discipline: an allowlist of EXACT strings stated in the source with a reason each, never a leading-segment rule. This seed is the pass-direction falsifier of that allowlist; DD-03 stays the fail direction. Added in the stage-0 batch. Against the DD2 tool this seed is refuse/DD-R05; against the cured tool it is allow/null. The two slash tokens in this committed file are the same prose-pair class under the frozen P2-S5 sweep instrument, which is evidence and is not edited."
+}

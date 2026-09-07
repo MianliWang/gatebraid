@@ -10,9 +10,11 @@ temporary inbox and profile directory, evaluates the contract's §4 against it
 without running anything — and, for a seed with `post_run`, the §2.2 post-run
 rule over the declared states — and prints one line: `<id> expected
 <decision>/<code> got <decision>/<code> -> MATCH | MISMATCH`, exit 0 only
-when every seed matches. Stage 0 of the trial (ADR-0034 decision 9) is that
-exit 0, captured once as evidence (fixture mode writes no run record outside
-its temporary directory; the capture is the record).
+when every seed matches. Stage 0 of the trial (ADR-0034 decision 9) runs
+nothing: its evidence is that exit 0, captured once (fixture mode writes no
+run record outside its temporary directory; the capture is the record), plus
+print-only mode over the trusted seed DD-P1's inbox on the real host, once
+with `STOP` present and once without (contract §6 and §8).
 
 | id | class | expected |
 |---|---|---|
@@ -39,8 +41,15 @@ its temporary directory; the capture is the record).
 | DD-20 | every residue class a real dispatch needs (paths with spaces, branches, refs, a ratio, a schema id) | allow — the pass-direction falsifier of `DD-R05`'s whitelist |
 | DD-21 | entry value of the wrong type (`kind` is a number) | refuse DD-R01 (manifest) |
 | DD-22 | manifest is a JSON array, not an object; the refusal must still be recorded | refuse DD-R01 (manifest; record written) |
+| DD-23 | manifest `written_at` is a string of the wrong shape (slashes); the refusal must still be recorded, in the outbox | refuse DD-R01 (manifest; record written) |
+| DD-24 | dispatch text carrying two ordinary prose pairs (`I/O`, `before/after`) | allow — the pass-direction falsifier of the exact-string prose-pair allowlist |
+| DD-25 | entry name that is one segment plus a trailing newline | refuse DD-R01 (manifest) |
 
-Two seeds (DD-07, DD-11) test patterns that must never appear in a committed
+One seed (DD-24) carries two prose pairs joined by a slash in its committed
+bytes; they are the class the tool's exact-string allowlist admits (contract
+§4, `DD-R05`) and the frozen P2-S5 sweep instrument, which is evidence and is
+not edited, reports them as residue of that class. Two seeds (DD-07, DD-11)
+test patterns that must never appear in a committed
 file, so they carry the pattern in parts under `setup.substitutions` (a
 placeholder mapped to a list of parts); fixture mode joins the parts,
 replaces the placeholder in every inline body, and recomputes the entry's
