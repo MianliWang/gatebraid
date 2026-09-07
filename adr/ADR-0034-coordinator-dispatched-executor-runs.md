@@ -1,13 +1,16 @@
 # ADR-0034 — Coordinator-dispatched executor runs: the operator stops being the transport
 
-**Status:** Proposed · M3 (drafted 2026-09-03 by the coordinator; corrected
-twice on 2026-09-04 on the findings of the batch's two independent read-only
-reviews — untracked working files under `_handoff/batch-dd1/`, identified by
-their self-measured regions `ab65eea47f4781d2962186ca7125527e5fe901c839a14278ed6892f6e4b71db2`
-and `22b0117257667880e13c743226218a1dff17bcefdf4e79dea8da4004f2d13c0a`, whose
-findings this text now carries; ratified only by the operator's
-Batch Approval for DD1 after an independent read-only review of the
-corrected text) · Product: Gatebraid (ADR-0010)
+**Status:** Accepted · M3 (drafted 2026-09-03 by the coordinator; corrected
+twice on 2026-09-04 on the findings of batch DD1's first two independent
+read-only reviews and admitted by the third — untracked working files under
+`_handoff/batch-dd1/`, identified by their self-measured regions
+`ab65eea47f4781d2962186ca7125527e5fe901c839a14278ed6892f6e4b71db2`,
+`22b0117257667880e13c743226218a1dff17bcefdf4e79dea8da4004f2d13c0a` and
+`6e75aea6e17b361246071d68ceb3b149d2471847691a8c270fa8b932a4df710f`, whose
+findings this text carries; ratified by the operator's Batch Approval
+`5538975568` on PR #22 and the merge `6062a21105e890e614ed7a45f589341943c88d6f`,
+2026-09-04; this Status line and decision 5's one clause were edited by batch
+DD2, the dispatcher's own batch) · Product: Gatebraid (ADR-0010)
 **Amends:** ADR-0015's reopening condition *"before any unattended or scheduled
 execution"* is executed here, narrowly, for the first time — see decision 8;
 ADR-0015 decisions 1–4 stand unchanged. ADR-0020's Consequences anticipate a
@@ -125,8 +128,10 @@ in the host's Claude Code settings profile for that kind's class, whose sha256
 the run record carries: read-only kinds (Review, consult preparation) get a
 read-only tool set; evidence kinds (Entry, Gate 0, Gate 1) get a set that
 writes only under the Slice's own evidence directory and never commits —
-the Gate 0 and Gate 1 contracts write their evidence file at Exit and the
-record rides onto the Slice branch under the Gate 2 lease; write kinds
+the Gate 0 and Gate 1 contracts write their evidence file at Exit and, as
+their Exits direct and as M3 practice does, commit nothing (their Prohibited
+sections permit the commit without requiring it; the profile denies it), the
+record riding onto the Slice branch under the Gate 2 lease; write kinds
 (Gate 2 under lease, Gate 3) get the allowlist R-min defines. The dispatcher
 measures the head and the porcelain list before and after every run and
 records, for a read-only kind, that nothing changed, and for an evidence

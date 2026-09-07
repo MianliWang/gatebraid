@@ -1,0 +1,35 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-17",
+  "title": "read-only kind (review) carrying a slice_id it must not have",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R03"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-04T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-17-review.md",
+          "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746",
+          "bytes": 323,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600,
+          "slice_id": "P9-S1"
+        }
+      ]
+    },
+    "files": {
+      "DD-17-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "slice_id is a schema key, so DD-R01's unknown-key check passes; DD-R03 owns the presence rule (present exactly when the kind is an evidence or write kind) and refuses a read-only entry that carries it. Added in DD2 to settle the ownership the third review's M-7 left open."
+}

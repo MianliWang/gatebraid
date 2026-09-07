@@ -1,7 +1,7 @@
 {
   "schema": "gatebraid/dispatch-fixture@1",
   "id": "DD-05",
-  "title": "kind is a write kind but the profile is readonly",
+  "title": "write kind (gate2) with a valid slice_id but the readonly profile",
   "expected": {
     "decision": "refuse",
     "code": "DD-R03"
@@ -22,12 +22,14 @@
           "cwd": "D:/Github repo/Gatebraid",
           "profile": "readonly",
           "max_turns": 200,
-          "timeout_seconds": 3600
+          "timeout_seconds": 3600,
+          "slice_id": "P9-S1"
         }
       ]
     },
     "files": {
       "DD-05-gate2.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
     }
-  }
+  },
+  "note": "slice_id is present and valid for a write kind, so DD-R03's slice_id limb passes; the only failing limb is the profile class (readonly for a write kind). Added in DD2 so this seed isolates the profile-mismatch limb (third review, M-2)."
 }

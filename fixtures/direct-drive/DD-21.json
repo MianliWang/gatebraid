@@ -1,0 +1,34 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-21",
+  "title": "entry value of the wrong type (kind is a number)",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R01"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-05T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-21-review.md",
+          "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746",
+          "bytes": 323,
+          "kind": 5,
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-21-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "kind is 5, not a string: a value of the wrong type is a manifest-shape defect refused at DD-R01 (contract section 4 as amended), so the per-entry rows DD-R02..DD-R04 only ever read well-typed values. Added in DD2 v3 to settle the ownership the first review's N-4 left open, as DD-17 settled presence."
+}

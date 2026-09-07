@@ -1,0 +1,34 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-20",
+  "title": "dispatch text carrying every residue class a real dispatch needs: a clone path with a space, a program path with a space, a Slice branch, a batch branch, a tracking ref, a full ref, a numeric ratio, a schema id",
+  "expected": {
+    "decision": "allow",
+    "code": null
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-05T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-20-review.md",
+          "sha256": "a091b583c8723274e53bacba1b9a0b49b94e692161921dd923dc2fd5f83afff1",
+          "bytes": 651,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-20-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay, residue classes\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. The clone is D:/Github repo/Gatebraid\non this host and git lives under D:/Program Files/Git/etc/gitconfig; the\nSlice branch is slice/P9-S1, the batch branch is batch/dd2, the tracking\nref is origin/main, the full ref is refs/heads/main; the ratio of passes\nwas 10/10 and the schema is gatebraid/dispatch-run@1. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "The pass-direction falsifier for DD-R05's closed-set scan: every owner/name-shaped token in this body is a filesystem segment after a space (repo/Gatebraid, Files/Git), a git branch or ref (slice/P9-S1, batch/dd2, origin/main, refs/heads/main), a numeric ratio (10/10) or a schema id, and the only repository identity is the permitted one. A whitelist that refuses any of these refuses the contract's own example cwd (section 2.1) and every write kind's own branch. Added in DD2 v3 for the first review's N-3. Reflowed in DD2 v4 so that no line break precedes a slash-bearing token (the JSON escape artefact the third DD1 review's M-4 named)."
+}
