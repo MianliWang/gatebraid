@@ -1,0 +1,89 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage0-print-only-admit",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/msys64/mingw64/bin/python.exe",
+      "-B",
+      "bin/gatebraid-dispatch.py",
+      "--print-only",
+      "--inbox",
+      "C:/Windows/Temp/gb-stage0/inbox",
+      "--outbox",
+      "C:/Windows/Temp/gb-stage0/outbox"
+    ],
+    "cwd": {
+      "path": "D:/Github repo/Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 481,
+      "sha256": "4f111fb581676c7873b019177f155c336fda81597f9924e85e297bf23b6942af",
+      "data": "WyJjbGF1ZGUiLCAiLXAiLCAiIyBSRVZJRVcgRElTUEFUQ0ggKGZpeHR1cmUgc2VlZCkgLSByZWFkLW9ubHkgcmVwbGF5XG5cbllvdSBhcmUgYSBmcmVzaCBoZWFkbGVzcyBjb250ZXh0IGluIHRoZSBjb250cm9sIHJlcG9zaXRvcnkuIFZlcmlmeSBhYm91dFxueW91cnNlbGY6IHlvdSBob2xkIG5vIFdyaXRlciBMZWFzZTsgcG9yY2VsYWluIGlzIGVtcHR5LiBQZXJmb3JtIHRoZSBSMS1SNVxucmV2aWV3IHRoZSBnYXRlLTIgY29udHJhY3QgZGVmaW5lcywgd3JpdGUgb25lIHJlcG9ydCB1bmRlciBfaGFuZG9mZi8sIGFuZFxuU1RPUC4gUmVwb3NpdG9yeSBzZXQ6IE1pYW5saVdhbmcvZ2F0ZWJyYWlkIG9ubHkuXG4iLCAiLS1vdXRwdXQtZm9ybWF0IiwgImpzb24iLCAiLS1tYXgtdHVybnMiLCAiMjAwIiwgIi0tc2V0dGluZ3MiLCAiQzovVXNlcnMvcm91Z2gvLmdhdGVicmFpZC9wcm9maWxlcy9yZWFkb25seS5zZXR0aW5ncy5qc29uIl0KZXhpdCAwCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "[\"claude\", \"-p\", \"# REVIEW DISPATCH (fixture seed) - read-only replay\\n\\nYou are a fresh headless context in the control repository. Verify about\\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\\nreview the gate-2 contract defines, write one report under _handoff/, and\\nSTOP. Repository set: MianliWang/gatebraid only.\\n\", \"--output-format\", \"json\", \"--max-turns\", \"200\", \"--settings\", \"C:/Users/rough/.gatebraid/profiles/readonly.settings.json\"]\nexit 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-07T07:50:16.428386Z",
+  "ended_at": "2026-09-07T07:50:17.071792Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-dispatch.py",
+      "sha256": "4de9fc8a6f83be13c53f123aef9fc4e3303a4755914eeecac451a674a7d9e257"
+    },
+    {
+      "path": "C:/Windows/Temp/gb-stage0/inbox/MANIFEST.json",
+      "sha256": "104020b897162929467a9fea479a8ad575eb5f39e384dc392a60f2512ccbf64c"
+    },
+    {
+      "path": "C:/Windows/Temp/gb-stage0/inbox/DD-P1-review.md",
+      "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746"
+    },
+    {
+      "path": "C:/Users/rough/.gatebraid/profiles/readonly.settings.json",
+      "sha256": "df73e1c18d988b0cf83cd449f22fcc9d67c0e03ea4b6b5bb47a2c72c52feacab"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Trial stage 0, contract sections 8 and 10: PRINT-ONLY mode over the same real inbox as stage0-print-only-stop with STOP removed, on the real host. The dispatcher evaluates DD-R00 through DD-R07 against real state - the closed set and the cwd origin measured live, the real profile file resolved and hashed at DD-R07, the claude executable and git, gh and python resolved - admits the entry, PRINTS the command it would run as one JSON array, and writes nothing at all: no run record, no RUNNING file, no stdout or stderr file. Exit 0. The profile file is pinned as an input of this capture; the Batch Approval pins its sha256 per contract section 9. The outbox C:/Windows/Temp/gb-stage0/outbox was listed immediately before this capture and immediately after: empty both times. NOTHING RUNS - the printed array is what the run form WOULD start, and stage 0 starts no executable in any mode."
+}

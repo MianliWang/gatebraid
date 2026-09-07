@@ -1,0 +1,89 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage0-print-only-stop",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/msys64/mingw64/bin/python.exe",
+      "-B",
+      "bin/gatebraid-dispatch.py",
+      "--print-only",
+      "--inbox",
+      "C:/Windows/Temp/gb-stage0/inbox",
+      "--outbox",
+      "C:/Windows/Temp/gb-stage0/outbox"
+    ],
+    "cwd": {
+      "path": "D:/Github repo/Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 59,
+      "sha256": "6b13074dfa568193825bc669a6aa39dc806a5c062ea6484fc63e35dd3e1f4eee",
+      "data": "aGFsdGVkIERELVIwMCB0aGUgU1RPUCBmaWxlIGlzIHByZXNlbnQgaW4gdGhlIGluYm94CmV4aXQgMQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "halted DD-R00 the STOP file is present in the inbox\nexit 1\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-07T07:49:44.840410Z",
+  "ended_at": "2026-09-07T07:49:45.373395Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-dispatch.py",
+      "sha256": "4de9fc8a6f83be13c53f123aef9fc4e3303a4755914eeecac451a674a7d9e257"
+    },
+    {
+      "path": "C:/Windows/Temp/gb-stage0/inbox/MANIFEST.json",
+      "sha256": "104020b897162929467a9fea479a8ad575eb5f39e384dc392a60f2512ccbf64c"
+    },
+    {
+      "path": "C:/Windows/Temp/gb-stage0/inbox/DD-P1-review.md",
+      "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746"
+    },
+    {
+      "path": "C:/Windows/Temp/gb-stage0/inbox/STOP",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Trial stage 0, contract sections 6 and 8: the kill switch in PRINT-ONLY mode on the real host. The trusted seed DD-P1 is materialised as a real inbox OUTSIDE EVERY REPOSITORY (C:/Windows/Temp/gb-stage0/inbox, where git rev-parse --show-toplevel fails; the user profile directory on this host is itself a repository, so the platform default temporary directory and the session scratchpad are not outside): MANIFEST.json is the seed's setup.manifest serialised with indent 2 and one trailing LF, DD-P1-review.md is the seed's body bytes, and STOP is present and empty. The profiles directory is the tool default. DD-R00 must halt the dispatcher before any other check, print halted DD-R00 and exit 1, and write nothing at all - not even a run record, which print-only mode never writes. The outbox C:/Windows/Temp/gb-stage0/outbox was created empty and was listed immediately before this capture: empty. It is listed again immediately after: empty. No RUNNING file is created in the inbox. Nothing is run: stage 0 starts no executable in any mode."
+}
