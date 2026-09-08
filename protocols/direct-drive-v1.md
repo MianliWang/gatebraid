@@ -8,7 +8,11 @@ whole-manifest record's portable name and the profile file name, found by
 the build window; then, on the first review's findings, §4's value-type
 clause, §8's stage-0 evidence, §9's refusal-record clause, §10's print-only
 status and fixture-mode record writing, and three seeds added; the run
-record's `reason` key) · Product:
+record's `reason` key) · amended by the stage-0 batch (§2.1's `written_at`
+shape and the one-segment stamp; §2.2's `environment`, `reason` and
+retention clauses; §3's measured scratch rule; §4's `DD-R05` prose-pair
+allowlist and `DD-R08` unmeasured-state clause; §6 and §8 aligned with
+ADR-0034 decision 9 — stage 0 runs nothing; three seeds added) · Product:
 Gatebraid (ADR-0010). This document is the contract the dispatcher
 implements and the fixtures in `fixtures/direct-drive/` test. The fixtures
 precede the tool (M3-PLAN §2); a decision this contract does not name is a
@@ -51,7 +55,7 @@ The executor's own report goes wherever the dispatch text directs (today
 ```json
 {
   "schema": "gatebraid/dispatch-manifest@1",
-  "written_at": "<ISO8601 UTC>",
+  "written_at": "<ISO 8601 UTC instant, exactly YYYY-MM-DDThh:mm:ssZ>",
   "entries": [
     {
       "name": "REVIEW-DISPATCH-P2S6-G2-REPLAY.md",
@@ -68,7 +72,8 @@ The executor's own report goes wherever the dispatch text directs (today
 }
 ```
 
-- `name`: exactly one path segment matching `^[A-Za-z0-9][A-Za-z0-9._-]{0,127}\.md$`; must exist under `_handoff/inbox/`.
+- `written_at`: a string of exactly the shape `YYYY-MM-DDThh:mm:ssZ` (digits, the literal `T` and `Z`, colons between the time fields; nothing before or after it); any other value is a manifest-shape defect (`DD-R01`).
+- `name`: exactly one path segment matching `[A-Za-z0-9][A-Za-z0-9._-]{0,127}\.md` as the WHOLE string (anchored at both ends of the value, so a trailing newline is not admitted); must exist under `_handoff/inbox/`.
 - `sha256`, `bytes`: the file's whole-file values; both must equal the file as read.
 - `kind`: one of three classes — **read-only kinds** `review`, `consult-prep` (nothing inside the repository changes); **evidence kinds** `entry`, `gate0`, `gate1` (the working tree may change only under the Slice's own evidence directory, `docs/evidence/gatebraid/<slice_id>/`, and nothing is committed — the Gate 0 and Gate 1 contracts write their evidence file at Exit and, as their Exits direct and as M3 practice does, commit nothing (their Prohibited sections permit the commit without requiring it; this profile denies it), the record riding onto the Slice branch under the Gate 2 lease, and the Entry paste writes Project fields and at most files under that same directory); **write kinds** `gate2`, `gate3`.
 - `repository`: exactly `MianliWang/gatebraid` or `MianliWang/gatebraid-scratch`.
@@ -130,17 +135,33 @@ outcome is `refused` with the code, and the file is
 `_handoff/outbox/MANIFEST.<stamp>.run.json`, where `<stamp>` is the
 manifest's `written_at` with its colons removed (`2026-09-03T00:00:00Z` →
 `2026-09-03T000000Z`; an ISO 8601 instant is not a portable filename, and
-the executor host refuses colons). A `written_at` that is not a string is a
-manifest-shape defect (`DD-R01`); the record of that refusal is named from
-the dispatcher's own `started_at` instead, so the refusal is always
-recorded.
+the executor host refuses colons). A `written_at` that is not a string, or a
+string of any shape but §2.1's, is a manifest-shape defect (`DD-R01`); the
+record of that refusal is named from the dispatcher's own `started_at`
+instead, so the refusal is always recorded — and the derived stamp must be a
+single path segment (one name, no separator, not `.` or `..`) or the
+dispatcher takes the `started_at` fallback regardless, so no admitted input
+can place a record anywhere but the outbox. A manifest that is not a JSON
+object is refused the same way and recorded the same way.
+
+Three clauses on the record's fields. `environment` lists the variables the
+dispatcher sets and nothing else; the job inherits the rest of the
+dispatcher's process environment, which the record does not enumerate.
+`reason` is null for a `completed` run and for an outcome the executable's
+own exit decided (`timeout` from the turn budget, `error` from a non-zero
+exit); it carries a message only where the dispatcher itself decided. A run
+record is working material on the ignored lane: it is retained as evidence
+only through a commit that passes the standing scans like any other
+committed file, and a record that fails them is a finding against the input
+that produced it — a manifest key, an inbox file name, a changed path —
+never a record redacted in place.
 
 ## 3. Job kinds and profiles
 
 | kind | profile | what the dispatch may direct | what the profile denies |
 |---|---|---|---|
 | `entry`, `gate0`, `gate1` | `evidence` | reads, `gh` reads, Python instruments with `-B`, writing under `_handoff/` and under the Slice's own evidence directory as the gate contract allows | any `git commit`/`push`, any write inside the repository outside the Slice's own evidence directory, any `gh` mutation except the acts the gate's own Exit names: its field writes, its handoff comment, and — for Gate 1 — the `needs-human` label and the one sanctioned rewrite of the Slice issue's metadata block (`protocols/gate-1-contract.md`, Exit) |
-| `review`, `consult-prep` | `readonly` | reads; one report under `_handoff/`; scratch outside every repository | every write inside the repository, every `gh` mutation, any lease |
+| `review`, `consult-prep` | `readonly` | reads; one report under `_handoff/`; scratch outside every repository — a directory where `git rev-parse --show-toplevel` fails, named by the dispatch text (on the executor host the user profile directory is itself a repository, so the platform's default temporary directory and the session scratchpad are not outside) | every write inside the repository, every `gh` mutation, any lease |
 | `gate2` | `write` | commits on the Slice branch under the lease, field writes the contract names, no push | push; PR creation; any path outside the frozen allowlist (the contract's R1 is the check; the profile is the floor) |
 | `gate3` | `write` | push of the Slice branch, PR creation, `gate3.md`, then HOLD at the merge door; the Exit after the operator's merge is a second `gate3` entry the coordinator lists once the merge is on record — no job spans a door | merge; branch deletion; any second branch |
 
@@ -162,15 +183,15 @@ The dispatcher evaluates, in this order, and stops at the first failure:
 | code | check | on failure |
 |---|---|---|
 | `DD-R00` | `_handoff/inbox/STOP` absent | halt the dispatcher; record `halted` |
-| `DD-R01` | `MANIFEST.json` parses; `schema` equals `gatebraid/dispatch-manifest@1`; `written_at` is a non-empty string; every entry has every required key, no key outside the schema (`slice_id` is a schema key; whether it must be present is `DD-R03`'s rule), and every value of the type §2.1 gives it — a value of the wrong type is a manifest-shape defect, refused here, so that the per-entry rows below always read well-typed values | refuse the whole manifest |
+| `DD-R01` | `MANIFEST.json` parses to an object; `schema` equals `gatebraid/dispatch-manifest@1`; `written_at` is a string of §2.1's exact shape; every entry has every required key, no key outside the schema (`slice_id` is a schema key; whether it must be present is `DD-R03`'s rule), and every value of the type §2.1 gives it — a value of the wrong type is a manifest-shape defect, refused here, so that the per-entry rows below always read well-typed values | refuse the whole manifest |
 | `DD-R02` | first, once per manifest: every file in `_handoff/inbox/` other than `MANIFEST.json`, `STOP` and `RUNNING` is named by exactly one entry (ADR-0034 decision 1: anything not in the manifest is refused); then, for the entry: the named file exists; its sha256 and byte count equal the manifest's | an unlisted file, or a file named by two entries: refuse the whole manifest, naming the file; a mismatch: refuse the entry |
 | `DD-R03` | `kind` is a member of the enumeration; `profile` matches the kind's class; `slice_id` is present exactly when the kind is an evidence or write kind, and matches its pattern | refuse the entry |
 | `DD-R04` | `repository` is in the closed set; `cwd`'s `origin` names it | refuse the entry |
-| `DD-R05` | the dispatch file's bytes pass the standing scans: no `owner/name` identity outside the closed set; no handoff-block schema token; no closing keyword immediately before an issue reference; no CR byte; no non-ASCII code point outside {U+00A7, U+00B7, U+2013, U+2014, U+2026, U+2192} | refuse the entry |
+| `DD-R05` | the dispatch file's bytes pass the standing scans: no `owner/name` identity outside the closed set (the closed-set check is a whitelist; its documented residue classes — paths, refs, ratios, schema ids, citations, JSON pointers — are rules, and ordinary prose pairs such as `I/O` are admitted only as EXACT strings from an allowlist the source states, never as a pattern); no handoff-block schema token; no closing keyword immediately before an issue reference; no CR byte; no non-ASCII code point outside {U+00A7, U+00B7, U+2013, U+2014, U+2026, U+2192} | refuse the entry |
 | `DD-R06` | `_handoff/inbox/RUNNING` absent | refuse the entry (a job is running) |
 | `DD-R07` | the profile file for the entry's class exists and hashes; the `claude` executable resolves and reports a version; `git`, `gh` and `python` resolve | refuse the entry |
 | — | **run**: write `RUNNING`; record `head_before` and `porcelain_before`; start `claude -p <dispatch bytes as the prompt> --output-format json` with `cwd`, the environment of §2.2, the profile, `--max-turns`; poll output and the STOP file; capture stdout and stderr as bytes | — |
-| `DD-R08` | the post-run rule of §2.2: a read-only kind changed nothing (`head_after == head_before`, porcelain lists equal as sets); an evidence kind changed nothing outside `docs/evidence/gatebraid/<slice_id>/` and committed nothing; write kinds are not checked here | outcome `error`; the run record says which paths, or which head, moved |
+| `DD-R08` | the post-run rule of §2.2: a read-only kind changed nothing (`head_after == head_before`, porcelain lists equal as sets); an evidence kind changed nothing outside `docs/evidence/gatebraid/<slice_id>/` and committed nothing; write kinds are not checked against a rule here — but for EVERY kind, git state the dispatcher could not measure on either side of the run (a null head or list) is `error`/`DD-R08`, never a pass | outcome `error`; the run record says which paths, or which head, moved, or which state went unmeasured |
 | — | remove `RUNNING`; write the run record; move to the next entry only if `outcome` is `completed` and STOP is still absent | — |
 
 An entry refused is not retried by the dispatcher; the coordinator corrects
@@ -208,11 +229,17 @@ meant to deny it is not something the trial runs on purpose.
 
 ## 6. The kill switch, demonstrated
 
-Before first trusted use the operator runs the dispatcher in print-only mode
-over `fixtures/direct-drive/DD-04.json` (the STOP-present seed) and,
-separately, creates `STOP` while a long-running seeded job is in flight; the
-run record must show `halted` in both cases, and the job's process must be
-gone. Both records are retained as the batch's evidence.
+In two steps, on the trial's own schedule (ADR-0034 decision 9). At stage 0,
+where nothing runs: fixture mode over `fixtures/direct-drive/DD-04.json`
+(the STOP-present seed, whose halt record fixture mode writes into its
+temporary outbox and reports as `MATCH`), and print-only mode over a real
+inbox — the trusted seed DD-P1 materialised outside every repository — with
+`STOP` present, which prints `halted DD-R00`, exits `1` and writes nothing;
+both are captured. At stage 1, before the replay: the run form over an inbox
+with `STOP` present, which writes a `halted`/`DD-R00` record before any job
+starts; and `STOP` created while a long-running rehearsal job is in flight,
+whose record shows `halted` and whose process must be gone. Those two records
+are retained as stage 1's evidence.
 
 ## 7. Audit
 
@@ -226,10 +253,15 @@ not the bytes that were sent).
 ## 8. Trial stages
 
 ADR-0034 decision 9 governs; this section names the evidence each stage
-commits: stage 0 — one evidence capture (`gatebraid/evidence-capture@1`) of
-fixture mode over every seed, every line `MATCH` and `exit 0` (fixture mode
-writes no run record outside its temporary directory, so the capture is the
-record), plus the two records of §6's kill-switch demonstration; stage 1 — the replay's run
+commits: stage 0 — nothing runs; its evidence is captures
+(`gatebraid/evidence-capture@1`): fixture mode over every seed, every line
+`MATCH` and `exit 0` (fixture mode writes no run record outside its temporary
+directory, so the capture is the record), and print-only mode over the
+trusted seed's inbox on the real host twice — once with `STOP` present
+(halted, nothing written) and once without (the command it would run
+printed, nothing written, the real profile file and the real tools resolved
+at `DD-R07`, the profile's sha256 pinned by the stage's approval, §9);
+stage 1 — the two records of §6's kill-switch demonstration, the replay's run
 record, its report, a byte-level comparison table of its verdicts against the
 recorded review's, and the `DD-R07` host seed's run record (a refusal before
 any run; the stage's "zero writes" criterion is a property of the replay and

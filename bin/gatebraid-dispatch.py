@@ -19,8 +19,8 @@ contain one and never learns one.
 
 THE SCANS OF `DD-R05`, over the dispatch file's decoded bytes, in this order.
 
-  (a) Closed set. Owner/name-shaped tokens are extracted with the same pattern
-      class the committed sweep
+  (a) Closed set. Tokens shaped like an owner and a name are extracted with
+      the same pattern class the committed sweep
       `docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py` uses:
 
           (?<![A-Za-z0-9_./-])([A-Za-z0-9][A-Za-z0-9_.-]{0,38}/[A-Za-z0-9][A-Za-z0-9_.-]{0,60})
@@ -28,6 +28,12 @@ THE SCANS OF `DD-R05`, over the dispatch file's decoded bytes, in this order.
       A token passes only if it is a member of `PERMITTED_REPOSITORIES` or
       falls in one of the residue classes below - each an explicit RULE, none
       of which names a repository outside the set:
+        * an ordinary prose pair in `PROSE_PAIRS`, two English words a writer
+          joined with a slash. This class is consulted FIRST, immediately
+          after the whitelist and before every other rule, and it is EXACT
+          STRINGS, NEVER A LEADING-SEGMENT RULE: a rule on the segment `I`
+          would admit every `I/<anything>` and so swallow the shape hunted
+          here;
         * a leading segment in `PATH_PREFIXES` or `URL_PREFIXES` (a filesystem
           or URL path segment);
         * `repos/...`, an API path fragment;
@@ -35,16 +41,23 @@ THE SCANS OF `DD-R05`, over the dispatch file's decoded bytes, in this order.
         * a leading segment in `BRANCH_HEADS`, a git ref namespace or one of
           this tree's branch conventions `slice/<id>` and `batch/<id>`: every
           write kind's dispatch must name its own Slice branch;
-        * a numeric ratio, `NUMERIC_RATIO` = ^[0-9]+/[0-9]+$, the form prose
+        * a numeric ratio, `NUMERIC_RATIO` = ^[0-9]+/[0-9]+, the form prose
           writes a count of passes in;
         * a leading segment in `SCHEMA_NAMESPACE`, a schema id such as this
           contract's own manifest and run schemas;
-        * a JSON pointer, `JSON_POINTER` = ^[A-Za-z_][A-Za-z0-9_]*/[0-9]+$;
+        * a JSON pointer, `JSON_POINTER` = ^[A-Za-z_][A-Za-z0-9_]*/[0-9]+;
         * a document citation naming two numbers, `DOC_CITATION` =
-          ^ADR-[0-9]{4}/[0-9]{4}$;
+          ^ADR-[0-9]{4}/[0-9]{4};
         * the literal metasyntax in `METASYNTAX`.
       Anything else is residue and the entry is refused. This is a whitelist
       with named exceptions, not a blacklist.
+
+      EVERY shape pattern named in this list, and every other one in this
+      source, is anchored at the start AND at the TRUE END of the string. The
+      dollar anchor is used nowhere: in Python it also matches immediately
+      before a trailing newline, so a value carrying one would pass a shape
+      check it does not satisfy - an entry `name` and a `slice_id` most of
+      all (contract sections 2.1 and 4).
 
       A path prefix is the segment the extraction pattern actually yields, not
       the segment a reader sees: the pattern's character class excludes the
@@ -170,9 +183,17 @@ ENTRY_KEYS_REQUIRED = (
 ENTRY_KEYS_OPTIONAL = ("slice_id",)
 ENTRY_KEYS = frozenset(ENTRY_KEYS_REQUIRED + ENTRY_KEYS_OPTIONAL)
 
-NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}\.md$")
-SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
-SLICE_ID_RE = re.compile(r"^P[0-9]+-S[0-9]+$")
+NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}\.md\Z")
+SHA256_RE = re.compile(r"^[0-9a-f]{64}\Z")
+# Contract section 2.1: `written_at` is a string of exactly this shape, and
+# any other value is a manifest-shape defect `DD-R01` refuses. Anchored at
+# the true end of the string, so a trailing newline is not admitted.
+WRITTEN_AT_RE = re.compile(
+    r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z\Z")
+# The stamp a record name may carry: one path segment, never a separator, a
+# drive letter or a parent reference (contract section 2.2, the Q-1 rule).
+RECORD_STAMP_RE = re.compile(r"^[A-Za-z0-9._-]+\Z")
+SLICE_ID_RE = re.compile(r"^P[0-9]+-S[0-9]+\Z")
 
 EVIDENCE_ROOT = "docs/evidence/gatebraid/"
 
@@ -191,11 +212,34 @@ REFERENCE = (r"(?:\#[0-9]+|[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\#[0-9]+"
 CLOSING_BEFORE_REFERENCE = re.compile(
     CLOSING_KEYWORD + r"\s+" + REFERENCE, re.IGNORECASE)
 
-REF_NAMESPACE = re.compile(r"^refs/[a-z]+$")
-JSON_POINTER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*/[0-9]+$")
-DOC_CITATION = re.compile(r"^ADR-[0-9]{4}/[0-9]{4}$")
-NUMERIC_RATIO = re.compile(r"^[0-9]+/[0-9]+$")
+REF_NAMESPACE = re.compile(r"^refs/[a-z]+\Z")
+JSON_POINTER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*/[0-9]+\Z")
+DOC_CITATION = re.compile(r"^ADR-[0-9]{4}/[0-9]{4}\Z")
+NUMERIC_RATIO = re.compile(r"^[0-9]+/[0-9]+\Z")
 METASYNTAX = frozenset(("owner/name", "owner/repo"))
+
+# Ordinary prose pairs: two English words a writer joined with a slash. Each
+# is SHAPED like an owner and a name, and none of them is an identity, so
+# each is admitted as an EXACT STRING carrying its own stated reason, and
+# NEVER by a leading-segment rule. A segment rule would admit every
+# `<segment>/<anything>` and so swallow the very shape this scan hunts; the
+# committed sweep
+# `docs/evidence/gatebraid/P2-S5/g2/checks-g2-closed-set-sweep.py` records
+# that falsification against a seeded out-of-set identifier and states the
+# same rule. Anything of this shape not named here is residue.
+PROSE_PAIRS = frozenset((
+    "I/O",           # input and output, the usual abbreviation
+    "before/after",  # the two sides of a comparison, the way section 2.2
+                     # writes the heads and the porcelain lists
+    "and/or",        # the conjunction, written as a pair
+    "pass/fail",     # the two verdicts a check reports
+    "allow/deny",    # the two directions of a profile permission list
+    "read/write",    # the two access modes, as section 3 names the kinds
+    "input/output",  # the same pair as `I/O`, spelled out
+    "yes/no",        # the two answers to a closed question
+    "true/false",    # the two JSON booleans, written as prose
+    "on/off",        # the two states of a switch, as of a built-in workflow
+))
 SCHEMA_NAMESPACE = frozenset(("gatebraid",))
 PATH_PREFIXES = frozenset((
     "adr", "bin", "captures", "consults", "docs", "evidence", "fixtures",
@@ -284,6 +328,8 @@ def classify_repo_token(token):
     head = token.split("/")[0]
     if token in PERMITTED_REPOSITORIES:
         return "permitted repository"
+    if token in PROSE_PAIRS:
+        return "prose pair between ordinary words (named, not matched)"
     if head == "repos":
         return "API path fragment"
     if REF_NAMESPACE.match(token):
@@ -402,6 +448,9 @@ def check_manifest_shape(manifest):
         return "the manifest schema key is not %s" % MANIFEST_SCHEMA
     if not isinstance(manifest["written_at"], str) or not manifest["written_at"]:
         return "written_at is not a non-empty string"
+    if not WRITTEN_AT_RE.match(manifest["written_at"]):
+        return ("written_at is not a string of the shape "
+                "YYYY-MM-DDThh:mm:ssZ (the value is not quoted)")
     if not isinstance(manifest["entries"], list):
         return "entries is not a list"
     for position, entry in enumerate(manifest["entries"], 1):
@@ -990,15 +1039,33 @@ def manifest_record_name(manifest, started_at):
     """Section 2.2's `MANIFEST.<stamp>.run.json`.
 
     The stamp is the manifest's `written_at` with its colons removed, an ISO
-    8601 instant not being a portable filename. A `written_at` that is absent,
-    empty or not a string is a manifest-shape defect `DD-R01` has just refused,
-    and section 2.2 names the record from the dispatcher's own `started_at`
-    instead, so a refusal is ALWAYS recorded. This derivation never raises.
+    8601 instant not being a portable filename. Section 2.2 names the record
+    from the dispatcher's own `started_at` instead wherever that derivation
+    cannot be trusted, so a refusal is ALWAYS recorded. Four cases reach the
+    fallback, and each is one `DD-R01` has just refused:
+
+      * the manifest is NOT A JSON OBJECT at all, so it carries no key to
+        read and the guarded `.get` below never runs on it;
+      * `written_at` is absent;
+      * `written_at` is present but empty, or is not a string;
+      * `written_at` is a string of some shape other than section 2.1's,
+        whose stamp is therefore not known to be a filename at all.
+
+    THE ONE-SEGMENT GUARANTEE. Whatever the input, the value returned is a
+    SINGLE PATH SEGMENT: the derived stamp must match `RECORD_STAMP_RE` as
+    the WHOLE string and be neither `.` nor `..`, and the `started_at` stamp,
+    which this dispatcher formats itself from `utc_now`, is taken otherwise.
+    No admitted input can therefore place a record anywhere but the outbox
+    the caller joins this name to (contract section 2.2, the Q-1 rule). This
+    derivation never raises.
     """
     written_at = manifest.get("written_at") if isinstance(manifest, dict) else None
     if not isinstance(written_at, str) or not written_at:
         written_at = started_at
-    return "MANIFEST.%s.run.json" % written_at.replace(":", "")
+    stamp = written_at.replace(":", "")
+    if not RECORD_STAMP_RE.match(stamp) or stamp in (".", ".."):
+        stamp = started_at.replace(":", "")
+    return "MANIFEST.%s.run.json" % stamp
 
 
 def write_record(outbox, filename, record):

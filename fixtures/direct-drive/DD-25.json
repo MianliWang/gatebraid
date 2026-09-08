@@ -1,0 +1,34 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-25",
+  "title": "entry name that is one path segment plus a trailing newline; a dollar-anchored pattern admits it, an end-of-string anchor refuses it at DD-R01",
+  "expected": {
+    "decision": "refuse",
+    "code": "DD-R01"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-07T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-25-review.md\n",
+          "sha256": "657cd9bd546ba60d12009950e91a0bd4663c6fda55ff8430dddebd31354a5746",
+          "bytes": 323,
+          "kind": "review",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "readonly",
+          "max_turns": 200,
+          "timeout_seconds": 3600
+        }
+      ]
+    },
+    "files": {
+      "DD-25-review.md": "# REVIEW DISPATCH (fixture seed) - read-only replay\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Perform the R1-R5\nreview the gate-2 contract defines, write one report under _handoff/, and\nSTOP. Repository set: MianliWang/gatebraid only.\n"
+    }
+  },
+  "note": "The v4 build window declared (11.6) and the second DD2 review confirmed (P-5) that the name pattern's dollar anchor also matches before a trailing newline, so a manifest declaring such a name passed DD-R01 and failed later with a two-line reason and an unwritable record name. Section 2.1 now says the pattern matches the whole string; the tool anchors at the true end of the value. Added in the stage-0 batch. Against the DD2 tool this seed refuses at DD-R02 (the inbox file is not named by the entry, whose name carries the newline); against the cured tool it refuses at DD-R01."
+}
