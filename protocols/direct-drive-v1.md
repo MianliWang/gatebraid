@@ -12,8 +12,11 @@ record's `reason` key) · amended by the stage-0 batch (§2.1's `written_at`
 shape and the one-segment stamp; §2.2's `environment`, `reason` and
 retention clauses; §3's measured scratch rule; §4's `DD-R05` prose-pair
 allowlist and `DD-R08` unmeasured-state clause; §6 and §8 aligned with
-ADR-0034 decision 9 — stage 0 runs nothing; three seeds added) · Product:
-Gatebraid (ADR-0010). This document is the contract the dispatcher
+ADR-0034 decision 9 — stage 0 runs nothing; three seeds added) · amended by
+the ADR-0035 batch (§1's coordinator and operator roles, §5's last rule and
+§10's run-form sentence: the coordinator may start the dispatcher for
+read-only manifests, under ADR-0035's four command classes, presence rule
+and session log) · Product: Gatebraid (ADR-0010). This document is the contract the dispatcher
 implements and the fixtures in `fixtures/direct-drive/` test. The fixtures
 precede the tool (M3-PLAN §2); a decision this contract does not name is a
 refusal.
@@ -21,11 +24,20 @@ refusal.
 ## 1. Parties and roles
 
 - **Coordinator** — writes dispatch files and the manifest through the device
-  bridge; never runs anything on the host; audits every run from its record.
-- **Operator** — starts and ends the dispatcher in their own host session;
+  bridge; audits every run from its record. Under ADR-0035 it may also start
+  the dispatcher, in any of its three modes, through a host-process tool of
+  the desktop bridge in the operator's own host session — for a manifest
+  whose every entry is a read-only kind, bound by sha256 in a delivered brief
+  the operator has given the word for, each start and end announced in the
+  conversation and every host command logged on the batch's lane
+  (ADR-0035 decisions 2, 3 and 5). It never starts `claude -p` itself, never
+  runs `git` or `gh` on the host, and runs nothing else there.
+- **Operator** — may start and end the dispatcher in their own host session;
   posts every door; merges; may halt the dispatcher at any time with the STOP
-  file. The operator is present for every session in which the dispatcher
-  runs (ADR-0034 decision 8).
+  file or by ending the process — two ways that pass through no one else.
+  The operator is present for every session in which the dispatcher runs, in
+  the sense ADR-0035 decision 3 defines (the word for the batch given after
+  its brief; every start announced; the kill switch in their hand).
 - **Dispatcher** — `bin/gatebraid-dispatch.py`, Python 3 standard library
   only, committed to the control repository. It validates, starts headless
   Claude Code, records, and refuses. It never posts a comment, never touches
@@ -221,8 +233,10 @@ meant to deny it is not something the trial runs on purpose.
 - Names, matches or enumerates any repository outside the closed set; the
   closed-set check is a whitelist, so the protected business repositories are
   refused without appearing anywhere in the tool.
-- Runs on a schedule, a timer, or a trigger other than the operator starting
-  it. A future scheduled mode is a new ADR.
+- Runs on a schedule, a timer, or a trigger other than the operator's or —
+  under ADR-0035, for read-only manifests — the coordinator's act in a
+  conversation turn the operator is present for. A future scheduled mode is
+  a new ADR.
 - Reads a credential, sets one, or copies the dedicated store. It sets
   `GH_CONFIG_DIR` to the path the operator provisioned and nothing more
   (ADR-0024 §5).
@@ -318,7 +332,8 @@ without `post_run`, prints the command each admitted entry would run, and
 writes nothing — not even a run record.
 
 **The run form.** `--inbox <dir> --profiles <dir> --outbox <dir>` is the
-form the operator starts for a trusted run; it is refused before the first
+form the operator — or, under ADR-0035, the coordinator for a read-only
+manifest — starts for a trusted run; it is refused before the first
 entry when `STOP` is present and behaves as §4 writes. `--inbox` defaults to
 `_handoff/inbox`, `--outbox` to `_handoff/outbox`, `--profiles` to the path
 the operator provisioned (never a repository path). No flag enables a
