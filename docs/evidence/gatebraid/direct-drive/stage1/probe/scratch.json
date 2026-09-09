@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage1-probe-scratch",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python",
+      "-B",
+      "_handoff/batch-stage1/host/probe-measure.py",
+      "D:/gb-scratch-stage1/coordinator"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 527,
+      "sha256": "727319a230938d103b9861af3ff9d77f7faff3bdda159a899171a13cf5fb80dd",
+      "data": "d2hpY2ggcHl0aG9uIEM6XG1zeXM2NFxtaW5ndzY0XGJpblxweXRob24uRVhFDQp3aGljaCBjbGF1ZGUgQzpcVXNlcnNccm91Z2hcQXBwRGF0YVxSb2FtaW5nXG5wbVxjbGF1ZGUuQ01EDQp3aGljaCBnaXQgRDpcUHJvZ3JhbSBGaWxlc1xHaXRcY21kXGdpdC5FWEUNCndoaWNoIGdoIEM6XFByb2dyYW0gRmlsZXNcR2l0SHViIENMSVxnaC5FWEUNCnZlcnNpb24gcHl0aG9uIDMuMTQuMyAobWFpbiwgRmViICA1IDIwMjYsIDEzOjM1OjM1KSAgW01JTkdXIEdDQyAxNS4yLjAgNjQgYml0IChBTUQ2NCldDQp2ZXJzaW9uIGNsYXVkZSAyLjEuMjIwIChDbGF1ZGUgQ29kZSkgKGV4aXQgMCkNCnByb2Nlc3NlcyBjbGF1ZGUgMjkNCnNjcmF0Y2ggRDovZ2Itc2NyYXRjaC1zdGFnZTEvY29vcmRpbmF0b3Igb3V0c2lkZS1ldmVyeS1yZXBvIFRydWUNCmN3ZCBEOlxHaXRodWIgcmVwb1xHYXRlYnJhaWQNCmVudiBHSF9DT05GSUdfRElSIEM6L1VzZXJzL3JvdWdoLy5naC1nYXRlYnJhaWQNCmVudiBQWVRIT05ET05UV1JJVEVCWVRFQ09ERSAxDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "which python C:\\msys64\\mingw64\\bin\\python.EXE\r\nwhich claude C:\\Users\\rough\\AppData\\Roaming\\npm\\claude.CMD\r\nwhich git D:\\Program Files\\Git\\cmd\\git.EXE\r\nwhich gh C:\\Program Files\\GitHub CLI\\gh.EXE\r\nversion python 3.14.3 (main, Feb  5 2026, 13:35:35)  [MINGW GCC 15.2.0 64 bit (AMD64)]\r\nversion claude 2.1.220 (Claude Code) (exit 0)\r\nprocesses claude 29\r\nscratch D:/gb-scratch-stage1/coordinator outside-every-repo True\r\ncwd D:\\Github repo\\Gatebraid\r\nenv GH_CONFIG_DIR C:/Users/rough/.gh-gatebraid\r\nenv PYTHONDONTWRITEBYTECODE 1\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-08T17:06:39.487927Z",
+  "ended_at": "2026-09-08T17:06:40.761096Z",
+  "inputs": [
+    {
+      "path": "_handoff/batch-stage1/host/probe-measure.py",
+      "sha256": "9b61d5944e1de089ab591b19c189b1a0acce5d252448bcab95acb65dd7a54f3d"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "ADR-0035 decision 6a, class (d) then (c): the coordinator created the scratch directory D:/gb-scratch-stage1/coordinator, then re-ran the measurement script, whose scratch line checks that neither the directory nor any parent carries a .git entry - outside every repository, measured without git."
+}

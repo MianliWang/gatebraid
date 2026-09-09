@@ -1,0 +1,83 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage1-falsification",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python",
+      "-B",
+      "D:/gb-scratch-stage1/build/dispatch-main.py",
+      "--fixture",
+      "fixtures/direct-drive/DD-26.json",
+      "fixtures/direct-drive/DD-27.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 125,
+      "sha256": "0b9cfeb2b5f76474af1bc71a0922d80ff254d201d7c8868639ab69b2539cc8ab",
+      "data": "REQtMjYgZXhwZWN0ZWQgZXJyb3IvREQtUjA4IGdvdCBjb21wbGV0ZWQvbnVsbCAtPiBNSVNNQVRDSApERC0yNyBleHBlY3RlZCBlcnJvci9ERC1SMDggZ290IGNvbXBsZXRlZC9udWxsIC0+IE1JU01BVENICmV4aXQgMQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "DD-26 expected error/DD-R08 got completed/null -> MISMATCH\nDD-27 expected error/DD-R08 got completed/null -> MISMATCH\nexit 1\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-09T00:33:04.968973Z",
+  "ended_at": "2026-09-09T00:33:06.026184Z",
+  "inputs": [
+    {
+      "path": "D:/gb-scratch-stage1/build/dispatch-main.py",
+      "sha256": "4de9fc8a6f83be13c53f123aef9fc4e3303a4755914eeecac451a674a7d9e257"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-26.json",
+      "sha256": "c20d84261bba77e94a82180441a909e00daaedff49f44ee045fe71d9c097ba83"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-27.json",
+      "sha256": "5878cf1ac01d7f81279e14a749d16bd4981e14234a1f9a013d5ee2e878fc31f3"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Falsification of the two new seeds against the tool as it stands at main. The dispatcher blob of c2e9496ee25aa503deea91972675e44d496adb31 was extracted with git show into a scratch copy outside every repository (sha256 4de9fc8a6f83be13c53f123aef9fc4e3303a4755914eeecac451a674a7d9e257, 56,641 B, pinned below) and fixture mode was run over DD-26 and DD-27 with it. Both MISMATCH, exit 1: apply_post_run_rule returns completed on state nobody measured, because the four-state null check lived in execute_entry and not in the function that owns the rule (the stage-0 review S-2). No search-path prefix is needed or used here: the tool at main has no shim clause, so DD-R07 passes on this host and the seeds reach the post-run path. The scratch copy was hashed again and removed after this capture."
+}

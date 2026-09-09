@@ -1,0 +1,93 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage1-print-only-ab",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python",
+      "-B",
+      "bin/gatebraid-dispatch.py",
+      "--print-only",
+      "--inbox",
+      "_handoff/inbox-ab",
+      "--outbox",
+      "_handoff/outbox-ab"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 1669,
+      "sha256": "a717e6abbfa300beb601047114f5ff9f89a5fa7fc7606efa3c9ad024eceef3c1",
+      "data": "WyJDOlxcVXNlcnNcXHJvdWdoXFxBcHBEYXRhXFxSb2FtaW5nXFxucG1cXG5vZGVfbW9kdWxlc1xcQGFudGhyb3BpYy1haVxcY2xhdWRlLWNvZGVcXGJpblxcY2xhdWRlLkVYRSIsICItcCIsICIjIFJFSEVBUlNBTCBKT0IgKHRyaWFsIHN0YWdlIDEpIC0gYSBzbG93IHJlYWQtb25seSBqb2IgdGhhdCBleGlzdHMgdG8gYmUgaGFsdGVkXG5cbllvdSBhcmUgYSBoZWFkbGVzcyBDbGF1ZGUgQ29kZSBydW4gc3RhcnRlZCBieSBgYmluL2dhdGVicmFpZC1kaXNwYXRjaC5weWBcbihjb250cmFjdCBgcHJvdG9jb2xzL2RpcmVjdC1kcml2ZS12MS5tZGAsIHNlY3Rpb24gNikgdW5kZXIgdGhlIHJlYWQtb25seVxucHJvZmlsZSwgaW4gdGhlIGNvbnRyb2wgcmVwb3NpdG9yeSBgRDovR2l0aHViIHJlcG8vR2F0ZWJyYWlkYC4gWW91ciBvbmVcbnB1cnBvc2UgaXMgdG8gYmUgcnVubmluZyB3aGVuIHRoZSBjb29yZGluYXRvciBjcmVhdGVzIHRoZSBraWxsLXN3aXRjaFxuZmlsZSBgX2hhbmRvZmYvaW5ib3gtYWIvU1RPUGAgKEFEUi0wMDM1IGRlY2lzaW9uIDYsIGFjdCBCKTsgdGhlIGRpc3BhdGNoZXIgdGhlbiBlbmRzIHlvdXIgcHJvY2VzcyBhbmQgd3JpdGVzXG5hIGhhbHRlZCByZWNvcmQuIEJlaW5nIGVuZGVkIGZyb20gb3V0c2lkZSBpcyB0aGlzIGpvYidzIHN1Y2Nlc3MuIFlvdSBkb1xubm90IG5lZWQgdG8gZmluaXNoIGFueXRoaW5nLCBhbmQgeW91IG11c3Qgbm90IGh1cnJ5LlxuXG4jIyBXaGF0IHRvIGRvLCBhbmQgbm90aGluZyBlbHNlXG5cbjEuIExpc3QgdGhlIGZpbGVzIHVuZGVyIGBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QMi1TNi9gIHdpdGggR2xvYi5cbjIuIFJlYWQgdGhlbSBvbmUgYXQgYSB0aW1lIHdpdGggdGhlIFJlYWQgdG9vbCwgaW4gc29ydGVkIG9yZGVyLCBvbmUgZmlsZVxuICAgcGVyIHR1cm4sIGFuZCBhZnRlciBlYWNoIGZpbGUgcHJpbnQgZXhhY3RseSBvbmUgbGluZTpcbiAgIGByZWFkIDxwYXRoPiA8Ynl0ZSBjb3VudD5gLlxuMy4gQmV0d2VlbiBmaWxlcywgZG8gbm90aGluZyBlbHNlLiBJZiB5b3UgcmVhY2ggdGhlIGVuZCBvZiB0aGUgbGlzdCxcbiAgIHN0YXJ0IGFnYWluIGZyb20gdGhlIGZpcnN0IGZpbGUuIENvbnRpbnVlIHVudGlsIHlvdSBhcmUgc3RvcHBlZC5cblxuIyMgV2hhdCB5b3UgbXVzdCBub3QgZG9cblxuLSBEbyBub3Qgd3JpdGUsIGVkaXQgb3IgY3JlYXRlIGFueXRoaW5nIGFueXdoZXJlIC0gbm90IGEgcmVwb3J0LCBub3QgYVxuICBzY3JhdGNoIGZpbGUsIG5vdCBhIG5vdGUuIFRoaXMgam9iIGhhcyBubyByZXBvcnQuXG4tIERvIG5vdCBydW4gYW55IGNvbW1hbmQ6IG5vIGBnaXRgLCBubyBgZ2hgLCBubyBgcHl0aG9uYCwgbm8gc2hlbGwgYXQgYWxsLlxuICBPbmx5IEdsb2IgYW5kIFJlYWQuXG4tIERvIG5vdCBzdG9wIG9uIHlvdXIgb3duIGluaXRpYXRpdmUgYmVmb3JlIHRoZSB0dXJuIGJ1ZGdldCBlbmRzLlxuXG5SZXBvc2l0b3J5IHNldDogYE1pYW5saVdhbmcvZ2F0ZWJyYWlkYCBvbmx5LiBOb3RoaW5nIGhlcmUgaXMgdW5kZXIgcmV2aWV3LlxuIiwgIi0tb3V0cHV0LWZvcm1hdCIsICJqc29uIiwgIi0tbWF4LXR1cm5zIiwgIjQwMCIsICItLXNldHRpbmdzIiwgIkM6XFxVc2Vyc1xccm91Z2hcXC5nYXRlYnJhaWRcXHByb2ZpbGVzXFxyZWFkb25seS5zZXR0aW5ncy5qc29uIl0KZXhpdCAwCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "[\"C:\\\\Users\\\\rough\\\\AppData\\\\Roaming\\\\npm\\\\node_modules\\\\@anthropic-ai\\\\claude-code\\\\bin\\\\claude.EXE\", \"-p\", \"# REHEARSAL JOB (trial stage 1) - a slow read-only job that exists to be halted\\n\\nYou are a headless Claude Code run started by `bin/gatebraid-dispatch.py`\\n(contract `protocols/direct-drive-v1.md`, section 6) under the read-only\\nprofile, in the control repository `D:/Github repo/Gatebraid`. Your one\\npurpose is to be running when the coordinator creates the kill-switch\\nfile `_handoff/inbox-ab/STOP` (ADR-0035 decision 6, act B); the dispatcher then ends your process and writes\\na halted record. Being ended from outside is this job's success. You do\\nnot need to finish anything, and you must not hurry.\\n\\n## What to do, and nothing else\\n\\n1. List the files under `docs/evidence/gatebraid/P2-S6/` with Glob.\\n2. Read them one at a time with the Read tool, in sorted order, one file\\n   per turn, and after each file print exactly one line:\\n   `read <path> <byte count>`.\\n3. Between files, do nothing else. If you reach the end of the list,\\n   start again from the first file. Continue until you are stopped.\\n\\n## What you must not do\\n\\n- Do not write, edit or create anything anywhere - not a report, not a\\n  scratch file, not a note. This job has no report.\\n- Do not run any command: no `git`, no `gh`, no `python`, no shell at all.\\n  Only Glob and Read.\\n- Do not stop on your own initiative before the turn budget ends.\\n\\nRepository set: `MianliWang/gatebraid` only. Nothing here is under review.\\n\", \"--output-format\", \"json\", \"--max-turns\", \"400\", \"--settings\", \"C:\\\\Users\\\\rough\\\\.gatebraid\\\\profiles\\\\readonly.settings.json\"]\nexit 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-09T00:34:54.372340Z",
+  "ended_at": "2026-09-09T00:34:54.813042Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-dispatch.py",
+      "sha256": "3438da9a0380753d224dae7534f3cd65137af4c02506764aa0cf65525df3d39c"
+    },
+    {
+      "path": "_handoff/inbox-ab/MANIFEST.json",
+      "sha256": "d8be1a06daf490ccb2519e73c39ee6be5e05a1cf36bbbef7dc663cd4a8fff414"
+    },
+    {
+      "path": "_handoff/inbox-ab/REHEARSAL-STOP.md",
+      "sha256": "7b7a1e6bc40f605d97e0d224e2def11e73e21070afbcf1b9fff12b5896e3cea9"
+    },
+    {
+      "path": "C:/Users/rough/.gatebraid/profiles/readonly.settings.json",
+      "sha256": "2812c249644a4241fee431f6f654347330dba031f79406ccd90364dcc28792ca"
+    },
+    {
+      "path": "C:\\Users\\rough\\AppData\\Roaming\\npm\\node_modules\\@anthropic-ai\\claude-code\\bin\\claude.exe",
+      "sha256": "af5bf1f1b2aadffc768eccd787084c6fdf9ba81624cbe96c1c6d9ac1a1550231"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Print-only mode over the acts A and B inbox with no STOP present, with the search path of THIS PROCESS ONLY prefixed by C:\\Users\\rough\\AppData\\Roaming\\npm\\node_modules\\@anthropic-ai\\claude-code\\bin, the directory holding the executable image (pinned below, sha256 af5bf1f1b2aadffc768eccd787084c6fdf9ba81624cbe96c1c6d9ac1a1550231, 265,720,480 B). The assignment is the process own and no host file was edited - the operator ruling of 2026-09-08, option B, recorded in the coordinator session log. The dispatcher then resolves the image and prints one nine-element command whose first element is that absolute path, ending claude-code\\bin\\claude.EXE with the case PATHEXT reports; exit 0; nothing written, no outbox directory created. Every run record command[0] will equal its tool_paths.claude."
+}

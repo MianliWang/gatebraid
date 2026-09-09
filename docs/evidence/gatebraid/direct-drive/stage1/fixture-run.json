@@ -1,0 +1,217 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage1-fixture-run",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python",
+      "-B",
+      "bin/gatebraid-dispatch.py",
+      "--fixture",
+      "fixtures/direct-drive/DD-P1.json",
+      "fixtures/direct-drive/DD-01.json",
+      "fixtures/direct-drive/DD-02.json",
+      "fixtures/direct-drive/DD-03.json",
+      "fixtures/direct-drive/DD-04.json",
+      "fixtures/direct-drive/DD-05.json",
+      "fixtures/direct-drive/DD-06.json",
+      "fixtures/direct-drive/DD-07.json",
+      "fixtures/direct-drive/DD-08.json",
+      "fixtures/direct-drive/DD-09.json",
+      "fixtures/direct-drive/DD-10.json",
+      "fixtures/direct-drive/DD-11.json",
+      "fixtures/direct-drive/DD-12.json",
+      "fixtures/direct-drive/DD-13.json",
+      "fixtures/direct-drive/DD-14.json",
+      "fixtures/direct-drive/DD-15.json",
+      "fixtures/direct-drive/DD-16.json",
+      "fixtures/direct-drive/DD-17.json",
+      "fixtures/direct-drive/DD-18.json",
+      "fixtures/direct-drive/DD-19.json",
+      "fixtures/direct-drive/DD-20.json",
+      "fixtures/direct-drive/DD-21.json",
+      "fixtures/direct-drive/DD-22.json",
+      "fixtures/direct-drive/DD-23.json",
+      "fixtures/direct-drive/DD-24.json",
+      "fixtures/direct-drive/DD-25.json",
+      "fixtures/direct-drive/DD-26.json",
+      "fixtures/direct-drive/DD-27.json"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3596,
+      "sha256": "1334157c51150449e8ac108299ec1b30ff63f290add5701f316eb547edd7cffd",
+      "data": "REQtUDEgZXhwZWN0ZWQgYWxsb3cvbnVsbCBnb3QgYWxsb3cvbnVsbCAtPiBNQVRDSApyZWZ1c2VkIERELVIwMiBlbnRyeSAxOiB0aGUgZmlsZSdzIHNoYTI1NiBkaWZmZXJzIGZyb20gdGhlIG1hbmlmZXN0CkRELTAxIGV4cGVjdGVkIHJlZnVzZS9ERC1SMDIgZ290IHJlZnVzZS9ERC1SMDIgLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDIgYW4gaW5ib3ggZmlsZSBpcyBuYW1lZCBieSBubyBlbnRyeTogREQtMDItdW5saXN0ZWQubWQKREQtMDIgZXhwZWN0ZWQgcmVmdXNlL0RELVIwMiBnb3QgcmVmdXNlL0RELVIwMiAtPiBNQVRDSApyZWZ1c2VkIERELVIwNSBlbnRyeSAxOiB0aGUgZGlzcGF0Y2ggdGV4dCBuYW1lcyAxIG93bmVyL25hbWUgdG9rZW4ocykgb3V0c2lkZSB0aGUgY2xvc2VkIHNldCwgZmlyc3QgYXQgbGluZSA4IChub3QgcXVvdGVkKQpERC0wMyBleHBlY3RlZCByZWZ1c2UvREQtUjA1IGdvdCByZWZ1c2UvREQtUjA1IC0+IE1BVENICmhhbHRlZCBERC1SMDAgdGhlIFNUT1AgZmlsZSBpcyBwcmVzZW50IGluIHRoZSBpbmJveApERC0wNCBleHBlY3RlZCBoYWx0L0RELVIwMCBnb3QgaGFsdC9ERC1SMDAgLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDMgZW50cnkgMTogcHJvZmlsZSBkb2VzIG5vdCBtYXRjaCB0aGUga2luZCdzIGNsYXNzICh0aGUgY2xhc3MgcmVxdWlyZXMgd3JpdGUpCkRELTA1IGV4cGVjdGVkIHJlZnVzZS9ERC1SMDMgZ290IHJlZnVzZS9ERC1SMDMgLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDYgZW50cnkgMTogYSBqb2IgaXMgcnVubmluZyAodGhlIFJVTk5JTkcgbG9jayBpcyBwcmVzZW50KQpERC0wNiBleHBlY3RlZCByZWZ1c2UvREQtUjA2IGdvdCByZWZ1c2UvREQtUjA2IC0+IE1BVENICnJlZnVzZWQgREQtUjA1IGVudHJ5IDE6IHRoZSBkaXNwYXRjaCB0ZXh0IGNhcnJpZXMgdGhlIGhhbmRvZmYtYmxvY2sgc2NoZW1hIHRva2VuLCAxIG9jY3VycmVuY2UocyksIGZpcnN0IGF0IGxpbmUgOApERC0wNyBleHBlY3RlZCByZWZ1c2UvREQtUjA1IGdvdCByZWZ1c2UvREQtUjA1IC0+IE1BVENICnJlZnVzZWQgREQtUjA0IGVudHJ5IDE6IHRoZSBlbnRyeSdzIHJlcG9zaXRvcnkgaXMgb3V0c2lkZSB0aGUgY2xvc2VkIHNldCAodGhlIGlkZW50aWZpZXIgaXMgbm90IHF1b3RlZCkKREQtMDggZXhwZWN0ZWQgcmVmdXNlL0RELVIwNCBnb3QgcmVmdXNlL0RELVIwNCAtPiBNQVRDSApyZWZ1c2VkIERELVIwNSBlbnRyeSAxOiB0aGUgZGlzcGF0Y2ggdGV4dCBjYXJyaWVzIDEgQ1IgYnl0ZShzKSwgZmlyc3QgYXQgb2Zmc2V0IDMyMzsgY2FycmllcyAxIGNvZGUgcG9pbnQocykgb3V0c2lkZSB0aGUgcGVybWl0dGVkIHNldCwgZmlyc3QgVSswMEQ3IGF0IGxpbmUgOApERC0wOSBleHBlY3RlZCByZWZ1c2UvREQtUjA1IGdvdCByZWZ1c2UvREQtUjA1IC0+IE1BVENICnJlZnVzZWQgREQtUjAxIHRoZSBtYW5pZmVzdCBzY2hlbWEga2V5IGlzIG5vdCBnYXRlYnJhaWQvZGlzcGF0Y2gtbWFuaWZlc3RAMQpERC0xMCBleHBlY3RlZCByZWZ1c2UvREQtUjAxIGdvdCByZWZ1c2UvREQtUjAxIC0+IE1BVENICnJlZnVzZWQgREQtUjA1IGVudHJ5IDE6IHRoZSBkaXNwYXRjaCB0ZXh0IGNhcnJpZXMgYSBjbG9zaW5nIGtleXdvcmQgaW1tZWRpYXRlbHkgYmVmb3JlIGFuIGlzc3VlIHJlZmVyZW5jZSwgMSBtYXRjaChlcyksIGZpcnN0IGF0IGxpbmUgOCAobm90IHF1b3RlZCkKREQtMTEgZXhwZWN0ZWQgcmVmdXNlL0RELVIwNSBnb3QgcmVmdXNlL0RELVIwNSAtPiBNQVRDSApyZWZ1c2VkIERELVIwMyBlbnRyeSAxOiBraW5kIGlzIG91dHNpZGUgdGhlIGVudW1lcmF0aW9uCkRELTEyIGV4cGVjdGVkIHJlZnVzZS9ERC1SMDMgZ290IHJlZnVzZS9ERC1SMDMgLT4gTUFUQ0gKREQtMTMgZXhwZWN0ZWQgY29tcGxldGVkL251bGwgZ290IGNvbXBsZXRlZC9udWxsIC0+IE1BVENICmVycm9yIERELVIwOCBhbiBldmlkZW5jZSBqb2IgY2hhbmdlZCAxIHBhdGgocykgb3V0c2lkZSBkb2NzL2V2aWRlbmNlL2dhdGVicmFpZC9QOS1TMS86IGJpbi9nYXRlYnJhaWQtcmVhZHkucHkKREQtMTQgZXhwZWN0ZWQgZXJyb3IvREQtUjA4IGdvdCBlcnJvci9ERC1SMDggLT4gTUFUQ0gKZXJyb3IgREQtUjA4IEhFQUQgbW92ZWQgZHVyaW5nIGEgcmVhZC1vbmx5IGpvYiAoaGVhZF9iZWZvcmUgIT0gaGVhZF9hZnRlcikKREQtMTUgZXhwZWN0ZWQgZXJyb3IvREQtUjA4IGdvdCBlcnJvci9ERC1SMDggLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDcgZW50cnkgMTogdGhlIHNldHRpbmdzIHByb2ZpbGUgZm9yIHRoZSBlbnRyeSdzIGNsYXNzIGlzIGFic2VudDogcmVhZG9ubHkuc2V0dGluZ3MuanNvbgpERC0xNiBleHBlY3RlZCByZWZ1c2UvREQtUjA3IGdvdCByZWZ1c2UvREQtUjA3IC0+IE1BVENICnJlZnVzZWQgREQtUjAzIGVudHJ5IDE6IHNsaWNlX2lkIGlzIHByZXNlbnQgZm9yIGEgcmVhZC1vbmx5IGtpbmQKREQtMTcgZXhwZWN0ZWQgcmVmdXNlL0RELVIwMyBnb3QgcmVmdXNlL0RELVIwMyAtPiBNQVRDSApyZWZ1c2VkIERELVIwMiBhbiBpbmJveCBmaWxlIGlzIG5hbWVkIGJ5IDIgZW50cmllczogREQtMTgtcmV2aWV3Lm1kCkRELTE4IGV4cGVjdGVkIHJlZnVzZS9ERC1SMDIgZ290IHJlZnVzZS9ERC1SMDIgLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDEgd3JpdHRlbl9hdCBpcyBub3QgYSBub24tZW1wdHkgc3RyaW5nCkRELTE5IGV4cGVjdGVkIHJlZnVzZS9ERC1SMDEgZ290IHJlZnVzZS9ERC1SMDEgLT4gTUFUQ0gKREQtMjAgZXhwZWN0ZWQgYWxsb3cvbnVsbCBnb3QgYWxsb3cvbnVsbCAtPiBNQVRDSApyZWZ1c2VkIERELVIwMSBlbnRyeSAxOiBraW5kIGlzIG5vdCBhIG5vbi1lbXB0eSBzdHJpbmcKREQtMjEgZXhwZWN0ZWQgcmVmdXNlL0RELVIwMSBnb3QgcmVmdXNlL0RELVIwMSAtPiBNQVRDSApyZWZ1c2VkIERELVIwMSB0aGUgbWFuaWZlc3QgaXMgbm90IGEgSlNPTiBvYmplY3QKREQtMjIgZXhwZWN0ZWQgcmVmdXNlL0RELVIwMSBnb3QgcmVmdXNlL0RELVIwMSAtPiBNQVRDSApyZWZ1c2VkIERELVIwMSB3cml0dGVuX2F0IGlzIG5vdCBhIHN0cmluZyBvZiB0aGUgc2hhcGUgWVlZWS1NTS1ERFRoaDptbTpzc1ogKHRoZSB2YWx1ZSBpcyBub3QgcXVvdGVkKQpERC0yMyBleHBlY3RlZCByZWZ1c2UvREQtUjAxIGdvdCByZWZ1c2UvREQtUjAxIC0+IE1BVENICkRELTI0IGV4cGVjdGVkIGFsbG93L251bGwgZ290IGFsbG93L251bGwgLT4gTUFUQ0gKcmVmdXNlZCBERC1SMDEgZW50cnkgMTogbmFtZSBpcyBub3Qgb25lIHBhdGggc2VnbWVudCBtYXRjaGluZyB0aGUgc2NoZW1hIHBhdHRlcm4KREQtMjUgZXhwZWN0ZWQgcmVmdXNlL0RELVIwMSBnb3QgcmVmdXNlL0RELVIwMSAtPiBNQVRDSAplcnJvciBERC1SMDggZ2l0IGRpZCBub3QgcmVwb3J0IDIgc3RhdGUocykgYXJvdW5kIHRoZSBydW46IGhlYWRfYmVmb3JlLCBoZWFkX2FmdGVyCkRELTI2IGV4cGVjdGVkIGVycm9yL0RELVIwOCBnb3QgZXJyb3IvREQtUjA4IC0+IE1BVENICmVycm9yIERELVIwOCBnaXQgZGlkIG5vdCByZXBvcnQgMSBzdGF0ZShzKSBhcm91bmQgdGhlIHJ1bjogcG9yY2VsYWluX2FmdGVyCkRELTI3IGV4cGVjdGVkIGVycm9yL0RELVIwOCBnb3QgZXJyb3IvREQtUjA4IC0+IE1BVENICmV4aXQgMAo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "DD-P1 expected allow/null got allow/null -> MATCH\nrefused DD-R02 entry 1: the file's sha256 differs from the manifest\nDD-01 expected refuse/DD-R02 got refuse/DD-R02 -> MATCH\nrefused DD-R02 an inbox file is named by no entry: DD-02-unlisted.md\nDD-02 expected refuse/DD-R02 got refuse/DD-R02 -> MATCH\nrefused DD-R05 entry 1: the dispatch text names 1 owner/name token(s) outside the closed set, first at line 8 (not quoted)\nDD-03 expected refuse/DD-R05 got refuse/DD-R05 -> MATCH\nhalted DD-R00 the STOP file is present in the inbox\nDD-04 expected halt/DD-R00 got halt/DD-R00 -> MATCH\nrefused DD-R03 entry 1: profile does not match the kind's class (the class requires write)\nDD-05 expected refuse/DD-R03 got refuse/DD-R03 -> MATCH\nrefused DD-R06 entry 1: a job is running (the RUNNING lock is present)\nDD-06 expected refuse/DD-R06 got refuse/DD-R06 -> MATCH\nrefused DD-R05 entry 1: the dispatch text carries the handoff-block schema token, 1 occurrence(s), first at line 8\nDD-07 expected refuse/DD-R05 got refuse/DD-R05 -> MATCH\nrefused DD-R04 entry 1: the entry's repository is outside the closed set (the identifier is not quoted)\nDD-08 expected refuse/DD-R04 got refuse/DD-R04 -> MATCH\nrefused DD-R05 entry 1: the dispatch text carries 1 CR byte(s), first at offset 323; carries 1 code point(s) outside the permitted set, first U+00D7 at line 8\nDD-09 expected refuse/DD-R05 got refuse/DD-R05 -> MATCH\nrefused DD-R01 the manifest schema key is not gatebraid/dispatch-manifest@1\nDD-10 expected refuse/DD-R01 got refuse/DD-R01 -> MATCH\nrefused DD-R05 entry 1: the dispatch text carries a closing keyword immediately before an issue reference, 1 match(es), first at line 8 (not quoted)\nDD-11 expected refuse/DD-R05 got refuse/DD-R05 -> MATCH\nrefused DD-R03 entry 1: kind is outside the enumeration\nDD-12 expected refuse/DD-R03 got refuse/DD-R03 -> MATCH\nDD-13 expected completed/null got completed/null -> MATCH\nerror DD-R08 an evidence job changed 1 path(s) outside docs/evidence/gatebraid/P9-S1/: bin/gatebraid-ready.py\nDD-14 expected error/DD-R08 got error/DD-R08 -> MATCH\nerror DD-R08 HEAD moved during a read-only job (head_before != head_after)\nDD-15 expected error/DD-R08 got error/DD-R08 -> MATCH\nrefused DD-R07 entry 1: the settings profile for the entry's class is absent: readonly.settings.json\nDD-16 expected refuse/DD-R07 got refuse/DD-R07 -> MATCH\nrefused DD-R03 entry 1: slice_id is present for a read-only kind\nDD-17 expected refuse/DD-R03 got refuse/DD-R03 -> MATCH\nrefused DD-R02 an inbox file is named by 2 entries: DD-18-review.md\nDD-18 expected refuse/DD-R02 got refuse/DD-R02 -> MATCH\nrefused DD-R01 written_at is not a non-empty string\nDD-19 expected refuse/DD-R01 got refuse/DD-R01 -> MATCH\nDD-20 expected allow/null got allow/null -> MATCH\nrefused DD-R01 entry 1: kind is not a non-empty string\nDD-21 expected refuse/DD-R01 got refuse/DD-R01 -> MATCH\nrefused DD-R01 the manifest is not a JSON object\nDD-22 expected refuse/DD-R01 got refuse/DD-R01 -> MATCH\nrefused DD-R01 written_at is not a string of the shape YYYY-MM-DDThh:mm:ssZ (the value is not quoted)\nDD-23 expected refuse/DD-R01 got refuse/DD-R01 -> MATCH\nDD-24 expected allow/null got allow/null -> MATCH\nrefused DD-R01 entry 1: name is not one path segment matching the schema pattern\nDD-25 expected refuse/DD-R01 got refuse/DD-R01 -> MATCH\nerror DD-R08 git did not report 2 state(s) around the run: head_before, head_after\nDD-26 expected error/DD-R08 got error/DD-R08 -> MATCH\nerror DD-R08 git did not report 1 state(s) around the run: porcelain_after\nDD-27 expected error/DD-R08 got error/DD-R08 -> MATCH\nexit 0\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-09T00:33:34.364934Z",
+  "ended_at": "2026-09-09T00:33:36.882701Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-dispatch.py",
+      "sha256": "3438da9a0380753d224dae7534f3cd65137af4c02506764aa0cf65525df3d39c"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-P1.json",
+      "sha256": "4de1a0a80c74e5a3e149f7fd54f5cb6918ce4063ddf1e3ba85934d47ef26b80e"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-01.json",
+      "sha256": "4a149dd0b5a8b9b45d8ab8f98f77f592f1e87d35cdc2756a41f3d4e0921bf530"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-02.json",
+      "sha256": "f4a4c345ca41162a43d46f904c293dec60750eaf3b1a4d287f363aa6b2a20016"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-03.json",
+      "sha256": "e6584a62f0b795090d4675b1a18792e7b5b8ef1d6a6ec9cd1eabe72edd77d0ba"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-04.json",
+      "sha256": "b69a6530adb4d300e3d13a4715f2ffe093107109ede6d5e0b1a3810d19f4d1b2"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-05.json",
+      "sha256": "7d211d2f63b966d84dc4a3ab4f3e15bcd9aa3f3d3c7eb626e845b6170ffb6f30"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-06.json",
+      "sha256": "e3f28c80d6cc544998bac6369d5268dfc3ed8fb13cfafb72cbb61f5a95b55ea9"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-07.json",
+      "sha256": "ab2f234bcca7422ad4b869575436c1af2b8f5f55e13efdb76a76a0308c99f9e8"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-08.json",
+      "sha256": "733c133b326f87384b14eab4ee5cad1fc96cbd61952bdf0e174db0667aaffd15"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-09.json",
+      "sha256": "810253bb7b0d904b5d4d2255057ffa23e506c3521391e4edacce9e852587744d"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-10.json",
+      "sha256": "5d8a3d0cfd8dfb5c5de62bba436d09417c0ae674e4f7415cdbc62b3e60116667"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-11.json",
+      "sha256": "7b9f91d2ff45d3949d535358a388aac3899db6b8bdef938be222ceacb23004b0"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-12.json",
+      "sha256": "c277e9b852e317dfcb61056fdbb4966acd8ca200df5c4e8ca88795780b527115"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-13.json",
+      "sha256": "82d4ad9700dd852a39bfb87e7f08f737d09dbeb469d2a13c4d69233ab79e0882"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-14.json",
+      "sha256": "e6b58daa6aed73a618df72d58bcdcca4931ec73a35e4f612d34f14196d74e4b8"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-15.json",
+      "sha256": "2e36a4cefba10b653c0148371339a2a966f53cb6b76e2ccbe5efa03e5d6b7d58"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-16.json",
+      "sha256": "f9fd5c5799abaeddfa9251e1c3af13ed0d8daf1386e5bfa211e8d82ce27e41f6"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-17.json",
+      "sha256": "b92abd16d8e20935921265f3a71a6d73e2915666e87c9d344f66e3a0807e81dc"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-18.json",
+      "sha256": "63cfa81974e3a969f74d74539270d9f86891d8cdac14708a7a13e44ed5356232"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-19.json",
+      "sha256": "97a2ac50125b65a4893d98ab2c1fb4707cbba2abd42bcf65cd9da592b8155b31"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-20.json",
+      "sha256": "bf1d8d58b32bb585bf197960301c75c46e50c1c4c617fca1ea8fb9fc1020d0a0"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-21.json",
+      "sha256": "b982935fce9efa62013b7140d79e8cff3331c2f57c4d0e260dc8734c86919967"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-22.json",
+      "sha256": "a52a0787e0296f8b4a292c5371e8057b8cf8841e23ab3d7c01424ffc51747c7a"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-23.json",
+      "sha256": "6d82112ae6410671e6ab726474d38924125b659046deece29b78bc0129fab444"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-24.json",
+      "sha256": "afceb29186b2a885bf3d36fb2187b737476aa0dc58a87dfd964c033c4fc5f64e"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-25.json",
+      "sha256": "dd96d76e5e210886d92e25948b2ab375e7216431eeeadcc3e9feeb1dd1773c7c"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-26.json",
+      "sha256": "c20d84261bba77e94a82180441a909e00daaedff49f44ee045fe71d9c097ba83"
+    },
+    {
+      "path": "fixtures/direct-drive/DD-27.json",
+      "sha256": "5878cf1ac01d7f81279e14a749d16bd4981e14234a1f9a013d5ee2e878fc31f3"
+    },
+    {
+      "path": "C:\\Users\\rough\\AppData\\Roaming\\npm\\node_modules\\@anthropic-ai\\claude-code\\bin\\claude.exe",
+      "sha256": "af5bf1f1b2aadffc768eccd787084c6fdf9ba81624cbe96c1c6d9ac1a1550231"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Fixture mode over all twenty-eight seeds in id order (DD-P1, DD-01 .. DD-27) with the tool at HEAD of batch/stage1, carrying the three cures. Twenty-eight MATCH, exit 0. The search path of THIS PROCESS ONLY was prefixed with C:\\Users\\rough\\AppData\\Roaming\\npm\\node_modules\\@anthropic-ai\\claude-code\\bin (the image, sha256 af5bf1f1b2aadffc768eccd787084c6fdf9ba81624cbe96c1c6d9ac1a1550231, pinned below) under the operator ruling of 2026-09-08; no host file was edited. The prefix is required here because contract section 10 has fixture mode evaluate DD-R00 through DD-R07 against the REAL host, and on this host the bare name resolves to an npm command-shell shim that the new DD-R07 clause refuses - so without the prefix every seed reaching DD-R07 refuses and the run exits 1. That is the shim clause firing correctly, not a seed failure."
+}

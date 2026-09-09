@@ -1,0 +1,73 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage1-probe-help",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python",
+      "-B",
+      "bin/gatebraid-dispatch.py",
+      "--help"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 2,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 616,
+      "sha256": "5bc46bb43b2942fea35a4aedc690d99bed8f0647356f6834173ccfe7d576674c",
+      "data": "dXNhZ2U6IGdhdGVicmFpZC1kaXNwYXRjaCBbLWhdIFstLWZpeHR1cmUgUEFUSCBbUEFUSCAuLi5dXSBbLS1wcmludC1vbmx5XQogICAgICAgICAgICAgICAgICAgICAgICAgIFstLWluYm94IElOQk9YXSBbLS1vdXRib3ggT1VUQk9YXQogICAgICAgICAgICAgICAgICAgICAgICAgIFstLXByb2ZpbGVzIFBST0ZJTEVTXQoKR2F0ZWJyYWlkIGRpcmVjdC1kcml2ZSBkaXNwYXRjaGVyIChwcm90b2NvbHMvZGlyZWN0LWRyaXZlLXYxLm1kKS4KCm9wdGlvbnM6CiAgLWgsIC0taGVscCAgICAgICAgICAgIHNob3cgdGhpcyBoZWxwIG1lc3NhZ2UgYW5kIGV4aXQKICAtLWZpeHR1cmUgUEFUSCBbUEFUSCAuLi5dCiAgICAgICAgICAgICAgICAgICAgICAgIGV2YWx1YXRlIHNlZWRzIGluIGEgdGVtcG9yYXJ5IGRpcmVjdG9yeSBhbmQgcnVuCiAgICAgICAgICAgICAgICAgICAgICAgIG5vdGhpbmcKICAtLXByaW50LW9ubHkgICAgICAgICAgZXZhbHVhdGUgdGhlIHJlYWwgaW5ib3ggYW5kIHByaW50IGNvbW1hbmRzOyB3cml0ZQogICAgICAgICAgICAgICAgICAgICAgICBub3RoaW5nCiAgLS1pbmJveCBJTkJPWAogIC0tb3V0Ym94IE9VVEJPWAogIC0tcHJvZmlsZXMgUFJPRklMRVMKZXhpdCAyCg==",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "usage: gatebraid-dispatch [-h] [--fixture PATH [PATH ...]] [--print-only]\n                          [--inbox INBOX] [--outbox OUTBOX]\n                          [--profiles PROFILES]\n\nGatebraid direct-drive dispatcher (protocols/direct-drive-v1.md).\n\noptions:\n  -h, --help            show this help message and exit\n  --fixture PATH [PATH ...]\n                        evaluate seeds in a temporary directory and run\n                        nothing\n  --print-only          evaluate the real inbox and print commands; write\n                        nothing\n  --inbox INBOX\n  --outbox OUTBOX\n  --profiles PROFILES\nexit 2\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-08T17:05:56.507421Z",
+  "ended_at": "2026-09-08T17:05:56.655166Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-dispatch.py",
+      "sha256": "4de9fc8a6f83be13c53f123aef9fc4e3303a4755914eeecac451a674a7d9e257"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "ADR-0035 decision 6a, class (a): the dispatcher at main invoked with --help through the coordinator's channel; contract section 10 makes --help a usage error, exit 2, printed as the last line; nothing written."
+}
