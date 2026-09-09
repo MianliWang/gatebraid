@@ -13,10 +13,20 @@ shape and the one-segment stamp; §2.2's `environment`, `reason` and
 retention clauses; §3's measured scratch rule; §4's `DD-R05` prose-pair
 allowlist and `DD-R08` unmeasured-state clause; §6 and §8 aligned with
 ADR-0034 decision 9 — stage 0 runs nothing; three seeds added) · amended by
-the ADR-0035 batch (§1's coordinator and operator roles, §5's last rule and
-§10's run-form sentence: the coordinator may start the dispatcher for
-read-only manifests, under ADR-0035's four command classes, presence rule
-and session log) · Product: Gatebraid (ADR-0010). This document is the contract the dispatcher
+the ADR-0035 batch (§1's coordinator and operator roles, §5's trigger
+rule — the sixth of its seven — and §10's run-form sentence: the
+coordinator may start the dispatcher for read-only manifests, under
+ADR-0035's four command classes, presence rule and session log) · amended
+by the stage-1 batch
+(§1's in-force clause and closing clause, on the ADR-0035 review's V-2 and
+V-3; §2.1's `slice_id` clause anchored like `name`; §2.2's and §4's
+unmeasured-state clause stated for every path that evaluates the post-run
+rule; §2.2's and §4's resolved-executable clause and, found by the channel
+probe, their shim clause with §9's host paragraph — the resolved `claude`
+is an executable image, never a command-shell shim; §3's profile clause
+for the read-only report write; §8's stage-1 evidence; §9's version-query
+sentence; §10's `post_run` clause; two seeds added) · Product: Gatebraid
+(ADR-0010). This document is the contract the dispatcher
 implements and the fixtures in `fixtures/direct-drive/` test. The fixtures
 precede the tool (M3-PLAN §2); a decision this contract does not name is a
 refusal.
@@ -31,7 +41,13 @@ refusal.
   the operator has given the word for, each start and end announced in the
   conversation and every host command logged on the batch's lane
   (ADR-0035 decisions 2, 3 and 5). It never starts `claude -p` itself, never
-  runs `git` or `gh` on the host, and runs nothing else there.
+  runs `git` or `gh` on the host, and runs nothing else there beyond
+  ADR-0035 decision 2's four classes. That permission is in force from
+  2026-09-08: ADR-0035 decision 7 made it conditional on the ADR's merge
+  (`c2e9496ee25aa503deea91972675e44d496adb31`) and on the operator's edit of
+  the project's standing instruction to the coordinator in the words of
+  decision 2, and both are on record (the operator's Batch Approval on
+  PR #25 states the edit).
 - **Operator** — may start and end the dispatcher in their own host session;
   posts every door; merges; may halt the dispatcher at any time with the STOP
   file or by ending the process — two ways that pass through no one else.
@@ -91,7 +107,7 @@ The executor's own report goes wherever the dispatch text directs (today
 - `repository`: exactly `MianliWang/gatebraid` or `MianliWang/gatebraid-scratch`.
 - `cwd`: the clone of that repository; the dispatcher verifies `git -C <cwd> remote get-url origin` names the same repository.
 - `profile`: `readonly` for read-only kinds, `evidence` for evidence kinds, `write` for write kinds; a mismatch is a refusal.
-- `slice_id`: required for evidence and write kinds and absent for read-only kinds; matches `^P[0-9]+-S[0-9]+$`; names the Slice whose evidence directory the post-run rule (§2.2) admits.
+- `slice_id`: required for evidence and write kinds and absent for read-only kinds; matches `P[0-9]+-S[0-9]+` as the WHOLE string (anchored at both ends of the value, exactly as `name` is, so a trailing newline is not admitted); names the Slice whose evidence directory the post-run rule (§2.2) admits.
 - `max_turns`, `timeout_seconds`: positive integers; the run is ended and recorded as `timeout` when either is exceeded.
 
 ### 2.2 `gatebraid/dispatch-run@1`
@@ -119,7 +135,7 @@ The executor's own report goes wherever the dispatch text directs (today
   "refusal": "<DD-Rnn or null>",
   "reason": "<one line, or null: the refusing check's message; for an error, the exception's class name or the moved path or head>",
   "exit_status": 0,
-  "command": ["claude", "-p", "...", "--output-format", "json"],
+  "command": ["<tool_paths.claude>", "-p", "...", "--output-format", "json"],
   "environment": {"GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid", "PYTHONDONTWRITEBYTECODE": "1"},
   "stdout_sha256": "<64 hex>",
   "stderr_sha256": "<64 hex>",
@@ -138,9 +154,15 @@ present after the run and not before (or present in both with a different
 status) must name a path under `evidence_dir` — the same exclusion of the
 Slice's own evidence directory that ADR-0014 §1 applies to the baseline
 re-read; a write kind has no post-run rule here (the Gate 2 contract's R1
-and the Gate 3 contract govern what it may change). A failure is the outcome
-`error` with refusal `DD-R08`, recorded after the fact (the run already
-happened; the record says so). A whole-manifest refusal (`DD-R01`, or
+and the Gate 3 contract govern what it may change). Before any of those
+comparisons, and for every kind including write kinds: a head or a
+porcelain list the dispatcher could not measure on either side of the run
+(a null value) is the outcome `error` with refusal `DD-R08` naming the
+unmeasured state — null compared with null is not "unchanged". This clause
+is part of the rule itself and holds wherever the rule is evaluated, the
+run form and fixture mode's `post_run` path (§10) alike. A failure is the
+outcome `error` with refusal `DD-R08`, recorded after the fact (the run
+already happened; the record says so). A whole-manifest refusal (`DD-R01`, or
 `DD-R02`'s manifest-level half) is recorded too: `name` is `MANIFEST.json`,
 `kind`, `slice_id`, `evidence_dir`, the heads and the lists are null, the
 outcome is `refused` with the code, and the file is
@@ -156,9 +178,18 @@ dispatcher takes the `started_at` fallback regardless, so no admitted input
 can place a record anywhere but the outbox. A manifest that is not a JSON
 object is refused the same way and recorded the same way.
 
-Three clauses on the record's fields. `environment` lists the variables the
-dispatcher sets and nothing else; the job inherits the rest of the
-dispatcher's process environment, which the record does not enumerate.
+Four clauses on the record's fields. `command` is the argument vector the
+dispatcher started, and its first element is the executable's resolved
+path — the same value as `tool_paths.claude`, the path `DD-R07` verified —
+never a bare name for the shell to resolve by its own rules; the record
+names what ran. That path names an executable image, never a command-shell
+shim (a `.cmd`, `.bat` or `.ps1` file, compared case-insensitively): a
+shim's process is not the run's, so the kill switch of §6 would end the
+shell and not the job, and a shim re-parses the prompt through the shell —
+a resolution that lands on a shim is a `DD-R07` refusal (§4, §9), never
+started through. `environment` lists the variables the dispatcher sets and
+nothing else; the job inherits the rest of the dispatcher's process
+environment, which the record does not enumerate.
 `reason` is null for a `completed` run and for an outcome the executable's
 own exit decided (`timeout` from the turn budget, `error` from a non-zero
 exit); it carries a message only where the dispatcher itself decided. A run
@@ -173,7 +204,7 @@ never a record redacted in place.
 | kind | profile | what the dispatch may direct | what the profile denies |
 |---|---|---|---|
 | `entry`, `gate0`, `gate1` | `evidence` | reads, `gh` reads, Python instruments with `-B`, writing under `_handoff/` and under the Slice's own evidence directory as the gate contract allows | any `git commit`/`push`, any write inside the repository outside the Slice's own evidence directory, any `gh` mutation except the acts the gate's own Exit names: its field writes, its handoff comment, and — for Gate 1 — the `needs-human` label and the one sanctioned rewrite of the Slice issue's metadata block (`protocols/gate-1-contract.md`, Exit) |
-| `review`, `consult-prep` | `readonly` | reads; one report under `_handoff/`; scratch outside every repository — a directory where `git rev-parse --show-toplevel` fails, named by the dispatch text (on the executor host the user profile directory is itself a repository, so the platform's default temporary directory and the session scratchpad are not outside) | every write inside the repository, every `gh` mutation, any lease |
+| `review`, `consult-prep` | `readonly` | reads; one report under `_handoff/` — the profile admits the editing tools under the batch's own `_handoff/batch-<name>/` directory and nowhere else, by a path rule the profile states; scratch outside every repository — a directory where `git rev-parse --show-toplevel` fails, named by the dispatch text (on the executor host the user profile directory is itself a repository, so the platform's default temporary directory and the session scratchpad are not outside) | every write inside the repository outside that one directory, every `gh` mutation, any lease. A headless run cannot answer a permission prompt, so a tool the profile does not admit is refused by the run itself; the refusal of a write outside the admitted directory is demonstrated on a probe job at stage 1 (§8), because a profile that has only ever allowed has not been shown able to deny |
 | `gate2` | `write` | commits on the Slice branch under the lease, field writes the contract names, no push | push; PR creation; any path outside the frozen allowlist (the contract's R1 is the check; the profile is the floor) |
 | `gate3` | `write` | push of the Slice branch, PR creation, `gate3.md`, then HOLD at the merge door; the Exit after the operator's merge is a second `gate3` entry the coordinator lists once the merge is on record — no job spans a door | merge; branch deletion; any second branch |
 
@@ -201,9 +232,9 @@ The dispatcher evaluates, in this order, and stops at the first failure:
 | `DD-R04` | `repository` is in the closed set; `cwd`'s `origin` names it | refuse the entry |
 | `DD-R05` | the dispatch file's bytes pass the standing scans: no `owner/name` identity outside the closed set (the closed-set check is a whitelist; its documented residue classes — paths, refs, ratios, schema ids, citations, JSON pointers — are rules, and ordinary prose pairs such as `I/O` are admitted only as EXACT strings from an allowlist the source states, never as a pattern); no handoff-block schema token; no closing keyword immediately before an issue reference; no CR byte; no non-ASCII code point outside {U+00A7, U+00B7, U+2013, U+2014, U+2026, U+2192} | refuse the entry |
 | `DD-R06` | `_handoff/inbox/RUNNING` absent | refuse the entry (a job is running) |
-| `DD-R07` | the profile file for the entry's class exists and hashes; the `claude` executable resolves and reports a version; `git`, `gh` and `python` resolve | refuse the entry |
-| — | **run**: write `RUNNING`; record `head_before` and `porcelain_before`; start `claude -p <dispatch bytes as the prompt> --output-format json` with `cwd`, the environment of §2.2, the profile, `--max-turns`; poll output and the STOP file; capture stdout and stderr as bytes | — |
-| `DD-R08` | the post-run rule of §2.2: a read-only kind changed nothing (`head_after == head_before`, porcelain lists equal as sets); an evidence kind changed nothing outside `docs/evidence/gatebraid/<slice_id>/` and committed nothing; write kinds are not checked against a rule here — but for EVERY kind, git state the dispatcher could not measure on either side of the run (a null head or list) is `error`/`DD-R08`, never a pass | outcome `error`; the run record says which paths, or which head, moved, or which state went unmeasured |
+| `DD-R07` | the profile file for the entry's class exists and hashes; the `claude` executable resolves, to an executable image and not to a command-shell shim (`.cmd`, `.bat`, `.ps1`; §2.2, §9), and reports a version; `git`, `gh` and `python` resolve | refuse the entry |
+| — | **run**: write `RUNNING`; record `head_before` and `porcelain_before`; start the `claude` executable `DD-R07` resolved (by that path) with `-p <dispatch bytes as the prompt> --output-format json`, `cwd`, the environment of §2.2, the profile, `--max-turns`; poll output and the STOP file; capture stdout and stderr as bytes | — |
+| `DD-R08` | the post-run rule of §2.2: a read-only kind changed nothing (`head_after == head_before`, porcelain lists equal as sets); an evidence kind changed nothing outside `docs/evidence/gatebraid/<slice_id>/` and committed nothing; write kinds are not checked against a rule here — but for EVERY kind, git state the dispatcher could not measure on either side of the run (a null head or list) is `error`/`DD-R08`, never a pass — a clause of the rule itself (§2.2), evaluated first on every path that evaluates the rule, fixture mode's `post_run` included (§10; seeds DD-26, DD-27) | outcome `error`; the run record says which paths, or which head, moved, or which state went unmeasured |
 | — | remove `RUNNING`; write the run record; move to the next entry only if `outcome` is `completed` and STOP is still absent | — |
 
 An entry refused is not retried by the dispatcher; the coordinator corrects
@@ -218,8 +249,14 @@ which fixture mode evaluates the post-run rule without running anything. In
 addition, `DD-R07` is demonstrated once on the real host at stage 1 of the
 trial by an entry naming a profile that does not exist — a refusal before any
 run, with no write — and that run record is bound by stage 1's approval (§8).
-`DD-R08` is not provoked on the real host: a job that writes under a profile
-meant to deny it is not something the trial runs on purpose.
+`DD-R07`'s shim clause cannot be seeded — the resolution is the host's, not
+the inbox's — and is falsified on the real host at stage 1 by a print-only
+pair over one inbox: once under the host's own search path, where `claude`
+resolves to the shim an npm installation puts first, refused; once with the
+search path of that one process prefixed by the directory holding the
+image, admitted, the image's path printed first (§9, §10). `DD-R08` is not
+provoked on the real host: a job that writes under a profile meant to deny
+it is not something the trial runs on purpose.
 
 ## 5. What the dispatcher never does
 
@@ -252,8 +289,10 @@ inbox — the trusted seed DD-P1 materialised outside every repository — with
 both are captured. At stage 1, before the replay: the run form over an inbox
 with `STOP` present, which writes a `halted`/`DD-R00` record before any job
 starts; and `STOP` created while a long-running rehearsal job is in flight,
-whose record shows `halted` and whose process must be gone. Those two records
-are retained as stage 1's evidence.
+whose record shows `halted` and whose process must be gone — once with the
+coordinator creating `STOP` and once with the operator creating it from
+their own machine, since under ADR-0035 both hands are on the switch. Those
+three records are retained as stage 1's evidence.
 
 ## 7. Audit
 
@@ -275,11 +314,23 @@ trusted seed's inbox on the real host twice — once with `STOP` present
 (halted, nothing written) and once without (the command it would run
 printed, nothing written, the real profile file and the real tools resolved
 at `DD-R07`, the profile's sha256 pinned by the stage's approval, §9);
-stage 1 — the two records of §6's kill-switch demonstration, the replay's run
-record, its report, a byte-level comparison table of its verdicts against the
-recorded review's, and the `DD-R07` host seed's run record (a refusal before
-any run; the stage's "zero writes" criterion is a property of the replay and
-is not touched by it); stages 2–3 — the scratch Slice's own gate records,
+stage 1 — the records of §6's kill-switch demonstration (under ADR-0035,
+three: the run form halted by a `STOP` already present; a rehearsal job
+halted by a `STOP` the coordinator creates; a rehearsal job halted by a
+`STOP` the operator creates from their own machine — both hands on the
+switch); the coordinator's channel probe of ADR-0035 decision 6; the probe
+job's run record (a read-only job that attempts one write inside the
+admitted `_handoff/batch-<name>/` directory and one outside it, and reports
+which the profile admitted and which the run refused — the deny direction of
+§3's profile, measured once before any trusted read-only run); the replay's
+run record, its report, a byte-level comparison table of its verdicts
+against the recorded review's (the replay may be run against more than one
+recorded state of the same closed review — the state where a verdict failed
+and the state where every verdict passed — so that the headless reviewer is
+shown able to fail as well as to pass; each run has its own record and its
+own table); the `DD-R07` host seed's run record (a refusal before any run;
+the stage's "zero writes" criterion is a property of the replay and is not
+touched by it); and the coordinator's session log of ADR-0035 decision 5; stages 2–3 — the scratch Slice's own gate records,
 which carry their run records by `output_ref`.
 
 ## 9. Host configuration
@@ -287,13 +338,27 @@ which carry their run records by `output_ref`.
 The dispatcher's host inputs are: the `claude` executable and its version; the
 settings profiles; `git`, `gh`, `python`. `claude_version` and `tool_paths`
 are measured before any check and carried in every run record, refusal
-records included; `profile_path` and `profile_sha256` are carried in every
+records included — that measurement spawns the executable once per
+invocation, in every mode, as `claude --version`: a version query, not a
+run; `claude -p` is started only by the run row of §4, and "no run was
+started" is the sentence a mode that runs nothing may claim; `profile_path` and `profile_sha256` are carried in every
 record of an entry that reached `DD-R07` (where the profile is read) and are
 null in a record refused before it. The batch approval for each trial stage
 pins the profile sha256 values it expects, and a run record that reached
 `DD-R07` carrying another value is a stop-the-line event at audit (§7), of
 the same shape as the `dispatch_sha256` mismatch. No host file has normative
 authority; this contract and the dispatch text bind.
+
+The resolved `claude` must be an executable image (§2.2, §4). On the
+Windows executor host an npm installation puts a `claude.cmd` shim first on
+the search path, ahead of the image it wraps; the dispatcher refuses that
+resolution at `DD-R07` rather than starting through it. The remedy is the
+launch command's, not the tool's and not the host's: the process that
+starts the dispatcher has its search path prefixed with the directory
+holding the image, for that process only — a setting the batch brief
+states, the session log carries on every class-(a) line and the batch
+approval records — never an edit of the host's own configuration, which
+ADR-0035 decision 2 forbids the coordinator.
 
 ## 10. Fixture mode, print-only mode, and the command line (`gatebraid/dispatch-fixture@1`)
 
@@ -308,8 +373,10 @@ runs nothing, and prints one line per seed:
 A seed carrying `setup.post_run` (`head_before`, `head_after`,
 `porcelain_before`, `porcelain_after`, as the run record would hold them) is
 evaluated one step further: after `DD-R07` passes, the post-run rule of §2.2
-is applied to the declared states and the decision is `completed` (code
-null) or `error` (`DD-R08`). Fixture mode takes the same code path as the
+— its unmeasured-state clause first, so a declared null head or list is
+`error`/`DD-R08` on this path exactly as in the run form — is applied to the
+declared states and the decision is `completed` (code null) or `error`
+(`DD-R08`). Fixture mode takes the same code path as the
 run form up to the run row — including writing every refusal's or halt's run
 record (§2.2) into the temporary directory's own `outbox/`, removed with the
 directory — so that a record the run form could not write is a seed the

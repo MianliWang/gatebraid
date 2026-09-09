@@ -1,0 +1,89 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage1-print-only-ab-shim",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python",
+      "-B",
+      "bin/gatebraid-dispatch.py",
+      "--print-only",
+      "--inbox",
+      "_handoff/inbox-ab",
+      "--outbox",
+      "_handoff/outbox-ab"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 123,
+      "sha256": "dc0e02c81661a05c028823ace39fd9c70ddc13af3de08b3ce295f4f2d9442fb8",
+      "data": "cmVmdXNlZCBERC1SMDcgZW50cnkgMTogdGhlIGNsYXVkZSBleGVjdXRhYmxlIHJlc29sdmVzIHRvIGEgY29tbWFuZC1zaGVsbCBzaGltLCBub3QgYW4gZXhlY3V0YWJsZSBpbWFnZTogY2xhdWRlLkNNRApleGl0IDEK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "refused DD-R07 entry 1: the claude executable resolves to a command-shell shim, not an executable image: claude.CMD\nexit 1\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-09T00:34:41.027747Z",
+  "ended_at": "2026-09-09T00:34:41.582199Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-dispatch.py",
+      "sha256": "3438da9a0380753d224dae7534f3cd65137af4c02506764aa0cf65525df3d39c"
+    },
+    {
+      "path": "_handoff/inbox-ab/MANIFEST.json",
+      "sha256": "d8be1a06daf490ccb2519e73c39ee6be5e05a1cf36bbbef7dc663cd4a8fff414"
+    },
+    {
+      "path": "_handoff/inbox-ab/REHEARSAL-STOP.md",
+      "sha256": "7b7a1e6bc40f605d97e0d224e2def11e73e21070afbcf1b9fff12b5896e3cea9"
+    },
+    {
+      "path": "C:/Users/rough/.gatebraid/profiles/readonly.settings.json",
+      "sha256": "2812c249644a4241fee431f6f654347330dba031f79406ccd90364dcc28792ca"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "The third cure falsifier, on record beside the cure. Print-only mode over the acts A and B inbox with no STOP present, under the HOST OWN SEARCH PATH - no prefix - where shutil.which resolves the bare name to the npm command-shell shim C:\\Users\\rough\\AppData\\Roaming\\npm\\claude.CMD. The cured DD-R07 refuses that resolution before any run: refused DD-R07 entry 1, naming the file only, exit 1. Nothing printed before it, nothing written, no outbox directory created. Started through the shim the run process would have been an implicit command shell, so the section 6 kill switch would have ended the shell and left the job, and the shell would have re-parsed the prompt."
+}

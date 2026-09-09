@@ -1,0 +1,41 @@
+{
+  "schema": "gatebraid/dispatch-fixture@1",
+  "id": "DD-27",
+  "title": "evidence kind (gate0) whose porcelain list after the run was not measured (null) while the heads match; the unmeasured list is an error, never a pass",
+  "expected": {
+    "decision": "error",
+    "code": "DD-R08"
+  },
+  "setup": {
+    "stop_present": false,
+    "running_present": false,
+    "manifest": {
+      "schema": "gatebraid/dispatch-manifest@1",
+      "written_at": "2026-09-08T00:00:00Z",
+      "entries": [
+        {
+          "name": "DD-27-gate0.md",
+          "sha256": "5da03c39068f58ee37e91370e8de98b915eb2bfd76b3a0f0c569230de31d6eeb",
+          "bytes": 439,
+          "kind": "gate0",
+          "repository": "MianliWang/gatebraid",
+          "cwd": "D:/Github repo/Gatebraid",
+          "profile": "evidence",
+          "max_turns": 200,
+          "timeout_seconds": 3600,
+          "slice_id": "P9-S1"
+        }
+      ]
+    },
+    "files": {
+      "DD-27-gate0.md": "# GATE 0 DISPATCH (fixture seed) - evidence kind\n\nYou are a fresh headless context in the control repository. Verify about\nyourself: you hold no Writer Lease; porcelain is empty. Run the Gate 0\ncontract's actions for Slice P9-S1, write gate0.md under the Slice's own\nevidence directory, commit nothing, and STOP. Repository set: MianliWang/gatebraid\nonly (the scratch clone's path is stage 2's business; the post-run rule is\nabout paths).\n"
+    },
+    "post_run": {
+      "head_before": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00",
+      "head_after": "c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00",
+      "porcelain_before": [],
+      "porcelain_after": null
+    }
+  },
+  "note": "The list limb of the same rule: an evidence job whose post-run porcelain list is null cannot be shown to have written only under its own evidence directory, so the outcome is error/DD-R08 naming the unmeasured state, not completed. A null list coerced to an empty list would pass vacuously; the seed exists so that coercion is a MISMATCH."
+}

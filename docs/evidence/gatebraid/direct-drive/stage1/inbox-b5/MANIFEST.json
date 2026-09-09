@@ -1,0 +1,17 @@
+{
+  "schema": "gatebraid/dispatch-manifest@1",
+  "written_at": "2026-09-09T02:00:05Z",
+  "entries": [
+    {
+      "name": "REHEARSAL-STOP-B5.md",
+      "sha256": "6f215f4f98e8cb0079e0ca62dd2fc44b0f56998475beabff6ff52dd22497c44d",
+      "bytes": 1924,
+      "kind": "review",
+      "repository": "MianliWang/gatebraid",
+      "cwd": "D:/Github repo/Gatebraid",
+      "profile": "readonly",
+      "max_turns": 400,
+      "timeout_seconds": 3600
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+REHEARSAL-STOP-B6.md outcome halted
+exit 1

@@ -1,0 +1,93 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "stage1-print-only-ab-stop",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python",
+      "-B",
+      "bin/gatebraid-dispatch.py",
+      "--print-only",
+      "--inbox",
+      "_handoff/inbox-ab",
+      "--outbox",
+      "_handoff/outbox-ab"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "exit_code": 1,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 59,
+      "sha256": "6b13074dfa568193825bc669a6aa39dc806a5c062ea6484fc63e35dd3e1f4eee",
+      "data": "aGFsdGVkIERELVIwMCB0aGUgU1RPUCBmaWxlIGlzIHByZXNlbnQgaW4gdGhlIGluYm94CmV4aXQgMQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "halted DD-R00 the STOP file is present in the inbox\nexit 1\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-09T00:34:21.502120Z",
+  "ended_at": "2026-09-09T00:34:21.986593Z",
+  "inputs": [
+    {
+      "path": "bin/gatebraid-dispatch.py",
+      "sha256": "3438da9a0380753d224dae7534f3cd65137af4c02506764aa0cf65525df3d39c"
+    },
+    {
+      "path": "_handoff/inbox-ab/MANIFEST.json",
+      "sha256": "d8be1a06daf490ccb2519e73c39ee6be5e05a1cf36bbbef7dc663cd4a8fff414"
+    },
+    {
+      "path": "_handoff/inbox-ab/REHEARSAL-STOP.md",
+      "sha256": "7b7a1e6bc40f605d97e0d224e2def11e73e21070afbcf1b9fff12b5896e3cea9"
+    },
+    {
+      "path": "_handoff/inbox-ab/STOP",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:/Users/rough/.gatebraid/profiles/readonly.settings.json",
+      "sha256": "2812c249644a4241fee431f6f654347330dba031f79406ccd90364dcc28792ca"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.14.3 (C:/msys64/mingw64/bin/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  },
+  "notes": "Print-only mode over the acts A and B inbox with an EMPTY STOP file present, created by this window solely for this capture and removed immediately after it (act A STOP is the coordinator to create). Profiles directory default. No search-path prefix: DD-R00 halts before any host resolution, so the shim clause is not reached. Expected and measured: halted DD-R00 the STOP file is present in the inbox, exit 1, nothing written and no outbox directory created."
+}
