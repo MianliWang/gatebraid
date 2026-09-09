@@ -1,0 +1,5 @@
+PROBE-DENY.md outcome completed
+REVIEW-DISPATCH-P2S6-G2-REPLAY-B.md outcome completed
+REVIEW-DISPATCH-P2S6-G2-REPLAY-A.md outcome completed
+refused DD-R07 entry 4: the settings profile for the entry's class is absent: evidence.settings.json
+exit 1

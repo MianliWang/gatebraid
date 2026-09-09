@@ -1,0 +1,2 @@
+REHEARSAL-STOP-B5.md outcome timeout
+exit 1

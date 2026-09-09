@@ -1,0 +1,2 @@
+REHEARSAL-STOP.md outcome halted
+exit 1

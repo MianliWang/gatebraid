@@ -1,0 +1,2 @@
+halted DD-R00 the STOP file is present in the inbox
+exit 1

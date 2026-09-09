@@ -1,0 +1,51 @@
+{
+  "schema": "gatebraid/dispatch-manifest@1",
+  "written_at": "2026-09-08T10:00:01Z",
+  "entries": [
+    {
+      "name": "PROBE-DENY.md",
+      "sha256": "4d6aa029f88df530c6917afd8c3014bd95730fb78d7b1e3f4e46f0638bfbc457",
+      "bytes": 2457,
+      "kind": "review",
+      "repository": "MianliWang/gatebraid",
+      "cwd": "D:/Github repo/Gatebraid",
+      "profile": "readonly",
+      "max_turns": 40,
+      "timeout_seconds": 900
+    },
+    {
+      "name": "REVIEW-DISPATCH-P2S6-G2-REPLAY-B.md",
+      "sha256": "2d9f2e4e0169febb32a738956b612afebc6a5f9b271ff16b51957e0d85a1a75c",
+      "bytes": 15884,
+      "kind": "review",
+      "repository": "MianliWang/gatebraid",
+      "cwd": "D:/Github repo/Gatebraid",
+      "profile": "readonly",
+      "max_turns": 800,
+      "timeout_seconds": 10800
+    },
+    {
+      "name": "REVIEW-DISPATCH-P2S6-G2-REPLAY-A.md",
+      "sha256": "0677069658157a7c53feea42a53bb8e8cdcb271f9c6c326c8cd2b668cfc031c2",
+      "bytes": 15876,
+      "kind": "review",
+      "repository": "MianliWang/gatebraid",
+      "cwd": "D:/Github repo/Gatebraid",
+      "profile": "readonly",
+      "max_turns": 800,
+      "timeout_seconds": 10800
+    },
+    {
+      "name": "SEED-DD-R07-ENTRY.md",
+      "sha256": "28437514351453a39ea9affeac49e41499251d044b4fc978fd685f49953deb75",
+      "bytes": 760,
+      "kind": "entry",
+      "repository": "MianliWang/gatebraid",
+      "cwd": "D:/Github repo/Gatebraid",
+      "profile": "evidence",
+      "max_turns": 10,
+      "timeout_seconds": 600,
+      "slice_id": "P2-S6"
+    }
+  ]
+}

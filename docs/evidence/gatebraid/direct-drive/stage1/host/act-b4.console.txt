@@ -1,0 +1,2 @@
+REHEARSAL-STOP-B4.md outcome timeout
+exit 1

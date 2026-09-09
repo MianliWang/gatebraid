@@ -1,0 +1,2 @@
+REHEARSAL-STOP-B3.md outcome completed
+exit 0
