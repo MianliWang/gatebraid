@@ -44,6 +44,8 @@ with `STOP` present and once without (contract §6 and §8).
 | DD-23 | manifest `written_at` is a string of the wrong shape (slashes); the refusal must still be recorded, in the outbox | refuse DD-R01 (manifest; record written) |
 | DD-24 | dispatch text carrying two ordinary prose pairs (`I/O`, `before/after`) | allow — the pass-direction falsifier of the exact-string prose-pair allowlist |
 | DD-25 | entry name that is one segment plus a trailing newline | refuse DD-R01 (manifest) |
+| DD-26 | read-only kind (`review`) whose heads were not measured on either side (both null, declared states) | error DD-R08 — the unmeasured-state clause on the fixture `post_run` path |
+| DD-27 | evidence kind (`gate0`) whose porcelain list after the run was not measured (null, declared states) | error DD-R08 — the same clause, the list limb |
 
 One seed (DD-24) carries two prose pairs joined by a slash in its committed
 bytes; they are the class the tool's exact-string allowlist admits (contract
@@ -65,7 +67,11 @@ file or a host tool absent) by DD-16, whose host stub omits the profile file;
 DD-15, which declare the heads and porcelain lists before and after a run so
 the post-run rule is evaluated without running anything — DD-13 is the
 positive case an evidence kind must pass, a Gate 0 that wrote only its own
-evidence file. DD-02 is the manifest-level half of `DD-R02` — an inbox file
+evidence file — and by DD-26 and DD-27, which declare a null head or a null
+list: state the dispatcher could not measure is `error`/`DD-R08` for every
+kind (contract §2.2, §4), and the two seeds hold that clause on the fixture
+`post_run` path, where the function that owns the rule is the one that must
+refuse (the stage-0 review's S-2). DD-02 is the manifest-level half of `DD-R02` — an inbox file
 no entry names — which §4 evaluates once per manifest before any entry.
 
 Missing on purpose, owed to R-min: seeds for the `write` profile's deny list

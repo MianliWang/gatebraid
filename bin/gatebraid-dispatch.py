@@ -522,10 +522,37 @@ def porcelain_key(line):
 
 
 def apply_post_run_rule(kind, slice_id, states):
+    """Section 2.2's post-run rule; section 4 orders its clauses.
+
+    The unmeasured-state clause is part of the rule, so it is evaluated HERE,
+    first, for EVERY kind, the write kinds included: any of `head_before`,
+    `porcelain_before`, `head_after` or `porcelain_after` that is null is git
+    state the dispatcher could not measure, which is `error`/`DD-R08` and never
+    a pass. It is evaluated before any comparison and before any null is
+    coerced to an empty list, because a null head compares equal to a null head
+    and a null coerced to an empty list compares equal to an empty list -- both
+    would pass vacuously on state nobody measured.
+
+    The clause lives in the function that owns the rule so that every path
+    which evaluates the rule evaluates it: the run row of section 4 through
+    `execute_entry`, and fixture mode's `post_run` path of section 10, which
+    reaches this function directly. A rule enforced on one path and not on the
+    other is the defect seeds DD-26 and DD-27 falsify.
+    """
+    unmeasured = [name for name in ("head_before", "porcelain_before",
+                                    "head_after", "porcelain_after")
+                  if states.get(name) is None]
+    if unmeasured:
+        return Decision("error", "DD-R08",
+                        "git did not report %d state(s) around the run: %s"
+                        % (len(unmeasured), ", ".join(unmeasured)))
+
     head_before = states.get("head_before")
     head_after = states.get("head_after")
-    before = list(states.get("porcelain_before") or [])
-    after = list(states.get("porcelain_after") or [])
+    # No "or []" here: the clause above has already refused every null, and a
+    # coercion reintroduced at this line is exactly what DD-26 and DD-27 catch.
+    before = list(states.get("porcelain_before"))
+    after = list(states.get("porcelain_after"))
 
     if kind in WRITE_KINDS:
         return Decision("completed")
@@ -565,6 +592,16 @@ def apply_post_run_rule(kind, slice_id, states):
 # --------------------------------------------------------------------------
 # host resolution (DD-R07)
 # --------------------------------------------------------------------------
+
+# Contract sections 2.2, 4 and 9: the resolved `claude` must be an executable
+# IMAGE, never a command-shell shim. On Windows an npm installation puts a
+# shim on the search path ahead of the image it wraps; started through it, the
+# process the dispatcher holds is an implicit shell and not the run, so section
+# 6's kill switch would end the shell and leave the job, and the shell would
+# re-parse the prompt it is handed. Matched against the resolved file NAME,
+# case-insensitively.
+SHELL_SHIM_SUFFIXES = (".cmd", ".bat", ".ps1")
+
 
 def resolve_tools():
     """Return (paths, missing). Section 2.2's tool_paths."""
@@ -732,6 +769,14 @@ def evaluate_entry(entry, position, inbox, profiles_dir, host):
                         "%s: %d host tool(s) do not resolve: %s"
                         % (where, len(host["missing"]),
                            ", ".join(host["missing"]))), None
+    claude_name = Path(host["paths"]["claude"]).name
+    if claude_name.lower().endswith(SHELL_SHIM_SUFFIXES):
+        # The reason names the FILE only. The whole path is the record's, in
+        # `tool_paths.claude`; a refusal line does not restate it.
+        return Decision("refuse", "DD-R07",
+                        "%s: the claude executable resolves to a command-shell "
+                        "shim, not an executable image: %s"
+                        % (where, claude_name)), None
     if not host["claude_version"]:
         return Decision("refuse", "DD-R07",
                         "%s: the claude executable does not report a version"
@@ -884,10 +929,21 @@ def fixture_mode(paths, host):
 # the run form and print-only mode
 # --------------------------------------------------------------------------
 
-def build_command(entry, prompt, profile_path):
-    """Section 4's run row and section 2.2's command field."""
+def build_command(entry, prompt, profile_path, claude_path):
+    """Section 4's run row and section 2.2's command field.
+
+    The vector's first element is the executable's RESOLVED PATH -- the value
+    `resolve_tools` found, the path `DD-R07` verified, and the value the record
+    carries as `tool_paths.claude` -- never the bare name for the
+    process-creation call to resolve by its own rules. Section 2.2: the record
+    names what ran, so the check and the act must resolve by the SAME rule.
+    `shutil.which` honours the search path and, on Windows, `PATHEXT`; the
+    bare-name resolution of the creation call does not apply that same rule, so
+    the two can name different files, and a record's `command[0]` would then be
+    a name rather than the file that ran. Nothing else in the vector changes.
+    """
     return [
-        "claude", "-p", prompt,
+        claude_path, "-p", prompt,
         "--output-format", "json",
         "--max-turns", str(entry["max_turns"]),
         "--settings", profile_path,
@@ -1081,7 +1137,8 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
     """Section 4's run row, then DD-R08, then the record. RUNNING brackets it."""
     running = Path(inbox) / "RUNNING"
     prompt = admitted["raw"].decode("utf-8")
-    command = build_command(entry, prompt, admitted["profile_path"])
+    command = build_command(entry, prompt, admitted["profile_path"],
+                            host["paths"]["claude"])
     env = run_environment()
     started_at = utc_now()
     Path(outbox).mkdir(parents=True, exist_ok=True)
@@ -1131,29 +1188,21 @@ def execute_entry(entry, inbox, outbox, admitted, manifest_sha, host):
         head_after = git_head(entry["cwd"])
         porcelain_after = git_porcelain(entry["cwd"])
         if outcome == "completed":
-            # git returning None is state that was NOT measured, never state
-            # that matched: comparing None with None would pass the post-run
-            # rule vacuously. The record's null fields say what is missing.
-            unmeasured = [name for name, value in (
-                ("head_before", head_before),
-                ("porcelain_before", porcelain_before),
-                ("head_after", head_after),
-                ("porcelain_after", porcelain_after)) if value is None]
-            if unmeasured:
-                outcome, refusal = "error", "DD-R08"
-                reason = ("git did not report %d state(s) around the run: %s"
-                          % (len(unmeasured), ", ".join(unmeasured)))
-                say("error DD-R08 " + reason)
-            else:
-                verdict = apply_post_run_rule(
-                    entry["kind"], entry.get("slice_id"),
-                    {"head_before": head_before, "head_after": head_after,
-                     "porcelain_before": porcelain_before,
-                     "porcelain_after": porcelain_after})
-                if verdict.decision == "error":
-                    outcome, refusal = "error", verdict.code
-                    reason = verdict.reason
-                    verdict.announce()
+            # The unmeasured-state clause is NOT repeated here. It is the first
+            # clause of `apply_post_run_rule`, which owns the whole rule and
+            # refuses on its own for every kind (contract sections 2.2 and 4),
+            # so the run row and fixture mode's `post_run` path now reach one
+            # implementation. The announced line and the recorded `reason` are
+            # unchanged, and the record's null fields still name what is missing.
+            verdict = apply_post_run_rule(
+                entry["kind"], entry.get("slice_id"),
+                {"head_before": head_before, "head_after": head_after,
+                 "porcelain_before": porcelain_before,
+                 "porcelain_after": porcelain_after})
+            if verdict.decision == "error":
+                outcome, refusal = "error", verdict.code
+                reason = verdict.reason
+                verdict.announce()
     except Exception as error:  # section 10: a job that may have started
         # always leaves its record, never a bare traceback. Section 2.2 v4:
         # the class name is the record's `reason`; `refusal` stays null,
@@ -1227,7 +1276,8 @@ def real_inbox_mode(args, host, print_only):
             break
         if print_only:
             say(json.dumps(build_command(entry, admitted["raw"].decode("utf-8"),
-                                         admitted["profile_path"])))
+                                         admitted["profile_path"],
+                                         host["paths"]["claude"])))
             continue
         outcome = execute_entry(entry, inbox, outbox, admitted, manifest_sha, host)
         if outcome != "completed":

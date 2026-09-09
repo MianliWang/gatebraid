@@ -1,12 +1,19 @@
 # ADR-0035 — The coordinator may start the dispatcher: the operator stops being the starter for read-only runs
 
-**Status:** Proposed · M3 (drafted 2026-09-08 by the coordinator on the
+**Status:** Accepted · M3 (drafted 2026-09-08 by the coordinator on the
 operator's word of the same day — "I agree that you change the ADR" — after
 the stage-1 package of ADR-0034 decision 9 had been delivered with three
 PowerShell blocks for the operator to run; admitted by an independent
-read-only review and ratified by the operator's Batch Approval and merge,
-both recorded in this Status line by the batch that lands it) · Product:
-Gatebraid (ADR-0010)
+read-only review — an untracked working file under `_handoff/batch-ad/`,
+identified by its self-measured region
+`6ebc2058ad1d5af130f350170d35648e03dfc3790cd59e6ce99e5e81ebd5cc56`, whose
+six non-blocking findings the stage-1 batch carries into the contract —
+and ratified by the operator's Batch Approval `5587324079` on PR #25 and
+the merge `c2e9496ee25aa503deea91972675e44d496adb31`, 2026-09-08; in force
+from that merge, the operator having edited the project's standing
+instruction the same day, as decision 7 requires and the approval records;
+this Status line was edited by the stage-1 batch, the first batch to use
+the permission) · Product: Gatebraid (ADR-0010)
 **Amends:** ADR-0034 decision 4 (*"a foreground process in the operator's
 own host session, started and ended by the operator"*), decision 7 (*"the
 coordinator holds no credential and no host process"*) and decision 8
