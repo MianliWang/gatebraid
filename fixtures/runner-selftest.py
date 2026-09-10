@@ -65,6 +65,24 @@ Amended at M3 batch N1E — the two frozen-surface repairs, each falsified here
   Both must produce 3, and the point of asserting 3 rather than merely non-zero
   is that the defect was a WRONG non-zero code, not a missing one.
 
+Amended at M3 batch P-B1 — the foreign-directory declaration, falsified here
+-----------------------------------------------------------------------------
+* **S29, S30, S31.** `CORPORA.json` gains `foreign`, the names under `fixtures/`
+  that are another tool's fixture set and not this runner's corpora (the
+  dispatcher's seeds under `fixtures/direct-drive/`, landed at DD1 without a
+  declaration — the runner had exited 2 on `main` from that day until P-B1
+  measured it). S29 seeds a foreign name whose directory does not exist; S30
+  seeds a directory declared foreign that carries an `EXPECTATIONS.json` (a
+  corpus hiding as foreign); S31 declares one name foreign and built. Each must
+  produce 2, and each seed declares its own foreign entry, so the three run —
+  and fail — against a runner and a `CORPORA.json` that predate `foreign`: the
+  amendment's falsification is taken on the runner that preceded it. S09 keeps
+  asserting that an UNDECLARED directory is still a structure error: the
+  declaration adds a way to say "not mine", never a way to be ignored.
+* **Digest scope gains the foreign directories.** S30 writes into a copy of
+  one; the digest that says "no seeded run mutated the real tree" has to be able
+  to see that directory, for the same reason it gained the two scripts at N1D.
+
   Run:   <python> fixtures/runner-selftest.py
   Exits: 0 = every seeded condition produced its required status
          1 = at least one did not, or a seeded run mutated the real corpus
@@ -119,6 +137,11 @@ def digest_scope(root: pathlib.Path) -> list[pathlib.Path]:
     # are seed-reachable and both are now in scope.
     paths.append(root / "fixtures/run-corpus.py")
     paths.append(root / "fixtures/runner-selftest.py")
+    # P-B1: the foreign directories are seed-reachable too (S30 writes into a
+    # copy of one), so they are in scope for the same reason the scripts are.
+    decl = json.loads((root / "fixtures/CORPORA.json").read_bytes().decode("utf-8"))
+    for name in sorted(decl.get("foreign", [])):
+        paths.append(root / "fixtures" / name)
     return paths
 
 
@@ -242,6 +265,48 @@ def s_undeclared_corpus(d):
 
 def s_malformed_manifest(d):
     (d / "fixtures/metrics-v1/EXPECTATIONS.json").write_text("{ not json", encoding="utf-8")
+
+
+# --- P-B1: the foreign-directory declaration must fail when it is wrong ------
+
+def _corpora(d):
+    return d / "fixtures/CORPORA.json"
+
+
+def _declare_foreign(d, name):
+    """Seed helper: declare `name` foreign in the copy's CORPORA.json, creating the
+    directory (with no manifest) if it does not exist. Self-sufficient on purpose:
+    these seeds must also run against a CORPORA.json that predates `foreign`, so
+    the falsification of the amendment can be taken on the runner that preceded
+    it (ADR-0028 section 1)."""
+    decl = json.loads(_corpora(d).read_bytes().decode("utf-8"))
+    foreign = list(decl.get("foreign", []))
+    if name not in foreign:
+        foreign.append(name)
+    decl["foreign"] = foreign
+    (d / "fixtures" / name).mkdir(exist_ok=True)
+    _corpora(d).write_text(json.dumps(decl, indent=2, ensure_ascii=False) + "\n",
+                           encoding="utf-8", newline="\n")
+    return decl
+
+
+def s_foreign_missing(d):
+    decl = json.loads(_corpora(d).read_bytes().decode("utf-8"))
+    decl["foreign"] = list(decl.get("foreign", [])) + ["ghost-fixture-set"]
+    _corpora(d).write_text(json.dumps(decl, indent=2, ensure_ascii=False) + "\n",
+                           encoding="utf-8", newline="\n")
+
+
+def s_foreign_carries_manifest(d):
+    _declare_foreign(d, "foreign-seed")
+    (d / "fixtures/foreign-seed/EXPECTATIONS.json").write_text("{}", encoding="utf-8")
+
+
+def s_foreign_also_built(d):
+    decl = _declare_foreign(d, "foreign-seed")
+    decl["built"] = list(decl["built"]) + ["foreign-seed"]
+    _corpora(d).write_text(json.dumps(decl, indent=2, ensure_ascii=False) + "\n",
+                           encoding="utf-8", newline="\n")
 
 
 # --- A3: the required-property narrowing must fail when it is wrong --------
@@ -403,6 +468,9 @@ CASES = [
     ("S25 validator cannot resolve",    3, s_unresolvable_ref,      "ENVIRONMENT"),
     ("S26 validator library absent",    3, s_validator_absent,      "not importable"),
     ("S27 __pycache__ present",         0, s_pycache_present,       "CORPUS CLEAN"),
+    ("S29 foreign dir missing",         2, s_foreign_missing,       "declared foreign directory"),
+    ("S30 foreign carries manifest",    2, s_foreign_carries_manifest, "carries a corpus manifest"),
+    ("S31 foreign also built",          2, s_foreign_also_built,    "both foreign and a corpus"),
 ]
 
 

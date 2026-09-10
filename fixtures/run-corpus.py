@@ -99,6 +99,24 @@ measured, the flag set in a module's own body cannot suppress that module's own
 cache, because the cache is written when the loader compiles the module, before
 its body runs. The fix is the name exclusion in the discovery walk.
 
+AMENDED AT M3 BATCH P-B1 — a foreign directory is declared, not discovered
+-------------------------------------------------------------------------
+Measured on `main` at `880f342a0dee29f03aad14198cd09dabf15fcc9f`: this runner
+exited 2 with `corpus director(ies) present but not declared in CORPORA.json:
+direct-drive`. Batch DD1 (2026-09-04) landed `fixtures/direct-drive/` — the
+dispatcher's seeds, another tool's fixture set with its own validator — and
+nobody ran this runner between that day and P-B1's authoring, so the corpus
+freeze that M3-PLAN §2 P requires would have been attempted over a runner that
+could not report CORPUS CLEAN on the tree it was asked to freeze. The discovery
+rule is right and is kept: a directory nobody declared is a structure error.
+What was missing is a way to say "this directory is not mine". `CORPORA.json`
+gains `foreign`: names under `fixtures/` that this runner skips. Three
+structure errors keep the declaration honest, each with a selftest condition
+(S29–S31): a foreign name whose directory does not exist; a foreign directory
+that carries an `EXPECTATIONS.json` (that is a corpus — declare it built); a
+name declared both foreign and built or planned. `direct-drive` is the one
+foreign entry; its seeds are asserted by `bin/gatebraid-dispatch.py --fixture`.
+
 Exit status decides, not the printed text (spec §4).
   0 = every expectation held
   1 = an EXPECTATION failed (a mutation not killed, a valid case broken, wrong,
@@ -389,6 +407,12 @@ def main(argv: list[str]) -> int:
         declared = load_json(FIXTURES / "CORPORA.json", "corpus declaration")
         built = set(declared.get("built", []))
         planned = set(declared.get("planned", []))
+        # P-B1: `foreign` names directories under fixtures/ that are NOT this
+        # runner's corpora (another tool's fixture set, validated by that tool).
+        # Declared, never inferred: an undeclared directory stays a structure
+        # error, and the three checks below keep a foreign entry from hiding a
+        # corpus or naming nothing.
+        foreign = set(declared.get("foreign", []))
 
         # N1E: `__pycache__` is excluded BY NAME. The interpreter writes it into
         # fixtures/ whenever either instrument is imported as a module, and
@@ -396,12 +420,30 @@ def main(argv: list[str]) -> int:
         # measurement broken by the act of taking it.
         discovered = {p.name for p in FIXTURES.iterdir()
                       if p.is_dir() and p.name != _PYCACHE}
-        undeclared = discovered - built - planned
+        twice = foreign & (built | planned)
+        if twice:
+            raise StructureError(
+                "declared both foreign and a corpus in CORPORA.json: "
+                + ", ".join(sorted(twice))
+            )
+        for miss in sorted(foreign - discovered):
+            raise StructureError(f"declared foreign directory {miss!r} does not exist")
+        for name in sorted(foreign & discovered):
+            if (FIXTURES / name / "EXPECTATIONS.json").exists():
+                raise StructureError(
+                    f"foreign directory {name!r} carries a corpus manifest: "
+                    "it is a corpus; declare it built"
+                )
+        undeclared = discovered - built - planned - foreign
         if undeclared:
             raise StructureError(
                 "corpus director(ies) present but not declared in CORPORA.json: "
                 + ", ".join(sorted(undeclared))
             )
+        if foreign:
+            print("foreign (not this runner's corpora; skipped): "
+                  + ", ".join(sorted(foreign)))
+            print()
         for miss in sorted(built - discovered):
             raise StructureError(f"declared corpus {miss!r} does not exist")
         for p in sorted(planned & discovered):
