@@ -1,0 +1,2352 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/guard-verdict@1",
+  "title": "Gatebraid guard verdict document (gatebraid/guard-verdict@1)",
+  "description": "The document `gatebraid-guard` emits at every pre-flight: the normalised facts it evaluated, one result per check in a fixed order, the verdict and the exit status. Introduced at M3 node P as that node's first deliverable (M3-PLAN.md section 2 P; ADR-0036), admitted under ADR-0030 by the milestone authority that introduces it plus the operator's batch approval; it amends ADR-0010 not at all. THE DESIGN RULE: the guard prints what it evaluated, so a verdict can be disputed from the document without re-running the guard, and the schema's conditionals bind the facts to the results, so a document that reports a violating fact beside a passing result is invalid. That is how corpus v2 asserts the twelve checks before the guard exists (ADR-0031's route, as gatebraid/snapshot@1 took it for O0): each negative case is a verdict document a correct guard can never emit. Facts are counts, booleans and closed enumerations; the values the guard forbids -- an identifier outside the set, a truncated SHA, a foreign ref name -- never enter this document (ADR-0028 section 3). `format` is deliberately absent and every timestamp is a lexical `pattern`, for the reason the other frozen interfaces record. The classification of which corpus items assert what against this schema lives in fixtures/CORPUS-v2-PLAN.md, its single home.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "guard",
+    "evaluated_at",
+    "subject",
+    "facts",
+    "checks",
+    "verdict",
+    "exit_code"
+  ],
+  "properties": {
+    "schema": {
+      "const": "gatebraid/guard-verdict@1",
+      "description": "ADR-0033: the document identifies itself."
+    },
+    "guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "source_sha256"
+      ],
+      "properties": {
+        "name": {
+          "const": "gatebraid-guard"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "sha256 of the guard's own source, so a verdict names the evaluator that produced it."
+        }
+      }
+    },
+    "evaluated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])"
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "slice_id",
+        "gate"
+      ],
+      "properties": {
+        "repository": {
+          "enum": [
+            "MianliWang/gatebraid",
+            "MianliWang/gatebraid-scratch"
+          ]
+        },
+        "slice_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^P[0-9]+-S[0-9]+$"
+        },
+        "gate": {
+          "enum": [
+            "entry",
+            "gate0",
+            "gate1",
+            "gate2",
+            "gate3",
+            "batch"
+          ]
+        }
+      }
+    },
+    "facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identity",
+        "closed_set",
+        "refs",
+        "shas",
+        "allowlist",
+        "lease",
+        "hashes",
+        "approval",
+        "labels",
+        "snapshot",
+        "repairs",
+        "hooks"
+      ],
+      "properties": {
+        "identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "store_is_dedicated",
+            "active_is_executor",
+            "account_count",
+            "git_identity_is_executor"
+          ],
+          "properties": {
+            "store_is_dedicated": {
+              "type": "boolean",
+              "description": "GH_CONFIG_DIR in the guard's own environment names the dedicated store (ADR-0024 section 1)."
+            },
+            "active_is_executor": {
+              "type": "boolean",
+              "description": "The dedicated store's active login is the executor's machine account (ADR-0022 sections 1 and 4)."
+            },
+            "account_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "How many accounts the dedicated store lists. The roster rule (ADR-0036 decision 3, from friction #92): exactly one, the executor's. A store that lists two is a partition delivered as a pointer."
+            },
+            "git_identity_is_executor": {
+              "type": "boolean",
+              "description": "The clone's repo-local git user.name and user.email are the executor's (ADR-0022 section 1 surface (b))."
+            }
+          },
+          "description": "Check 1. Names are never quoted here: the document says whether the login IS the executor's, not what it is."
+        },
+        "closed_set": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identifiers_examined",
+            "identifiers_outside_set"
+          ],
+          "properties": {
+            "identifiers_examined": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "identifiers_outside_set": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Count of owner/name identifiers, across the remote, the snapshot's item and edge references and the state packet, that are not one of the two permitted repositories. A count and positions, never the names (ADR-0028 section 3)."
+            },
+            "positions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "source",
+                  "index"
+                ],
+                "properties": {
+                  "source": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "index": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "description": "Check 2 (state-packet-queries-v1 'no others, ever'; spec section 4)."
+        },
+        "refs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "baseline_recorded",
+            "foreign_refs_present",
+            "foreign_refs_introduced"
+          ],
+          "properties": {
+            "baseline_recorded": {
+              "type": "boolean",
+              "description": "The Slice's Gate 0 ref listing exists to compare against."
+            },
+            "foreign_refs_present": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Refs outside refs/heads/, refs/remotes/ and refs/tags/ in the working clone now."
+            },
+            "foreign_refs_introduced": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Of those, the ones absent from the Gate 0 baseline listing. ADR-0036 decision 4: introduced is a deny; pre-existing is the doctor's finding."
+            }
+          },
+          "description": "Check 3 (gate-0-contract; gate-3-contract; ADR-0028)."
+        },
+        "shas": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fields_examined",
+            "fields_not_full"
+          ],
+          "properties": {
+            "fields_examined": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "fields_not_full": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "SHA-bearing fields whose value is not the full object name: 40 hex for a git object, 64 hex for a sha256. The Project's free-text Base SHA and an approval's citation are examined; the schema-checked record fields are the record's own business."
+            }
+          },
+          "description": "Check 4 (ADR-0029 P1-1; ADR-0028 section 2)."
+        },
+        "allowlist": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "frozen",
+            "diff_outside",
+            "untracked_outside"
+          ],
+          "properties": {
+            "frozen": {
+              "type": "boolean"
+            },
+            "diff_outside": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Paths in git diff --name-only <base_sha>..<head> outside the frozen write_domains."
+            },
+            "untracked_outside": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Paths in git status --porcelain --untracked-files=all outside the frozen write_domains (gate-2-contract R1; friction #107)."
+            }
+          },
+          "description": "Check 5."
+        },
+        "lease": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "workflow",
+            "writer_lease_present",
+            "lease_holders_in_repository"
+          ],
+          "properties": {
+            "workflow": {
+              "enum": [
+                "Backlog",
+                "Gate 0 — Verifying",
+                "Gate 1 — Planning",
+                "Needs Plan Approval",
+                "Gate 2 — Implementing",
+                "Needs Review",
+                "Repair Required",
+                "Codex Consultation",
+                "Human Diagnosis Required",
+                "Blocked",
+                "Needs Release Approval",
+                "Gate 3 — Releasing",
+                "Done",
+                "Aborted"
+              ]
+            },
+            "writer_lease_present": {
+              "type": "boolean"
+            },
+            "lease_holders_in_repository": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Open items in the same working repository whose Writer Lease is non-empty, this Slice included (ADR-0003: at most one)."
+            },
+            "lease_names_this_session": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "description": "Check 6 (ADR-0003; gate-2-contract entry; ADR-0025 section 3; friction #106)."
+        },
+        "hashes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "plan_hash_reproduces",
+            "allowlist_hash_reproduces",
+            "issue_write_domains_match"
+          ],
+          "properties": {
+            "plan_hash_reproduces": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "description": "The recorded plan_hash recomputes from gate1.md's frozen section by the recorded command; null before Gate 1 froze anything."
+            },
+            "allowlist_hash_reproduces": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "issue_write_domains_match": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "description": "The Slice issue's gatebraid-metadata write_domains equals the frozen allowlist (gate-1-contract exit; friction #65)."
+            }
+          },
+          "description": "Check 7 (gate-1-contract; ADR-0018 section 3)."
+        },
+        "approval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required",
+            "found",
+            "author_is_operator",
+            "author_is_executor",
+            "names_both_hashes"
+          ],
+          "properties": {
+            "required": {
+              "type": "boolean",
+              "description": "This gate's entry requires a door (Gate 2, Gate 3)."
+            },
+            "found": {
+              "type": "boolean"
+            },
+            "author_is_operator": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "description": "The observed author login is the operator's personal account (gate-2-contract entry (c); ADR-0020 section 4). Phrased as ADR-0020 phrases it: evidence the executor did not write it, never evidence of human intent (ADR-0015 section 1)."
+            },
+            "author_is_executor": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "names_both_hashes": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "description": "Gate 2: the comment names plan_hash and allowlist_hash; Gate 3: it states the publication terms."
+            }
+          },
+          "description": "Check 8."
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "workflow",
+            "needs_human_present",
+            "blocked_reason_needs_input"
+          ],
+          "properties": {
+            "workflow": {
+              "enum": [
+                "Backlog",
+                "Gate 0 — Verifying",
+                "Gate 1 — Planning",
+                "Needs Plan Approval",
+                "Gate 2 — Implementing",
+                "Needs Review",
+                "Repair Required",
+                "Codex Consultation",
+                "Human Diagnosis Required",
+                "Blocked",
+                "Needs Release Approval",
+                "Gate 3 — Releasing",
+                "Done",
+                "Aborted"
+              ]
+            },
+            "needs_human_present": {
+              "type": "boolean"
+            },
+            "blocked_reason_needs_input": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "description": "For Workflow = Blocked only: the latest comment's typed reason is needs_input. Null otherwise."
+            }
+          },
+          "description": "Check 9 (spec section 1's coupling table, as written; ADR-0025 decision 5; ADR-0036 decision 5)."
+        },
+        "snapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "present",
+            "degraded_sources",
+            "verdict_consumed"
+          ],
+          "properties": {
+            "present": {
+              "type": "boolean"
+            },
+            "degraded_sources": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Sources whose status is not ok or whose read is incomplete (gatebraid/snapshot@1 $defs/degradedSource)."
+            },
+            "verdict_consumed": {
+              "enum": [
+                "startable",
+                "blocked",
+                "undecidable",
+                null
+              ],
+              "description": "The frontier verdict this pre-flight would act on; null when none is consumed."
+            }
+          },
+          "description": "Check 10 (M3-PLAN P0-3/P0-4; state-packet-queries-v1 pagination)."
+        },
+        "repairs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "attempts"
+          ],
+          "properties": {
+            "attempts": {
+              "type": "array",
+              "maxItems": 2,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "number",
+                  "tree_unchanged",
+                  "result"
+                ],
+                "properties": {
+                  "number": {
+                    "enum": [
+                      1,
+                      2
+                    ]
+                  },
+                  "tree_unchanged": {
+                    "type": "boolean",
+                    "description": "git rev-parse <attempt>^{tree} equals the tree at the previous failed state (gate-2-contract, ADR-0027 section 1)."
+                  },
+                  "result": {
+                    "enum": [
+                      "green",
+                      "still_red"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": "Check 11: an unchanged tree is not a repair; it may only be recorded consumed and still_red."
+        },
+        "hooks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "baseline_tracked",
+            "matches_baseline"
+          ],
+          "properties": {
+            "baseline_tracked": {
+              "type": "boolean",
+              "description": "A hook baseline document is tracked in the control repository (R-min authors it). While none is, the check denies (ADR-0036 decision 6)."
+            },
+            "matches_baseline": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "description": "The host's hook surface equals the tracked baseline; null while no baseline is tracked."
+            }
+          },
+          "description": "Check 12."
+        }
+      },
+      "description": "Normalised inputs, one group per check, in the plan's order. Every group is required: a guard that did not read a group cannot claim a verdict (it says not_evaluated)."
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "check_id",
+          "result",
+          "rule",
+          "detail",
+          "trace"
+        ],
+        "properties": {
+          "check_id": {
+            "enum": [
+              "identity",
+              "closed_set",
+              "ref_namespaces",
+              "full_sha",
+              "allowlist",
+              "writer_lease",
+              "plan_allowlist_hash",
+              "approval_author",
+              "label_coupling",
+              "snapshot_flags",
+              "repair_novelty",
+              "hooks_enabled"
+            ]
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "deny",
+              "not_evaluated"
+            ]
+          },
+          "rule": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The governing sentence by file and line (CORPUS-v2-PLAN.md section 2 names each)."
+          },
+          "detail": {
+            "type": "string"
+          },
+          "trace": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "What was evaluated, normalised: enough to dispute the verdict without re-running the guard, and never a forbidden value."
+          }
+        }
+      },
+      "description": "Exactly twelve entries, one per check id (coverage is asserted by the allOf entries below), in the plan's order."
+    },
+    "verdict": {
+      "enum": [
+        "allow",
+        "deny",
+        "not_evaluated"
+      ]
+    },
+    "exit_code": {
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "description": "0 allow, 1 deny, 2 the guard could not evaluate. A closed set; the exit status decides (spec section 4)."
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "Coverage: every verdict carries a `identity` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-identity).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "identity"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `closed_set` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-closed_set).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "closed_set"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `ref_namespaces` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-ref_namespaces).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "ref_namespaces"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `full_sha` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-full_sha).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "full_sha"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `allowlist` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-allowlist).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "allowlist"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `writer_lease` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-writer_lease).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "writer_lease"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `plan_allowlist_hash` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-plan_allowlist_hash).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "plan_allowlist_hash"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `approval_author` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-approval_author).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "approval_author"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `label_coupling` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-label_coupling).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "label_coupling"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `snapshot_flags` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-snapshot_flags).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "snapshot_flags"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `repair_novelty` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-repair_novelty).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "repair_novelty"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Coverage: every verdict carries a `hooks_enabled` entry. Twelve of these, one per check id, so that a guard that silently skipped a check cannot emit a valid document (GV1-15-hooks_enabled).",
+      "properties": {
+        "checks": {
+          "contains": {
+            "properties": {
+              "check_id": {
+                "const": "hooks_enabled"
+              }
+            },
+            "required": [
+              "check_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Strictest wins (ADR-0036 decision 2): any `deny` makes the verdict `deny` (GV1-14).",
+      "if": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "result"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "verdict": {
+            "const": "deny"
+          }
+        }
+      }
+    },
+    {
+      "$comment": "`allow` is the verdict only when every check passed (GV1-14's second locus).",
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "allow"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "items": {
+              "properties": {
+                "result": {
+                  "const": "pass"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "`not_evaluated` is the verdict only when some check could not be evaluated and none denied; a deny outranks it (GV1-19, GV1-19b).",
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "not_evaluated"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "result": {
+                  "const": "not_evaluated"
+                }
+              },
+              "required": [
+                "result"
+              ]
+            },
+            "not": {
+              "contains": {
+                "properties": {
+                  "result": {
+                    "const": "deny"
+                  }
+                },
+                "required": [
+                  "result"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set (ADR-0036 decision 2; spec section 4 'the exit status decides'): verdict `allow` is exit 0 (GV1-16-allow).",
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "allow"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 0
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set (ADR-0036 decision 2; spec section 4 'the exit status decides'): verdict `deny` is exit 1 (GV1-16-deny).",
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "deny"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set (ADR-0036 decision 2; spec section 4 'the exit status decides'): verdict `not_evaluated` is exit 2 (GV1-16-not_evaluated).",
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "not_evaluated"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 2
+          }
+        }
+      }
+    },
+    {
+      "$comment": "A deny is disputable from its trace: a denying check carries at least one trace line and a non-empty detail (GV1-17).",
+      "properties": {
+        "checks": {
+          "items": {
+            "if": {
+              "properties": {
+                "result": {
+                  "const": "deny"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "trace": {
+                  "minItems": 1
+                },
+                "detail": {
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 1, identity: GH_CONFIG_DIR in the guard's own environment must name the dedicated store (ADR-0024 section 1) (GV1-01)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "identity"
+            ],
+            "properties": {
+              "identity": {
+                "properties": {
+                  "store_is_dedicated": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "store_is_dedicated"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "identity"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 1, identity: the dedicated store's active login must be the executor's; drift is a stop (ADR-0022 section 4) (GV1-01b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "identity"
+            ],
+            "properties": {
+              "identity": {
+                "properties": {
+                  "active_is_executor": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "active_is_executor"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "identity"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 1, identity: surface (b), the clone's git author and committer identity, must be the executor's (ADR-0022 section 1) (GV1-01c)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "identity"
+            ],
+            "properties": {
+              "identity": {
+                "properties": {
+                  "git_identity_is_executor": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "git_identity_is_executor"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "identity"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 1, identity: the roster rule (ADR-0036 decision 3, from friction #92): the store lists exactly one account; a partition delivered as a pointer is a deny (GV1-02)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "identity"
+            ],
+            "properties": {
+              "identity": {
+                "properties": {
+                  "account_count": {
+                    "not": {
+                      "const": 1
+                    }
+                  }
+                },
+                "required": [
+                  "account_count"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "identity"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 2, closed_set: one identifier outside the permitted set is a deny; the count is what the document carries, the identifier never is (GV1-03)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "closed_set"
+            ],
+            "properties": {
+              "closed_set": {
+                "properties": {
+                  "identifiers_outside_set": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "identifiers_outside_set"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "closed_set"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 3, ref_namespaces: a foreign ref introduced since the Gate 0 baseline is a deny; one present at the baseline is the doctor's finding (ADR-0036 decision 4) (GV1-04)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "refs"
+            ],
+            "properties": {
+              "refs": {
+                "properties": {
+                  "foreign_refs_introduced": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "foreign_refs_introduced"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "ref_namespaces"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 4, full_sha: a SHA-bearing field that is not the full object name is a deny (ADR-0029 P1-1; ADR-0028 section 2) (GV1-05)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "shas"
+            ],
+            "properties": {
+              "shas": {
+                "properties": {
+                  "fields_not_full": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "fields_not_full"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "full_sha"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 5, allowlist: a changed path outside the frozen write_domains is a deny (gate-2-contract R1) (GV1-06)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "allowlist"
+            ],
+            "properties": {
+              "allowlist": {
+                "properties": {
+                  "diff_outside": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "diff_outside"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "allowlist"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 5, allowlist: an untracked path outside the frozen write_domains is a deny -- a write created and removed inside the gate is invisible to the diff (friction #107) (GV1-06b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "allowlist"
+            ],
+            "properties": {
+              "allowlist": {
+                "properties": {
+                  "untracked_outside": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "untracked_outside"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "allowlist"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 6, writer_lease: inside the lease-holding states (Gate 2 entry through Gate 3 exit) with no lease is a deny (ADR-0003; friction #106) (GV1-07)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "lease"
+            ],
+            "properties": {
+              "lease": {
+                "properties": {
+                  "workflow": {
+                    "enum": [
+                      "Gate 2 — Implementing",
+                      "Needs Review",
+                      "Repair Required",
+                      "Codex Consultation",
+                      "Human Diagnosis Required",
+                      "Needs Release Approval",
+                      "Gate 3 — Releasing"
+                    ]
+                  },
+                  "writer_lease_present": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "workflow",
+                  "writer_lease_present"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "writer_lease"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 6, writer_lease: more than one lease holder in a repository is a deny (ADR-0003: a second writer is a stop-the-line event) (GV1-07b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "lease"
+            ],
+            "properties": {
+              "lease": {
+                "properties": {
+                  "lease_holders_in_repository": {
+                    "minimum": 2
+                  }
+                },
+                "required": [
+                  "lease_holders_in_repository"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "writer_lease"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 6, writer_lease: a lease surviving Aborted is a deny (ADR-0025 section 3 clears it; a terminated Slice must not obstruct a successor) (GV1-07c)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "lease"
+            ],
+            "properties": {
+              "lease": {
+                "properties": {
+                  "workflow": {
+                    "const": "Aborted"
+                  },
+                  "writer_lease_present": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "workflow",
+                  "writer_lease_present"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "writer_lease"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 7, plan_allowlist_hash: a plan_hash that does not recompute by its recorded command is a deny (gate-1-contract row 6: a hash nobody can recompute is decoration) (GV1-08)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "hashes"
+            ],
+            "properties": {
+              "hashes": {
+                "properties": {
+                  "plan_hash_reproduces": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "plan_hash_reproduces"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "plan_allowlist_hash"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 7, plan_allowlist_hash: an allowlist_hash that does not recompute is a deny (gate-1-contract) (GV1-08b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "hashes"
+            ],
+            "properties": {
+              "hashes": {
+                "properties": {
+                  "allowlist_hash_reproduces": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "allowlist_hash_reproduces"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "plan_allowlist_hash"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 7, plan_allowlist_hash: an issue body whose write_domains differs from the frozen allowlist is a deny (gate-1-contract exit; friction #65) (GV1-08c)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "hashes"
+            ],
+            "properties": {
+              "hashes": {
+                "properties": {
+                  "issue_write_domains_match": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "issue_write_domains_match"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "plan_allowlist_hash"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 8, approval_author: where a door is required and no approval is found, the gate does not enter (gate-3-contract 'outside this table') (GV1-09)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "approval"
+            ],
+            "properties": {
+              "approval": {
+                "properties": {
+                  "required": {
+                    "const": true
+                  },
+                  "found": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "required",
+                  "found"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "approval_author"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 8, approval_author: an approval authored by any account other than the operator's is invalid as if absent (gate-2-contract entry (c); ADR-0020 section 4); the executor as author is the next row's own case (GV1-09b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "approval"
+            ],
+            "properties": {
+              "approval": {
+                "properties": {
+                  "required": {
+                    "const": true
+                  },
+                  "author_is_operator": {
+                    "const": false
+                  },
+                  "author_is_executor": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "required",
+                  "author_is_operator",
+                  "author_is_executor"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "approval_author"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 8, approval_author: an approval authored by the executing session is a deny -- ADR-0020 section 4's evidence runs the other way: the author being the operator is evidence the executor did not write it, never evidence of human intent (ADR-0015 section 1) (GV1-09c)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "approval"
+            ],
+            "properties": {
+              "approval": {
+                "properties": {
+                  "required": {
+                    "const": true
+                  },
+                  "author_is_executor": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "required",
+                  "author_is_executor"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "approval_author"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 8, approval_author: an approval that does not name both hashes (Gate 2) or the publication terms (Gate 3) is not the approval of this authorisation (gate-2-contract entry (b); ADR-0018 section 3) (GV1-09d)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "approval"
+            ],
+            "properties": {
+              "approval": {
+                "properties": {
+                  "required": {
+                    "const": true
+                  },
+                  "names_both_hashes": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "required",
+                  "names_both_hashes"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "approval_author"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 9, label_coupling: needs-human off in state 4, 9 or 11 is a deny (spec section 1's table as written; ADR-0036 decision 5) (GV1-10)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "labels"
+            ],
+            "properties": {
+              "labels": {
+                "properties": {
+                  "workflow": {
+                    "enum": [
+                      "Needs Plan Approval",
+                      "Human Diagnosis Required",
+                      "Needs Release Approval"
+                    ]
+                  },
+                  "needs_human_present": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "workflow",
+                  "needs_human_present"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "label_coupling"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 9, label_coupling: needs-human on outside states 4, 9, 11 and Blocked is a deny; friction #230's choreography dispute is a prose amendment to ADR-0025, not the guard's to adjudicate (ADR-0036 decision 5) (GV1-10b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "labels"
+            ],
+            "properties": {
+              "labels": {
+                "properties": {
+                  "workflow": {
+                    "not": {
+                      "enum": [
+                        "Needs Plan Approval",
+                        "Human Diagnosis Required",
+                        "Needs Release Approval",
+                        "Blocked"
+                      ]
+                    }
+                  },
+                  "needs_human_present": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "workflow",
+                  "needs_human_present"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "label_coupling"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 9, label_coupling: Blocked carries the label only with a needs_input-typed reason; the label on with another reason is a deny (spec section 1) (GV1-10c)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "labels"
+            ],
+            "properties": {
+              "labels": {
+                "properties": {
+                  "workflow": {
+                    "const": "Blocked"
+                  },
+                  "needs_human_present": {
+                    "const": true
+                  },
+                  "blocked_reason_needs_input": {
+                    "not": {
+                      "const": true
+                    }
+                  }
+                },
+                "required": [
+                  "workflow",
+                  "needs_human_present",
+                  "blocked_reason_needs_input"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "label_coupling"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 9, label_coupling: Blocked with a needs_input-typed reason and no label is a deny (spec section 1; gate-0-contract) (GV1-10d)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "labels"
+            ],
+            "properties": {
+              "labels": {
+                "properties": {
+                  "workflow": {
+                    "const": "Blocked"
+                  },
+                  "needs_human_present": {
+                    "const": false
+                  },
+                  "blocked_reason_needs_input": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "workflow",
+                  "needs_human_present",
+                  "blocked_reason_needs_input"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "label_coupling"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 10, snapshot_flags: no snapshot is a deny: startability is read from a snapshot or not claimed (M3-PLAN P0-4; ADR-0025 section 8) (GV1-11)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "snapshot"
+            ],
+            "properties": {
+              "snapshot": {
+                "properties": {
+                  "present": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "present"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "snapshot_flags"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 10, snapshot_flags: a degraded source beside any verdict other than undecidable is a deny (M3-PLAN P0-3/P0-4; gatebraid/snapshot@1's fail-closed conditional) (GV1-11b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "snapshot"
+            ],
+            "properties": {
+              "snapshot": {
+                "properties": {
+                  "degraded_sources": {
+                    "minimum": 1
+                  },
+                  "verdict_consumed": {
+                    "not": {
+                      "const": "undecidable"
+                    }
+                  }
+                },
+                "required": [
+                  "degraded_sources",
+                  "verdict_consumed"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "snapshot_flags"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 11, repair_novelty: an attempt whose tree is unchanged and whose result is not still_red is a deny: an unchanged tree is not a repair (gate-2-contract; ADR-0027 section 1) (GV1-12)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "repairs"
+            ],
+            "properties": {
+              "repairs": {
+                "properties": {
+                  "attempts": {
+                    "contains": {
+                      "properties": {
+                        "tree_unchanged": {
+                          "const": true
+                        },
+                        "result": {
+                          "not": {
+                            "const": "still_red"
+                          }
+                        }
+                      },
+                      "required": [
+                        "tree_unchanged",
+                        "result"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "attempts"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "repair_novelty"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 12, hooks_enabled: while no hook baseline is tracked the check denies; R-min lands the baseline (ADR-0036 decision 6) (GV1-13)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "hooks"
+            ],
+            "properties": {
+              "hooks": {
+                "properties": {
+                  "baseline_tracked": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "baseline_tracked"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "hooks_enabled"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 12, hooks_enabled: a host hook surface that does not match the tracked baseline is a deny (ADR-0036 decision 6) (GV1-13b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "hooks"
+            ],
+            "properties": {
+              "hooks": {
+                "properties": {
+                  "matches_baseline": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "matches_baseline"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "hooks_enabled"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
