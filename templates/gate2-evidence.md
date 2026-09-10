@@ -33,9 +33,18 @@
      record claims NO N3 independent validation, because N3 does not exist yet
      — N2's records are re-validated after N3's own Gate 3 — and the record is
      excluded from V's admission series. It requires a `State Packet Approval`
-     in `approvals[]` and an `output_ref` on every check (gatebraid/gate-run@2
+     in `approvals[]` and an `output_ref` on every check (gatebraid/gate-run@3
      enforces both). One-time and expiring: dead after N2 + N3 Gate 3, and no
      later Slice may use it (M3-PLAN §2). -->
+
+<!-- Row classes (ADR-0028 §2; amended at M3 batch P-B1 for replay A's F-2):
+     a row marked [instant] reads state the act of recording it will move — a
+     branch tip, HEAD, the working tree — and is recorded ONCE, at the moment
+     named, and is EXCLUDED from the deterministic subset a reviewer replays;
+     its recorded output is the pin the [pinned] rows then name. A [pinned]
+     row names full SHAs only and must reproduce byte for byte on replay. No
+     row in this file names HEAD, --abbrev-ref HEAD, or a bare branch name
+     inside a replayable claim. -->
 
 # Gate 2 evidence — <P_nn-S_nn>
 
@@ -56,11 +65,15 @@ $ GH_CONFIG_DIR=<store> gh <the field write + the read-back, in full>
 <output — `<host>:<session-label>:<ISO8601>`>
 ```
 
-**E3 — baseline re-read** (ADR-0011 §9; ADR-0014 §1 excludes
+**E3 — baseline re-read** `[instant]` (ADR-0011 §9; ADR-0014 §1 excludes
 `docs/evidence/gatebraid/<slice_id>/` before the intersection)
 ```
-$ git rev-parse <base-branch>
-<output — Y; X is gate0.md's recorded baseline>
+$ git rev-parse refs/heads/<base-branch>
+<output — Y, full 40-hex; X is gate0.md's recorded baseline>
+```
+
+**E3b — the re-read compared, pinned** `[pinned]`
+```
 $ git diff --name-only <X>..<Y>
 <output — the changed-path set before exclusion>
 ```
@@ -71,10 +84,10 @@ $ git diff --name-only <X>..<Y>
        that directory IS in the allowlist. changed-inside-allowlist →
        Scope / Allowlist Change per the contract. -->
 
-**E4 — Active Branch created from Y; `Base SHA` field set to Y**
+**E4 — Active Branch created from Y; `Base SHA` field set to Y** `[instant]`
 ```
-$ git rev-parse --abbrev-ref HEAD; git rev-parse HEAD
-<output>
+$ git rev-parse refs/heads/<active_branch>
+<output — equals Y at creation; the branch name is the Project's `Active Branch` value>
 ```
 
 ## Verification outputs
@@ -132,15 +145,15 @@ $ <the command that exhibits the defect>
 
 - Hypothesis (new): <one line>
 
-**Novelty measured**
+**Novelty measured** `[pinned]` (the attempt's head is read once, then named)
 ```
-$ git rev-parse HEAD^{tree}
+$ git rev-parse <attempt-head>^{tree}
 <output — compare: tree at the previous failed state was <sha>>
 ```
 
-**Changed by this repair**
+**Changed by this repair** `[pinned]`
 ```
-$ git diff --name-only <previous-failed-head>..HEAD
+$ git diff --name-only <previous-failed-head>..<attempt-head>
 <output>
 ```
 
@@ -157,7 +170,7 @@ $ git diff --name-only <previous-failed-head>..HEAD
 ## gatebraid-metadata
 
 ```yaml
-schema: gatebraid/gate-run@2
+schema: gatebraid/gate-run@3
 slice_id: P<nn>-S<nn>
 gate: 2
 environment: <…>
@@ -173,12 +186,12 @@ checks:
     result: pass
     output_ref: "#verification-outputs"
   - name: allowlist-respected
-    command: "git diff --name-only <base_sha>..HEAD"
-    result: pass
+    command: "git diff --name-only <base_sha>..<active_branch_head>"
+    result: pass        # [pinned]: both ends are SHAs the record names
     output_ref: "#entry-records"
   - name: baseline-reread
-    command: "git rev-parse <base-branch>"
-    result: pass
+    command: "git rev-parse refs/heads/<base-branch>"
+    result: pass        # [instant]: E3; E3b is its pinned twin
     output_ref: "#entry-records"
   - name: review-five-items
     result: pass
@@ -189,13 +202,18 @@ handoff_fingerprint:      # ADR-0011 §2, amended by ADR-0016 — Gate 3's drift
   active_branch_head: "<full 40-hex commit sha as reviewed>"
   tree_sha: "<full 40-hex; git rev-parse <head>^{tree}, as reviewed>"
   changed_paths: []       # sorted `git diff --name-only <base_sha>..<head>`
-consults: []              # every consult this gate ran, whenever it ran (friction #94)
+consults: []              # every consult this gate ran, whenever it ran, in sequence or at
+                          # the Human Diagnosis stop — the roster; a consult_ref below must
+                          # appear here too (friction #94; gate-run@3)
 repair_attempts: []
 # repair_attempts:
 #   - number: 1
+#     kind: red_check      # red_check (the D6 sequence) | record_correction (route A; ledger 193)
 #     hypothesis: "<new hypothesis — '(unchanged-tree)' annotated if consumed>"
 #     result: still_red
 #     consult_ref: CONSULT-<issue#>-<seq>   # in-sequence consults ONLY (friction #94)
+qualifications: []        # gate-run@3: a statement the structure cannot otherwise express,
+                          # as data — field, statement, cited (ledger 194)
 approvals:
   - type: "Plan Approval (G1→G2)"
     comment_url: "<url>"

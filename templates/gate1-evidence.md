@@ -1,6 +1,6 @@
 <!-- Template: Gate 1 evidence file — ADR-0026 shape.
      Location (M2+): docs/evidence/gatebraid/<slice_id>/gate1.md.
-     Gate 1 is READ-ONLY (temporary read-only team of ≤3 permitted; lead never
+     Gate 1 is READ-ONLY (temporary read-only team of at most 3 permitted; lead never
      in bypass mode; findings flushed to the issue before dissolution).
      Exit freezes the plan + write allowlist (protocols/gate-1-contract.md).
 
@@ -22,7 +22,7 @@
      record claims NO N3 independent validation, because N3 does not exist yet
      — N2's records are re-validated after N3's own Gate 3 — and the record is
      excluded from V's admission series. It requires a `State Packet Approval`
-     in `approvals[]` and an `output_ref` on every check (gatebraid/gate-run@2
+     in `approvals[]` and an `output_ref` on every check (gatebraid/gate-run@3
      enforces both). One-time and expiring: dead after N2 + N3 Gate 3, and no
      later Slice may use it (M3-PLAN §2). -->
 
@@ -87,7 +87,7 @@ $ GH_CONFIG_DIR=<store> gh <the edit + the read-back verifying it, in full>
 ## gatebraid-metadata
 
 ```yaml
-schema: gatebraid/gate-run@2
+schema: gatebraid/gate-run@3
 slice_id: P<nn>-S<nn>
 gate: 1
 environment: <…>

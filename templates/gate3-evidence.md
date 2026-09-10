@@ -24,9 +24,18 @@
      record claims NO N3 independent validation, because N3 does not exist yet
      — N2's records are re-validated after N3's own Gate 3 — and the record is
      excluded from V's admission series. It requires a `State Packet Approval`
-     in `approvals[]` and an `output_ref` on every check (gatebraid/gate-run@2
+     in `approvals[]` and an `output_ref` on every check (gatebraid/gate-run@3
      enforces both). One-time and expiring: dead after N2 + N3 Gate 3, and no
      later Slice may use it (M3-PLAN §2). -->
+
+<!-- Row classes (ADR-0028 §2; amended at M3 batch P-B1 for replay A's F-2):
+     a row marked [instant] reads state the act of recording it will move — a
+     branch tip, HEAD, the working tree — and is recorded ONCE, at the moment
+     named, and is EXCLUDED from the deterministic subset a reviewer replays;
+     its recorded output is the pin the [pinned] rows then name. A [pinned]
+     row names full SHAs only and must reproduce byte for byte on replay. No
+     row in this file names HEAD, --abbrev-ref HEAD, or a bare branch name
+     inside a replayable claim. -->
 
 # Gate 3 evidence — <P_nn-S_nn>
 
@@ -49,7 +58,7 @@ $ GH_CONFIG_DIR=<store> gh <the workflow-state read used, in full>
 ```
 
 **G2b — closure precondition (b): the pull request** (pattern stated, matches
-printed — `keyword #n | keyword owner/repo#n | keyword <url>`, keyword ∈
+printed — `keyword #n | keyword owner/repo#n | keyword <url>`, keyword one of
 close(s|d)/fix(es|ed)/resolve(s|d), any case — ADR-0018 §1)
 ```
 $ GH_CONFIG_DIR=<store> gh pr view <n> --json closingIssuesReferences
@@ -58,14 +67,25 @@ $ <the pattern search over the PR body and every commit message the PR carries �
 <output>
 ```
 
-**G3 — drift check against the Gate 2 fingerprint** (ADR-0011 §2 as amended
-by ADR-0016 §1)
+**G3 — the branch head now** `[instant]` (read once; H is the pin the drift
+check names)
 ```
-$ git diff --name-only <tree_sha> HEAD
+$ git rev-parse refs/heads/<active_branch>
+<output — H, full 40-hex>
+```
+
+**G3b — drift check against the Gate 2 fingerprint, pinned** `[pinned]`
+(ADR-0011 §2 as amended by ADR-0016 §1)
+```
+$ git diff --name-only <tree_sha> <H>
 <output — only paths inside docs/evidence/gatebraid/<slice_id>/>
-$ git log --format='%H' <active_branch_head>..HEAD -- ':!docs/evidence/gatebraid/<slice_id>/'
+$ git log --format='%H' <active_branch_head>..<H> -- ':!docs/evidence/gatebraid/<slice_id>/'
 <output — empty: every commit past the fingerprint touches only the evidence directory>
-$ git status --porcelain
+```
+
+**G3c — working tree clean** `[instant]`
+```
+$ git status --porcelain --untracked-files=all
 <output — empty>
 ```
 
@@ -95,7 +115,7 @@ $ GH_CONFIG_DIR=<store> gh <the check/run read used, in full>
 ## gatebraid-metadata
 
 ```yaml
-schema: gatebraid/gate-run@2
+schema: gatebraid/gate-run@3
 slice_id: P<nn>-S<nn>
 gate: 3
 environment: <…>
@@ -107,7 +127,7 @@ ended_at: "<ISO8601>"
 result: passed
 checks:
   - name: staged-set-matches-gate2-handoff
-    command: "git diff --name-only <tree_sha> HEAD"
+    command: "git diff --name-only <tree_sha> <H>"      # [pinned]: H is G3's recorded read
     result: pass
     output_ref: "#publication-records"
   - name: closure-precondition-automation
