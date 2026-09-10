@@ -1,0 +1,120 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "P-B1-collision-count-commit4",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "C:/Python312/python.exe",
+      "-B",
+      "-c",
+      "import json,pathlib,collections;F=pathlib.Path('fixtures');d=json.loads((F/'CORPORA.json').read_text(encoding='utf-8'));g=collections.defaultdict(list);n=0\nfor c in d['built']:\n    for k in json.loads((F/c/'EXPECTATIONS.json').read_text(encoding='utf-8'))['cases']:\n        if k['expect']!='invalid': continue\n        n+=1;g[(k['schema'],tuple(sorted((e['keyword'],e['path'],e['schema_path'],e.get('property'),e.get('extra_count')) for e in k['expect_errors'])))].append(c+':'+k['id'])\nprint(n,len(g),sum(1 for v in g.values() if len(v)>1))"
+    ],
+    "cwd": {
+      "path": "D:\\Github repo\\Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "GH_CONFIG_DIR": "C:/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 11,
+      "sha256": "d6fcd6080f4051aa6499baa9e2dc85e33486d081084b62c84b5d03ca4cfcbd95",
+      "data": "MTgxIDE3OCAzDQo=",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "181 178 3\r\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-10T03:37:51.900366Z",
+  "ended_at": "2026-09-10T03:37:51.976670Z",
+  "inputs": [
+    {
+      "path": "fixtures/CORPUS-v2-PLAN.md",
+      "sha256": "646bd4122889f58866d40713e1e3157b4f0cb4aa7ea5d5a4526c46da4277e88f"
+    },
+    {
+      "path": "fixtures/CORPORA.json",
+      "sha256": "a7ab307f4ec5996ced79c19fff972e07cb207673c0589ab4896300f29e5b93c2"
+    },
+    {
+      "path": "fixtures/bytes-platform/EXPECTATIONS.json",
+      "sha256": "dc94a5b18b5f7046063f043e1fe072657adfba81493bc54c301af7c600ccc873"
+    },
+    {
+      "path": "fixtures/doctor-v1/EXPECTATIONS.json",
+      "sha256": "8e1a425aeeb9e151ae723f2f312c0f5a93c31f9f2bcb432d1968e958d5008ece"
+    },
+    {
+      "path": "fixtures/evidence-capture-v1/EXPECTATIONS.json",
+      "sha256": "40993a301f1804544d69e50c745b8e33cbb9abe4c5cf3c269c01353d68e36f7e"
+    },
+    {
+      "path": "fixtures/gate-run-v2/EXPECTATIONS.json",
+      "sha256": "0c3df08675485f49789decbebb912ab236ee173fbb9d0e746b2f73cc1534cee5"
+    },
+    {
+      "path": "fixtures/gate-run-v3/EXPECTATIONS.json",
+      "sha256": "d9d361c11411a5b9e41862fec40b96de45ee0c72f3e37de93be9d20167f8f2f2"
+    },
+    {
+      "path": "fixtures/guard-v1/EXPECTATIONS.json",
+      "sha256": "f82de4f2c1404bdb7a8529d0987b083a1bc06e55dee3b65b15019865d8289589"
+    },
+    {
+      "path": "fixtures/instruments/EXPECTATIONS.json",
+      "sha256": "a97eb560fa5d0ba571856be6e01b76a215a2b2481e6cce1ddb8ee9f7c9089777"
+    },
+    {
+      "path": "fixtures/instruments-v2/EXPECTATIONS.json",
+      "sha256": "0b7778676afc3eeb0eaa96cb8268c31e02e45ff33a04e30a02d6b1a235d39b8a"
+    },
+    {
+      "path": "fixtures/live-shapes/EXPECTATIONS.json",
+      "sha256": "934b545c2fda135af6105ce949b48fc97aa95f405f31b20e7a892ac8c9e5eaaf"
+    },
+    {
+      "path": "fixtures/metrics-v1/EXPECTATIONS.json",
+      "sha256": "49536fe760a8f158fc41b12c47e92b49083da29981d79075cc58fb0e14bc55c4"
+    },
+    {
+      "path": "fixtures/state-pipeline/EXPECTATIONS.json",
+      "sha256": "84429d4000603118f91212c4b49f1311af2a5c4fbd131689a52fc863569b4aff"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "windows",
+    "os_release": "Windows-11-10.0.26200-SP0",
+    "interpreter": "CPython 3.12.2 (C:/Python312/python.exe)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
