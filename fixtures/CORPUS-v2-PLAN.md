@@ -191,16 +191,19 @@ The (schema, locus-set) collision count `DETERMINACY-REPORT.md` §8 states is
 re-derived by:
 
 ```
-<python> -B -c "import json,pathlib,collections;F=pathlib.Path('fixtures');d=json.loads((F/'CORPORA.json').read_text());g=collections.defaultdict(list);n=0
+<python> -B -c "import json,pathlib,collections;F=pathlib.Path('fixtures');d=json.loads((F/'CORPORA.json').read_text(encoding='utf-8'));g=collections.defaultdict(list);n=0
 for c in d['built']:
-    for k in json.loads((F/c/'EXPECTATIONS.json').read_text())['cases']:
+    for k in json.loads((F/c/'EXPECTATIONS.json').read_text(encoding='utf-8'))['cases']:
         if k['expect']!='invalid': continue
         n+=1;g[(k['schema'],tuple(sorted((e['keyword'],e['path'],e['schema_path'],e.get('property'),e.get('extra_count')) for e in k['expect_errors'])))].append(c+':'+k['id'])
 print(n,len(g),sum(1 for v in g.values() if len(v)>1))"
 ```
 
 Expected at delivery: `181 178 3`, the three groups being the ones v1
-declared.
+declared. (v2 of this file, landed in the same batch: the command names its
+encoding. The v1 form read with the platform default and failed on the
+host's cp936 locale until UTF-8 mode was forced — caught by the build window,
+ledgered as the coordinator's.)
 
 **The runner's amendment (P-B1).** Measured at authoring, `run-corpus.py` at
 the batch's base exits 2 on `main`: `fixtures/direct-drive/` (the dispatcher's
