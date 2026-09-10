@@ -1,0 +1,1076 @@
+{
+  "corpus": "guard-v1",
+  "corpus_version": "v2.0",
+  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 6. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
+  "description": "One negative case per guard check (twelve checks, M3-PLAN.md section 2 P), frictions #92 and #106 entering as cases, four structural cases, and the positive arm of every negative. Each negative is a gatebraid/guard-verdict@1 document that reports a violating fact beside a passing result -- what a correct guard can never emit. The instrument half of every item (that the guard extracts these facts correctly from raw host readings) freezes where its instrument exists: Slice P2-S7 replays each case's facts through the guard and the verdict must equal the recorded one (ADR-0031 decision 2's pattern; spec section 4).",
+  "loader": "CPython 3.11.15 (/usr/bin/python3), jsonschema 4.26.0, Draft202012Validator; measured by the coordinator in the sandbox; the landing captures record the host loaders",
+  "known_limitation": "Two relations are named rather than left looking enforced. (1) The schema binds facts to results; it cannot bind raw host readings to facts. A guard that misreads the host and reports clean facts emits a valid document; that class is caught only by the instrument half at P2-S7 (recorded raw readings replayed, verdict compared). (2) The twelve coverage clauses assert that each check id appears at least once among exactly twelve entries, which together force exactly once; no clause asserts the order.",
+  "cases": [
+    {
+      "id": "GV1-00",
+      "fixture": "valid-canonical-allow.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "canonical allow: twelve pass, verdict allow, exit 0",
+      "source": "CORPUS-v2-PLAN.md section 3.1 -- the positive control every negative is measured against.",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-01",
+      "fixture": "gv1-01-identity-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 1: GH_CONFIG_DIR does not name the dedicated store, result pass",
+      "source": "ADR-0024 section 1",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/19/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-01p",
+      "fixture": "gv1-01-identity-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 1: GH_CONFIG_DIR does not name the dedicated store, result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0024 section 1",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-01b",
+      "fixture": "gv1-01b-identity-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 1: the dedicated store's active login is not the executor's, result pass",
+      "source": "ADR-0022 section 4; ADR-0024 (the friction #64 shape)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/20/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-01bp",
+      "fixture": "gv1-01b-identity-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 1: the dedicated store's active login is not the executor's, result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0022 section 4; ADR-0024 (the friction #64 shape)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-01c",
+      "fixture": "gv1-01c-identity-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 1: the clone's git identity is not the executor's, result pass",
+      "source": "ADR-0022 section 1 surface (b)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/21/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-01cp",
+      "fixture": "gv1-01c-identity-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 1: the clone's git identity is not the executor's, result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0022 section 1 surface (b)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-02",
+      "fixture": "gv1-02-identity-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 1, roster: the store lists two accounts with the executor's active, result pass",
+      "source": "friction #92 (the measured output; the case M3-PLAN section 2 P names); ADR-0036 decision 3",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/22/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-02p",
+      "fixture": "gv1-02-identity-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 1, roster: the store lists two accounts with the executor's active, result pass -- the positive arm: the same facts, denied",
+      "source": "friction #92 (the measured output; the case M3-PLAN section 2 P names); ADR-0036 decision 3",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-03",
+      "fixture": "gv1-03-closed-set-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 2: one identifier outside the permitted set, result pass",
+      "source": "protocols/state-packet-queries-v1.md:23-24; spec section 4",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/23/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-03p",
+      "fixture": "gv1-03-closed-set-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 2: one identifier outside the permitted set, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/state-packet-queries-v1.md:23-24; spec section 4",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-04",
+      "fixture": "gv1-04-ref-namespaces-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 3: a foreign ref introduced since the Gate 0 baseline, result pass",
+      "source": "protocols/gate-0-contract.md:31; gate-3-contract.md:19; ADR-0036 decision 4 (ruling R2)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/24/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-04p",
+      "fixture": "gv1-04-ref-namespaces-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 3: a foreign ref introduced since the Gate 0 baseline, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-0-contract.md:31; gate-3-contract.md:19; ADR-0036 decision 4 (ruling R2)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-05",
+      "fixture": "gv1-05-full-sha-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 4: a SHA-bearing field of hex length 7 (the Project's free-text Base SHA), result pass",
+      "source": "ADR-0029 P1-1; ADR-0028 section 2",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/25/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-05p",
+      "fixture": "gv1-05-full-sha-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 4: a SHA-bearing field of hex length 7 (the Project's free-text Base SHA), result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0029 P1-1; ADR-0028 section 2",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-06",
+      "fixture": "gv1-06-allowlist-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 5: one changed path outside write_domains, result pass",
+      "source": "protocols/gate-2-contract.md:18,39 (R1)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/26/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-06p",
+      "fixture": "gv1-06-allowlist-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 5: one changed path outside write_domains, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-2-contract.md:18,39 (R1)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-06b",
+      "fixture": "gv1-06b-allowlist-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 5: diff clean, four untracked paths outside write_domains (friction #107's state), result pass",
+      "source": "protocols/gate-2-contract.md:39 (R1); friction #107",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/27/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-06bp",
+      "fixture": "gv1-06b-allowlist-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 5: diff clean, four untracked paths outside write_domains (friction #107's state), result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-2-contract.md:39 (R1); friction #107",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-07",
+      "fixture": "gv1-07-writer-lease-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 6: Workflow = Gate 2 -- Implementing with Writer Lease empty (friction #106), result pass",
+      "source": "ADR-0003; gate-2-contract entry; friction #106 (the case M3-PLAN section 2 P names)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/28/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-07p",
+      "fixture": "gv1-07-writer-lease-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 6: Workflow = Gate 2 -- Implementing with Writer Lease empty (friction #106), result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0003; gate-2-contract entry; friction #106 (the case M3-PLAN section 2 P names)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-07b",
+      "fixture": "gv1-07b-writer-lease-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 6: two non-empty leases in one repository, result pass",
+      "source": "ADR-0003 consequences: a second writer is a stop-the-line event",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/29/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-07bp",
+      "fixture": "gv1-07b-writer-lease-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 6: two non-empty leases in one repository, result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0003 consequences: a second writer is a stop-the-line event",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-07c",
+      "fixture": "gv1-07c-writer-lease-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 6: Workflow = Aborted with a lease still held, result pass",
+      "source": "ADR-0025 section 3 (operational values cleared at terminal)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/30/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-07cp",
+      "fixture": "gv1-07c-writer-lease-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 6: Workflow = Aborted with a lease still held, result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0025 section 3 (operational values cleared at terminal)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-08",
+      "fixture": "gv1-08-plan-allowlist-hash-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 7: plan_hash does not recompute from the frozen section, result pass",
+      "source": "protocols/gate-1-contract.md:44 (row 6)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/31/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-08p",
+      "fixture": "gv1-08-plan-allowlist-hash-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 7: plan_hash does not recompute from the frozen section, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-1-contract.md:44 (row 6)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-08b",
+      "fixture": "gv1-08b-plan-allowlist-hash-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 7: allowlist_hash does not recompute, result pass",
+      "source": "protocols/gate-1-contract.md:20,44",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/32/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-08bp",
+      "fixture": "gv1-08b-plan-allowlist-hash-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 7: allowlist_hash does not recompute, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-1-contract.md:20,44",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-08c",
+      "fixture": "gv1-08c-plan-allowlist-hash-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 7: the issue body's write_domains differs from the frozen allowlist, result pass",
+      "source": "protocols/gate-1-contract.md:52; friction #65",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/33/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-08cp",
+      "fixture": "gv1-08c-plan-allowlist-hash-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 7: the issue body's write_domains differs from the frozen allowlist, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-1-contract.md:52; friction #65",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-09",
+      "fixture": "gv1-09-approval-author-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 8: a door is required and no approval comment is found, result pass",
+      "source": "protocols/gate-2-contract.md:7; gate-3-contract.md:36 (the gate does not enter)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/34/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-09p",
+      "fixture": "gv1-09-approval-author-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 8: a door is required and no approval comment is found, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-2-contract.md:7; gate-3-contract.md:36 (the gate does not enter)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-09b",
+      "fixture": "gv1-09b-approval-author-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 8: the approval is authored by a third account, neither the operator's nor the executor's, result pass",
+      "source": "protocols/gate-2-contract.md:7 (c); ADR-0020 section 4",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/35/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-09bp",
+      "fixture": "gv1-09b-approval-author-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 8: the approval is authored by a third account, neither the operator's nor the executor's, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-2-contract.md:7 (c); ADR-0020 section 4",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-09c",
+      "fixture": "gv1-09c-approval-author-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 8: the approval-shaped comment is authored by the executing session's login (friction #71), result pass",
+      "source": "protocols/gate-2-contract.md:7 (c); ADR-0024 section 4; friction #71",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/36/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-09cp",
+      "fixture": "gv1-09c-approval-author-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 8: the approval-shaped comment is authored by the executing session's login (friction #71), result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-2-contract.md:7 (c); ADR-0024 section 4; friction #71",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-09d",
+      "fixture": "gv1-09d-approval-author-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 8: the approval does not name plan_hash and allowlist_hash, result pass",
+      "source": "protocols/gate-2-contract.md:7 (b); ADR-0018 section 3",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/37/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-09dp",
+      "fixture": "gv1-09d-approval-author-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 8: the approval does not name plan_hash and allowlist_hash, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-2-contract.md:7 (b); ADR-0018 section 3",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-10",
+      "fixture": "gv1-10-label-coupling-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 9: Needs Plan Approval with no needs-human label, result pass",
+      "source": "spec section 1 label coupling",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/38/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-10p",
+      "fixture": "gv1-10-label-coupling-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 9: Needs Plan Approval with no needs-human label, result pass -- the positive arm: the same facts, denied",
+      "source": "spec section 1 label coupling",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-10b",
+      "fixture": "gv1-10b-label-coupling-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 9: Gate 2 -- Implementing with the label on (the friction #230 remediation shape; ruled R1), result pass",
+      "source": "spec section 1 as written; ADR-0036 decision 5; friction #230",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/39/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-10bp",
+      "fixture": "gv1-10b-label-coupling-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 9: Gate 2 -- Implementing with the label on (the friction #230 remediation shape; ruled R1), result pass -- the positive arm: the same facts, denied",
+      "source": "spec section 1 as written; ADR-0036 decision 5; friction #230",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-10c",
+      "fixture": "gv1-10c-label-coupling-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 9: Blocked with the label on and a reason that is not needs_input, result pass",
+      "source": "spec section 1 (state 10 with a needs_input reason only)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/40/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-10cp",
+      "fixture": "gv1-10c-label-coupling-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 9: Blocked with the label on and a reason that is not needs_input, result pass -- the positive arm: the same facts, denied",
+      "source": "spec section 1 (state 10 with a needs_input reason only)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-10d",
+      "fixture": "gv1-10d-label-coupling-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 9: Blocked with a needs_input reason and no label, result pass",
+      "source": "spec section 1; gate-0-contract error row (the one case where a stop sets needs-human)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/41/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-10dp",
+      "fixture": "gv1-10d-label-coupling-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 9: Blocked with a needs_input reason and no label, result pass -- the positive arm: the same facts, denied",
+      "source": "spec section 1; gate-0-contract error row (the one case where a stop sets needs-human)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-11",
+      "fixture": "gv1-11-snapshot-flags-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 10: no snapshot to read, result pass",
+      "source": "M3-PLAN P0-4 (snapshot schema and version required)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/42/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-11p",
+      "fixture": "gv1-11-snapshot-flags-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 10: no snapshot to read, result pass -- the positive arm: the same facts, denied",
+      "source": "M3-PLAN P0-4 (snapshot schema and version required)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-11b",
+      "fixture": "gv1-11b-snapshot-flags-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 10: one degraded source beside a startable verdict consumed, result pass",
+      "source": "M3-PLAN P0-3/P0-4; gatebraid/snapshot@1 fail-closed conditional",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/43/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-11bp",
+      "fixture": "gv1-11b-snapshot-flags-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 10: one degraded source beside a startable verdict consumed, result pass -- the positive arm: the same facts, denied",
+      "source": "M3-PLAN P0-3/P0-4; gatebraid/snapshot@1 fail-closed conditional",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-12",
+      "fixture": "gv1-12-repair-novelty-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 11: repair 1 with an unchanged tree recorded green, result pass",
+      "source": "protocols/gate-2-contract.md:25 (ADR-0027 section 1)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/44/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-12p",
+      "fixture": "gv1-12-repair-novelty-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 11: repair 1 with an unchanged tree recorded green, result pass -- the positive arm: the same facts, denied",
+      "source": "protocols/gate-2-contract.md:25 (ADR-0027 section 1)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-13",
+      "fixture": "gv1-13-hooks-enabled-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 12: no hook baseline tracked, result pass",
+      "source": "ADR-0036 decision 6 (ruling R3): the guard is born fail-closed here",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/45/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-13p",
+      "fixture": "gv1-13-hooks-enabled-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 12: no hook baseline tracked, result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0036 decision 6 (ruling R3): the guard is born fail-closed here",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-13b",
+      "fixture": "gv1-13b-hooks-enabled-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 12: the baseline names a hook surface and the host reports it does not match, result pass",
+      "source": "ADR-0036 decision 6 (ruling R3)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/46/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-13bp",
+      "fixture": "gv1-13b-hooks-enabled-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 12: the baseline names a hook surface and the host reports it does not match, result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0036 decision 6 (ruling R3)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-14",
+      "fixture": "gv1-14-allow-beside-a-deny.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: verdict allow beside one deny",
+      "source": "ADR-0036 decision 2, strictest wins",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "checks/0/result",
+          "schema_path": "allOf/13/then/properties/checks/items/properties/result/const"
+        },
+        {
+          "keyword": "const",
+          "path": "verdict",
+          "schema_path": "allOf/12/then/properties/verdict/const"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-identity",
+      "fixture": "gv1-15-eleven-checks-no-identity.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, identity missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/0/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-closed_set",
+      "fixture": "gv1-15-eleven-checks-no-closed-set.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, closed_set missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/1/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-ref_namespaces",
+      "fixture": "gv1-15-eleven-checks-no-ref-namespaces.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, ref_namespaces missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/2/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-full_sha",
+      "fixture": "gv1-15-eleven-checks-no-full-sha.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, full_sha missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/3/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-allowlist",
+      "fixture": "gv1-15-eleven-checks-no-allowlist.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, allowlist missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/4/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-writer_lease",
+      "fixture": "gv1-15-eleven-checks-no-writer-lease.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, writer_lease missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/5/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-plan_allowlist_hash",
+      "fixture": "gv1-15-eleven-checks-no-plan-allowlist-hash.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, plan_allowlist_hash missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/6/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-approval_author",
+      "fixture": "gv1-15-eleven-checks-no-approval-author.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, approval_author missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/7/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-label_coupling",
+      "fixture": "gv1-15-eleven-checks-no-label-coupling.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, label_coupling missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/8/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-snapshot_flags",
+      "fixture": "gv1-15-eleven-checks-no-snapshot-flags.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, snapshot_flags missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/9/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-repair_novelty",
+      "fixture": "gv1-15-eleven-checks-no-repair-novelty.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, repair_novelty missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/10/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-15-hooks_enabled",
+      "fixture": "gv1-15-eleven-checks-no-hooks-enabled.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: eleven checks, hooks_enabled missing",
+      "source": "ADR-0036 decision 2, full coverage",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/11/properties/checks/contains"
+        },
+        {
+          "keyword": "minItems",
+          "path": "checks",
+          "schema_path": "properties/checks/minItems"
+        }
+      ]
+    },
+    {
+      "id": "GV1-16-deny",
+      "fixture": "gv1-16-deny-with-exit-0.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: verdict deny beside exit_code 0",
+      "source": "ADR-0036 decision 2, closed exit set; spec section 4",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/16/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "GV1-16-allow",
+      "fixture": "gv1-16-allow-with-exit-1.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: verdict allow beside exit_code 1",
+      "source": "ADR-0036 decision 2, closed exit set",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/15/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "GV1-16-not_evaluated",
+      "fixture": "gv1-16-not-evaluated-with-exit-0.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: verdict not_evaluated beside exit_code 0",
+      "source": "ADR-0036 decision 2, closed exit set",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/17/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "GV1-16-not_evaluated-p",
+      "fixture": "gv1-16-not-evaluated-with-exit-2.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "structure: verdict not_evaluated with exit_code 2 -- the positive arm",
+      "source": "ADR-0036 decision 2",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-19",
+      "fixture": "gv1-19-not-evaluated-with-every-check-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: verdict not_evaluated while every check passed",
+      "source": "ADR-0036 decision 2",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/14/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-19b",
+      "fixture": "gv1-19-not-evaluated-beside-a-deny.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: verdict not_evaluated beside a deny -- a deny outranks it",
+      "source": "ADR-0036 decision 2, strictest wins",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "verdict",
+          "schema_path": "allOf/12/then/properties/verdict/const"
+        },
+        {
+          "keyword": "not",
+          "path": "checks",
+          "schema_path": "allOf/14/then/properties/checks/not"
+        }
+      ]
+    },
+    {
+      "id": "GV1-17",
+      "fixture": "gv1-17-deny-without-trace.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: a deny with an empty trace and detail",
+      "source": "ADR-0036 decision 2, the verdict is disputable from the trace",
+      "expect_errors": [
+        {
+          "keyword": "minItems",
+          "path": "checks/0/trace",
+          "schema_path": "allOf/18/properties/checks/items/then/properties/trace/minItems"
+        },
+        {
+          "keyword": "minLength",
+          "path": "checks/0/detail",
+          "schema_path": "allOf/18/properties/checks/items/then/properties/detail/minLength"
+        }
+      ]
+    },
+    {
+      "id": "GV1-18",
+      "fixture": "gv1-18-position-carries-a-name.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "structure: a closed-set position carrying a name field",
+      "source": "ADR-0028 section 3: a checker never quotes what it forbids",
+      "expect_errors": [
+        {
+          "keyword": "additionalProperties",
+          "path": "facts/closed_set/positions/0",
+          "schema_path": "properties/facts/properties/closed_set/properties/positions/items/additionalProperties",
+          "extra_count": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema": "gatebraid/doctor-report@1",
+  "doctor": {
+    "name": "gatebraid-doctor",
+    "version": "0.0.0-corpus",
+    "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "evaluated_at": "2026-09-10T00:00:00Z",
+  "subject": {
+    "repository": "MianliWang/gatebraid"
+  },
+  "outcome": "completed",
+  "facts": {
+    "frontier": {
+      "candidates": [
+        {
+          "item": "MianliWang/gatebraid#21",
+          "workflow": "Backlog",
+          "issue_state": "OPEN"
+        }
+      ]
+    },
+    "project_workflows": {
+      "auto_close_issue_enabled": false,
+      "enabled_count": 0
+    },
+    "pull_request": {
+      "present": true,
+      "closing_references": 0,
+      "closing_keyword_hits": 0
+    },
+    "items": [
+      {
+        "item": "MianliWang/gatebraid#17",
+        "is_slice": true,
+        "issue_state": "CLOSED",
+        "workflow": "Done",
+        "gate": "G3 passed",
+        "next_approval_present": true,
+        "writer_lease_present": false
+      },
+      {
+        "item": "MianliWang/gatebraid#21",
+        "is_slice": true,
+        "issue_state": "OPEN",
+        "workflow": "Backlog",
+        "gate": "—",
+        "next_approval_present": true,
+        "writer_lease_present": false
+      },
+      {
+        "item": "MianliWang/gatebraid#3",
+        "is_slice": false,
+        "issue_state": "OPEN",
+        "workflow": null,
+        "gate": null,
+        "next_approval_present": null,
+        "writer_lease_present": false
+      }
+    ],
+    "refs": {
+      "foreign_refs_preexisting": 1
+    }
+  },
+  "findings": [
+    {
+      "check_id": "refs.foreign_preexisting",
+      "severity": "warning",
+      "message": "1 ref outside the watched namespaces pre-dates the Slice",
+      "path": null,
+      "fix_hint": "report it in the Gate 0 record; never adopt, delete or rewrite it"
+    }
+  ],
+  "threshold": "warning",
+  "exit_code": 0
+}

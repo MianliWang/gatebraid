@@ -1,7 +1,7 @@
 {
   "corpus": "state-pipeline",
-  "corpus_version": "v1.2",
-  "frozen_by": "Frozen at O0's start by the operator's Batch Approval on MianliWang/gatebraid#14, comment id 5386631542, executed as batch O0-B1; the freeze commit SHA is recorded in that batch's report. This is the second of the two freeze points ADR-0031 decision 2 adds, and it is a SEPARATE freeze from the N1E correct-course that declared corpus v1.1 — which is why this corpus reads v1.2 while the five corpora frozen at or before N1E remain at v1.1. THE ASYMMETRY IS DELIBERATE AND IS DISCLOSED RATHER THAN RESOLVED: the N1E precedent moved every corpus's version together in one commit, and doing that here would have touched five EXPECTATIONS.json files outside the four-path set this batch's approval fixes, which the approval makes a STOP rather than a judgment call. `corpus_version` is descriptive metadata that fixtures/run-corpus.py neither reads nor compares across corpora, so the asymmetry costs no assertion; it is carried to the batch's independent review for ruling.",
+  "corpus_version": "v2.0",
+  "frozen_by": "Frozen at O0's start by the operator's Batch Approval on MianliWang/gatebraid#14, comment id 5386631542, executed as batch O0-B1; the freeze commit SHA is recorded in that batch's report. This is the second of the two freeze points ADR-0031 decision 2 adds, and it is a SEPARATE freeze from the N1E correct-course that declared corpus v1.1 — which is why this corpus reads v1.2 while the five corpora frozen at or before N1E remain at v1.1. THE ASYMMETRY IS DELIBERATE AND IS DISCLOSED RATHER THAN RESOLVED: the N1E precedent moved every corpus's version together in one commit, and doing that here would have touched five EXPECTATIONS.json files outside the four-path set this batch's approval fixes, which the approval makes a STOP rather than a judgment call. `corpus_version` is descriptive metadata that fixtures/run-corpus.py neither reads nor compares across corpora, so the asymmetry costs no assertion; it is carried to the batch's independent review for ruling. EXTENDED at M3 batch P-B1 (corpus v2, the freeze M3-PLAN.md section 6 names at P's start): three seeds for the O0-B1 review's F-01, and this key's ordinal wording is superseded by the dated addendum in fixtures/DETERMINACY-REPORT.md (F-04: the O0-start freeze point is ADR-0031 decision 2's FIRST bullet; 'second' above is chronological). corpus_version moves to v2.0 with the corpora this batch adds; the five corpora frozen at or before N1E stay at v1.1 and live-shapes at v1.3 -- the asymmetry the O0-B1 manifest disclosed persists and is disclosed again in known_limitation.",
   "description": "Expected outcomes for the thirteen state-pipeline items of M3-PLAN.md §6, plus the gatebraid/snapshot@1 schema's own valid seed set. Every locus below was MEASURED against the committed schema by running the validator and recording what fired, not asserted from reading; the loci were then re-derived independently by fixtures/run-corpus.py, which requires the observed set to EQUAL the recorded set in both directions. WHY THIS CORPUS COULD NOT EXIST BEFORE NOW, in one line, with the detail left where it lives: all thirteen items assert tool outcomes against a snapshot-document schema that did not exist, and fixtures/DETERMINACY-REPORT.md is the single home of the item-by-item classification, its falsification case and the counts — this manifest references it and restates none of it, because an enumeration copied into a second home drifts. ADR-0031 decision 2 is the authority for freezing them here, at O0's start, against the schema O0 defines as its own first deliverable. THE FOUR VALID CASES ARE NOT §6 ITEMS. They are the schema's seed positives, required because a conditional exercised only by negative cases would pass every one of them by rejecting everything — the lesson recorded at GR2-07. They are numbered in this corpus's own sequence and carry no SP designation, so no reader can take them for items the catalog owes. The thirteen SP items appear here EXACTLY as classified: none invented, none dropped, each named by its own designation in the `class` and `source` fields and in its filename, following the convention the instruments corpus set at N1E.",
   "loader": "CPython 3.12.2 (C:/Python312/python.exe), jsonschema 4.23.0, Draft202012Validator",
   "cases": [
@@ -251,6 +251,53 @@
           "schema_path": "properties/items/items/allOf/5/then/properties/verdict/not"
         }
       ]
+    },
+    {
+      "id": "SP1-18",
+      "fixture": "sp18-metadata-without-verdict.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "the positive arm of $defs/item allOf[2]: Slice metadata present, no verdict",
+      "source": "O0-B1 review F-01 (allOf[2] asserted by no fixture); GR2-07's lesson",
+      "expect_errors": [
+        {
+          "keyword": "required",
+          "path": "items/0",
+          "schema_path": "properties/items/items/allOf/2/then/required",
+          "property": "verdict"
+        }
+      ]
+    },
+    {
+      "id": "SP1-19",
+      "fixture": "sp19-cross-check-mismatch-with-verdict.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "$defs/item allOf[3]: a dependency cross-check mismatch beside a startable verdict",
+      "source": "O0-B1 review F-01; CORPUS-v1-PLAN SP-11's consequence half (mismatch is undecidable)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "items/0/verdict",
+          "schema_path": "properties/items/items/allOf/3/then/properties/verdict/const"
+        }
+      ]
+    },
+    {
+      "id": "SP1-20",
+      "fixture": "sp20-soft-dependency-unparsed-with-verdict.json",
+      "schema": "schema/snapshot.schema.json",
+      "expect": "invalid",
+      "class": "$defs/item allOf[4]: a declared soft dependency not parsed beside a startable verdict",
+      "source": "O0-B1 review F-01; CORPUS-v1-PLAN SP-12's consequence half",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "items/0/verdict",
+          "schema_path": "properties/items/items/allOf/4/then/properties/verdict/const"
+        }
+      ]
     }
-  ]
+  ],
+  "known_limitation": "Added at P-B1 for the O0-B1 review's F-03. (1) corpus_version is descriptive metadata the runner neither reads nor compares; the versions across corpora are deliberately asymmetric (v1.1, v1.3, v1.2 then v2.0) and each manifest's frozen_by says why. (2) Before P-B1, gatebraid/snapshot@1's $defs/item allOf[2], allOf[3] and allOf[4] were asserted by no fixture in either direction (F-01); SP1-18, SP1-19 and SP1-20 now assert their rejecting arms, and the accepting arms are exercised by SP1-01 and the other valid cases. (3) No case in this corpus asserts a tool outcome; every case asserts a document shape, which is the ADR-0031 classification of the SP items' schema-expressible halves."
 }

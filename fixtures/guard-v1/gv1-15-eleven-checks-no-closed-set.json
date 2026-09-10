@@ -1,0 +1,179 @@
+{
+  "schema": "gatebraid/guard-verdict@1",
+  "guard": {
+    "name": "gatebraid-guard",
+    "version": "0.0.0-corpus",
+    "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "evaluated_at": "2026-09-10T00:00:00Z",
+  "subject": {
+    "repository": "MianliWang/gatebraid",
+    "slice_id": "P2-S7",
+    "gate": "gate2"
+  },
+  "facts": {
+    "identity": {
+      "store_is_dedicated": true,
+      "active_is_executor": true,
+      "account_count": 1,
+      "git_identity_is_executor": true
+    },
+    "closed_set": {
+      "identifiers_examined": 7,
+      "identifiers_outside_set": 0,
+      "positions": []
+    },
+    "refs": {
+      "baseline_recorded": true,
+      "foreign_refs_present": 0,
+      "foreign_refs_introduced": 0
+    },
+    "shas": {
+      "fields_examined": 5,
+      "fields_not_full": 0
+    },
+    "allowlist": {
+      "frozen": true,
+      "diff_outside": 0,
+      "untracked_outside": 0
+    },
+    "lease": {
+      "workflow": "Gate 2 — Implementing",
+      "writer_lease_present": true,
+      "lease_holders_in_repository": 1,
+      "lease_names_this_session": true
+    },
+    "hashes": {
+      "plan_hash_reproduces": true,
+      "allowlist_hash_reproduces": true,
+      "issue_write_domains_match": true
+    },
+    "approval": {
+      "required": true,
+      "found": true,
+      "author_is_operator": true,
+      "author_is_executor": false,
+      "names_both_hashes": true
+    },
+    "labels": {
+      "workflow": "Gate 2 — Implementing",
+      "needs_human_present": false,
+      "blocked_reason_needs_input": null
+    },
+    "snapshot": {
+      "present": true,
+      "degraded_sources": 0,
+      "verdict_consumed": "startable"
+    },
+    "repairs": {
+      "attempts": []
+    },
+    "hooks": {
+      "baseline_tracked": true,
+      "matches_baseline": true
+    }
+  },
+  "checks": [
+    {
+      "check_id": "identity",
+      "result": "pass",
+      "rule": "adr/ADR-0024-executor-identity-is-held-not-checked.md:41-46,59-64; adr/ADR-0022-identity-surfaces-normalize-inward-only.md:34-41,52-54; ADR-0036 decision 3",
+      "detail": "",
+      "trace": [
+        "identity: evaluated"
+      ]
+    },
+    {
+      "check_id": "ref_namespaces",
+      "result": "pass",
+      "rule": "protocols/gate-0-contract.md:31; protocols/gate-3-contract.md:19; ADR-0036 decision 4",
+      "detail": "",
+      "trace": [
+        "ref_namespaces: evaluated"
+      ]
+    },
+    {
+      "check_id": "full_sha",
+      "result": "pass",
+      "rule": "schema/gate-run-v2.schema.json:52-56; adr/ADR-0029-m3-revised-lean-full-ratification-and-rebaseline.md:66-67; adr/ADR-0028-instruments-are-committed-falsified-and-reused.md:48-50",
+      "detail": "",
+      "trace": [
+        "full_sha: evaluated"
+      ]
+    },
+    {
+      "check_id": "allowlist",
+      "result": "pass",
+      "rule": "protocols/gate-2-contract.md:18,33,39",
+      "detail": "",
+      "trace": [
+        "allowlist: evaluated"
+      ]
+    },
+    {
+      "check_id": "writer_lease",
+      "result": "pass",
+      "rule": "adr/ADR-0003-single-writer-execution.md:12,22; protocols/gate-2-contract.md:8; protocols/gate-3-contract.md:53; adr/ADR-0025-terminal-disposition-and-the-gates-1-3-pass.md:90-91",
+      "detail": "",
+      "trace": [
+        "writer_lease: evaluated"
+      ]
+    },
+    {
+      "check_id": "plan_allowlist_hash",
+      "result": "pass",
+      "rule": "protocols/gate-1-contract.md:16-21,44,52; adr/ADR-0018-prohibitions-name-patterns-approvals-cite-rules.md:116-117",
+      "detail": "",
+      "trace": [
+        "plan_allowlist_hash: evaluated"
+      ]
+    },
+    {
+      "check_id": "approval_author",
+      "result": "pass",
+      "rule": "protocols/gate-2-contract.md:7; protocols/gate-3-contract.md:7,36; adr/ADR-0020-executor-authenticates-as-a-machine-account.md:59-61",
+      "detail": "",
+      "trace": [
+        "approval_author: evaluated"
+      ]
+    },
+    {
+      "check_id": "label_coupling",
+      "result": "pass",
+      "rule": "protocols/gatebraid-control-plane-spec-v1.md:43; adr/ADR-0025-terminal-disposition-and-the-gates-1-3-pass.md:113-123",
+      "detail": "",
+      "trace": [
+        "label_coupling: evaluated"
+      ]
+    },
+    {
+      "check_id": "snapshot_flags",
+      "result": "pass",
+      "rule": "M3-PLAN.md:156-163; schema/snapshot.schema.json:51,163-166,285,303; protocols/state-packet-queries-v1.md:46-48",
+      "detail": "",
+      "trace": [
+        "snapshot_flags: evaluated"
+      ]
+    },
+    {
+      "check_id": "repair_novelty",
+      "result": "pass",
+      "rule": "protocols/gate-2-contract.md:25; templates/gate2-evidence.md:127-145",
+      "detail": "",
+      "trace": [
+        "repair_novelty: evaluated"
+      ]
+    },
+    {
+      "check_id": "hooks_enabled",
+      "result": "pass",
+      "rule": "ADR-0036 decision 6; protocols/gate-2-contract.md:33,43",
+      "detail": "",
+      "trace": [
+        "hooks_enabled: evaluated"
+      ]
+    }
+  ],
+  "verdict": "allow",
+  "exit_code": 0
+}

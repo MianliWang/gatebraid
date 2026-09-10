@@ -1,0 +1,106 @@
+{
+  "corpus": "instruments-v2",
+  "corpus_version": "v2.0",
+  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 6. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
+  "description": "gatebraid/coverage-report@2 (ADR-0037 decision 7): the @1 canonical report valid as @1 and invalid as @2, the gate-run@3 target @1 could not name, and IN-01 -- the one M3-PLAN section 6 item frozen in neither v1 corpus -- asserted here in both directions against the validator's own document.",
+  "loader": "CPython 3.11.15 (/usr/bin/python3), jsonschema 4.26.0, Draft202012Validator; measured by the coordinator in the sandbox; the landing captures record the host loaders",
+  "known_limitation": "IN-01's cross-document half stands: this corpus asserts that a report which SAYS the exit code was uninterpretable cannot credit a pass, and that pipeline_last without pipefail cannot be called interpretable. That the validator read the target capture's shell_semantics correctly into exit_code_basis is the validator's own falsification at P2-S7, against the evidence-capture-v1 fixtures EC1-02, EC1-07 and EC1-25 that carry IN-01's built halves. The `instruments` corpus (v1.1) is untouched: its known_limitation (2) re-assigned IN-01 here and is discharged by this corpus, recorded in the dated addendum to fixtures/DETERMINACY-REPORT.md rather than by editing a frozen manifest.",
+  "cases": [
+    {
+      "id": "IN2-01",
+      "fixture": "valid-at2-report.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "valid",
+      "class": "positive control -- the @1 canonical report as @2",
+      "source": "CORPUS-v2-PLAN.md section 3.4",
+      "expect_errors": []
+    },
+    {
+      "id": "IN2-01a",
+      "fixture": "at1-history-report.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "valid",
+      "class": "the @1 canonical stays valid as @1",
+      "source": "ADR-0037 decision 7",
+      "expect_errors": []
+    },
+    {
+      "id": "IN2-01b",
+      "fixture": "at1-history-report.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "invalid",
+      "class": "the same document rejected under @2",
+      "source": "ADR-0037 decision 7 -- the pair GR2-02/GR2-03 established",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "schema",
+          "schema_path": "properties/schema/const"
+        }
+      ]
+    },
+    {
+      "id": "IN2-02",
+      "fixture": "in2-02-pass-on-uninterpretable-exit-code.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "invalid",
+      "class": "IN-01: a property credited pass on an uninterpretable exit code",
+      "source": "M3-PLAN section 6 IN-01; CORPUS-v1-PLAN section 3; fixtures/instruments known_limitation (2)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "properties/0/verdict",
+          "schema_path": "properties/properties/items/allOf/4/then/properties/verdict/const"
+        }
+      ]
+    },
+    {
+      "id": "IN2-02p",
+      "fixture": "in2-02-fail-on-uninterpretable-exit-code.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "valid",
+      "class": "IN-01 -- the positive arm: the same basis, verdict fail, report rejected",
+      "source": "M3-PLAN section 6 IN-01",
+      "expect_errors": []
+    },
+    {
+      "id": "IN2-03",
+      "fixture": "in2-03-last-element-code-called-interpretable.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "invalid",
+      "class": "IN-01, the definition half: pipeline_last without pipefail written up as interpretable",
+      "source": "evidence-capture@1 invocation.shell_semantics; CORPUS-v1-PLAN section 3 IN-01",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "properties/0/exit_code_basis/interpretable",
+          "schema_path": "properties/properties/items/allOf/5/then/properties/exit_code_basis/properties/interpretable/const"
+        }
+      ]
+    },
+    {
+      "id": "IN2-04",
+      "fixture": "in2-04-target-gate-run-at3.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "valid",
+      "class": "a report over a gate-run@3 target",
+      "source": "ADR-0037 decision 7 (the validator must route @3)",
+      "expect_errors": []
+    },
+    {
+      "id": "IN2-05",
+      "fixture": "in2-05-at1-report-over-at3-target.json",
+      "schema": "schema/coverage-report.schema.json",
+      "expect": "invalid",
+      "class": "an @1 report cannot name a gate-run@3 target -- why @2 exists",
+      "source": "ADR-0037 decision 7",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "target/schema_id",
+          "schema_path": "properties/target/properties/schema_id/enum"
+        }
+      ]
+    }
+  ]
+}
