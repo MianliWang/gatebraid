@@ -349,3 +349,67 @@ now specified, and that thirteen ways of emitting a document that lies about its
 own integrity are now rejected before any tool is written to emit one. The
 behavioural half is P2-S4's to demonstrate, against this corpus, and
 `M3-PLAN.md` §2 O0's Accept-when is what will judge it.
+
+## 8. Corpus-v2 addendum (batch P-B1, 2026-09-10) — the twenty-first item is frozen, and two counts corrected
+
+Recorded as a dated addendum, never a silent edit, in the form §6 and §7
+already used. **§2's item-by-item verdicts and §7's thirteen are unchanged.**
+Three things move.
+
+**IN-01 is frozen.** §7 ended with one M3-PLAN §6 item frozen in neither
+place: IN-01, "wrong pipeline exit code", re-assigned by the N1E
+correct-course to corpus v2 at P's start because its assertion spanned two
+documents — the coverage report and the target capture's
+`invocation.shell_semantics`. Corpus v2 gives the coverage report a place to
+carry the validator's reading of those semantics: `gatebraid/coverage-report@2`
+(`schema/coverage-report-v2.schema.json`, ADR-0037 decision 7) adds
+`exit_code_basis` to a verified property, and the schema binds it — a basis
+that is uninterpretable cannot sit beside a passing verdict (IN2-02), and a
+shell basis without `pipefail` whose exit code is the pipeline's last
+element's is uninterpretable whatever the validator wrote (IN2-03). The
+assertion no longer spans two documents; it is a property of the one the
+validator emits, killed by the runner's single assertion shape exactly as §7's
+thirteen were. The cross-document half — that the validator read the capture
+correctly — is the validator's own falsification at P2-S7 against EC1-02,
+EC1-07 and EC1-25, named in `fixtures/instruments-v2/EXPECTATIONS.json`'s
+`known_limitation`. `fixtures/instruments/EXPECTATIONS.json` (v1.1) is not
+edited; its `known_limitation` (2) is discharged by this paragraph. **Every
+one of the twenty-one §6 items now has a freeze point that has been
+reached:** thirteen at O0's start (§7), seven at N3's start (N1E), one here.
+
+**Two counts corrected (the O0-B1 review's F-02 and F-04).** §7 says "measured
+across all five corpora"; at the commit that carries it `CORPORA.json` declared
+six built corpora and the runner printed six. The substance — 102 invalid
+cases, 99 distinct keys, three colliding groups, none involving
+`state-pipeline` — was right and was independently re-derived by that review;
+only the domain's count was the N1E-era phrase. Read "five" as "the declared
+set at the freeze commit, six". And §7's "ADR-0031 decision 2's second freeze
+point", repeated in `fixtures/state-pipeline/EXPECTATIONS.json`'s
+`frozen_by`, is true chronologically and misleading against the ADR's own
+bullet order: the SP freeze is decision 2's FIRST bullet, executed second.
+Read both as "the O0-start freeze point", the wording `CORPORA.json` already
+used. Neither text is edited; this addendum is the correction of record.
+
+**Corpus v2's own determinacy, measured the way §7 measured v1.** Over the
+whole corpus at P-B1's delivery — eleven built corpora, 259 cases, 181 invalid —
+the (schema, locus-set) keys number 178 and the colliding groups are exactly
+the three §7 and the v1 manifests already declare (EC1-28/EC1-29,
+GR2-09/GR2-12, IN1-06/IN1-11). **Corpus v2 adds zero new collisions.** Inside
+`guard-v1` every fact-to-result conditional is its own `allOf` entry, so every
+negative case kills at a distinct `schema_path`, and every conditional has a
+positive arm (GR2-07's lesson, applied at every conditional). The measurement is
+re-run by the build window on both platforms and by the independent review,
+by the command `fixtures/CORPUS-v2-PLAN.md` §5 records, so the counts here are
+a claim with its instrument beside it rather than a number to be believed.
+
+**The runner had been exiting 2 on `main`.** Measured at P-B1's authoring:
+`fixtures/run-corpus.py` at `880f342a0dee29f03aad14198cd09dabf15fcc9f` exits
+2 with "corpus director(ies) present but not declared in CORPORA.json:
+direct-drive". Batch DD1 (2026-09-04) placed the dispatcher's seeds under
+`fixtures/` without declaring them, and nobody ran the runner between that day
+and this batch. The discovery rule was right and caught it, five days late,
+because the instrument was not run. The runner gains a declared `foreign`
+list (S29–S31 in the selftest); the defect and its late measurement are the
+coordinator's and are ledgered at this batch's closeout. **This addendum does
+not move the corpus digest** for the reason §7 gave: this file is outside the
+digest's scope.
