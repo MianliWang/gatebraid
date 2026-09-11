@@ -1,0 +1,79 @@
+{
+  "schema": "gatebraid/evidence-capture@1",
+  "capture_id": "P-B1-selftest-commit8-clean-wsl",
+  "generator": {
+    "name": "gatebraid-capture",
+    "version": "1.0.0",
+    "source_sha256": "5dcedf84283952453785c57f9de08ce818b068a1cac8772c806b155444ad5626"
+  },
+  "invocation": {
+    "form": "argv",
+    "argv": [
+      "python3",
+      "-B",
+      "fixtures/runner-selftest.py"
+    ],
+    "cwd": {
+      "path": "/mnt/d/Github repo/Gatebraid",
+      "resolution": "absolute-verified"
+    },
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "GH_CONFIG_DIR": "/mnt/c/Users/rough/.gh-gatebraid"
+    }
+  },
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "encoding": "base64",
+      "byte_length": 3297,
+      "sha256": "a8859ce25adef20b0d3a8544299dc86b784d384d004de80a25366f9f0fb1de65",
+      "data": "Y29uZGl0aW9uICAgICAgICAgICAgICAgICAgICAgICAgICAgd2FudCAgZ290ICB2ZXJkaWN0ICByZXF1aXJlZCBvYnNlcnZhdGlvbgpTMDAgdW50b3VjaGVkIGNvcHkgICAgICAgICAgICAgICAgICAgICAwICAgIDAgIFBBU1MgICAgIENPUlBVUyBDTEVBTgpTMDEgbXV0YXRpb24gbm90IGtpbGxlZCAgICAgICAgICAgICAgICAxICAgIDEgIFBBU1MgICAgIG11dGF0aW9uIG5vdCBraWxsZWQKUzAyIHJlY29yZGVkIGxvY3VzIHNpbGVudCAgICAgICAgICAgICAgMSAgICAxICBQQVNTICAgICByZWNvcmRlZCBsb2N1cyBkaWQgbm90IGZpcmUKUzAzIHVucmVjb3JkZWQgbG9jdXMgZmlyZWQgICAgICAgICAgICAgMSAgICAxICBQQVNTICAgICB1bnJlY29yZGVkIGxvY3VzIGZpcmVkClMwNCB2YWxpZCBjYXNlIGJyb2tlbiAgICAgICAgICAgICAgICAgIDEgICAgMSAgUEFTUyAgICAgZXhwZWN0ZWQgdmFsaWQKUzA1IGZpeHR1cmUgbWlzc2luZyAgICAgICAgICAgICAgICAgICAgMiAgICAyICBQQVNTICAgICBmaXh0dXJlIG1pc3NpbmcKUzA2IHNjaGVtYSBtaXNzaW5nICAgICAgICAgICAgICAgICAgICAgMiAgICAyICBQQVNTICAgICBzY2hlbWEgbWlzc2luZwpTMDcgaW52YWxpZCBjYXNlIHVuc3BlY2lmaWVkICAgICAgICAgICAyICAgIDIgIFBBU1MgICAgIHJlY29yZHMgbm8gZXhwZWN0ZWQgZXJyb3IKUzA4IG9ycGhhbiBmaXh0dXJlIGZpbGUgICAgICAgICAgICAgICAgMiAgICAyICBQQVNTICAgICByZWZlcmVuY2VkIGJ5IG5vIGNhc2UKUzA5IHVuZGVjbGFyZWQgY29ycHVzIGRpciAgICAgICAgICAgICAgMiAgICAyICBQQVNTICAgICBub3QgZGVjbGFyZWQgaW4gQ09SUE9SQS5qc29uClMxMCBtYWxmb3JtZWQgbWFuaWZlc3QgICAgICAgICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgbm90IHZhbGlkIEpTT04KUzEyIHdyb25nIHJlcXVpcmVkIHByb3BlcnR5ICAgICAgICAgICAgMSAgICAxICBQQVNTICAgICByZWNvcmRlZCBsb2N1cyBkaWQgbm90IGZpcmUKUzEzIHJlcXVpcmVkIHdpdGhvdXQgcHJvcGVydHkgICAgICAgICAgMiAgICAyICBQQVNTICAgICBtdXN0IHJlY29yZCB3aGljaCBwcm9wZXJ0eQpTMTQgcHJvcGVydHkgb24gd3Jvbmcga2V5d29yZCAgICAgICAgICAyICAgIDIgIFBBU1MgICAgIG9ubHkgbWVhbmluZ2Z1bCBvbiBhICdyZXF1aXJlZCcKUzE3IHNlY29uZCB1bmV4cGVjdGVkIHByb3BlcnR5ICAgICAgICAgMSAgICAxICBQQVNTICAgICB1bnJlY29yZGVkIGxvY3VzIGZpcmVkClMxOCBub24tZmluaXRlIEpTT04gbGl0ZXJhbCAgICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgbm9uLUpTT04gbnVtZXJpYyBjb25zdGFudApTMTkgd3Jvbmcgc2NoZW1hX3BhdGggICAgICAgICAgICAgICAgICAxICAgIDEgIFBBU1MgICAgIHJlY29yZGVkIGxvY3VzIGRpZCBub3QgZmlyZQpTMjAgc2NoZW1hX3BhdGggbWlzc2luZyAgICAgICAgICAgICAgICAyICAgIDIgIFBBU1MgICAgIGV4cGVjdGF0aW9uIG1pc3NpbmcgJ3NjaGVtYV9wYXRoJwpTMjMgZXh0cmFfY291bnQgbWlzc2luZyAgICAgICAgICAgICAgICAyICAgIDIgIFBBU1MgICAgIG11c3QgcmVjb3JkIGV4dHJhX2NvdW50ClMyNCBleHRyYV9jb3VudCB3cm9uZyBrZXl3b3JkICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgb25seSBtZWFuaW5nZnVsIG9uIGFuICdhZGRpdGlvbmFsUHJvcGVydGllcycKUzI1IHZhbGlkYXRvciBjYW5ub3QgcmVzb2x2ZSAgICAgICAgICAgMyAgICAzICBQQVNTICAgICBFTlZJUk9OTUVOVApTMjYgdmFsaWRhdG9yIGxpYnJhcnkgYWJzZW50ICAgICAgICAgICAzICAgIDMgIFBBU1MgICAgIG5vdCBpbXBvcnRhYmxlClMyNyBfX3B5Y2FjaGVfXyBwcmVzZW50ICAgICAgICAgICAgICAgIDAgICAgMCAgUEFTUyAgICAgQ09SUFVTIENMRUFOClMyOSBmb3JlaWduIGRpciBtaXNzaW5nICAgICAgICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgZGVjbGFyZWQgZm9yZWlnbiBkaXJlY3RvcnkKUzMwIGZvcmVpZ24gY2FycmllcyBtYW5pZmVzdCAgICAgICAgICAgMiAgICAyICBQQVNTICAgICBjYXJyaWVzIGEgY29ycHVzIG1hbmlmZXN0ClMzMSBmb3JlaWduIGFsc28gYnVpbHQgICAgICAgICAgICAgICAgIDIgICAgMiAgUEFTUyAgICAgYm90aCBmb3JlaWduIGFuZCBhIGNvcnB1cwpTMTEgdW5leHBlY3RlZCBhcmd1bWVudCAgICAgICAgICAgICAgICAyICAgIDIgIFBBU1MgICAgIHVuZXhwZWN0ZWQgYXJndW1lbnQKUzE1IGN3ZC1pbmRlcGVuZGVuY2UgaG9sZHMgICAgICAgICAgICAgMCAgICAwICBQQVNTICAgICBDT1JQVVMgQ0xFQU4gZnJvbSBib3RoClMxNiBjd2QtaW5kZXBlbmRlbmNlIGZhbHNpZmllZCAgICAgICAhPTAgICAgMiAgUEFTUyAgICAgbXVzdCBOT1QgYmUgY2xlYW4gZnJvbSBlbHNld2hlcmUKUzIxIGRpZ2VzdCBzZWVzIHJ1bi1jb3JwdXMucHkgICAgICAgbW92ZXMgIG1vdmVzICBQQVNTICAgICBkaWdlc3QgbXVzdCBjaGFuZ2Ugd2hlbiB0aGUgZmlsZSBjaGFuZ2VzClMyMiBkaWdlc3Qgc2VlcyBydW5uZXItc2VsZnRlc3QucHkgIG1vdmVzICBtb3ZlcyAgUEFTUyAgICAgZGlnZXN0IG11c3QgY2hhbmdlIHdoZW4gdGhlIGZpbGUgY2hhbmdlcwpTMjggX19weWNhY2hlX18gbW92ZXMgbm8gZGlnZXN0ICAgICBzYW1lICBzYW1lICBQQVNTICAgICBkaWdlc3QgbXVzdCBpZ25vcmUgaW50ZXJwcmV0ZXIgb3V0cHV0CgpkaWdlc3Qgc2NvcGUgICAgICAgICAgICAgICAgICA6IGJ5dGVzLXBsYXRmb3JtLCBkb2N0b3ItdjEsIGV2aWRlbmNlLWNhcHR1cmUtdjEsIGdhdGUtcnVuLXYyLCBnYXRlLXJ1bi12MywgZ3VhcmQtdjEsIGluc3RydW1lbnRzLCBpbnN0cnVtZW50cy12MiwgbGl2ZS1zaGFwZXMsIG1ldHJpY3MtdjEsIHN0YXRlLXBpcGVsaW5lLCBDT1JQT1JBLmpzb24sIHNjaGVtYSwgcnVuLWNvcnB1cy5weSwgcnVubmVyLXNlbGZ0ZXN0LnB5LCBkaXJlY3QtZHJpdmUsIGZpeHR1cmVzLyBsaXN0aW5nCmRpZ2VzdCBiZWZvcmUgICAgICAgICAgICAgICAgIDogNzg5OWJlZmQ4MzFlOTI2ZDBmOWQyNWZiODUyZjY0ODI0NTRkNTNlNTA5Y2YzN2Q1YzYxZjM5YWVlZWM0MDczZQpkaWdlc3QgYWZ0ZXIgICAgICAgICAgICAgICAgICA6IDc4OTliZWZkODMxZTkyNmQwZjlkMjVmYjg1MmY2NDgyNDU0ZDUzZTUwOWNmMzdkNWM2MWYzOWFlZWVjNDA3M2UKc2VlZC1yZWFjaGFibGUgc3VyZmFjZSBVTk1PRElGSUVEOiBUcnVlCmNvbmRpdGlvbnMgZmFpbGVkICAgICAgICAgICAgIDogMApTRUxGVEVTVCBDTEVBTjogZXZlcnkgc2VlZGVkIGNvbmRpdGlvbiBwcm9kdWNlZCBpdHMgcmVxdWlyZWQgZXhpdCBzdGF0dXMK",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": "condition                           want  got  verdict  required observation\nS00 untouched copy                     0    0  PASS     CORPUS CLEAN\nS01 mutation not killed                1    1  PASS     mutation not killed\nS02 recorded locus silent              1    1  PASS     recorded locus did not fire\nS03 unrecorded locus fired             1    1  PASS     unrecorded locus fired\nS04 valid case broken                  1    1  PASS     expected valid\nS05 fixture missing                    2    2  PASS     fixture missing\nS06 schema missing                     2    2  PASS     schema missing\nS07 invalid case unspecified           2    2  PASS     records no expected error\nS08 orphan fixture file                2    2  PASS     referenced by no case\nS09 undeclared corpus dir              2    2  PASS     not declared in CORPORA.json\nS10 malformed manifest                 2    2  PASS     not valid JSON\nS12 wrong required property            1    1  PASS     recorded locus did not fire\nS13 required without property          2    2  PASS     must record which property\nS14 property on wrong keyword          2    2  PASS     only meaningful on a 'required'\nS17 second unexpected property         1    1  PASS     unrecorded locus fired\nS18 non-finite JSON literal            2    2  PASS     non-JSON numeric constant\nS19 wrong schema_path                  1    1  PASS     recorded locus did not fire\nS20 schema_path missing                2    2  PASS     expectation missing 'schema_path'\nS23 extra_count missing                2    2  PASS     must record extra_count\nS24 extra_count wrong keyword          2    2  PASS     only meaningful on an 'additionalProperties'\nS25 validator cannot resolve           3    3  PASS     ENVIRONMENT\nS26 validator library absent           3    3  PASS     not importable\nS27 __pycache__ present                0    0  PASS     CORPUS CLEAN\nS29 foreign dir missing                2    2  PASS     declared foreign directory\nS30 foreign carries manifest           2    2  PASS     carries a corpus manifest\nS31 foreign also built                 2    2  PASS     both foreign and a corpus\nS11 unexpected argument                2    2  PASS     unexpected argument\nS15 cwd-independence holds             0    0  PASS     CORPUS CLEAN from both\nS16 cwd-independence falsified       !=0    2  PASS     must NOT be clean from elsewhere\nS21 digest sees run-corpus.py       moves  moves  PASS     digest must change when the file changes\nS22 digest sees runner-selftest.py  moves  moves  PASS     digest must change when the file changes\nS28 __pycache__ moves no digest     same  same  PASS     digest must ignore interpreter output\n\ndigest scope                  : bytes-platform, doctor-v1, evidence-capture-v1, gate-run-v2, gate-run-v3, guard-v1, instruments, instruments-v2, live-shapes, metrics-v1, state-pipeline, CORPORA.json, schema, run-corpus.py, runner-selftest.py, direct-drive, fixtures/ listing\ndigest before                 : 7899befd831e926d0f9d25fb852f6482454d53e509cf37d5c61f39aeeec4073e\ndigest after                  : 7899befd831e926d0f9d25fb852f6482454d53e509cf37d5c61f39aeeec4073e\nseed-reachable surface UNMODIFIED: True\nconditions failed             : 0\nSELFTEST CLEAN: every seeded condition produced its required exit status\n"
+      }
+    },
+    "stderr": {
+      "encoding": "base64",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data": "",
+      "rendered": {
+        "decode_codec": "utf-8",
+        "decode_result": "ok",
+        "text": ""
+      }
+    }
+  },
+  "started_at": "2026-09-11T05:39:56.629283Z",
+  "ended_at": "2026-09-11T06:15:15.419357Z",
+  "inputs": [
+    {
+      "path": "fixtures/run-corpus.py",
+      "sha256": "164cc4a56e2e37e60c58d6086ea4b422fa22fb9c4b1a2d888a60c9a097d24d6b"
+    },
+    {
+      "path": "fixtures/runner-selftest.py",
+      "sha256": "ca8a941e942866f8d83b2f6fa57629aed70d8a8122ec84256109f4ed7118420b"
+    },
+    {
+      "path": "fixtures/CORPORA.json",
+      "sha256": "a7ab307f4ec5996ced79c19fff972e07cb207673c0589ab4896300f29e5b93c2"
+    }
+  ],
+  "outputs": [],
+  "platform": {
+    "os": "wsl",
+    "os_release": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "interpreter": "CPython 3.12.3 (/usr/bin/python3)"
+  },
+  "self_assertions": {
+    "zero_lone_cr": {
+      "asserted": true,
+      "count": 0
+    },
+    "binary_mode_write": true
+  }
+}
