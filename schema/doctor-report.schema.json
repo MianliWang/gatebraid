@@ -1,0 +1,931 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gatebraid/doctor-report@1",
+  "title": "Gatebraid doctor report (gatebraid/doctor-report@1)",
+  "description": "The document `gatebraid-doctor` emits: a platform and configuration audit of the control plane -- frontier composition, closure preconditions, field invariants (M3-PLAN.md section 2 P) -- as facts beside findings. Introduced at M3 node P (ADR-0036); admitted under ADR-0030 by the milestone authority plus the operator's batch approval. THE DESIGN RULE: the doctor reports and never repairs. This schema has no vocabulary for an action taken -- no `repaired`, no `actions`, no `fixed` -- and `additionalProperties` is false at every level, so a report that claims to have changed anything is invalid (DR1-05). Each finding carries a `fix_hint` so the report is actionable without becoming a repair. Exit codes are a closed set: 0 no finding at or above `threshold`, 1 a finding at or above `threshold` (the report carries the threshold so a consumer knows what 0 meant), 2 could not run. R-min adds the host-instruction conformance check under the reserved id `host.instruction_divergence`. Timestamps are lexical patterns, as in every frozen interface.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "doctor",
+    "evaluated_at",
+    "subject",
+    "outcome",
+    "facts",
+    "findings",
+    "threshold",
+    "exit_code"
+  ],
+  "properties": {
+    "schema": {
+      "const": "gatebraid/doctor-report@1"
+    },
+    "doctor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "source_sha256"
+      ],
+      "properties": {
+        "name": {
+          "const": "gatebraid-doctor"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "evaluated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Zz]|[+-]\\d{2}:\\d{2})(?![\\s\\S])"
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository"
+      ],
+      "properties": {
+        "repository": {
+          "enum": [
+            "MianliWang/gatebraid",
+            "MianliWang/gatebraid-scratch"
+          ]
+        }
+      }
+    },
+    "outcome": {
+      "enum": [
+        "completed",
+        "could_not_run"
+      ]
+    },
+    "facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frontier",
+        "project_workflows",
+        "pull_request",
+        "items",
+        "refs"
+      ],
+      "properties": {
+        "frontier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "candidates"
+          ],
+          "properties": {
+            "candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "item",
+                  "workflow",
+                  "issue_state"
+                ],
+                "properties": {
+                  "item": {
+                    "type": "string",
+                    "pattern": "^MianliWang/(gatebraid|gatebraid-scratch)#[0-9]+$"
+                  },
+                  "workflow": {
+                    "enum": [
+                      "Backlog",
+                      "Gate 0 — Verifying",
+                      "Gate 1 — Planning",
+                      "Needs Plan Approval",
+                      "Gate 2 — Implementing",
+                      "Needs Review",
+                      "Repair Required",
+                      "Codex Consultation",
+                      "Human Diagnosis Required",
+                      "Blocked",
+                      "Needs Release Approval",
+                      "Gate 3 — Releasing",
+                      "Done",
+                      "Aborted"
+                    ]
+                  },
+                  "issue_state": {
+                    "enum": [
+                      "OPEN",
+                      "CLOSED",
+                      "UNKNOWN"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": "Audit D1, frontier composition (ADR-0025 section 8): the candidate list the frontier presented."
+        },
+        "project_workflows": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "auto_close_issue_enabled",
+            "enabled_count"
+          ],
+          "properties": {
+            "auto_close_issue_enabled": {
+              "type": "boolean"
+            },
+            "enabled_count": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "description": "Audit D2, closure precondition (a) (gate-3-contract)."
+        },
+        "pull_request": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "present",
+            "closing_references",
+            "closing_keyword_hits"
+          ],
+          "properties": {
+            "present": {
+              "type": "boolean"
+            },
+            "closing_references": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "closing_keyword_hits": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "ADR-0018 section 1's pattern over the body and every commit message: a closing keyword immediately before an issue reference. A count, never the match."
+            }
+          },
+          "description": "Audit D2, closure precondition (b)."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "item",
+              "is_slice",
+              "issue_state",
+              "workflow",
+              "gate",
+              "next_approval_present",
+              "writer_lease_present"
+            ],
+            "properties": {
+              "item": {
+                "type": "string",
+                "pattern": "^MianliWang/(gatebraid|gatebraid-scratch)#[0-9]+$"
+              },
+              "is_slice": {
+                "type": "boolean",
+                "description": "Carries Slice metadata. Container nodes deliberately carry no Workflow, Gate or Next Approval and are not findings."
+              },
+              "issue_state": {
+                "enum": [
+                  "OPEN",
+                  "CLOSED",
+                  "UNKNOWN"
+                ]
+              },
+              "workflow": {
+                "enum": [
+                  "Backlog",
+                  "Gate 0 — Verifying",
+                  "Gate 1 — Planning",
+                  "Needs Plan Approval",
+                  "Gate 2 — Implementing",
+                  "Needs Review",
+                  "Repair Required",
+                  "Codex Consultation",
+                  "Human Diagnosis Required",
+                  "Blocked",
+                  "Needs Release Approval",
+                  "Gate 3 — Releasing",
+                  "Done",
+                  "Aborted",
+                  null
+                ]
+              },
+              "gate": {
+                "enum": [
+                  "—",
+                  "G0 passed",
+                  "G1 passed",
+                  "G2 passed",
+                  "G3 passed",
+                  null
+                ]
+              },
+              "next_approval_present": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "The field carries a value (the resting value is the em dash, never an unset field; spec section 1). Null for a container."
+              },
+              "writer_lease_present": {
+                "type": "boolean"
+              }
+            }
+          },
+          "description": "Audit D3, field invariants (spec section 1)."
+        },
+        "refs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "foreign_refs_preexisting"
+          ],
+          "properties": {
+            "foreign_refs_preexisting": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "description": "The guard's check 3 hands pre-existing foreign refs here (ADR-0036 decision 4)."
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "check_id",
+          "severity",
+          "message",
+          "path",
+          "fix_hint"
+        ],
+        "properties": {
+          "check_id": {
+            "enum": [
+              "frontier.aborted_candidate",
+              "frontier.lease_or_domain_conflict",
+              "closure.auto_close_enabled",
+              "closure.closing_reference",
+              "closure.closing_keyword",
+              "field.next_approval_absent",
+              "field.closure_invariant",
+              "field.workflow_gate_mismatch",
+              "field.dash_bytes",
+              "refs.foreign_preexisting",
+              "host.instruction_divergence"
+            ]
+          },
+          "severity": {
+            "enum": [
+              "error",
+              "warning",
+              "info"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The item, field or file the finding names; null when none applies."
+          },
+          "fix_hint": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What a person would do. The doctor never does it (ADR-0036 decision 7)."
+          }
+        }
+      }
+    },
+    "threshold": {
+      "enum": [
+        "error",
+        "warning",
+        "info"
+      ],
+      "description": "The severity at or above which findings count toward exit 1; recorded so a consumer knows what 0 meant."
+    },
+    "exit_code": {
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "D1, frontier composition (ADR-0025 section 8; SP-13): an Aborted item presented as a candidate is a finding (DR1-01).",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "frontier"
+            ],
+            "properties": {
+              "frontier": {
+                "properties": {
+                  "candidates": {
+                    "contains": {
+                      "properties": {
+                        "workflow": {
+                          "const": "Aborted"
+                        }
+                      },
+                      "required": [
+                        "workflow"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "candidates"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "frontier.aborted_candidate"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "D2 (a), closure precondition (gate-3-contract (a)): the Project's Auto-close issue workflow enabled is a finding (DR1-02).",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "project_workflows"
+            ],
+            "properties": {
+              "project_workflows": {
+                "properties": {
+                  "auto_close_issue_enabled": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "auto_close_issue_enabled"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "closure.auto_close_enabled"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "D2 (b) (gate-3-contract (b)): a non-empty closingIssuesReferences on the pull request is a finding (DR1-02b).",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "pull_request"
+            ],
+            "properties": {
+              "pull_request": {
+                "properties": {
+                  "closing_references": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "closing_references"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "closure.closing_reference"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "D2 (b) (gate-3-contract (b); ADR-0018 section 1): a closing keyword immediately before an issue reference in the body or a commit message is a finding (DR1-02c).",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "pull_request"
+            ],
+            "properties": {
+              "pull_request": {
+                "properties": {
+                  "closing_keyword_hits": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "closing_keyword_hits"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "closure.closing_keyword"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "D3, field invariants (spec section 1): a Slice item with Next Approval unset is a finding (DR1-03).",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "contains": {
+                  "properties": {
+                    "is_slice": {
+                      "const": true
+                    },
+                    "next_approval_present": {
+                      "const": false
+                    }
+                  },
+                  "required": [
+                    "is_slice",
+                    "next_approval_present"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "field.next_approval_absent"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "D3, the closure invariant (spec section 1: the Slice issue is closed iff G3 passed): a CLOSED Slice issue whose Gate is not G3 passed is a finding (DR1-03b).",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "contains": {
+                  "properties": {
+                    "is_slice": {
+                      "const": true
+                    },
+                    "issue_state": {
+                      "const": "CLOSED"
+                    },
+                    "gate": {
+                      "not": {
+                        "const": "G3 passed"
+                      }
+                    }
+                  },
+                  "required": [
+                    "is_slice",
+                    "issue_state",
+                    "gate"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "field.closure_invariant"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "D3 (spec section 1, option 13): Workflow = Done with Gate not G3 passed is a finding (DR1-03c).",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "contains": {
+                  "properties": {
+                    "is_slice": {
+                      "const": true
+                    },
+                    "workflow": {
+                      "const": "Done"
+                    },
+                    "gate": {
+                      "not": {
+                        "const": "G3 passed"
+                      }
+                    }
+                  },
+                  "required": [
+                    "is_slice",
+                    "workflow",
+                    "gate"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "field.workflow_gate_mismatch"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Pre-existing foreign refs are the doctor's finding, not the guard's deny (ADR-0036 decision 4).",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "refs"
+            ],
+            "properties": {
+              "refs": {
+                "properties": {
+                  "foreign_refs_preexisting": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "foreign_refs_preexisting"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "refs.foreign_preexisting"
+                }
+              },
+              "required": [
+                "check_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set (ADR-0036 decision 7): an error-severity finding is exit 1 (DR1-04).",
+      "if": {
+        "properties": {
+          "findings": {
+            "contains": {
+              "properties": {
+                "severity": {
+                  "const": "error"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "$comment": "A completed run with no finding is exit 0 (DR1-07).",
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "completed"
+          },
+          "findings": {
+            "maxItems": 0
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 0
+          }
+        }
+      }
+    },
+    {
+      "$comment": "could_not_run is exit 2 and carries no finding: a doctor that could not run has nothing to report but that (DR1-06, DR1-06b).",
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "could_not_run"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 2
+          },
+          "findings": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set, the threshold half (ADR-0036 decision 7; review W-3): at threshold warning or info, a warning-severity finding is exit 1 (DR1-04b).",
+      "if": {
+        "properties": {
+          "threshold": {
+            "enum": [
+              "warning",
+              "info"
+            ]
+          },
+          "findings": {
+            "contains": {
+              "properties": {
+                "severity": {
+                  "const": "warning"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "threshold",
+          "findings"
+        ]
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set, the threshold half (ADR-0036 decision 7; review W-3): at threshold info, an info-severity finding is exit 1 (DR1-04c).",
+      "if": {
+        "properties": {
+          "threshold": {
+            "const": "info"
+          },
+          "findings": {
+            "contains": {
+              "properties": {
+                "severity": {
+                  "const": "info"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "threshold",
+          "findings"
+        ]
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set, the threshold half (ADR-0036 decision 7; review W-3): a completed run at threshold error with no error-severity finding is exit 0, whatever else it reports (DR1-07b).",
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "completed"
+          },
+          "threshold": {
+            "const": "error"
+          },
+          "findings": {
+            "items": {
+              "properties": {
+                "severity": {
+                  "not": {
+                    "const": "error"
+                  }
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "outcome",
+          "threshold",
+          "findings"
+        ]
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 0
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set, the threshold half (ADR-0036 decision 7; review W-3): a completed run at threshold warning whose findings are all info is exit 0 (DR1-07c).",
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "completed"
+          },
+          "threshold": {
+            "const": "warning"
+          },
+          "findings": {
+            "items": {
+              "properties": {
+                "severity": {
+                  "const": "info"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "outcome",
+          "threshold",
+          "findings"
+        ]
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 0
+          }
+        }
+      }
+    }
+  ]
+}

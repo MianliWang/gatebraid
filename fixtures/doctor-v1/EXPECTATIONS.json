@@ -1,0 +1,384 @@
+{
+  "corpus": "doctor-v1",
+  "corpus_version": "v2.0",
+  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 4. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
+  "description": "The doctor's three audits (frontier composition, closure preconditions, field invariants; M3-PLAN.md section 2 P), each with a fact that must produce a finding and the reported twin, plus the closed exit set and the never-repairs rule as structure.",
+  "loader": "CPython 3.11.15 (/usr/bin/python3), jsonschema 4.26.0, Draft202012Validator; measured by the coordinator in the sandbox; the landing captures record the host loaders",
+  "known_limitation": "The same schema-half limit as guard-v1: the report binds facts to findings; that the doctor read the platform correctly is the instrument half at P2-S7. The host.instruction_divergence check id is reserved for R-min and has no case here.",
+  "cases": [
+    {
+      "id": "DR1-00",
+      "fixture": "valid-clean-report.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "clean report, exit 0",
+      "source": "CORPUS-v2-PLAN.md section 3.2 -- the positive control.",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-01",
+      "fixture": "dr1-01-frontier-aborted-candidate-unreported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "D1: an Aborted item presented as a frontier candidate, no finding",
+      "source": "ADR-0025 section 8; SP-13",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "findings",
+          "schema_path": "allOf/0/then/properties/findings/contains"
+        }
+      ]
+    },
+    {
+      "id": "DR1-01p",
+      "fixture": "dr1-01-frontier-aborted-candidate-reported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "D1: an Aborted item presented as a frontier candidate, no finding -- reported",
+      "source": "ADR-0025 section 8; SP-13",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-02",
+      "fixture": "dr1-02-closure-auto-close-enabled-unreported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "D2 (a): the Project's Auto-close issue workflow is enabled, no finding",
+      "source": "protocols/gate-3-contract.md:9",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "findings",
+          "schema_path": "allOf/1/then/properties/findings/contains"
+        }
+      ]
+    },
+    {
+      "id": "DR1-02p",
+      "fixture": "dr1-02-closure-auto-close-enabled-reported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "D2 (a): the Project's Auto-close issue workflow is enabled, no finding -- reported",
+      "source": "protocols/gate-3-contract.md:9",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-02b",
+      "fixture": "dr1-02b-closure-closing-reference-unreported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "D2 (b): the pull request carries a closing issue reference, no finding",
+      "source": "protocols/gate-3-contract.md:10-11",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "findings",
+          "schema_path": "allOf/2/then/properties/findings/contains"
+        }
+      ]
+    },
+    {
+      "id": "DR1-02bp",
+      "fixture": "dr1-02b-closure-closing-reference-reported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "D2 (b): the pull request carries a closing issue reference, no finding -- reported",
+      "source": "protocols/gate-3-contract.md:10-11",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-02c",
+      "fixture": "dr1-02c-closure-closing-keyword-unreported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "D2 (b): a closing keyword immediately before an issue reference in a commit message, no finding",
+      "source": "protocols/gate-3-contract.md:10-11; ADR-0018 section 1",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "findings",
+          "schema_path": "allOf/3/then/properties/findings/contains"
+        }
+      ]
+    },
+    {
+      "id": "DR1-02cp",
+      "fixture": "dr1-02c-closure-closing-keyword-reported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "D2 (b): a closing keyword immediately before an issue reference in a commit message, no finding -- reported",
+      "source": "protocols/gate-3-contract.md:10-11; ADR-0018 section 1",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-03",
+      "fixture": "dr1-03-field-next-approval-absent-unreported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "D3: a Slice item with Next Approval unset, no finding",
+      "source": "protocols/gatebraid-control-plane-spec-v1.md:56",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "findings",
+          "schema_path": "allOf/4/then/properties/findings/contains"
+        }
+      ]
+    },
+    {
+      "id": "DR1-03p",
+      "fixture": "dr1-03-field-next-approval-absent-reported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "D3: a Slice item with Next Approval unset, no finding -- reported",
+      "source": "protocols/gatebraid-control-plane-spec-v1.md:56",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-03b",
+      "fixture": "dr1-03b-field-closure-invariant-unreported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "D3: a CLOSED Slice issue whose Gate is not G3 passed (closed mid-flight), no finding",
+      "source": "protocols/gatebraid-control-plane-spec-v1.md:51",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "findings",
+          "schema_path": "allOf/5/then/properties/findings/contains"
+        }
+      ]
+    },
+    {
+      "id": "DR1-03bp",
+      "fixture": "dr1-03b-field-closure-invariant-reported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "D3: a CLOSED Slice issue whose Gate is not G3 passed (closed mid-flight), no finding -- reported",
+      "source": "protocols/gatebraid-control-plane-spec-v1.md:51",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-03c",
+      "fixture": "dr1-03c-field-workflow-gate-mismatch-unreported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "D3: Workflow = Done with Gate = G2 passed on an open issue, no finding",
+      "source": "protocols/gatebraid-control-plane-spec-v1.md:45 (option 13)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "findings",
+          "schema_path": "allOf/6/then/properties/findings/contains"
+        }
+      ]
+    },
+    {
+      "id": "DR1-03cp",
+      "fixture": "dr1-03c-field-workflow-gate-mismatch-reported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "D3: Workflow = Done with Gate = G2 passed on an open issue, no finding -- reported",
+      "source": "protocols/gatebraid-control-plane-spec-v1.md:45 (option 13)",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-03d",
+      "fixture": "dr1-03d-refs-foreign-preexisting-unreported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "a foreign ref present at the Gate 0 baseline, no finding",
+      "source": "ADR-0036 decision 4 (ruling R2)",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "findings",
+          "schema_path": "allOf/7/then/properties/findings/contains"
+        }
+      ]
+    },
+    {
+      "id": "DR1-03dp",
+      "fixture": "dr1-03d-refs-foreign-preexisting-reported.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "a foreign ref present at the Gate 0 baseline, no finding -- reported",
+      "source": "ADR-0036 decision 4 (ruling R2)",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-04",
+      "fixture": "dr1-04-error-finding-exit-0.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: an error-severity finding beside exit 0",
+      "source": "ADR-0036 decision 7, closed exit set",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/8/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-05",
+      "fixture": "dr1-05-report-names-an-action.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: a key naming an action taken",
+      "source": "ADR-0036 decision 7: the doctor never repairs; the schema has no vocabulary for it",
+      "expect_errors": [
+        {
+          "keyword": "additionalProperties",
+          "path": "(root)",
+          "schema_path": "additionalProperties",
+          "extra_count": 1
+        }
+      ]
+    },
+    {
+      "id": "DR1-06",
+      "fixture": "dr1-06-could-not-run-exit-0.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: could_not_run beside exit 0",
+      "source": "ADR-0036 decision 7",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/10/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-06b",
+      "fixture": "dr1-06-could-not-run-with-a-finding.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: could_not_run carrying a finding",
+      "source": "ADR-0036 decision 7",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/8/then/properties/exit_code/const"
+        },
+        {
+          "keyword": "maxItems",
+          "path": "findings",
+          "schema_path": "allOf/10/then/properties/findings/maxItems"
+        }
+      ]
+    },
+    {
+      "id": "DR1-06p",
+      "fixture": "dr1-06-could-not-run-exit-2.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "structure: could_not_run with exit 2 and no finding -- the positive arm",
+      "source": "ADR-0036 decision 7",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-07",
+      "fixture": "dr1-07-clean-report-exit-1.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: a completed run with no finding beside exit 1",
+      "source": "ADR-0036 decision 7, closed exit set",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/14/then/properties/exit_code/const"
+        },
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/9/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-04b",
+      "fixture": "dr1-04b-warning-at-threshold-warning-exit-0.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: threshold warning, one warning-severity finding, exit 0",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/11/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-04bp",
+      "fixture": "dr1-04b-warning-at-threshold-warning-exit-1.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "structure: threshold warning, one warning-severity finding, exit 1 -- the positive arm",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-04c",
+      "fixture": "dr1-04c-info-at-threshold-info-exit-0.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: threshold info, one info-severity finding, exit 0",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/12/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-07b",
+      "fixture": "dr1-07b-warning-below-threshold-error-exit-1.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: threshold error, one warning-severity finding, exit 1",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/13/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-07bp",
+      "fixture": "dr1-07b-warning-below-threshold-error-exit-0.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "structure: threshold error, one warning-severity finding, exit 0 -- the positive arm",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-07c",
+      "fixture": "dr1-07c-info-below-threshold-warning-exit-1.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: threshold warning, one info-severity finding, exit 1",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/14/then/properties/exit_code/const"
+        }
+      ]
+    }
+  ]
+}

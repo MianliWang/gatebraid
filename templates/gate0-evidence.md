@@ -26,10 +26,19 @@
      rather than from the snapshot/frontier pair, which fails open on the
      control plane's input and is not startability authority before O0. It
      requires a `State Packet Approval` in `approvals[]` and an `output_ref` on
-     every check — gatebraid/gate-run@2 enforces both, so the record cannot
+     every check — gatebraid/gate-run@3 enforces both, so the record cannot
      claim the packet and point at nothing. One-time and expiring: dead after
      N2 + N3 Gate 3, excluded from V's admission series, and no later Slice may
      use it (M3-PLAN §2). -->
+
+<!-- Row classes (ADR-0028 §2; amended at M3 batch P-B1 for replay A's F-2):
+     a row marked [instant] reads state the act of recording it will move — a
+     branch tip, HEAD, the working tree — and is recorded ONCE, at the moment
+     named, and is EXCLUDED from the deterministic subset a reviewer replays;
+     its recorded output is the pin the [pinned] rows then name. A [pinned]
+     row names full SHAs only and must reproduce byte for byte on replay. No
+     row inside a replayable claim names the symbolic head, its
+     abbreviated-ref form, or a bare branch name. -->
 
 # Gate 0 evidence — <P_nn-S_nn>
 
@@ -41,19 +50,25 @@ $ git remote -v
 <output>
 ```
 
-**A2 — plan baseline: head of the base branch now** (recorded here only; the
+**A2 — plan baseline: head of the base branch now** `[instant]` (recorded here only; the
 `Base SHA` field is set at Gate 2 from the head re-read under lease —
 ADR-0011 §9)
 ```
-$ git rev-parse <base-branch>
-<output>
+$ git rev-parse refs/heads/<base-branch>
+<output — X, full 40-hex>
 ```
 
-**A3 — working tree clean AND at the base branch** (one predicate, friction
-#84)
+**A2b — the baseline object, pinned** `[pinned]`
 ```
-$ git status --porcelain; git rev-parse HEAD; git rev-parse <base-branch>
-<outputs — porcelain empty; the two SHAs equal>
+$ git rev-parse --verify <X>^{commit}
+<output — X>
+```
+
+**A3 — working tree clean AND at the base branch** `[instant]` (one
+predicate, friction #84)
+```
+$ git status --porcelain --untracked-files=all; git rev-parse HEAD
+<outputs — porcelain empty; the second line equals X above>
 ```
 
 **A4 — Project `Environment` field vs actual host**
@@ -85,7 +100,7 @@ $ <interpreter path> <validator invocation — prints PyYAML + jsonschema versio
 ## gatebraid-metadata
 
 ```yaml
-schema: gatebraid/gate-run@2
+schema: gatebraid/gate-run@3
 slice_id: P<nn>-S<nn>
 gate: 0
 environment: <wsl|windows|macos-authority|mixed-see-prose>
@@ -100,13 +115,13 @@ checks:
     result: pass
     output_ref: "#records"
   - name: base-sha-recorded
-    command: "git rev-parse <base-branch>"
-    result: pass
+    command: "git rev-parse refs/heads/<base-branch>; git rev-parse --verify <X>^{commit}"
+    result: pass        # the first read is [instant]; the second is the [pinned] replay row
     output_ref: "#records"
   - name: working-tree-clean-at-base
-    command: "git status --porcelain; git rev-parse HEAD; git rev-parse <base-branch>"
-    result: pass        # dirty → result: stopped + Next Approval = Dirty Baseline Acceptance
-                        # HEAD not at base after entry positioning → error (friction #84)
+    command: "git status --porcelain --untracked-files=all; git rev-parse HEAD"
+    result: pass        # [instant]. dirty → result: stopped + Next Approval = Dirty Baseline Acceptance
+                        # HEAD not at X after entry positioning → error (friction #84)
     output_ref: "#records"
   - name: environment-matches-host
     result: pass
@@ -134,4 +149,5 @@ notes: "<free text; do NOT record a transition the contract does not define>"
 ```
 
 <!-- Exit: Gate = G0 passed; Workflow → Gate 1 — Planning; handoff comment
-     (gatebraid/handoff@1) on the Slice issue; Last Checkpoint updated. -->
+     (the schema-tagged handoff block, schema/handoff.schema.json) on the
+     Slice issue; Last Checkpoint updated. -->
