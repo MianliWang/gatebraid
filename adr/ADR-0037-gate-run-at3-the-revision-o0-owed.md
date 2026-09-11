@@ -87,8 +87,8 @@ it is the validator's duty and is named in the corpus manifest's
 property, conditional and description of `@2` stands in `@3` byte for byte
 in intent, with the schema id, title and description moved to `@3` and each
 delta's description added beside the field it changes. One carried
-description (`environment`) contained U+2194 in `@2`; the committed-file scan
-refuses that code point, so `@3` spells the pairing out in words — "windows
+description (`environment`) contained U+2194 in `@2`; the scan over every file a
+batch adds or modifies refuses that code point, so `@3` spells the pairing out in words — "windows
 to windows and wsl to wsl". The meaning is unchanged. `@2` itself is frozen
 history and is not edited for it; the residue is recorded here and in the
 batch's ledger entry.

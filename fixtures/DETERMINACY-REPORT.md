@@ -392,7 +392,8 @@ used. Neither text is edited; this addendum is the correction of record.
 
 **Corpus v2's own determinacy, measured the way §7 measured v1.** Over the
 whole corpus at P-B1's delivery — eleven built corpora, 259 cases, 181 invalid —
-the (schema, locus-set) keys number 178 and the colliding groups are exactly
+the (schema, locus-set) keys number 178 (at the batch's v3, after the review's
+seeds: 272 cases, 189 invalid, 186 keys) and the colliding groups are exactly
 the three §7 and the v1 manifests already declare (EC1-28/EC1-29,
 GR2-09/GR2-12, IN1-06/IN1-11). **Corpus v2 adds zero new collisions.** Inside
 `guard-v1` every fact-to-result conditional is its own `allOf` entry, so every
@@ -411,5 +412,6 @@ and this batch. The discovery rule was right and caught it, five days late,
 because the instrument was not run. The runner gains a declared `foreign`
 list (S29–S31 in the selftest); the defect and its late measurement are the
 coordinator's and are ledgered at this batch's closeout. **This addendum does
-not move the corpus digest** for the reason §7 gave: this file is outside the
-digest's scope.
+not move the corpus digest** for the reason §7 gave: this file's content is
+outside the digest's scope (its name enters through the `fixtures/` listing,
+which an edit does not change).

@@ -1,7 +1,7 @@
 {
   "corpus": "doctor-v1",
   "corpus_version": "v2.0",
-  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 6. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
+  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 4. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
   "description": "The doctor's three audits (frontier composition, closure preconditions, field invariants; M3-PLAN.md section 2 P), each with a fact that must produce a finding and the reported twin, plus the closed exit set and the never-repairs rule as structure.",
   "loader": "CPython 3.11.15 (/usr/bin/python3), jsonschema 4.26.0, Draft202012Validator; measured by the coordinator in the sandbox; the landing captures record the host loaders",
   "known_limitation": "The same schema-half limit as guard-v1: the report binds facts to findings; that the doctor read the platform correctly is the instrument half at P2-S7. The host.instruction_divergence check id is reserved for R-min and has no case here.",
@@ -293,7 +293,90 @@
         {
           "keyword": "const",
           "path": "exit_code",
+          "schema_path": "allOf/14/then/properties/exit_code/const"
+        },
+        {
+          "keyword": "const",
+          "path": "exit_code",
           "schema_path": "allOf/9/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-04b",
+      "fixture": "dr1-04b-warning-at-threshold-warning-exit-0.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: threshold warning, one warning-severity finding, exit 0",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/11/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-04bp",
+      "fixture": "dr1-04b-warning-at-threshold-warning-exit-1.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "structure: threshold warning, one warning-severity finding, exit 1 -- the positive arm",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-04c",
+      "fixture": "dr1-04c-info-at-threshold-info-exit-0.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: threshold info, one info-severity finding, exit 0",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/12/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-07b",
+      "fixture": "dr1-07b-warning-below-threshold-error-exit-1.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: threshold error, one warning-severity finding, exit 1",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/13/then/properties/exit_code/const"
+        }
+      ]
+    },
+    {
+      "id": "DR1-07bp",
+      "fixture": "dr1-07b-warning-below-threshold-error-exit-0.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "valid",
+      "class": "structure: threshold error, one warning-severity finding, exit 0 -- the positive arm",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": []
+    },
+    {
+      "id": "DR1-07c",
+      "fixture": "dr1-07c-info-below-threshold-warning-exit-1.json",
+      "schema": "schema/doctor-report.schema.json",
+      "expect": "invalid",
+      "class": "structure: threshold warning, one info-severity finding, exit 1",
+      "source": "ADR-0036 decision 7 (v3, review W-3)",
+      "expect_errors": [
+        {
+          "keyword": "const",
+          "path": "exit_code",
+          "schema_path": "allOf/14/then/properties/exit_code/const"
         }
       ]
     }

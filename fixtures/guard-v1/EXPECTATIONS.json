@@ -1,7 +1,7 @@
 {
   "corpus": "guard-v1",
   "corpus_version": "v2.0",
-  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 6. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
+  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 4. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
   "description": "One negative case per guard check (twelve checks, M3-PLAN.md section 2 P), frictions #92 and #106 entering as cases, four structural cases, and the positive arm of every negative. Each negative is a gatebraid/guard-verdict@1 document that reports a violating fact beside a passing result -- what a correct guard can never emit. The instrument half of every item (that the guard extracts these facts correctly from raw host readings) freezes where its instrument exists: Slice P2-S7 replays each case's facts through the guard and the verdict must equal the recorded one (ADR-0031 decision 2's pattern; spec section 4).",
   "loader": "CPython 3.11.15 (/usr/bin/python3), jsonschema 4.26.0, Draft202012Validator; measured by the coordinator in the sandbox; the landing captures record the host loaders",
   "known_limitation": "Two relations are named rather than left looking enforced. (1) The schema binds facts to results; it cannot bind raw host readings to facts. A guard that misreads the host and reports clean facts emits a valid document; that class is caught only by the instrument half at P2-S7 (recorded raw readings replayed, verdict compared). (2) The twelve coverage clauses assert that each check id appears at least once among exactly twelve entries, which together force exactly once; no clause asserts the order.",
@@ -685,6 +685,30 @@
       "expect": "valid",
       "class": "check 12: the baseline names a hook surface and the host reports it does not match, result pass -- the positive arm: the same facts, denied",
       "source": "ADR-0036 decision 6 (ruling R3)",
+      "expect_errors": []
+    },
+    {
+      "id": "GV1-04b",
+      "fixture": "gv1-04b-ref-namespaces-passed.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "invalid",
+      "class": "check 3: a foreign ref present with no Gate 0 baseline recorded, result pass",
+      "source": "ADR-0036 decision 4 (v3, review W-14): fail-closed as decision 6",
+      "expect_errors": [
+        {
+          "keyword": "contains",
+          "path": "checks",
+          "schema_path": "allOf/47/then/properties/checks/contains"
+        }
+      ]
+    },
+    {
+      "id": "GV1-04bp",
+      "fixture": "gv1-04b-ref-namespaces-denied.json",
+      "schema": "schema/guard-verdict.schema.json",
+      "expect": "valid",
+      "class": "check 3: a foreign ref present with no Gate 0 baseline recorded, result pass -- the positive arm: the same facts, denied",
+      "source": "ADR-0036 decision 4 (v3, review W-14): fail-closed as decision 6",
       "expect_errors": []
     },
     {

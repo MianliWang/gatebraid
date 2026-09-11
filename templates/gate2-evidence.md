@@ -43,8 +43,8 @@
      named, and is EXCLUDED from the deterministic subset a reviewer replays;
      its recorded output is the pin the [pinned] rows then name. A [pinned]
      row names full SHAs only and must reproduce byte for byte on replay. No
-     row in this file names HEAD, --abbrev-ref HEAD, or a bare branch name
-     inside a replayable claim. -->
+     row inside a replayable claim names the symbolic head, its
+     abbreviated-ref form, or a bare branch name. -->
 
 # Gate 2 evidence — <P_nn-S_nn>
 

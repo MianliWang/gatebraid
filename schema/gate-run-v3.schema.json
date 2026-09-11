@@ -567,7 +567,8 @@
             "red_check",
             "record_correction"
           ],
-          "description": "@3 delta (ledger 193): which sequence this attempt belongs to. `red_check` is the D6 repair sequence of gate-2-contract (a review or check red, a repair with a new hypothesis); `record_correction` is a repair to the record itself under route A. Only red_check attempts count toward friction #94's conditional and toward repair_limit's spend as the contract defines it; the array's positional cap still applies to both."
+          "description": "@3 delta (ledger 193): which sequence this attempt belongs to. `red_check` is the D6 repair sequence of gate-2-contract (a review or check red, a repair with a new hypothesis); `record_correction` is a repair to the record itself under route A. Only red_check attempts count toward friction #94's conditional and toward repair_limit's spend as the contract defines it; the array's positional cap still applies to both.",
+          "$comment": "The enumeration is asserted by GR3-15 and the requirement by GR3-09 (v3, review W-1)."
         }
       },
       "$comment": "Hoisted at N1D so F8's positional constraint can reference it. In JSON Schema 2020-12 `items` applies ONLY to positions at or beyond len(prefixItems), so a two-entry prefixItems plus maxItems: 2 left `items` unreachable at every index a legal array can have — every constraint here was silently dead. The internal review measured it: a repair attempt of {\"number\": 1} alone, with no hypothesis and no result, validated. Each position now $refs this schema and adds only its own number const; `items: false` closes the tail. @3: `kind` added and required; see ADR-0037 decision 1."

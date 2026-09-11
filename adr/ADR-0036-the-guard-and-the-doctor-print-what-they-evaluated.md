@@ -76,7 +76,9 @@ falsify one.
 (`schema/guard-verdict.schema.json`, frozen by this batch) is what
 `bin/gatebraid-guard.py` emits at every pre-flight: the normalised facts it
 evaluated, one group per check; exactly twelve `checks[]` entries, one per
-check id in the plan's order, each with `result` in `pass | deny |
+check id, listed in the plan's order (a convention of the guard; the schema
+asserts membership, not order — guard-v1's declared limitation), each with
+`result` in `pass | deny |
 not_evaluated`, the governing `rule` by file and line, a `detail`, and a
 `trace` from which the result can be disputed without re-running the guard;
 a `verdict` in `allow | deny | not_evaluated`, `deny` if any check denied
@@ -104,8 +106,10 @@ it. One present at the baseline is the doctor's finding
 (`refs.foreign_preexisting`), not the guard's deny — the contracts' "reported,
 not adopted" — because a pre-existing ref is the host's state, not the
 Slice's act, and denying it would block every Slice on a host that carries
-one. Neither the guard nor the doctor adopts, deletes or rewrites a foreign
-ref.
+one. A foreign ref present while no Gate 0 baseline is recorded is a `deny`:
+without the baseline the guard cannot class it pre-existing, and decision 6's
+fail-closed rule applies (GV1-04b; the review's W-14). Neither the guard nor
+the doctor adopts, deletes or rewrites a foreign ref.
 
 **5. Label coupling (check 9) — operator ruling R1.** The guard follows spec
 §1's table as written: `needs-human` is on exactly when `Workflow` is one of
@@ -133,8 +137,10 @@ is tracked and a host surface that does not match it is a deny (GV1-13b).
 `bin/gatebraid-doctor.py` emits: facts for its three audits — frontier
 composition, closure preconditions, field invariants — beside `findings[]`,
 each with `check_id`, `severity`, `message`, `path` and a `fix_hint`; an
-`outcome` in `completed | could_not_run`; `exit_code` `0` no finding, `1`
-findings, `2` could not run. The schema has no vocabulary for an action taken
+`outcome` in `completed | could_not_run`; `exit_code` `0` no finding at or
+above the report's `threshold`, `1` a finding at or above it (the report
+carries the threshold so a consumer knows what `0` meant; the schema binds
+both directions for every severity — the review's W-3), `2` could not run. The schema has no vocabulary for an action taken
 and `additionalProperties` is false at every level, so a report that claims
 to have changed anything is invalid (DR1-05). The doctor's own README at
 P2-S7 lists what it never does, one line per excluded action. The

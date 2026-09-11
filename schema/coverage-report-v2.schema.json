@@ -451,7 +451,7 @@
                 "boolean",
                 "null"
               ],
-              "description": "Null for form argv."
+              "description": "Null for form argv, boolean for form shell -- bound in both directions by the conditionals below (v3, review W-4)."
             },
             "exit_code_source": {
               "enum": [
@@ -614,6 +614,68 @@
                 "properties": {
                   "interpretable": {
                     "const": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$comment": "IN-01, the form half (v3, review W-4): an argv basis has no pipeline, so pipefail is null (IN2-06).",
+          "if": {
+            "required": [
+              "exit_code_basis"
+            ],
+            "properties": {
+              "exit_code_basis": {
+                "properties": {
+                  "form": {
+                    "const": "argv"
+                  }
+                },
+                "required": [
+                  "form"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "exit_code_basis": {
+                "properties": {
+                  "pipefail": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$comment": "IN-01, the form half (v3, review W-4): a shell basis states pipefail as a boolean, never null (IN2-07).",
+          "if": {
+            "required": [
+              "exit_code_basis"
+            ],
+            "properties": {
+              "exit_code_basis": {
+                "properties": {
+                  "form": {
+                    "const": "shell"
+                  }
+                },
+                "required": [
+                  "form"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "exit_code_basis": {
+                "properties": {
+                  "pipefail": {
+                    "type": "boolean"
                   }
                 }
               }

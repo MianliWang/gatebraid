@@ -1,7 +1,7 @@
 {
   "corpus": "instruments-v2",
   "corpus_version": "v2.0",
-  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 6. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
+  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 4. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
   "description": "gatebraid/coverage-report@2 (ADR-0037 decision 7): the @1 canonical report valid as @1 and invalid as @2, the gate-run@3 target @1 could not name, and IN-01 -- the one M3-PLAN section 6 item frozen in neither v1 corpus -- asserted here in both directions against the validator's own document.",
   "loader": "CPython 3.11.15 (/usr/bin/python3), jsonschema 4.26.0, Draft202012Validator; measured by the coordinator in the sandbox; the landing captures record the host loaders",
   "known_limitation": "IN-01's cross-document half stands: this corpus asserts that a report which SAYS the exit code was uninterpretable cannot credit a pass, and that pipeline_last without pipefail cannot be called interpretable. That the validator read the target capture's shell_semantics correctly into exit_code_basis is the validator's own falsification at P2-S7, against the evidence-capture-v1 fixtures EC1-02, EC1-07 and EC1-25 that carry IN-01's built halves. The `instruments` corpus (v1.1) is untouched: its known_limitation (2) re-assigned IN-01 here and is discharged by this corpus, recorded in the dated addendum to fixtures/DETERMINACY-REPORT.md rather than by editing a frozen manifest.",
@@ -99,6 +99,45 @@
           "keyword": "enum",
           "path": "target/schema_id",
           "schema_path": "properties/target/properties/schema_id/enum"
+        }
+      ]
+    },
+    {
+      "id": "IN2-06",
+      "fixture": "in2-06-argv-basis-with-pipefail.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "invalid",
+      "class": "an argv basis carrying pipefail true",
+      "source": "coverage-report@2 exit_code_basis.pipefail (v3, review W-4)",
+      "expect_errors": [
+        {
+          "keyword": "type",
+          "path": "properties/0/exit_code_basis/pipefail",
+          "schema_path": "properties/properties/items/allOf/6/then/properties/exit_code_basis/properties/pipefail/type"
+        }
+      ]
+    },
+    {
+      "id": "IN2-06p",
+      "fixture": "in2-06-argv-basis-pipefail-null.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "valid",
+      "class": "an argv basis with pipefail null -- the positive arm",
+      "source": "coverage-report@2 exit_code_basis.pipefail (v3, review W-4)",
+      "expect_errors": []
+    },
+    {
+      "id": "IN2-07",
+      "fixture": "in2-07-shell-basis-pipefail-null.json",
+      "schema": "schema/coverage-report-v2.schema.json",
+      "expect": "invalid",
+      "class": "a shell basis with pipefail null",
+      "source": "coverage-report@2 exit_code_basis.pipefail (v3, review W-4)",
+      "expect_errors": [
+        {
+          "keyword": "type",
+          "path": "properties/0/exit_code_basis/pipefail",
+          "schema_path": "properties/properties/items/allOf/7/then/properties/exit_code_basis/properties/pipefail/type"
         }
       ]
     }

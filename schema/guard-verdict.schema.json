@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "gatebraid/guard-verdict@1",
   "title": "Gatebraid guard verdict document (gatebraid/guard-verdict@1)",
-  "description": "The document `gatebraid-guard` emits at every pre-flight: the normalised facts it evaluated, one result per check in a fixed order, the verdict and the exit status. Introduced at M3 node P as that node's first deliverable (M3-PLAN.md section 2 P; ADR-0036), admitted under ADR-0030 by the milestone authority that introduces it plus the operator's batch approval; it amends ADR-0010 not at all. THE DESIGN RULE: the guard prints what it evaluated, so a verdict can be disputed from the document without re-running the guard, and the schema's conditionals bind the facts to the results, so a document that reports a violating fact beside a passing result is invalid. That is how corpus v2 asserts the twelve checks before the guard exists (ADR-0031's route, as gatebraid/snapshot@1 took it for O0): each negative case is a verdict document a correct guard can never emit. Facts are counts, booleans and closed enumerations; the values the guard forbids -- an identifier outside the set, a truncated SHA, a foreign ref name -- never enter this document (ADR-0028 section 3). `format` is deliberately absent and every timestamp is a lexical `pattern`, for the reason the other frozen interfaces record. The classification of which corpus items assert what against this schema lives in fixtures/CORPUS-v2-PLAN.md, its single home.",
+  "description": "The document `gatebraid-guard` emits at every pre-flight: the normalised facts it evaluated, one result per check, listed in the plan's order, the verdict and the exit status. Introduced at M3 node P as that node's first deliverable (M3-PLAN.md section 2 P; ADR-0036), admitted under ADR-0030 by the milestone authority that introduces it plus the operator's batch approval; it amends ADR-0010 not at all. THE DESIGN RULE: the guard prints what it evaluated, so a verdict can be disputed from the document without re-running the guard, and the schema's conditionals bind the facts to the results, so a document that reports a violating fact beside a passing result is invalid. That is how corpus v2 asserts the twelve checks before the guard exists (ADR-0031's route, as gatebraid/snapshot@1 took it for O0): each negative case is a verdict document a correct guard can never emit. Facts are counts, booleans and closed enumerations; the values the guard forbids -- an identifier outside the set, a truncated SHA, a foreign ref name -- never enter this document (ADR-0028 section 3). `format` is deliberately absent and every timestamp is a lexical `pattern`, for the reason the other frozen interfaces record. The classification of which corpus items assert what against this schema lives in fixtures/CORPUS-v2-PLAN.md, its single home.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -549,7 +549,7 @@
           }
         }
       },
-      "description": "Exactly twelve entries, one per check id (coverage is asserted by the allOf entries below), in the plan's order."
+      "description": "Exactly twelve entries, one per check id (coverage is asserted by the allOf entries below). The plan's order is the guard's convention; this schema asserts membership, not order (guard-v1 known_limitation (2))."
     },
     "verdict": {
       "enum": [
@@ -2334,6 +2334,57 @@
               "properties": {
                 "check_id": {
                   "const": "hooks_enabled"
+                },
+                "result": {
+                  "const": "deny"
+                }
+              },
+              "required": [
+                "check_id",
+                "result"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Check 3, ref_namespaces: a foreign ref present while no Gate 0 baseline is recorded is a deny: without the baseline the guard cannot class it pre-existing, and the fail-closed rule of decision 6 applies (ADR-0036 decision 4; review W-14) (GV1-04b)",
+      "if": {
+        "required": [
+          "facts"
+        ],
+        "properties": {
+          "facts": {
+            "required": [
+              "refs"
+            ],
+            "properties": {
+              "refs": {
+                "properties": {
+                  "baseline_recorded": {
+                    "const": false
+                  },
+                  "foreign_refs_present": {
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "baseline_recorded",
+                  "foreign_refs_present"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "check_id": {
+                  "const": "ref_namespaces"
                 },
                 "result": {
                   "const": "deny"

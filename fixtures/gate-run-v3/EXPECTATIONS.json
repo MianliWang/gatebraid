@@ -1,7 +1,7 @@
 {
   "corpus": "gate-run-v3",
   "corpus_version": "v2.0",
-  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 6. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
+  "frozen_by": "Corpus v2, frozen at M3 node P's start by the operator's Batch Approval on the batch P-B1 pull request (MianliWang/gatebraid); the freeze commit is that batch's merge commit, recorded in the approval and in fixtures/CORPUS-v2-PLAN.md section 4. Fixtures precede the tool: this corpus exists before bin/gatebraid-guard.py and bin/gatebraid-doctor.py are written (M3-PLAN.md section 2 P).",
   "description": "gatebraid/gate-run@3 (ADR-0037): the @2 canonical record valid as @2 and invalid as @3 -- the same-document-under-two-schemas pair GR2-02/GR2-03 established -- and one case per @3 delta in both directions.",
   "loader": "CPython 3.11.15 (/usr/bin/python3), jsonschema 4.26.0, Draft202012Validator; measured by the coordinator in the sandbox; the landing captures record the host loaders",
   "known_limitation": "A consult_ref is required to have SOME roster entry, not the matching one: cross-field membership is not expressible, and the matching half is the validator's (N3's) duty, named here rather than left looking enforced.",
@@ -175,6 +175,30 @@
           "schema_path": "properties/allowlist_hash/pattern"
         }
       ]
+    },
+    {
+      "id": "GR3-15",
+      "fixture": "repair-attempt-kind-outside-enum.json",
+      "schema": "schema/gate-run-v3.schema.json",
+      "expect": "invalid",
+      "class": "repair attempt with a kind outside the enumeration",
+      "source": "ADR-0037 decision 1 (v3, review W-1)",
+      "expect_errors": [
+        {
+          "keyword": "enum",
+          "path": "repair_attempts/0/kind",
+          "schema_path": "properties/repair_attempts/prefixItems/0/properties/kind/enum"
+        }
+      ]
+    },
+    {
+      "id": "GR3-15p",
+      "fixture": "one-record-correction.json",
+      "schema": "schema/gate-run-v3.schema.json",
+      "expect": "valid",
+      "class": "one record_correction attempt, result passed -- the positive arm",
+      "source": "ADR-0037 decision 1 (v3, review W-1)",
+      "expect_errors": []
     }
   ]
 }

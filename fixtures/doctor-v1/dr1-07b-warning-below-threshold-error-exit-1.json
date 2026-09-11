@@ -59,18 +59,18 @@
       }
     ],
     "refs": {
-      "foreign_refs_preexisting": 1
+      "foreign_refs_preexisting": 0
     }
   },
   "findings": [
     {
       "check_id": "refs.foreign_preexisting",
       "severity": "warning",
-      "message": "1 ref outside the watched namespaces pre-dates the Slice",
+      "message": "structural case",
       "path": null,
-      "fix_hint": "report it in the Gate 0 record; never adopt, delete or rewrite it"
+      "fix_hint": "structural case"
     }
   ],
-  "threshold": "warning",
+  "threshold": "error",
   "exit_code": 1
 }

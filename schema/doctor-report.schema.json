@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "gatebraid/doctor-report@1",
   "title": "Gatebraid doctor report (gatebraid/doctor-report@1)",
-  "description": "The document `gatebraid-doctor` emits: a platform and configuration audit of the control plane -- frontier composition, closure preconditions, field invariants (M3-PLAN.md section 2 P) -- as facts beside findings. Introduced at M3 node P (ADR-0036); admitted under ADR-0030 by the milestone authority plus the operator's batch approval. THE DESIGN RULE: the doctor reports and never repairs. This schema has no vocabulary for an action taken -- no `repaired`, no `actions`, no `fixed` -- and `additionalProperties` is false at every level, so a report that claims to have changed anything is invalid (DR1-05). Each finding carries a `fix_hint` so the report is actionable without becoming a repair. Exit codes are a closed set: 0 no finding, 1 findings, 2 could not run. R-min adds the host-instruction conformance check under the reserved id `host.instruction_divergence`. Timestamps are lexical patterns, as in every frozen interface.",
+  "description": "The document `gatebraid-doctor` emits: a platform and configuration audit of the control plane -- frontier composition, closure preconditions, field invariants (M3-PLAN.md section 2 P) -- as facts beside findings. Introduced at M3 node P (ADR-0036); admitted under ADR-0030 by the milestone authority plus the operator's batch approval. THE DESIGN RULE: the doctor reports and never repairs. This schema has no vocabulary for an action taken -- no `repaired`, no `actions`, no `fixed` -- and `additionalProperties` is false at every level, so a report that claims to have changed anything is invalid (DR1-05). Each finding carries a `fix_hint` so the report is actionable without becoming a repair. Exit codes are a closed set: 0 no finding at or above `threshold`, 1 a finding at or above `threshold` (the report carries the threshold so a consumer knows what 0 meant), 2 could not run. R-min adds the host-instruction conformance check under the reserved id `host.instruction_divergence`. Timestamps are lexical patterns, as in every frozen interface.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -778,6 +778,151 @@
           },
           "findings": {
             "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set, the threshold half (ADR-0036 decision 7; review W-3): at threshold warning or info, a warning-severity finding is exit 1 (DR1-04b).",
+      "if": {
+        "properties": {
+          "threshold": {
+            "enum": [
+              "warning",
+              "info"
+            ]
+          },
+          "findings": {
+            "contains": {
+              "properties": {
+                "severity": {
+                  "const": "warning"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "threshold",
+          "findings"
+        ]
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set, the threshold half (ADR-0036 decision 7; review W-3): at threshold info, an info-severity finding is exit 1 (DR1-04c).",
+      "if": {
+        "properties": {
+          "threshold": {
+            "const": "info"
+          },
+          "findings": {
+            "contains": {
+              "properties": {
+                "severity": {
+                  "const": "info"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "threshold",
+          "findings"
+        ]
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set, the threshold half (ADR-0036 decision 7; review W-3): a completed run at threshold error with no error-severity finding is exit 0, whatever else it reports (DR1-07b).",
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "completed"
+          },
+          "threshold": {
+            "const": "error"
+          },
+          "findings": {
+            "items": {
+              "properties": {
+                "severity": {
+                  "not": {
+                    "const": "error"
+                  }
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "outcome",
+          "threshold",
+          "findings"
+        ]
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 0
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Closed exit set, the threshold half (ADR-0036 decision 7; review W-3): a completed run at threshold warning whose findings are all info is exit 0 (DR1-07c).",
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "completed"
+          },
+          "threshold": {
+            "const": "warning"
+          },
+          "findings": {
+            "items": {
+              "properties": {
+                "severity": {
+                  "const": "info"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "outcome",
+          "threshold",
+          "findings"
+        ]
+      },
+      "then": {
+        "properties": {
+          "exit_code": {
+            "const": 0
           }
         }
       }

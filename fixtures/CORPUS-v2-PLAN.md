@@ -68,7 +68,7 @@ the independent review. The sentence, not the number, is the rule.
 |---|---|---|---|---|---|
 | 1 | `identity` | ADR-0024 §1 (the dedicated store), ADR-0022 §1 and §4 (two surfaces; drift is a stop); the roster rule promoted from friction #92 by ADR-0036 decision 3 | `store_is_dedicated`, `active_is_executor`, `account_count`, `git_identity_is_executor` | GV1-01, 01b, 01c, 02 | the four flags to results; that `gh auth status` was read and counted correctly is P2-S7's |
 | 2 | `closed_set` | `protocols/state-packet-queries-v1.md` ("no others, ever"; never enumerate); spec §4 (no unbounded identifier lists); the P2-S5 sweep instrument | `identifiers_examined`, `identifiers_outside_set`, `positions[]` | GV1-03 (GV1-18: no name in a position) | count to result; the sweep itself, and its residue rule for superseded `-pass` captures (ledger 238(e)), is P2-S7's with the guard's check 2 |
-| 3 | `ref_namespaces` | `protocols/gate-0-contract.md` §Baseline ("reported, not adopted"); `gate-3-contract.md` (no ref the slice introduced); ADR-0028; ADR-0036 decision 4 (introduced → deny; pre-existing → doctor) | `baseline_recorded`, `foreign_refs_present`, `foreign_refs_introduced` | GV1-04; DR1-03d (pre-existing) | introduced count to result; the diff against the Gate 0 listing is P2-S7's |
+| 3 | `ref_namespaces` | `protocols/gate-0-contract.md` §Actions item 1 ("reported, not adopted"); `gate-3-contract.md` (no ref the slice introduced); ADR-0028; ADR-0036 decision 4 (introduced → deny; pre-existing → doctor) | `baseline_recorded`, `foreign_refs_present`, `foreign_refs_introduced` | GV1-04; DR1-03d (pre-existing) | introduced count to result; the diff against the Gate 0 listing is P2-S7's |
 | 4 | `full_sha` | ADR-0029 P1-1; ADR-0028 §2; `gate-1-contract.md` (64-hex hashes) | `fields_examined`, `fields_not_full` | GV1-05 | count to result; which fields (the Project's free-text Base SHA, approval citations) is P2-S7's |
 | 5 | `allowlist` | `protocols/gate-2-contract.md` R1 (the diff a subset of `write_domains`; porcelain with `--untracked-files=all`; friction #107) | `frozen`, `diff_outside`, `untracked_outside` | GV1-06, 06b | counts to result; the subset computation is P2-S7's |
 | 6 | `writer_lease` | ADR-0003 §1 (one writer; the field names it), consequences (a second writer is a stop); `gate-2-contract.md` entry; `gate-3-contract.md` exit 6; ADR-0025 §3; friction #106 | `workflow`, `writer_lease_present`, `lease_holders_in_repository`, `lease_names_this_session` | GV1-07 (#106), 07b, 07c | state and counts to result; the lease-holding states are 5, 6, 7, 8, 9, 11, 12 (Gate 2 entry to Gate 3 exit; Blocked is neither) |
@@ -94,7 +94,7 @@ is measured.
 
 ## 3. The corpora
 
-### 3.1 `guard-v1` — `gatebraid/guard-verdict@1` — 79 files, 78 cases
+### 3.1 `guard-v1` — `gatebraid/guard-verdict@1` — 81 files, 80 cases
 
 | id | class | expect |
 |---|---|---|
@@ -113,7 +113,7 @@ is measured.
 | GV1-13 · 13b | check 12: no baseline tracked · host does not match the baseline | invalid + twins |
 | GV1-14 · 15-`<id>` (twelve) · 16-allow · 16-deny · 16-not_evaluated (+ its `p` twin valid) · 17 · 18 · 19 · 19b | structure: `allow` beside a `deny` · eleven checks, each id missing in turn · `allow` with exit 1 · `deny` with exit 0 · `not_evaluated` with exit 0 · a `deny` with no trace · a position carrying a name · `not_evaluated` while every check passed · `not_evaluated` beside a `deny` | invalid |
 
-### 3.2 `doctor-v1` — `gatebraid/doctor-report@1` — 24 files, 23 cases
+### 3.2 `doctor-v1` — `gatebraid/doctor-report@1` — 30 files, 29 cases
 
 | id | audit | fact beside an empty `findings[]` | expect |
 |---|---|---|---|
@@ -124,7 +124,7 @@ is measured.
 | DR1-03d | refs | a foreign ref present at the baseline (ADR-0036 decision 4) | invalid + twin (severity warning) |
 | DR1-04 · 05 · 06 · 06b · 07 (06p: `could_not_run` with exit 2, valid) | structure | an error finding beside exit 0 · a key naming an action taken · `could_not_run` beside exit 0 · `could_not_run` carrying a finding · a clean completed run beside exit 1 | invalid |
 
-### 3.3 `gate-run-v3` — `gatebraid/gate-run@3` — 14 files, 14 cases
+### 3.3 `gate-run-v3` — `gatebraid/gate-run@3` — 16 files, 16 cases
 
 GR3-01 the canonical `@3` record (valid); GR3-02/03 the `@2` canonical valid as
 `@2` and invalid as `@3` (the pair); GR3-04 two `red_check` attempts without a
@@ -135,9 +135,11 @@ GR3-07 two `red_check` with the consult on the roster (valid); GR3-08 a
 attempt without `kind` (invalid); GR3-10 a `Writer Assignment` approval
 (valid: ledger 194); GR3-11 a `qualifications[]` entry (valid: ledger 194);
 GR3-12 a qualification without its citation (invalid); GR3-13 a 63-hex
-`plan_hash` and GR3-14 a 63-hex `allowlist_hash` (invalid).
+`plan_hash` and GR3-14 a 63-hex `allowlist_hash` (invalid); GR3-15 a `kind`
+outside the enumeration (invalid) and GR3-15p one `record_correction` attempt
+(valid) — the review's W-1, v3.
 
-### 3.4 `instruments-v2` — `gatebraid/coverage-report@2` — 8 files, 8 cases
+### 3.4 `instruments-v2` — `gatebraid/coverage-report@2` — 11 files, 11 cases
 
 IN2-01 the canonical `@2` report (valid); IN2-01a/01b the `@1` canonical valid
 as `@1` and invalid as `@2` (the pair); **IN2-02 a property credited `pass` on
@@ -177,7 +179,7 @@ declared `foreign` (§5).
 ## 5. Measurement — the commands, and the runner's amendment
 
 ```
-<python> -B fixtures/run-corpus.py          # CORPUS CLEAN, exit 0; 259 cases at delivery
+<python> -B fixtures/run-corpus.py          # CORPUS CLEAN, exit 0; 272 cases at v3 (259 at v1)
 <python> -B fixtures/runner-selftest.py     # SELFTEST CLEAN; 32 conditions, S29-S31 new
 ```
 
@@ -199,8 +201,8 @@ for c in d['built']:
 print(n,len(g),sum(1 for v in g.values() if len(v)>1))"
 ```
 
-Expected at delivery: `181 178 3`, the three groups being the ones v1
-declared. (v2 of this file, landed in the same batch: the command names its
+Expected at v3: `189 186 3` (`181 178 3` at v1), the three groups being the
+ones v1 declared. (v2 of this file, landed in the same batch: the command names its
 encoding. The v1 form read with the platform default and failed on the
 host's cp936 locale until UTF-8 mode was forced — caught by the build window,
 ledgered as the coordinator's.)
